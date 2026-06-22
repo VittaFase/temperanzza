@@ -50,11 +50,9 @@ export function ProductGrid({ first = 24 }: { first?: number }) {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-foreground/10">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
       {data.map((p) => (
-        <div key={p.node.id} className="bg-background">
-          <ProductCard product={p} />
-        </div>
+        <ProductCard key={p.node.id} product={p} />
       ))}
     </div>
   );
