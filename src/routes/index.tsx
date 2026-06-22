@@ -1,29 +1,200 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { SiteLayout } from "@/components/site/SiteLayout";
+import { ProductGrid } from "@/components/site/ProductGrid";
+import { Button } from "@/components/ui/button";
+import { Flame, Leaf, Award, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Temperanzza — Casa de Temperos Artesanais" },
+      {
+        name: "description",
+        content:
+          "Misturas curadas para cozinhas de verdade. Páprica, chimi churri, lemon pepper e mais. Embalado fresco, sem aditivos desnecessários.",
+      },
+      {
+        property: "og:title",
+        content: "Temperanzza — Casa de Temperos Artesanais",
+      },
+      {
+        property: "og:description",
+        content:
+          "Misturas curadas para cozinhas de verdade. Páprica, chimi churri, lemon pepper e mais.",
+      },
     ],
   }),
-  component: Index,
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <SiteLayout>
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-foreground/15">
+        <div className="absolute inset-0 bg-paper-grain opacity-60" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 grid lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="divider-stencil w-12" />
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+                Desde 2019 — Minas Gerais
+              </span>
+            </div>
+            <h1 className="font-display font-black uppercase leading-[0.92] tracking-tight text-[12vw] sm:text-7xl lg:text-8xl xl:text-[7rem]">
+              Tempero
+              <br />
+              <span className="text-accent">de verdade</span>
+              <br />
+              pra cozinha
+              <br />
+              que respeita.
+            </h1>
+            <p className="mt-8 max-w-xl text-base sm:text-lg text-foreground/80 leading-relaxed">
+              Misturas autorais embaladas a cada lote. Sem corantes, sem
+              gordura hidrogenada, sem atalhos. Só especiarias selecionadas e
+              o tempo certo na mão de quem cozinha.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Button
+                asChild
+                size="lg"
+                className="rounded-none h-14 px-8 bg-foreground text-background hover:bg-accent font-display uppercase tracking-widest"
+              >
+                <Link to="/produtos">
+                  Ver o Catálogo
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="rounded-none h-14 px-8 border-foreground/30 bg-transparent hover:bg-foreground hover:text-background font-display uppercase tracking-widest"
+              >
+                <Link to="/sobre">A Casa</Link>
+              </Button>
+            </div>
+          </div>
+          <div className="lg:col-span-5 relative">
+            <div className="aspect-square bg-brand-ink relative overflow-hidden">
+              <div className="absolute inset-0 flex items-center justify-center p-10">
+                <div className="text-center">
+                  <div className="font-display text-brand-paper text-[12rem] leading-none font-black tracking-tighter">
+                    T
+                  </div>
+                  <div className="mt-2 text-brand-paper/70 font-display uppercase tracking-[0.4em] text-xs">
+                    Temperanzza
+                  </div>
+                  <div className="mt-1 text-accent font-display uppercase tracking-[0.3em] text-[10px]">
+                    Spice House · MG
+                  </div>
+                </div>
+              </div>
+              <div className="absolute top-4 left-4 right-4 flex justify-between text-brand-paper/40 text-[10px] font-display uppercase tracking-widest">
+                <span>Lote 2026</span>
+                <span>45g</span>
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 flex justify-between text-brand-paper/40 text-[10px] font-display uppercase tracking-widest">
+                <span>Artesanal</span>
+                <span>Sem aditivos</span>
+              </div>
+            </div>
+            <div className="absolute -bottom-4 -left-4 bg-accent text-accent-foreground px-4 py-2 font-display uppercase tracking-widest text-xs">
+              19 referências
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MANIFESTO STRIP */}
+      <section className="border-b border-foreground/15 bg-brand-ink text-brand-paper py-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-[11px] font-display uppercase tracking-[0.3em]">
+          <span>Embalado a cada lote</span>
+          <span className="text-accent">●</span>
+          <span>Especiarias selecionadas</span>
+          <span className="text-accent">●</span>
+          <span>Receitas autorais</span>
+          <span className="text-accent">●</span>
+          <span>Made in Minas</span>
+        </div>
+      </section>
+
+      {/* PILLARS */}
+      <section className="py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
+            {[
+              {
+                icon: Flame,
+                title: "Sabor que assina",
+                body: "Cada mistura tem proporção testada à exaustão. Você abre o pote e reconhece de longe.",
+              },
+              {
+                icon: Leaf,
+                title: "Origem rastreada",
+                body: "Páprica defumada da Espanha, cúrcuma indiana, ervas brasileiras. Cada ingrediente onde nasce melhor.",
+              },
+              {
+                icon: Award,
+                title: "Sem atalho",
+                body: "Sem corantes artificiais, sem realçador, sem gordura trans. Só o que precisa estar lá.",
+              },
+            ].map((p) => (
+              <div key={p.title} className="bg-background p-8 lg:p-10">
+                <p.icon className="h-7 w-7 text-accent mb-5" strokeWidth={1.5} />
+                <h3 className="font-display uppercase text-xl tracking-wide mb-3">
+                  {p.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCT GRID */}
+      <section className="pb-20 sm:pb-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+                A Coleção
+              </span>
+              <h2 className="font-display font-black uppercase text-4xl sm:text-5xl lg:text-6xl mt-2 tracking-tight">
+                Os Temperos da Casa
+              </h2>
+            </div>
+            <Link
+              to="/produtos"
+              className="text-sm font-semibold uppercase tracking-wider hover:text-accent border-b border-foreground/40 hover:border-accent pb-0.5"
+            >
+              Ver tudo →
+            </Link>
+          </div>
+          <ProductGrid first={8} />
+        </div>
+      </section>
+
+      {/* EDITORIAL QUOTE */}
+      <section className="bg-brand-ink text-brand-paper py-24">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <p className="font-serif italic text-2xl sm:text-3xl lg:text-4xl leading-relaxed">
+            “Tempero bom não é o que esconde o ingrediente.
+            <br />
+            É o que faz ele aparecer.”
+          </p>
+          <div className="mt-8 inline-flex items-center gap-3">
+            <span className="divider-stencil w-8" />
+            <span className="text-xs font-display uppercase tracking-[0.4em] text-brand-paper/60">
+              A Casa Temperanzza
+            </span>
+            <span className="divider-stencil w-8" />
+          </div>
+        </div>
+      </section>
+    </SiteLayout>
   );
 }
