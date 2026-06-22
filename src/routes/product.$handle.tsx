@@ -88,7 +88,6 @@ function ProductPage() {
   const variant = product.variants.edges[0]?.node;
   const images = product.images.edges;
   const mainImage = images[imgIdx]?.node || images[0]?.node;
-  const badge = null;
 
   const handleAdd = async () => {
     if (!variant) return;
