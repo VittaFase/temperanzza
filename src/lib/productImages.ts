@@ -28,23 +28,29 @@ import mineiro from "@/assets/tempero-mineiro.png.asset.json";
 const MAP: Record<string, string> = {
   "ana-maria": anaMaria.url,
   "canela-moida": canela.url,
+  "canela-premium-black-30g": canela.url,
   "cebola-em-po": cebola.url,
+  // Shopify usa "chimichurri-*"; o asset original veio com "chimi-churri-*"
   "chimi-churri-picante": chimiPicante.url,
+  "chimichurri-picante": chimiPicante.url,
   "chimi-churri-sem-pimenta": chimiSemPimenta.url,
+  "chimichurri-sem-pimenta": chimiSemPimenta.url,
   curcuma: curcuma.url,
   "du-chefe-com-paprica": duChefe.url,
+  "tempero-chefe": duChefe.url, // Shopify handle
   "ervas-finas": ervasFinas.url,
   "lemon-pepper": lemonPepper.url,
   "paprica-defumada": papricaDefumada.url,
   "paprica-doce": papricaDoce.url,
   "paprica-picante": papricaPicante.url,
   "pimenta-do-reino": pimenta.url,
+  "pimenta-do-reino-premium-black-30g": pimenta.url,
   "salsa-cebola-e-alho": salsaCebolaAlho.url,
   "temperaflix-bacon": flixBacon.url,
   "temperaflix-ervas-finas": flixErvas.url,
   "temperaflix-tradicional": flixTrad.url,
   "tempero-do-edu": edu.url,
-  "edu-guedes": edu.url,
+  "edu-guedes": edu.url, // Shopify handle
   "tempero-mineiro": mineiro.url,
 };
 
