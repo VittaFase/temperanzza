@@ -13,10 +13,7 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { Loader2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
-import { FlavorTile } from "@/components/site/FlavorTile";
-import { ProductBadge } from "@/components/site/ProductBadge";
 import { FlavorTiles } from "@/components/site/FlavorTiles";
-import { getBadge } from "@/lib/flavorPalette";
 import { getProductImage } from "@/lib/productImages";
 
 export const Route = createFileRoute("/product/$handle")({
@@ -91,7 +88,7 @@ function ProductPage() {
   const variant = product.variants.edges[0]?.node;
   const images = product.images.edges;
   const mainImage = images[imgIdx]?.node || images[0]?.node;
-  const badge = getBadge(handle, product.title);
+  const badge = null;
 
   const handleAdd = async () => {
     if (!variant) return;
