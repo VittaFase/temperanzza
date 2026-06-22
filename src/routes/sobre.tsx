@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { BrandSeal } from "@/components/site/BrandSeal";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -26,6 +27,7 @@ function SobrePage() {
     <SiteLayout>
       <section className="border-b border-foreground/15 py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <BrandSeal size="lg" className="mb-6" />
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             Quem somos
           </span>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
+import { BrandSeal } from "@/components/site/BrandSeal";
 import { Button } from "@/components/ui/button";
 import { Flame, Leaf, Award, ArrowRight } from "lucide-react";
 
@@ -35,8 +36,9 @@ function Home() {
         <div className="absolute inset-0 bg-paper-grain opacity-60" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="divider-stencil w-12" />
+            <div className="flex items-center gap-3 mb-6">
+              <BrandSeal size="sm" className="h-12 w-12" />
+              <span className="divider-stencil w-8" />
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Desde 2019 — Minas Gerais
               </span>
@@ -175,6 +177,24 @@ function Home() {
             </Link>
           </div>
           <ProductGrid first={8} />
+        </div>
+      </section>
+
+      {/* SELO DA CASA */}
+      <section className="bg-brand-cream relative overflow-hidden border-y border-foreground/15">
+        <div className="absolute inset-0 bg-paper-grain opacity-50" />
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
+          <div className="flex items-center justify-center gap-6">
+            <span className="divider-stencil w-16 sm:w-24" />
+            <BrandSeal size="xl" className="h-40 w-40 sm:h-56 sm:w-56" />
+            <span className="divider-stencil w-16 sm:w-24" />
+          </div>
+          <p className="mt-8 font-serif italic text-2xl sm:text-3xl text-foreground/90 leading-snug">
+            Casa de temperos. Minas Gerais. Desde 2019.
+          </p>
+          <p className="mt-4 text-xs font-display uppercase tracking-[0.4em] text-muted-foreground">
+            Selo da Casa · Receita autoral · Lote a lote
+          </p>
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Mail } from "lucide-react";
+import { BrandSeal } from "./BrandSeal";
 
 export function SiteFooter() {
   return (
@@ -7,7 +8,8 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="font-display text-3xl font-black uppercase tracking-wider">
+            <BrandSeal size="lg" tone="paper" className="-ml-2" />
+            <div className="mt-4 font-display text-2xl font-black uppercase tracking-wider">
               Temperanzza
             </div>
             <p className="mt-3 text-sm text-brand-paper/70 max-w-sm leading-relaxed">
