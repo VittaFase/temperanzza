@@ -115,11 +115,7 @@ function Home() {
       <section className="border-b border-foreground/15 bg-brand-ink text-brand-paper py-4">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-[11px] font-display uppercase tracking-[0.3em]">
           <span>Embalado a cada lote</span>
-          <span className="text-accent">●</span>
           <span>Especiarias selecionadas</span>
-          <span className="text-accent">●</span>
-          <span>Receitas autorais</span>
-          <span className="text-accent">●</span>
           <span>Made in Minas</span>
         </div>
       </section>
