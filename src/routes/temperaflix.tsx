@@ -10,6 +10,7 @@ import {
   type ShopifyProduct,
 } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
+import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/temperaflix")({
@@ -104,16 +105,26 @@ function ShakerCard({ product }: { product: ShopifyProduct }) {
       <Link
         to="/product/$handle"
         params={{ handle: product.node.handle }}
-        className="relative block aspect-[4/5] bg-gradient-to-b from-foreground via-foreground to-foreground/90 overflow-hidden"
+        className="relative block aspect-[4/5] bg-brand-cream bg-paper-grain overflow-hidden"
       >
         <span className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 bg-accent text-background px-2.5 py-1 text-[10px] font-display uppercase tracking-[0.2em]">
           <Icon className="w-3 h-3" /> {meta.genre}
         </span>
+        {/* ground shadow */}
+        <div
+          aria-hidden
+          className="absolute left-1/2 -translate-x-1/2 bottom-[6%] w-[68%] h-[8%] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.12) 45%, transparent 75%)",
+            filter: "blur(2px)",
+          }}
+        />
         {image ? (
           <img
-            src={image.url}
+            src={getProductImage(product.node.handle, image.url) ?? image.url}
             alt={image.altText || product.node.title}
-            className="absolute inset-0 w-[78%] h-[86%] m-auto object-contain drop-shadow-[0_22px_28px_rgba(0,0,0,0.55)] group-hover:scale-[1.05] transition-transform duration-500"
+            className="absolute inset-0 w-[82%] h-[92%] m-auto object-contain drop-shadow-[0_24px_30px_rgba(0,0,0,0.4)] group-hover:-translate-y-1 group-hover:scale-[1.05] transition-transform duration-500"
             loading="lazy"
           />
         ) : null}
