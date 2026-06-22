@@ -27,10 +27,10 @@ function ProdutosPage() {
       <section className="border-b border-foreground/15 py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-            O Catálogo Completo
+            O CATÁLOGO&nbsp;
           </span>
           <h1 className="font-display font-black uppercase text-5xl sm:text-6xl lg:text-7xl mt-3 tracking-tight">
-            Todos os Temperos
+            &nbsp;OS TEMPEROS
           </h1>
         </div>
       </section>
