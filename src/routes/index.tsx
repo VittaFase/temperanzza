@@ -97,25 +97,36 @@ function Home() {
             </div>
           </div>
           <div className="lg:col-span-5 relative">
-            <div className="aspect-square bg-brand-ink relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center p-10">
-                <div className="text-center">
-                  <div className="font-display text-brand-paper text-[12rem] leading-none font-black tracking-tighter">
-                    T
-                  </div>
-                  <div className="mt-2 text-brand-paper/70 font-display uppercase tracking-[0.4em] text-xs">
-                    Temperanzza
-                  </div>
-                  <div className="mt-1 text-accent font-display uppercase tracking-[0.3em] text-[10px]">
-                    Spice House · MG
-                  </div>
-                </div>
+            <div className="aspect-square bg-brand-ink relative overflow-hidden group">
+              {/* iluminação radial sutil para dar profundidade ao selo */}
+              <div
+                className="absolute inset-0 opacity-80 transition-opacity duration-700 group-hover:opacity-100"
+                style={{
+                  background:
+                    "radial-gradient(circle at 35% 30%, rgba(230,180,120,0.18) 0%, rgba(0,0,0,0) 55%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%)",
+                }}
+              />
+              {/* vinheta nas bordas */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  boxShadow: "inset 0 0 120px rgba(0,0,0,0.7)",
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center p-8 sm:p-10">
+                <BrandSeal
+                  size="full"
+                  tone="paper"
+                  embossed
+                  eager
+                  className="max-h-[82%] max-w-[82%] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
               </div>
-              <div className="absolute top-4 left-4 right-4 flex justify-between text-brand-paper/40 text-[10px] font-display uppercase tracking-widest">
+              <div className="absolute top-4 left-4 right-4 flex justify-between text-brand-paper/40 text-[10px] font-display uppercase tracking-widest z-10">
                 <span>Lote 2026</span>
                 <span>45g</span>
               </div>
-              <div className="absolute bottom-4 left-4 right-4 flex justify-between text-brand-paper/40 text-[10px] font-display uppercase tracking-widest">
+              <div className="absolute bottom-4 left-4 right-4 flex justify-between text-brand-paper/40 text-[10px] font-display uppercase tracking-widest z-10">
                 <span>Artesanal</span>
                 <span>Sem aditivos</span>
               </div>
@@ -124,6 +135,7 @@ function Home() {
               19 referências
             </div>
           </div>
+
         </div>
       </section>
 
