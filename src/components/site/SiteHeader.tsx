@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { CartDrawer } from "./CartDrawer";
+import { BrandSeal } from "./BrandSeal";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,12 +24,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-foreground/15 bg-background/90 backdrop-blur">
       <div className="mx-auto max-w-7xl flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-baseline gap-1.5 group">
-          <span className="font-display text-2xl sm:text-3xl font-black tracking-wider uppercase leading-none">
-            Temperanzza
-          </span>
-          <span className="hidden sm:inline text-[10px] uppercase tracking-[0.25em] text-muted-foreground border-l border-foreground/30 pl-1.5 ml-0.5">
-            Spice House
+        <Link to="/" className="flex items-center gap-3 group" aria-label="Temperanzza — Início">
+          <BrandSeal size="sm" eager className="shrink-0" />
+          <span className="hidden sm:flex items-baseline gap-1.5 border-l border-foreground/20 pl-3">
+            <span className="font-display text-2xl sm:text-3xl font-black tracking-wider uppercase leading-none">
+              Temperanzza
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground border-l border-foreground/30 pl-1.5">
+              Spice House
+            </span>
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
