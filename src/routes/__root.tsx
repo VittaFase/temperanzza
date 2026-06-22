@@ -83,6 +83,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Temperanzza" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { property: "og:title", content: "Temperanzza — Casa de Temperos Artesanais" },
+      { name: "twitter:title", content: "Temperanzza — Casa de Temperos Artesanais" },
+      { property: "og:description", content: "Casa de temperos artesanais de Minas Gerais." },
+      { name: "twitter:description", content: "Casa de temperos artesanais de Minas Gerais." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b0a45d4b-6c67-432d-985e-61a305bd88da" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b0a45d4b-6c67-432d-985e-61a305bd88da" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
