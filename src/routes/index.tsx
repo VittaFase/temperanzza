@@ -106,10 +106,6 @@ function Home() {
                   className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 />
               </div>
-              <div className="absolute top-4 left-4 right-4 flex justify-between text-foreground/40 text-[10px] font-display uppercase tracking-widest z-10">
-                <span>45g</span>
-                <span className="invisible">—</span>
-              </div>
               <div className="absolute bottom-4 left-4 right-4 flex justify-between text-foreground/40 text-[10px] font-display uppercase tracking-widest z-10">
                 <span>Artesanal</span>
                 <span>Sem aditivos</span>
