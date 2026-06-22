@@ -58,7 +58,7 @@ function Home() {
               <BrandSeal size="sm" className="h-12 w-12" />
               <span className="divider-stencil w-8" />
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-                Desde 2019 — Minas Gerais
+                DESDE 2023 — MINAS GERAIS
               </span>
             </div>
             <h1 className="font-display font-black uppercase leading-[0.92] tracking-tight text-[12vw] sm:text-7xl lg:text-8xl xl:text-[7rem]">
