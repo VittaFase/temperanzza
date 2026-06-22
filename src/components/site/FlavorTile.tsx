@@ -4,7 +4,8 @@ import { getFlavorTone } from "@/lib/flavorPalette";
 /**
  * Tile colorido de fundo, com partículas sutis, que aloja a imagem do produto.
  * Espelha o tratamento dos produtos da Kinder's: bloco de cor saturado +
- * granulado sutil + potinho centralizado.
+ * granulado sutil + potinho centralizado, com "ground shadow" elíptica
+ * sob o pote para sensação de objeto pousado.
  */
 export function FlavorTile({
   handle,
@@ -12,6 +13,7 @@ export function FlavorTile({
   children,
   className = "",
   intensity = 1,
+  ground = true,
 }: {
   handle: string;
   title?: string;
@@ -19,6 +21,8 @@ export function FlavorTile({
   className?: string;
   /** multiplica a opacidade das partículas */
   intensity?: number;
+  /** desenha a sombra elíptica de contato sob o pote */
+  ground?: boolean;
 }) {
   const tone = getFlavorTone(handle, title);
 
@@ -46,6 +50,18 @@ export function FlavorTile({
       data-flavor={handle}
       data-tone={tone.dark ? "dark" : "light"}
     >
+      {/* Ground shadow — elipse escura sob o pote para sensação de contato */}
+      {ground && (
+        <div
+          aria-hidden
+          className="absolute left-1/2 -translate-x-1/2 bottom-[6%] w-[68%] h-[10%] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.18) 45%, transparent 75%)",
+            filter: "blur(2px)",
+          }}
+        />
+      )}
       {children}
     </div>
   );
