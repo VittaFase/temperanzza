@@ -17,6 +17,7 @@ import { FlavorTile } from "@/components/site/FlavorTile";
 import { ProductBadge } from "@/components/site/ProductBadge";
 import { FlavorTiles } from "@/components/site/FlavorTiles";
 import { getBadge } from "@/lib/flavorPalette";
+import { getProductImage } from "@/lib/productImages";
 
 export const Route = createFileRoute("/product/$handle")({
   head: ({ params }) => ({
@@ -128,9 +129,9 @@ function ProductPage() {
               {badge && <ProductBadge label={badge} size="lg" className="top-6 left-6" />}
               {mainImage ? (
                 <img
-                  src={mainImage.url}
+                  src={getProductImage(handle, mainImage.url) ?? mainImage.url}
                   alt={mainImage.altText || product.title}
-                  className="absolute inset-0 w-[72%] h-[82%] m-auto object-contain drop-shadow-[0_28px_36px_rgba(0,0,0,0.4)]"
+                  className="absolute inset-0 w-[80%] h-[92%] m-auto object-contain drop-shadow-[0_32px_40px_rgba(0,0,0,0.5)]"
                 />
               ) : null}
             </FlavorTile>
@@ -144,11 +145,11 @@ function ProductPage() {
                       i === imgIdx ? "border-accent" : "border-foreground/10 hover:border-foreground/30"
                     }`}
                   >
-                    <FlavorTile handle={handle} title={product.title} className="w-full h-full">
+                    <FlavorTile handle={handle} title={product.title} className="w-full h-full" ground={false}>
                       <img
-                        src={img.node.url}
+                        src={getProductImage(handle, img.node.url) ?? img.node.url}
                         alt=""
-                        className="absolute inset-0 w-[80%] h-[85%] m-auto object-contain"
+                        className="absolute inset-0 w-[82%] h-[88%] m-auto object-contain"
                       />
                     </FlavorTile>
                   </button>

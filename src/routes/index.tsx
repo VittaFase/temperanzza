@@ -1,9 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
 import { BrandSeal } from "@/components/site/BrandSeal";
+import { FeaturedRow } from "@/components/site/FeaturedRow";
 import { Button } from "@/components/ui/button";
 import { Flame, Leaf, Award, ArrowRight } from "lucide-react";
+import {
+  storefrontApiRequest,
+  STOREFRONT_QUERY,
+  type ShopifyProduct,
+} from "@/lib/shopify";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,6 +36,17 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { data: featured } = useQuery({
+    queryKey: ["shopify-featured", 3],
+    queryFn: async () => {
+      const res = await storefrontApiRequest(STOREFRONT_QUERY, {
+        first: 3,
+        query: null,
+      });
+      return (res?.data?.products?.edges ?? []) as ShopifyProduct[];
+    },
+  });
+
   return (
     <SiteLayout>
       {/* HERO */}
@@ -156,6 +174,17 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* FEATURED ROW — padrão Kinder's "Featured Products" */}
+      {featured && featured.length > 0 && (
+        <section className="py-16 sm:py-20">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <FeaturedRow products={featured} label="Em destaque" />
+          </div>
+        </section>
+      )}
+
+
 
       {/* PRODUCT GRID */}
       <section className="pb-20 sm:pb-28">
