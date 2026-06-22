@@ -111,9 +111,6 @@ function Home() {
                 <span className="invisible">—</span>
               </div>
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-accent text-accent-foreground px-4 py-2 font-display uppercase tracking-widest text-xs">
-              19 referências
-            </div>
           </div>
 
         </div>
