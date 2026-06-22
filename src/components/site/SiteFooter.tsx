@@ -56,12 +56,12 @@ export function SiteFooter() {
               <li className="flex items-center gap-2">
                 <Instagram className="h-4 w-4" />
                 <a
-                  href="https://instagram.com/temperanzza"
+                  href="https://instagram.com/temperanzzacondimentos"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-accent"
                 >
-                  @temperanzza
+                  @temperanzzacondimentos
                 </a>
               </li>
             </ul>
