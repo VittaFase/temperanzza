@@ -44,7 +44,6 @@ const MAP: Record<string, string> = {
   "temperaflix-ervas-finas": flixErvas.url,
   "temperaflix-tradicional": flixTrad.url,
   "tempero-do-edu": edu.url,
-  "tempero-do-edu": edu.url,
   "edu-guedes": edu.url,
   "tempero-mineiro": mineiro.url,
 };
