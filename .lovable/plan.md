@@ -1,10 +1,12 @@
-Remover o fundo preto do quadrado do hero e deixar o selo transparente ocupando o mesmo espaço do quadro, flutuando sobre o fundo da página.
+Substituir a headline do hero de "Tempero de verdade pra cozinha que respeita." para "Temperanzza para quem ama novos sabores", ajustando a quebra de linhas e a cor de destaque para manter o ritmo visual e a legibilidade na fonte Big Shoulders Stencil.
 
-Alterações em `src/routes/index.tsx`:
-- Remover `bg-brand-ink` do container do selo.
-- Remover/adaptar os overlays de iluminação radial e vinheta que só faziam sentido sobre o fundo escuro.
-- Aumentar o selo para ocupar o tamanho total do quadro (aproveitar o espaço do `aspect-square` sem a moldura preta).
-- Trocar as cores dos micro-rótulos de `text-brand-paper/40` para uma cor legível sobre o fundo claro da página (ex.: `text-foreground/40`).
-- Manter o badge "19 referências" e a responsividade atual.
+### O que será alterado
+- **`src/routes/index.tsx`** (hero):
+  - Trocar o texto da `<h1>` pela nova frase.
+  - Aplicar quebras de linha estratégicas para que o tamanho e o ritmo das linhas fiquem equilibrados com o selo ao lado.
+  - Manter a palavra de destaque em `brand-red` (ex.: "novos sabores") para preservar o contraste visual existente.
+  - Garantir que o tamanho da fonte e o espaçamento (`tracking-tight`, `leading-none`) continuem funcionando em desktop e mobile.
+  - Revisar o subtítulo/CTA para que ainda converse com a nova frase.
 
-Resultado esperado: o selo transparente vira o elemento principal do quadrado, sem fundo preto, com a mesma presença sólida e efeito de relevo metálico já aplicado.
+### Resultado esperado
+Hero com a nova mensagem mais premium e aberta, conectando a marca a quem busca descobrir sabores, mantendo o mesmo impacto tipográfico e identidade visual da Temperanzza.
