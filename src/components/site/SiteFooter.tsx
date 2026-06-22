@@ -47,10 +47,10 @@ export function SiteFooter() {
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
                 <a
-                  href="mailto:contato@temperanzza.com.br"
+                  href="mailto:contatotemperanzza@gmail.com"
                   className="hover:text-accent"
                 >
-                  contato@temperanzza.com.br
+                  contatotemperanzza@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
