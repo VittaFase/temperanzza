@@ -13,8 +13,8 @@ export function SiteFooter() {
               Temperanzza
             </div>
             <p className="mt-3 text-sm text-brand-paper/70 max-w-sm leading-relaxed">
-              Casa de temperos artesanais. Misturas curadas para quem leva a
-              cozinha a sério — do churrasco de domingo ao prato autoral.
+              Sua marca de temperos artesanais para quem leva a cozinha a sério
+              — do churrasco de domingo a seu prato autoral.
             </p>
           </div>
           <div>
