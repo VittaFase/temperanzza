@@ -32,11 +32,6 @@ function ProdutosPage() {
           <h1 className="font-display font-black uppercase text-5xl sm:text-6xl lg:text-7xl mt-3 tracking-tight">
             Todos os Temperos
           </h1>
-          <p className="mt-6 max-w-2xl text-muted-foreground leading-relaxed">
-            19 referências divididas em três linhas: a coleção principal, a
-            Premium Black em pote metálico e a linha Temperaflix de shakers
-            para pipoca e snacks.
-          </p>
         </div>
       </section>
       <section className="py-16">
