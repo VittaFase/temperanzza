@@ -1,45 +1,50 @@
 
-# Landing Temperaflix — `/temperaflix`
+# Integração da logo "Chef Temperanzza"
 
-Página dedicada à sublinha de shakers (Tradicional, Ervas Finas, Bacon) com narrativa de "momentos de tela".
+A logo enviada é um brasão circular em preto e branco, estilo gravura/woodcut: chef de braços cruzados, bigode, bandana, com o nome TEMPERANZZA em arco ao redor. Ela conversa perfeitamente com o aesthetic "industrial spice-house" do site (Big Shoulders Stencil, brand-ink/brand-paper, brick-red). É um **selo**, não um logotipo horizontal — então o uso deve respeitar isso.
 
-## Estrutura da página
+## Princípios de uso
 
-1. **Hero cinematográfico**
-   - Headline: "O tempero que entra em cena"
-   - Subhead curta sobre shakers prontos para a mesa do sofá
-   - CTA primário "Ver os 3 sabores" (scroll) + secundário "Levar o combo"
-   - Visual: composição escura tipo home theater com os 3 potes em destaque (usa imagens reais já no Shopify)
+- **Selo, não wordmark**: nunca esticar nem usar em larguras pequenas onde o texto em arco fique ilegível. Mínimo prático ~40px, ideal 56–120px.
+- **Monocromático**: o brasão é preto. Aparece em **brand-ink sobre brand-paper** ou invertido (paper sobre ink) — nunca colorido, nunca sobre fundos vibrantes (brick-red, mustard).
+- **Companhia, não substituição**: o wordmark "TEMPERANZZA / SPICE HOUSE" no header continua existindo. O selo aparece **ao lado** ou em contextos editoriais — não substitui o tipo.
 
-2. **Três shakers, três gêneros**
-   - Grid de 3 cards grandes, cada um com um "gênero" atribuído:
-     - Tradicional → "O clássico atemporal"
-     - Ervas Finas → "O drama sofisticado"
-     - Bacon → "O blockbuster de ação"
-   - Cada card: imagem do shaker, nome, gênero, descrição curta, preço (R$ 10,49), botão "Adicionar ao carrinho" (usa o carrinho Shopify já existente)
+## Onde aplicar (escopo desta entrega)
 
-3. **Como usar — momentos de tela**
-   - Seção editorial em 3 colunas pareando blend × ocasião (pipoca, batata, petiscos)
-   - Tipografia Big Shoulders Stencil + Playfair italic para os títulos das cenas
+### 1. Header (`SiteHeader.tsx`)
+- Adiciona o brasão (h-10) à esquerda do wordmark, com border-right sutil separando do tipo.
+- Em mobile, o brasão sozinho serve como link "home" (wordmark some abaixo de sm).
 
-4. **Combo Maratona**
-   - Bloco destacando os 3 juntos como kit para o "fim de semana de série"
-   - CTA agrupado adicionando os 3 ao carrinho de uma vez
+### 2. Footer (`SiteFooter.tsx`)
+- Substitui o texto "Temperanzza" da coluna principal por **brasão (h-20) + tagline curta abaixo**. Cria autoridade no fechamento da página.
+- Selo aparece em `brand-paper` (invertido) sobre o `brand-ink` do footer.
 
-5. **Faixa de marca / rodapé da página**
-   - Reforço da identidade Temperanzza + link para o catálogo completo `/produtos`
+### 3. Home — Hero (`routes/index.tsx`)
+- Pequeno selo (h-12) acima da headline, junto da divider-stencil "Desde 2019 — Minas Gerais". Funciona como carimbo de origem.
 
-## Detalhes técnicos
+### 4. Home — nova faixa "Selo da Casa"
+- Seção curta entre catálogo e CTA final: brasão grande (h-40 a h-56) centralizado sobre fundo `brand-cream` com textura paper-grain, frase editorial em Playfair italic ("Casa de temperos. Minas Gerais. Desde 2019.") e divisórias stencil nas laterais. Reforça identidade artesanal sem virar página "sobre".
 
-- Novo arquivo `src/routes/temperaflix.tsx` com `createFileRoute("/temperaflix")` e `head()` próprio (title, description, og:title/description/image apontando para uma das imagens dos shakers)
-- Busca dos 3 produtos via Storefront API filtrando por `query: "tag:temperaflix"` (ou pelos handles conhecidos) reusando o helper em `src/lib/shopify.ts`
-- Reuso do carrinho/checkout Shopify existente (sem mexer em lógica de compra)
-- Link "Temperaflix" adicionado ao header principal
-- 100% PT-BR, tokens de cor da marca (`brand-ink`, `brand-paper`, `brand-red`, `brand-mustard`), cantos retos nos CTAs, fontes do design system
-- Sem mocks, sem reviews falsas; se a Storefront API não retornar os 3, mostra estado vazio amigável
+### 5. Sobre (`routes/sobre.tsx`)
+- Brasão (h-32) no topo do hero da página, acima do "Quem somos". Coerente com o tom autoral da página.
+
+### 6. Favicon + OG
+- Trocar favicon para uma versão recortada do brasão (apenas o rosto do chef, dentro do círculo).
+- Atualizar `og:image` padrão no `__root.tsx` para incluir o brasão se ainda não houver.
 
 ## Fora de escopo
 
-- Vídeo real no hero (fica como placeholder visual estático por ora)
-- Página de produto individual (já existe `/product/[handle]`)
-- Alteração da home ou de `/produtos`
+- Não vou refazer Temperaflix nem product pages (a linha tem identidade própria escura, o selo entraria conflitante).
+- Não vou criar variações coloridas do brasão.
+- Não vou mexer em embalagens dos produtos Shopify.
+
+## Detalhes técnicos
+
+- Upload da imagem via `lovable-assets` a partir de `/mnt/user-uploads/IMG_9302.PNG` → pointer em `src/assets/temperanzza-seal.png.asset.json`.
+- Criar componente `src/components/site/BrandSeal.tsx` aceitando `size` (sm/md/lg/xl) e `tone` (ink/paper). Em tone="paper", aplica filtro `invert` no img.
+- Importar pointer e usar `<img src={seal.url} alt="Brasão Temperanzza" />` com `loading="eager"` no header, `loading="lazy"` no resto.
+- Favicon: gerar PNG quadrado recortado e referenciar em `__root.tsx head.links`.
+
+## Resultado esperado
+
+O selo passa a aparecer em 5 superfícies-chave, reforçando reconhecimento de marca sem competir com o sistema tipográfico existente. Mantém PT-BR, tokens da marca, cantos retos.
