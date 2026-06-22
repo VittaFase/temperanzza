@@ -11,10 +11,10 @@ import { getProductImage } from "@/lib/productImages";
 
 export function ProductCard({
   product,
-  variant = "color",
+  variant = "paper",
 }: {
   product: ShopifyProduct;
-  /** "color" = bloco de cor (padrão C Kinder's); "paper" = vitrine sobre cream (padrão A) */
+  /** "paper" = vitrine clara (padrão); "color" = bloco de cor saturado */
   variant?: "color" | "paper";
 }) {
   const addItem = useCartStore((s) => s.addItem);
@@ -40,20 +40,25 @@ export function ProductCard({
     toast.success(`${product.node.title} adicionado à sacola`);
   };
 
+  const isPaper = variant === "paper";
   const StageContent = (
     <>
-      {badge && (
+      {badge && !isPaper && (
         <ProductBadge label={badge} size="md" className="top-3 left-3" />
       )}
       {imgUrl ? (
         <img
           src={imgUrl}
           alt={image?.altText || product.node.title}
-          className="absolute inset-0 w-[82%] h-[92%] m-auto object-contain drop-shadow-[0_22px_28px_rgba(0,0,0,0.45)] transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.05]"
+          className={`absolute inset-0 m-auto object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.04] ${
+            isPaper
+              ? "w-[72%] h-[84%] drop-shadow-[0_22px_26px_rgba(0,0,0,0.18)]"
+              : "w-[82%] h-[92%] drop-shadow-[0_22px_28px_rgba(0,0,0,0.45)]"
+          }`}
           loading="lazy"
         />
       ) : (
-        <div className="absolute inset-0 grid place-items-center text-background/70 font-display text-xs uppercase tracking-widest">
+        <div className="absolute inset-0 grid place-items-center text-foreground/40 font-display text-xs uppercase tracking-widest">
           Em breve
         </div>
       )}
@@ -71,14 +76,14 @@ export function ProductCard({
     >
       {variant === "paper" ? (
         <div className="relative aspect-[4/5] bg-brand-cream bg-paper-grain overflow-hidden">
-          {/* ground shadow soft */}
+          {/* ground shadow elíptica suave */}
           <div
             aria-hidden
-            className="absolute left-1/2 -translate-x-1/2 bottom-[6%] w-[68%] h-[8%] pointer-events-none"
+            className="absolute left-1/2 -translate-x-1/2 bottom-[7%] w-[62%] h-[6%] pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.12) 45%, transparent 75%)",
-              filter: "blur(2px)",
+                "radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.08) 50%, transparent 78%)",
+              filter: "blur(3px)",
             }}
           />
           {StageContent}

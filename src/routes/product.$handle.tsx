@@ -13,10 +13,7 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { Loader2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
-import { FlavorTile } from "@/components/site/FlavorTile";
-import { ProductBadge } from "@/components/site/ProductBadge";
 import { FlavorTiles } from "@/components/site/FlavorTiles";
-import { getBadge } from "@/lib/flavorPalette";
 import { getProductImage } from "@/lib/productImages";
 
 export const Route = createFileRoute("/product/$handle")({
@@ -91,7 +88,6 @@ function ProductPage() {
   const variant = product.variants.edges[0]?.node;
   const images = product.images.edges;
   const mainImage = images[imgIdx]?.node || images[0]?.node;
-  const badge = getBadge(handle, product.title);
 
   const handleAdd = async () => {
     if (!variant) return;
@@ -118,45 +114,47 @@ function ProductPage() {
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-14">
-          {/* GALERIA — bloco de cor estilo Kinder's */}
+          {/* GALERIA — vitrine clara, pote flutuando sobre cream */}
           <div>
-            <FlavorTile
-              handle={handle}
-              title={product.title}
-              className="aspect-square"
-              intensity={1.2}
-            >
-              {badge && <ProductBadge label={badge} size="lg" className="top-6 left-6" />}
+            <div className="relative aspect-square bg-brand-cream bg-paper-grain overflow-hidden border border-foreground/10">
+              <div
+                aria-hidden
+                className="absolute left-1/2 -translate-x-1/2 bottom-[8%] w-[58%] h-[6%] pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(0,0,0,0.24) 0%, rgba(0,0,0,0.08) 50%, transparent 78%)",
+                  filter: "blur(4px)",
+                }}
+              />
               {mainImage ? (
                 <img
                   src={getProductImage(handle, mainImage.url) ?? mainImage.url}
                   alt={mainImage.altText || product.title}
-                  className="absolute inset-0 w-[80%] h-[92%] m-auto object-contain drop-shadow-[0_32px_40px_rgba(0,0,0,0.5)]"
+                  className="absolute inset-0 w-[74%] h-[88%] m-auto object-contain drop-shadow-[0_32px_36px_rgba(0,0,0,0.22)]"
                 />
               ) : null}
-            </FlavorTile>
+            </div>
             {images.length > 1 && (
               <div className="mt-3 grid grid-cols-5 gap-2">
                 {images.map((img: { node: { url: string; altText: string | null } }, i: number) => (
                   <button
                     key={img.node.url}
                     onClick={() => setImgIdx(i)}
-                    className={`aspect-square overflow-hidden border-2 ${
+                    className={`relative aspect-square overflow-hidden border-2 bg-brand-cream ${
                       i === imgIdx ? "border-accent" : "border-foreground/10 hover:border-foreground/30"
                     }`}
                   >
-                    <FlavorTile handle={handle} title={product.title} className="w-full h-full" ground={false}>
-                      <img
-                        src={getProductImage(handle, img.node.url) ?? img.node.url}
-                        alt=""
-                        className="absolute inset-0 w-[82%] h-[88%] m-auto object-contain"
-                      />
-                    </FlavorTile>
+                    <img
+                      src={getProductImage(handle, img.node.url) ?? img.node.url}
+                      alt=""
+                      className="absolute inset-0 w-[78%] h-[86%] m-auto object-contain"
+                    />
                   </button>
                 ))}
               </div>
             )}
           </div>
+
 
           {/* INFO */}
           <div>
