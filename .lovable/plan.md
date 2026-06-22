@@ -1,29 +1,14 @@
-## Lote de imagens recebido
+## Substituição de imagens — Premium Black 30g
 
-4 novos PNGs finais para mapear aos SKUs existentes:
+Reenviar os 2 novos PNGs finais via `lovable-assets create` para sobrescrever os pointers existentes:
 
-| Upload | SKU / handle |
+| Upload | Pointer |
 |---|---|
-| `87.png` | `temperaflix-bacon` |
-| `88.png` | `pimenta-do-reino` (Premium Black 30g) |
-| `89.png` | `canela-moida` (Premium Black 30g) |
-| `PÁPRICA_DOCE-4.png` | `paprica-doce` |
+| `89.png` (Pimenta do Reino, prata) | `src/assets/pimenta-do-reino.png.asset.json` |
+| `90.png` (Canela Moída, dourado) | `src/assets/canela-moida.png.asset.json` |
 
-## Passos
-
-1. Reenviar cada PNG via `lovable-assets create` para sobrescrever os pointers em `src/assets/*.png.asset.json` correspondentes (mesmos nomes de arquivo já usados em `src/lib/productImages.ts`).
-   - `src/assets/temperaflix-bacon.png.asset.json`
-   - `src/assets/pimenta-do-reino.png.asset.json` (criar — ainda não existe pointer dedicado; adicionar mapeamento se faltar)
-   - `src/assets/canela-moida.png.asset.json` (idem)
-   - `src/assets/paprica-doce.png.asset.json`
-2. Conferir `src/lib/productImages.ts`: garantir que os handles `pimenta-do-reino` e `canela-moida` apontem para os novos pointers (adicionar entradas se ausentes).
-3. Validar visualmente na grid do catálogo e na PDP — escala e enquadramento consistentes com os demais frascos.
+Os handles já estão mapeados em `src/lib/productImages.ts` (incluindo `pimenta-do-reino-premium-black-30g` e `canela-premium-black-30g`), então nada mais precisa mudar.
 
 ## Fora de escopo
-
-- Nenhum ajuste de layout, tipografia, cabeçalho ou checkout.
-- Não publicar até o lote completo (faltam SKUs restantes) estar revisado.
-
-## Faltando ainda (aguardar lote final)
-
-Comparando os 19 SKUs do catálogo com PNGs finais já recebidos, ainda faltam: `ana-maria`, `cebola-em-po`, `ervas-finas`, `lemon-pepper`, `paprica-defumada`, `paprica-picante`, `salsa-cebola-e-alho`, `temperaflix-ervas-finas`, `temperaflix-tradicional`, `tempero-do-edu`, `tempero-mineiro` — confirmar com você se algum desses já foi enviado em lote anterior ou se virão depois.
+- Sem ajustes de layout ou de outros SKUs.
+- Não publicar — aguardar lote restante.
