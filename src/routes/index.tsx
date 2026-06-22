@@ -69,9 +69,9 @@ function Home() {
               ama <span className="text-accent">novos sabores</span>.
             </h1>
             <p className="mt-8 max-w-xl text-base sm:text-lg text-foreground/80 leading-relaxed">
-              Misturas autorais embaladas a cada lote. Sem corantes, sem
-              gordura hidrogenada, sem atalhos. Só especiarias selecionadas e
-              o tempo certo na mão de quem cozinha.
+              Pratos autorais a cada oportunidade. Especiarias selecionadas para
+              dar a seu tempero tradicional uma explosão de sabor que cada prato
+              merece.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
