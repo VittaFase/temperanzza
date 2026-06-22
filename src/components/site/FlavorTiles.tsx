@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { FlavorTile } from "./FlavorTile";
 import type { ShopifyProduct } from "@/lib/shopify";
+import { getProductImage } from "@/lib/productImages";
 
 /**
  * Grid de mini-tiles coloridos para "outros sabores da linha".
@@ -27,6 +28,7 @@ export function FlavorTiles({
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3">
         {items.map((p) => {
           const image = p.node.images.edges[0]?.node;
+          const imgSrc = getProductImage(p.node.handle, image?.url) ?? image?.url ?? null;
           return (
             <Link
               key={p.node.id}
@@ -39,10 +41,10 @@ export function FlavorTiles({
                 title={p.node.title}
                 className="aspect-square"
               >
-                {image ? (
+                {imgSrc ? (
                   <img
-                    src={image.url}
-                    alt={image.altText || p.node.title}
+                    src={imgSrc}
+                    alt={image?.altText || p.node.title}
                     className="absolute inset-0 w-[72%] h-[80%] m-auto object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)] group-hover:scale-[1.06] transition-transform duration-300"
                     loading="lazy"
                   />
