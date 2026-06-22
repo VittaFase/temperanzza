@@ -175,6 +175,17 @@ function Home() {
         </div>
       </section>
 
+      {/* FEATURED ROW — padrão Kinder's "Featured Products" */}
+      {featured && featured.length > 0 && (
+        <section className="py-16 sm:py-20">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <FeaturedRow products={featured} label="Em destaque" />
+          </div>
+        </section>
+      )}
+
+
+
       {/* PRODUCT GRID */}
       <section className="pb-20 sm:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
