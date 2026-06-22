@@ -1,38 +1,29 @@
-## Plano
+## Lote de imagens recebido
 
-### Objetivo
-Atualizar o catálogo com o **lote final completo** de PNGs em produção, mantendo a vitrine clara e sofisticada já definida, usando estes novos arquivos como versões definitivas quando o restante chegar.
+4 novos PNGs finais para mapear aos SKUs existentes:
 
-### O que farei quando o lote estiver completo
-1. **Conferir e mapear os arquivos finais**
-   - Identificar cada PNG pelo SKU/handle Shopify.
-   - Confirmar duplicatas e escolher apenas a versão final de cada produto.
-   - Incluir os 4 novos já enviados como definitivos:
-     - `chimi-churri-picante`
-     - `du-chefe-com-paprica`
-     - `curcuma`
-     - `chimi-churri-sem-pimenta`
+| Upload | SKU / handle |
+|---|---|
+| `87.png` | `temperaflix-bacon` |
+| `88.png` | `pimenta-do-reino` (Premium Black 30g) |
+| `89.png` | `canela-moida` (Premium Black 30g) |
+| `PÁPRICA_DOCE-4.png` | `paprica-doce` |
 
-2. **Substituir os assets do catálogo**
-   - Reenviar os PNGs finais para os pointers já usados em `src/assets/*.png.asset.json`.
-   - Manter o mapeamento de `src/lib/productImages.ts` funcionando sem alterar a estrutura do catálogo.
+## Passos
 
-3. **Validar consistência visual**
-   - Garantir que os potes fiquem com recorte limpo e escala consistente.
-   - Verificar o comportamento nas vitrines claras (`ProductCard`) e nas PDPs.
-   - Ajustar apenas se algum novo PNG exigir correção fina de sombra, escala ou enquadramento.
+1. Reenviar cada PNG via `lovable-assets create` para sobrescrever os pointers em `src/assets/*.png.asset.json` correspondentes (mesmos nomes de arquivo já usados em `src/lib/productImages.ts`).
+   - `src/assets/temperaflix-bacon.png.asset.json`
+   - `src/assets/pimenta-do-reino.png.asset.json` (criar — ainda não existe pointer dedicado; adicionar mapeamento se faltar)
+   - `src/assets/canela-moida.png.asset.json` (idem)
+   - `src/assets/paprica-doce.png.asset.json`
+2. Conferir `src/lib/productImages.ts`: garantir que os handles `pimenta-do-reino` e `canela-moida` apontem para os novos pointers (adicionar entradas se ausentes).
+3. Validar visualmente na grid do catálogo e na PDP — escala e enquadramento consistentes com os demais frascos.
 
-4. **Fechar o lote inteiro de uma vez**
-   - Aplicar tudo num único passe para evitar catálogo misturado com imagens antigas e novas.
+## Fora de escopo
 
-### Fora de escopo
-- Mudar layout além de pequenos ajustes necessários ao novo recorte.
-- Trocar tipografia, header, footer, checkout ou estrutura de navegação.
-- Publicar antes da revisão final do lote completo.
+- Nenhum ajuste de layout, tipografia, cabeçalho ou checkout.
+- Não publicar até o lote completo (faltam SKUs restantes) estar revisado.
 
-### Detalhes técnicos
-- Os novos PNGs recebidos agora serão tratados como **versões finais de produção**.
-- A atualização será feita preservando os mesmos handles e o fluxo atual de imagens locais sobrescrevendo as da Shopify.
-- Se algum arquivo vier com recorte inconsistente, eu normalizo antes do upload para manter o mesmo padrão visual.
+## Faltando ainda (aguardar lote final)
 
-Assim que você enviar o restante, executo a substituição completa em um único lote.
+Comparando os 19 SKUs do catálogo com PNGs finais já recebidos, ainda faltam: `ana-maria`, `cebola-em-po`, `ervas-finas`, `lemon-pepper`, `paprica-defumada`, `paprica-picante`, `salsa-cebola-e-alho`, `temperaflix-ervas-finas`, `temperaflix-tradicional`, `tempero-do-edu`, `tempero-mineiro` — confirmar com você se algum desses já foi enviado em lote anterior ou se virão depois.
