@@ -58,7 +58,7 @@ function Home() {
               <BrandSeal size="sm" className="h-12 w-12" />
               <span className="divider-stencil w-8" />
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-                Desde 2019 — Minas Gerais
+                DESDE 2023 — MINAS GERAIS
               </span>
             </div>
             <h1 className="font-display font-black uppercase leading-[0.92] tracking-tight text-[12vw] sm:text-7xl lg:text-8xl xl:text-[7rem]">
@@ -203,7 +203,7 @@ function Home() {
             <span className="divider-stencil w-16 sm:w-24" />
           </div>
           <p className="mt-8 font-serif italic text-2xl sm:text-3xl text-foreground/90 leading-snug">
-            Casa de temperos. Minas Gerais. Desde 2019.
+            Casa de temperos. Minas Gerais. DESDE 2023.
           </p>
           <p className="mt-4 text-xs font-display uppercase tracking-[0.4em] text-muted-foreground">
             Selo da Casa · Receita autoral · Lote a lote
