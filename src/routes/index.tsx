@@ -137,12 +137,12 @@ function Home() {
               {
                 icon: Leaf,
                 title: "Origem rastreada",
-                body: "Páprica defumada da Espanha, cúrcuma indiana, ervas brasileiras. Cada ingrediente onde nasce melhor.",
+                body: "Cada ingrediente escolhido com o cuidado que você merece.",
               },
               {
                 icon: Award,
                 title: "Sem atalho",
-                body: "Sem corantes artificiais, sem realçador, sem gordura trans. Só o que precisa estar lá.",
+                body: "Qualidade em cada processo até chegar na sua mesa.",
               },
             ].map((p) => (
               <div key={p.title} className="bg-background p-8 lg:p-10">
