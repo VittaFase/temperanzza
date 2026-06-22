@@ -62,13 +62,11 @@ function Home() {
               </span>
             </div>
             <h1 className="font-display font-black uppercase leading-[0.92] tracking-tight text-[12vw] sm:text-7xl lg:text-8xl xl:text-[7rem]">
-              Tempero
+              Temperanzza
               <br />
-              <span className="text-accent">de verdade</span>
+              para quem
               <br />
-              pra cozinha
-              <br />
-              que respeita.
+              ama <span className="text-accent">novos sabores</span>.
             </h1>
             <p className="mt-8 max-w-xl text-base sm:text-lg text-foreground/80 leading-relaxed">
               Misturas autorais embaladas a cada lote. Sem corantes, sem
