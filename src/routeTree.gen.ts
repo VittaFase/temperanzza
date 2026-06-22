@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TemperaflixRouteImport } from './routes/temperaflix'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 
+const TemperaflixRoute = TemperaflixRouteImport.update({
+  id: '/temperaflix',
+  path: '/temperaflix',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
+  '/temperaflix': typeof TemperaflixRoute
   '/product/$handle': typeof ProductHandleRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
+  '/temperaflix': typeof TemperaflixRoute
   '/product/$handle': typeof ProductHandleRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,34 @@ export interface FileRoutesById {
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
+  '/temperaflix': typeof TemperaflixRoute
   '/product/$handle': typeof ProductHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/lojas' | '/produtos' | '/sobre' | '/product/$handle'
+  fullPaths:
+    | '/'
+    | '/lojas'
+    | '/produtos'
+    | '/sobre'
+    | '/temperaflix'
+    | '/product/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/lojas' | '/produtos' | '/sobre' | '/product/$handle'
-  id: '__root__' | '/' | '/lojas' | '/produtos' | '/sobre' | '/product/$handle'
+  to:
+    | '/'
+    | '/lojas'
+    | '/produtos'
+    | '/sobre'
+    | '/temperaflix'
+    | '/product/$handle'
+  id:
+    | '__root__'
+    | '/'
+    | '/lojas'
+    | '/produtos'
+    | '/sobre'
+    | '/temperaflix'
+    | '/product/$handle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,11 +104,19 @@ export interface RootRouteChildren {
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
   SobreRoute: typeof SobreRoute
+  TemperaflixRoute: typeof TemperaflixRoute
   ProductHandleRoute: typeof ProductHandleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/temperaflix': {
+      id: '/temperaflix'
+      path: '/temperaflix'
+      fullPath: '/temperaflix'
+      preLoaderRoute: typeof TemperaflixRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sobre': {
       id: '/sobre'
       path: '/sobre'
@@ -124,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
   SobreRoute: SobreRoute,
+  TemperaflixRoute: TemperaflixRoute,
   ProductHandleRoute: ProductHandleRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,50 +1,45 @@
-## Objetivo
 
-Reproduzir o "espírito visual" da Kinder's na apresentação dos produtos Temperanzza — sem copiar a marca deles, mas adotando o mesmo sistema de exposição: cada produto vive sobre um **bloco de cor sólido e saturado próprio do sabor**, com tipografia stencil pesada, selos circulares ("NOVO", "PREMIUM"), e grid de variações como tiles coloridos.
+# Landing Temperaflix — `/temperaflix`
 
-Como nossa marca já roda em Big Shoulders Stencil + vermelho tijolo + paper cream, o casamento é natural — vamos só puxar a régua visual para o nível Kinder's.
+Página dedicada à sublinha de shakers (Tradicional, Ervas Finas, Bacon) com narrativa de "momentos de tela".
 
-## O que muda
+## Estrutura da página
 
-### 1. Card de produto (catálogo + home)
-- Fundo do card vira um **bloco de cor sólido por SKU** (mapeado por sabor: páprica doce = âmbar quente, páprica picante = vermelho-pimenta, canela = marrom-canela, açafrão = ouro, alecrim = verde-musgo, etc.).
-- Foto do potinho centralizada, grande, ocupando ~70% do tile, com sombra projetada sutil.
-- Textura de "poeira/partículas" sobreposta no fundo (CSS radial-gradients muito sutis) para imitar o granulado da Kinder's.
-- Selo circular preto rotacionado no canto superior esquerdo quando aplicável: **NOVO**, **PREMIUM BLACK**, **EDIÇÃO LIMITADA**.
-- Abaixo do tile colorido: nome do produto em stencil bold maiúsculo + linha fina com sublinha/categoria + preço em vermelho tijolo.
-- Hover: leve zoom no potinho + brilho no fundo.
+1. **Hero cinematográfico**
+   - Headline: "O tempero que entra em cena"
+   - Subhead curta sobre shakers prontos para a mesa do sofá
+   - CTA primário "Ver os 3 sabores" (scroll) + secundário "Levar o combo"
+   - Visual: composição escura tipo home theater com os 3 potes em destaque (usa imagens reais já no Shopify)
 
-### 2. Página de produto (`/product/$handle`)
-- Hero split: à esquerda o **bloco de cor gigante** com o potinho centralizado (mesmo tratamento do card, em escala grande, com selo NOVO quando aplicável); à direita coluna de info.
-- Coluna direita: tag de categoria em pill vermelha (ex. "TEMPEROS CORE"), título em stencil enorme, preço em vermelho, descrição editorial em Playfair italic + Inter, peso/tamanho como label discreta.
-- Abaixo: **grid "OUTROS SABORES DA LINHA"** — mini-tiles coloridos com cada SKU irmão (Core mostra Core, Premium Black mostra Premium Black, Temperaflix mostra Temperaflix), no mesmo formato dos color tiles da Kinder's.
-- CTA "ADICIONAR À SACOLA" sharp corners, full-width na coluna, vermelho tijolo.
+2. **Três shakers, três gêneros**
+   - Grid de 3 cards grandes, cada um com um "gênero" atribuído:
+     - Tradicional → "O clássico atemporal"
+     - Ervas Finas → "O drama sofisticado"
+     - Bacon → "O blockbuster de ação"
+   - Cada card: imagem do shaker, nome, gênero, descrição curta, preço (R$ 10,49), botão "Adicionar ao carrinho" (usa o carrinho Shopify já existente)
 
-### 3. Sistema de cores por sabor
-Criar um mapa `flavorPalette` em `src/lib/flavorPalette.ts` que dá `{bg, particle, accent}` para cada handle/sabor. Fallback para vermelho-marca se não mapeado. Isso permite escalar para os 19 SKUs sem hardcode em cada componente.
+3. **Como usar — momentos de tela**
+   - Seção editorial em 3 colunas pareando blend × ocasião (pipoca, batata, petiscos)
+   - Tipografia Big Shoulders Stencil + Playfair italic para os títulos das cenas
 
-### 4. Detalhes finais
-- Borda decorativa zigue-zague vermelha no rodapé de seções (igual à serra dentada da Kinder's) — reaproveitar como divisor de seções.
-- Selo "NOVO" circular preto com rotação -8°, fonte stencil branca.
-- Manter sharp corners (rounded-none) nos CTAs como já está na régua da marca.
+4. **Combo Maratona**
+   - Bloco destacando os 3 juntos como kit para o "fim de semana de série"
+   - CTA agrupado adicionando os 3 ao carrinho de uma vez
 
-## Arquivos afetados
+5. **Faixa de marca / rodapé da página**
+   - Reforço da identidade Temperanzza + link para o catálogo completo `/produtos`
 
-- `src/lib/flavorPalette.ts` (novo) — mapa cor por SKU
-- `src/components/site/ProductCard.tsx` — refatorar para o tile colorido
-- `src/components/site/ProductGrid.tsx` — ajustar gap/colunas se necessário
-- `src/routes/product.$handle.tsx` — PDP nova
-- `src/components/site/FlavorTiles.tsx` (novo) — grid de variações coloridas
-- `src/components/site/ProductBadge.tsx` (novo) — selo circular
-- `src/components/site/ZigzagDivider.tsx` (novo) — serra decorativa
-- `src/styles.css` — adicionar tokens de cor de sabor + utilidade `.particle-bg`
+## Detalhes técnicos
 
-## O que NÃO vai mudar
+- Novo arquivo `src/routes/temperaflix.tsx` com `createFileRoute("/temperaflix")` e `head()` próprio (title, description, og:title/description/image apontando para uma das imagens dos shakers)
+- Busca dos 3 produtos via Storefront API filtrando por `query: "tag:temperaflix"` (ou pelos handles conhecidos) reusando o helper em `src/lib/shopify.ts`
+- Reuso do carrinho/checkout Shopify existente (sem mexer em lógica de compra)
+- Link "Temperaflix" adicionado ao header principal
+- 100% PT-BR, tokens de cor da marca (`brand-ink`, `brand-paper`, `brand-red`, `brand-mustard`), cantos retos nos CTAs, fontes do design system
+- Sem mocks, sem reviews falsas; se a Storefront API não retornar os 3, mostra estado vazio amigável
 
-- Paleta base da marca (paper cream, ink, vermelho tijolo) e tipografia continuam iguais.
-- Estrutura de rotas, carrinho Shopify, header, footer — nada toca.
-- Nada de backend.
+## Fora de escopo
 
-## Pergunta antes de implementar
-
-Quer que eu defina o mapa de cor de cada um dos 19 SKUs agora (eu escolho baseado no perfil do tempero) ou prefere validar cor a cor comigo?
+- Vídeo real no hero (fica como placeholder visual estático por ora)
+- Página de produto individual (já existe `/product/[handle]`)
+- Alteração da home ou de `/produtos`
