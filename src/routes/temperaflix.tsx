@@ -211,7 +211,7 @@ function TemperaflixPage() {
             O tempero que <span className="text-accent">entra em cena</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-background/75 leading-relaxed">
-            Três shakers prontos para a mesa do sofá. Pipoca, batata,
+            Três shakers prontos para a hora do sofá. Pipoca, batata,
             amendoim — o sabor oficial dos seus momentos de tela, do clássico
             de domingo à maratona de madrugada.
           </p>
