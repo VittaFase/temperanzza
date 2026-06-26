@@ -82,20 +82,33 @@ function CuratedView() {
   const blend = BLEND_BY_SLUG[slug as BlendSlug];
 
   const { prices, loading } = useShopifyPrices();
+  const { products } = useShopifyProducts();
   const price = computeBlendTotal(blend.spiceHandles, prices);
 
-  const subject = encodeURIComponent(
-    `Reserva — ${blend.name} (Caixa display 12 potes)`,
-  );
-  const body = encodeURIComponent(
-    `Olá Temperanzza,\n\nGostaria de reservar a caixa "${blend.name}".\n\n` +
-      (price?.complete
-        ? `Valor integral: ${formatBRL(price.full, price.currencyCode)}\n` +
-          `Com ${BLEND_DISCOUNT_CODE} (${BLEND_DISCOUNT_PCT}% off): ${formatBRL(price.discounted, price.currencyCode)}\n\n`
-        : "") +
-      `Meu nome: \nCidade/UF: \nQuantas caixas: \n\nObrigado!`,
-  );
-  const mailto = `mailto:contatotemperanzza@gmail.com?subject=${subject}&body=${body}`;
+  const [celebrationOpen, setCelebrationOpen] = useState(false);
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleCheckout() {
+    if (!products) {
+      toast.error("Catálogo ainda carregando, tente novamente em instantes.");
+      return;
+    }
+    setSubmitting(true);
+    setCheckoutUrl(null);
+    setCelebrationOpen(true);
+    try {
+      const url = await addPicksToCart(handlesToPicks(blend.spiceHandles), products);
+      if (!url) {
+        toast.error("Não conseguimos preparar seu checkout. Tente novamente.");
+        setCelebrationOpen(false);
+        return;
+      }
+      setCheckoutUrl(url);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   const others = BLENDS.filter((b) => b.slug !== blend.slug && !b.isBuilder).slice(0, 3);
 
