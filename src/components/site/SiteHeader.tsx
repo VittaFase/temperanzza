@@ -32,7 +32,7 @@ export function SiteHeader() {
               Temperanzza
             </span>
             <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground border-l border-foreground/30 pl-1.5">
-              CASA DE TEMPEROS
+              SPICE HOUSE
             </span>
           </span>
         </Link>
