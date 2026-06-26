@@ -155,9 +155,9 @@ export const BLENDS: Blend[] = [
     slug: "chefe",
     name: "Chefe Temperanzza",
     display: "MEU BLEND",
-    tagline: "A sua caixa, com a sua receita, com o seu nome",
+    tagline: "A sua caixa, o seu Blend, o seu gosto",
     description:
-      "Monte sua própria caixa Temperanzza com 12 potes à escolha entre os sabores da casa. Dê um nome à sua criação, escreva a receita que ela inspira e receba o blend personalizado para chamar de seu.",
+      "Monte seu proprio blend para chamar de seu com 12 potes à sua escolha entre os sabores da casa.",
     pairing:
       "O que sua cozinha pedir. A caixa Chefe é tão única quanto quem a monta.",
     accent: "#111111",
