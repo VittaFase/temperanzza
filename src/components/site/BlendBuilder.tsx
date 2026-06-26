@@ -51,6 +51,9 @@ export function BlendBuilder() {
   const [recipeBody, setRecipeBody] = useState("");
   const [contact, setContact] = useState("");
 
+  const { prices } = useShopifyPrices();
+  const priceInfo = useMemo(() => computePicksTotal(picks, prices), [picks, prices]);
+
   const total = useMemo(
     () => Object.values(picks).reduce((s, n) => s + n, 0),
     [picks],
