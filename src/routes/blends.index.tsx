@@ -98,7 +98,9 @@ function BlendsIndex() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {curated.map((blend) => (
+            {curated.map((blend) => {
+              const price = computeBlendTotal(blend.spiceHandles, prices);
+              return (
               <Link
                 key={blend.slug}
                 to="/blends/$slug"
@@ -126,6 +128,19 @@ function BlendsIndex() {
                   <p className="font-serif italic text-foreground/70 leading-snug">
                     {blend.tagline}
                   </p>
+                  {price?.complete && (
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                      <span className="font-display text-xl text-accent leading-none">
+                        {formatBRL(price.discounted, price.currencyCode)}
+                      </span>
+                      <span className="font-display text-xs text-foreground/40 line-through leading-none">
+                        {formatBRL(price.full, price.currencyCode)}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[9px] font-display uppercase tracking-[0.2em] text-accent">
+                        <Tag className="w-2.5 h-2.5" /> {BLEND_DISCOUNT_PCT}% {BLEND_DISCOUNT_CODE}
+                      </span>
+                    </div>
+                  )}
                   <div className="mt-auto flex items-center justify-between pt-3 border-t border-foreground/10">
                     <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
                       12 potes selecionados
@@ -134,7 +149,8 @@ function BlendsIndex() {
                   </div>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
