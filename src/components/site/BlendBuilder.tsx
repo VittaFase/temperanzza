@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Check, Mail, Minus, Plus, Sparkles, X } from "lucide-react";
+import { Check, Mail, Minus, Plus, Sparkles, Tag, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,6 +7,13 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { BUILDER_HANDLES, BUILDER_TARGET } from "@/lib/blends";
 import { getProductImage } from "@/lib/productImages";
+import { useShopifyPrices } from "@/hooks/useShopifyPrices";
+import {
+  computePicksTotal,
+  BLEND_DISCOUNT_CODE,
+  BLEND_DISCOUNT_PCT,
+} from "@/lib/blendPricing";
+import { formatBRL } from "@/lib/shopify";
 
 /** Etiqueta legível a partir do handle Shopify. */
 function labelFor(handle: string): string {
