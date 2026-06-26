@@ -1,10 +1,17 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Mail, Sparkles } from "lucide-react";
+import { ArrowLeft, Mail, Sparkles, Tag } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { BLEND_BY_SLUG, BLENDS, type BlendSlug } from "@/lib/blends";
 import { getProductImage } from "@/lib/productImages";
 import { BlendBuilder } from "@/components/site/BlendBuilder";
+import { useShopifyPrices } from "@/hooks/useShopifyPrices";
+import {
+  computeBlendTotal,
+  BLEND_DISCOUNT_CODE,
+  BLEND_DISCOUNT_PCT,
+} from "@/lib/blendPricing";
+import { formatBRL } from "@/lib/shopify";
 
 export const Route = createFileRoute("/blends/$slug")({
   beforeLoad: ({ params }) => {
@@ -70,11 +77,19 @@ function CuratedView() {
   const { slug } = Route.useParams();
   const blend = BLEND_BY_SLUG[slug as BlendSlug];
 
+  const { prices, loading } = useShopifyPrices();
+  const price = computeBlendTotal(blend.spiceHandles, prices);
+
   const subject = encodeURIComponent(
     `Reserva — ${blend.name} (Caixa display 12 potes)`,
   );
   const body = encodeURIComponent(
-    `Olá Temperanzza,\n\nGostaria de reservar a caixa "${blend.name}".\n\nMeu nome: \nCidade/UF: \nQuantas caixas: \n\nObrigado!`,
+    `Olá Temperanzza,\n\nGostaria de reservar a caixa "${blend.name}".\n\n` +
+      (price?.complete
+        ? `Valor integral: ${formatBRL(price.full, price.currencyCode)}\n` +
+          `Com ${BLEND_DISCOUNT_CODE} (${BLEND_DISCOUNT_PCT}% off): ${formatBRL(price.discounted, price.currencyCode)}\n\n`
+        : "") +
+      `Meu nome: \nCidade/UF: \nQuantas caixas: \n\nObrigado!`,
   );
   const mailto = `mailto:contatotemperanzza@gmail.com?subject=${subject}&body=${body}`;
 
@@ -121,12 +136,39 @@ function CuratedView() {
             </p>
             <div className="mt-8 border border-background/20 bg-background/5 p-5">
               <p className="text-[11px] uppercase tracking-[0.3em] text-background/60">
-                Investimento
+                Soma dos 12 potes
               </p>
-              <p className="mt-1 font-display text-3xl text-accent">A definir</p>
-              <p className="mt-2 text-sm text-background/65">
-                Reserve por e-mail enquanto a tabela final é fechada. Sem
-                compromisso de compra.
+              {loading || !price ? (
+                <p className="mt-1 font-display text-3xl text-background/40">
+                  Calculando…
+                </p>
+              ) : price.complete ? (
+                <>
+                  <div className="mt-1 flex items-baseline gap-3 flex-wrap">
+                    <p className="font-display text-4xl text-accent leading-none">
+                      {formatBRL(price.discounted, price.currencyCode)}
+                    </p>
+                    <p className="font-display text-lg text-background/50 line-through leading-none">
+                      {formatBRL(price.full, price.currencyCode)}
+                    </p>
+                  </div>
+                  <div className="mt-3 inline-flex items-center gap-2 border border-accent/60 bg-accent/15 px-3 py-1.5">
+                    <Tag className="w-3.5 h-3.5 text-accent" />
+                    <span className="text-[11px] font-display uppercase tracking-[0.2em] text-accent">
+                      {BLEND_DISCOUNT_PCT}% off com {BLEND_DISCOUNT_CODE}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <p className="mt-1 font-display text-3xl text-accent">
+                  {formatBRL(price.full, price.currencyCode)}
+                </p>
+              )}
+              <p className="mt-3 text-sm text-background/65">
+                Valor é a soma real dos 12 potes da caixa. O cupom{" "}
+                <strong className="text-background/85">{BLEND_DISCOUNT_CODE}</strong>{" "}
+                aplica {BLEND_DISCOUNT_PCT}% no checkout em pedidos com 12+
+                potes.
               </p>
               <a href={mailto}>
                 <Button className="mt-5 rounded-none h-12 px-6 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider">
@@ -138,6 +180,7 @@ function CuratedView() {
           </div>
         </div>
       </section>
+
 
       {/* COMPOSIÇÃO */}
       <section className="py-20 sm:py-24 border-b border-foreground/15">
