@@ -77,7 +77,7 @@ export function BlendCelebration({
           </p>
 
           <p className="mt-4 font-serif italic text-foreground/65">
-            Obrigado por temperar a mesa com a gente.
+            Obrigado por poder estar a mesa com você.
           </p>
 
           <Button
