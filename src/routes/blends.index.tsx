@@ -88,7 +88,7 @@ function BlendsIndex() {
                 Seis caixas, seis ocasiões
               </span>
               <h2 className="mt-3 font-display font-black uppercase text-4xl sm:text-5xl tracking-tight">
-                Blends curados pela casa
+                BLENDS DA CASA
               </h2>
             </div>
             <p className="max-w-md text-muted-foreground">
