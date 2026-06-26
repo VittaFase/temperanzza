@@ -1,17 +1,21 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Mail, Sparkles, Tag } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, ShoppingBag, Sparkles, Tag, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { BLEND_BY_SLUG, BLENDS, type BlendSlug } from "@/lib/blends";
 import { getProductImage } from "@/lib/productImages";
 import { BlendBuilder } from "@/components/site/BlendBuilder";
-import { useShopifyPrices } from "@/hooks/useShopifyPrices";
+import { BlendCelebration } from "@/components/site/BlendCelebration";
+import { useShopifyPrices, useShopifyProducts } from "@/hooks/useShopifyPrices";
 import {
   computeBlendTotal,
   BLEND_DISCOUNT_CODE,
   BLEND_DISCOUNT_PCT,
 } from "@/lib/blendPricing";
 import { formatBRL } from "@/lib/shopify";
+import { addPicksToCart, handlesToPicks } from "@/lib/blendCheckout";
 
 export const Route = createFileRoute("/blends/$slug")({
   beforeLoad: ({ params }) => {
