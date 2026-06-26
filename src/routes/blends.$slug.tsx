@@ -1,17 +1,21 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Mail, Sparkles, Tag } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, ShoppingBag, Sparkles, Tag, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { BLEND_BY_SLUG, BLENDS, type BlendSlug } from "@/lib/blends";
 import { getProductImage } from "@/lib/productImages";
 import { BlendBuilder } from "@/components/site/BlendBuilder";
-import { useShopifyPrices } from "@/hooks/useShopifyPrices";
+import { BlendCelebration } from "@/components/site/BlendCelebration";
+import { useShopifyPrices, useShopifyProducts } from "@/hooks/useShopifyPrices";
 import {
   computeBlendTotal,
   BLEND_DISCOUNT_CODE,
   BLEND_DISCOUNT_PCT,
 } from "@/lib/blendPricing";
 import { formatBRL } from "@/lib/shopify";
+import { addPicksToCart, handlesToPicks } from "@/lib/blendCheckout";
 
 export const Route = createFileRoute("/blends/$slug")({
   beforeLoad: ({ params }) => {
@@ -78,20 +82,33 @@ function CuratedView() {
   const blend = BLEND_BY_SLUG[slug as BlendSlug];
 
   const { prices, loading } = useShopifyPrices();
+  const { products } = useShopifyProducts();
   const price = computeBlendTotal(blend.spiceHandles, prices);
 
-  const subject = encodeURIComponent(
-    `Reserva — ${blend.name} (Caixa display 12 potes)`,
-  );
-  const body = encodeURIComponent(
-    `Olá Temperanzza,\n\nGostaria de reservar a caixa "${blend.name}".\n\n` +
-      (price?.complete
-        ? `Valor integral: ${formatBRL(price.full, price.currencyCode)}\n` +
-          `Com ${BLEND_DISCOUNT_CODE} (${BLEND_DISCOUNT_PCT}% off): ${formatBRL(price.discounted, price.currencyCode)}\n\n`
-        : "") +
-      `Meu nome: \nCidade/UF: \nQuantas caixas: \n\nObrigado!`,
-  );
-  const mailto = `mailto:contatotemperanzza@gmail.com?subject=${subject}&body=${body}`;
+  const [celebrationOpen, setCelebrationOpen] = useState(false);
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleCheckout() {
+    if (!products) {
+      toast.error("Catálogo ainda carregando, tente novamente em instantes.");
+      return;
+    }
+    setSubmitting(true);
+    setCheckoutUrl(null);
+    setCelebrationOpen(true);
+    try {
+      const url = await addPicksToCart(handlesToPicks(blend.spiceHandles), products);
+      if (!url) {
+        toast.error("Não conseguimos preparar seu checkout. Tente novamente.");
+        setCelebrationOpen(false);
+        return;
+      }
+      setCheckoutUrl(url);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   const others = BLENDS.filter((b) => b.slug !== blend.slug && !b.isBuilder).slice(0, 3);
 
@@ -170,12 +187,23 @@ function CuratedView() {
                 aplica {BLEND_DISCOUNT_PCT}% no checkout em pedidos com 12+
                 potes.
               </p>
-              <a href={mailto}>
-                <Button className="mt-5 rounded-none h-12 px-6 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider">
-                  <Mail className="w-4 h-4 mr-2" />
-                  Reservar esta caixa
-                </Button>
-              </a>
+              <Button
+                onClick={handleCheckout}
+                disabled={submitting}
+                className="mt-5 rounded-none h-12 px-6 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Preparando…
+                  </>
+                ) : (
+                  <>
+                    <ShoppingBag className="w-4 h-4 mr-2" />
+                    Comprar esta caixa
+                  </>
+                )}
+              </Button>
             </div>
           </div>
         </div>
@@ -258,6 +286,14 @@ function CuratedView() {
           </div>
         </div>
       </section>
+
+      <BlendCelebration
+        open={celebrationOpen}
+        blendName={blend.name}
+        checkoutUrl={checkoutUrl}
+        loading={submitting}
+        onClose={() => setCelebrationOpen(false)}
+      />
     </SiteLayout>
   );
 }

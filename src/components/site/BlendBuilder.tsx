@@ -1,19 +1,18 @@
 import { useMemo, useState } from "react";
-import { Check, Mail, Minus, Plus, Sparkles, Tag, X } from "lucide-react";
+import { Check, Minus, Plus, Sparkles, Tag, X, Loader2, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { BUILDER_HANDLES, BUILDER_TARGET } from "@/lib/blends";
 import { getProductImage } from "@/lib/productImages";
-import { useShopifyPrices } from "@/hooks/useShopifyPrices";
+import { useShopifyPrices, useShopifyProducts } from "@/hooks/useShopifyPrices";
 import {
   computePicksTotal,
   BLEND_DISCOUNT_CODE,
   BLEND_DISCOUNT_PCT,
 } from "@/lib/blendPricing";
 import { formatBRL } from "@/lib/shopify";
+import { addPicksToCart } from "@/lib/blendCheckout";
+import { BlendCelebration } from "./BlendCelebration";
 
 /** Etiqueta legível a partir do handle Shopify. */
 function labelFor(handle: string): string {
@@ -32,26 +31,19 @@ function labelFor(handle: string): string {
     "salsa-cebola-e-alho": "Salsa, Cebola e Alho",
     "tempero-chefe": "Du Chefe com Páprica",
     "tempero-mineiro": "Tempero Mineiro",
-    "pimenta-do-reino-premium-black-30g": "Pimenta-do-reino · Premium Black",
-    "canela-premium-black-30g": "Canela Moída · Premium Black",
   };
   return map[handle] ?? handle;
 }
 
-const PREMIUM = new Set([
-  "pimenta-do-reino-premium-black-30g",
-  "canela-premium-black-30g",
-]);
-
 export function BlendBuilder() {
   // mapa handle → quantidade
   const [picks, setPicks] = useState<Record<string, number>>({});
-  const [chefName, setChefName] = useState("");
-  const [recipeName, setRecipeName] = useState("");
-  const [recipeBody, setRecipeBody] = useState("");
-  const [contact, setContact] = useState("");
+  const [celebrationOpen, setCelebrationOpen] = useState(false);
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const { prices } = useShopifyPrices();
+  const { products } = useShopifyProducts();
   const priceInfo = useMemo(() => computePicksTotal(picks, prices), [picks, prices]);
 
   const total = useMemo(
@@ -79,40 +71,29 @@ export function BlendBuilder() {
     setPicks({});
   }
 
-  function handleReserve() {
+  async function handleCheckout() {
     if (!isFull) {
       toast.error(`Faltam ${remaining} potes para fechar sua caixa de 12.`);
       return;
     }
-    if (!chefName.trim()) {
-      toast.error("Dê um nome ao chefe da caixa.");
+    if (!products) {
+      toast.error("Catálogo ainda carregando, tente novamente em instantes.");
       return;
     }
-    const lines = Object.entries(picks)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([h, q]) => `  • ${labelFor(h)} ×${q}`)
-      .join("\n");
-
-    const subject = encodeURIComponent(
-      `Caixa Chefe Temperanzza — ${chefName}${recipeName ? ` · ${recipeName}` : ""}`,
-    );
-    const priceLines = priceInfo && priceInfo.full > 0
-      ? `Valor integral: ${formatBRL(priceInfo.full, priceInfo.currencyCode)}\n` +
-        `Com ${BLEND_DISCOUNT_CODE} (${BLEND_DISCOUNT_PCT}% off): ${formatBRL(priceInfo.discounted, priceInfo.currencyCode)}\n\n`
-      : "";
-    const body = encodeURIComponent(
-      `Olá Temperanzza,\n\nGostaria de reservar minha caixa Chefe Temperanzza.\n\n` +
-        `Nome do Chefe: ${chefName}\n` +
-        (recipeName ? `Nome da receita: ${recipeName}\n` : "") +
-        `\nOs 12 potes escolhidos:\n${lines}\n\n` +
-        priceLines +
-        (recipeBody.trim()
-          ? `Receita / dedicatória:\n${recipeBody.trim()}\n\n`
-          : "") +
-        (contact.trim() ? `Contato: ${contact.trim()}\n\n` : "") +
-        `Obrigado!`,
-    );
-    window.location.href = `mailto:contatotemperanzza@gmail.com?subject=${subject}&body=${body}`;
+    setSubmitting(true);
+    setCheckoutUrl(null);
+    setCelebrationOpen(true);
+    try {
+      const url = await addPicksToCart(picks, products);
+      if (!url) {
+        toast.error("Não conseguimos preparar seu checkout. Tente novamente.");
+        setCelebrationOpen(false);
+        return;
+      }
+      setCheckoutUrl(url);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -122,7 +103,7 @@ export function BlendBuilder() {
         <div>
           <div className="flex items-baseline justify-between gap-4 mb-3">
             <h2 className="font-display font-black uppercase text-3xl sm:text-4xl tracking-tight">
-              1. Escolha 12 potes
+              Escolha 12 potes
             </h2>
             <button
               type="button"
@@ -141,7 +122,6 @@ export function BlendBuilder() {
             {BUILDER_HANDLES.map((handle) => {
               const qty = picks[handle] ?? 0;
               const img = getProductImage(handle);
-              const isPremium = PREMIUM.has(handle);
               const disabled = isFull && qty === 0;
               return (
                 <div
@@ -152,11 +132,6 @@ export function BlendBuilder() {
                       : "border-foreground/10"
                   } ${disabled ? "opacity-50" : ""}`}
                 >
-                  {isPremium && (
-                    <span className="absolute top-2 left-2 z-10 bg-foreground text-background text-[9px] font-display uppercase tracking-[0.2em] px-1.5 py-0.5">
-                      Premium
-                    </span>
-                  )}
                   {qty > 0 && (
                     <span className="absolute top-2 right-2 z-10 inline-flex items-center justify-center w-6 h-6 rounded-full bg-accent text-background text-xs font-bold">
                       {qty}
@@ -208,74 +183,6 @@ export function BlendBuilder() {
                 </div>
               );
             })}
-          </div>
-
-          {/* Assinatura */}
-          <div className="mt-14">
-            <h2 className="font-display font-black uppercase text-3xl sm:text-4xl tracking-tight">
-              2. Assine sua caixa
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Dê um nome ao Chefe da casa e escreva, se quiser, a receita ou
-              dedicatória que acompanha a caixa.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="chef" className="text-xs uppercase tracking-[0.2em]">
-                  Nome do Chefe *
-                </Label>
-                <Input
-                  id="chef"
-                  value={chefName}
-                  onChange={(e) => setChefName(e.target.value)}
-                  placeholder="Ex.: Chef da Casa"
-                  className="rounded-none h-11"
-                  maxLength={60}
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="recipe" className="text-xs uppercase tracking-[0.2em]">
-                  Nome da receita
-                </Label>
-                <Input
-                  id="recipe"
-                  value={recipeName}
-                  onChange={(e) => setRecipeName(e.target.value)}
-                  placeholder="Ex.: Frango de domingo da vó"
-                  className="rounded-none h-11"
-                  maxLength={80}
-                />
-              </div>
-            </div>
-            <div className="mt-5 flex flex-col gap-2">
-              <Label htmlFor="body" className="text-xs uppercase tracking-[0.2em]">
-                Receita ou dedicatória
-              </Label>
-              <Textarea
-                id="body"
-                value={recipeBody}
-                onChange={(e) => setRecipeBody(e.target.value)}
-                placeholder="Escreva a receita que sua caixa inspira, ou uma homenagem a alguém especial."
-                className="rounded-none min-h-32"
-                maxLength={1200}
-              />
-              <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground text-right">
-                {recipeBody.length}/1200
-              </p>
-            </div>
-            <div className="mt-5 flex flex-col gap-2">
-              <Label htmlFor="contact" className="text-xs uppercase tracking-[0.2em]">
-                Seu contato (WhatsApp ou e-mail)
-              </Label>
-              <Input
-                id="contact"
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-                placeholder="Como falamos com você"
-                className="rounded-none h-11"
-                maxLength={120}
-              />
-            </div>
           </div>
         </div>
 
@@ -373,14 +280,19 @@ export function BlendBuilder() {
             </div>
 
             <Button
-              onClick={handleReserve}
-              disabled={!isFull}
+              onClick={handleCheckout}
+              disabled={!isFull || submitting}
               className="w-full rounded-none h-12 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider disabled:bg-foreground/20 disabled:text-foreground/40"
             >
-              {isFull ? (
+              {submitting ? (
                 <>
-                  <Mail className="w-4 h-4 mr-2" />
-                  Reservar minha caixa
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Preparando…
+                </>
+              ) : isFull ? (
+                <>
+                  <ShoppingBag className="w-4 h-4 mr-2" />
+                  Finalizar minha caixa
                 </>
               ) : (
                 <>
@@ -392,6 +304,14 @@ export function BlendBuilder() {
           </div>
         </aside>
       </div>
+
+      <BlendCelebration
+        open={celebrationOpen}
+        blendName="Meu Blend"
+        checkoutUrl={checkoutUrl}
+        loading={submitting}
+        onClose={() => setCelebrationOpen(false)}
+      />
     </section>
   );
 }
