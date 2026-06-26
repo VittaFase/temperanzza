@@ -286,6 +286,14 @@ function CuratedView() {
           </div>
         </div>
       </section>
+
+      <BlendCelebration
+        open={celebrationOpen}
+        blendName={blend.name}
+        checkoutUrl={checkoutUrl}
+        loading={submitting}
+        onClose={() => setCelebrationOpen(false)}
+      />
     </SiteLayout>
   );
 }
