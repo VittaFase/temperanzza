@@ -85,7 +85,7 @@ function BlendsIndex() {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
             <div>
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-                Seis caixas, seis ocasiões
+                SEIS BLENDS, SEIS OCASIÕES
               </span>
               <h2 className="mt-3 font-display font-black uppercase text-4xl sm:text-5xl tracking-tight">
                 BLENDS DA CASA
