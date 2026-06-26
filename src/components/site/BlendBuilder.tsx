@@ -96,11 +96,16 @@ export function BlendBuilder() {
     const subject = encodeURIComponent(
       `Caixa Chefe Temperanzza — ${chefName}${recipeName ? ` · ${recipeName}` : ""}`,
     );
+    const priceLines = priceInfo && priceInfo.full > 0
+      ? `Valor integral: ${formatBRL(priceInfo.full, priceInfo.currencyCode)}\n` +
+        `Com ${BLEND_DISCOUNT_CODE} (${BLEND_DISCOUNT_PCT}% off): ${formatBRL(priceInfo.discounted, priceInfo.currencyCode)}\n\n`
+      : "";
     const body = encodeURIComponent(
       `Olá Temperanzza,\n\nGostaria de reservar minha caixa Chefe Temperanzza.\n\n` +
         `Nome do Chefe: ${chefName}\n` +
         (recipeName ? `Nome da receita: ${recipeName}\n` : "") +
         `\nOs 12 potes escolhidos:\n${lines}\n\n` +
+        priceLines +
         (recipeBody.trim()
           ? `Receita / dedicatória:\n${recipeBody.trim()}\n\n`
           : "") +
