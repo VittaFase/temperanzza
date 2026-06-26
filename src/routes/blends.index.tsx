@@ -92,8 +92,7 @@ function BlendsIndex() {
               </h2>
             </div>
             <p className="max-w-md text-muted-foreground">
-              Cada caixa reúne 12 potes selecionados para um tipo de cozinha,
-              prato ou momento. Pronta para a estante e para a mesa.
+              Cada caixa reúne 12 potes com 3 sabores selecionados para uma experiência de sabores, pratos e momentos a mesa.
             </p>
           </div>
 
