@@ -176,7 +176,7 @@ export const BLEND_BY_SLUG: Record<BlendSlug, Blend> = BLENDS.reduce(
   {} as Record<BlendSlug, Blend>,
 );
 
-/** Handles que entram no builder Chefe Temperanzza (todos os Core + Premium Black, exceto Temperaflix). */
+/** Handles que entram no builder Chefe Temperanzza (Core, exceto Temperaflix, Canela e Pimenta-do-reino — que ficam só no catálogo). */
 export const BUILDER_HANDLES: string[] = [
   "ana-maria",
   "cebola-em-po",
@@ -192,8 +192,6 @@ export const BUILDER_HANDLES: string[] = [
   "salsa-cebola-e-alho",
   "tempero-chefe",
   "tempero-mineiro",
-  "pimenta-do-reino-premium-black-30g",
-  "canela-premium-black-30g",
 ];
 
 export const BUILDER_TARGET = 12;
