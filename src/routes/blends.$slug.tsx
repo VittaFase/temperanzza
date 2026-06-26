@@ -187,12 +187,23 @@ function CuratedView() {
                 aplica {BLEND_DISCOUNT_PCT}% no checkout em pedidos com 12+
                 potes.
               </p>
-              <a href={mailto}>
-                <Button className="mt-5 rounded-none h-12 px-6 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider">
-                  <Mail className="w-4 h-4 mr-2" />
-                  Reservar esta caixa
-                </Button>
-              </a>
+              <Button
+                onClick={handleCheckout}
+                disabled={submitting}
+                className="mt-5 rounded-none h-12 px-6 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Preparando…
+                  </>
+                ) : (
+                  <>
+                    <ShoppingBag className="w-4 h-4 mr-2" />
+                    Comprar esta caixa
+                  </>
+                )}
+              </Button>
             </div>
           </div>
         </div>
