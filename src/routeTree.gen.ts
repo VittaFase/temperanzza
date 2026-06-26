@@ -13,8 +13,11 @@ import { Route as TemperaflixRouteImport } from './routes/temperaflix'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
+import { Route as BlendsRouteImport } from './routes/blends'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
+import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
 
 const TemperaflixRoute = TemperaflixRouteImport.update({
   id: '/temperaflix',
@@ -36,24 +39,42 @@ const LojasRoute = LojasRouteImport.update({
   path: '/lojas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlendsRoute = BlendsRouteImport.update({
+  id: '/blends',
+  path: '/blends',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const BlendsIndexRoute = BlendsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlendsRoute,
 } as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlendsSlugRoute = BlendsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlendsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blends': typeof BlendsRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/blends/': typeof BlendsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,26 +82,34 @@ export interface FileRoutesByTo {
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/blends': typeof BlendsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blends': typeof BlendsRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/blends/': typeof BlendsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/blends'
     | '/lojas'
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
+    | '/blends/$slug'
     | '/product/$handle'
+    | '/blends/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -88,19 +117,25 @@ export interface FileRouteTypes {
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
+    | '/blends/$slug'
     | '/product/$handle'
+    | '/blends'
   id:
     | '__root__'
     | '/'
+    | '/blends'
     | '/lojas'
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
+    | '/blends/$slug'
     | '/product/$handle'
+    | '/blends/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlendsRoute: typeof BlendsRouteWithChildren
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
   SobreRoute: typeof SobreRoute
@@ -138,12 +173,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LojasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blends': {
+      id: '/blends'
+      path: '/blends'
+      fullPath: '/blends'
+      preLoaderRoute: typeof BlendsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/blends/': {
+      id: '/blends/'
+      path: '/'
+      fullPath: '/blends/'
+      preLoaderRoute: typeof BlendsIndexRouteImport
+      parentRoute: typeof BlendsRoute
     }
     '/product/$handle': {
       id: '/product/$handle'
@@ -152,11 +201,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blends/$slug': {
+      id: '/blends/$slug'
+      path: '/$slug'
+      fullPath: '/blends/$slug'
+      preLoaderRoute: typeof BlendsSlugRouteImport
+      parentRoute: typeof BlendsRoute
+    }
   }
 }
 
+interface BlendsRouteChildren {
+  BlendsSlugRoute: typeof BlendsSlugRoute
+  BlendsIndexRoute: typeof BlendsIndexRoute
+}
+
+const BlendsRouteChildren: BlendsRouteChildren = {
+  BlendsSlugRoute: BlendsSlugRoute,
+  BlendsIndexRoute: BlendsIndexRoute,
+}
+
+const BlendsRouteWithChildren =
+  BlendsRoute._addFileChildren(BlendsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlendsRoute: BlendsRouteWithChildren,
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
   SobreRoute: SobreRoute,
@@ -166,13 +236,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

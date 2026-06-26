@@ -14,6 +14,7 @@ import { useState } from "react";
 const NAV = [
   { to: "/", label: "Início" },
   { to: "/produtos", label: "Catálogo" },
+  { to: "/blends", label: "Blends" },
   { to: "/temperaflix", label: "Temperaflix" },
   { to: "/sobre", label: "A Casa" },
   { to: "/lojas", label: "Lojas" },
