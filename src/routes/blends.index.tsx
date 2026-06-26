@@ -34,6 +34,8 @@ export const Route = createFileRoute("/blends/")({
 function BlendsIndex() {
   const curated = BLENDS.filter((b) => !b.isBuilder);
   const builder = BLENDS.find((b) => b.isBuilder)!;
+  const { prices } = useShopifyPrices();
+
 
   return (
     <SiteLayout>
