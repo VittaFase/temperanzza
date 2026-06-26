@@ -336,11 +336,37 @@ export function BlendBuilder() {
               <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                 Investimento
               </p>
-              <p className="mt-1 font-display text-2xl text-accent">A definir</p>
-              <p className="text-xs text-muted-foreground">
-                Valor enviado por e-mail junto da confirmação.
-              </p>
+              {!priceInfo || priceInfo.full === 0 ? (
+                <p className="mt-1 font-display text-2xl text-foreground/40">—</p>
+              ) : isFull ? (
+                <>
+                  <div className="mt-1 flex items-baseline gap-2 flex-wrap">
+                    <p className="font-display text-2xl text-accent leading-none">
+                      {formatBRL(priceInfo.discounted, priceInfo.currencyCode)}
+                    </p>
+                    <p className="font-display text-sm text-foreground/40 line-through leading-none">
+                      {formatBRL(priceInfo.full, priceInfo.currencyCode)}
+                    </p>
+                  </div>
+                  <div className="mt-2 inline-flex items-center gap-1.5 border border-accent/60 bg-accent/10 px-2 py-1">
+                    <Tag className="w-3 h-3 text-accent" />
+                    <span className="text-[10px] font-display uppercase tracking-[0.2em] text-accent">
+                      {BLEND_DISCOUNT_PCT}% off · {BLEND_DISCOUNT_CODE}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="mt-1 font-display text-2xl text-foreground">
+                    {formatBRL(priceInfo.full, priceInfo.currencyCode)}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-1">
+                    Feche 12 potes para desbloquear {BLEND_DISCOUNT_PCT}% off
+                  </p>
+                </>
+              )}
             </div>
+
             <Button
               onClick={handleReserve}
               disabled={!isFull}
