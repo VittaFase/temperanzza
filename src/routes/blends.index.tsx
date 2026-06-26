@@ -1,8 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Box, Sparkles } from "lucide-react";
+import { ArrowRight, Box, Sparkles, Tag } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { BLENDS } from "@/lib/blends";
+import { useShopifyPrices } from "@/hooks/useShopifyPrices";
+import {
+  computeBlendTotal,
+  BLEND_DISCOUNT_CODE,
+  BLEND_DISCOUNT_PCT,
+} from "@/lib/blendPricing";
+import { formatBRL } from "@/lib/shopify";
 
 export const Route = createFileRoute("/blends/")({
   head: () => ({
