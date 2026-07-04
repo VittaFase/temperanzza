@@ -219,17 +219,25 @@ function CuratedView() {
           <h2 className="mt-3 font-display font-black uppercase text-4xl sm:text-5xl tracking-tight">
             O que vai dentro
           </h2>
-          <div className="mt-10 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-            {blend.spiceHandles.map((handle, i) => {
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {Object.entries(
+              blend.spiceHandles.reduce<Record<string, number>>((acc, h) => {
+                acc[h] = (acc[h] ?? 0) + 1;
+                return acc;
+              }, {}),
+            ).map(([handle, qty]) => {
               const img = getProductImage(handle);
               return (
                 <Link
-                  key={`${handle}-${i}`}
+                  key={handle}
                   to="/product/$handle"
                   params={{ handle }}
-                  className="group flex flex-col items-center gap-2 p-3 border border-foreground/10 bg-brand-cream hover:border-accent transition-colors"
+                  className="group flex items-center gap-4 p-4 border border-foreground/10 bg-brand-cream hover:border-accent transition-colors"
                 >
-                  <div className="relative w-full aspect-[3/4] flex items-center justify-center">
+                  <span className="font-display text-4xl sm:text-5xl leading-none text-accent shrink-0 w-14 text-center">
+                    {qty}×
+                  </span>
+                  <div className="relative w-20 h-24 shrink-0 flex items-center justify-center">
                     {img ? (
                       <img
                         src={img}
@@ -241,13 +249,14 @@ function CuratedView() {
                       <div className="w-full h-full bg-foreground/5" />
                     )}
                   </div>
-                  <p className="text-[10px] font-display uppercase tracking-[0.15em] text-center leading-tight text-foreground/80">
+                  <p className="text-xs sm:text-sm font-display uppercase tracking-[0.15em] leading-tight text-foreground/85">
                     {handle.replace(/-/g, " ")}
                   </p>
                 </Link>
               );
             })}
           </div>
+
         </div>
       </section>
 
