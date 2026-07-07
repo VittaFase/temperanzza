@@ -4,11 +4,11 @@ import { useServerFn } from "@tanstack/react-start";
 import { useMemo, useState } from "react";
 import {
   getEngineState, upsertTempero, deleteTempero,
-  calcularTempero, type Tempero,
+  calcularTempero, autoMatchShopifySkus, type Tempero,
 } from "@/lib/dashboardEngine.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Loader2, Plus, Save, Trash2, X } from "lucide-react";
+import { ArrowLeft, Loader2, Plus, Save, Trash2, X, Link2 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/dashboard/produtos")({
