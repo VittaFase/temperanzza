@@ -21,7 +21,10 @@ import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDashboardSimulacaoRouteImport } from './routes/_authenticated/dashboard.simulacao'
+import { Route as AuthenticatedDashboardProdutosRouteImport } from './routes/_authenticated/dashboard.produtos'
 import { Route as AuthenticatedDashboardPrecosRouteImport } from './routes/_authenticated/dashboard.precos'
+import { Route as AuthenticatedDashboardConfiguracoesRouteImport } from './routes/_authenticated/dashboard.configuracoes'
 
 const TemperaflixRoute = TemperaflixRouteImport.update({
   id: '/temperaflix',
@@ -82,10 +85,28 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDashboardSimulacaoRoute =
+  AuthenticatedDashboardSimulacaoRouteImport.update({
+    id: '/simulacao',
+    path: '/simulacao',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardProdutosRoute =
+  AuthenticatedDashboardProdutosRouteImport.update({
+    id: '/produtos',
+    path: '/produtos',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 const AuthenticatedDashboardPrecosRoute =
   AuthenticatedDashboardPrecosRouteImport.update({
     id: '/precos',
     path: '/precos',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardConfiguracoesRoute =
+  AuthenticatedDashboardConfiguracoesRouteImport.update({
+    id: '/configuracoes',
+    path: '/configuracoes',
     getParentRoute: () => AuthenticatedDashboardRoute,
   } as any)
 
@@ -101,7 +122,10 @@ export interface FileRoutesByFullPath {
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
+  '/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
+  '/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -114,7 +138,10 @@ export interface FileRoutesByTo {
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
+  '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
+  '/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
+  '/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -130,7 +157,10 @@ export interface FileRoutesById {
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/_authenticated/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/_authenticated/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
+  '/_authenticated/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
+  '/_authenticated/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -146,7 +176,10 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/dashboard/configuracoes'
     | '/dashboard/precos'
+    | '/dashboard/produtos'
+    | '/dashboard/simulacao'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -159,7 +192,10 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends'
+    | '/dashboard/configuracoes'
     | '/dashboard/precos'
+    | '/dashboard/produtos'
+    | '/dashboard/simulacao'
   id:
     | '__root__'
     | '/'
@@ -174,7 +210,10 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/_authenticated/dashboard/configuracoes'
     | '/_authenticated/dashboard/precos'
+    | '/_authenticated/dashboard/produtos'
+    | '/_authenticated/dashboard/simulacao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -275,6 +314,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/dashboard/simulacao': {
+      id: '/_authenticated/dashboard/simulacao'
+      path: '/simulacao'
+      fullPath: '/dashboard/simulacao'
+      preLoaderRoute: typeof AuthenticatedDashboardSimulacaoRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
+    '/_authenticated/dashboard/produtos': {
+      id: '/_authenticated/dashboard/produtos'
+      path: '/produtos'
+      fullPath: '/dashboard/produtos'
+      preLoaderRoute: typeof AuthenticatedDashboardProdutosRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
     '/_authenticated/dashboard/precos': {
       id: '/_authenticated/dashboard/precos'
       path: '/precos'
@@ -282,16 +335,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardPrecosRouteImport
       parentRoute: typeof AuthenticatedDashboardRoute
     }
+    '/_authenticated/dashboard/configuracoes': {
+      id: '/_authenticated/dashboard/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/dashboard/configuracoes'
+      preLoaderRoute: typeof AuthenticatedDashboardConfiguracoesRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
   }
 }
 
 interface AuthenticatedDashboardRouteChildren {
+  AuthenticatedDashboardConfiguracoesRoute: typeof AuthenticatedDashboardConfiguracoesRoute
   AuthenticatedDashboardPrecosRoute: typeof AuthenticatedDashboardPrecosRoute
+  AuthenticatedDashboardProdutosRoute: typeof AuthenticatedDashboardProdutosRoute
+  AuthenticatedDashboardSimulacaoRoute: typeof AuthenticatedDashboardSimulacaoRoute
 }
 
 const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
   {
+    AuthenticatedDashboardConfiguracoesRoute:
+      AuthenticatedDashboardConfiguracoesRoute,
     AuthenticatedDashboardPrecosRoute: AuthenticatedDashboardPrecosRoute,
+    AuthenticatedDashboardProdutosRoute: AuthenticatedDashboardProdutosRoute,
+    AuthenticatedDashboardSimulacaoRoute: AuthenticatedDashboardSimulacaoRoute,
   }
 
 const AuthenticatedDashboardRouteWithChildren =
@@ -337,13 +404,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

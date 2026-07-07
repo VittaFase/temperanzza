@@ -92,9 +92,10 @@ function DashboardHome() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/dashboard/precos">Preços & Markup</Link>
-            </Button>
+            <Button asChild variant="ghost" size="sm"><Link to="/dashboard/produtos">Produtos</Link></Button>
+            <Button asChild variant="ghost" size="sm"><Link to="/dashboard/simulacao">Simulação</Link></Button>
+            <Button asChild variant="ghost" size="sm"><Link to="/dashboard/configuracoes">Variáveis</Link></Button>
+            <Button asChild variant="ghost" size="sm"><Link to="/dashboard/precos">Preços & Markup</Link></Button>
             <Button asChild variant="ghost" size="sm">
               <Link to="/">Ver site</Link>
             </Button>
