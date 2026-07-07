@@ -14,6 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
+      dashboard_temperos: {
+        Row: {
+          ativo: boolean
+          created_at: string
+          custos_fixos_override: Json | null
+          ean: string | null
+          estoque_atual: number
+          estoque_minimo: number
+          foto_path: string | null
+          gramas_pote: number
+          id: string
+          nome: string
+          ordem: number
+          preco_kg: number
+          sku: string | null
+          tabela_nutricional: Json | null
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          ativo?: boolean
+          created_at?: string
+          custos_fixos_override?: Json | null
+          ean?: string | null
+          estoque_atual?: number
+          estoque_minimo?: number
+          foto_path?: string | null
+          gramas_pote?: number
+          id?: string
+          nome: string
+          ordem?: number
+          preco_kg?: number
+          sku?: string | null
+          tabela_nutricional?: Json | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          ativo?: boolean
+          created_at?: string
+          custos_fixos_override?: Json | null
+          ean?: string | null
+          estoque_atual?: number
+          estoque_minimo?: number
+          foto_path?: string | null
+          gramas_pote?: number
+          id?: string
+          nome?: string
+          ordem?: number
+          preco_kg?: number
+          sku?: string | null
+          tabela_nutricional?: Json | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      dashboard_variables: {
+        Row: {
+          caixa: number
+          comissao: number
+          contabilidade_mensal: number
+          created_at: string
+          custo_fabril: number
+          id: string
+          lacre: number
+          markup_atacado: number
+          markup_cliente: number
+          pote: number
+          producao_estimada: number
+          rotulo: number
+          simples_nacional: number
+          termoencolhivel: number
+          transporte: number
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          caixa?: number
+          comissao?: number
+          contabilidade_mensal?: number
+          created_at?: string
+          custo_fabril?: number
+          id?: string
+          lacre?: number
+          markup_atacado?: number
+          markup_cliente?: number
+          pote?: number
+          producao_estimada?: number
+          rotulo?: number
+          simples_nacional?: number
+          termoencolhivel?: number
+          transporte?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          caixa?: number
+          comissao?: number
+          contabilidade_mensal?: number
+          created_at?: string
+          custo_fabril?: number
+          id?: string
+          lacre?: number
+          markup_atacado?: number
+          markup_cliente?: number
+          pote?: number
+          producao_estimada?: number
+          rotulo?: number
+          simples_nacional?: number
+          termoencolhivel?: number
+          transporte?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       pricing_history: {
         Row: {
           applied_at: string
