@@ -14,17 +14,10 @@ import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
 import { Route as BlendsRouteImport } from './routes/blends'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
-import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
-import { Route as AuthenticatedDashboardSimulacaoRouteImport } from './routes/_authenticated/dashboard.simulacao'
-import { Route as AuthenticatedDashboardProdutosRouteImport } from './routes/_authenticated/dashboard.produtos'
-import { Route as AuthenticatedDashboardPrecosRouteImport } from './routes/_authenticated/dashboard.precos'
-import { Route as AuthenticatedDashboardConfiguracoesRouteImport } from './routes/_authenticated/dashboard.configuracoes'
 
 const TemperaflixRoute = TemperaflixRouteImport.update({
   id: '/temperaflix',
@@ -51,15 +44,6 @@ const BlendsRoute = BlendsRouteImport.update({
   path: '/blends',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -80,146 +64,77 @@ const BlendsSlugRoute = BlendsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlendsRoute,
 } as any)
-const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedDashboardSimulacaoRoute =
-  AuthenticatedDashboardSimulacaoRouteImport.update({
-    id: '/simulacao',
-    path: '/simulacao',
-    getParentRoute: () => AuthenticatedDashboardRoute,
-  } as any)
-const AuthenticatedDashboardProdutosRoute =
-  AuthenticatedDashboardProdutosRouteImport.update({
-    id: '/produtos',
-    path: '/produtos',
-    getParentRoute: () => AuthenticatedDashboardRoute,
-  } as any)
-const AuthenticatedDashboardPrecosRoute =
-  AuthenticatedDashboardPrecosRouteImport.update({
-    id: '/precos',
-    path: '/precos',
-    getParentRoute: () => AuthenticatedDashboardRoute,
-  } as any)
-const AuthenticatedDashboardConfiguracoesRoute =
-  AuthenticatedDashboardConfiguracoesRouteImport.update({
-    id: '/configuracoes',
-    path: '/configuracoes',
-    getParentRoute: () => AuthenticatedDashboardRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
   '/blends': typeof BlendsRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
-  '/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
-  '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
-  '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
-  '/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
-  '/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
-  '/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
-  '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
-  '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
-  '/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
-  '/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/auth': typeof AuthRoute
   '/blends': typeof BlendsRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
-  '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
-  '/_authenticated/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
-  '/_authenticated/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
-  '/_authenticated/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
-  '/_authenticated/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/auth'
     | '/blends'
     | '/lojas'
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
-    | '/dashboard'
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends/'
-    | '/dashboard/configuracoes'
-    | '/dashboard/precos'
-    | '/dashboard/produtos'
-    | '/dashboard/simulacao'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/auth'
     | '/lojas'
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
-    | '/dashboard'
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends'
-    | '/dashboard/configuracoes'
-    | '/dashboard/precos'
-    | '/dashboard/produtos'
-    | '/dashboard/simulacao'
   id:
     | '__root__'
     | '/'
-    | '/_authenticated'
-    | '/auth'
     | '/blends'
     | '/lojas'
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
-    | '/_authenticated/dashboard'
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends/'
-    | '/_authenticated/dashboard/configuracoes'
-    | '/_authenticated/dashboard/precos'
-    | '/_authenticated/dashboard/produtos'
-    | '/_authenticated/dashboard/simulacao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  AuthRoute: typeof AuthRoute
   BlendsRoute: typeof BlendsRouteWithChildren
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
@@ -265,20 +180,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlendsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -307,75 +208,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlendsSlugRouteImport
       parentRoute: typeof BlendsRoute
     }
-    '/_authenticated/dashboard': {
-      id: '/_authenticated/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/simulacao': {
-      id: '/_authenticated/dashboard/simulacao'
-      path: '/simulacao'
-      fullPath: '/dashboard/simulacao'
-      preLoaderRoute: typeof AuthenticatedDashboardSimulacaoRouteImport
-      parentRoute: typeof AuthenticatedDashboardRoute
-    }
-    '/_authenticated/dashboard/produtos': {
-      id: '/_authenticated/dashboard/produtos'
-      path: '/produtos'
-      fullPath: '/dashboard/produtos'
-      preLoaderRoute: typeof AuthenticatedDashboardProdutosRouteImport
-      parentRoute: typeof AuthenticatedDashboardRoute
-    }
-    '/_authenticated/dashboard/precos': {
-      id: '/_authenticated/dashboard/precos'
-      path: '/precos'
-      fullPath: '/dashboard/precos'
-      preLoaderRoute: typeof AuthenticatedDashboardPrecosRouteImport
-      parentRoute: typeof AuthenticatedDashboardRoute
-    }
-    '/_authenticated/dashboard/configuracoes': {
-      id: '/_authenticated/dashboard/configuracoes'
-      path: '/configuracoes'
-      fullPath: '/dashboard/configuracoes'
-      preLoaderRoute: typeof AuthenticatedDashboardConfiguracoesRouteImport
-      parentRoute: typeof AuthenticatedDashboardRoute
-    }
   }
 }
-
-interface AuthenticatedDashboardRouteChildren {
-  AuthenticatedDashboardConfiguracoesRoute: typeof AuthenticatedDashboardConfiguracoesRoute
-  AuthenticatedDashboardPrecosRoute: typeof AuthenticatedDashboardPrecosRoute
-  AuthenticatedDashboardProdutosRoute: typeof AuthenticatedDashboardProdutosRoute
-  AuthenticatedDashboardSimulacaoRoute: typeof AuthenticatedDashboardSimulacaoRoute
-}
-
-const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
-  {
-    AuthenticatedDashboardConfiguracoesRoute:
-      AuthenticatedDashboardConfiguracoesRoute,
-    AuthenticatedDashboardPrecosRoute: AuthenticatedDashboardPrecosRoute,
-    AuthenticatedDashboardProdutosRoute: AuthenticatedDashboardProdutosRoute,
-    AuthenticatedDashboardSimulacaoRoute: AuthenticatedDashboardSimulacaoRoute,
-  }
-
-const AuthenticatedDashboardRouteWithChildren =
-  AuthenticatedDashboardRoute._addFileChildren(
-    AuthenticatedDashboardRouteChildren,
-  )
-
-interface AuthenticatedRouteRouteChildren {
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRouteWithChildren
-}
-
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedDashboardRoute: AuthenticatedDashboardRouteWithChildren,
-}
-
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface BlendsRouteChildren {
   BlendsSlugRoute: typeof BlendsSlugRoute
@@ -392,8 +226,6 @@ const BlendsRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  AuthRoute: AuthRoute,
   BlendsRoute: BlendsRouteWithChildren,
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
