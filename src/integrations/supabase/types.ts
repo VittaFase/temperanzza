@@ -14,6 +14,131 @@ export type Database = {
   }
   public: {
     Tables: {
+      pricing_history: {
+        Row: {
+          applied_at: string
+          applied_by: string | null
+          currency: string
+          id: string
+          new_price: number
+          previous_price: number | null
+          reason: string | null
+          reverted: boolean
+          reverted_at: string | null
+          reverted_by: string | null
+          rule_id: string | null
+          shopify_variant_id: string | null
+          sku: string
+        }
+        Insert: {
+          applied_at?: string
+          applied_by?: string | null
+          currency?: string
+          id?: string
+          new_price: number
+          previous_price?: number | null
+          reason?: string | null
+          reverted?: boolean
+          reverted_at?: string | null
+          reverted_by?: string | null
+          rule_id?: string | null
+          shopify_variant_id?: string | null
+          sku: string
+        }
+        Update: {
+          applied_at?: string
+          applied_by?: string | null
+          currency?: string
+          id?: string
+          new_price?: number
+          previous_price?: number | null
+          reason?: string | null
+          reverted?: boolean
+          reverted_at?: string | null
+          reverted_by?: string | null
+          rule_id?: string | null
+          shopify_variant_id?: string | null
+          sku?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_history_rule_id_fkey"
+            columns: ["rule_id"]
+            isOneToOne: false
+            referencedRelation: "pricing_rules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pricing_rules: {
+        Row: {
+          active: boolean
+          created_at: string
+          created_by: string | null
+          id: string
+          markup_multiplier: number
+          min_margin_pct: number | null
+          name: string
+          sublinha: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          markup_multiplier: number
+          min_margin_pct?: number | null
+          name: string
+          sublinha: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          markup_multiplier?: number
+          min_margin_pct?: number | null
+          name?: string
+          sublinha?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      product_costs: {
+        Row: {
+          created_at: string
+          id: string
+          notes: string | null
+          sku: string
+          source: string
+          unit_cost: number
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          sku: string
+          source?: string
+          unit_cost: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          sku?: string
+          source?: string
+          unit_cost?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
