@@ -30,6 +30,8 @@ function ProdutosPage() {
   const fetchEngine = useServerFn(getEngineState);
   const saveFn = useServerFn(upsertTempero);
   const delFn = useServerFn(deleteTempero);
+  const matchFn = useServerFn(autoMatchShopifySkus);
+  const [matching, setMatching] = useState(false);
 
   const { data, isLoading, error } = useQuery({ queryKey: ["engine-state"], queryFn: () => fetchEngine() });
   const [editing, setEditing] = useState<Partial<Tempero> | null>(null);
