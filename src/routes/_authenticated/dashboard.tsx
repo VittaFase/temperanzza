@@ -153,15 +153,42 @@ function StatsGrid() {
     currency: data?.currency || "BRL",
   });
 
+  const errs = data?.errors;
+  const hasAnyErr = errs && (errs.orders || errs.products || errs.customers);
+
   return (
-    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <Kpi icon={<ShoppingCart />} label="Pedidos (30d)" value={String(data?.ordersLast30d ?? 0)} />
-      <Kpi icon={<TrendingUp />} label="Faturamento (30d)" value={money.format(data?.revenueLast30d ?? 0)} />
-      <Kpi icon={<Package />} label="Produtos" value={String(data?.productsCount ?? 0)} />
-      <Kpi icon={<Users />} label="Clientes" value={String(data?.customersCount ?? 0)} />
-    </div>
+    <>
+      {hasAnyErr && (
+        <div className="mt-8 border-2 border-amber-500/40 bg-amber-500/5 p-5">
+          <div className="flex gap-3">
+            <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />
+            <div className="text-sm">
+              <p className="font-display uppercase">Permissões do token Shopify Admin</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Alguns dados não puderam ser carregados. Verifique os escopos do app no admin da Shopify
+                (Settings → Apps → seu app custom): habilite <code className="font-mono">read_orders</code>,{" "}
+                <code className="font-mono">read_products</code>, <code className="font-mono">read_customers</code>.
+                Para pedidos/clientes, também é preciso solicitar <em>Protected customer data access</em>.
+              </p>
+              <ul className="mt-2 text-xs font-mono space-y-1">
+                {errs?.orders && <li>• orders: {errs.orders}</li>}
+                {errs?.products && <li>• products: {errs.products}</li>}
+                {errs?.customers && <li>• customers: {errs.customers}</li>}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Kpi icon={<ShoppingCart />} label="Pedidos (30d)" value={errs?.orders ? "—" : String(data?.ordersLast30d ?? 0)} />
+        <Kpi icon={<TrendingUp />} label="Faturamento (30d)" value={errs?.orders ? "—" : money.format(data?.revenueLast30d ?? 0)} />
+        <Kpi icon={<Package />} label="Produtos" value={errs?.products ? "—" : String(data?.productsCount ?? 0)} />
+        <Kpi icon={<Users />} label="Clientes" value={errs?.customers ? "—" : String(data?.customersCount ?? 0)} />
+      </div>
+    </>
   );
 }
+
 
 function RecentOrdersTable() {
   const fetchOrders = useServerFn(getRecentOrders);
