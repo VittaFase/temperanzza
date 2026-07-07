@@ -93,6 +93,9 @@ function DashboardHome() {
           </div>
           <div className="flex items-center gap-2">
             <Button asChild variant="ghost" size="sm">
+              <Link to="/dashboard/precos">Preços & Markup</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm">
               <Link to="/">Ver site</Link>
             </Button>
             <Button onClick={signOut} variant="outline" size="sm" className="rounded-none">
