@@ -139,16 +139,23 @@ export const getRecentOrders = createServerFn({ method: "GET" })
       };
     };
 
-    const data = await adminGraphQL<Resp>(query);
-    return data.orders.edges.map(({ node }) => ({
-      id: node.id,
-      name: node.name,
-      createdAt: node.createdAt,
-      financialStatus: node.displayFinancialStatus,
-      fulfillmentStatus: node.displayFulfillmentStatus,
-      total: Number(node.currentTotalPriceSet.shopMoney.amount) || 0,
-      currency: node.currentTotalPriceSet.shopMoney.currencyCode,
-      customerName: node.customer?.displayName ?? null,
-      customerEmail: node.customer?.email ?? null,
-    }));
+    try {
+      const data = await adminGraphQL<Resp>(query);
+      return {
+        orders: data.orders.edges.map(({ node }) => ({
+          id: node.id,
+          name: node.name,
+          createdAt: node.createdAt,
+          financialStatus: node.displayFinancialStatus,
+          fulfillmentStatus: node.displayFulfillmentStatus,
+          total: Number(node.currentTotalPriceSet.shopMoney.amount) || 0,
+          currency: node.currentTotalPriceSet.shopMoney.currencyCode,
+          customerName: node.customer?.displayName ?? null,
+          customerEmail: node.customer?.email ?? null,
+        })),
+        error: null as string | null,
+      };
+    } catch (e) {
+      return { orders: [], error: e instanceof Error ? e.message : String(e) };
+    }
   });

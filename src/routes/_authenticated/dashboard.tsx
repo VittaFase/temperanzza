@@ -211,7 +211,9 @@ function RecentOrdersTable() {
           <div className="p-8 flex justify-center"><Loader2 className="h-5 w-5 animate-spin" /></div>
         ) : error ? (
           <p className="p-6 text-destructive text-sm">{error.message}</p>
-        ) : !data || data.length === 0 ? (
+        ) : data?.error ? (
+          <p className="p-6 text-destructive text-sm">{data.error}</p>
+        ) : !data || data.orders.length === 0 ? (
           <p className="p-6 text-muted-foreground text-sm">Nenhum pedido encontrado.</p>
         ) : (
           <table className="w-full text-sm">
@@ -226,7 +228,7 @@ function RecentOrdersTable() {
               </tr>
             </thead>
             <tbody>
-              {data.map((o) => (
+              {data.orders.map((o) => (
                 <tr key={o.id} className="border-b border-foreground/10 last:border-b-0">
                   <td className="px-4 py-3 font-mono">{o.name}</td>
                   <td className="px-4 py-3">
