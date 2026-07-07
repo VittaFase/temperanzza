@@ -14,6 +14,138 @@ export type Database = {
   }
   public: {
     Tables: {
+      bling_order_map: {
+        Row: {
+          bling_nfe_id: string | null
+          bling_order_id: string | null
+          created_at: string
+          error_message: string | null
+          nfe_key: string | null
+          nfe_number: string | null
+          nfe_status: string | null
+          shopify_order_id: string
+          shopify_order_name: string | null
+          updated_at: string
+        }
+        Insert: {
+          bling_nfe_id?: string | null
+          bling_order_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          nfe_key?: string | null
+          nfe_number?: string | null
+          nfe_status?: string | null
+          shopify_order_id: string
+          shopify_order_name?: string | null
+          updated_at?: string
+        }
+        Update: {
+          bling_nfe_id?: string | null
+          bling_order_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          nfe_key?: string | null
+          nfe_number?: string | null
+          nfe_status?: string | null
+          shopify_order_id?: string
+          shopify_order_name?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      bling_product_map: {
+        Row: {
+          bling_product_id: string | null
+          created_at: string
+          last_price: number | null
+          last_stock: number | null
+          last_synced_at: string | null
+          shopify_inventory_item_id: string | null
+          shopify_variant_id: string | null
+          sku: string
+          updated_at: string
+        }
+        Insert: {
+          bling_product_id?: string | null
+          created_at?: string
+          last_price?: number | null
+          last_stock?: number | null
+          last_synced_at?: string | null
+          shopify_inventory_item_id?: string | null
+          shopify_variant_id?: string | null
+          sku: string
+          updated_at?: string
+        }
+        Update: {
+          bling_product_id?: string | null
+          created_at?: string
+          last_price?: number | null
+          last_stock?: number | null
+          last_synced_at?: string | null
+          shopify_inventory_item_id?: string | null
+          shopify_variant_id?: string | null
+          sku?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      bling_sync_log: {
+        Row: {
+          created_at: string
+          details: Json | null
+          id: string
+          kind: string
+          message: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json | null
+          id?: string
+          kind: string
+          message?: string | null
+          status: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json | null
+          id?: string
+          kind?: string
+          message?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      bling_tokens: {
+        Row: {
+          access_token: string
+          created_at: string
+          expires_at: string
+          id: boolean
+          refresh_token: string
+          scope: string | null
+          updated_at: string
+        }
+        Insert: {
+          access_token: string
+          created_at?: string
+          expires_at: string
+          id?: boolean
+          refresh_token: string
+          scope?: string | null
+          updated_at?: string
+        }
+        Update: {
+          access_token?: string
+          created_at?: string
+          expires_at?: string
+          id?: boolean
+          refresh_token?: string
+          scope?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       dashboard_temperos: {
         Row: {
           ativo: boolean
