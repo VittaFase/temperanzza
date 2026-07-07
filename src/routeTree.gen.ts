@@ -22,6 +22,7 @@ import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedDashboardPrecosRouteImport } from './routes/_authenticated/dashboard.precos'
+import { Route as AuthenticatedDashboardConfiguracoesRouteImport } from './routes/_authenticated/dashboard.configuracoes'
 
 const TemperaflixRoute = TemperaflixRouteImport.update({
   id: '/temperaflix',
@@ -88,6 +89,12 @@ const AuthenticatedDashboardPrecosRoute =
     path: '/precos',
     getParentRoute: () => AuthenticatedDashboardRoute,
   } as any)
+const AuthenticatedDashboardConfiguracoesRoute =
+  AuthenticatedDashboardConfiguracoesRouteImport.update({
+    id: '/configuracoes',
+    path: '/configuracoes',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
 }
 export interface FileRoutesByTo {
@@ -114,6 +122,7 @@ export interface FileRoutesByTo {
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
+  '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
 }
 export interface FileRoutesById {
@@ -130,6 +139,7 @@ export interface FileRoutesById {
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/_authenticated/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/_authenticated/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
 }
 export interface FileRouteTypes {
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/dashboard/configuracoes'
     | '/dashboard/precos'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -159,6 +170,7 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends'
+    | '/dashboard/configuracoes'
     | '/dashboard/precos'
   id:
     | '__root__'
@@ -174,6 +186,7 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/_authenticated/dashboard/configuracoes'
     | '/_authenticated/dashboard/precos'
   fileRoutesById: FileRoutesById
 }
@@ -282,15 +295,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardPrecosRouteImport
       parentRoute: typeof AuthenticatedDashboardRoute
     }
+    '/_authenticated/dashboard/configuracoes': {
+      id: '/_authenticated/dashboard/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/dashboard/configuracoes'
+      preLoaderRoute: typeof AuthenticatedDashboardConfiguracoesRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
   }
 }
 
 interface AuthenticatedDashboardRouteChildren {
+  AuthenticatedDashboardConfiguracoesRoute: typeof AuthenticatedDashboardConfiguracoesRoute
   AuthenticatedDashboardPrecosRoute: typeof AuthenticatedDashboardPrecosRoute
 }
 
 const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
   {
+    AuthenticatedDashboardConfiguracoesRoute:
+      AuthenticatedDashboardConfiguracoesRoute,
     AuthenticatedDashboardPrecosRoute: AuthenticatedDashboardPrecosRoute,
   }
 
