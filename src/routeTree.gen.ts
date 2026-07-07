@@ -18,6 +18,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
+import { Route as AdminBlingRouteImport } from './routes/admin.bling'
+import { Route as ApiPublicShopifyOrderWebhookRouteImport } from './routes/api/public/shopify/order-webhook'
+import { Route as ApiPublicBlingSyncRouteImport } from './routes/api/public/bling/sync'
+import { Route as ApiPublicBlingStatusRouteImport } from './routes/api/public/bling/status'
+import { Route as ApiPublicBlingDisconnectRouteImport } from './routes/api/public/bling/disconnect'
+import { Route as ApiPublicBlingConnectRouteImport } from './routes/api/public/bling/connect'
+import { Route as ApiPublicBlingCallbackRouteImport } from './routes/api/public/bling/callback'
 
 const TemperaflixRoute = TemperaflixRouteImport.update({
   id: '/temperaflix',
@@ -64,6 +71,43 @@ const BlendsSlugRoute = BlendsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlendsRoute,
 } as any)
+const AdminBlingRoute = AdminBlingRouteImport.update({
+  id: '/admin/bling',
+  path: '/admin/bling',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicShopifyOrderWebhookRoute =
+  ApiPublicShopifyOrderWebhookRouteImport.update({
+    id: '/api/public/shopify/order-webhook',
+    path: '/api/public/shopify/order-webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicBlingSyncRoute = ApiPublicBlingSyncRouteImport.update({
+  id: '/api/public/bling/sync',
+  path: '/api/public/bling/sync',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBlingStatusRoute = ApiPublicBlingStatusRouteImport.update({
+  id: '/api/public/bling/status',
+  path: '/api/public/bling/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBlingDisconnectRoute =
+  ApiPublicBlingDisconnectRouteImport.update({
+    id: '/api/public/bling/disconnect',
+    path: '/api/public/bling/disconnect',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicBlingConnectRoute = ApiPublicBlingConnectRouteImport.update({
+  id: '/api/public/bling/connect',
+  path: '/api/public/bling/connect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBlingCallbackRoute = ApiPublicBlingCallbackRouteImport.update({
+  id: '/api/public/bling/callback',
+  path: '/api/public/bling/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -72,9 +116,16 @@ export interface FileRoutesByFullPath {
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
+  '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
+  '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
+  '/api/public/bling/status': typeof ApiPublicBlingStatusRoute
+  '/api/public/bling/sync': typeof ApiPublicBlingSyncRoute
+  '/api/public/shopify/order-webhook': typeof ApiPublicShopifyOrderWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,9 +133,16 @@ export interface FileRoutesByTo {
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
+  '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
+  '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
+  '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
+  '/api/public/bling/status': typeof ApiPublicBlingStatusRoute
+  '/api/public/bling/sync': typeof ApiPublicBlingSyncRoute
+  '/api/public/shopify/order-webhook': typeof ApiPublicShopifyOrderWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,9 +152,16 @@ export interface FileRoutesById {
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
+  '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
+  '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
+  '/api/public/bling/status': typeof ApiPublicBlingStatusRoute
+  '/api/public/bling/sync': typeof ApiPublicBlingSyncRoute
+  '/api/public/shopify/order-webhook': typeof ApiPublicShopifyOrderWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,9 +172,16 @@ export interface FileRouteTypes {
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
+    | '/admin/bling'
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/api/public/bling/callback'
+    | '/api/public/bling/connect'
+    | '/api/public/bling/disconnect'
+    | '/api/public/bling/status'
+    | '/api/public/bling/sync'
+    | '/api/public/shopify/order-webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -117,9 +189,16 @@ export interface FileRouteTypes {
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
+    | '/admin/bling'
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends'
+    | '/api/public/bling/callback'
+    | '/api/public/bling/connect'
+    | '/api/public/bling/disconnect'
+    | '/api/public/bling/status'
+    | '/api/public/bling/sync'
+    | '/api/public/shopify/order-webhook'
   id:
     | '__root__'
     | '/'
@@ -128,9 +207,16 @@ export interface FileRouteTypes {
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
+    | '/admin/bling'
     | '/blends/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/api/public/bling/callback'
+    | '/api/public/bling/connect'
+    | '/api/public/bling/disconnect'
+    | '/api/public/bling/status'
+    | '/api/public/bling/sync'
+    | '/api/public/shopify/order-webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -140,7 +226,14 @@ export interface RootRouteChildren {
   ProdutosRoute: typeof ProdutosRoute
   SobreRoute: typeof SobreRoute
   TemperaflixRoute: typeof TemperaflixRoute
+  AdminBlingRoute: typeof AdminBlingRoute
   ProductHandleRoute: typeof ProductHandleRoute
+  ApiPublicBlingCallbackRoute: typeof ApiPublicBlingCallbackRoute
+  ApiPublicBlingConnectRoute: typeof ApiPublicBlingConnectRoute
+  ApiPublicBlingDisconnectRoute: typeof ApiPublicBlingDisconnectRoute
+  ApiPublicBlingStatusRoute: typeof ApiPublicBlingStatusRoute
+  ApiPublicBlingSyncRoute: typeof ApiPublicBlingSyncRoute
+  ApiPublicShopifyOrderWebhookRoute: typeof ApiPublicShopifyOrderWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -208,6 +301,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlendsSlugRouteImport
       parentRoute: typeof BlendsRoute
     }
+    '/admin/bling': {
+      id: '/admin/bling'
+      path: '/admin/bling'
+      fullPath: '/admin/bling'
+      preLoaderRoute: typeof AdminBlingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/shopify/order-webhook': {
+      id: '/api/public/shopify/order-webhook'
+      path: '/api/public/shopify/order-webhook'
+      fullPath: '/api/public/shopify/order-webhook'
+      preLoaderRoute: typeof ApiPublicShopifyOrderWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/bling/sync': {
+      id: '/api/public/bling/sync'
+      path: '/api/public/bling/sync'
+      fullPath: '/api/public/bling/sync'
+      preLoaderRoute: typeof ApiPublicBlingSyncRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/bling/status': {
+      id: '/api/public/bling/status'
+      path: '/api/public/bling/status'
+      fullPath: '/api/public/bling/status'
+      preLoaderRoute: typeof ApiPublicBlingStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/bling/disconnect': {
+      id: '/api/public/bling/disconnect'
+      path: '/api/public/bling/disconnect'
+      fullPath: '/api/public/bling/disconnect'
+      preLoaderRoute: typeof ApiPublicBlingDisconnectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/bling/connect': {
+      id: '/api/public/bling/connect'
+      path: '/api/public/bling/connect'
+      fullPath: '/api/public/bling/connect'
+      preLoaderRoute: typeof ApiPublicBlingConnectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/bling/callback': {
+      id: '/api/public/bling/callback'
+      path: '/api/public/bling/callback'
+      fullPath: '/api/public/bling/callback'
+      preLoaderRoute: typeof ApiPublicBlingCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -231,7 +373,14 @@ const rootRouteChildren: RootRouteChildren = {
   ProdutosRoute: ProdutosRoute,
   SobreRoute: SobreRoute,
   TemperaflixRoute: TemperaflixRoute,
+  AdminBlingRoute: AdminBlingRoute,
   ProductHandleRoute: ProductHandleRoute,
+  ApiPublicBlingCallbackRoute: ApiPublicBlingCallbackRoute,
+  ApiPublicBlingConnectRoute: ApiPublicBlingConnectRoute,
+  ApiPublicBlingDisconnectRoute: ApiPublicBlingDisconnectRoute,
+  ApiPublicBlingStatusRoute: ApiPublicBlingStatusRoute,
+  ApiPublicBlingSyncRoute: ApiPublicBlingSyncRoute,
+  ApiPublicShopifyOrderWebhookRoute: ApiPublicShopifyOrderWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
