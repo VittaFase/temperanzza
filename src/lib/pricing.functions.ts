@@ -33,166 +33,128 @@ function inferSublinha(tags: string[], title: string): Sublinha {
   const titleLower = title.toLowerCase();
   if (t.includes("temperaflix") || titleLower.includes("temperaflix")) return "temperaflix";
   if (t.includes("premium") || t.includes("premium-black") || titleLower.includes("premium")) return "premium";
-  if (t.includes("core")) return "core";
   return "core";
 }
 
 type VariantRow = {
-  variantId: string;
-  productId: string;
-  productTitle: string;
-  sku: string;
-  price: number;
-  currency: string;
-  sublinha: Sublinha;
-  cost: number | null;
-  marginPct: number | null;
+  variantId: string; productId: string; productTitle: string;
+  sku: string; price: number; currency: string; sublinha: Sublinha;
+  cost: number | null; marginPct: number | null;
 };
 
-/** Snapshot: variantes Shopify + custos + regras ativas. */
+// ------- helpers (server-only, reused across handlers) -------
+async function loadSnapshot(context: { supabase: any; userId: string }): Promise<{ variants: VariantRow[]; rules: any[] }> {
+  type Resp = {
+    products: { edges: Array<{ node: {
+      id: string; title: string; tags: string[];
+      variants: { edges: Array<{ node: { id: string; sku: string | null; price: string } }> };
+    } }> };
+  };
+  const data = await adminGraphQL<Resp>(`
+    query { products(first: 100) { edges { node {
+      id title tags
+      variants(first: 20) { edges { node { id sku price } } }
+    } } } }
+  `);
+
+  const rows: VariantRow[] = [];
+  for (const p of data.products.edges) {
+    const sublinha = inferSublinha(p.node.tags, p.node.title);
+    for (const v of p.node.variants.edges) {
+      if (!v.node.sku) continue;
+      rows.push({
+        variantId: v.node.id, productId: p.node.id, productTitle: p.node.title,
+        sku: v.node.sku, price: Number(v.node.price) || 0, currency: "BRL",
+        sublinha, cost: null, marginPct: null,
+      });
+    }
+  }
+
+  const { data: costs } = await context.supabase.from("product_costs").select("sku, unit_cost");
+  const costMap = new Map<string, number>();
+  (costs ?? []).forEach((c: { sku: string; unit_cost: number }) => costMap.set(c.sku, Number(c.unit_cost)));
+  for (const row of rows) {
+    const c = costMap.get(row.sku);
+    if (c != null) {
+      row.cost = c;
+      row.marginPct = row.price > 0 ? ((row.price - c) / row.price) * 100 : null;
+    }
+  }
+
+  const { data: rules } = await context.supabase
+    .from("pricing_rules").select("*").eq("active", true).order("created_at", { ascending: false });
+
+  return { variants: rows, rules: rules ?? [] };
+}
+
+async function buildPreview(context: { supabase: any; userId: string }, ruleId: string) {
+  const { data: rule, error } = await context.supabase
+    .from("pricing_rules").select("*").eq("id", ruleId).single();
+  if (error || !rule) throw new Error("Regra não encontrada");
+
+  const { variants } = await loadSnapshot(context);
+  const affected = variants
+    .filter((v) => rule.sublinha === "custom" || v.sublinha === rule.sublinha)
+    .filter((v) => v.cost != null)
+    .map((v) => {
+      const newPrice = Math.round(Number(v.cost) * Number(rule.markup_multiplier) * 100) / 100;
+      return {
+        variantId: v.variantId, sku: v.sku, productTitle: v.productTitle,
+        previousPrice: v.price, newPrice,
+        delta: Math.round((newPrice - v.price) * 100) / 100,
+        newMarginPct: newPrice > 0 && v.cost != null ? ((newPrice - v.cost) / newPrice) * 100 : null,
+      };
+    });
+  const totalDelta = affected.reduce((s, a) => s + a.delta, 0);
+  return { rule, affected, totalDelta, affectedCount: affected.length };
+}
+
+// ------- server functions (public API) -------
+
 export const getPricingSnapshot = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await ensureAdmin(context);
-
-    type Resp = {
-      products: {
-        edges: Array<{
-          node: {
-            id: string;
-            title: string;
-            tags: string[];
-            variants: {
-              edges: Array<{
-                node: {
-                  id: string;
-                  sku: string | null;
-                  price: string;
-                  contextualPricing?: { price: { currencyCode: string } } | null;
-                };
-              }>;
-            };
-          };
-        }>;
-      };
-    };
-
-    const data = await adminGraphQL<Resp>(`
-      query { products(first: 100) { edges { node {
-        id title tags
-        variants(first: 20) { edges { node { id sku price } } }
-      } } } }
-    `);
-
-    const rows: VariantRow[] = [];
-    for (const p of data.products.edges) {
-      const sublinha = inferSublinha(p.node.tags, p.node.title);
-      for (const v of p.node.variants.edges) {
-        if (!v.node.sku) continue;
-        rows.push({
-          variantId: v.node.id,
-          productId: p.node.id,
-          productTitle: p.node.title,
-          sku: v.node.sku,
-          price: Number(v.node.price) || 0,
-          currency: "BRL",
-          sublinha,
-          cost: null,
-          marginPct: null,
-        });
-      }
-    }
-
-    // Junta custos
-    const { data: costs } = await context.supabase.from("product_costs").select("sku, unit_cost");
-    const costMap = new Map<string, number>();
-    (costs ?? []).forEach((c: { sku: string; unit_cost: number }) => costMap.set(c.sku, Number(c.unit_cost)));
-    for (const row of rows) {
-      const c = costMap.get(row.sku);
-      if (c != null) {
-        row.cost = c;
-        row.marginPct = row.price > 0 ? ((row.price - c) / row.price) * 100 : null;
-      }
-    }
-
-    const { data: rules } = await context.supabase
-      .from("pricing_rules").select("*").eq("active", true).order("created_at", { ascending: false });
-
-    return { variants: rows, rules: rules ?? [] };
+    return loadSnapshot(context);
   });
 
-/** Preview: aplica multiplicador a todos SKUs da sublinha; não grava. */
 export const previewPriceChanges = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { ruleId: string }) => d)
   .handler(async ({ data, context }) => {
     await ensureAdmin(context);
-
-    const { data: rule, error } = await context.supabase
-      .from("pricing_rules").select("*").eq("id", data.ruleId).single();
-    if (error || !rule) throw new Error("Regra não encontrada");
-
-    const snap = await (getPricingSnapshot as any)();
-    const variants: VariantRow[] = snap.variants;
-
-    const affected = variants
-      .filter((v) => rule.sublinha === "custom" || v.sublinha === rule.sublinha)
-      .filter((v) => v.cost != null)
-      .map((v) => {
-        const newPrice = Math.round(Number(v.cost) * Number(rule.markup_multiplier) * 100) / 100;
-        return {
-          variantId: v.variantId, sku: v.sku, productTitle: v.productTitle,
-          previousPrice: v.price, newPrice,
-          delta: Math.round((newPrice - v.price) * 100) / 100,
-          newMarginPct: newPrice > 0 && v.cost != null ? ((newPrice - v.cost) / newPrice) * 100 : null,
-        };
-      });
-
-    const totalDelta = affected.reduce((s, a) => s + a.delta, 0);
-    return { rule, affected, totalDelta, affectedCount: affected.length };
+    return buildPreview(context, data.ruleId);
   });
 
-/** Aplica regra: bulk update na Shopify + grava histórico. */
 export const applyPricingRule = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { ruleId: string; reason?: string }) => d)
   .handler(async ({ data, context }) => {
     await ensureAdmin(context);
+    const preview = await buildPreview(context, data.ruleId);
+    if (preview.affected.length === 0) return { applied: 0, historyIds: [] as string[] };
 
-    const preview = await (previewPriceChanges as any)({ data: { ruleId: data.ruleId } });
-    if (preview.affected.length === 0) return { applied: 0, historyIds: [] };
-
-    // Agrupa por productId para bulk update (Shopify aceita até 250 variants por produto por request).
-    // Estratégia simples: 1 request por variante via productVariantUpdate para evitar edge cases.
-    // Para escala maior, migrar para productVariantsBulkUpdate por produto.
     const historyIds: string[] = [];
     for (const a of preview.affected) {
       const mutation = `mutation upd($input: ProductVariantInput!) {
         productVariantUpdate(input: $input) { productVariant { id price } userErrors { field message } }
       }`;
       const resp = await adminGraphQL<{ productVariantUpdate: { userErrors: Array<{ message: string }> } }>(
-        mutation,
-        { input: { id: a.variantId, price: a.newPrice.toFixed(2) } },
+        mutation, { input: { id: a.variantId, price: a.newPrice.toFixed(2) } },
       );
       if (resp.productVariantUpdate.userErrors?.length) {
         throw new Error(`Falha em ${a.sku}: ${resp.productVariantUpdate.userErrors.map((e) => e.message).join("; ")}`);
       }
-      const { data: hist, error } = await context.supabase.from("pricing_history").insert({
-        rule_id: data.ruleId,
-        sku: a.sku,
-        shopify_variant_id: a.variantId,
-        previous_price: a.previousPrice,
-        new_price: a.newPrice,
-        currency: "BRL",
-        reason: data.reason ?? preview.rule.name,
-        applied_by: context.userId,
+      const { data: hist } = await context.supabase.from("pricing_history").insert({
+        rule_id: data.ruleId, sku: a.sku, shopify_variant_id: a.variantId,
+        previous_price: a.previousPrice, new_price: a.newPrice, currency: "BRL",
+        reason: data.reason ?? preview.rule.name, applied_by: context.userId,
       }).select("id").single();
-      if (!error && hist) historyIds.push(hist.id);
+      if (hist) historyIds.push(hist.id);
     }
     return { applied: preview.affected.length, historyIds };
   });
 
-/** Reverte uma entrada de histórico (aplica previous_price de volta). */
 export const revertPriceHistory = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { historyId: string }) => d)
@@ -208,8 +170,7 @@ export const revertPriceHistory = createServerFn({ method: "POST" })
       productVariantUpdate(input: $input) { userErrors { message } }
     }`;
     const resp = await adminGraphQL<{ productVariantUpdate: { userErrors: Array<{ message: string }> } }>(
-      mutation,
-      { input: { id: h.shopify_variant_id, price: Number(h.previous_price).toFixed(2) } },
+      mutation, { input: { id: h.shopify_variant_id, price: Number(h.previous_price).toFixed(2) } },
     );
     if (resp.productVariantUpdate.userErrors?.length) {
       throw new Error(resp.productVariantUpdate.userErrors.map((e) => e.message).join("; "));
@@ -220,7 +181,6 @@ export const revertPriceHistory = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
-/** Upsert de custo de um SKU. */
 export const upsertProductCost = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { sku: string; unitCost: number; notes?: string }) => d)
@@ -234,7 +194,6 @@ export const upsertProductCost = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
-/** Cria/atualiza regra de markup. */
 export const upsertPricingRule = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: {
@@ -261,7 +220,6 @@ export const upsertPricingRule = createServerFn({ method: "POST" })
     return { id: row.id };
   });
 
-/** Últimas N entradas de histórico. */
 export const getPricingHistory = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
