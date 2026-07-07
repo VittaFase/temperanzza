@@ -29,6 +29,8 @@ function PrecosPage() {
   const qc = useQueryClient();
   const snapFn = useServerFn(getPricingSnapshot);
   const histFn = useServerFn(getPricingHistory);
+  const previewFn = useServerFn(previewPriceChanges);
+  const applyFn = useServerFn(applyPricingRule);
 
   const snap = useQuery({ queryKey: ["pricing-snapshot"], queryFn: () => snapFn() });
   const history = useQuery({ queryKey: ["pricing-history"], queryFn: () => histFn() });
@@ -64,8 +66,7 @@ function PrecosPage() {
               onSaved={() => qc.invalidateQueries({ queryKey: ["pricing-snapshot"] })}
               onPreview={async (id) => {
                 try {
-                  const prev = useServerFn(previewPriceChanges);
-                  const p = await prev({ data: { ruleId: id } });
+                  const p = await previewFn({ data: { ruleId: id } });
                   setPreviewData(p); setPreviewRuleId(id);
                 } catch (e) { toast.error((e as Error).message); }
               }}
@@ -93,8 +94,7 @@ function PrecosPage() {
           onClose={() => { setPreviewData(null); setPreviewRuleId(null); }}
           onConfirm={async () => {
             try {
-              const apply = useServerFn(applyPricingRule);
-              const res = await apply({ data: { ruleId: previewRuleId } });
+              const res = await applyFn({ data: { ruleId: previewRuleId } });
               toast.success(`Aplicado em ${res.applied} SKUs`);
               setPreviewData(null); setPreviewRuleId(null);
               qc.invalidateQueries({ queryKey: ["pricing-snapshot"] });
