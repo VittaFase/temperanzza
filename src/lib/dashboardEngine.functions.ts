@@ -146,12 +146,13 @@ export const upsertTempero = createServerFn({ method: "POST" })
   }) => d)
   .handler(async ({ data, context }) => {
     await ensureAdmin(context);
-    const payload: Record<string, unknown> = {
+    const payload = {
       nome: data.nome, sku: data.sku ?? null, ean: data.ean ?? null,
       preco_kg: data.precoKg, gramas_pote: data.gramasPote,
       estoque_atual: data.estoqueAtual ?? 0, estoque_minimo: data.estoqueMinimo ?? 0,
       ordem: data.ordem ?? 0, foto_path: data.fotoPath ?? null,
-      ativo: data.ativo ?? true, custos_fixos_override: data.custosFixosOverride ?? null,
+      ativo: data.ativo ?? true,
+      custos_fixos_override: (data.custosFixosOverride ?? null) as never,
       updated_by: context.userId,
     };
     if (data.id) {
