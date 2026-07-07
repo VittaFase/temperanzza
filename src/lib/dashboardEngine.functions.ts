@@ -176,6 +176,86 @@ export const deleteTempero = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
+// ---------- Auto-match SKUs Shopify → dashboard ----------
+
+function normalizeName(s: string): string {
+  return s
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/premium black/g, "")
+    .replace(/\b30g\b/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+// Aliases: nome no dashboard (esquerda) ↔ substring esperada no título Shopify
+const NAME_ALIASES: Record<string, string> = {
+  "tempero do edu": "edu guedes",
+  "du chefe com paprica": "tempero chefe",
+  "chimi churri sem pimenta": "chimichurri sem pimenta",
+  "chimi churri picante": "chimichurri picante",
+  "pimenta moida": "pimenta do reino",
+  "canela moida": "canela",
+};
+
+export const autoMatchShopifySkus = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await ensureAdmin(context);
+
+    type Resp = {
+      products: { edges: Array<{ node: {
+        id: string; title: string;
+        variants: { edges: Array<{ node: { id: string; sku: string | null; price: string } }> };
+      } }> };
+    };
+    const data = await adminGraphQL<Resp>(`
+      query { products(first: 100) { edges { node {
+        id title
+        variants(first: 5) { edges { node { id sku price } } }
+      } } } }
+    `);
+
+    // Build Shopify index by normalized title
+    const shopifyByName = new Map<string, { sku: string; title: string; variantId: string }>();
+    for (const p of data.products.edges) {
+      const v = p.node.variants.edges[0]?.node;
+      if (!v) continue;
+      const sku = v.sku && v.sku.trim().length > 0 ? v.sku : v.id.split("/").pop()!;
+      shopifyByName.set(normalizeName(p.node.title), { sku, title: p.node.title, variantId: v.id });
+    }
+
+    const { data: temperos } = await context.supabase
+      .from("dashboard_temperos").select("id, nome, sku");
+
+    const matched: Array<{ nome: string; sku: string; shopifyTitle: string }> = [];
+    const unmatched: Array<{ nome: string; reason: string }> = [];
+
+    for (const t of (temperos ?? []) as Array<{ id: string; nome: string; sku: string | null }>) {
+      const norm = normalizeName(t.nome);
+      const alias = NAME_ALIASES[norm];
+      let hit = shopifyByName.get(norm);
+      if (!hit && alias) hit = shopifyByName.get(normalizeName(alias));
+      if (!hit) {
+        // fallback: fuzzy contains
+        for (const [k, v] of shopifyByName.entries()) {
+          if (k.includes(norm) || norm.includes(k)) { hit = v; break; }
+        }
+      }
+      if (!hit) { unmatched.push({ nome: t.nome, reason: "sem produto correspondente na Shopify" }); continue; }
+
+      const { error } = await context.supabase
+        .from("dashboard_temperos")
+        .update({ sku: hit.sku, updated_by: context.userId })
+        .eq("id", t.id);
+      if (error) { unmatched.push({ nome: t.nome, reason: error.message }); continue; }
+      matched.push({ nome: t.nome, sku: hit.sku, shopifyTitle: hit.title });
+    }
+    return { matched, unmatched, totalShopify: shopifyByName.size };
+  });
+
+
+
 // ---------- Preview + Apply engine → Shopify ----------
 
 type ShopifyVariantLite = { variantId: string; sku: string; productTitle: string; currentPrice: number };

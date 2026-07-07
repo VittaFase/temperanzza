@@ -4,11 +4,11 @@ import { useServerFn } from "@tanstack/react-start";
 import { useMemo, useState } from "react";
 import {
   getEngineState, upsertTempero, deleteTempero,
-  calcularTempero, type Tempero,
+  calcularTempero, autoMatchShopifySkus, type Tempero,
 } from "@/lib/dashboardEngine.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Loader2, Plus, Save, Trash2, X } from "lucide-react";
+import { ArrowLeft, Loader2, Plus, Save, Trash2, X, Link2 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/dashboard/produtos")({
@@ -30,6 +30,8 @@ function ProdutosPage() {
   const fetchEngine = useServerFn(getEngineState);
   const saveFn = useServerFn(upsertTempero);
   const delFn = useServerFn(deleteTempero);
+  const matchFn = useServerFn(autoMatchShopifySkus);
+  const [matching, setMatching] = useState(false);
 
   const { data, isLoading, error } = useQuery({ queryKey: ["engine-state"], queryFn: () => fetchEngine() });
   const [editing, setEditing] = useState<Partial<Tempero> | null>(null);
@@ -88,15 +90,38 @@ function ProdutosPage() {
         {error && <p className="text-destructive">{error.message}</p>}
         {data && (
           <>
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-wrap justify-between items-center gap-2 mb-4">
               <p className="text-sm text-muted-foreground">{data.temperos.length} temperos no catálogo</p>
-              <Button
-                onClick={() => setEditing({ nome: "", precoKg: 0, gramasPote: 30, ordem: data.temperos.length + 1, ativo: true })}
-                className="rounded-none"
-              >
-                <Plus className="h-4 w-4 mr-2" /> Novo tempero
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  className="rounded-none"
+                  disabled={matching}
+                  onClick={async () => {
+                    setMatching(true);
+                    try {
+                      const r = await matchFn();
+                      toast.success(`${r.matched.length}/${r.matched.length + r.unmatched.length} SKUs sincronizados da Shopify`);
+                      if (r.unmatched.length) {
+                        toast.error(`Sem match: ${r.unmatched.map((u) => u.nome).join(", ")}`);
+                      }
+                      qc.invalidateQueries({ queryKey: ["engine-state"] });
+                    } catch (e) { toast.error((e as Error).message); }
+                    finally { setMatching(false); }
+                  }}
+                >
+                  {matching ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Link2 className="h-4 w-4 mr-2" />}
+                  Sincronizar SKUs da Shopify
+                </Button>
+                <Button
+                  onClick={() => setEditing({ nome: "", precoKg: 0, gramasPote: 30, ordem: data.temperos.length + 1, ativo: true })}
+                  className="rounded-none"
+                >
+                  <Plus className="h-4 w-4 mr-2" /> Novo tempero
+                </Button>
+              </div>
             </div>
+
 
             <div className="border-2 border-foreground/15 bg-card overflow-x-auto">
               <table className="w-full text-sm">
