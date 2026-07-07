@@ -21,6 +21,7 @@ import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDashboardProdutosRouteImport } from './routes/_authenticated/dashboard.produtos'
 import { Route as AuthenticatedDashboardPrecosRouteImport } from './routes/_authenticated/dashboard.precos'
 import { Route as AuthenticatedDashboardConfiguracoesRouteImport } from './routes/_authenticated/dashboard.configuracoes'
 
@@ -83,6 +84,12 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDashboardProdutosRoute =
+  AuthenticatedDashboardProdutosRouteImport.update({
+    id: '/produtos',
+    path: '/produtos',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 const AuthenticatedDashboardPrecosRoute =
   AuthenticatedDashboardPrecosRouteImport.update({
     id: '/precos',
@@ -110,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/blends/': typeof BlendsIndexRoute
   '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
+  '/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -124,6 +132,7 @@ export interface FileRoutesByTo {
   '/blends': typeof BlendsIndexRoute
   '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
+  '/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -141,6 +150,7 @@ export interface FileRoutesById {
   '/blends/': typeof BlendsIndexRoute
   '/_authenticated/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/_authenticated/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
+  '/_authenticated/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -158,6 +168,7 @@ export interface FileRouteTypes {
     | '/blends/'
     | '/dashboard/configuracoes'
     | '/dashboard/precos'
+    | '/dashboard/produtos'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/blends'
     | '/dashboard/configuracoes'
     | '/dashboard/precos'
+    | '/dashboard/produtos'
   id:
     | '__root__'
     | '/'
@@ -188,6 +200,7 @@ export interface FileRouteTypes {
     | '/blends/'
     | '/_authenticated/dashboard/configuracoes'
     | '/_authenticated/dashboard/precos'
+    | '/_authenticated/dashboard/produtos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -288,6 +301,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/dashboard/produtos': {
+      id: '/_authenticated/dashboard/produtos'
+      path: '/produtos'
+      fullPath: '/dashboard/produtos'
+      preLoaderRoute: typeof AuthenticatedDashboardProdutosRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
     '/_authenticated/dashboard/precos': {
       id: '/_authenticated/dashboard/precos'
       path: '/precos'
@@ -308,6 +328,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedDashboardRouteChildren {
   AuthenticatedDashboardConfiguracoesRoute: typeof AuthenticatedDashboardConfiguracoesRoute
   AuthenticatedDashboardPrecosRoute: typeof AuthenticatedDashboardPrecosRoute
+  AuthenticatedDashboardProdutosRoute: typeof AuthenticatedDashboardProdutosRoute
 }
 
 const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
@@ -315,6 +336,7 @@ const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
     AuthenticatedDashboardConfiguracoesRoute:
       AuthenticatedDashboardConfiguracoesRoute,
     AuthenticatedDashboardPrecosRoute: AuthenticatedDashboardPrecosRoute,
+    AuthenticatedDashboardProdutosRoute: AuthenticatedDashboardProdutosRoute,
   }
 
 const AuthenticatedDashboardRouteWithChildren =
