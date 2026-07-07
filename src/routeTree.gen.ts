@@ -21,6 +21,7 @@ import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDashboardSimulacaoRouteImport } from './routes/_authenticated/dashboard.simulacao'
 import { Route as AuthenticatedDashboardProdutosRouteImport } from './routes/_authenticated/dashboard.produtos'
 import { Route as AuthenticatedDashboardPrecosRouteImport } from './routes/_authenticated/dashboard.precos'
 import { Route as AuthenticatedDashboardConfiguracoesRouteImport } from './routes/_authenticated/dashboard.configuracoes'
@@ -84,6 +85,12 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDashboardSimulacaoRoute =
+  AuthenticatedDashboardSimulacaoRouteImport.update({
+    id: '/simulacao',
+    path: '/simulacao',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 const AuthenticatedDashboardProdutosRoute =
   AuthenticatedDashboardProdutosRouteImport.update({
     id: '/produtos',
@@ -118,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
   '/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
+  '/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -133,6 +141,7 @@ export interface FileRoutesByTo {
   '/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
   '/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
+  '/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -151,6 +160,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard/configuracoes': typeof AuthenticatedDashboardConfiguracoesRoute
   '/_authenticated/dashboard/precos': typeof AuthenticatedDashboardPrecosRoute
   '/_authenticated/dashboard/produtos': typeof AuthenticatedDashboardProdutosRoute
+  '/_authenticated/dashboard/simulacao': typeof AuthenticatedDashboardSimulacaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/dashboard/configuracoes'
     | '/dashboard/precos'
     | '/dashboard/produtos'
+    | '/dashboard/simulacao'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -184,6 +195,7 @@ export interface FileRouteTypes {
     | '/dashboard/configuracoes'
     | '/dashboard/precos'
     | '/dashboard/produtos'
+    | '/dashboard/simulacao'
   id:
     | '__root__'
     | '/'
@@ -201,6 +213,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard/configuracoes'
     | '/_authenticated/dashboard/precos'
     | '/_authenticated/dashboard/produtos'
+    | '/_authenticated/dashboard/simulacao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -301,6 +314,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/dashboard/simulacao': {
+      id: '/_authenticated/dashboard/simulacao'
+      path: '/simulacao'
+      fullPath: '/dashboard/simulacao'
+      preLoaderRoute: typeof AuthenticatedDashboardSimulacaoRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
     '/_authenticated/dashboard/produtos': {
       id: '/_authenticated/dashboard/produtos'
       path: '/produtos'
@@ -329,6 +349,7 @@ interface AuthenticatedDashboardRouteChildren {
   AuthenticatedDashboardConfiguracoesRoute: typeof AuthenticatedDashboardConfiguracoesRoute
   AuthenticatedDashboardPrecosRoute: typeof AuthenticatedDashboardPrecosRoute
   AuthenticatedDashboardProdutosRoute: typeof AuthenticatedDashboardProdutosRoute
+  AuthenticatedDashboardSimulacaoRoute: typeof AuthenticatedDashboardSimulacaoRoute
 }
 
 const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
@@ -337,6 +358,7 @@ const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
       AuthenticatedDashboardConfiguracoesRoute,
     AuthenticatedDashboardPrecosRoute: AuthenticatedDashboardPrecosRoute,
     AuthenticatedDashboardProdutosRoute: AuthenticatedDashboardProdutosRoute,
+    AuthenticatedDashboardSimulacaoRoute: AuthenticatedDashboardSimulacaoRoute,
   }
 
 const AuthenticatedDashboardRouteWithChildren =
