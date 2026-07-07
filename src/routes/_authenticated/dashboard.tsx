@@ -2,9 +2,10 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { checkIsAdmin } from "@/lib/dashboardAuth.functions";
+import { getShopifyStats, getRecentOrders } from "@/lib/shopifyAdmin.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Loader2, LogOut, Package, ShoppingCart, Users, TrendingUp } from "lucide-react";
+import { Loader2, LogOut, Package, ShoppingCart, Users, TrendingUp, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -106,35 +107,130 @@ function DashboardHome() {
           Visão geral
         </h2>
         <p className="text-muted-foreground mt-2">
-          Bem-vindo, administrador. As integrações com Shopify Admin API serão
-          plugadas nos próximos passos.
+          Dados ao vivo da Shopify Admin API — últimos 30 dias.
         </p>
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card icon={<ShoppingCart />} title="Pedidos" desc="Aguardando integração Shopify Admin" />
-          <Card icon={<Package />} title="Produtos" desc="Aguardando integração Shopify Admin" />
-          <Card icon={<Users />} title="Clientes" desc="Aguardando integração Shopify Admin" />
-          <Card icon={<TrendingUp />} title="Faturamento" desc="Aguardando integração Shopify Admin" />
-        </div>
-
-        <div className="mt-10 border-2 border-dashed border-foreground/15 p-8 text-center">
-          <p className="font-display text-xl uppercase">Fase 2</p>
-          <p className="text-muted-foreground mt-2 max-w-md mx-auto">
-            Próximo passo: criar as server functions que chamam a Admin API do
-            Shopify usando o token SHOPIFY_ADMIN_TOKEN já salvo.
-          </p>
-        </div>
+        <StatsGrid />
+        <RecentOrdersTable />
       </main>
     </div>
   );
 }
 
-function Card({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
+function StatsGrid() {
+  const fetchStats = useServerFn(getShopifyStats);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["shopify-stats"],
+    queryFn: () => fetchStats(),
+    refetchOnWindowFocus: true,
+    staleTime: 60_000,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="border-2 border-foreground/15 bg-card p-5 h-32 animate-pulse" />
+        ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mt-8 border-2 border-destructive/40 bg-destructive/5 p-5 flex gap-3">
+        <AlertCircle className="h-5 w-5 text-destructive shrink-0" />
+        <div>
+          <p className="font-display uppercase text-sm">Erro ao carregar Shopify</p>
+          <p className="text-xs text-muted-foreground mt-1 font-mono break-all">{error.message}</p>
+        </div>
+      </div>
+    );
+  }
+
+  const money = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: data?.currency || "BRL",
+  });
+
+  return (
+    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <Kpi icon={<ShoppingCart />} label="Pedidos (30d)" value={String(data?.ordersLast30d ?? 0)} />
+      <Kpi icon={<TrendingUp />} label="Faturamento (30d)" value={money.format(data?.revenueLast30d ?? 0)} />
+      <Kpi icon={<Package />} label="Produtos" value={String(data?.productsCount ?? 0)} />
+      <Kpi icon={<Users />} label="Clientes" value={String(data?.customersCount ?? 0)} />
+    </div>
+  );
+}
+
+function RecentOrdersTable() {
+  const fetchOrders = useServerFn(getRecentOrders);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["shopify-recent-orders"],
+    queryFn: () => fetchOrders(),
+    refetchOnWindowFocus: true,
+    staleTime: 60_000,
+  });
+
+  return (
+    <section className="mt-10">
+      <h3 className="font-display text-xl uppercase tracking-wide">Últimos pedidos</h3>
+      <div className="mt-4 border-2 border-foreground/15 bg-card overflow-x-auto">
+        {isLoading ? (
+          <div className="p-8 flex justify-center"><Loader2 className="h-5 w-5 animate-spin" /></div>
+        ) : error ? (
+          <p className="p-6 text-destructive text-sm">{error.message}</p>
+        ) : !data || data.length === 0 ? (
+          <p className="p-6 text-muted-foreground text-sm">Nenhum pedido encontrado.</p>
+        ) : (
+          <table className="w-full text-sm">
+            <thead className="border-b border-foreground/15 text-[10px] uppercase tracking-wider text-muted-foreground">
+              <tr>
+                <th className="text-left px-4 py-3">Pedido</th>
+                <th className="text-left px-4 py-3">Cliente</th>
+                <th className="text-left px-4 py-3">Data</th>
+                <th className="text-left px-4 py-3">Pagto</th>
+                <th className="text-left px-4 py-3">Envio</th>
+                <th className="text-right px-4 py-3">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((o) => (
+                <tr key={o.id} className="border-b border-foreground/10 last:border-b-0">
+                  <td className="px-4 py-3 font-mono">{o.name}</td>
+                  <td className="px-4 py-3">
+                    {o.customerName || "—"}
+                    {o.customerEmail && (
+                      <div className="text-xs text-muted-foreground">{o.customerEmail}</div>
+                    )}
+                  </td>
+                  <td className="px-4 py-3 text-muted-foreground">
+                    {new Date(o.createdAt).toLocaleDateString("pt-BR")}
+                  </td>
+                  <td className="px-4 py-3 text-xs uppercase">{o.financialStatus || "—"}</td>
+                  <td className="px-4 py-3 text-xs uppercase">{o.fulfillmentStatus || "—"}</td>
+                  <td className="px-4 py-3 text-right font-medium">
+                    {new Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: o.currency || "BRL",
+                    }).format(o.total)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function Kpi({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="border-2 border-foreground/15 bg-card p-5">
       <div className="text-accent">{icon}</div>
-      <p className="mt-3 font-display text-lg uppercase tracking-wide">{title}</p>
-      <p className="text-xs text-muted-foreground mt-1">{desc}</p>
+      <p className="mt-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
+      <p className="mt-1 font-display text-2xl">{value}</p>
     </div>
   );
 }
