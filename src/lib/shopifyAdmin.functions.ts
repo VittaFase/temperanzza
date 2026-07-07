@@ -36,55 +36,68 @@ async function ensureAdmin(context: { supabase: any; userId: string }) {
   if (!data) throw new Error("Acesso restrito: apenas administradores");
 }
 
-/** KPIs consolidados: pedidos 30d, receita 30d, contagem de produtos e clientes. */
+/** KPIs consolidados: pedidos 30d, receita 30d, contagem de produtos e clientes.
+ *  Cada bloco é isolado — se o token não tiver `read_orders`, produtos/clientes ainda carregam. */
 export const getShopifyStats = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await ensureAdmin(context);
 
     const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-    const query = `
-      query Stats($ordersQuery: String!) {
-        orders(first: 250, query: $ordersQuery) {
-          edges {
-            node {
-              id
-              currentTotalPriceSet { shopMoney { amount currencyCode } }
-              displayFinancialStatus
-            }
-          }
-        }
-        productsCount { count }
-        customersCount { count }
-      }
-    `;
 
-    type Resp = {
-      orders: { edges: Array<{ node: { currentTotalPriceSet: { shopMoney: { amount: string; currencyCode: string } } } }> };
-      productsCount: { count: number };
-      customersCount: { count: number };
-    };
-
-    const data = await adminGraphQL<Resp>(query, {
-      ordersQuery: `created_at:>=${since}`,
-    });
-
-    let revenue = 0;
+    // Pedidos (pode falhar por falta de escopo read_orders)
+    let ordersLast30d = 0;
+    let revenueLast30d = 0;
     let currency = "BRL";
-    for (const edge of data.orders.edges) {
-      const m = edge.node.currentTotalPriceSet.shopMoney;
-      revenue += Number(m.amount) || 0;
-      currency = m.currencyCode || currency;
+    let ordersError: string | null = null;
+    try {
+      type OrdersResp = {
+        orders: { edges: Array<{ node: { currentTotalPriceSet: { shopMoney: { amount: string; currencyCode: string } } } }> };
+      };
+      const data = await adminGraphQL<OrdersResp>(
+        `query($q: String!) { orders(first: 250, query: $q) { edges { node { currentTotalPriceSet { shopMoney { amount currencyCode } } } } } }`,
+        { q: `created_at:>=${since}` },
+      );
+      ordersLast30d = data.orders.edges.length;
+      for (const edge of data.orders.edges) {
+        const m = edge.node.currentTotalPriceSet.shopMoney;
+        revenueLast30d += Number(m.amount) || 0;
+        currency = m.currencyCode || currency;
+      }
+    } catch (e) {
+      ordersError = e instanceof Error ? e.message : String(e);
+    }
+
+    // Produtos
+    let productsCount = 0;
+    let productsError: string | null = null;
+    try {
+      const data = await adminGraphQL<{ productsCount: { count: number } }>(`{ productsCount { count } }`);
+      productsCount = data.productsCount.count;
+    } catch (e) {
+      productsError = e instanceof Error ? e.message : String(e);
+    }
+
+    // Clientes
+    let customersCount = 0;
+    let customersError: string | null = null;
+    try {
+      const data = await adminGraphQL<{ customersCount: { count: number } }>(`{ customersCount { count } }`);
+      customersCount = data.customersCount.count;
+    } catch (e) {
+      customersError = e instanceof Error ? e.message : String(e);
     }
 
     return {
-      ordersLast30d: data.orders.edges.length,
-      revenueLast30d: revenue,
+      ordersLast30d,
+      revenueLast30d,
       currency,
-      productsCount: data.productsCount.count,
-      customersCount: data.customersCount.count,
+      productsCount,
+      customersCount,
+      errors: { orders: ordersError, products: productsError, customers: customersError },
     };
   });
+
 
 /** Últimos 10 pedidos com cliente, valor e status. */
 export const getRecentOrders = createServerFn({ method: "GET" })
