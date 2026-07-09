@@ -1,71 +1,32 @@
-## Objetivo
+## Plano: guardar Client ID e Secret do Bling com segurança
 
-Conectar o Bling ao site Temperanzza pra:
-1. **Bling é fonte da verdade** de produtos e estoque → sincroniza pra Shopify automaticamente
-2. **Pedido novo na Shopify** → cria pedido no Bling → emite NF-e automática
+Já temos toda a integração Bling implementada no código (rotas OAuth, cliente API, painel admin, sync, webhook). Só falta guardar as duas credenciais que tu vais gerar no Bling.
 
-## Como vai funcionar (visão do usuário)
+## O que vou fazer ao aprovares
 
-- Novo item no menu admin: **"Integrações → Bling"**
-- Botão **"Conectar ao Bling"** → abre tela do Bling pra autorizar → volta conectado
-- Painel mostra: status da conexão, último sync, botão **"Sincronizar agora"**, botão **"Desconectar"**
-- Log das últimas sincronizações (produto X atualizado, pedido Y enviado, NF Z emitida)
-- Sync automático a cada 15 minutos (produtos/estoque Bling → Shopify)
-- Cada pedido novo da Shopify dispara na hora: cria no Bling + emite NF-e
+Abrir o **formulário seguro do Lovable** pra tu colares os valores. Esses valores viram variáveis de ambiente criptografadas — ficam disponíveis só no servidor (nunca no navegador, nunca no código-fonte, nunca no chat).
 
-## Etapas técnicas
+Vou pedir 3 secrets ao mesmo tempo:
 
-### 1. Banco de dados (1 migration)
-Tabelas novas:
-- `bling_tokens` — guarda access_token, refresh_token, expira_em (1 linha só)
-- `bling_sync_log` — histórico de sincronizações (tipo, status, mensagem, timestamp)
-- `bling_product_map` — liga SKU do Bling ↔ variant_id da Shopify (pra saber qual produto atualizar)
-- `bling_order_map` — liga pedido Shopify ↔ pedido Bling ↔ NF-e (evita duplicar)
+1. **`BLING_CLIENT_ID`** — o Client ID que o Bling te mostra na tela do app
+2. **`BLING_CLIENT_SECRET`** — o Client Secret (aquele que só aparece 1 vez)
+3. **`BLING_ADMIN_TOKEN`** — senha que só tu vais saber pra acessar `/admin/bling` no site (podes inventar qualquer texto forte, ex: `temperanzza-admin-2026-xK9mP`)
 
-Todas com RLS: só admin lê/escreve.
+## Como funciona o formulário seguro
 
-### 2. Rotas OAuth (2 arquivos)
-- `src/routes/api/public/bling/connect.ts` — redireciona pro Bling pedir autorização
-- `src/routes/api/public/bling/callback.ts` — recebe o `code`, troca por token, salva no banco
+- Aparece uma caixa no chat com 3 campos
+- Colas os valores e clicas em salvar
+- Eu **nunca** vejo os valores em texto — só sei que foram salvos
+- Ficam guardados no backend do projeto (Lovable Cloud)
 
-### 3. Cliente Bling + helpers (server-only)
-- `src/lib/bling/client.server.ts` — wrapper de fetch com auto-refresh de token
-- `src/lib/bling/products.server.ts` — listar produtos e estoques do Bling
-- `src/lib/bling/orders.server.ts` — criar pedido de venda + emitir NF-e
-- `src/lib/shopify/admin.server.ts` — client Admin API pra atualizar produto/estoque/preço
+## Depois de guardar
 
-### 4. Server functions (chamadas pelo admin)
-- `syncBlingToShopify` — puxa produtos do Bling, atualiza Shopify (título, preço, estoque)
-- `getBlingStatus` — retorna status da conexão + últimos logs
-- `disconnectBling` — apaga tokens
+1. Tu abres: `https://temperanzza.com.br/admin/bling?key=SEU_ADMIN_TOKEN`
+2. Clica em **"Conectar ao Bling"** → autoriza na tela do Bling → volta conectado
+3. Testamos sincronizar produtos
 
-### 5. Webhook de pedidos Shopify → Bling
-- `src/routes/api/public/shopify/order-created.ts` — recebe webhook `orders/create` da Shopify, cria pedido no Bling, emite NF-e, salva mapeamento
-- Configuração do webhook no Shopify Admin (te passo o link pra colar)
+## Importante antes de aprovares
 
-### 6. Cron de sync automático (15 min)
-- Rota `src/routes/api/public/bling/cron-sync.ts` protegida por token secreto
-- Configurar pg_cron no banco pra chamar a cada 15 min
-
-### 7. UI Admin
-- Nova página `/admin/bling` (protegida por role `admin`)
-- Card de status + botões conectar/sync/desconectar + tabela de logs
-
-## O que fica pra depois (não faz parte agora)
-
-- Sync de clientes (só cria o cliente do pedido quando ele chega)
-- Sync de categorias (usa categoria default no Bling)
-- Envio de tracking code da NF-e de volta pra Shopify (posso adicionar depois se quiser)
-
-## O que vou precisar de ti depois de implementar
-
-1. Clicar "Conectar ao Bling" no admin e autorizar
-2. Confirmar que teus produtos no Bling têm **SKU** batendo com o SKU dos variants na Shopify (é a chave de ligação)
-3. Configurar o webhook `orders/create` no Shopify Admin (te passo o passo-a-passo)
-4. Confirmar dados fiscais no Bling (CFOP, NCM, natureza da operação) — a emissão de NF-e depende disso tá certo lá
-
-## Escopo/tempo
-
-~10 arquivos novos, 1 migration. Tudo automático depois de conectar.
-
-Aprova pra eu começar?
+**Já criaste o app no Bling e tens as duas chaves em mãos?**
+- Se **sim** → aprova o plano que eu abro o formulário
+- Se **não** → volta pro Bling, cria o app primeiro (redirect URI: `https://temperanzza.com.br/api/public/bling/callback`), copia Client ID + Secret, e depois aprova
