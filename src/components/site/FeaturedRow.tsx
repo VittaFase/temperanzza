@@ -102,7 +102,7 @@ export function FeaturedRow({
                   ) : (
                     <>
                       <Plus className="w-3.5 h-3.5" />
-                      Add to cart
+                      Sacola
                     </>
                   )}
                 </button>
@@ -114,7 +114,7 @@ export function FeaturedRow({
                 className="sm:hidden col-span-2 inline-flex items-center gap-1.5 font-display font-bold uppercase tracking-[0.18em] text-xs text-accent"
               >
                 <Plus className="w-3.5 h-3.5" />
-                Add to cart
+                Sacola
               </button>
             </li>
           );
