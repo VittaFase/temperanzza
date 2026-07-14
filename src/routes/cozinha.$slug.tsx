@@ -408,9 +408,10 @@ function RecipeDrawer() {
               </h2>
               {diet && (
                 <p className="mt-4 font-serif italic text-brand-paper/70 text-lg leading-relaxed max-w-md">
-                  {diet.summary}
+                  Perfil sensorial <span className="text-brand-mustard">{perfilLabel(diet.profile)}</span> — desenvolvido pela casa Temperanzza para elevar receitas do dia a dia à altura de uma mesa autoral.
                 </p>
               )}
+
               <Link
                 to="/product/$handle"
                 params={{ handle: recipe.featuredHandle }}
