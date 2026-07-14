@@ -170,6 +170,17 @@ function CozinhaPage() {
               </div>
 
               <SelectPill
+                label="Tipo de cozinha"
+                value={tipo}
+                onChange={(v) => setTipo(v as RecipeCategory | "all")}
+                options={[
+                  { value: "all", label: "Todas as receitas" },
+                  { value: "dieta", label: CATEGORIES.dieta.label },
+                  { value: "tradicional", label: CATEGORIES.tradicional.label },
+                ]}
+              />
+
+              <SelectPill
                 label="Dieta"
                 value={dieta}
                 onChange={(v) => setDieta(v as DietKey | "all")}
@@ -178,6 +189,7 @@ function CozinhaPage() {
                   ...DIETS.map((d) => ({ value: d.key, label: d.name })),
                 ]}
               />
+
 
               <SelectPill
                 label="Condimento"
