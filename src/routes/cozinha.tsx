@@ -295,6 +295,40 @@ function SelectPill({
   );
 }
 
+function RecipeGroup({
+  eyebrow,
+  title,
+  subtitle,
+  recipes,
+}: {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  recipes: Recipe[];
+}) {
+  return (
+    <section>
+      <header className="mb-8 border-l-4 border-accent pl-5">
+        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          {eyebrow}
+        </span>
+        <h2 className="font-display font-black uppercase text-3xl sm:text-4xl tracking-tight mt-2">
+          {title}
+        </h2>
+        <p className="mt-3 max-w-2xl text-foreground/75 leading-relaxed">
+          {subtitle}
+        </p>
+      </header>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {recipes.map((r) => (
+          <RecipeCard key={r.slug} recipe={r} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+
 export function RecipeCard({ recipe }: { recipe: Recipe }) {
   const diet = getProductDiet(recipe.featuredHandle);
   return (
