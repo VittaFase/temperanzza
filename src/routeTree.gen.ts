@@ -13,10 +13,12 @@ import { Route as TemperaflixRouteImport } from './routes/temperaflix'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
+import { Route as CozinhaRouteImport } from './routes/cozinha'
 import { Route as BlendsRouteImport } from './routes/blends'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
+import { Route as CozinhaSlugRouteImport } from './routes/cozinha.$slug'
 import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
 import { Route as AdminBlingRouteImport } from './routes/admin.bling'
 import { Route as ApiPublicShopifyOrderWebhookRouteImport } from './routes/api/public/shopify/order-webhook'
@@ -46,6 +48,11 @@ const LojasRoute = LojasRouteImport.update({
   path: '/lojas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CozinhaRoute = CozinhaRouteImport.update({
+  id: '/cozinha',
+  path: '/cozinha',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlendsRoute = BlendsRouteImport.update({
   id: '/blends',
   path: '/blends',
@@ -65,6 +72,11 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
+} as any)
+const CozinhaSlugRoute = CozinhaSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CozinhaRoute,
 } as any)
 const BlendsSlugRoute = BlendsSlugRouteImport.update({
   id: '/$slug',
@@ -112,12 +124,14 @@ const ApiPublicBlingCallbackRoute = ApiPublicBlingCallbackRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blends': typeof BlendsRouteWithChildren
+  '/cozinha': typeof CozinhaRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
+  '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
@@ -129,12 +143,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cozinha': typeof CozinhaRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
+  '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
@@ -148,12 +164,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blends': typeof BlendsRouteWithChildren
+  '/cozinha': typeof CozinhaRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
+  '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
@@ -168,12 +186,14 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blends'
+    | '/cozinha'
     | '/lojas'
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
     | '/admin/bling'
     | '/blends/$slug'
+    | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends/'
     | '/api/public/bling/callback'
@@ -185,12 +205,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cozinha'
     | '/lojas'
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
     | '/admin/bling'
     | '/blends/$slug'
+    | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends'
     | '/api/public/bling/callback'
@@ -203,12 +225,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blends'
+    | '/cozinha'
     | '/lojas'
     | '/produtos'
     | '/sobre'
     | '/temperaflix'
     | '/admin/bling'
     | '/blends/$slug'
+    | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends/'
     | '/api/public/bling/callback'
@@ -222,6 +246,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlendsRoute: typeof BlendsRouteWithChildren
+  CozinhaRoute: typeof CozinhaRouteWithChildren
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
   SobreRoute: typeof SobreRoute
@@ -266,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LojasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cozinha': {
+      id: '/cozinha'
+      path: '/cozinha'
+      fullPath: '/cozinha'
+      preLoaderRoute: typeof CozinhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blends': {
       id: '/blends'
       path: '/blends'
@@ -293,6 +325,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/product/$handle'
       preLoaderRoute: typeof ProductHandleRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/cozinha/$slug': {
+      id: '/cozinha/$slug'
+      path: '/$slug'
+      fullPath: '/cozinha/$slug'
+      preLoaderRoute: typeof CozinhaSlugRouteImport
+      parentRoute: typeof CozinhaRoute
     }
     '/blends/$slug': {
       id: '/blends/$slug'
@@ -366,9 +405,21 @@ const BlendsRouteChildren: BlendsRouteChildren = {
 const BlendsRouteWithChildren =
   BlendsRoute._addFileChildren(BlendsRouteChildren)
 
+interface CozinhaRouteChildren {
+  CozinhaSlugRoute: typeof CozinhaSlugRoute
+}
+
+const CozinhaRouteChildren: CozinhaRouteChildren = {
+  CozinhaSlugRoute: CozinhaSlugRoute,
+}
+
+const CozinhaRouteWithChildren =
+  CozinhaRoute._addFileChildren(CozinhaRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlendsRoute: BlendsRouteWithChildren,
+  CozinhaRoute: CozinhaRouteWithChildren,
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
   SobreRoute: SobreRoute,
@@ -385,13 +436,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

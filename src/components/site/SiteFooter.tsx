@@ -28,6 +28,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link to="/cozinha" className="hover:text-accent">
+                  Cozinha & Dietas
+                </Link>
+              </li>
+              <li>
                 <Link to="/sobre" className="hover:text-accent">
                   Nossa história
                 </Link>

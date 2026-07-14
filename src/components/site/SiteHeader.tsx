@@ -15,6 +15,7 @@ const NAV = [
   { to: "/", label: "Início" },
   { to: "/produtos", label: "Catálogo" },
   { to: "/blends", label: "Blends" },
+  { to: "/cozinha", label: "Cozinha" },
   { to: "/temperaflix", label: "Temperaflix" },
   { to: "/sobre", label: "A Casa" },
   { to: "/lojas", label: "Lojas" },
