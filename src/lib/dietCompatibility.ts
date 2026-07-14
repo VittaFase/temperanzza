@@ -39,7 +39,7 @@ const CARN_ESTRITA_NO: DietVerdictEntry = {
 
 export const PRODUCT_DIETS: ProductDiet[] = [
   {
-    key: "bacon-em-po",
+    key: "temperaflix-bacon",
     profile: PROFILES.defumado,
     verdicts: {
       keto: {
@@ -262,7 +262,8 @@ export const PRODUCT_DIETS: ProductDiet[] = [
 
 /** Aliases handle Shopify → key canônico deste módulo. */
 const HANDLE_ALIASES: Record<string, string> = {
-  "bacon-em-po": "bacon-em-po",
+  "bacon-em-po": "temperaflix-bacon",
+  "temperaflix-bacon": "temperaflix-bacon",
   "ana-maria": "ana-maria",
   "alho-em-po": "alho-em-po",
   "lemon-pepper": "lemon-pepper",
@@ -286,7 +287,7 @@ const HANDLE_ALIASES: Record<string, string> = {
   "pimenta-do-reino-premium-black-30g": "pimenta-do-reino",
   "canela-moida": "canela-moida",
   "canela-premium-black-30g": "canela-moida",
-  "temperaflix-bacon": "temperaflix",
+  
   "temperaflix-ervas-finas": "temperaflix",
   "temperaflix-tradicional": "temperaflix",
 };
