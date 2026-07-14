@@ -50,6 +50,7 @@ function humanHandle(h: string) {
 }
 
 function CozinhaPage() {
+  const [tipo, setTipo] = useState<RecipeCategory | "all">("all");
   const [dieta, setDieta] = useState<DietKey | "all">("all");
   const [condimento, setCondimento] = useState<string>("all");
   const [momento, setMomento] = useState<Moment | "all">("all");
@@ -58,6 +59,8 @@ function CozinhaPage() {
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
     return RECIPES.filter((r) => {
+      const cat: RecipeCategory = r.category ?? "dieta";
+      if (tipo !== "all" && cat !== tipo) return false;
       if (dieta !== "all" && !r.compatibleDiets.includes(dieta)) return false;
       if (condimento !== "all" && r.featuredHandle !== condimento) return false;
       if (momento !== "all" && r.moment !== momento) return false;
@@ -65,7 +68,10 @@ function CozinhaPage() {
         return false;
       return true;
     });
-  }, [dieta, condimento, momento, q]);
+  }, [tipo, dieta, condimento, momento, q]);
+
+  const dietRecipes = filtered.filter((r) => (r.category ?? "dieta") === "dieta");
+  const tradRecipes = filtered.filter((r) => r.category === "tradicional");
 
   return (
     <SiteLayout>
