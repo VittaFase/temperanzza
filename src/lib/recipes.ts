@@ -7,6 +7,7 @@ import type { DietKey } from "./diets";
 import type { ProductDiet } from "./dietCompatibility";
 
 export type Moment = "cafe" | "almoco" | "jantar";
+export type RecipeCategory = "dieta" | "tradicional";
 
 export interface Recipe {
   slug: string;
@@ -16,10 +17,14 @@ export interface Recipe {
   compatibleDiets: DietKey[];
   moment: Moment;
   profile: ProductDiet["profile"];
+  /** "dieta" (Estilo de Vida e Performance) ou "tradicional" (Mesa de Todos) */
+  category: RecipeCategory;
   intro: string;
   ingredients: string[];
   steps: string[];
+  /** rótulo depende da categoria: "Por que funciona…" vs "O Toque Temperanzza" */
   whyItWorks: string;
+  /** rótulo depende da categoria: "Dica de substituição" vs "Dica de variação" */
   substitution: string;
   /** metáfora visual quando não há foto ainda */
   hero: { color: string; emoji: string };
@@ -29,6 +34,11 @@ export const MOMENTS: Record<Moment, string> = {
   cafe: "Café da manhã",
   almoco: "Almoço",
   jantar: "Jantar",
+};
+
+export const CATEGORIES: Record<RecipeCategory, { label: string; short: string }> = {
+  dieta: { label: "Estilo de Vida & Performance", short: "Dieta" },
+  tradicional: { label: "Mesa de Todos — Tradicional", short: "Tradicional" },
 };
 
 export const RECIPES: Recipe[] = [
