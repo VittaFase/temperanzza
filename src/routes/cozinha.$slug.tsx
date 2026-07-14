@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductDiet } from "@/lib/dietCompatibility";
-import type { DietKey } from "@/lib/diets";
+
 import { DietBadge } from "@/components/site/DietBadge";
 import { DietCompatibilityPanel } from "@/components/site/DietCompatibilityPanel";
 import { ArrowLeft, ArrowRight, Utensils, ChefHat } from "lucide-react";
