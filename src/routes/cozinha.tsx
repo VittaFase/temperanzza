@@ -368,12 +368,17 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
         </p>
         <div className="flex items-center justify-between gap-3 pt-2 border-t border-foreground/10">
           <div className="flex flex-wrap gap-1.5">
-            {recipe.compatibleDiets.map((d) => (
-              <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
-            ))}
+            {recipe.category === "tradicional" ? (
+              <span className="label-tag">Mesa de Todos</span>
+            ) : (
+              recipe.compatibleDiets.map((d) => (
+                <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
+              ))
+            )}
           </div>
           <ArrowRight className="h-4 w-4 text-foreground/50 group-hover:text-accent transition" />
         </div>
+
         <p className="text-[11px] font-display uppercase tracking-widest text-muted-foreground">
           com {humanHandle(recipe.featuredHandle)}
           {diet ? "" : ""}
