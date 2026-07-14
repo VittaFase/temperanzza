@@ -15,6 +15,10 @@ import { Loader2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { FlavorTiles } from "@/components/site/FlavorTiles";
 import { getProductImage } from "@/lib/productImages";
+import { getProductDiet } from "@/lib/dietCompatibility";
+import { DietCompatibilityPanel } from "@/components/site/DietCompatibilityPanel";
+import { getRecipesByHandle } from "@/lib/recipes";
+import { BookOpen } from "lucide-react";
 
 export const Route = createFileRoute("/product/$handle")({
   head: ({ params }) => ({
