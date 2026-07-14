@@ -79,7 +79,7 @@ function RecipeNotFound() {
 }
 
 function RecipePage() {
-  const recipe = Route.useLoaderData();
+  const recipe = Route.useLoaderData() as Recipe;
   const diet = getProductDiet(recipe.featuredHandle);
 
   const related = RECIPES.filter(
