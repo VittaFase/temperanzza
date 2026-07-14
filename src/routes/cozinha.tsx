@@ -238,12 +238,26 @@ function CozinhaPage() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filtered.map((r) => (
-                <RecipeCard key={r.slug} recipe={r} />
-              ))}
+            <div className="space-y-16">
+              {dietRecipes.length > 0 && (
+                <RecipeGroup
+                  eyebrow="Estilo de Vida & Performance"
+                  title="Receitas para dietas"
+                  subtitle="Otimize seu corpo e mente com pratos deliciosos e 100% alinhados com seus objetivos de saúde."
+                  recipes={dietRecipes}
+                />
+              )}
+              {tradRecipes.length > 0 && (
+                <RecipeGroup
+                  eyebrow="Mesa de Todos"
+                  title="Cozinha tradicional Temperanzza"
+                  subtitle="Celebre os sabores da culinária brasileira — perfeito para o seu momento de celebração ou dia livre."
+                  recipes={tradRecipes}
+                />
+              )}
             </div>
           )}
+
         </div>
       </section>
     </SiteLayout>
