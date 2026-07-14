@@ -17,8 +17,8 @@ export interface Recipe {
   compatibleDiets: DietKey[];
   moment: Moment;
   profile: ProductDiet["profile"];
-  /** "dieta" (Estilo de Vida e Performance) ou "tradicional" (Mesa de Todos) */
-  category: RecipeCategory;
+  /** "dieta" (Estilo de Vida e Performance) ou "tradicional" (Mesa de Todos). Default: "dieta" */
+  category?: RecipeCategory;
   intro: string;
   ingredients: string[];
   steps: string[];
