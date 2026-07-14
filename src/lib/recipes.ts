@@ -28,7 +28,21 @@ export interface Recipe {
   substitution: string;
   /** metáfora visual quando não há foto ainda */
   hero: { color: string; emoji: string };
+  // ── Camada editorial (opcional — a Biblioteca Gastronômica usa quando presente) ──
+  /** Linha editorial curta (uma frase, tipo Saveur). Fallback: intro. */
+  subtitle?: string;
+  /** "Palavra do Chef" — texto italico, até 80 palavras. Fallback: whyItWorks. */
+  chefWord?: string;
+  /** Tempo total (ex: "25 min") */
+  time?: string;
+  /** Rendimento (ex: "2 pessoas") */
+  serves?: string;
+  /** Dificuldade: "Fácil" | "Médio" | "Avançado" */
+  difficulty?: "Fácil" | "Médio" | "Avançado";
+  /** Handles de temperos que harmonizam (2-3 sugestões). */
+  harmonization?: string[];
 }
+
 
 export const MOMENTS: Record<Moment, string> = {
   cafe: "Café da manhã",

@@ -1,11 +1,23 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
+import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
+import { useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
+import { getProductImage } from "@/lib/productImages";
 import { getProductDiet } from "@/lib/dietCompatibility";
-
 import { DietBadge } from "@/components/site/DietBadge";
-import { DietCompatibilityPanel } from "@/components/site/DietCompatibilityPanel";
-import { ArrowLeft, ArrowRight, Utensils, ChefHat } from "lucide-react";
+import {
+  X,
+  Clock,
+  Users,
+  Flame,
+  Utensils,
+  ChefHat,
+  ArrowRight,
+  Sparkles,
+} from "lucide-react";
+
+// ═══════════════════════════════════════════════════════════════════
+// ROTA — head() com SEO editorial completo + Recipe JSON-LD + BreadcrumbList
+// ═══════════════════════════════════════════════════════════════════
 
 export const Route = createFileRoute("/cozinha/$slug")({
   head: ({ params }) => {
@@ -13,19 +25,23 @@ export const Route = createFileRoute("/cozinha/$slug")({
     if (!r) {
       return {
         meta: [
-          { title: "Receita não encontrada — Cozinha Temperanzza" },
+          { title: "Receita não encontrada — Biblioteca Gastronômica Temperanzza" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
-    const desc = r.intro;
+    const url = `https://temperanzza.com.br/cozinha/${r.slug}`;
+    const desc = r.subtitle ?? r.intro;
     return {
       meta: [
-        { title: `${r.title} — Cozinha Temperanzza` },
+        { title: `${r.title} — Biblioteca Gastronômica Temperanzza` },
         { name: "description", content: desc },
         { property: "og:title", content: r.title },
         { property: "og:description", content: desc },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
       ],
+      links: [{ rel: "canonical", href: url }],
       scripts: [
         {
           type: "application/ld+json",
@@ -33,10 +49,15 @@ export const Route = createFileRoute("/cozinha/$slug")({
             "@context": "https://schema.org",
             "@type": "Recipe",
             name: r.title,
-            description: r.intro,
+            description: desc,
+            author: { "@type": "Organization", name: "Temperanzza" },
+            recipeCategory:
+              r.category === "tradicional" ? "Cozinha Tradicional" : "Cozinha de Performance",
+            recipeCuisine: "Brasileira",
             recipeIngredient: r.ingredients,
-            recipeInstructions: r.steps.map((s) => ({
+            recipeInstructions: r.steps.map((s, i) => ({
               "@type": "HowToStep",
+              position: i + 1,
               text: s,
             })),
             suitableForDiet: r.compatibleDiets.map((d) => {
@@ -50,6 +71,33 @@ export const Route = createFileRoute("/cozinha/$slug")({
             }),
           }),
         },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Início",
+                item: "https://temperanzza.com.br/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Biblioteca Gastronômica",
+                item: "https://temperanzza.com.br/cozinha",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: r.title,
+                item: url,
+              },
+            ],
+          }),
+        },
       ],
     };
   },
@@ -58,222 +106,490 @@ export const Route = createFileRoute("/cozinha/$slug")({
     if (!r) throw notFound();
     return r;
   },
-  component: RecipePage,
-  notFoundComponent: RecipeNotFound,
+  component: RecipeDrawer,
+  notFoundComponent: RecipeNotFoundDrawer,
 });
 
-function RecipeNotFound() {
-  return (
-    <SiteLayout>
-      <div className="mx-auto max-w-3xl py-24 px-6 text-center">
-        <h1 className="font-display uppercase text-4xl">Receita não encontrada</h1>
-        <Link
-          to="/cozinha"
-          className="inline-block mt-6 underline underline-offset-4"
-        >
-          Voltar à Cozinha Temperanzza
-        </Link>
-      </div>
-    </SiteLayout>
-  );
-}
+// ═══════════════════════════════════════════════════════════════════
+// DRAWER — Overlay full-screen editorial. Fecha para /cozinha preservando estado.
+// ═══════════════════════════════════════════════════════════════════
 
-function RecipePage() {
+function RecipeDrawer() {
   const recipe = Route.useLoaderData() as Recipe;
+  const navigate = useNavigate();
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  const close = () => navigate({ to: "/cozinha" });
+
+  // ESC fecha; body scroll lock enquanto drawer está montado
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    // foco inicial no painel para acessibilidade + captura de ESC
+    panelRef.current?.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recipe.slug]);
+
+  const productImg = getProductImage(recipe.featuredHandle);
   const diet = getProductDiet(recipe.featuredHandle);
 
-  const related = RECIPES.filter(
-    (r) => r.profile === recipe.profile && r.slug !== recipe.slug,
-  ).slice(0, 3);
+  const harmonization = useMemo(() => {
+    const handles = recipe.harmonization ?? deriveHarmonization(recipe);
+    return handles
+      .map((h) => ({ handle: h, img: getProductImage(h), name: humanHandle(h) }))
+      .filter((p) => p.img);
+  }, [recipe]);
+
+  const related = useMemo(
+    () =>
+      RECIPES.filter(
+        (r) => r.profile === recipe.profile && r.slug !== recipe.slug,
+      ).slice(0, 4),
+    [recipe],
+  );
+
+  const subtitle = recipe.subtitle ?? recipe.intro;
+  const chefWord = recipe.chefWord ?? recipe.whyItWorks;
 
   return (
-    <SiteLayout>
-      {/* HERO */}
-      <section
-        className="relative border-b border-foreground/15 overflow-hidden"
-        style={{ background: recipe.hero.color }}
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="recipe-drawer-title"
+      className="fixed inset-0 z-[100] animate-in fade-in duration-300"
+    >
+      {/* Backdrop — cor de tinta profunda, opacidade generosa */}
+      <div
+        aria-hidden
+        onClick={close}
+        className="absolute inset-0 bg-brand-ink/85 backdrop-blur-md"
+      />
+
+      {/* Painel — 96vh, top:2vh, slide up */}
+      <div
+        ref={panelRef}
+        tabIndex={-1}
+        className="absolute inset-x-0 bottom-0 top-[2vh] bg-brand-paper shadow-2xl overflow-y-auto outline-none animate-in slide-in-from-bottom duration-500"
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 15% 25%, rgba(0,0,0,0.35) 0, transparent 45%), radial-gradient(circle at 85% 75%, rgba(0,0,0,0.28) 0, transparent 55%)",
-          }}
-        />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-white">
-          <Link
-            to="/cozinha"
-            className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-display font-bold text-white/80 hover:text-white mb-6"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Cozinha Temperanzza
-          </Link>
-          <div className="grid lg:grid-cols-12 gap-10 items-center">
+        {/* Barra superior sticky — breadcrumb + close */}
+        <header className="sticky top-0 z-10 bg-brand-paper/95 backdrop-blur border-b border-brand-ink/10">
+          <div className="mx-auto max-w-6xl px-4 sm:px-8 py-4 flex items-center justify-between gap-4">
+            <nav aria-label="Breadcrumb" className="min-w-0">
+              <ol className="flex items-center gap-2 text-[11px] font-display uppercase tracking-[0.25em] text-brand-ink/60">
+                <li className="hidden sm:inline">
+                  <Link to="/" className="hover:text-accent">Início</Link>
+                </li>
+                <li aria-hidden className="hidden sm:inline text-brand-ink/30">/</li>
+                <li>
+                  <Link to="/cozinha" className="hover:text-accent">
+                    Biblioteca
+                  </Link>
+                </li>
+                <li aria-hidden className="text-brand-ink/30">/</li>
+                <li className="text-brand-ink truncate">{recipe.title}</li>
+              </ol>
+            </nav>
+            <button
+              onClick={close}
+              aria-label="Fechar receita"
+              className="shrink-0 inline-flex items-center gap-2 border border-brand-ink/25 hover:border-accent hover:bg-brand-ink hover:text-brand-paper px-3 py-2 text-[11px] font-display uppercase tracking-widest transition"
+            >
+              <span className="hidden sm:inline">Fechar</span>
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        </header>
+
+        {/* HERO editorial */}
+        <section
+          className="relative overflow-hidden bg-brand-ink text-brand-paper"
+          aria-labelledby="recipe-drawer-title"
+        >
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse at 20% 20%, ${recipe.hero.color} 0%, transparent 65%), radial-gradient(ellipse at 80% 80%, oklch(0.20 0.04 30) 0%, transparent 55%), linear-gradient(180deg, oklch(0.14 0.015 45) 0%, oklch(0.10 0.02 30) 100%)`,
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 opacity-[0.10] mix-blend-overlay"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 30% 30%, rgba(255,240,220,0.35) 0px, transparent 2px)",
+              backgroundSize: "220px 220px",
+            }}
+          />
+
+          <div className="relative mx-auto max-w-6xl px-4 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-8">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-block px-3 py-1 bg-brand-ink text-brand-paper font-display font-black uppercase tracking-widest text-[10px]">
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                <span className="inline-block px-3 py-1 bg-brand-mustard text-brand-ink font-display font-black uppercase tracking-widest text-[10px]">
                   {MOMENTS[recipe.moment]}
                 </span>
-                <span className="inline-block px-3 py-1 bg-accent text-background font-display font-black uppercase tracking-widest text-[10px]">
+                <span className="inline-block px-3 py-1 border border-brand-paper/30 text-brand-paper/80 font-display font-black uppercase tracking-widest text-[10px]">
                   {recipe.category === "tradicional"
                     ? "Mesa de Todos"
                     : "Estilo de Vida"}
                 </span>
               </div>
-              <h1 className="mt-5 font-display font-black uppercase leading-[0.92] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
+              <h1
+                id="recipe-drawer-title"
+                className="font-display font-black uppercase leading-[0.9] tracking-tight text-4xl sm:text-6xl lg:text-7xl"
+              >
                 {recipe.title}
               </h1>
-              <p className="mt-6 font-serif italic text-xl sm:text-2xl text-white/90 leading-snug max-w-2xl">
-                {recipe.intro}
+              <p className="mt-6 font-serif italic text-lg sm:text-2xl text-brand-paper/85 leading-snug max-w-xl">
+                {subtitle}
               </p>
+
+              {/* Ficha técnica visual — régua horizontal */}
+              <dl className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-brand-paper/20 pt-6 max-w-xl">
+                <FichaItem
+                  icon={<Clock className="h-4 w-4" />}
+                  label="Tempo"
+                  value={recipe.time ?? "20 min"}
+                />
+                <FichaItem
+                  icon={<Users className="h-4 w-4" />}
+                  label="Rende"
+                  value={recipe.serves ?? "2 pessoas"}
+                />
+                <FichaItem
+                  icon={<Flame className="h-4 w-4" />}
+                  label="Dificuldade"
+                  value={recipe.difficulty ?? "Fácil"}
+                />
+                <FichaItem
+                  icon={<Sparkles className="h-4 w-4" />}
+                  label="Perfil"
+                  value={perfilLabel(recipe.profile)}
+                />
+              </dl>
+            </div>
+
+            {/* Pote real do produto — assinatura discreta, canto */}
+            {productImg && (
+              <div className="lg:col-span-4 flex justify-center lg:justify-end">
+                <div className="relative">
+                  <div
+                    aria-hidden
+                    className="absolute -inset-6 rounded-full opacity-40"
+                    style={{
+                      background:
+                        "radial-gradient(circle, oklch(0.72 0.16 75 / 0.6) 0%, transparent 70%)",
+                      filter: "blur(30px)",
+                    }}
+                  />
+                  <img
+                    src={productImg}
+                    alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
+                    className="relative h-56 sm:h-72 w-auto object-contain drop-shadow-2xl"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* PALAVRA DO CHEF — bloco editorial em itálico */}
+        <section className="mx-auto max-w-4xl px-4 sm:px-8 py-14 sm:py-20 text-center border-b border-brand-ink/10">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span aria-hidden className="block h-px w-8 bg-accent" />
+            <span className="text-[10px] font-display uppercase tracking-[0.4em] text-accent">
+              A Palavra do Chef
+            </span>
+            <span aria-hidden className="block h-px w-8 bg-accent" />
+          </div>
+          <blockquote className="font-serif italic text-xl sm:text-3xl text-brand-ink/90 leading-relaxed">
+            {chefWord}
+          </blockquote>
+        </section>
+
+        {/* CORPO — ingredientes + modo de preparo */}
+        <div className="mx-auto max-w-6xl px-4 sm:px-8 py-14 lg:py-20">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+            <aside className="lg:col-span-4">
+              <div className="lg:sticky lg:top-24">
+                <div className="flex items-center gap-2 mb-6">
+                  <Utensils className="h-4 w-4 text-accent" />
+                  <h2 className="font-display font-black uppercase tracking-[0.25em] text-sm">
+                    Ingredientes
+                  </h2>
+                </div>
+                <ul className="space-y-4">
+                  {recipe.ingredients.map((ing, i) => {
+                    const isFeatured = ing.toLowerCase().includes("temperanzza");
+                    return (
+                      <li
+                        key={i}
+                        className={`flex gap-3 text-[15px] leading-snug pb-4 border-b border-brand-ink/10 last:border-0 ${
+                          isFeatured ? "text-accent font-medium" : ""
+                        }`}
+                      >
+                        <span
+                          className={`shrink-0 h-4 w-4 border mt-1 ${
+                            isFeatured
+                              ? "border-accent bg-accent/10"
+                              : "border-brand-ink/40"
+                          }`}
+                        />
+                        <span>{ing}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </aside>
+
+            <div className="lg:col-span-8">
+              <div className="flex items-center gap-2 mb-8">
+                <ChefHat className="h-4 w-4 text-accent" />
+                <h2 className="font-display font-black uppercase tracking-[0.25em] text-sm">
+                  Modo de Preparo
+                </h2>
+              </div>
+              <ol className="space-y-8">
+                {recipe.steps.map((step, i) => (
+                  <li key={i} className="flex gap-6">
+                    <span className="shrink-0 font-display font-black text-6xl leading-none text-brand-ink/15 tabular-nums w-16">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-lg leading-relaxed pt-2 text-brand-ink/90">
+                      {step}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+
+              {/* Dica */}
+              <div className="mt-16 border-l-4 border-brand-mustard bg-brand-cream/50 px-6 py-6">
+                <p className="text-[10px] font-display uppercase tracking-[0.3em] text-brand-ink/60 mb-2">
+                  {recipe.category === "tradicional"
+                    ? "Dica de Variação"
+                    : "Dica de Substituição"}
+                </p>
+                <p className="text-base leading-relaxed text-brand-ink/85">
+                  {recipe.substitution}
+                </p>
+              </div>
+
+              {/* Compatibilidade dietética (só para dieta) */}
               {recipe.category !== "tradicional" &&
                 recipe.compatibleDiets.length > 0 && (
-                  <div className="mt-8 flex flex-wrap gap-2">
+                  <div className="mt-10 flex flex-wrap gap-2">
                     {recipe.compatibleDiets.map((d) => (
                       <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
                     ))}
                   </div>
                 )}
             </div>
-
-            <div className="lg:col-span-4 flex justify-center">
-              <div
-                className="text-[10rem] sm:text-[12rem] leading-none select-none drop-shadow-2xl"
-                aria-hidden
-              >
-                {recipe.hero.emoji}
-              </div>
-            </div>
           </div>
         </div>
-      </section>
 
-      {/* BODY */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
-          {/* Ingredientes */}
-          <aside className="lg:col-span-4">
-            <div className="border border-foreground/15 bg-brand-cream/60 p-6 lg:p-7 sticky top-24">
-              <div className="flex items-center gap-2 mb-5">
-                <Utensils className="h-4 w-4 text-accent" />
-                <h2 className="font-display font-black uppercase tracking-widest text-sm">
-                  Ingredientes
-                </h2>
-              </div>
-              <ul className="space-y-3">
-                {recipe.ingredients.map((ing, i) => (
-                  <li
-                    key={i}
-                    className="flex gap-3 text-[15px] leading-snug border-b border-foreground/10 pb-3 last:border-0"
-                  >
-                    <span className="shrink-0 h-4 w-4 border border-foreground/40 mt-1" />
-                    <span>{ing}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
-
-          {/* Preparo */}
-          <div className="lg:col-span-8">
-            <div className="flex items-center gap-2 mb-6">
-              <ChefHat className="h-4 w-4 text-accent" />
-              <h2 className="font-display font-black uppercase tracking-widest text-sm">
-                Modo de preparo
+        {/* PRODUTO UTILIZADO — assinatura */}
+        <section className="bg-brand-ink text-brand-paper py-16 sm:py-20">
+          <div className="mx-auto max-w-6xl px-4 sm:px-8 grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <span className="text-[10px] font-display uppercase tracking-[0.4em] text-brand-mustard">
+                Assinatura desta receita
+              </span>
+              <h2 className="mt-4 font-display font-black uppercase leading-[0.95] tracking-tight text-4xl sm:text-5xl">
+                {humanHandle(recipe.featuredHandle)}
               </h2>
-            </div>
-            <ol className="space-y-6">
-              {recipe.steps.map((step, i) => (
-                <li key={i} className="flex gap-5">
-                  <span className="shrink-0 font-display font-black text-5xl leading-none text-accent w-14">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-lg leading-relaxed pt-1">{step}</p>
-                </li>
-              ))}
-            </ol>
+              {diet && (
+                <p className="mt-4 font-serif italic text-brand-paper/70 text-lg leading-relaxed max-w-md">
+                  Perfil sensorial <span className="text-brand-mustard">{perfilLabel(diet.profile)}</span> — desenvolvido pela casa Temperanzza para elevar receitas do dia a dia à altura de uma mesa autoral.
+                </p>
+              )}
 
-            {/* Por que funciona / O Toque Temperanzza */}
-            <div className="mt-14 border-l-4 border-brand-emerald bg-brand-cream/70 px-6 py-6">
-              <p className="text-[10px] font-display uppercase tracking-widest text-brand-emerald mb-2">
-                {recipe.category === "tradicional"
-                  ? "O toque Temperanzza"
-                  : "Por que funciona para sua dieta"}
-              </p>
-              <p className="font-serif italic text-lg leading-relaxed">
-                {recipe.whyItWorks}
-              </p>
-            </div>
-
-            {/* Dica */}
-            <div className="mt-6 border-l-4 border-brand-mustard bg-brand-cream/70 px-6 py-6">
-              <p className="text-[10px] font-display uppercase tracking-widest text-brand-ink/70 mb-2">
-                {recipe.category === "tradicional"
-                  ? "Dica de variação"
-                  : "Dica de substituição"}
-              </p>
-              <p className="text-base leading-relaxed">{recipe.substitution}</p>
-            </div>
-
-
-            {/* CTA */}
-            <div className="mt-10">
               <Link
                 to="/product/$handle"
                 params={{ handle: recipe.featuredHandle }}
-                className="inline-flex items-center gap-3 bg-foreground text-background hover:bg-accent px-6 py-4 font-display uppercase tracking-widest text-sm"
+                className="mt-8 inline-flex items-center gap-3 bg-brand-mustard text-brand-ink hover:bg-brand-paper px-6 py-4 font-display uppercase tracking-widest text-sm transition"
               >
-                Leve este tempero para sua cozinha
+                Leve para minha cozinha
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
+            {productImg && (
+              <div className="flex justify-center md:justify-end">
+                <img
+                  src={productImg}
+                  alt={humanHandle(recipe.featuredHandle)}
+                  className="h-72 sm:h-96 w-auto object-contain drop-shadow-2xl"
+                />
+              </div>
+            )}
           </div>
-        </div>
+        </section>
 
-        {/* Painel de dieta do condimento */}
-        {diet && (
-          <div className="mt-16">
-            <DietCompatibilityPanel diet={diet} />
-          </div>
-        )}
-
-        {/* Relacionadas */}
-        {related.length > 0 && (
-          <section className="mt-20">
-            <h2 className="font-display font-black uppercase text-3xl sm:text-4xl tracking-tight mb-8">
-              Do mesmo perfil de sabor
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {related.map((r) => (
+        {/* HARMONIZAÇÃO */}
+        {harmonization.length > 0 && (
+          <section className="mx-auto max-w-6xl px-4 sm:px-8 py-16 sm:py-20 border-b border-brand-ink/10">
+            <div className="flex items-center gap-3 mb-10">
+              <span aria-hidden className="block h-px w-8 bg-accent" />
+              <h2 className="text-[10px] font-display uppercase tracking-[0.4em] text-accent">
+                Harmoniza também com
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              {harmonization.slice(0, 3).map((p) => (
                 <Link
-                  key={r.slug}
-                  to="/cozinha/$slug"
-                  params={{ slug: r.slug }}
-                  className="group block border border-foreground/15 bg-background hover:border-accent transition"
+                  key={p.handle}
+                  to="/product/$handle"
+                  params={{ handle: p.handle }}
+                  className="group flex flex-col items-center text-center border border-brand-ink/15 bg-brand-cream/40 hover:border-accent p-6 transition"
                 >
-                  <div
-                    className="relative aspect-[5/3]"
-                    style={{ background: r.hero.color }}
-                  >
-                    <span
-                      className="absolute right-4 bottom-3 text-5xl opacity-90"
-                      aria-hidden
-                    >
-                      {r.hero.emoji}
-                    </span>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-display font-black uppercase tracking-tight text-lg leading-tight">
-                      {r.title}
-                    </h3>
-                  </div>
+                  <img
+                    src={p.img!}
+                    alt={p.name}
+                    className="h-32 w-auto object-contain mb-4 group-hover:scale-105 transition-transform"
+                  />
+                  <p className="font-display font-bold uppercase text-sm tracking-tight leading-tight">
+                    {p.name}
+                  </p>
                 </Link>
               ))}
             </div>
           </section>
         )}
+
+        {/* RECEITAS RELACIONADAS */}
+        {related.length > 0 && (
+          <section className="mx-auto max-w-6xl px-4 sm:px-8 py-16 sm:py-20">
+            <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+              <div>
+                <span className="text-[10px] font-display uppercase tracking-[0.4em] text-accent">
+                  Do mesmo perfil de sabor
+                </span>
+                <h2 className="mt-3 font-display font-black uppercase text-3xl sm:text-4xl tracking-tight">
+                  Continue a leitura
+                </h2>
+              </div>
+              <button
+                onClick={close}
+                className="text-[11px] font-display uppercase tracking-widest text-brand-ink/60 hover:text-accent underline underline-offset-4"
+              >
+                ← Voltar à biblioteca
+              </button>
+            </div>
+            <ul className="divide-y divide-brand-ink/15 border-y border-brand-ink/15">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    to="/cozinha/$slug"
+                    params={{ slug: r.slug }}
+                    className="group flex items-baseline gap-6 py-5 hover:bg-brand-ink/[0.03] transition -mx-2 px-2"
+                  >
+                    <span className="shrink-0 font-display italic text-brand-ink/40 text-sm">
+                      {MOMENTS[r.moment]}
+                    </span>
+                    <span className="flex-1 min-w-0 font-display font-black uppercase tracking-tight text-xl sm:text-2xl leading-tight group-hover:text-accent transition-colors">
+                      {r.title}
+                    </span>
+                    <ArrowRight className="shrink-0 h-4 w-4 text-brand-ink/40 group-hover:text-accent group-hover:translate-x-1 transition" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Rodapé do drawer — assinatura da casa */}
+        <footer className="border-t border-brand-ink/10 py-10 text-center">
+          <p className="font-serif italic text-brand-ink/50 text-sm">
+            Biblioteca Gastronômica · Casa Temperanzza · Minas Gerais
+          </p>
+        </footer>
       </div>
-    </SiteLayout>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// Helpers
+// ═══════════════════════════════════════════════════════════════════
+
+function FichaItem({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div>
+      <dt className="flex items-center gap-1.5 text-[10px] font-display uppercase tracking-[0.25em] text-brand-paper/50 mb-1.5">
+        {icon}
+        {label}
+      </dt>
+      <dd className="font-display font-black text-lg sm:text-xl leading-none">
+        {value}
+      </dd>
+    </div>
+  );
+}
+
+function humanHandle(h: string) {
+  return h
+    .split("-")
+    .map((w) => w[0].toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+function perfilLabel(p: Recipe["profile"]) {
+  const map: Record<Recipe["profile"], string> = {
+    defumado: "Defumado",
+    ervas: "Ervas Frescas",
+    casa: "Sabor de Casa",
+    puras: "Especiaria Pura",
+    "citrico-picante": "Cítrico",
+  };
+  return map[p] ?? "Autoral";
+}
+
+/** Deriva 2-3 handles de harmonização a partir do perfil da receita. */
+function deriveHarmonization(recipe: Recipe): string[] {
+  const pool = RECIPES.filter(
+    (r) => r.profile === recipe.profile && r.featuredHandle !== recipe.featuredHandle,
+  ).map((r) => r.featuredHandle);
+  return Array.from(new Set(pool)).slice(0, 3);
+}
+
+function RecipeNotFoundDrawer() {
+  const navigate = useNavigate();
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-ink/85 backdrop-blur"
+    >
+      <div className="bg-brand-paper max-w-md w-full mx-4 p-10 text-center">
+        <h1 className="font-display font-black uppercase text-3xl mb-4">
+          Receita não encontrada
+        </h1>
+        <p className="text-brand-ink/70 mb-8">
+          Ela pode ter sido arquivada ou a URL está incorreta.
+        </p>
+        <button
+          onClick={() => navigate({ to: "/cozinha" })}
+          className="inline-flex items-center gap-2 bg-brand-ink text-brand-paper px-6 py-3 font-display uppercase tracking-widest text-sm hover:bg-accent transition"
+        >
+          Voltar à biblioteca
+        </button>
+      </div>
+    </div>
   );
 }

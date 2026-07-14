@@ -16,6 +16,7 @@ import { Route as LojasRouteImport } from './routes/lojas'
 import { Route as CozinhaRouteImport } from './routes/cozinha'
 import { Route as BlendsRouteImport } from './routes/blends'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CozinhaIndexRouteImport } from './routes/cozinha.index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as CozinhaSlugRouteImport } from './routes/cozinha.$slug'
@@ -62,6 +63,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const CozinhaIndexRoute = CozinhaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CozinhaRoute,
 } as any)
 const BlendsIndexRoute = BlendsIndexRouteImport.update({
   id: '/',
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/cozinha/': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
   '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
@@ -143,7 +150,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cozinha': typeof CozinhaRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sobre': typeof SobreRoute
@@ -153,6 +159,7 @@ export interface FileRoutesByTo {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
+  '/cozinha': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
   '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
@@ -174,6 +181,7 @@ export interface FileRoutesById {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/cozinha/': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
   '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
@@ -196,6 +204,7 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/cozinha/'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
     | '/api/public/bling/disconnect'
@@ -205,7 +214,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/cozinha'
     | '/lojas'
     | '/produtos'
     | '/sobre'
@@ -215,6 +223,7 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends'
+    | '/cozinha'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
     | '/api/public/bling/disconnect'
@@ -235,6 +244,7 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/cozinha/'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
     | '/api/public/bling/disconnect'
@@ -311,6 +321,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/cozinha/': {
+      id: '/cozinha/'
+      path: '/'
+      fullPath: '/cozinha/'
+      preLoaderRoute: typeof CozinhaIndexRouteImport
+      parentRoute: typeof CozinhaRoute
     }
     '/blends/': {
       id: '/blends/'
@@ -407,10 +424,12 @@ const BlendsRouteWithChildren =
 
 interface CozinhaRouteChildren {
   CozinhaSlugRoute: typeof CozinhaSlugRoute
+  CozinhaIndexRoute: typeof CozinhaIndexRoute
 }
 
 const CozinhaRouteChildren: CozinhaRouteChildren = {
   CozinhaSlugRoute: CozinhaSlugRoute,
+  CozinhaIndexRoute: CozinhaIndexRoute,
 }
 
 const CozinhaRouteWithChildren =
