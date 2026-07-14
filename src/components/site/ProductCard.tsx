@@ -126,7 +126,27 @@ export function ProductCard({
             )}
           </Button>
         </div>
+        <ProductDietDots handle={handle} />
       </div>
     </Link>
+  );
+}
+
+function ProductDietDots({ handle }: { handle: string }) {
+  const diet = getProductDiet(handle);
+  if (!diet) return null;
+  return (
+    <div
+      className="flex items-center justify-between pt-2 border-t border-foreground/10"
+      title="Compatibilidade dietética"
+    >
+      <span className="text-[9px] font-display uppercase tracking-widest text-muted-foreground">
+        Dietas
+      </span>
+      <DietDotStrip
+        verdicts={diet.verdicts}
+        diets={DIETS.map((d) => d.key)}
+      />
+    </div>
   );
 }
