@@ -2,7 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { DIETS, type DietKey } from "@/lib/diets";
-import { RECIPES, MOMENTS, type Moment, type Recipe } from "@/lib/recipes";
+import {
+  RECIPES,
+  MOMENTS,
+  CATEGORIES,
+  type Moment,
+  type Recipe,
+  type RecipeCategory,
+} from "@/lib/recipes";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DietBadge } from "@/components/site/DietBadge";
 import { Search, Filter, ArrowRight } from "lucide-react";
