@@ -1,389 +1,327 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { DIETS, type DietKey } from "@/lib/diets";
-import {
-  RECIPES,
-  MOMENTS,
-  CATEGORIES,
-  type Moment,
-  type Recipe,
-  type RecipeCategory,
-} from "@/lib/recipes";
-import { getProductDiet } from "@/lib/dietCompatibility";
-import { DietBadge } from "@/components/site/DietBadge";
-import { Search, Filter, ArrowRight } from "lucide-react";
+import { RECIPES, CATEGORIES, type Recipe } from "@/lib/recipes";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/cozinha")({
   head: () => ({
     meta: [
-      { title: "Cozinha Temperanzza — Receitas Low Carb, Keto e Carnívora" },
+      { title: "Biblioteca Gastronômica Temperanzza" },
       {
         name: "description",
         content:
-          "Receitas didáticas para quem come com consciência: cetogênica, low carb e carnívora flexível. Descubra como cada tempero Temperanzza serve sua dieta.",
+          "Receitas autorais desenvolvidas para transformar ingredientes simples em experiências memoráveis. Cozinha editorial da casa Temperanzza.",
       },
-      {
-        property: "og:title",
-        content: "Cozinha Temperanzza — Receitas para seu Estilo de Vida",
-      },
+      { property: "og:title", content: "Biblioteca Gastronômica Temperanzza" },
       {
         property: "og:description",
         content:
-          "Compatibilidade dietética e receitas curadas para cetogênica, low carb, carnívora flexível e estrita.",
+          "Uma biblioteca de receitas autorais Temperanzza — cetogênica, low carb, carnívora, tradicional. Editorial, sem pressa, para quem cozinha com autoria.",
+      },
+      { property: "og:type", content: "website" },
+      {
+        property: "og:url",
+        content: "https://temperanzza.com.br/cozinha",
       },
     ],
+    links: [
+      { rel: "canonical", href: "https://temperanzza.com.br/cozinha" },
+    ],
   }),
-  component: CozinhaPage,
+  component: CozinhaLayout,
 });
 
-/** Todos os condimentos únicos referenciados nas receitas (para o filtro). */
-const CONDIMENT_OPTIONS = Array.from(
-  new Set(RECIPES.map((r) => r.featuredHandle)),
-).sort();
-
-function humanHandle(h: string) {
-  return h
-    .split("-")
-    .map((w) => w[0].toUpperCase() + w.slice(1))
-    .join(" ");
-}
-
-function CozinhaPage() {
-  const [tipo, setTipo] = useState<RecipeCategory | "all">("all");
-  const [dieta, setDieta] = useState<DietKey | "all">("all");
-  const [condimento, setCondimento] = useState<string>("all");
-  const [momento, setMomento] = useState<Moment | "all">("all");
-  const [q, setQ] = useState("");
-
-  const filtered = useMemo(() => {
-    const term = q.trim().toLowerCase();
-    return RECIPES.filter((r) => {
-      const cat: RecipeCategory = r.category ?? "dieta";
-      if (tipo !== "all" && cat !== tipo) return false;
-      if (dieta !== "all" && !r.compatibleDiets.includes(dieta)) return false;
-      if (condimento !== "all" && r.featuredHandle !== condimento) return false;
-      if (momento !== "all" && r.moment !== momento) return false;
-      if (term && !`${r.title} ${r.intro}`.toLowerCase().includes(term))
-        return false;
-      return true;
-    });
-  }, [tipo, dieta, condimento, momento, q]);
-
-  const dietRecipes = filtered.filter((r) => (r.category ?? "dieta") === "dieta");
-  const tradRecipes = filtered.filter((r) => r.category === "tradicional");
-
+/**
+ * Layout da Biblioteca Gastronômica.
+ * - Renderiza SEMPRE a listagem (hero + índice em accordion tipo menu degustação).
+ * - Renderiza <Outlet /> ao final: em /cozinha nada (index null); em /cozinha/$slug o drawer editorial.
+ * - Estado (categoria expandida, scroll) permanece intacto ao abrir/fechar o drawer — layout não desmonta.
+ */
+function CozinhaLayout() {
   return (
     <SiteLayout>
-      {/* HERO editorial */}
-      <section className="relative border-b border-foreground/15 overflow-hidden">
-        <div className="absolute inset-0 bg-paper-grain opacity-60" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="divider-stencil w-8" />
-            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-              Cozinha Temperanzza
-            </span>
-          </div>
-          <h1 className="font-display font-black uppercase leading-[0.92] tracking-tight text-[13vw] sm:text-7xl lg:text-8xl">
-            Sabor para
-            <br />
-            <span className="text-accent">cada estilo</span>
-            <br />
-            de vida.
-          </h1>
-          <p className="mt-8 max-w-2xl font-serif italic text-xl sm:text-2xl text-foreground/80 leading-snug">
-            Um guia didático que reúne receitas para dietas de performance
-            (cetogênica, low carb, carnívora) e a mesa tradicional brasileira —
-            porque o sabor da Temperanzza cabe em toda casa.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              onClick={() => setTipo("dieta")}
-              className="px-4 py-2 border border-foreground/25 hover:border-accent text-xs font-display uppercase tracking-widest"
-            >
-              Estilo de vida & performance →
-            </button>
-            <button
-              onClick={() => setTipo("tradicional")}
-              className="px-4 py-2 border border-foreground/25 hover:border-accent text-xs font-display uppercase tracking-widest"
-            >
-              Mesa de todos — tradicional →
-            </button>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Entendendo as dietas */}
-      <section
-        aria-labelledby="dietas-title"
-        className="border-b border-foreground/15 py-16 sm:py-20"
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-                Fundamentos
-              </span>
-              <h2
-                id="dietas-title"
-                className="font-display font-black uppercase text-4xl sm:text-5xl mt-2 tracking-tight"
-              >
-                Entendendo as dietas
-              </h2>
-            </div>
-          </div>
-          <div className="grid gap-px bg-foreground/10 border border-foreground/10 md:grid-cols-2 lg:grid-cols-4">
-            {DIETS.map((d) => (
-              <article key={d.key} className="bg-background p-6 lg:p-8 flex flex-col">
-                <span
-                  aria-hidden
-                  className={`inline-block h-1.5 w-10 bg-${d.token} mb-5`}
-                />
-                <h3 className="font-display font-black uppercase text-2xl tracking-tight mb-3">
-                  {d.name}
-                </h3>
-                <p className="text-sm text-foreground/75 leading-relaxed flex-1">
-                  {d.definition}
-                </p>
-                <button
-                  onClick={() => setDieta(d.key)}
-                  className="mt-6 text-xs font-display font-black uppercase tracking-widest text-accent hover:underline underline-offset-4 self-start"
-                >
-                  Ver receitas →
-                </button>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Filtros + Grid */}
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="sticky top-16 z-20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-4 bg-background/95 backdrop-blur border-y border-foreground/15 mb-10">
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 text-xs font-display uppercase tracking-widest text-foreground/70">
-                <Filter className="h-4 w-4" />
-                Filtrar
-              </div>
-
-              <SelectPill
-                label="Tipo de cozinha"
-                value={tipo}
-                onChange={(v) => setTipo(v as RecipeCategory | "all")}
-                options={[
-                  { value: "all", label: "Todas as receitas" },
-                  { value: "dieta", label: CATEGORIES.dieta.label },
-                  { value: "tradicional", label: CATEGORIES.tradicional.label },
-                ]}
-              />
-
-              <SelectPill
-                label="Dieta"
-                value={dieta}
-                onChange={(v) => setDieta(v as DietKey | "all")}
-                options={[
-                  { value: "all", label: "Todas as dietas" },
-                  ...DIETS.map((d) => ({ value: d.key, label: d.name })),
-                ]}
-              />
-
-
-              <SelectPill
-                label="Condimento"
-                value={condimento}
-                onChange={setCondimento}
-                options={[
-                  { value: "all", label: "Todos os condimentos" },
-                  ...CONDIMENT_OPTIONS.map((h) => ({
-                    value: h,
-                    label: humanHandle(h),
-                  })),
-                ]}
-              />
-
-              <SelectPill
-                label="Momento"
-                value={momento}
-                onChange={(v) => setMomento(v as Moment | "all")}
-                options={[
-                  { value: "all", label: "Qualquer hora" },
-                  { value: "cafe", label: "Café da manhã" },
-                  { value: "almoco", label: "Almoço" },
-                  { value: "jantar", label: "Jantar" },
-                ]}
-              />
-
-              <div className="relative flex-1 min-w-[200px]">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
-                <input
-                  value={q}
-                  onChange={(e) => setQ(e.target.value)}
-                  placeholder="Buscar receita…"
-                  className="w-full pl-9 pr-3 h-10 border border-foreground/20 bg-background text-sm focus:outline-none focus:border-accent"
-                />
-              </div>
-            </div>
-          </div>
-
-          {filtered.length === 0 ? (
-            <div className="border-2 border-dashed border-foreground/15 py-20 text-center">
-              <p className="font-display uppercase text-2xl">
-                Nenhuma receita encontrada
-              </p>
-              <p className="mt-3 text-muted-foreground">
-                Ajuste os filtros para explorar outras combinações.
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-16">
-              {dietRecipes.length > 0 && (
-                <RecipeGroup
-                  eyebrow="Estilo de Vida & Performance"
-                  title="Receitas para dietas"
-                  subtitle="Otimize seu corpo e mente com pratos deliciosos e 100% alinhados com seus objetivos de saúde."
-                  recipes={dietRecipes}
-                />
-              )}
-              {tradRecipes.length > 0 && (
-                <RecipeGroup
-                  eyebrow="Mesa de Todos"
-                  title="Cozinha tradicional Temperanzza"
-                  subtitle="Celebre os sabores da culinária brasileira — perfeito para o seu momento de celebração ou dia livre."
-                  recipes={tradRecipes}
-                />
-              )}
-            </div>
-          )}
-
-        </div>
-      </section>
+      <BibliotecaHero />
+      <BibliotecaIndice />
+      <Outlet />
     </SiteLayout>
   );
 }
 
-function SelectPill({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  options: { value: string; label: string }[];
-}) {
-  return (
-    <label className="inline-flex items-center border border-foreground/20 bg-background h-10 pl-3 pr-2 gap-2">
-      <span className="text-[10px] font-display uppercase tracking-widest text-foreground/60">
-        {label}
-      </span>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="bg-transparent text-sm font-medium focus:outline-none pr-1"
-      >
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}
+// ═══════════════════════════════════════════════════════════════════
+// HERO — 100vh, cinematográfico, sem prato, tipografia protagonista
+// ═══════════════════════════════════════════════════════════════════
 
-function RecipeGroup({
-  eyebrow,
-  title,
-  subtitle,
-  recipes,
-}: {
-  eyebrow: string;
-  title: string;
-  subtitle: string;
-  recipes: Recipe[];
-}) {
+function BibliotecaHero() {
   return (
-    <section>
-      <header className="mb-8 border-l-4 border-accent pl-5">
-        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-          {eyebrow}
-        </span>
-        <h2 className="font-display font-black uppercase text-3xl sm:text-4xl tracking-tight mt-2">
-          {title}
-        </h2>
-        <p className="mt-3 max-w-2xl text-foreground/75 leading-relaxed">
-          {subtitle}
+    <section
+      aria-labelledby="biblioteca-hero-title"
+      className="relative min-h-[100vh] flex items-center overflow-hidden bg-brand-ink"
+    >
+      {/* Fundo editorial industrial — camadas de luz lateral, madeira escura, fumaça sutil */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at 15% 30%, oklch(0.32 0.06 40) 0%, transparent 55%), radial-gradient(ellipse at 85% 80%, oklch(0.24 0.05 30) 0%, transparent 60%), linear-gradient(180deg, oklch(0.14 0.015 45) 0%, oklch(0.10 0.02 30) 100%)",
+        }}
+      />
+      {/* Textura grão de papel invertido — dá organicidade */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.08] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 20%, rgba(255,240,220,0.3) 0px, transparent 2px), radial-gradient(circle at 60% 70%, rgba(255,220,180,0.2) 0px, transparent 2px), radial-gradient(circle at 80% 40%, rgba(255,230,200,0.25) 0px, transparent 2px)",
+          backgroundSize: "180px 180px, 240px 240px, 300px 300px",
+        }}
+      />
+      {/* Fumaça extremamente sutil */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-1/3 h-1/2 opacity-20"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(255, 240, 220, 0.15) 0%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+      />
+
+      {/* Conteúdo */}
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-24">
+        <div className="flex items-center gap-3 mb-8">
+          <span
+            aria-hidden
+            className="block h-px w-16 bg-brand-paper/40"
+          />
+          <span className="text-[10px] sm:text-xs font-display uppercase tracking-[0.4em] text-brand-paper/60">
+            Casa Temperanzza · Cozinha Autoral
+          </span>
+        </div>
+
+        <h1
+          id="biblioteca-hero-title"
+          className="font-display font-black uppercase text-brand-paper leading-[0.88] tracking-tight text-[15vw] sm:text-8xl lg:text-[9.5rem]"
+        >
+          Biblioteca
+          <br />
+          <span className="text-brand-mustard">Gastronômica</span>
+          <br />
+          Temperanzza
+        </h1>
+
+        <p className="mt-10 max-w-2xl font-serif italic text-xl sm:text-2xl lg:text-3xl text-brand-paper/80 leading-snug">
+          Receitas autorais desenvolvidas para transformar ingredientes simples
+          em experiências memoráveis.
         </p>
-      </header>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {recipes.map((r) => (
-          <RecipeCard key={r.slug} recipe={r} />
-        ))}
+
+        <div className="mt-14 flex items-center gap-6 flex-wrap">
+          <a
+            href="#indice"
+            className="group inline-flex items-center gap-4 border border-brand-paper/40 hover:border-brand-mustard px-8 py-4 font-display uppercase tracking-[0.25em] text-sm text-brand-paper transition-colors"
+          >
+            Explorar Receitas
+            <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
+          </a>
+          <span className="text-[11px] font-display uppercase tracking-[0.3em] text-brand-paper/50">
+            {RECIPES.length} receitas · 5 estilos
+          </span>
+        </div>
+      </div>
+
+      {/* Marca de rodapé do hero */}
+      <div className="absolute bottom-8 right-6 sm:right-10 text-right">
+        <p className="font-serif italic text-brand-paper/40 text-sm leading-tight max-w-[220px]">
+          "Tempero bom não é o que esconde o ingrediente."
+        </p>
       </div>
     </section>
   );
 }
 
+// ═══════════════════════════════════════════════════════════════════
+// ÍNDICE — categorias em accordion, receitas como menu degustação
+// ═══════════════════════════════════════════════════════════════════
 
-export function RecipeCard({ recipe }: { recipe: Recipe }) {
-  const diet = getProductDiet(recipe.featuredHandle);
+type CategoriaKey = DietKey | "tradicional";
+
+interface CategoriaDef {
+  key: CategoriaKey;
+  name: string;
+  romano: string; // I, II, III, IV, V
+  descricao: string;
+  filter: (r: Recipe) => boolean;
+}
+
+const CATEGORIAS: CategoriaDef[] = [
+  {
+    key: "keto",
+    name: "Cetogênicas",
+    romano: "I",
+    descricao:
+      "Alta gordura, proteínas moderadas, carboidratos silenciados. Sabor sem concessão.",
+    filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("keto"),
+  },
+  {
+    key: "lowcarb",
+    name: "Low Carb",
+    romano: "II",
+    descricao:
+      "Menos carboidrato, mais textura. A cozinha que sustenta sem pesar.",
+    filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("lowcarb"),
+  },
+  {
+    key: "carnivora-flex",
+    name: "Carnívora Flexível",
+    romano: "III",
+    descricao:
+      "Proteína animal no centro, temperos vegetais como pontuação.",
+    filter: (r) =>
+      (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("carnivora-flex"),
+  },
+  {
+    key: "carnivora-estrita",
+    name: "Carnívora Estrita",
+    romano: "IV",
+    descricao:
+      "Somente proteína animal, sal e água. Um convite à essência do sabor.",
+    filter: (r) =>
+      (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("carnivora-estrita"),
+  },
+  {
+    key: "tradicional",
+    name: "Tradicionais",
+    romano: "V",
+    descricao:
+      "A mesa de todos os dias, elevada por temperos com autoria mineira.",
+    filter: (r) => r.category === "tradicional",
+  },
+];
+
+function BibliotecaIndice() {
+  const [aberta, setAberta] = useState<CategoriaKey | null>("keto");
+
   return (
-    <Link
-      to="/cozinha/$slug"
-      params={{ slug: recipe.slug }}
-      className="group block border border-foreground/15 bg-background hover:border-accent transition-colors"
-    >
-      <div
-        className="relative aspect-[5/3] overflow-hidden"
-        style={{ background: recipe.hero.color }}
-      >
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 30%, rgba(0,0,0,0.25) 0, transparent 40%), radial-gradient(circle at 80% 70%, rgba(0,0,0,0.2) 0, transparent 50%)",
-          }}
-        />
-        <span className="absolute top-3 left-3 label-tag">
-          {MOMENTS[recipe.moment]}
-        </span>
-        <span
-          className="absolute right-4 bottom-3 text-5xl sm:text-6xl select-none opacity-90 transition-transform duration-500 group-hover:scale-110"
-          aria-hidden
-        >
-          {recipe.hero.emoji}
-        </span>
-      </div>
-      <div className="p-5 flex flex-col gap-3">
-        <h3 className="font-display font-black uppercase tracking-tight text-xl leading-[0.95]">
-          {recipe.title}
-        </h3>
-        <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
-          {recipe.intro}
-        </p>
-        <div className="flex items-center justify-between gap-3 pt-2 border-t border-foreground/10">
-          <div className="flex flex-wrap gap-1.5">
-            {recipe.category === "tradicional" ? (
-              <span className="label-tag">Mesa de Todos</span>
-            ) : (
-              recipe.compatibleDiets.map((d) => (
-                <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
-              ))
-            )}
+    <section id="indice" aria-labelledby="indice-title" className="bg-brand-paper py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Cabeçalho editorial */}
+        <div className="mb-16 sm:mb-20 max-w-3xl">
+          <div className="flex items-center gap-3 mb-6">
+            <span aria-hidden className="block h-px w-12 bg-accent" />
+            <span className="text-[10px] font-display uppercase tracking-[0.4em] text-accent">
+              Índice
+            </span>
           </div>
-          <ArrowRight className="h-4 w-4 text-foreground/50 group-hover:text-accent transition" />
+          <h2
+            id="indice-title"
+            className="font-display font-black uppercase text-brand-ink leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl"
+          >
+            O Menu da Casa
+          </h2>
+          <p className="mt-6 font-serif italic text-lg sm:text-xl text-brand-ink/70 leading-relaxed">
+            Cinco estilos de cozinhar. Uma única obsessão: o sabor que
+            respeita quem come.
+          </p>
         </div>
 
-        <p className="text-[11px] font-display uppercase tracking-widest text-muted-foreground">
-          com {humanHandle(recipe.featuredHandle)}
-          {diet ? "" : ""}
-        </p>
+        {/* Accordion — Michelin menu style */}
+        <div>
+          {DIETS && null}
+          {CATEGORIAS.map((cat) => (
+            <CategoriaAccordion
+              key={cat.key}
+              cat={cat}
+              open={aberta === cat.key}
+              onToggle={() => setAberta(aberta === cat.key ? null : cat.key)}
+            />
+          ))}
+        </div>
       </div>
-    </Link>
+    </section>
+  );
+}
+
+function CategoriaAccordion({
+  cat,
+  open,
+  onToggle,
+}: {
+  cat: CategoriaDef;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  const receitas = useMemo(() => RECIPES.filter(cat.filter), [cat]);
+
+  return (
+    <article className="border-t border-brand-ink/20 last:border-b">
+      <button
+        onClick={onToggle}
+        aria-expanded={open}
+        className="group w-full flex items-baseline gap-6 sm:gap-10 py-10 sm:py-14 text-left hover:bg-brand-ink/[0.02] transition-colors -mx-4 sm:-mx-6 px-4 sm:px-6"
+      >
+        <span className="shrink-0 font-display font-black text-brand-ink/25 text-2xl sm:text-3xl tabular-nums w-10 sm:w-14 leading-none group-hover:text-accent transition-colors">
+          {cat.romano}
+        </span>
+        <div className="flex-1 min-w-0">
+          <h3 className="font-display font-black uppercase text-brand-ink leading-[0.9] tracking-tight text-3xl sm:text-5xl lg:text-6xl">
+            {cat.name}
+          </h3>
+          <p className="mt-3 font-serif italic text-brand-ink/60 text-base sm:text-lg max-w-2xl leading-snug">
+            {cat.descricao}
+          </p>
+        </div>
+        <span className="shrink-0 flex items-center gap-4 text-brand-ink/50 self-center">
+          <span className="text-[11px] font-display uppercase tracking-[0.25em] tabular-nums hidden sm:inline">
+            {receitas.length.toString().padStart(2, "0")}
+          </span>
+          <ChevronDown
+            className={`h-6 w-6 transition-transform duration-500 ${open ? "rotate-180" : ""}`}
+          />
+        </span>
+      </button>
+
+      {/* Lista de receitas — só nomes, muito espaço, hover editorial */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-700 ease-out ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          {receitas.length === 0 ? (
+            <div className="pb-14 pl-16 sm:pl-24 max-w-2xl">
+              <p className="font-serif italic text-brand-ink/50 text-base">
+                Ainda estamos desenvolvendo receitas exclusivas para este
+                estilo. Aguarde os próximos capítulos da biblioteca.
+              </p>
+            </div>
+          ) : (
+            <ul className="pb-14 sm:pb-20">
+              {receitas.map((r, i) => (
+                <li key={r.slug}>
+                  <Link
+                    to="/cozinha/$slug"
+                    params={{ slug: r.slug }}
+                    className="group/item flex items-baseline gap-6 sm:gap-10 py-5 sm:py-6 pl-16 sm:pl-24 pr-4 hover:bg-brand-ink hover:text-brand-paper transition-colors -mx-4 sm:-mx-6 sm:pr-6"
+                  >
+                    <span className="shrink-0 font-display text-brand-ink/30 text-xs tabular-nums group-hover/item:text-brand-mustard w-8">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex-1 min-w-0 font-display font-bold uppercase tracking-tight text-xl sm:text-2xl lg:text-3xl leading-[1.05] group-hover/item:translate-x-2 transition-transform">
+                      {r.title}
+                    </span>
+                    <span className="shrink-0 hidden md:inline font-serif italic text-sm text-brand-ink/40 group-hover/item:text-brand-paper/70 max-w-xs text-right leading-tight">
+                      {r.subtitle ?? r.intro}
+                    </span>
+                    <ArrowUpRight className="shrink-0 h-5 w-5 opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </article>
   );
 }
