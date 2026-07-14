@@ -111,21 +111,32 @@ function RecipePage() {
           </Link>
           <div className="grid lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-8">
-              <span className="inline-block px-3 py-1 bg-brand-ink text-brand-paper font-display font-black uppercase tracking-widest text-[10px]">
-                {MOMENTS[recipe.moment]}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-block px-3 py-1 bg-brand-ink text-brand-paper font-display font-black uppercase tracking-widest text-[10px]">
+                  {MOMENTS[recipe.moment]}
+                </span>
+                <span className="inline-block px-3 py-1 bg-accent text-background font-display font-black uppercase tracking-widest text-[10px]">
+                  {recipe.category === "tradicional"
+                    ? "Mesa de Todos"
+                    : "Estilo de Vida"}
+                </span>
+              </div>
               <h1 className="mt-5 font-display font-black uppercase leading-[0.92] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
                 {recipe.title}
               </h1>
               <p className="mt-6 font-serif italic text-xl sm:text-2xl text-white/90 leading-snug max-w-2xl">
                 {recipe.intro}
               </p>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {recipe.compatibleDiets.map((d) => (
-                  <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
-                ))}
-              </div>
+              {recipe.category !== "tradicional" &&
+                recipe.compatibleDiets.length > 0 && (
+                  <div className="mt-8 flex flex-wrap gap-2">
+                    {recipe.compatibleDiets.map((d) => (
+                      <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
+                    ))}
+                  </div>
+                )}
             </div>
+
             <div className="lg:col-span-4 flex justify-center">
               <div
                 className="text-[10rem] sm:text-[12rem] leading-none select-none drop-shadow-2xl"
