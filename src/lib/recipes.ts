@@ -719,6 +719,8 @@ export const RECIPES: Recipe[] = [
       "Use a Cúrcuma em sopas, caldos, arroz amarelo ou para temperar lentilha e grão de bico.",
     hero: { color: "oklch(0.78 0.14 80)", emoji: "🥕" },
   },
+];
+
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
   return RECIPES.find((r) => r.slug === slug);
