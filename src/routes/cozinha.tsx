@@ -1,7 +1,7 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { DIETS, type DietKey } from "@/lib/diets";
+import { type DietKey } from "@/lib/diets";
 import { RECIPES, CATEGORIES, type Recipe } from "@/lib/recipes";
 import { ChevronDown, ArrowUpRight } from "lucide-react";
 
@@ -228,8 +228,8 @@ function BibliotecaIndice() {
 
         {/* Accordion — Michelin menu style */}
         <div>
-          {DIETS && null}
           {CATEGORIAS.map((cat) => (
+
             <CategoriaAccordion
               key={cat.key}
               cat={cat}
