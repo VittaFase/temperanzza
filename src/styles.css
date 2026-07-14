@@ -1,5 +1,6 @@
 @import "tailwindcss" source(none);
 @source "../src";
+@source inline("bg-brand-mustard bg-brand-emerald bg-brand-red bg-brand-ink text-brand-emerald text-brand-mustard");
 @import "tw-animate-css";
 
 @import "@fontsource/big-shoulders-stencil-display/700.css";
