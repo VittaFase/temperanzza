@@ -59,8 +59,8 @@ export const RECIPES: Recipe[] = [
   // Perfil 1 — Defumado e saboroso
   {
     slug: "omelete-bacon-em-po",
-    title: "Omelete simples com Bacon em Pó",
-    featuredHandle: "bacon-em-po",
+    title: "Omelete simples com Temperaflix Bacon",
+    featuredHandle: "temperaflix-bacon",
     compatibleDiets: ["keto", "lowcarb"],
     moment: "cafe",
     profile: "defumado",
@@ -69,17 +69,17 @@ export const RECIPES: Recipe[] = [
       "3 ovos",
       "1 colher (sopa) de manteiga ou azeite",
       "30 g de queijo mussarela ou prato",
-      "Bacon em Pó Temperanzza a gosto",
+      "Temperaflix Bacon a gosto",
       "Sal a gosto",
     ],
     steps: [
       "Bata os ovos com uma pitada de sal.",
       "Aqueça a frigideira antiaderente e derreta a manteiga.",
       "Despeje os ovos, distribua o queijo por cima e cozinhe em fogo baixo até firmar.",
-      "Dobre a omelete, transfira para o prato e salpique o Bacon em Pó imediatamente.",
+      "Dobre a omelete, transfira para o prato e salpique o Temperaflix Bacon imediatamente.",
     ],
     whyItWorks:
-      "Ovos e queijo são a base de proteína e gordura das dietas cetogênica e low carb. O Bacon em Pó entra em porção pequena, mantendo os carboidratos controlados.",
+      "Ovos e queijo são a base de proteína e gordura das dietas cetogênica e low carb. O Temperaflix Bacon entra em porção pequena, mantendo os carboidratos controlados.",
     substitution:
       "Sem queijo? Substitua por 1 colher (sopa) de cream cheese misturado aos ovos batidos — a textura fica ainda mais cremosa.",
     hero: { color: "oklch(0.35 0.08 40)", emoji: "🥓" },
@@ -113,28 +113,28 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "hamburguer-bacon-em-po",
-    title: "Hambúrguer caseiro com Bacon em Pó",
-    featuredHandle: "bacon-em-po",
+    title: "Hambúrguer caseiro com Temperaflix Bacon",
+    featuredHandle: "temperaflix-bacon",
     compatibleDiets: ["keto", "lowcarb"],
     moment: "jantar",
     profile: "defumado",
     intro: "Sem pão, sem desculpa. Suculência e defumado em cada mordida.",
     ingredients: [
       "500 g de carne moída (patinho ou acém 20% gordura)",
-      "2 colheres (chá) de Bacon em Pó Temperanzza",
+      "2 colheres (chá) de Temperaflix Bacon",
       "1 colher (chá) de sal",
       "Pimenta-do-reino moída na hora",
       "4 fatias de queijo cheddar ou prato",
       "Folhas verdes para acompanhar",
     ],
     steps: [
-      "Misture a carne com o Bacon em Pó, sal e pimenta sem sovar demais.",
+      "Misture a carne com o Temperaflix Bacon, sal e pimenta sem sovar demais.",
       "Modele 4 discos de 2 cm de altura.",
       "Grelhe em frigideira bem quente por 3 minutos de cada lado.",
       "Coloque o queijo no topo, abafe até derreter e sirva sobre as folhas.",
     ],
     whyItWorks:
-      "Carne e queijo são pilares do low carb e da cetogênica. O Bacon em Pó realça a carne sem carga extra.",
+      "Carne e queijo são pilares do low carb e da cetogênica. O Temperaflix Bacon realça a carne sem carga extra.",
     substitution:
       "Sem queijo? Finalize com um ovo frito por cima — proteína e gordura mantidas.",
     hero: { color: "oklch(0.32 0.08 30)", emoji: "🍔" },
@@ -561,8 +561,8 @@ export const RECIPES: Recipe[] = [
   // Perfil 7 — Churrasco e grelhados
   {
     slug: "ovos-fritos-bacon-tradicional",
-    title: "Ovos fritos com Bacon em Pó",
-    featuredHandle: "bacon-em-po",
+    title: "Ovos fritos com Temperaflix Bacon",
+    featuredHandle: "temperaflix-bacon",
     compatibleDiets: [],
     moment: "cafe",
     profile: "defumado",
@@ -571,17 +571,17 @@ export const RECIPES: Recipe[] = [
     ingredients: [
       "3 ovos",
       "1 colher (sopa) de manteiga",
-      "1 colher (chá) cheia de Bacon em Pó Temperanzza",
+      "1 colher (chá) cheia de Temperaflix Bacon",
       "Pão francês, tapioca ou torradas para acompanhar",
     ],
     steps: [
       "Derreta a manteiga numa frigideira antiaderente.",
       "Frite os ovos mantendo a gema mole.",
-      "Salpique o Bacon em Pó generosamente por cima.",
+      "Salpique o Temperaflix Bacon generosamente por cima.",
       "Sirva com o acompanhamento de sua preferência.",
     ],
     whyItWorks:
-      "O Bacon em Pó traz o aroma e o sabor do bacon fatiado de forma instantânea — perfeito para transformar um ovo frito comum em algo memorável.",
+      "O Temperaflix Bacon traz o aroma e o sabor do bacon fatiado de forma instantânea — perfeito para transformar um ovo frito comum em algo memorável.",
     substitution:
       "Experimente no pão na chapa com queijo derretido ou em patês para um lanche defumado.",
     hero: { color: "oklch(0.4 0.08 40)", emoji: "🍳" },
