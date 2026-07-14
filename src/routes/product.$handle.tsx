@@ -237,7 +237,64 @@ function ProductPage() {
             )}
           </div>
         </div>
+
+        {/* Compatibilidade dietética */}
+        <DietSectionForProduct handle={handle} />
       </div>
     </SiteLayout>
+  );
+}
+
+function DietSectionForProduct({ handle }: { handle: string }) {
+  const diet = getProductDiet(handle);
+  const recipes = getRecipesByHandle(handle);
+  if (!diet && recipes.length === 0) return null;
+  return (
+    <section className="mt-16 lg:mt-24 grid lg:grid-cols-3 gap-8">
+      {diet && (
+        <div className="lg:col-span-2">
+          <DietCompatibilityPanel diet={diet} />
+        </div>
+      )}
+      <aside className="border border-foreground/15 bg-brand-cream/60 bg-paper-grain p-6 lg:p-7 flex flex-col">
+        <div className="flex items-center gap-2 mb-3">
+          <BookOpen className="h-4 w-4 text-accent" />
+          <span className="text-[10px] font-display uppercase tracking-widest text-muted-foreground">
+            Na Cozinha Temperanzza
+          </span>
+        </div>
+        <h3 className="font-display font-black uppercase text-2xl leading-[0.95]">
+          {recipes.length > 0
+            ? `${recipes.length} receita${recipes.length > 1 ? "s" : ""} com este tempero`
+            : "Explore receitas para sua dieta"}
+        </h3>
+        <ul className="mt-5 space-y-3 flex-1">
+          {recipes.slice(0, 4).map((r) => (
+            <li key={r.slug}>
+              <Link
+                to="/cozinha/$slug"
+                params={{ slug: r.slug }}
+                className="group flex items-start gap-3 text-sm hover:text-accent"
+              >
+                <span
+                  className="shrink-0 h-8 w-8 grid place-items-center text-xl"
+                  style={{ background: r.hero.color, color: "white" }}
+                  aria-hidden
+                >
+                  {r.hero.emoji}
+                </span>
+                <span className="font-medium leading-snug">{r.title}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link
+          to="/cozinha"
+          className="mt-6 inline-flex items-center gap-2 text-xs font-display font-black uppercase tracking-widest text-accent hover:underline underline-offset-4"
+        >
+          Ir para a Cozinha →
+        </Link>
+      </aside>
+    </section>
   );
 }
