@@ -194,10 +194,12 @@ function RecipePage() {
               ))}
             </ol>
 
-            {/* Por que funciona */}
+            {/* Por que funciona / O Toque Temperanzza */}
             <div className="mt-14 border-l-4 border-brand-emerald bg-brand-cream/70 px-6 py-6">
               <p className="text-[10px] font-display uppercase tracking-widest text-brand-emerald mb-2">
-                Por que funciona para sua dieta
+                {recipe.category === "tradicional"
+                  ? "O toque Temperanzza"
+                  : "Por que funciona para sua dieta"}
               </p>
               <p className="font-serif italic text-lg leading-relaxed">
                 {recipe.whyItWorks}
@@ -207,10 +209,13 @@ function RecipePage() {
             {/* Dica */}
             <div className="mt-6 border-l-4 border-brand-mustard bg-brand-cream/70 px-6 py-6">
               <p className="text-[10px] font-display uppercase tracking-widest text-brand-ink/70 mb-2">
-                Dica de substituição
+                {recipe.category === "tradicional"
+                  ? "Dica de variação"
+                  : "Dica de substituição"}
               </p>
               <p className="text-base leading-relaxed">{recipe.substitution}</p>
             </div>
+
 
             {/* CTA */}
             <div className="mt-10">
