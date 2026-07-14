@@ -86,19 +86,34 @@ function CozinhaPage() {
             </span>
           </div>
           <h1 className="font-display font-black uppercase leading-[0.92] tracking-tight text-[13vw] sm:text-7xl lg:text-8xl">
-            Sabor e saúde
+            Sabor para
             <br />
-            para quem come
+            <span className="text-accent">cada estilo</span>
             <br />
-            com <span className="text-accent">consciência</span>.
+            de vida.
           </h1>
           <p className="mt-8 max-w-2xl font-serif italic text-xl sm:text-2xl text-foreground/80 leading-snug">
-            Um guia didático de compatibilidade dietética e receitas do dia a
-            dia — pensadas para cetogênica, low carb e carnívora, sem abrir mão
-            do prazer da mesa.
+            Um guia didático que reúne receitas para dietas de performance
+            (cetogênica, low carb, carnívora) e a mesa tradicional brasileira —
+            porque o sabor da Temperanzza cabe em toda casa.
           </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button
+              onClick={() => setTipo("dieta")}
+              className="px-4 py-2 border border-foreground/25 hover:border-accent text-xs font-display uppercase tracking-widest"
+            >
+              Estilo de vida & performance →
+            </button>
+            <button
+              onClick={() => setTipo("tradicional")}
+              className="px-4 py-2 border border-foreground/25 hover:border-accent text-xs font-display uppercase tracking-widest"
+            >
+              Mesa de todos — tradicional →
+            </button>
+          </div>
         </div>
       </section>
+
 
       {/* Entendendo as dietas */}
       <section
