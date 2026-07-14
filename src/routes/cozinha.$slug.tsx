@@ -111,21 +111,32 @@ function RecipePage() {
           </Link>
           <div className="grid lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-8">
-              <span className="inline-block px-3 py-1 bg-brand-ink text-brand-paper font-display font-black uppercase tracking-widest text-[10px]">
-                {MOMENTS[recipe.moment]}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-block px-3 py-1 bg-brand-ink text-brand-paper font-display font-black uppercase tracking-widest text-[10px]">
+                  {MOMENTS[recipe.moment]}
+                </span>
+                <span className="inline-block px-3 py-1 bg-accent text-background font-display font-black uppercase tracking-widest text-[10px]">
+                  {recipe.category === "tradicional"
+                    ? "Mesa de Todos"
+                    : "Estilo de Vida"}
+                </span>
+              </div>
               <h1 className="mt-5 font-display font-black uppercase leading-[0.92] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
                 {recipe.title}
               </h1>
               <p className="mt-6 font-serif italic text-xl sm:text-2xl text-white/90 leading-snug max-w-2xl">
                 {recipe.intro}
               </p>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {recipe.compatibleDiets.map((d) => (
-                  <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
-                ))}
-              </div>
+              {recipe.category !== "tradicional" &&
+                recipe.compatibleDiets.length > 0 && (
+                  <div className="mt-8 flex flex-wrap gap-2">
+                    {recipe.compatibleDiets.map((d) => (
+                      <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
+                    ))}
+                  </div>
+                )}
             </div>
+
             <div className="lg:col-span-4 flex justify-center">
               <div
                 className="text-[10rem] sm:text-[12rem] leading-none select-none drop-shadow-2xl"
@@ -183,10 +194,12 @@ function RecipePage() {
               ))}
             </ol>
 
-            {/* Por que funciona */}
+            {/* Por que funciona / O Toque Temperanzza */}
             <div className="mt-14 border-l-4 border-brand-emerald bg-brand-cream/70 px-6 py-6">
               <p className="text-[10px] font-display uppercase tracking-widest text-brand-emerald mb-2">
-                Por que funciona para sua dieta
+                {recipe.category === "tradicional"
+                  ? "O toque Temperanzza"
+                  : "Por que funciona para sua dieta"}
               </p>
               <p className="font-serif italic text-lg leading-relaxed">
                 {recipe.whyItWorks}
@@ -196,10 +209,13 @@ function RecipePage() {
             {/* Dica */}
             <div className="mt-6 border-l-4 border-brand-mustard bg-brand-cream/70 px-6 py-6">
               <p className="text-[10px] font-display uppercase tracking-widest text-brand-ink/70 mb-2">
-                Dica de substituição
+                {recipe.category === "tradicional"
+                  ? "Dica de variação"
+                  : "Dica de substituição"}
               </p>
               <p className="text-base leading-relaxed">{recipe.substitution}</p>
             </div>
+
 
             {/* CTA */}
             <div className="mt-10">

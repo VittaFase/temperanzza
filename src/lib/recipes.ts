@@ -7,6 +7,7 @@ import type { DietKey } from "./diets";
 import type { ProductDiet } from "./dietCompatibility";
 
 export type Moment = "cafe" | "almoco" | "jantar";
+export type RecipeCategory = "dieta" | "tradicional";
 
 export interface Recipe {
   slug: string;
@@ -16,10 +17,14 @@ export interface Recipe {
   compatibleDiets: DietKey[];
   moment: Moment;
   profile: ProductDiet["profile"];
+  /** "dieta" (Estilo de Vida e Performance) ou "tradicional" (Mesa de Todos). Default: "dieta" */
+  category?: RecipeCategory;
   intro: string;
   ingredients: string[];
   steps: string[];
+  /** rótulo depende da categoria: "Por que funciona…" vs "O Toque Temperanzza" */
   whyItWorks: string;
+  /** rótulo depende da categoria: "Dica de substituição" vs "Dica de variação" */
   substitution: string;
   /** metáfora visual quando não há foto ainda */
   hero: { color: string; emoji: string };
@@ -29,6 +34,11 @@ export const MOMENTS: Record<Moment, string> = {
   cafe: "Café da manhã",
   almoco: "Almoço",
   jantar: "Jantar",
+};
+
+export const CATEGORIES: Record<RecipeCategory, { label: string; short: string }> = {
+  dieta: { label: "Estilo de Vida & Performance", short: "Dieta" },
+  tradicional: { label: "Mesa de Todos — Tradicional", short: "Tradicional" },
 };
 
 export const RECIPES: Recipe[] = [
@@ -437,7 +447,280 @@ export const RECIPES: Recipe[] = [
       "Sem camarão? Use frango em cubos — dobre o tempo de cocção para 8 minutos.",
     hero: { color: "oklch(0.55 0.18 30)", emoji: "🦐" },
   },
+
+  // ================================================================
+  // MESA DE TODOS — Cozinha Tradicional Brasileira
+  // Momento de celebração / Dia Livre — sabor de casa realçado pela Temperanzza
+  // ================================================================
+
+  // Perfil 6 — Sabor brasileiro (caseiro, mineiro)
+  {
+    slug: "pao-de-queijo-tempero-mineiro",
+    title: "Pão de queijo com Tempero Mineiro",
+    featuredHandle: "tempero-mineiro",
+    compatibleDiets: [],
+    moment: "cafe",
+    profile: "casa",
+    category: "tradicional",
+    intro: "O clássico das Gerais com um sopro extra de fazenda no aroma.",
+    ingredients: [
+      "500 g de polvilho azedo",
+      "250 ml de leite",
+      "125 ml de óleo",
+      "2 ovos",
+      "250 g de queijo minas meia-cura ralado",
+      "1 colher (chá) de sal",
+      "1 colher (chá) de Tempero Mineiro Temperanzza",
+    ],
+    steps: [
+      "Ferva o leite com o óleo e o sal.",
+      "Escalde o polvilho com a mistura quente e sove até esfriar.",
+      "Incorpore os ovos, o queijo ralado e o Tempero Mineiro.",
+      "Modele bolinhas e asse a 200 °C por 25 minutos até dourar.",
+    ],
+    whyItWorks:
+      "O Tempero Mineiro é a alma da cozinha das Gerais. Uma pitada na massa realça o queijo e traz o gosto de fogão a lenha ao pão de queijo tradicional.",
+    substitution:
+      "Também vai bem em omeletes e ovos mexidos para um café da manhã com sabor de fazenda.",
+    hero: { color: "oklch(0.75 0.09 85)", emoji: "🧀" },
+  },
+  {
+    slug: "arroz-soltinho-alho-cebola",
+    title: "Arroz soltinho com Alho e Cebola em Pó",
+    featuredHandle: "alho-em-po",
+    compatibleDiets: [],
+    moment: "almoco",
+    profile: "puras",
+    category: "tradicional",
+    intro: "O arroz de todo dia, com o gostinho de um refogado bem feito — em minutos.",
+    ingredients: [
+      "2 xícaras de arroz branco",
+      "1 colher (sopa) de óleo ou manteiga",
+      "1 colher (chá) de Alho em Pó Temperanzza",
+      "1 colher (chá) de Cebola em Pó Temperanzza",
+      "4 xícaras de água quente",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Aqueça o óleo na panela e adicione o Alho e a Cebola em Pó.",
+      "Refogue o arroz por 1 minuto até ficar translúcido.",
+      "Adicione a água quente e o sal.",
+      "Tampe e cozinhe em fogo baixo até secar. Solte com um garfo.",
+    ],
+    whyItWorks:
+      "Alho e Cebola em Pó são a base do tempero brasileiro. A versão desidratada preserva o sabor sem o trabalho de picar — praticidade que alimenta.",
+    substitution:
+      "Para um toque extra, adicione uma pitada de Tempero do Edu enquanto o arroz cozinha.",
+    hero: { color: "oklch(0.9 0.02 90)", emoji: "🍚" },
+  },
+  {
+    slug: "frango-quiabo-ana-maria",
+    title: "Frango com quiabo e Ana Maria",
+    featuredHandle: "ana-maria",
+    compatibleDiets: [],
+    moment: "jantar",
+    profile: "casa",
+    category: "tradicional",
+    intro: "Prato de domingo mineiro — angu, quiabo e frango num só bocado.",
+    ingredients: [
+      "1 kg de frango em pedaços",
+      "300 g de quiabo cortado em rodelas",
+      "2 tomates picados",
+      "1 cebola picada",
+      "2 dentes de alho amassados",
+      "2 colheres (sopa) de Ana Maria Temperanzza",
+      "Óleo, sal e água a gosto",
+    ],
+    steps: [
+      "Doure o frango no óleo com a cebola e o alho.",
+      "Adicione o tomate, o Ana Maria e um pouco de água. Cozinhe 15 minutos.",
+      "Junte o quiabo e deixe cozinhar mais 10 minutos em fogo baixo.",
+      "Sirva com angu ou polenta cremosa.",
+    ],
+    whyItWorks:
+      "O Ana Maria é o tempero-coringa da cozinha caseira brasileira. Realça o frango e combina com o quiabo num prato que abraça.",
+    substitution:
+      "Sem quiabo? Faça frango com jiló ou uma canja tradicional usando o mesmo tempero.",
+    hero: { color: "oklch(0.5 0.14 55)", emoji: "🍲" },
+  },
+
+  // Perfil 7 — Churrasco e grelhados
+  {
+    slug: "ovos-fritos-bacon-tradicional",
+    title: "Ovos fritos com Bacon em Pó",
+    featuredHandle: "bacon-em-po",
+    compatibleDiets: [],
+    moment: "cafe",
+    profile: "defumado",
+    category: "tradicional",
+    intro: "Café da manhã de fim de semana — defumado no primeiro cheiro.",
+    ingredients: [
+      "3 ovos",
+      "1 colher (sopa) de manteiga",
+      "1 colher (chá) cheia de Bacon em Pó Temperanzza",
+      "Pão francês, tapioca ou torradas para acompanhar",
+    ],
+    steps: [
+      "Derreta a manteiga numa frigideira antiaderente.",
+      "Frite os ovos mantendo a gema mole.",
+      "Salpique o Bacon em Pó generosamente por cima.",
+      "Sirva com o acompanhamento de sua preferência.",
+    ],
+    whyItWorks:
+      "O Bacon em Pó traz o aroma e o sabor do bacon fatiado de forma instantânea — perfeito para transformar um ovo frito comum em algo memorável.",
+    substitution:
+      "Experimente no pão na chapa com queijo derretido ou em patês para um lanche defumado.",
+    hero: { color: "oklch(0.4 0.08 40)", emoji: "🍳" },
+  },
+  {
+    slug: "bife-acebolado-lemon-pepper",
+    title: "Bife acebolado com Lemon Pepper",
+    featuredHandle: "lemon-pepper",
+    compatibleDiets: [],
+    moment: "almoco",
+    profile: "citrico-picante",
+    category: "tradicional",
+    intro: "O bife de PF elevado — cítrico, dourado, com cebola caramelizada.",
+    ingredients: [
+      "2 bifes de contrafilé ou alcatra",
+      "1 cebola grande em rodelas",
+      "2 colheres (sopa) de óleo",
+      "1 colher (chá) de Lemon Pepper Temperanzza",
+      "Sal a gosto",
+      "Arroz e feijão para acompanhar",
+    ],
+    steps: [
+      "Tempere os bifes com sal e Lemon Pepper.",
+      "Aqueça o óleo em frigideira bem quente e sele os bifes 2 minutos de cada lado.",
+      "Retire os bifes e, na mesma frigideira, refogue a cebola até dourar.",
+      "Devolva os bifes, misture com a cebola e sirva com arroz e feijão.",
+    ],
+    whyItWorks:
+      "O toque cítrico do Lemon Pepper corta a gordura da carne e realça a doçura da cebola caramelizada — um clássico brasileiro reinventado.",
+    substitution:
+      "Também é excelente em peixes assados, filé de frango grelhado ou batata frita rústica.",
+    hero: { color: "oklch(0.6 0.14 85)", emoji: "🥩" },
+  },
+  {
+    slug: "costelinha-paprica-defumada-tradicional",
+    title: "Costelinha de porco assada com Páprica Defumada",
+    featuredHandle: "paprica-defumada",
+    compatibleDiets: [],
+    moment: "jantar",
+    profile: "defumado",
+    category: "tradicional",
+    intro: "Domingo em família, forno ligado, aroma defumado tomando a casa.",
+    ingredients: [
+      "1,2 kg de costelinha suína",
+      "2 colheres (sopa) cheias de Páprica Defumada Temperanzza",
+      "2 colheres (sopa) de azeite",
+      "Sal grosso a gosto",
+      "1 limão",
+      "Mandioca cozida e farofa para acompanhar",
+    ],
+    steps: [
+      "Tempere a costelinha com sal, azeite, Páprica Defumada e o suco do limão.",
+      "Deixe marinar por 30 minutos.",
+      "Asse coberta a 180 °C por 1 h 30 min.",
+      "Retire a cobertura e asse mais 20 minutos até dourar. Sirva com mandioca e farofa.",
+    ],
+    whyItWorks:
+      "A Páprica Defumada confere aquele aroma de churrasqueira sem sair da cozinha — um clássico brasileiro que abraça a mesa toda.",
+    substitution:
+      "Excelente para temperar linguiças caseiras, frango a passarinho ou molhos barbecue tradicionais.",
+    hero: { color: "oklch(0.42 0.15 35)", emoji: "🍖" },
+  },
+
+  // Perfil 8 — Ervas e especiarias em pratos tradicionais
+  {
+    slug: "omelete-ervas-finas-tradicional",
+    title: "Omelete aromática com Ervas Finas",
+    featuredHandle: "ervas-finas",
+    compatibleDiets: [],
+    moment: "cafe",
+    profile: "ervas",
+    category: "tradicional",
+    intro: "Um café da manhã simples e perfumado — no espírito da mesa francesa e brasileira.",
+    ingredients: [
+      "3 ovos",
+      "50 g de queijo mussarela ralado",
+      "1 colher (sopa) de manteiga",
+      "1 pitada generosa de Ervas Finas Temperanzza",
+      "Sal e pimenta a gosto",
+      "Pão de forma ou tapioca para acompanhar",
+    ],
+    steps: [
+      "Bata os ovos com sal, pimenta e as Ervas Finas.",
+      "Derreta a manteiga em frigideira antiaderente.",
+      "Despeje os ovos, distribua o queijo e cozinhe em fogo baixo.",
+      "Dobre a omelete ao meio e sirva com o acompanhamento.",
+    ],
+    whyItWorks:
+      "As Ervas Finas dão frescor e sofisticação a um prato do dia a dia — o mesmo omelete de sempre com aroma de bistrô.",
+    substitution:
+      "Use as Ervas Finas em patês de queijo, saladas de batata ou para temperar queijos frescos como boursin caseiro.",
+    hero: { color: "oklch(0.6 0.11 140)", emoji: "🌿" },
+  },
+  {
+    slug: "frango-chimi-churri-tradicional",
+    title: "Frango grelhado com Chimi Churri",
+    featuredHandle: "chimi-churri-sem-pimenta",
+    compatibleDiets: [],
+    moment: "almoco",
+    profile: "ervas",
+    category: "tradicional",
+    intro: "O frango de todo dia com o sabor do pampa argentino no prato.",
+    ingredients: [
+      "4 filés de peito de frango",
+      "2 colheres (sopa) de azeite",
+      "1 colher (sopa) cheia de Chimi Churri Sem Pimenta Temperanzza",
+      "Sal a gosto",
+      "Arroz branco e salada para acompanhar",
+    ],
+    steps: [
+      "Tempere os filés com sal, azeite e Chimi Churri. Deixe marinar 15 minutos.",
+      "Grelhe em frigideira ou churrasqueira 4 minutos de cada lado.",
+      "Deixe descansar 2 minutos antes de cortar.",
+      "Sirva com arroz branco e salada de folhas.",
+    ],
+    whyItWorks:
+      "O Chimi Churri é a assinatura sul-americana no frango — ervas, alho e um leve vinagre que combinam com qualquer prato do almoço brasileiro.",
+    substitution:
+      "Ótimo em carnes vermelhas grelhadas, peixes assados ou como molho para salada com azeite e vinagre.",
+    hero: { color: "oklch(0.55 0.13 145)", emoji: "🌱" },
+  },
+  {
+    slug: "legumes-assados-curcuma-tradicional",
+    title: "Legumes assados com Cúrcuma",
+    featuredHandle: "curcuma",
+    compatibleDiets: [],
+    moment: "jantar",
+    profile: "puras",
+    category: "tradicional",
+    intro: "Cor, aroma e um acompanhamento que vira protagonista.",
+    ingredients: [
+      "1 abobrinha em cubos",
+      "1 berinjela em cubos",
+      "2 cenouras em rodelas grossas",
+      "2 batatas em cubos",
+      "3 colheres (sopa) de azeite",
+      "1 colher (chá) de Cúrcuma Temperanzza",
+      "Sal e pimenta-do-reino a gosto",
+    ],
+    steps: [
+      "Misture todos os legumes numa assadeira grande.",
+      "Regue com azeite e polvilhe sal, pimenta e a Cúrcuma.",
+      "Misture bem para colorir por igual.",
+      "Asse a 200 °C por 35 minutos, mexendo na metade do tempo.",
+    ],
+    whyItWorks:
+      "A Cúrcuma dá cor de ouro aos legumes e um sabor terroso suave — transforma um acompanhamento comum em prato de destaque na mesa da família.",
+    substitution:
+      "Use a Cúrcuma em sopas, caldos, arroz amarelo ou para temperar lentilha e grão de bico.",
+    hero: { color: "oklch(0.78 0.14 80)", emoji: "🥕" },
+  },
 ];
+
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
   return RECIPES.find((r) => r.slug === slug);

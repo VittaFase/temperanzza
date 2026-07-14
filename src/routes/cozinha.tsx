@@ -2,7 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { DIETS, type DietKey } from "@/lib/diets";
-import { RECIPES, MOMENTS, type Moment, type Recipe } from "@/lib/recipes";
+import {
+  RECIPES,
+  MOMENTS,
+  CATEGORIES,
+  type Moment,
+  type Recipe,
+  type RecipeCategory,
+} from "@/lib/recipes";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DietBadge } from "@/components/site/DietBadge";
 import { Search, Filter, ArrowRight } from "lucide-react";
@@ -43,6 +50,7 @@ function humanHandle(h: string) {
 }
 
 function CozinhaPage() {
+  const [tipo, setTipo] = useState<RecipeCategory | "all">("all");
   const [dieta, setDieta] = useState<DietKey | "all">("all");
   const [condimento, setCondimento] = useState<string>("all");
   const [momento, setMomento] = useState<Moment | "all">("all");
@@ -51,6 +59,8 @@ function CozinhaPage() {
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
     return RECIPES.filter((r) => {
+      const cat: RecipeCategory = r.category ?? "dieta";
+      if (tipo !== "all" && cat !== tipo) return false;
       if (dieta !== "all" && !r.compatibleDiets.includes(dieta)) return false;
       if (condimento !== "all" && r.featuredHandle !== condimento) return false;
       if (momento !== "all" && r.moment !== momento) return false;
@@ -58,7 +68,10 @@ function CozinhaPage() {
         return false;
       return true;
     });
-  }, [dieta, condimento, momento, q]);
+  }, [tipo, dieta, condimento, momento, q]);
+
+  const dietRecipes = filtered.filter((r) => (r.category ?? "dieta") === "dieta");
+  const tradRecipes = filtered.filter((r) => r.category === "tradicional");
 
   return (
     <SiteLayout>
@@ -73,19 +86,34 @@ function CozinhaPage() {
             </span>
           </div>
           <h1 className="font-display font-black uppercase leading-[0.92] tracking-tight text-[13vw] sm:text-7xl lg:text-8xl">
-            Sabor e saúde
+            Sabor para
             <br />
-            para quem come
+            <span className="text-accent">cada estilo</span>
             <br />
-            com <span className="text-accent">consciência</span>.
+            de vida.
           </h1>
           <p className="mt-8 max-w-2xl font-serif italic text-xl sm:text-2xl text-foreground/80 leading-snug">
-            Um guia didático de compatibilidade dietética e receitas do dia a
-            dia — pensadas para cetogênica, low carb e carnívora, sem abrir mão
-            do prazer da mesa.
+            Um guia didático que reúne receitas para dietas de performance
+            (cetogênica, low carb, carnívora) e a mesa tradicional brasileira —
+            porque o sabor da Temperanzza cabe em toda casa.
           </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button
+              onClick={() => setTipo("dieta")}
+              className="px-4 py-2 border border-foreground/25 hover:border-accent text-xs font-display uppercase tracking-widest"
+            >
+              Estilo de vida & performance →
+            </button>
+            <button
+              onClick={() => setTipo("tradicional")}
+              className="px-4 py-2 border border-foreground/25 hover:border-accent text-xs font-display uppercase tracking-widest"
+            >
+              Mesa de todos — tradicional →
+            </button>
+          </div>
         </div>
       </section>
+
 
       {/* Entendendo as dietas */}
       <section
@@ -142,6 +170,17 @@ function CozinhaPage() {
               </div>
 
               <SelectPill
+                label="Tipo de cozinha"
+                value={tipo}
+                onChange={(v) => setTipo(v as RecipeCategory | "all")}
+                options={[
+                  { value: "all", label: "Todas as receitas" },
+                  { value: "dieta", label: CATEGORIES.dieta.label },
+                  { value: "tradicional", label: CATEGORIES.tradicional.label },
+                ]}
+              />
+
+              <SelectPill
                 label="Dieta"
                 value={dieta}
                 onChange={(v) => setDieta(v as DietKey | "all")}
@@ -150,6 +189,7 @@ function CozinhaPage() {
                   ...DIETS.map((d) => ({ value: d.key, label: d.name })),
                 ]}
               />
+
 
               <SelectPill
                 label="Condimento"
@@ -198,12 +238,26 @@ function CozinhaPage() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filtered.map((r) => (
-                <RecipeCard key={r.slug} recipe={r} />
-              ))}
+            <div className="space-y-16">
+              {dietRecipes.length > 0 && (
+                <RecipeGroup
+                  eyebrow="Estilo de Vida & Performance"
+                  title="Receitas para dietas"
+                  subtitle="Otimize seu corpo e mente com pratos deliciosos e 100% alinhados com seus objetivos de saúde."
+                  recipes={dietRecipes}
+                />
+              )}
+              {tradRecipes.length > 0 && (
+                <RecipeGroup
+                  eyebrow="Mesa de Todos"
+                  title="Cozinha tradicional Temperanzza"
+                  subtitle="Celebre os sabores da culinária brasileira — perfeito para o seu momento de celebração ou dia livre."
+                  recipes={tradRecipes}
+                />
+              )}
             </div>
           )}
+
         </div>
       </section>
     </SiteLayout>
@@ -240,6 +294,40 @@ function SelectPill({
     </label>
   );
 }
+
+function RecipeGroup({
+  eyebrow,
+  title,
+  subtitle,
+  recipes,
+}: {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  recipes: Recipe[];
+}) {
+  return (
+    <section>
+      <header className="mb-8 border-l-4 border-accent pl-5">
+        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          {eyebrow}
+        </span>
+        <h2 className="font-display font-black uppercase text-3xl sm:text-4xl tracking-tight mt-2">
+          {title}
+        </h2>
+        <p className="mt-3 max-w-2xl text-foreground/75 leading-relaxed">
+          {subtitle}
+        </p>
+      </header>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {recipes.map((r) => (
+          <RecipeCard key={r.slug} recipe={r} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 
 export function RecipeCard({ recipe }: { recipe: Recipe }) {
   const diet = getProductDiet(recipe.featuredHandle);
@@ -280,12 +368,17 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
         </p>
         <div className="flex items-center justify-between gap-3 pt-2 border-t border-foreground/10">
           <div className="flex flex-wrap gap-1.5">
-            {recipe.compatibleDiets.map((d) => (
-              <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
-            ))}
+            {recipe.category === "tradicional" ? (
+              <span className="label-tag">Mesa de Todos</span>
+            ) : (
+              recipe.compatibleDiets.map((d) => (
+                <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
+              ))
+            )}
           </div>
           <ArrowRight className="h-4 w-4 text-foreground/50 group-hover:text-accent transition" />
         </div>
+
         <p className="text-[11px] font-display uppercase tracking-widest text-muted-foreground">
           com {humanHandle(recipe.featuredHandle)}
           {diet ? "" : ""}
