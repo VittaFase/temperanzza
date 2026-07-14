@@ -8,6 +8,9 @@ import { FlavorTile } from "./FlavorTile";
 import { ProductBadge } from "./ProductBadge";
 import { getBadge } from "@/lib/flavorPalette";
 import { getProductImage } from "@/lib/productImages";
+import { DietDotStrip } from "./DietBadge";
+import { getProductDiet } from "@/lib/dietCompatibility";
+import { DIETS } from "@/lib/diets";
 
 export function ProductCard({
   product,
