@@ -5,7 +5,9 @@ import { ProductGrid } from "@/components/site/ProductGrid";
 import { BrandSeal } from "@/components/site/BrandSeal";
 import { FeaturedRow } from "@/components/site/FeaturedRow";
 import { Button } from "@/components/ui/button";
-import { Flame, Leaf, Award, ArrowRight } from "lucide-react";
+import { Flame, Leaf, Award, ArrowRight, Salad } from "lucide-react";
+import { RECIPES, MOMENTS } from "@/lib/recipes";
+import { DietBadge } from "@/components/site/DietBadge";
 import {
   storefrontApiRequest,
   STOREFRONT_QUERY,
@@ -186,6 +188,77 @@ function Home() {
             </Link>
           </div>
           <ProductGrid first={8} />
+        </div>
+      </section>
+
+      {/* COZINHA CONSCIENTE — dietas */}
+      <section className="border-y border-foreground/15 bg-brand-cream/60 bg-paper-grain py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-10 items-end mb-12">
+            <div className="lg:col-span-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Salad className="h-5 w-5 text-accent" />
+                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+                  Cozinha Consciente
+                </span>
+              </div>
+              <h2 className="font-display font-black uppercase text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.95]">
+                Tempero que
+                <br />
+                conversa com sua <span className="text-accent">dieta</span>.
+              </h2>
+              <p className="mt-6 font-serif italic text-lg sm:text-xl text-foreground/80 max-w-2xl leading-snug">
+                Guia didático de compatibilidade e receitas curadas para quem
+                segue cetogênica, low carb ou carnívora — sem abrir mão do
+                prazer da mesa.
+              </p>
+            </div>
+            <div className="lg:col-span-4 lg:text-right">
+              <Link
+                to="/cozinha"
+                className="inline-flex items-center gap-2 border-b-2 border-foreground/30 hover:border-accent hover:text-accent pb-1 text-sm font-display font-black uppercase tracking-widest"
+              >
+                Explorar a Cozinha
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {RECIPES.slice(0, 3).map((r) => (
+              <Link
+                key={r.slug}
+                to="/cozinha/$slug"
+                params={{ slug: r.slug }}
+                className="group block border border-foreground/15 bg-background hover:border-accent transition"
+              >
+                <div
+                  className="relative aspect-[5/3]"
+                  style={{ background: r.hero.color }}
+                >
+                  <span className="absolute top-3 left-3 label-tag">
+                    {MOMENTS[r.moment]}
+                  </span>
+                  <span
+                    className="absolute right-4 bottom-3 text-6xl opacity-90 transition-transform duration-500 group-hover:scale-110"
+                    aria-hidden
+                  >
+                    {r.hero.emoji}
+                  </span>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-display font-black uppercase text-xl leading-tight tracking-tight">
+                    {r.title}
+                  </h3>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {r.compatibleDiets.map((d) => (
+                      <DietBadge key={d} diet={d} verdict="ok" variant="chip" />
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
