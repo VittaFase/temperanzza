@@ -380,6 +380,7 @@ function TemperaflixPage() {
         className="relative overflow-hidden bg-brand-ink text-brand-paper border-t border-brand-paper/15 py-20 sm:py-24"
       >
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
+        <SmokeBackdrop opacity={0.25} />
         <motion.div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
