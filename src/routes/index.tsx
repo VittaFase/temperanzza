@@ -1,18 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
 import { BrandSeal } from "@/components/site/BrandSeal";
-import { FeaturedRow } from "@/components/site/FeaturedRow";
+import { TemperaflixShowcase } from "@/components/site/TemperaflixShowcase";
 import { Button } from "@/components/ui/button";
 import { Flame, Leaf, Award, ArrowRight, Salad } from "lucide-react";
 import { RECIPES, MOMENTS } from "@/lib/recipes";
 import { DietBadge } from "@/components/site/DietBadge";
-import {
-  storefrontApiRequest,
-  STOREFRONT_QUERY,
-  type ShopifyProduct,
-} from "@/lib/shopify";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,30 +32,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { data: featured } = useQuery({
-    queryKey: ["shopify-featured", "temperaflix-3"],
-    queryFn: async () => {
-      const res = await storefrontApiRequest(STOREFRONT_QUERY, {
-        first: 10,
-        query: "tag:temperaflix",
-      });
-      const edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
-      const rank = (title: string) => {
-        const t = title.toLowerCase();
-        if (t.includes("tradicional")) return 0;
-        if (t.includes("ervas")) return 1;
-        if (t.includes("bacon")) return 2;
-        return 99;
-      };
-      return edges
-        .slice()
-        .sort((a, b) => rank(a.node.title) - rank(b.node.title))
-        .slice(0, 3);
-    },
-  });
-
-
-
   return (
     <SiteLayout>
       {/* HERO */}
@@ -136,14 +106,8 @@ function Home() {
       </section>
 
 
-      {/* FEATURED ROW — padrão Kinder's "Featured Products" */}
-      {featured && featured.length > 0 && (
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <FeaturedRow products={featured} label="Em destaque" />
-          </div>
-        </section>
-      )}
+      {/* TEMPERAFLIX — vitrine cinematográfica da linha exclusiva */}
+      <TemperaflixShowcase />
 
 
 
