@@ -27,7 +27,7 @@ export interface Recipe {
   /** rótulo depende da categoria: "Dica de substituição" vs "Dica de variação" */
   substitution: string;
   /** metáfora visual quando não há foto ainda */
-  hero: { color: string; emoji: string };
+  hero: { color: string };
   // ── Camada editorial (opcional — a Biblioteca Gastronômica usa quando presente) ──
   /** Linha editorial curta (uma frase, tipo Saveur). Fallback: intro. */
   subtitle?: string;
