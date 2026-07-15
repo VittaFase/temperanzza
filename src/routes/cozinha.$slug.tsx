@@ -529,8 +529,15 @@ function RecipeDrawer() {
           </section>
         )}
 
-        {/* Rodapé do drawer — assinatura da casa */}
-        <footer className="border-t border-brand-ink/10 py-10 text-center">
+        {/* Rodapé do drawer — CTA de retorno + assinatura da casa */}
+        <footer className="border-t border-brand-ink/10 py-12 text-center flex flex-col items-center gap-6">
+          <button
+            onClick={close}
+            className="inline-flex items-center gap-3 bg-brand-ink text-brand-paper hover:bg-accent px-8 py-4 font-display uppercase tracking-widest text-sm transition-colors"
+          >
+            <ArrowRight className="h-4 w-4 rotate-180" />
+            Voltar à biblioteca
+          </button>
           <p className="font-serif italic text-brand-ink/50 text-sm">
             Biblioteca Gastronômica · Casa Temperanzza · Minas Gerais
           </p>
