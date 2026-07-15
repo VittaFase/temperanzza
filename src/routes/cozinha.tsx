@@ -138,6 +138,61 @@ function BibliotecaHero() {
   );
 }
 
+/**
+ * SmokeBackdrop — vídeo em loop de fumaça monocromática quente.
+ * - Poster estático como fallback (LCP-friendly, reduced-motion, sem JS).
+ * - blend-mode "screen" faz o preto do vídeo desaparecer sobre o ink.
+ * - Opacidade contida em 55% para não competir com a tipografia.
+ * - Só carrega o vídeo se o usuário NÃO pediu reduced-motion.
+ */
+function SmokeBackdrop() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [enableVideo, setEnableVideo] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const prefersReduced = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (!prefersReduced) setEnableVideo(true);
+  }, []);
+
+  return (
+    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Poster sempre presente — carrega antes do vídeo e cobre reduced-motion */}
+      <img
+        src={smokePoster}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover opacity-55"
+        style={{ mixBlendMode: "screen" }}
+      />
+      {enableVideo && (
+        <video
+          ref={videoRef}
+          src={smokeVideo.url}
+          poster={smokePoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover opacity-55"
+          style={{ mixBlendMode: "screen" }}
+        />
+      )}
+      {/* Vinheta inferior — aterra a fumaça no fundo ink e melhora contraste da tipografia */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, transparent 0%, transparent 45%, oklch(0.10 0.02 30 / 0.55) 85%, oklch(0.08 0.02 30) 100%)",
+        }}
+      />
+    </div>
+  );
+}
+
+
 // ═══════════════════════════════════════════════════════════════════
 // ÍNDICE — categorias em accordion, receitas como menu degustação
 // ═══════════════════════════════════════════════════════════════════
