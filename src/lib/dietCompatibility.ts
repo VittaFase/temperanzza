@@ -77,16 +77,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
     },
   },
   {
-    key: "alho-em-po",
-    profile: PROFILES.puras,
-    verdicts: {
-      keto: { verdict: "ok", note: "Vegetal desidratado puro. Sem açúcares ou amidos adicionados." },
-      lowcarb: { verdict: "ok", note: "Realça qualquer proteína sem impacto significativo em carboidratos." },
-      "carnivora-flex": { verdict: "ok", note: "Aceito na carnívora flexível como saborizante concentrado." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
-    },
-  },
-  {
     key: "lemon-pepper",
     profile: PROFILES.citrico,
     verdicts: {
@@ -265,7 +255,7 @@ const HANDLE_ALIASES: Record<string, string> = {
   "bacon-em-po": "temperaflix-bacon",
   "temperaflix-bacon": "temperaflix-bacon",
   "ana-maria": "ana-maria",
-  "alho-em-po": "alho-em-po",
+  
   "lemon-pepper": "lemon-pepper",
   "paprica-doce": "paprica-doce",
   "paprica-picante": "paprica-picante",

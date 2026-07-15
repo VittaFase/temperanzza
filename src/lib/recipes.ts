@@ -328,29 +328,29 @@ export const RECIPES: Recipe[] = [
     hero: { color: "oklch(0.75 0.16 80)", emoji: "✨" },
   },
   {
-    slug: "frango-grelhado-alho-em-po",
-    title: "Frango grelhado com Alho em Pó",
-    featuredHandle: "alho-em-po",
+    slug: "frango-grelhado-cebola-em-po",
+    title: "Frango grelhado com Cebola em Pó",
+    featuredHandle: "cebola-em-po",
     compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
     moment: "almoco",
     profile: "puras",
     intro: "Três ingredientes. Um resultado que engana de tão bom.",
     ingredients: [
       "2 filés de peito de frango",
-      "1 colher (chá) de Alho em Pó Temperanzza",
+      "1 colher (chá) de Cebola em Pó Temperanzza",
       "Sal e azeite a gosto",
     ],
     steps: [
-      "Tempere os filés com sal e Alho em Pó.",
+      "Tempere os filés com sal e Cebola em Pó.",
       "Regue com azeite e deixe descansar 10 minutos.",
       "Grelhe em frigideira quente 4 minutos de cada lado.",
       "Sirva com salada verde.",
     ],
     whyItWorks:
-      "Alho em pó é coringa: sabor concentrado sem carboidrato adicionado.",
+      "Cebola em pó é coringa: sabor doce-adocicado concentrado, sem carboidrato relevante por porção.",
     substitution:
-      "Use o mesmo alho em maionese caseira low carb ou em manteigas temperadas.",
-    hero: { color: "oklch(0.86 0.02 90)", emoji: "🧄" },
+      "Use a mesma cebola em maionese caseira low carb, manteigas temperadas ou rubs de carne.",
+    hero: { color: "oklch(0.86 0.02 90)", emoji: "🧅" },
   },
   {
     slug: "sopa-legumes-cebola-em-po",
@@ -499,9 +499,9 @@ export const RECIPES: Recipe[] = [
     hero: { color: "oklch(0.75 0.09 85)", emoji: "🧀" },
   },
   {
-    slug: "arroz-soltinho-alho-cebola",
-    title: "Arroz soltinho com Alho e Cebola em Pó",
-    featuredHandle: "alho-em-po",
+    slug: "arroz-soltinho-cebola-em-po",
+    title: "Arroz soltinho com Cebola em Pó",
+    featuredHandle: "cebola-em-po",
     compatibleDiets: [],
     moment: "almoco",
     profile: "puras",
@@ -510,19 +510,18 @@ export const RECIPES: Recipe[] = [
     ingredients: [
       "2 xícaras de arroz branco",
       "1 colher (sopa) de óleo ou manteiga",
-      "1 colher (chá) de Alho em Pó Temperanzza",
       "1 colher (chá) de Cebola em Pó Temperanzza",
       "4 xícaras de água quente",
       "Sal a gosto",
     ],
     steps: [
-      "Aqueça o óleo na panela e adicione o Alho e a Cebola em Pó.",
+      "Aqueça o óleo na panela e adicione a Cebola em Pó.",
       "Refogue o arroz por 1 minuto até ficar translúcido.",
       "Adicione a água quente e o sal.",
       "Tampe e cozinhe em fogo baixo até secar. Solte com um garfo.",
     ],
     whyItWorks:
-      "Alho e Cebola em Pó são a base do tempero brasileiro. A versão desidratada preserva o sabor sem o trabalho de picar — praticidade que alimenta.",
+      "A Cebola em Pó é a base do tempero brasileiro. A versão desidratada preserva o sabor sem o trabalho de picar — praticidade que alimenta.",
     substitution:
       "Para um toque extra, adicione uma pitada de Tempero do Edu enquanto o arroz cozinha.",
     hero: { color: "oklch(0.9 0.02 90)", emoji: "🍚" },
