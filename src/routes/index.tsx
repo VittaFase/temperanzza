@@ -1,18 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
 import { BrandSeal } from "@/components/site/BrandSeal";
-import { FeaturedRow } from "@/components/site/FeaturedRow";
+import { TemperaflixShowcase } from "@/components/site/TemperaflixShowcase";
 import { Button } from "@/components/ui/button";
 import { Flame, Leaf, Award, ArrowRight, Salad } from "lucide-react";
 import { RECIPES, MOMENTS } from "@/lib/recipes";
 import { DietBadge } from "@/components/site/DietBadge";
-import {
-  storefrontApiRequest,
-  STOREFRONT_QUERY,
-  type ShopifyProduct,
-} from "@/lib/shopify";
 
 export const Route = createFileRoute("/")({
   head: () => ({
