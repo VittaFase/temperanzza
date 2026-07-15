@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +11,42 @@ import {
 } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
 import { Button } from "@/components/ui/button";
+import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
+import smokePoster from "@/assets/hero-smoke-poster.jpg";
+
+function SmokeBackdrop({ opacity = 0.3 }: { opacity?: number }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [enableVideo, setEnableVideo] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!reduced) setEnableVideo(true);
+  }, []);
+  return (
+    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+      <img
+        src={smokePoster}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ mixBlendMode: "screen", opacity }}
+      />
+      {enableVideo && (
+        <video
+          ref={videoRef}
+          src={smokeVideo.url}
+          poster={smokePoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ mixBlendMode: "screen", opacity }}
+        />
+      )}
+    </div>
+  );
+}
 
 /** Per-flavor color halo tokens (oklch, tied to brand palette). */
 const FLAVOR = {
