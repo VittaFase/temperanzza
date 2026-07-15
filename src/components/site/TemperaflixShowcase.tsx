@@ -11,10 +11,10 @@ import {
 } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
 import { Button } from "@/components/ui/button";
-import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
-import smokePoster from "@/assets/hero-smoke-poster.jpg";
+import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
+import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
 
-function SmokeBackdrop({ opacity = 0.3 }: { opacity?: number }) {
+function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [enableVideo, setEnableVideo] = useState(false);
   useEffect(() => {
@@ -25,7 +25,7 @@ function SmokeBackdrop({ opacity = 0.3 }: { opacity?: number }) {
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
       <img
-        src={smokePoster}
+        src={bokehPoster}
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
         style={{ mixBlendMode: "screen", opacity }}
@@ -33,8 +33,8 @@ function SmokeBackdrop({ opacity = 0.3 }: { opacity?: number }) {
       {enableVideo && (
         <video
           ref={videoRef}
-          src={smokeVideo.url}
-          poster={smokePoster}
+          src={bokehVideo.url}
+          poster={bokehPoster}
           autoPlay
           muted
           loop
@@ -130,7 +130,7 @@ export function TemperaflixShowcase() {
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
       {/* atmosphere: radial halo tied to active flavor + paper grain */}
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-      <SmokeBackdrop opacity={0.3} />
+      <BokehBackdrop opacity={0.3} />
       <motion.div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
