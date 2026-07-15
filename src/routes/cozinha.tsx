@@ -183,7 +183,7 @@ const CATEGORIAS: CategoriaDef[] = [
   },
   {
     key: "carnivora-estrita",
-    name: "Carnívora Estrita",
+    name: "Carnívora Restrita",
     romano: "IV",
     descricao:
       "Somente proteína animal, sal e água. Um convite à essência do sabor.",
@@ -192,7 +192,7 @@ const CATEGORIAS: CategoriaDef[] = [
   },
   {
     key: "tradicional",
-    name: "Tradicionais",
+    name: "Pratos Tradicionais",
     romano: "V",
     descricao:
       "A mesa de todos os dias, elevada por temperos com autoria mineira.",
