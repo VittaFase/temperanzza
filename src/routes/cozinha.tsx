@@ -1,9 +1,11 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { type DietKey } from "@/lib/diets";
 import { RECIPES, type Recipe } from "@/lib/recipes";
 import { ChevronDown, ArrowUpRight } from "lucide-react";
+import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
+import smokePoster from "@/assets/hero-smoke-poster.jpg";
 import { CountUp } from "@/components/site/CountUp";
 
 export const Route = createFileRoute("/cozinha")({
@@ -79,16 +81,10 @@ function BibliotecaHero() {
           backgroundSize: "180px 180px, 240px 240px, 300px 300px",
         }}
       />
-      {/* Fumaça extremamente sutil */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-1/3 h-1/2 opacity-20"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(255, 240, 220, 0.15) 0%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
-      />
+      {/* Fumaça — vídeo monocromático quente em loop atrás da tipografia estêncil.
+          Respeita prefers-reduced-motion (mostra apenas o poster estático). */}
+      <SmokeBackdrop />
+
 
       {/* Conteúdo */}
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-24">
