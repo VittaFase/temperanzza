@@ -11,8 +11,8 @@ import {
 } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
 import { Button } from "@/components/ui/button";
-import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
-import smokePoster from "@/assets/hero-smoke-poster.jpg";
+import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
+import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
 
 function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
