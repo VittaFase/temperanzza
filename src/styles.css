@@ -179,3 +179,14 @@
   text-transform: uppercase;
   font-size: 0.75rem;
 }
+
+/* Flutuação idle sutil para potes em hero cinematográfica */
+@keyframes pote-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-0.5deg); }
+}
+
+@utility animate-pote-float {
+  animation: pote-float 6s ease-in-out infinite;
+}
+
