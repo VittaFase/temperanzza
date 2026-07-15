@@ -122,40 +122,6 @@ function Home() {
         </div>
       </section>
 
-      {/* PILLARS */}
-      <section className="py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
-            {[
-              {
-                icon: Flame,
-                title: "Sabor que assina",
-                body: "Cada mistura tem proporção testada à exaustão. Você abre o pote e reconhece de longe.",
-              },
-              {
-                icon: Leaf,
-                title: "Origem rastreada",
-                body: "Cada ingrediente escolhido com o cuidado que você merece.",
-              },
-              {
-                icon: Award,
-                title: "Sem atalho",
-                body: "Qualidade em cada processo até chegar na sua mesa.",
-              },
-            ].map((p) => (
-              <div key={p.title} className="bg-background p-8 lg:p-10">
-                <p.icon className="h-7 w-7 text-accent mb-5" strokeWidth={1.5} />
-                <h3 className="font-display uppercase text-xl tracking-wide mb-3">
-                  {p.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {p.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FEATURED ROW — padrão Kinder's "Featured Products" */}
       {featured && featured.length > 0 && (
