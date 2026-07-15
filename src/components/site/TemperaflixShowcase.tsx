@@ -25,7 +25,7 @@ function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
       <img
-        src={smokePoster}
+        src={bokehPoster}
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
         style={{ mixBlendMode: "screen", opacity }}
@@ -33,8 +33,8 @@ function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
       {enableVideo && (
         <video
           ref={videoRef}
-          src={smokeVideo.url}
-          poster={smokePoster}
+          src={bokehVideo.url}
+          poster={bokehPoster}
           autoPlay
           muted
           loop
