@@ -14,14 +14,16 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
-import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
-import smokePoster from "@/assets/hero-smoke-poster.jpg";
+import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
+import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
 
 /**
- * SmokeBackdrop — vídeo em loop de fumaça monocromática quente.
- * Poster fallback (LCP, reduced-motion). blend-mode "screen" apaga o preto do vídeo sobre o ink.
+ * BokehBackdrop — vídeo em loop de bokeh dourado cinematográfico.
+ * Espelha a atmosfera das artes dos potes Temperaflix: fundo preto profundo,
+ * orbs âmbar/dourado desfocados e halo quente central.
+ * blend-mode "screen" apaga o preto do vídeo/poster sobre o ink, mantendo só a luz.
  */
-function SmokeBackdrop({ opacity = 0.4 }: { opacity?: number }) {
+function BokehBackdrop({ opacity = 0.55 }: { opacity?: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [enableVideo, setEnableVideo] = useState(false);
   useEffect(() => {
@@ -32,7 +34,7 @@ function SmokeBackdrop({ opacity = 0.4 }: { opacity?: number }) {
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
       <img
-        src={smokePoster}
+        src={bokehPoster}
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
         style={{ mixBlendMode: "screen", opacity }}
@@ -40,8 +42,8 @@ function SmokeBackdrop({ opacity = 0.4 }: { opacity?: number }) {
       {enableVideo && (
         <video
           ref={videoRef}
-          src={smokeVideo.url}
-          poster={smokePoster}
+          src={bokehVideo.url}
+          poster={bokehPoster}
           autoPlay
           muted
           loop
