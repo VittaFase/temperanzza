@@ -43,24 +43,23 @@ function Home() {
     queryFn: async () => {
       const res = await storefrontApiRequest(STOREFRONT_QUERY, {
         first: 10,
-        query:
-          "handle:temperaflix-tradicional OR handle:temperaflix-ervas-finas OR handle:temperaflix-bacon",
+        query: "tag:temperaflix",
       });
       const edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
-      const order = [
-        "temperaflix-tradicional",
-        "temperaflix-ervas-finas",
-        "temperaflix-bacon",
-      ];
+      const rank = (title: string) => {
+        const t = title.toLowerCase();
+        if (t.includes("tradicional")) return 0;
+        if (t.includes("ervas")) return 1;
+        if (t.includes("bacon")) return 2;
+        return 99;
+      };
       return edges
         .slice()
-        .sort(
-          (a, b) =>
-            order.indexOf(a.node.handle) - order.indexOf(b.node.handle),
-        )
+        .sort((a, b) => rank(a.node.title) - rank(b.node.title))
         .slice(0, 3);
     },
   });
+
 
 
   return (
