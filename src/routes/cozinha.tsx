@@ -1,9 +1,11 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { type DietKey } from "@/lib/diets";
 import { RECIPES, type Recipe } from "@/lib/recipes";
 import { ChevronDown, ArrowUpRight } from "lucide-react";
+import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
+import smokePoster from "@/assets/hero-smoke-poster.jpg";
 import { CountUp } from "@/components/site/CountUp";
 
 export const Route = createFileRoute("/cozinha")({
@@ -79,16 +81,10 @@ function BibliotecaHero() {
           backgroundSize: "180px 180px, 240px 240px, 300px 300px",
         }}
       />
-      {/* Fumaça extremamente sutil */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-1/3 h-1/2 opacity-20"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(255, 240, 220, 0.15) 0%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
-      />
+      {/* Fumaça — vídeo monocromático quente em loop atrás da tipografia estêncil.
+          Respeita prefers-reduced-motion (mostra apenas o poster estático). */}
+      <SmokeBackdrop />
+
 
       {/* Conteúdo */}
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-24">
@@ -141,6 +137,61 @@ function BibliotecaHero() {
     </section>
   );
 }
+
+/**
+ * SmokeBackdrop — vídeo em loop de fumaça monocromática quente.
+ * - Poster estático como fallback (LCP-friendly, reduced-motion, sem JS).
+ * - blend-mode "screen" faz o preto do vídeo desaparecer sobre o ink.
+ * - Opacidade contida em 55% para não competir com a tipografia.
+ * - Só carrega o vídeo se o usuário NÃO pediu reduced-motion.
+ */
+function SmokeBackdrop() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [enableVideo, setEnableVideo] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const prefersReduced = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (!prefersReduced) setEnableVideo(true);
+  }, []);
+
+  return (
+    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Poster sempre presente — carrega antes do vídeo e cobre reduced-motion */}
+      <img
+        src={smokePoster}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover opacity-55"
+        style={{ mixBlendMode: "screen" }}
+      />
+      {enableVideo && (
+        <video
+          ref={videoRef}
+          src={smokeVideo.url}
+          poster={smokePoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover opacity-55"
+          style={{ mixBlendMode: "screen" }}
+        />
+      )}
+      {/* Vinheta inferior — aterra a fumaça no fundo ink e melhora contraste da tipografia */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, transparent 0%, transparent 45%, oklch(0.10 0.02 30 / 0.55) 85%, oklch(0.08 0.02 30) 100%)",
+        }}
+      />
+    </div>
+  );
+}
+
 
 // ═══════════════════════════════════════════════════════════════════
 // ÍNDICE — categorias em accordion, receitas como menu degustação
