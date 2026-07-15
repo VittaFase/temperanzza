@@ -41,7 +41,7 @@ export const DIETS: DietMeta[] = [
   },
   {
     key: "carnivora-estrita",
-    name: "Carnívora Estrita",
+    name: "Carnívora Restrita",
     short: "Carnívora",
     definition:
       "Apenas produtos de origem animal, sal e água. Nenhum tempero vegetal ou especiaria é permitido.",
