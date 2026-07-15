@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandSeal } from "@/components/site/BrandSeal";
+import { CountUp } from "@/components/site/CountUp";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -56,6 +57,37 @@ function SobrePage() {
           </p>
         </div>
       </article>
+
+      {/* Números da Casa — count-up editorial */}
+      <section
+        aria-label="A casa em números"
+        className="border-t border-foreground/15 bg-brand-ink text-brand-paper py-16 sm:py-20"
+      >
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-10">
+            <span aria-hidden className="block h-px w-12 bg-brand-mustard" />
+            <span className="text-[10px] font-display uppercase tracking-[0.4em] text-brand-paper/60">
+              A casa em números
+            </span>
+          </div>
+          <dl className="grid grid-cols-3 gap-6 sm:gap-10">
+            {[
+              { n: 19, label: "SKUs autorais", pad: 0 },
+              { n: 3, label: "sublinhas", pad: 0 },
+              { n: 2023, label: "desde", pad: 0 },
+            ].map((s) => (
+              <div key={s.label} className="border-l-2 border-brand-mustard/50 pl-4 sm:pl-6">
+                <dt className="text-[10px] font-display uppercase tracking-[0.3em] text-brand-paper/50 order-2">
+                  {s.label}
+                </dt>
+                <dd className="font-display font-black leading-none text-brand-paper text-5xl sm:text-6xl lg:text-7xl mb-2">
+                  <CountUp to={s.n} duration={s.n > 1000 ? 1400 : 900} />
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
     </SiteLayout>
   );
 }

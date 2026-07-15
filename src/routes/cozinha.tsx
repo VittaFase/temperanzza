@@ -4,6 +4,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { type DietKey } from "@/lib/diets";
 import { RECIPES, type Recipe } from "@/lib/recipes";
 import { ChevronDown, ArrowUpRight } from "lucide-react";
+import { CountUp } from "@/components/site/CountUp";
 
 export const Route = createFileRoute("/cozinha")({
   head: () => ({
@@ -126,7 +127,7 @@ function BibliotecaHero() {
             <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
           </a>
           <span className="text-[11px] font-display uppercase tracking-[0.3em] text-brand-paper/50">
-            {RECIPES.length} receitas · 5 estilos
+            <CountUp to={RECIPES.length} duration={900} /> receitas · <CountUp to={5} duration={700} /> estilos
           </span>
         </div>
       </div>
@@ -274,7 +275,7 @@ function CategoriaAccordion({
         </div>
         <span className="shrink-0 flex items-center gap-4 text-brand-ink/50 self-center">
           <span className="text-[11px] font-display uppercase tracking-[0.25em] tabular-nums hidden sm:inline">
-            {receitas.length.toString().padStart(2, "0")}
+            <CountUp to={receitas.length} pad={2} duration={700} />
           </span>
           <ChevronDown
             className={`h-6 w-6 transition-transform duration-500 ${open ? "rotate-180" : ""}`}
