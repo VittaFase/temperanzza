@@ -732,7 +732,207 @@ export const RECIPES: Recipe[] = [
       "Use a Cúrcuma em sopas, caldos, arroz amarelo ou para temperar lentilha e grão de bico.",
     hero: { color: "oklch(0.78 0.14 80)" },
   },
+
+  // ── Páprica Doce ──
+  {
+    slug: "frango-dourado-paprica-doce",
+    title: "Frango dourado com Páprica Doce",
+    featuredHandle: "paprica-doce",
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
+    moment: "almoco",
+    profile: "defumado",
+    intro: "Cor de outono, sabor redondo — a páprica doce dourando cada pedaço.",
+    ingredients: [
+      "4 filés de frango (peito ou sassami)",
+      "2 colheres (sopa) de azeite",
+      "1 colher (sopa) cheia de Páprica Doce Temperanzza",
+      "Sal grosso a gosto",
+      "Suco de meio limão",
+    ],
+    steps: [
+      "Seque os filés com papel-toalha e tempere com sal.",
+      "Massageie com azeite e Páprica Doce até cobrir por completo.",
+      "Grelhe em frigideira quente por 4 minutos de cada lado.",
+      "Finalize com o suco de limão fora do fogo e deixe descansar 2 minutos antes de servir.",
+    ],
+    whyItWorks:
+      "Páprica Doce é especiaria pura, sem carga glicêmica — colore, adoça naturalmente e realça a proteína magra sem tirar o prato do escopo cetogênico ou carnívoro flexível.",
+    substitution:
+      "Troque o frango por peixe branco (tilápia, pescada) e reduza o tempo para 2 minutos de cada lado.",
+    hero: { color: "oklch(0.55 0.16 55)" },
+  },
+
+  // ── Du-Chefe com Páprica ──
+  {
+    slug: "costela-porco-du-chefe",
+    title: "Costela suína ao Du-Chefe com Páprica",
+    featuredHandle: "du-chefe-com-paprica",
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
+    moment: "jantar",
+    profile: "casa",
+    category: "tradicional",
+    intro: "O tempero da casa que veste a costela de forno inteira.",
+    ingredients: [
+      "1,2 kg de costela suína em pedaços",
+      "2 colheres (sopa) de Du-Chefe com Páprica",
+      "3 colheres (sopa) de azeite",
+      "1 cebola em rodelas grossas",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Tempere a costela com sal e Du-Chefe — massageie bem para o tempero aderir.",
+      "Deixe descansar 30 minutos na geladeira.",
+      "Disponha em assadeira com as cebolas por baixo e regue com azeite.",
+      "Cubra com papel-alumínio e asse a 180 °C por 1h30. Retire o alumínio e finalize por 20 minutos até dourar.",
+    ],
+    whyItWorks:
+      "Du-Chefe é o mix da casa: páprica, ervas e especiarias sem amidos nem açúcares. Perfeito para carne suína, mantém a receita dentro do low carb e do carnívoro flexível.",
+    substitution:
+      "Sem forno? Faça na panela de pressão por 40 minutos com um dedo de água e finalize na frigideira para dourar.",
+    hero: { color: "oklch(0.45 0.12 40)" },
+  },
+
+  // ── Pimenta-do-Reino ──
+  {
+    slug: "bife-cavalo-pimenta-reino",
+    title: "Bife à cavalo com Pimenta-do-Reino moída na hora",
+    featuredHandle: "pimenta-do-reino",
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex", "carnivora-estrita"],
+    moment: "almoco",
+    profile: "puras",
+    category: "tradicional",
+    intro: "O clássico do PF brasileiro, elevado por uma pimenta bem moída.",
+    ingredients: [
+      "2 bifes de contrafilé (200 g cada)",
+      "2 ovos",
+      "1 colher (sopa) de manteiga",
+      "Pimenta-do-Reino Temperanzza a gosto (moída na hora)",
+      "Sal grosso a gosto",
+    ],
+    steps: [
+      "Seque os bifes e tempere com sal dos dois lados.",
+      "Aqueça a frigideira até fumegar. Grelhe os bifes 2 minutos de cada lado (ao ponto).",
+      "Retire, cubra com pimenta-do-reino recém-moída e deixe descansar.",
+      "Na mesma frigideira, derreta a manteiga e frite os ovos com gema mole. Sirva sobre os bifes.",
+    ],
+    whyItWorks:
+      "Bife e ovo é a dupla de proteína e gordura que cabe em todos os protocolos — inclusive na carnívora estrita. A pimenta-do-reino é a única especiaria universalmente aceita: puríssima, aromática, sem carboidratos.",
+    substitution:
+      "Prefere gema dura? Cozinhe os ovos 4 minutos. Sem contrafilé? Use alcatra ou coxão-mole.",
+    hero: { color: "oklch(0.3 0.05 30)" },
+  },
+
+  // ── Canela Moída ──
+  {
+    slug: "cafe-ritual-canela",
+    title: "Café ritual com Canela e manteiga",
+    featuredHandle: "canela-moida",
+    compatibleDiets: ["keto", "lowcarb"],
+    moment: "cafe",
+    profile: "puras",
+    intro: "O bulletproof brasileiro — café coado, manteiga e a canela como perfume.",
+    ingredients: [
+      "1 xícara de café coado forte",
+      "1 colher (sopa) de manteiga sem sal",
+      "1 colher (chá) de óleo de coco (opcional)",
+      "1/2 colher (chá) de Canela Moída Temperanzza",
+    ],
+    steps: [
+      "Bata todos os ingredientes no liquidificador ou mixer por 20 segundos.",
+      "Sirva imediatamente em uma caneca alta, com um pouco de canela extra por cima.",
+    ],
+    whyItWorks:
+      "Gordura boa como fonte de energia matinal — sem picos de glicose. A canela realça a doçura natural do café sem adicionar carboidratos, mantendo a cetose intacta.",
+    substitution:
+      "Não come laticínio? Troque a manteiga por 2 colheres (sopa) de leite de coco integral.",
+    hero: { color: "oklch(0.45 0.09 55)" },
+  },
+  {
+    slug: "maca-assada-canela",
+    title: "Maçã assada com Canela na air fryer",
+    featuredHandle: "canela-moida",
+    compatibleDiets: ["lowcarb"],
+    moment: "jantar",
+    profile: "puras",
+    category: "tradicional",
+    intro: "Sobremesa de vó em versão rápida — sem açúcar, só a canela para adoçar.",
+    ingredients: [
+      "2 maçãs firmes (fuji ou gala) cortadas em gomos",
+      "1 colher (sopa) de manteiga derretida",
+      "1 colher (chá) cheia de Canela Moída Temperanzza",
+      "1 pitada de sal",
+    ],
+    steps: [
+      "Misture as maçãs com a manteiga, a canela e o sal.",
+      "Disponha na cesta da air fryer em camada única.",
+      "Asse a 180 °C por 12 minutos, agitando a cesta na metade do tempo.",
+      "Sirva morna, sozinha ou com uma colherada de iogurte natural integral.",
+    ],
+    whyItWorks:
+      "A canela intensifica a doçura da maçã e evita o pico glicêmico ao retardar a absorção do açúcar da fruta — sobremesa reconfortante que cabe no low carb sem culpa.",
+    substitution:
+      "Substitua a maçã por pera ou pêssego — mesma quantidade, mesmo tempo de forno.",
+    hero: { color: "oklch(0.55 0.12 45)" },
+  },
+
+  // ── Temperaflix Tradicional ──
+  {
+    slug: "pipoca-caseira-temperaflix-tradicional",
+    title: "Pipoca da casa com Temperaflix Tradicional",
+    featuredHandle: "temperaflix-tradicional",
+    compatibleDiets: ["lowcarb"],
+    moment: "jantar",
+    profile: "casa",
+    category: "tradicional",
+    intro: "A pipoca de cinema que a gente faz em casa e some do pote em 5 minutos.",
+    ingredients: [
+      "1/2 xícara de milho para pipoca",
+      "2 colheres (sopa) de óleo de coco ou manteiga ghee",
+      "Temperaflix Tradicional a gosto (borrifar quente)",
+      "Sal fino se desejar",
+    ],
+    steps: [
+      "Aqueça o óleo em panela grande com tampa em fogo médio-alto.",
+      "Adicione o milho, tampe e sacuda a panela até os estouros pararem.",
+      "Transfira para uma tigela ainda quente e polvilhe o Temperaflix Tradicional generosamente.",
+      "Sacuda a tigela para o tempero cobrir todos os grãos.",
+    ],
+    whyItWorks:
+      "Temperaflix Tradicional foi desenhado para aderir a alimentos quentes — a pipoca é o cenário ideal. Uma pitada por porção mantém o snack dentro do low carb, sem estragar a cetose ocasional.",
+    substitution:
+      "Sirva com uma cerveja artesanal ou refrigerante zero — vira o petisco perfeito para o filme de sexta.",
+    hero: { color: "oklch(0.72 0.14 75)" },
+  },
+
+  // ── Temperaflix Ervas Finas ──
+  {
+    slug: "mix-castanhas-temperaflix-ervas",
+    title: "Mix de castanhas assadas com Temperaflix Ervas Finas",
+    featuredHandle: "temperaflix-ervas-finas",
+    compatibleDiets: ["keto", "lowcarb"],
+    moment: "jantar",
+    profile: "ervas",
+    intro: "O aperitivo elegante que salva qualquer happy hour em casa.",
+    ingredients: [
+      "200 g de mix de castanhas cruas (do pará, caju, amêndoa, nozes)",
+      "1 colher (sopa) de azeite",
+      "2 colheres (chá) de Temperaflix Ervas Finas",
+      "Sal grosso a gosto",
+    ],
+    steps: [
+      "Espalhe as castanhas numa assadeira, regue com azeite e misture.",
+      "Leve ao forno a 160 °C por 12 minutos, mexendo na metade.",
+      "Assim que sair do forno, polvilhe o Temperaflix Ervas Finas e o sal.",
+      "Sacuda para cobrir por igual e deixe esfriar antes de servir.",
+    ],
+    whyItWorks:
+      "Castanhas são gordura boa e proteína — combinação ideal para keto e low carb. As ervas finas trazem o toque provençal que eleva o snack de comum a memorável.",
+    substitution:
+      "Sem forno? Use a air fryer a 160 °C por 8 minutos. Sem mix pronto? Use só amêndoas — funciona igual.",
+    hero: { color: "oklch(0.6 0.11 130)" },
+  },
 ];
+
 
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
