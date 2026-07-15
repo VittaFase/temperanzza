@@ -39,15 +39,19 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const { data: featured } = useQuery({
-    queryKey: ["shopify-featured", "curated-3"],
+    queryKey: ["shopify-featured", "temperaflix-3"],
     queryFn: async () => {
       const res = await storefrontApiRequest(STOREFRONT_QUERY, {
         first: 10,
         query:
-          "handle:salsa-cebola-e-alho OR handle:lemon-pepper OR handle:curcuma",
+          "handle:temperaflix-tradicional OR handle:temperaflix-ervas-finas OR handle:temperaflix-bacon",
       });
       const edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
-      const order = ["salsa-cebola-e-alho", "lemon-pepper", "curcuma"];
+      const order = [
+        "temperaflix-tradicional",
+        "temperaflix-ervas-finas",
+        "temperaflix-bacon",
+      ];
       return edges
         .slice()
         .sort(
@@ -163,7 +167,19 @@ function Home() {
               Ver tudo →
             </Link>
           </div>
-          <ProductGrid first={8} />
+          <ProductGrid
+            first={8}
+            excludeHandles={[
+              "temperaflix-tradicional",
+              "temperaflix-ervas-finas",
+              "temperaflix-bacon",
+            ]}
+            prependHandles={[
+              "salsa-cebola-e-alho",
+              "lemon-pepper",
+              "curcuma",
+            ]}
+          />
         </div>
       </section>
 
