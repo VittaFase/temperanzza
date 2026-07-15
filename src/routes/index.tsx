@@ -106,14 +106,8 @@ function Home() {
       </section>
 
 
-      {/* FEATURED ROW — padrão Kinder's "Featured Products" */}
-      {featured && featured.length > 0 && (
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <FeaturedRow products={featured} label="Em destaque" />
-          </div>
-        </section>
-      )}
+      {/* TEMPERAFLIX — vitrine cinematográfica da linha exclusiva */}
+      <TemperaflixShowcase />
 
 
 
