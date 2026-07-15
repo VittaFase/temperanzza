@@ -27,7 +27,7 @@ export interface Recipe {
   /** rótulo depende da categoria: "Dica de substituição" vs "Dica de variação" */
   substitution: string;
   /** metáfora visual quando não há foto ainda */
-  hero: { color: string; emoji: string };
+  hero: { color: string };
   // ── Camada editorial (opcional — a Biblioteca Gastronômica usa quando presente) ──
   /** Linha editorial curta (uma frase, tipo Saveur). Fallback: intro. */
   subtitle?: string;
@@ -82,7 +82,7 @@ export const RECIPES: Recipe[] = [
       "Ovos e queijo são a base de proteína e gordura das dietas cetogênica e low carb. O Temperaflix Bacon entra em porção pequena, mantendo os carboidratos controlados.",
     substitution:
       "Sem queijo? Substitua por 1 colher (sopa) de cream cheese misturado aos ovos batidos — a textura fica ainda mais cremosa.",
-    hero: { color: "oklch(0.35 0.08 40)", emoji: "🥓" },
+    hero: { color: "oklch(0.35 0.08 40)" },
   },
   {
     slug: "frango-assado-paprica-defumada",
@@ -109,7 +109,7 @@ export const RECIPES: Recipe[] = [
       "Frango é fonte magra de proteína; a páprica é especiaria pura, sem carga glicêmica. Uma refeição completa que cabe até no protocolo carnívoro flexível.",
     substitution:
       "Prefere peito? Corte em cubos grandes e reduza o forno para 25 minutos — a páprica funciona igualmente bem.",
-    hero: { color: "oklch(0.5 0.18 40)", emoji: "🔥" },
+    hero: { color: "oklch(0.5 0.18 40)" },
   },
   {
     slug: "hamburguer-bacon-em-po",
@@ -137,7 +137,7 @@ export const RECIPES: Recipe[] = [
       "Carne e queijo são pilares do low carb e da cetogênica. O Temperaflix Bacon realça a carne sem carga extra.",
     substitution:
       "Sem queijo? Finalize com um ovo frito por cima — proteína e gordura mantidas.",
-    hero: { color: "oklch(0.32 0.08 30)", emoji: "🍔" },
+    hero: { color: "oklch(0.32 0.08 30)" },
   },
 
   // Perfil 2 — Ervas frescas e leves
@@ -165,7 +165,7 @@ export const RECIPES: Recipe[] = [
       "Ovos são coringa em dietas de baixo carboidrato. As ervas trazem frescor sem carga glicêmica.",
     substitution:
       "Use as Ervas Finas em ricota ou cottage para um patê rápido — perfeito para lanches low carb.",
-    hero: { color: "oklch(0.5 0.13 145)", emoji: "🌿" },
+    hero: { color: "oklch(0.5 0.13 145)" },
   },
   {
     slug: "peixe-grelhado-salsa-cebola-alho",
@@ -192,7 +192,7 @@ export const RECIPES: Recipe[] = [
       "Peixe é proteína magra; o tempero é desidratado puro. Cabe até no protocolo carnívoro flexível.",
     substitution:
       "Sem peixe? Use o mesmo tempero em filés de frango grelhado — funciona igualmente bem.",
-    hero: { color: "oklch(0.55 0.12 145)", emoji: "🐟" },
+    hero: { color: "oklch(0.55 0.12 145)" },
   },
   {
     slug: "bife-manteiga-chimi-churri",
@@ -218,7 +218,7 @@ export const RECIPES: Recipe[] = [
       "Carne vermelha é pilar low carb e cetogênica; o Chimi Churri, por ser mix de ervas, é aceito na carnívora flexível.",
     substitution:
       "Sem manteiga? Misture o Chimi Churri com azeite e regue o bife na hora de servir.",
-    hero: { color: "oklch(0.42 0.14 30)", emoji: "🥩" },
+    hero: { color: "oklch(0.42 0.14 30)" },
   },
 
   // Perfil 3 — Prático e sabor de casa
@@ -244,7 +244,7 @@ export const RECIPES: Recipe[] = [
       "Proteína pura e prática. O tempero é mix vegetal sem açúcar — encaixa em qualquer refeição de baixo carboidrato.",
     substitution:
       "Use o mesmo tempero em patê de frango ou atum e leve em folhas de alface para um lanche low carb.",
-    hero: { color: "oklch(0.6 0.1 60)", emoji: "🥚" },
+    hero: { color: "oklch(0.6 0.1 60)" },
   },
   {
     slug: "carne-moida-tempero-mineiro",
@@ -270,7 +270,7 @@ export const RECIPES: Recipe[] = [
       "Carne moída é econômica e rica em proteína. O tempero é mix de especiarias sem amido ou açúcar.",
     substitution:
       "Use o mesmo tempero em frango ensopado ou para saborizar jiló e quiabo refogados.",
-    hero: { color: "oklch(0.42 0.1 30)", emoji: "🥘" },
+    hero: { color: "oklch(0.42 0.1 30)" },
   },
   {
     slug: "frango-panela-ana-maria",
@@ -297,7 +297,7 @@ export const RECIPES: Recipe[] = [
       "Frango é proteína versátil. O Ana Maria contém pequena porção de amido — cabe no low carb com moderação, mas não é a escolha para cetose estrita.",
     substitution:
       "Se você segue cetogênica, troque por Tempero Mineiro ou Du Chefe com Páprica.",
-    hero: { color: "oklch(0.55 0.12 50)", emoji: "🍗" },
+    hero: { color: "oklch(0.55 0.12 50)" },
   },
 
   // Perfil 4 — Especiarias puras e saúde
@@ -325,7 +325,7 @@ export const RECIPES: Recipe[] = [
       "Cúrcuma é especiaria pura com curcumina anti-inflamatória. Ovos entregam proteína e gordura.",
     substitution:
       "Adicione a cúrcuma em caldos de ossos ou para colorir arroz de couve-flor.",
-    hero: { color: "oklch(0.75 0.16 80)", emoji: "✨" },
+    hero: { color: "oklch(0.75 0.16 80)" },
   },
   {
     slug: "frango-grelhado-cebola-em-po",
@@ -350,7 +350,7 @@ export const RECIPES: Recipe[] = [
       "Cebola em pó é coringa: sabor doce-adocicado concentrado, sem carboidrato relevante por porção.",
     substitution:
       "Use a mesma cebola em maionese caseira low carb, manteigas temperadas ou rubs de carne.",
-    hero: { color: "oklch(0.86 0.02 90)", emoji: "🧅" },
+    hero: { color: "oklch(0.86 0.02 90)" },
   },
   {
     slug: "sopa-legumes-cebola-em-po",
@@ -378,7 +378,7 @@ export const RECIPES: Recipe[] = [
       "Legumes de baixo carboidrato e caldo de ossos entregam sabor e nutrientes sem pesar.",
     substitution:
       "Use o mesmo tempero em carne moída ou purê de couve-flor.",
-    hero: { color: "oklch(0.78 0.04 75)", emoji: "🍲" },
+    hero: { color: "oklch(0.78 0.04 75)" },
   },
 
   // Perfil 5 — Cítrico e picante
@@ -406,7 +406,7 @@ export const RECIPES: Recipe[] = [
       "Ovo é a proteína ideal do café low carb. O Lemon Pepper acorda sem adicionar carboidrato.",
     substitution:
       "Use o mesmo tempero em abacate amassado para um lanche cítrico e cremoso.",
-    hero: { color: "oklch(0.75 0.16 95)", emoji: "🍋" },
+    hero: { color: "oklch(0.75 0.16 95)" },
   },
   {
     slug: "porco-assado-paprica-picante",
@@ -432,7 +432,7 @@ export const RECIPES: Recipe[] = [
       "Porco é rico em gordura e proteína; a páprica é pura, sem carboidratos adicionados.",
     substitution:
       "A mesma páprica funciona em asas de frango — reduza o forno para 40 minutos.",
-    hero: { color: "oklch(0.5 0.2 32)", emoji: "🌶️" },
+    hero: { color: "oklch(0.5 0.2 32)" },
   },
   {
     slug: "camarao-chimi-churri-picante",
@@ -459,7 +459,7 @@ export const RECIPES: Recipe[] = [
       "Camarão é proteína magra de baixo carboidrato. O Chimi Churri adiciona complexidade sem açúcar.",
     substitution:
       "Sem camarão? Use frango em cubos — dobre o tempo de cocção para 8 minutos.",
-    hero: { color: "oklch(0.55 0.18 30)", emoji: "🦐" },
+    hero: { color: "oklch(0.55 0.18 30)" },
   },
 
   // ================================================================
@@ -496,7 +496,7 @@ export const RECIPES: Recipe[] = [
       "O Tempero Mineiro é a alma da cozinha das Gerais. Uma pitada na massa realça o queijo e traz o gosto de fogão a lenha ao pão de queijo tradicional.",
     substitution:
       "Também vai bem em omeletes e ovos mexidos para um café da manhã com sabor de fazenda.",
-    hero: { color: "oklch(0.75 0.09 85)", emoji: "🧀" },
+    hero: { color: "oklch(0.75 0.09 85)" },
   },
   {
     slug: "arroz-soltinho-cebola-em-po",
@@ -524,7 +524,7 @@ export const RECIPES: Recipe[] = [
       "A Cebola em Pó é a base do tempero brasileiro. A versão desidratada preserva o sabor sem o trabalho de picar — praticidade que alimenta.",
     substitution:
       "Para um toque extra, adicione uma pitada de Tempero do Edu enquanto o arroz cozinha.",
-    hero: { color: "oklch(0.9 0.02 90)", emoji: "🍚" },
+    hero: { color: "oklch(0.9 0.02 90)" },
   },
   {
     slug: "frango-quiabo-ana-maria",
@@ -554,7 +554,7 @@ export const RECIPES: Recipe[] = [
       "O Ana Maria é o tempero-coringa da cozinha caseira brasileira. Realça o frango e combina com o quiabo num prato que abraça.",
     substitution:
       "Sem quiabo? Faça frango com jiló ou uma canja tradicional usando o mesmo tempero.",
-    hero: { color: "oklch(0.5 0.14 55)", emoji: "🍲" },
+    hero: { color: "oklch(0.5 0.14 55)" },
   },
 
   // Perfil 7 — Churrasco e grelhados
@@ -583,7 +583,7 @@ export const RECIPES: Recipe[] = [
       "O Temperaflix Bacon traz o aroma e o sabor do bacon fatiado de forma instantânea — perfeito para transformar um ovo frito comum em algo memorável.",
     substitution:
       "Experimente no pão na chapa com queijo derretido ou em patês para um lanche defumado.",
-    hero: { color: "oklch(0.4 0.08 40)", emoji: "🍳" },
+    hero: { color: "oklch(0.4 0.08 40)" },
   },
   {
     slug: "bife-acebolado-lemon-pepper",
@@ -612,7 +612,7 @@ export const RECIPES: Recipe[] = [
       "O toque cítrico do Lemon Pepper corta a gordura da carne e realça a doçura da cebola caramelizada — um clássico brasileiro reinventado.",
     substitution:
       "Também é excelente em peixes assados, filé de frango grelhado ou batata frita rústica.",
-    hero: { color: "oklch(0.6 0.14 85)", emoji: "🥩" },
+    hero: { color: "oklch(0.6 0.14 85)" },
   },
   {
     slug: "costelinha-paprica-defumada-tradicional",
@@ -641,7 +641,7 @@ export const RECIPES: Recipe[] = [
       "A Páprica Defumada confere aquele aroma de churrasqueira sem sair da cozinha — um clássico brasileiro que abraça a mesa toda.",
     substitution:
       "Excelente para temperar linguiças caseiras, frango a passarinho ou molhos barbecue tradicionais.",
-    hero: { color: "oklch(0.42 0.15 35)", emoji: "🍖" },
+    hero: { color: "oklch(0.42 0.15 35)" },
   },
 
   // Perfil 8 — Ervas e especiarias em pratos tradicionais
@@ -672,7 +672,7 @@ export const RECIPES: Recipe[] = [
       "As Ervas Finas dão frescor e sofisticação a um prato do dia a dia — o mesmo omelete de sempre com aroma de bistrô.",
     substitution:
       "Use as Ervas Finas em patês de queijo, saladas de batata ou para temperar queijos frescos como boursin caseiro.",
-    hero: { color: "oklch(0.6 0.11 140)", emoji: "🌿" },
+    hero: { color: "oklch(0.6 0.11 140)" },
   },
   {
     slug: "frango-chimi-churri-tradicional",
@@ -700,7 +700,7 @@ export const RECIPES: Recipe[] = [
       "O Chimi Churri é a assinatura sul-americana no frango — ervas, alho e um leve vinagre que combinam com qualquer prato do almoço brasileiro.",
     substitution:
       "Ótimo em carnes vermelhas grelhadas, peixes assados ou como molho para salada com azeite e vinagre.",
-    hero: { color: "oklch(0.55 0.13 145)", emoji: "🌱" },
+    hero: { color: "oklch(0.55 0.13 145)" },
   },
   {
     slug: "legumes-assados-curcuma-tradicional",
@@ -730,7 +730,7 @@ export const RECIPES: Recipe[] = [
       "A Cúrcuma dá cor de ouro aos legumes e um sabor terroso suave — transforma um acompanhamento comum em prato de destaque na mesa da família.",
     substitution:
       "Use a Cúrcuma em sopas, caldos, arroz amarelo ou para temperar lentilha e grão de bico.",
-    hero: { color: "oklch(0.78 0.14 80)", emoji: "🥕" },
+    hero: { color: "oklch(0.78 0.14 80)" },
   },
 ];
 

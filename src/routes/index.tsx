@@ -225,7 +225,7 @@ function Home() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {RECIPES.slice(0, 3).map((r) => (
+            {RECIPES.slice(0, 3).map((r, idx) => (
               <Link
                 key={r.slug}
                 to="/cozinha/$slug"
@@ -233,17 +233,18 @@ function Home() {
                 className="group block border border-foreground/15 bg-background hover:border-accent transition"
               >
                 <div
-                  className="relative aspect-[5/3]"
+                  className="relative aspect-[5/3] overflow-hidden"
                   style={{ background: r.hero.color }}
                 >
+                  <div aria-hidden className="absolute inset-0 bg-paper-grain opacity-20" />
                   <span className="absolute top-3 left-3 label-tag">
                     {MOMENTS[r.moment]}
                   </span>
                   <span
-                    className="absolute right-4 bottom-3 text-6xl opacity-90 transition-transform duration-500 group-hover:scale-110"
                     aria-hidden
+                    className="absolute right-4 bottom-1 font-display font-black text-brand-paper/25 leading-none tracking-tighter text-[7rem] select-none transition-transform duration-500 group-hover:-translate-y-1"
                   >
-                    {r.hero.emoji}
+                    Nº{String(idx + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <div className="p-5">
