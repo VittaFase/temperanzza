@@ -130,6 +130,7 @@ export function TemperaflixShowcase() {
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
       {/* atmosphere: radial halo tied to active flavor + paper grain */}
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
+      <SmokeBackdrop opacity={0.3} />
       <motion.div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
