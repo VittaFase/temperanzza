@@ -213,16 +213,27 @@ function RecipeDrawer() {
           className="relative overflow-hidden bg-brand-ink text-brand-paper"
           aria-labelledby="recipe-drawer-title"
         >
+          {/* Gradiente invertido: escuro à esquerda (leitura), quente/iluminado à direita (pote) */}
           <div
             aria-hidden
             className="absolute inset-0"
             style={{
-              background: `radial-gradient(ellipse at 20% 20%, ${recipe.hero.color} 0%, transparent 65%), radial-gradient(ellipse at 80% 80%, oklch(0.20 0.04 30) 0%, transparent 55%), linear-gradient(180deg, oklch(0.14 0.015 45) 0%, oklch(0.10 0.02 30) 100%)`,
+              background: `radial-gradient(ellipse at 85% 50%, ${recipe.hero.color} 0%, transparent 55%), radial-gradient(ellipse at 78% 50%, oklch(0.72 0.16 75 / 0.35) 0%, transparent 40%), linear-gradient(90deg, oklch(0.10 0.02 30) 0%, oklch(0.14 0.03 40) 50%, oklch(0.18 0.06 45) 100%)`,
+            }}
+          />
+          {/* Spotlight radial suave por trás do pote */}
+          <div
+            aria-hidden
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[55%] h-[120%] pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle at 60% 50%, oklch(0.78 0.13 65 / 0.28) 0%, transparent 60%)",
+              filter: "blur(20px)",
             }}
           />
           <div
             aria-hidden
-            className="absolute inset-0 opacity-[0.10] mix-blend-overlay"
+            className="absolute inset-0 opacity-[0.08] mix-blend-overlay"
             style={{
               backgroundImage:
                 "radial-gradient(circle at 30% 30%, rgba(255,240,220,0.35) 0px, transparent 2px)",
@@ -231,9 +242,10 @@ function RecipeDrawer() {
           />
 
           <div className="relative mx-auto max-w-6xl px-4 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-7">
               <div className="flex flex-wrap items-center gap-2 mb-6">
-                <span className="inline-block px-3 py-1 bg-brand-mustard text-brand-ink font-display font-black uppercase tracking-widest text-[10px]">
+                {/* Chips uniformizados — ambos outline, apenas tags semânticas */}
+                <span className="inline-block px-3 py-1 border border-brand-mustard/70 text-brand-mustard font-display font-black uppercase tracking-widest text-[10px]">
                   {MOMENTS[recipe.moment]}
                 </span>
                 <span className="inline-block px-3 py-1 border border-brand-paper/30 text-brand-paper/80 font-display font-black uppercase tracking-widest text-[10px]">
@@ -252,8 +264,8 @@ function RecipeDrawer() {
                 {subtitle}
               </p>
 
-              {/* Ficha técnica visual — régua horizontal */}
-              <dl className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-brand-paper/20 pt-6 max-w-xl">
+              {/* Ficha técnica visual — régua horizontal, respiro editorial */}
+              <dl className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-brand-paper/20 pt-8 max-w-xl">
                 <FichaItem
                   icon={<Clock className="h-4 w-4" />}
                   label="Tempo"
@@ -277,23 +289,34 @@ function RecipeDrawer() {
               </dl>
             </div>
 
-            {/* Pote real do produto — assinatura discreta, canto */}
+            {/* Pote real — protagonista: maior, com sombra de chão e flutuação idle */}
             {productImg && (
-              <div className="lg:col-span-4 flex justify-center lg:justify-end">
-                <div className="relative">
+              <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                <div className="relative group">
+                  {/* Halo âmbar */}
                   <div
                     aria-hidden
-                    className="absolute -inset-6 rounded-full opacity-40"
+                    className="absolute -inset-10 rounded-full opacity-60"
                     style={{
                       background:
-                        "radial-gradient(circle, oklch(0.72 0.16 75 / 0.6) 0%, transparent 70%)",
-                      filter: "blur(30px)",
+                        "radial-gradient(circle, oklch(0.72 0.16 75 / 0.55) 0%, transparent 70%)",
+                      filter: "blur(40px)",
+                    }}
+                  />
+                  {/* Sombra de chão elíptica */}
+                  <div
+                    aria-hidden
+                    className="absolute left-1/2 -translate-x-1/2 -bottom-6 w-[70%] h-4 pointer-events-none"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, transparent 75%)",
+                      filter: "blur(8px)",
                     }}
                   />
                   <img
                     src={productImg}
                     alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
-                    className="relative h-56 sm:h-72 w-auto object-contain drop-shadow-2xl"
+                    className="relative h-80 sm:h-[26rem] lg:h-[30rem] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.55)] animate-pote-float"
                   />
                 </div>
               </div>
