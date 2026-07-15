@@ -33,10 +33,6 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-
-
-
-  return (
     <SiteLayout>
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-foreground/15">
