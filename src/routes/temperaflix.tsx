@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,6 +14,46 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
+import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
+import smokePoster from "@/assets/hero-smoke-poster.jpg";
+
+/**
+ * SmokeBackdrop — vídeo em loop de fumaça monocromática quente.
+ * Poster fallback (LCP, reduced-motion). blend-mode "screen" apaga o preto do vídeo sobre o ink.
+ */
+function SmokeBackdrop({ opacity = 0.4 }: { opacity?: number }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [enableVideo, setEnableVideo] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!reduced) setEnableVideo(true);
+  }, []);
+  return (
+    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+      <img
+        src={smokePoster}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ mixBlendMode: "screen", opacity }}
+      />
+      {enableVideo && (
+        <video
+          ref={videoRef}
+          src={smokeVideo.url}
+          poster={smokePoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ mixBlendMode: "screen", opacity }}
+        />
+      )}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/temperaflix")({
   head: () => ({
