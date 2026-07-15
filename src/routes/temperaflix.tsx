@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,6 +14,46 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
+import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
+import smokePoster from "@/assets/hero-smoke-poster.jpg";
+
+/**
+ * SmokeBackdrop — vídeo em loop de fumaça monocromática quente.
+ * Poster fallback (LCP, reduced-motion). blend-mode "screen" apaga o preto do vídeo sobre o ink.
+ */
+function SmokeBackdrop({ opacity = 0.4 }: { opacity?: number }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [enableVideo, setEnableVideo] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!reduced) setEnableVideo(true);
+  }, []);
+  return (
+    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+      <img
+        src={smokePoster}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ mixBlendMode: "screen", opacity }}
+      />
+      {enableVideo && (
+        <video
+          ref={videoRef}
+          src={smokeVideo.url}
+          poster={smokePoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ mixBlendMode: "screen", opacity }}
+        />
+      )}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/temperaflix")({
   head: () => ({
@@ -47,8 +87,8 @@ const FLAVOR = {
     tagline: "Atemporal. Vai bem com qualquer trama.",
     pairing: "Pipoca de cinema · batata rústica · amendoim torrado",
     duration: "blend 04:20",
-    halo: "oklch(0.58 0.20 28)",
-    accent: "#E86A4F",
+    halo: "oklch(0.48 0.22 28)",
+    accent: "#C7452C",
     Icon: Popcorn,
   },
   ervas: {
@@ -69,8 +109,8 @@ const FLAVOR = {
     tagline: "Defumado, intenso, indulgente.",
     pairing: "Batata frita · torresmo · pipoca de bacon",
     duration: "blend 06:45",
-    halo: "oklch(0.60 0.14 55)",
-    accent: "#D89A4A",
+    halo: "oklch(0.38 0.10 45)",
+    accent: "#8B5A3C",
     Icon: Flame,
   },
 } as const;
@@ -214,6 +254,7 @@ function TemperaflixPage() {
       <section className="relative overflow-hidden bg-brand-ink text-brand-paper">
         {/* atmosphere layers */}
         <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
+        <SmokeBackdrop opacity={0.35} />
         <motion.div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
@@ -339,6 +380,7 @@ function TemperaflixPage() {
         className="relative overflow-hidden bg-brand-ink text-brand-paper border-t border-brand-paper/15 py-20 sm:py-24"
       >
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
+        <SmokeBackdrop opacity={0.25} />
         <motion.div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
