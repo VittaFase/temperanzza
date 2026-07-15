@@ -269,7 +269,7 @@ function DietSectionForProduct({ handle }: { handle: string }) {
             : "Explore receitas para sua dieta"}
         </h3>
         <ul className="mt-5 space-y-3 flex-1">
-          {recipes.slice(0, 4).map((r) => (
+          {recipes.slice(0, 4).map((r, idx) => (
             <li key={r.slug}>
               <Link
                 to="/cozinha/$slug"
@@ -277,11 +277,11 @@ function DietSectionForProduct({ handle }: { handle: string }) {
                 className="group flex items-start gap-3 text-sm hover:text-accent"
               >
                 <span
-                  className="shrink-0 h-8 w-8 grid place-items-center text-xl"
-                  style={{ background: r.hero.color, color: "white" }}
+                  className="shrink-0 h-8 w-8 grid place-items-center font-display font-black text-[11px] tracking-tight text-brand-paper"
+                  style={{ background: r.hero.color }}
                   aria-hidden
                 >
-                  {r.hero.emoji}
+                  Nº{String(idx + 1).padStart(2, "0")}
                 </span>
                 <span className="font-medium leading-snug">{r.title}</span>
               </Link>
