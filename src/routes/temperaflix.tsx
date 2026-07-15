@@ -47,8 +47,8 @@ const FLAVOR = {
     tagline: "Atemporal. Vai bem com qualquer trama.",
     pairing: "Pipoca de cinema · batata rústica · amendoim torrado",
     duration: "blend 04:20",
-    halo: "oklch(0.58 0.20 28)",
-    accent: "#E86A4F",
+    halo: "oklch(0.48 0.22 28)",
+    accent: "#C7452C",
     Icon: Popcorn,
   },
   ervas: {
@@ -69,8 +69,8 @@ const FLAVOR = {
     tagline: "Defumado, intenso, indulgente.",
     pairing: "Batata frita · torresmo · pipoca de bacon",
     duration: "blend 06:45",
-    halo: "oklch(0.60 0.14 55)",
-    accent: "#D89A4A",
+    halo: "oklch(0.38 0.10 45)",
+    accent: "#8B5A3C",
     Icon: Flame,
   },
 } as const;

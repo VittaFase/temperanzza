@@ -18,8 +18,8 @@ const FLAVOR = {
     code: "S01·E01",
     label: "Tradicional",
     tagline: "O sabor que combina com tudo.",
-    halo: "oklch(0.58 0.20 28)", // brick red
-    accent: "#E86A4F",
+    halo: "oklch(0.48 0.22 28)", // deep brick red — matches label
+    accent: "#C7452C",
   },
   ervas: {
     code: "S01·E02",
@@ -32,8 +32,8 @@ const FLAVOR = {
     code: "S01·E03",
     label: "Bacon",
     tagline: "Defumado, intenso, blockbuster.",
-    halo: "oklch(0.60 0.14 55)", // amber smoke
-    accent: "#D89A4A",
+    halo: "oklch(0.38 0.10 45)", // smoked brown — matches label
+    accent: "#8B5A3C",
   },
 } as const;
 
