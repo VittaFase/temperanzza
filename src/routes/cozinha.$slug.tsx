@@ -501,9 +501,10 @@ function RecipeDrawer() {
               </div>
               <button
                 onClick={close}
-                className="text-[11px] font-display uppercase tracking-widest text-brand-ink/60 hover:text-accent underline underline-offset-4"
+                className="inline-flex items-center gap-3 bg-brand-ink text-brand-paper hover:bg-accent px-6 py-3 font-display uppercase tracking-widest text-xs sm:text-sm transition-colors border border-brand-ink hover:border-accent shadow-md"
               >
-                ← Voltar à biblioteca
+                <ArrowRight className="h-4 w-4 rotate-180" />
+                Voltar às receitas
               </button>
             </div>
             <ul className="divide-y divide-brand-ink/15 border-y border-brand-ink/15">
