@@ -32,27 +32,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { data: featured } = useQuery({
-    queryKey: ["shopify-featured", "temperaflix-3"],
-    queryFn: async () => {
-      const res = await storefrontApiRequest(STOREFRONT_QUERY, {
-        first: 10,
-        query: "tag:temperaflix",
-      });
-      const edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
-      const rank = (title: string) => {
-        const t = title.toLowerCase();
-        if (t.includes("tradicional")) return 0;
-        if (t.includes("ervas")) return 1;
-        if (t.includes("bacon")) return 2;
-        return 99;
-      };
-      return edges
-        .slice()
-        .sort((a, b) => rank(a.node.title) - rank(b.node.title))
-        .slice(0, 3);
-    },
-  });
+  return (
 
 
 
