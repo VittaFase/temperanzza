@@ -7,15 +7,59 @@ import {
 import { ProductCard } from "./ProductCard";
 import { Loader2 } from "lucide-react";
 
-export function ProductGrid({ first = 24 }: { first?: number }) {
+interface ProductGridProps {
+  first?: number;
+  /** Storefront search query (e.g. exclude handles) */
+  query?: string | null;
+  /** Post-fetch: remove these handles from the result */
+  excludeHandles?: string[];
+  /** Post-fetch: force these handles to appear first, in this order */
+  prependHandles?: string[];
+}
+
+export function ProductGrid({
+  first = 24,
+  query = null,
+  excludeHandles,
+  prependHandles,
+}: ProductGridProps) {
+  // Fetch extra when we're going to filter/reorder client-side
+  const fetchCount =
+    excludeHandles || prependHandles ? Math.max(first + 10, 24) : first;
+
   const { data, isLoading, error } = useQuery({
-    queryKey: ["shopify-products", first],
+    queryKey: [
+      "shopify-products",
+      fetchCount,
+      query,
+      excludeHandles?.join(",") ?? "",
+      prependHandles?.join(",") ?? "",
+      first,
+    ],
     queryFn: async () => {
       const res = await storefrontApiRequest(STOREFRONT_QUERY, {
-        first,
-        query: null,
+        first: fetchCount,
+        query,
       });
-      return (res?.data?.products?.edges ?? []) as ShopifyProduct[];
+      let edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
+
+      if (excludeHandles?.length) {
+        const ex = new Set(excludeHandles);
+        edges = edges.filter((e) => !ex.has(e.node.handle));
+      }
+
+      if (prependHandles?.length) {
+        const order = prependHandles;
+        const priority = edges.filter((e) => order.includes(e.node.handle));
+        priority.sort(
+          (a, b) =>
+            order.indexOf(a.node.handle) - order.indexOf(b.node.handle),
+        );
+        const rest = edges.filter((e) => !order.includes(e.node.handle));
+        edges = [...priority, ...rest];
+      }
+
+      return edges.slice(0, first);
     },
   });
 
