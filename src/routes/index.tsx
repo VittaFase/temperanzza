@@ -39,15 +39,25 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const { data: featured } = useQuery({
-    queryKey: ["shopify-featured", 3],
+    queryKey: ["shopify-featured", "curated-3"],
     queryFn: async () => {
       const res = await storefrontApiRequest(STOREFRONT_QUERY, {
-        first: 3,
-        query: null,
+        first: 10,
+        query:
+          "handle:salsa-cebola-e-alho OR handle:lemon-pepper OR handle:curcuma",
       });
-      return (res?.data?.products?.edges ?? []) as ShopifyProduct[];
+      const edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
+      const order = ["salsa-cebola-e-alho", "lemon-pepper", "curcuma"];
+      return edges
+        .slice()
+        .sort(
+          (a, b) =>
+            order.indexOf(a.node.handle) - order.indexOf(b.node.handle),
+        )
+        .slice(0, 3);
     },
   });
+
 
   return (
     <SiteLayout>
