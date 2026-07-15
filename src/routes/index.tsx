@@ -167,7 +167,19 @@ function Home() {
               Ver tudo →
             </Link>
           </div>
-          <ProductGrid first={8} />
+          <ProductGrid
+            first={8}
+            excludeHandles={[
+              "temperaflix-tradicional",
+              "temperaflix-ervas-finas",
+              "temperaflix-bacon",
+            ]}
+            prependHandles={[
+              "salsa-cebola-e-alho",
+              "lemon-pepper",
+              "curcuma",
+            ]}
+          />
         </div>
       </section>
 
