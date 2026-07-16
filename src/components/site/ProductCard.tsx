@@ -44,7 +44,10 @@ export function ProductCard({
   };
 
   const isPaper = variant === "paper";
-  const sizeClass = isPaper
+  const isTemperaflix = handle.includes("temperaflix");
+  const sizeClass = isPaper && isTemperaflix
+    ? "w-full h-full drop-shadow-[0_22px_26px_rgba(0,0,0,0.18)]"
+    : isPaper
     ? "w-[72%] h-[84%] drop-shadow-[0_22px_26px_rgba(0,0,0,0.18)]"
     : "w-[82%] h-[92%] drop-shadow-[0_22px_28px_rgba(0,0,0,0.45)]";
   const StageContent = (
