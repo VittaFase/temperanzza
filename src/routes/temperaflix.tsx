@@ -457,9 +457,9 @@ function TemperaflixPage() {
               </p>
             </div>
           ) : (
-            <div className="grid lg:grid-cols-12 gap-10 items-center">
+            <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — big shaker stage */}
-              <div className="lg:col-span-7 relative min-h-[420px] sm:min-h-[520px] flex items-center justify-center">
+              <div className="relative min-w-0 overflow-hidden min-h-[420px] sm:min-h-[520px] flex items-center justify-center lg:col-span-7">
                 {/* PISO — gradiente unificado do palco */}
                 <motion.div
                   aria-hidden
@@ -559,7 +559,7 @@ function TemperaflixPage() {
               </div>
 
               {/* RIGHT — playlist */}
-              <div className="lg:col-span-5 flex flex-col divide-y divide-brand-paper/15 border-y border-brand-paper/15">
+              <div className="flex w-full min-w-0 flex-col divide-y divide-brand-paper/15 border-y border-brand-paper/15 lg:col-span-5">
                 {ORDER.map((k) => {
                   const meta = FLAVOR[k];
                   const p = byFlavor[k];
@@ -582,7 +582,7 @@ function TemperaflixPage() {
                       }}
                       aria-pressed={isActive}
                       aria-label={`Selecionar ${p?.node.title ?? `Temperaflix ${meta.genre}`}`}
-                      className="relative text-left py-5 px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 group transition-colors outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+                      className="relative flex w-full min-w-0 flex-col gap-3 overflow-hidden px-4 py-5 text-left transition-colors outline-none cursor-pointer group focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink sm:flex-row sm:items-center sm:gap-4 sm:px-6"
                       style={{
                         background: isActive
                           ? "rgba(245,240,232,0.04)"
