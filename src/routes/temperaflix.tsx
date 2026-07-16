@@ -352,6 +352,16 @@ function TemperaflixPage() {
               transition={{ duration: 1.4 }}
               style={{ opacity: 0.5, width: "80%", height: "80%", top: "10%", left: "10%" }}
             />
+            {/* PISO — gradiente unificado do palco */}
+            <motion.div
+              aria-hidden
+              className="absolute inset-x-0 bottom-0 pointer-events-none"
+              animate={{
+                background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0.15) 60%, transparent 100%), radial-gradient(ellipse 60% 80% at 50% 100%, ${activeMeta.halo}22 0%, transparent 65%)`,
+              }}
+              transition={{ duration: 1.4, ease: "easeInOut" }}
+              style={{ height: "35%" }}
+            />
             {/* pedestal — sombra de contato no piso */}
             <div
               aria-hidden
