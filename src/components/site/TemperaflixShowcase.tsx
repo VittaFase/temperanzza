@@ -398,7 +398,7 @@ export function TemperaflixShowcase() {
         {/* FOOTER — HUD strip */}
         <div className="mt-14 pt-6 border-t border-brand-paper/15 flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] tracking-[0.3em] text-brand-paper/50 uppercase">
           <span>// linha exclusiva · temperanzza</span>
-          <span>3 sabores · shakers 60g · pronto para uso</span>
+          <span>3 SABORES · SHAKERS · PRONTO PARA USO</span>
           <Link
             to="/temperaflix"
             className="hover:text-brand-paper transition-colors"
