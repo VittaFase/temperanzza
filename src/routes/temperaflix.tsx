@@ -457,9 +457,9 @@ function TemperaflixPage() {
               </p>
             </div>
           ) : (
-            <div className="grid lg:grid-cols-12 gap-10 items-center">
+            <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — big shaker stage */}
-              <div className="lg:col-span-7 relative min-h-[420px] sm:min-h-[520px] flex items-center justify-center">
+              <div className="relative min-w-0 overflow-hidden min-h-[420px] sm:min-h-[520px] flex items-center justify-center lg:col-span-7">
                 {/* PISO — gradiente unificado do palco */}
                 <motion.div
                   aria-hidden
@@ -559,7 +559,7 @@ function TemperaflixPage() {
               </div>
 
               {/* RIGHT — playlist */}
-              <div className="lg:col-span-5 flex flex-col divide-y divide-brand-paper/15 border-y border-brand-paper/15">
+              <div className="flex w-full min-w-0 flex-col divide-y divide-brand-paper/15 border-y border-brand-paper/15 lg:col-span-5">
                 {ORDER.map((k) => {
                   const meta = FLAVOR[k];
                   const p = byFlavor[k];
@@ -582,7 +582,7 @@ function TemperaflixPage() {
                       }}
                       aria-pressed={isActive}
                       aria-label={`Selecionar ${p?.node.title ?? `Temperaflix ${meta.genre}`}`}
-                      className="relative text-left py-5 px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 group transition-colors outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+                      className="relative flex w-full min-w-0 flex-col gap-3 overflow-hidden px-4 py-5 text-left transition-colors outline-none cursor-pointer group focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink sm:flex-row sm:items-center sm:gap-4 sm:px-6"
                       style={{
                         background: isActive
                           ? "rgba(245,240,232,0.04)"
@@ -639,7 +639,7 @@ function TemperaflixPage() {
                       </div>
 
                       {/* BOTTOM ROW on mobile / RIGHT column on desktop: price + sacola */}
-                      <div className="flex items-center justify-between sm:flex-col sm:items-end gap-3 sm:gap-2 pl-[72px] sm:pl-0 shrink-0">
+                      <div className="grid w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:flex sm:w-auto sm:flex-col sm:items-end sm:gap-2 sm:pl-0 sm:shrink-0">
                         {price && (
                           <span
                             className="font-display font-black text-lg"
@@ -659,7 +659,7 @@ function TemperaflixPage() {
                             handleAddOne(p);
                           }}
                           aria-label={`Adicionar ${p?.node.title ?? `Temperaflix ${meta.genre}`} à sacola`}
-                          className="inline-flex items-center gap-1.5 border px-3 py-2 sm:px-2.5 sm:py-1 font-mono text-[11px] sm:text-[10px] tracking-[0.2em] uppercase transition-colors cursor-pointer min-h-11 sm:min-h-0"
+                          className="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 border px-3 py-2 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors cursor-pointer sm:min-h-0 sm:px-2.5 sm:py-1 sm:text-[10px]"
                           style={{
                             borderColor: isActive
                               ? meta.accent
