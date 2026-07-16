@@ -774,9 +774,10 @@ function TemperaflixPage() {
 
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
           {/* 3 pots floating */}
-          <div className="lg:col-span-6 relative min-h-[200px] sm:min-h-[400px]">
+          <div className="lg:col-span-6 relative min-h-[180px] sm:min-h-[400px]">
             {data && data.length === 3 && (
-              <div className="relative h-full flex items-center sm:items-end justify-center gap-2 sm:gap-3">
+              <div className="relative h-full flex items-end justify-center gap-2 sm:gap-3">
+
                 {ORDER.map((k, idx) => {
                   const p = byFlavor[k];
                   if (!p) return null;
