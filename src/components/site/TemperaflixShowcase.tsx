@@ -247,14 +247,20 @@ export function TemperaflixShowcase() {
               const price = product?.node.priceRange.minVariantPrice;
 
               return (
-                <button
+                <div
                   key={key}
-                  type="button"
-                  onMouseEnter={() => setActive(key)}
-                  onFocus={() => setActive(key)}
                   className="group relative flex flex-col items-center justify-end outline-none"
                   style={{ perspective: 1200 }}
+                  onMouseEnter={() => setActive(key)}
+                  onFocus={() => setActive(key)}
                 >
+                  <button
+                    type="button"
+                    onClick={() => setActive(key)}
+                    aria-label={`Selecionar ${meta.label}`}
+                    className="contents"
+                  >
+
                   {/* TECH RING — anel de scan neutro girando atrás do pote ativo */}
                   <AnimatePresence>
                     {isActive && (
