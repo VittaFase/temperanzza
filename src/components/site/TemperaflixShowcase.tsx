@@ -193,24 +193,24 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[360px] sm:min-h-[480px]">
-            {/* PISO — gradiente unificado que ancora os 3 potes num mesmo plano */}
-            <motion.div
+          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[440px] sm:min-h-[560px]">
+            {/* PISO — gradiente neutro (sem tint colorido) */}
+            <div
               aria-hidden
               className="absolute inset-x-0 bottom-0 pointer-events-none"
-              animate={{
-                background: `linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0.2) 55%, transparent 100%), radial-gradient(ellipse 70% 90% at 50% 100%, ${activeMeta.halo}22 0%, transparent 65%)`,
+              style={{
+                height: "38%",
+                background:
+                  "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0.2) 55%, transparent 100%)",
               }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
-              style={{ height: "38%" }}
             />
-            {/* linha de luz sutil no horizonte do piso */}
+            {/* linha de luz no horizonte — sincroniza com accent do sabor ativo */}
             <motion.div
               aria-hidden
               className="absolute inset-x-[10%] pointer-events-none"
-              animate={{ background: `linear-gradient(90deg, transparent, ${activeMeta.accent}66, transparent)` }}
+              animate={{ background: `linear-gradient(90deg, transparent, ${activeMeta.accent}88, transparent)` }}
               transition={{ duration: 1.2 }}
-              style={{ height: "1px", bottom: "38%", opacity: 0.45, filter: "blur(0.5px)" }}
+              style={{ height: "1px", bottom: "38%", opacity: 0.6, filter: "blur(0.5px)" }}
             />
             {ORDER.map((key) => {
               const product = byFlavor[key];
@@ -234,52 +234,65 @@ export function TemperaflixShowcase() {
                   className="group relative flex flex-col items-center justify-end outline-none"
                   style={{ perspective: 1200 }}
                 >
-                  {/* halo bloom */}
+                  {/* TECH RING — anel de scan neutro girando atrás do pote ativo */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        key="tech-ring"
+                        aria-hidden
+                        className="absolute left-1/2 -translate-x-1/2 rounded-full pointer-events-none"
+                        initial={{ opacity: 0, scale: 0.7 }}
+                        animate={{ opacity: 0.55, scale: 1, rotate: 360 }}
+                        exit={{ opacity: 0, scale: 0.7 }}
+                        transition={{
+                          opacity: { duration: 0.6 },
+                          scale: { duration: 0.6 },
+                          rotate: { duration: 18, ease: "linear", repeat: Infinity },
+                        }}
+                        style={{
+                          width: "82%",
+                          aspectRatio: "1 / 1",
+                          bottom: "18%",
+                          border: `1px dashed ${meta.accent}55`,
+                          boxShadow: `inset 0 0 24px ${meta.accent}22, 0 0 24px ${meta.accent}22`,
+                        }}
+                      />
+                    )}
+                  </AnimatePresence>
+
+                  {/* AMBIENT GLOW — halo bem sutil, neutro/branco (não colorido) */}
                   <motion.div
                     aria-hidden
                     className="absolute left-1/2 -translate-x-1/2 rounded-full pointer-events-none blur-2xl"
                     animate={{
-                      opacity: isActive ? 0.7 : 0.18,
+                      opacity: isActive ? 0.28 : 0.08,
                       scale: isActive ? 1.15 : 0.9,
                     }}
                     transition={{ duration: 0.9, ease: "easeInOut" }}
                     style={{
-                      background: meta.halo,
-                      width: isCenter ? "85%" : "70%",
-                      height: isCenter ? "85%" : "70%",
-                      bottom: "12%",
+                      background: "rgba(255,255,255,0.6)",
+                      width: isCenter ? "80%" : "65%",
+                      height: isCenter ? "80%" : "65%",
+                      bottom: "14%",
                     }}
                   />
 
-                  {/* pedestal — sombra de contato + disco de luz refletida */}
+                  {/* pedestal — sombra de contato neutra */}
                   <motion.div
                     aria-hidden
                     className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
                     animate={{
                       opacity: isActive ? 1 : 0.55,
-                      scale: isActive ? 1.1 : 0.9,
+                      scale: isActive ? 1.15 : 0.9,
                     }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     style={{
-                      width: "75%",
-                      height: "42px",
+                      width: "80%",
+                      height: "48px",
                       bottom: "2%",
-                      background: `radial-gradient(ellipse 50% 55% at 50% 50%, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)`,
-                      filter: "blur(6px)",
-                    }}
-                  />
-                  <motion.div
-                    aria-hidden
-                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                    animate={{ opacity: isActive ? 0.55 : 0.2 }}
-                    transition={{ duration: 0.6 }}
-                    style={{
-                      width: "55%",
-                      height: "10px",
-                      bottom: "6%",
-                      background: `radial-gradient(ellipse 50% 50% at 50% 50%, ${meta.halo} 0%, transparent 70%)`,
-                      filter: "blur(4px)",
-                      mixBlendMode: "screen",
+                      background:
+                        "radial-gradient(ellipse 50% 55% at 50% 50%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 45%, transparent 75%)",
+                      filter: "blur(7px)",
                     }}
                   />
 
@@ -287,9 +300,9 @@ export function TemperaflixShowcase() {
                   <motion.div
                     className="relative w-full"
                     animate={{
-                      y: isActive ? -14 : isCenter ? -6 : 0,
+                      y: isActive ? -16 : isCenter ? -6 : 0,
                       rotateY: isActive ? 6 : 0,
-                      scale: isActive ? 1.05 : isCenter ? 1 : 0.9,
+                      scale: isActive ? 1.12 : isCenter ? 1 : 0.85,
                     }}
                     transition={{ type: "spring", stiffness: 180, damping: 22 }}
                     style={{ transformStyle: "preserve-3d" }}
@@ -298,12 +311,35 @@ export function TemperaflixShowcase() {
                       <img
                         src={image}
                         alt={product?.node.title ?? meta.label}
-                        className="w-full h-auto object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.55)] max-h-[380px] mx-auto"
+                        className="w-full h-auto object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)] max-h-[460px] mx-auto"
                         loading="lazy"
                       />
                     ) : (
                       <div className="w-full aspect-[3/4] bg-brand-paper/5" />
                     )}
+
+                    {/* CROSSHAIR — colchetes de mira nos 4 cantos do pote ativo */}
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          key="crosshair"
+                          aria-hidden
+                          initial={{ opacity: 0, scale: 1.15 }}
+                          animate={{ opacity: 0.7, scale: 1 }}
+                          exit={{ opacity: 0, scale: 1.15 }}
+                          transition={{ duration: 0.4, ease: "easeOut" }}
+                          className="absolute inset-[6%] pointer-events-none"
+                        >
+                          {["top-0 left-0 border-t border-l", "top-0 right-0 border-t border-r", "bottom-0 left-0 border-b border-l", "bottom-0 right-0 border-b border-r"].map((pos, i) => (
+                            <span
+                              key={i}
+                              className={`absolute w-4 h-4 sm:w-5 sm:h-5 ${pos}`}
+                              style={{ borderColor: meta.accent }}
+                            />
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
                     {/* scanline sweep on active */}
                     <AnimatePresence>
@@ -324,6 +360,7 @@ export function TemperaflixShowcase() {
                       )}
                     </AnimatePresence>
                   </motion.div>
+
 
                   {/* meta strip */}
                   <div className="relative mt-4 sm:mt-6 text-center w-full">
