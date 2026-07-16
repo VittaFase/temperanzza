@@ -88,6 +88,8 @@ function classify(title: string): FlavorKey {
 const ORDER: FlavorKey[] = ["tradicional", "ervas", "bacon"];
 
 export function TemperaflixShowcase() {
+  const addItem = useCartStore((s) => s.addItem);
+  const isAdding = useCartStore((s) => s.isLoading);
   const { data, isLoading } = useQuery({
     queryKey: ["shopify-featured", "temperaflix-3"],
     queryFn: async () => {
@@ -109,6 +111,22 @@ export function TemperaflixShowcase() {
         .slice(0, 3);
     },
   });
+
+  const handleAddOne = async (p: ShopifyProduct | undefined) => {
+    if (!p) return;
+    const v = p.node.variants.edges[0]?.node;
+    if (!v) return;
+    await addItem({
+      product: p,
+      variantId: v.id,
+      variantTitle: v.title,
+      price: v.price,
+      quantity: 1,
+      selectedOptions: v.selectedOptions || [],
+    });
+    toast.success(`${p.node.title} entrou na sacola`);
+  };
+
 
   const byFlavor = useMemo(() => {
     const map: Partial<Record<FlavorKey, ShopifyProduct>> = {};
