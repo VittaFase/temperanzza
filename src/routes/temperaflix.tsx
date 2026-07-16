@@ -776,7 +776,7 @@ function TemperaflixPage() {
           {/* 3 pots floating */}
           <div className="lg:col-span-6 relative min-h-[200px] sm:min-h-[400px]">
             {data && data.length === 3 && (
-              <div className="relative h-full flex items-end justify-center gap-2">
+              <div className="relative h-full flex items-center sm:items-end justify-center gap-2 sm:gap-3">
                 {ORDER.map((k, idx) => {
                   const p = byFlavor[k];
                   if (!p) return null;
@@ -789,7 +789,7 @@ function TemperaflixPage() {
                       key={k}
                       src={image ?? ""}
                       alt={p.node.title}
-                      className="w-1/3 object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]"
+                      className="w-[38%] sm:w-1/3 object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)] max-h-[260px] sm:max-h-none"
                       animate={{
                         y: [0, -8, 0],
                       }}
@@ -807,6 +807,7 @@ function TemperaflixPage() {
                   );
                 })}
               </div>
+
             )}
           </div>
 
