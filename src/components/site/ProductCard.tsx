@@ -44,6 +44,17 @@ export function ProductCard({
   };
 
   const isPaper = variant === "paper";
+  // Os PNGs Temperaflix têm mais transparência ao redor do pote,
+  // então renderizam menores no mesmo container. Compensamos com um
+  // boost de escala para manter o padrão visual dos demais potes.
+  const isTemperaflix = handle.startsWith("temperaflix-");
+  const sizeClass = isPaper
+    ? isTemperaflix
+      ? "w-[92%] h-[104%] drop-shadow-[0_22px_26px_rgba(0,0,0,0.18)]"
+      : "w-[72%] h-[84%] drop-shadow-[0_22px_26px_rgba(0,0,0,0.18)]"
+    : isTemperaflix
+      ? "w-[100%] h-[112%] drop-shadow-[0_22px_28px_rgba(0,0,0,0.45)]"
+      : "w-[82%] h-[92%] drop-shadow-[0_22px_28px_rgba(0,0,0,0.45)]";
   const StageContent = (
     <>
       {badge && !isPaper && (
@@ -53,11 +64,7 @@ export function ProductCard({
         <img
           src={imgUrl}
           alt={image?.altText || product.node.title}
-          className={`absolute inset-0 m-auto object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.04] ${
-            isPaper
-              ? "w-[72%] h-[84%] drop-shadow-[0_22px_26px_rgba(0,0,0,0.18)]"
-              : "w-[82%] h-[92%] drop-shadow-[0_22px_28px_rgba(0,0,0,0.45)]"
-          }`}
+          className={`absolute inset-0 m-auto object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.04] ${sizeClass}`}
           loading="lazy"
         />
       ) : (
