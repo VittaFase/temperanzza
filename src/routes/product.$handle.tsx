@@ -196,6 +196,7 @@ function ProductPage() {
                   size="icon"
                   className="rounded-none h-14 w-12 hover:bg-foreground hover:text-background"
                   onClick={() => setQty(Math.max(1, qty - 1))}
+                  aria-label="Diminuir quantidade"
                 >
                   <Minus className="w-4 h-4" />
                 </Button>
@@ -205,6 +206,7 @@ function ProductPage() {
                   size="icon"
                   className="rounded-none h-14 w-12 hover:bg-foreground hover:text-background"
                   onClick={() => setQty(qty + 1)}
+                  aria-label="Aumentar quantidade"
                 >
                   <Plus className="w-4 h-4" />
                 </Button>

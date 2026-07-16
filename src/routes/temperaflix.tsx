@@ -568,12 +568,21 @@ function TemperaflixPage() {
                   const Icon = meta.Icon;
 
                   return (
-                    <button
+                    <div
                       key={k}
-                      type="button"
+                      role="button"
+                      tabIndex={0}
                       onMouseEnter={() => handleSelect(k)}
                       onClick={() => handleSelect(k)}
-                      className="relative text-left py-5 px-4 sm:px-6 flex items-center gap-4 group transition-colors outline-none"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          handleSelect(k);
+                        }
+                      }}
+                      aria-pressed={isActive}
+                      aria-label={`Selecionar ${p?.node.title ?? `Temperaflix ${meta.genre}`}`}
+                      className="relative text-left py-5 px-4 sm:px-6 flex items-center gap-4 group transition-colors outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
                       style={{
                         background: isActive
                           ? "rgba(245,240,232,0.04)"
@@ -638,12 +647,14 @@ function TemperaflixPage() {
                             {formatBRL(price.amount, price.currencyCode)}
                           </span>
                         )}
-                        <span
+                        <button
+                          type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleAddOne(p);
                           }}
-                          className="inline-flex items-center gap-1.5 border px-2.5 py-1 font-mono text-[10px] tracking-[0.2em] uppercase transition-colors cursor-pointer"
+                          aria-label={`Adicionar ${p?.node.title ?? `Temperaflix ${meta.genre}`} à sacola`}
+                          className="inline-flex items-center gap-1.5 border px-2.5 py-1 font-mono text-[10px] tracking-[0.2em] uppercase transition-colors cursor-pointer min-h-11 sm:min-h-0"
                           style={{
                             borderColor: isActive
                               ? meta.accent
@@ -655,9 +666,9 @@ function TemperaflixPage() {
                         >
                           <Plus className="h-3 w-3" />
                           Sacola
-                        </span>
+                        </button>
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>

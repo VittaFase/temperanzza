@@ -56,7 +56,7 @@ export function CartDrawer() {
         <Button
           variant="outline"
           size="icon"
-          className="relative border-foreground/20 bg-transparent hover:bg-foreground hover:text-background rounded-none h-11 w-11"
+          className="relative border-foreground/20 bg-accent text-accent-foreground hover:bg-accent/90 md:bg-transparent md:text-foreground md:hover:bg-foreground md:hover:text-background rounded-none h-11 w-11"
           aria-label="Abrir carrinho"
         >
           <ShoppingBag className="h-5 w-5" />
@@ -134,10 +134,11 @@ export function CartDrawer() {
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="h-6 w-6 rounded-none"
+                            className="h-9 w-9 sm:h-6 sm:w-6 rounded-none"
                             onClick={() =>
                               updateQuantity(item.variantId, item.quantity - 1)
                             }
+                            aria-label="Diminuir quantidade"
                           >
                             <Minus className="h-3 w-3" />
                           </Button>
@@ -147,10 +148,11 @@ export function CartDrawer() {
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="h-6 w-6 rounded-none"
+                            className="h-9 w-9 sm:h-6 sm:w-6 rounded-none"
                             onClick={() =>
                               updateQuantity(item.variantId, item.quantity + 1)
                             }
+                            aria-label="Aumentar quantidade"
                           >
                             <Plus className="h-3 w-3" />
                           </Button>
