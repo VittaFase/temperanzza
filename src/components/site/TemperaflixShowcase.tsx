@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
-import { Film, ArrowRight, Loader2 } from "lucide-react";
+import { Film, ArrowRight, Loader2, Plus } from "lucide-react";
+import { toast } from "sonner";
 import {
   storefrontApiRequest,
   STOREFRONT_QUERY,
@@ -10,9 +11,11 @@ import {
   type ShopifyProduct,
 } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
+import { useCartStore } from "@/stores/cartStore";
 import { Button } from "@/components/ui/button";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
+
 
 function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -85,6 +88,8 @@ function classify(title: string): FlavorKey {
 const ORDER: FlavorKey[] = ["tradicional", "ervas", "bacon"];
 
 export function TemperaflixShowcase() {
+  const addItem = useCartStore((s) => s.addItem);
+  const isAdding = useCartStore((s) => s.isLoading);
   const { data, isLoading } = useQuery({
     queryKey: ["shopify-featured", "temperaflix-3"],
     queryFn: async () => {
@@ -106,6 +111,22 @@ export function TemperaflixShowcase() {
         .slice(0, 3);
     },
   });
+
+  const handleAddOne = async (p: ShopifyProduct | undefined) => {
+    if (!p) return;
+    const v = p.node.variants.edges[0]?.node;
+    if (!v) return;
+    await addItem({
+      product: p,
+      variantId: v.id,
+      variantTitle: v.title,
+      price: v.price,
+      quantity: 1,
+      selectedOptions: v.selectedOptions || [],
+    });
+    toast.success(`${p.node.title} entrou na sacola`);
+  };
+
 
   const byFlavor = useMemo(() => {
     const map: Partial<Record<FlavorKey, ShopifyProduct>> = {};
@@ -193,7 +214,7 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[440px] sm:min-h-[560px]">
+          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[300px] sm:min-h-[560px]">
             {/* PISO — gradiente neutro (sem tint colorido) */}
             <div
               aria-hidden
@@ -226,14 +247,20 @@ export function TemperaflixShowcase() {
               const price = product?.node.priceRange.minVariantPrice;
 
               return (
-                <button
+                <div
                   key={key}
-                  type="button"
-                  onMouseEnter={() => setActive(key)}
-                  onFocus={() => setActive(key)}
                   className="group relative flex flex-col items-center justify-end outline-none"
                   style={{ perspective: 1200 }}
+                  onMouseEnter={() => setActive(key)}
+                  onFocus={() => setActive(key)}
                 >
+                  <button
+                    type="button"
+                    onClick={() => setActive(key)}
+                    aria-label={`Selecionar ${meta.label}`}
+                    className="contents"
+                  >
+
                   {/* TECH RING — anel de scan neutro girando atrás do pote ativo */}
                   <AnimatePresence>
                     {isActive && (
@@ -389,7 +416,24 @@ export function TemperaflixShowcase() {
                       </div>
                     )}
                   </div>
-                </button>
+                  </button>
+
+                  {/* ADD TO CART CTA — abaixo do preço */}
+                  <Button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddOne(product);
+                    }}
+                    disabled={!product || isAdding}
+                    className="mt-3 w-full rounded-none h-10 sm:h-11 px-2 sm:px-3 bg-brand-paper text-brand-ink hover:bg-brand-paper/90 font-display uppercase tracking-widest text-[10px] sm:text-xs"
+                    aria-label={`Adicionar ${meta.label} à sacola`}
+                  >
+                    <Plus className="mr-1 h-3.5 w-3.5" />
+                    Sacola
+                  </Button>
+                </div>
+
               );
             })}
           </div>
