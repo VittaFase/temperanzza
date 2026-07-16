@@ -639,7 +639,7 @@ function TemperaflixPage() {
                       </div>
 
                       {/* BOTTOM ROW on mobile / RIGHT column on desktop: price + sacola */}
-                      <div className="flex items-center justify-between sm:flex-col sm:items-end gap-3 sm:gap-2 pl-[72px] sm:pl-0 shrink-0">
+                      <div className="grid w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:flex sm:w-auto sm:flex-col sm:items-end sm:gap-2 sm:pl-0 sm:shrink-0">
                         {price && (
                           <span
                             className="font-display font-black text-lg"
@@ -659,7 +659,7 @@ function TemperaflixPage() {
                             handleAddOne(p);
                           }}
                           aria-label={`Adicionar ${p?.node.title ?? `Temperaflix ${meta.genre}`} à sacola`}
-                          className="inline-flex items-center gap-1.5 border px-3 py-2 sm:px-2.5 sm:py-1 font-mono text-[11px] sm:text-[10px] tracking-[0.2em] uppercase transition-colors cursor-pointer min-h-11 sm:min-h-0"
+                          className="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 border px-3 py-2 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors cursor-pointer sm:min-h-0 sm:px-2.5 sm:py-1 sm:text-[10px]"
                           style={{
                             borderColor: isActive
                               ? meta.accent
