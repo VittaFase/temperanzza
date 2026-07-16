@@ -232,6 +232,38 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
+                  {/* pedestal — sombra de contato + disco de luz refletida */}
+                  <motion.div
+                    aria-hidden
+                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                    animate={{
+                      opacity: isActive ? 1 : 0.55,
+                      scale: isActive ? 1.1 : 0.9,
+                    }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    style={{
+                      width: "75%",
+                      height: "42px",
+                      bottom: "2%",
+                      background: `radial-gradient(ellipse 50% 55% at 50% 50%, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)`,
+                      filter: "blur(6px)",
+                    }}
+                  />
+                  <motion.div
+                    aria-hidden
+                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                    animate={{ opacity: isActive ? 0.55 : 0.2 }}
+                    transition={{ duration: 0.6 }}
+                    style={{
+                      width: "55%",
+                      height: "10px",
+                      bottom: "6%",
+                      background: `radial-gradient(ellipse 50% 50% at 50% 50%, ${meta.halo} 0%, transparent 70%)`,
+                      filter: "blur(4px)",
+                      mixBlendMode: "screen",
+                    }}
+                  />
+
                   {/* pot */}
                   <motion.div
                     className="relative w-full"
