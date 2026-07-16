@@ -192,7 +192,25 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[360px] sm:min-h-[480px]">
+          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[360px] sm:min-h-[480px]">
+            {/* PISO — gradiente unificado que ancora os 3 potes num mesmo plano */}
+            <motion.div
+              aria-hidden
+              className="absolute inset-x-0 bottom-0 pointer-events-none"
+              animate={{
+                background: `linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0.2) 55%, transparent 100%), radial-gradient(ellipse 70% 90% at 50% 100%, ${activeMeta.halo}22 0%, transparent 65%)`,
+              }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              style={{ height: "38%" }}
+            />
+            {/* linha de luz sutil no horizonte do piso */}
+            <motion.div
+              aria-hidden
+              className="absolute inset-x-[10%] pointer-events-none"
+              animate={{ background: `linear-gradient(90deg, transparent, ${activeMeta.accent}66, transparent)` }}
+              transition={{ duration: 1.2 }}
+              style={{ height: "1px", bottom: "38%", opacity: 0.45, filter: "blur(0.5px)" }}
+            />
             {ORDER.map((key) => {
               const product = byFlavor[key];
               const meta = FLAVOR[key];
