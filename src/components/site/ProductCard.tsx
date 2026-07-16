@@ -44,19 +44,9 @@ export function ProductCard({
   };
 
   const isPaper = variant === "paper";
-  // Os PNGs Temperaflix têm o pote ocupando ~70% do canvas (mais
-  // transparência ao redor) enquanto os demais ocupam ~95%. Sem
-  // compensação, os shakers renderizam visivelmente menores no card.
-  // Usamos transform scale (não só width/height) para realmente ampliar
-  // o pote desenhado, mantendo o padrão visual do catálogo.
-  const isTemperaflix = handle.startsWith("temperaflix-");
-  const baseSize = isPaper
+  const sizeClass = isPaper
     ? "w-[72%] h-[84%] drop-shadow-[0_22px_26px_rgba(0,0,0,0.18)]"
     : "w-[82%] h-[92%] drop-shadow-[0_22px_28px_rgba(0,0,0,0.45)]";
-  const flixBoost = isTemperaflix ? "scale-[1.38] origin-bottom" : "";
-  const hoverAnim = isTemperaflix
-    ? "group-hover:-translate-y-1 group-hover:scale-[1.44]"
-    : "group-hover:-translate-y-1 group-hover:scale-[1.04]";
   const StageContent = (
     <>
       {badge && !isPaper && (
@@ -66,7 +56,7 @@ export function ProductCard({
         <img
           src={imgUrl}
           alt={image?.altText || product.node.title}
-          className={`absolute inset-0 m-auto object-contain transition-transform duration-500 ${baseSize} ${flixBoost} ${hoverAnim}`}
+          className={`absolute inset-0 m-auto object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.04] ${sizeClass}`}
           loading="lazy"
         />
       ) : (
