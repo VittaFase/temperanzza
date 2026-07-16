@@ -582,7 +582,7 @@ function TemperaflixPage() {
                       }}
                       aria-pressed={isActive}
                       aria-label={`Selecionar ${p?.node.title ?? `Temperaflix ${meta.genre}`}`}
-                      className="relative text-left py-5 px-4 sm:px-6 flex items-center gap-4 group transition-colors outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+                      className="relative text-left py-5 px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 group transition-colors outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
                       style={{
                         background: isActive
                           ? "rgba(245,240,232,0.04)"
@@ -597,44 +597,49 @@ function TemperaflixPage() {
                           background: isActive ? meta.accent : "transparent",
                         }}
                       />
-                      {/* ep number */}
-                      <div
-                        className="font-display font-black text-4xl sm:text-5xl leading-none w-14 tabular-nums transition-colors"
-                        style={{
-                          color: isActive
-                            ? meta.accent
-                            : "rgba(245,240,232,0.35)",
-                        }}
-                      >
-                        {meta.ep}
+
+                      {/* TOP ROW on mobile: number + body */}
+                      <div className="flex items-center gap-4 sm:contents">
+                        {/* ep number */}
+                        <div
+                          className="font-display font-black text-4xl sm:text-5xl leading-none w-14 tabular-nums transition-colors shrink-0"
+                          style={{
+                            color: isActive
+                              ? meta.accent
+                              : "rgba(245,240,232,0.35)",
+                          }}
+                        >
+                          {meta.ep}
+                        </div>
+                        {/* body */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Icon
+                              className="h-3.5 w-3.5 shrink-0"
+                              style={{ color: meta.accent }}
+                            />
+                            <span
+                              className="font-mono text-[10px] tracking-[0.28em] uppercase truncate"
+                              style={{
+                                color: isActive
+                                  ? meta.accent
+                                  : "rgba(245,240,232,0.5)",
+                              }}
+                            >
+                              {meta.genre} · {meta.duration}
+                            </span>
+                          </div>
+                          <div className="font-display font-black uppercase text-xl sm:text-2xl tracking-tight leading-none truncate">
+                            {p?.node.title ?? `Temperaflix ${meta.genre}`}
+                          </div>
+                          <div className="mt-1 font-serif italic text-sm text-brand-paper/60 truncate">
+                            {meta.tagline}
+                          </div>
+                        </div>
                       </div>
-                      {/* body */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <Icon
-                            className="h-3.5 w-3.5"
-                            style={{ color: meta.accent }}
-                          />
-                          <span
-                            className="font-mono text-[10px] tracking-[0.28em] uppercase"
-                            style={{
-                              color: isActive
-                                ? meta.accent
-                                : "rgba(245,240,232,0.5)",
-                            }}
-                          >
-                            {meta.genre} · {meta.duration}
-                          </span>
-                        </div>
-                        <div className="font-display font-black uppercase text-xl sm:text-2xl tracking-tight leading-none truncate">
-                          {p?.node.title ?? `Temperaflix ${meta.genre}`}
-                        </div>
-                        <div className="mt-1 font-serif italic text-sm text-brand-paper/60 truncate">
-                          {meta.tagline}
-                        </div>
-                      </div>
-                      {/* price + play */}
-                      <div className="flex flex-col items-end gap-2 shrink-0">
+
+                      {/* BOTTOM ROW on mobile / RIGHT column on desktop: price + sacola */}
+                      <div className="flex items-center justify-between sm:flex-col sm:items-end gap-3 sm:gap-2 pl-[72px] sm:pl-0 shrink-0">
                         {price && (
                           <span
                             className="font-display font-black text-lg"
@@ -654,17 +659,17 @@ function TemperaflixPage() {
                             handleAddOne(p);
                           }}
                           aria-label={`Adicionar ${p?.node.title ?? `Temperaflix ${meta.genre}`} à sacola`}
-                          className="inline-flex items-center gap-1.5 border px-2.5 py-1 font-mono text-[10px] tracking-[0.2em] uppercase transition-colors cursor-pointer min-h-11 sm:min-h-0"
+                          className="inline-flex items-center gap-1.5 border px-3 py-2 sm:px-2.5 sm:py-1 font-mono text-[11px] sm:text-[10px] tracking-[0.2em] uppercase transition-colors cursor-pointer min-h-11 sm:min-h-0"
                           style={{
                             borderColor: isActive
                               ? meta.accent
-                              : "rgba(245,240,232,0.3)",
+                              : "rgba(245,240,232,0.45)",
                             color: isActive
                               ? meta.accent
-                              : "rgba(245,240,232,0.7)",
+                              : "rgba(245,240,232,0.85)",
                           }}
                         >
-                          <Plus className="h-3 w-3" />
+                          <Plus className="h-3.5 w-3.5" />
                           Sacola
                         </button>
                       </div>
