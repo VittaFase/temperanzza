@@ -44,9 +44,16 @@ export function ProductCard({
   };
 
   const isPaper = variant === "paper";
+  const isTemperaflix = handle.startsWith("temperaflix-");
   const sizeClass = isPaper
     ? "w-[72%] h-[84%] drop-shadow-[0_22px_26px_rgba(0,0,0,0.18)]"
     : "w-[82%] h-[92%] drop-shadow-[0_22px_28px_rgba(0,0,0,0.45)]";
+  // Compensa a margem transparente extra dos PNGs Temperaflix
+  // para o pote renderizado ficar visualmente do mesmo tamanho dos demais.
+  const boostStyle =
+    isPaper && isTemperaflix
+      ? { transform: "scale(1.38)", transformOrigin: "bottom center" }
+      : undefined;
   const StageContent = (
     <>
       {badge && !isPaper && (
@@ -57,6 +64,7 @@ export function ProductCard({
           src={imgUrl}
           alt={image?.altText || product.node.title}
           className={`absolute inset-0 m-auto object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.04] ${sizeClass}`}
+          style={boostStyle}
           loading="lazy"
         />
       ) : (
