@@ -19,9 +19,12 @@ import papricaDoce from "@/assets/paprica-doce.png.asset.json";
 import papricaPicante from "@/assets/paprica-picante.png.asset.json";
 import pimenta from "@/assets/pimenta-do-reino.png.asset.json";
 import salsaCebolaAlho from "@/assets/salsa-cebola-e-alho.png.asset.json";
-import flixBacon from "@/assets/temperaflix-bacon.png.asset.json";
-import flixErvas from "@/assets/temperaflix-ervas-finas.png.asset.json";
-import flixTrad from "@/assets/temperaflix-tradicional.png.asset.json";
+import flixBaconUrl from "@/assets/temperaflix-bacon-clean.png";
+import flixErvasUrl from "@/assets/temperaflix-ervas-clean.png";
+import flixTradUrl from "@/assets/temperaflix-tradicional-clean.png";
+const flixBacon = { url: flixBaconUrl };
+const flixErvas = { url: flixErvasUrl };
+const flixTrad = { url: flixTradUrl };
 import edu from "@/assets/tempero-do-edu.png.asset.json";
 import mineiro from "@/assets/tempero-mineiro.png.asset.json";
 
