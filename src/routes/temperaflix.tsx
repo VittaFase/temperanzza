@@ -457,6 +457,33 @@ function TemperaflixPage() {
                   transition={{ duration: 1.2 }}
                   style={{ opacity: 0.55, width: "75%", height: "75%", top: "12%", left: "12%" }}
                 />
+                {/* pedestal — sombra de contato no piso */}
+                <div
+                  aria-hidden
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    width: "60%",
+                    height: "44px",
+                    bottom: "6%",
+                    background: `radial-gradient(ellipse 50% 55% at 50% 50%, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)`,
+                    filter: "blur(7px)",
+                  }}
+                />
+                <motion.div
+                  aria-hidden
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  animate={{ background: activeMeta.halo }}
+                  transition={{ duration: 1.2 }}
+                  style={{
+                    width: "45%",
+                    height: "10px",
+                    bottom: "9%",
+                    opacity: 0.55,
+                    filter: "blur(5px)",
+                    mixBlendMode: "screen",
+                    borderRadius: "50%",
+                  }}
+                />
                 <AnimatePresence mode="wait">
                   {activeProduct && (
                     <motion.div
