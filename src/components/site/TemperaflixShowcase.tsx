@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
-import { Film, ArrowRight, Loader2 } from "lucide-react";
+import { Film, ArrowRight, Loader2, Plus } from "lucide-react";
+import { toast } from "sonner";
 import {
   storefrontApiRequest,
   STOREFRONT_QUERY,
@@ -10,9 +11,11 @@ import {
   type ShopifyProduct,
 } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
+import { useCartStore } from "@/stores/cartStore";
 import { Button } from "@/components/ui/button";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
+
 
 function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
