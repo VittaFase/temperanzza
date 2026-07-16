@@ -129,7 +129,9 @@ function RecipeDrawer() {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKey);
-    // foco inicial no painel para acessibilidade + captura de ESC
+    // Ao trocar de receita (via "Continue a leitura"), rola o painel ao topo
+    // para que a nova receita apareça a partir do hero, sem exigir scroll manual.
+    panelRef.current?.scrollTo({ top: 0, behavior: "smooth" });
     panelRef.current?.focus();
     return () => {
       document.body.style.overflow = prevOverflow;
