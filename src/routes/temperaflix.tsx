@@ -89,8 +89,8 @@ const FLAVOR = {
     tagline: "Atemporal. Vai bem com qualquer trama.",
     pairing: "Pipoca de cinema · batata rústica · amendoim torrado",
     duration: "blend 04:20",
-    halo: "oklch(0.48 0.22 28)",
-    accent: "#C7452C",
+    halo: "oklch(0.82 0.16 90)",
+    accent: "#E8B93C",
     Icon: Popcorn,
   },
   ervas: {
