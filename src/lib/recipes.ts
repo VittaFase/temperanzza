@@ -123,7 +123,7 @@ export const RECIPES: Recipe[] = [
       "500 g de carne moída (patinho ou acém 20% gordura)",
       "2 colheres (chá) de Temperaflix Bacon",
       "1 colher (chá) de sal",
-      "Pimenta-do-reino moída na hora",
+      "Pimenta-do-Reino Temperanzza a gosto",
       "4 fatias de queijo cheddar ou prato",
       "Folhas verdes para acompanhar",
     ],
@@ -372,7 +372,7 @@ export const RECIPES: Recipe[] = [
       "Refogue os legumes no azeite por 3 minutos.",
       "Adicione o caldo, a Cebola em Pó e sal.",
       "Cozinhe por 15 minutos em fogo médio.",
-      "Sirva quente com pimenta-do-reino moída na hora.",
+      "Sirva quente com uma pitada de Pimenta-do-Reino Temperanzza.",
     ],
     whyItWorks:
       "Legumes de baixo carboidrato e caldo de ossos entregam sabor e nutrientes sem pesar.",
@@ -795,24 +795,24 @@ export const RECIPES: Recipe[] = [
   // ── Pimenta-do-Reino ──
   {
     slug: "bife-cavalo-pimenta-reino",
-    title: "Bife à cavalo com Pimenta-do-Reino moída na hora",
+    title: "Bife à cavalo com Pimenta-do-Reino Temperanzza",
     featuredHandle: "pimenta-do-reino",
     compatibleDiets: ["keto", "lowcarb", "carnivora-flex", "carnivora-estrita"],
     moment: "almoco",
     profile: "puras",
     category: "tradicional",
-    intro: "O clássico do PF brasileiro, elevado por uma pimenta bem moída.",
+    intro: "O clássico do PF brasileiro, elevado por uma pimenta pura e aromática.",
     ingredients: [
       "2 bifes de contrafilé (200 g cada)",
       "2 ovos",
       "1 colher (sopa) de manteiga",
-      "Pimenta-do-Reino Temperanzza a gosto (moída na hora)",
+      "Pimenta-do-Reino Temperanzza a gosto",
       "Sal grosso a gosto",
     ],
     steps: [
       "Seque os bifes e tempere com sal dos dois lados.",
       "Aqueça a frigideira até fumegar. Grelhe os bifes 2 minutos de cada lado (ao ponto).",
-      "Retire, cubra com pimenta-do-reino recém-moída e deixe descansar.",
+      "Retire, cubra com uma boa pitada de Pimenta-do-Reino Temperanzza e deixe descansar.",
       "Na mesma frigideira, derreta a manteiga e frite os ovos com gema mole. Sirva sobre os bifes.",
     ],
     whyItWorks:
