@@ -214,7 +214,7 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[440px] sm:min-h-[560px]">
+          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[300px] sm:min-h-[560px]">
             {/* PISO — gradiente neutro (sem tint colorido) */}
             <div
               aria-hidden
