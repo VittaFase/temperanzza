@@ -128,16 +128,17 @@ export function TemperaflixShowcase() {
 
   return (
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
-      {/* atmosphere: radial halo tied to active flavor + paper grain */}
+      {/* atmosphere: paper grain + bokeh neutro (sem tint colorido de sabor) */}
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-      <BokehBackdrop opacity={0.3} />
-      <motion.div
+      <BokehBackdrop opacity={0.18} />
+      {/* ambient neutral vignette — substitui o halo colorido global */}
+      <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        animate={{
-          background: `radial-gradient(60% 55% at 50% 45%, ${activeMeta.halo}55 0%, transparent 60%), radial-gradient(30% 25% at 15% 90%, ${activeMeta.halo}30 0%, transparent 70%)`,
+        style={{
+          background:
+            "radial-gradient(70% 60% at 50% 45%, rgba(255,255,255,0.05) 0%, transparent 60%), radial-gradient(50% 40% at 50% 100%, rgba(0,0,0,0.6) 0%, transparent 70%)",
         }}
-        transition={{ duration: 1.2, ease: "easeInOut" }}
       />
       {/* faint vertical scanlines */}
       <div
