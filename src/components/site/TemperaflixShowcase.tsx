@@ -54,8 +54,8 @@ const FLAVOR = {
     code: "S01·E01",
     label: "Tradicional",
     tagline: "O sabor que combina com tudo.",
-    halo: "oklch(0.48 0.22 28)", // deep brick red — matches label
-    accent: "#C7452C",
+    halo: "oklch(0.82 0.16 90)", // metallic yellow gold — matches label
+    accent: "#E8B93C",
   },
   ervas: {
     code: "S01·E02",
