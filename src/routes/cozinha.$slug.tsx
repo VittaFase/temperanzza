@@ -63,6 +63,7 @@ export const Route = createFileRoute("/cozinha/$slug")({
             "@type": "Recipe",
             name: r.title,
             description: desc,
+            ...(imageAbs ? { image: imageAbs } : {}),
             author: { "@type": "Organization", name: "Temperanzza" },
             recipeCategory:
               r.category === "tradicional" ? "Cozinha Tradicional" : "Cozinha de Performance",
