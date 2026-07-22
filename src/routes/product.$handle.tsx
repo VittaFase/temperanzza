@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
@@ -20,16 +20,127 @@ import { DietCompatibilityPanel } from "@/components/site/DietCompatibilityPanel
 import { getRecipesByHandle } from "@/lib/recipes";
 import { BookOpen } from "lucide-react";
 
+const SITE_URL = "https://temperanzza.com.br";
+
+interface ProductNode {
+  id: string;
+  title: string;
+  description: string;
+  handle: string;
+  priceRange: { minVariantPrice: { amount: string; currencyCode: string } };
+  images: { edges: Array<{ node: { url: string; altText: string | null } }> };
+  variants: {
+    edges: Array<{
+      node: {
+        id: string;
+        title: string;
+        price: { amount: string; currencyCode: string };
+        availableForSale: boolean;
+        selectedOptions: Array<{ name: string; value: string }>;
+      };
+    }>;
+  };
+  options?: Array<{ name: string; values: string[] }>;
+}
+
+function toAbsoluteUrl(url: string | null | undefined): string | undefined {
+  if (!url) return undefined;
+  if (url.startsWith("http")) return url;
+  return `${SITE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
+}
+
+const productQueryOptions = (handle: string) =>
+  queryOptions({
+    queryKey: ["product", handle],
+    queryFn: async (): Promise<ProductNode> => {
+      const res = await storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
+      const p = res?.data?.productByHandle;
+      if (!p) throw notFound();
+      return p as ProductNode;
+    },
+  });
+
 export const Route = createFileRoute("/product/$handle")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.handle} — Temperanzza` },
-      {
-        name: "description",
-        content: `Produto ${params.handle} da casa Temperanzza.`,
+  loader: ({ params, context }) =>
+    context.queryClient.ensureQueryData(productQueryOptions(params.handle)),
+  head: ({ params, loaderData }) => {
+    const url = `${SITE_URL}/product/${params.handle}`;
+    const p = loaderData as ProductNode | undefined;
+    if (!p) {
+      return {
+        meta: [
+          { title: `${params.handle} — Temperanzza` },
+          { name: "description", content: `Produto ${params.handle} da casa Temperanzza.` },
+        ],
+        links: [{ rel: "canonical", href: url }],
+      };
+    }
+    const description = (
+      p.description ||
+      `${p.title} — tempero artesanal Temperanzza, embalado a cada lote em Minas Gerais.`
+    )
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 160);
+    const imageAbs =
+      toAbsoluteUrl(getProductImage(p.handle)) ?? toAbsoluteUrl(p.images.edges[0]?.node.url);
+    const price = p.priceRange.minVariantPrice.amount;
+    const currency = p.priceRange.minVariantPrice.currencyCode;
+    const anyAvailable = p.variants.edges.some((v) => v.node.availableForSale);
+    const productLd: Record<string, unknown> = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: p.title,
+      description,
+      sku: p.handle,
+      brand: { "@type": "Brand", name: "Temperanzza" },
+      category: "Temperos e Especiarias",
+      offers: {
+        "@type": "Offer",
+        url,
+        priceCurrency: currency,
+        price,
+        availability: anyAvailable
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+        itemCondition: "https://schema.org/NewCondition",
       },
-    ],
-  }),
+    };
+    if (imageAbs) productLd.image = imageAbs;
+
+    const breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Início", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Catálogo", item: `${SITE_URL}/produtos` },
+        { "@type": "ListItem", position: 3, name: p.title, item: url },
+      ],
+    };
+
+    return {
+      meta: [
+        { title: `${p.title} — Temperanzza` },
+        { name: "description", content: description },
+        { property: "og:title", content: `${p.title} — Temperanzza` },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "product" },
+        { property: "og:url", content: url },
+        ...(imageAbs
+          ? [
+              { property: "og:image", content: imageAbs },
+              { name: "twitter:image", content: imageAbs },
+              { name: "twitter:card", content: "summary_large_image" },
+            ]
+          : []),
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(productLd) },
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
+      ],
+    };
+  },
   component: ProductPage,
   notFoundComponent: () => (
     <SiteLayout>
