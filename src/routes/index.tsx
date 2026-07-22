@@ -11,11 +11,11 @@ import { DietBadge } from "@/components/site/DietBadge";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Temperanzza — Casa de Temperos Artesanais" },
+      { title: "Temperanzza — Casa de Temperos Artesanais de Minas Gerais" },
       {
         name: "description",
         content:
-          "Misturas curadas para cozinhas de verdade. Páprica, chimi churri, lemon pepper e mais. Embalado fresco, sem aditivos desnecessários.",
+          "Temperanzza: casa de temperos artesanais de Minas Gerais. Páprica, chimichurri, lemon pepper, linha Temperaflix e mais — embalado fresco, sem aditivos desnecessários.",
       },
       {
         property: "og:title",
@@ -24,7 +24,45 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Misturas curadas para cozinhas de verdade. Páprica, chimi churri, lemon pepper e mais.",
+          "Casa de temperos artesanais de Minas Gerais. Misturas curadas para cozinhas de verdade.",
+      },
+      { property: "og:url", content: "https://temperanzza.com.br/" },
+    ],
+    links: [{ rel: "canonical", href: "https://temperanzza.com.br/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Temperanzza",
+          alternateName: "Casa Temperanzza",
+          url: "https://temperanzza.com.br",
+          logo: "https://temperanzza.com.br/favicon.ico",
+          description:
+            "Casa de temperos artesanais de Minas Gerais. Misturas curadas para cozinhas de verdade.",
+          areaServed: "BR",
+          slogan: "Sabor que assina cada prato",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Temperanzza",
+          url: "https://temperanzza.com.br",
+          inLanguage: "pt-BR",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate:
+                "https://temperanzza.com.br/produtos?q={search_term_string}",
+            },
+            "query-input": "required name=search_term_string",
+          },
+        }),
       },
     ],
   }),
