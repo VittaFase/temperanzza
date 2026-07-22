@@ -134,7 +134,19 @@ export const Route = createFileRoute("/product/$handle")({
             ]
           : []),
       ],
-      links: [{ rel: "canonical", href: url }],
+      links: [
+        { rel: "canonical", href: url },
+        ...(imageAbs
+          ? [
+              {
+                rel: "preload",
+                as: "image" as const,
+                href: imageAbs,
+                fetchpriority: "high",
+              },
+            ]
+          : []),
+      ],
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(productLd) },
         { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
