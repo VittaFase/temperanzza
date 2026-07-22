@@ -9,9 +9,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   useCartSync();
   return (
     <div className="min-h-screen flex flex-col bg-paper-grain">
+      <a
+        href="#conteudo"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-brand-ink focus:text-brand-paper focus:px-4 focus:py-2 focus:rounded-none focus:outline-none focus:ring-2 focus:ring-accent"
+      >
+        Pular para o conteúdo
+      </a>
       <PromoAnnouncement />
       <SiteHeader />
-      <main className="flex-1">{children}</main>
+      <main id="conteudo" tabIndex={-1} className="flex-1 focus:outline-none">
+        {children}
+      </main>
       <SiteFooter />
       <Toaster position="top-center" />
     </div>
