@@ -5,7 +5,14 @@ import { BrandSeal } from "./BrandSeal";
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-foreground/15 bg-brand-ink text-brand-paper">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+      <div
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14"
+        style={{
+          paddingLeft: "max(1rem, env(safe-area-inset-left))",
+          paddingRight: "max(1rem, env(safe-area-inset-right))",
+          paddingBottom: "max(3.5rem, calc(env(safe-area-inset-bottom) + 2rem))",
+        }}
+      >
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <BrandSeal size="lg" tone="paper" className="-ml-2" />
