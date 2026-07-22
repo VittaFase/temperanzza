@@ -1,5 +1,5 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { type DietKey } from "@/lib/diets";
 import { RECIPES, type Recipe } from "@/lib/recipes";
@@ -7,6 +7,8 @@ import { ChevronDown, ArrowUpRight } from "lucide-react";
 import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
 import smokePoster from "@/assets/hero-smoke-poster.jpg";
 import { CountUp } from "@/components/site/CountUp";
+import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
+
 
 export const Route = createFileRoute("/cozinha")({
   head: () => ({
