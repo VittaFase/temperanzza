@@ -32,6 +32,12 @@ export const Route = createFileRoute("/cozinha/$slug")({
     }
     const url = `https://temperanzza.com.br/cozinha/${r.slug}`;
     const desc = r.subtitle ?? r.intro;
+    const potePath = getProductImage(r.featuredHandle);
+    const imageAbs = potePath
+      ? potePath.startsWith("http")
+        ? potePath
+        : `https://temperanzza.com.br${potePath.startsWith("/") ? "" : "/"}${potePath}`
+      : undefined;
     return {
       meta: [
         { title: `${r.title} — Biblioteca Gastronômica Temperanzza` },
@@ -40,6 +46,13 @@ export const Route = createFileRoute("/cozinha/$slug")({
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
+        ...(imageAbs
+          ? [
+              { property: "og:image", content: imageAbs },
+              { name: "twitter:image", content: imageAbs },
+              { name: "twitter:card", content: "summary_large_image" },
+            ]
+          : []),
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
