@@ -15,34 +15,34 @@ import { useCartStore } from "@/stores/cartStore";
 import { Button } from "@/components/ui/button";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
+import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
 
 
 function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [enableVideo, setEnableVideo] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (!reduced) setEnableVideo(true);
-  }, []);
+  const { containerRef, enableVideo } = useVideoBackdrop();
   return (
-    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      ref={containerRef}
+      aria-hidden
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+    >
       <img
         src={bokehPoster}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ mixBlendMode: "screen", opacity }}
       />
       {enableVideo && (
         <video
-          ref={videoRef}
           src={bokehVideo.url}
           poster={bokehPoster}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 h-full w-full object-cover"
           style={{ mixBlendMode: "screen", opacity }}
         />
@@ -50,6 +50,7 @@ function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
     </div>
   );
 }
+
 
 /** Per-flavor color halo tokens (oklch, tied to brand palette). */
 const FLAVOR = {

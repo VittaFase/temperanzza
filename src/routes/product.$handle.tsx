@@ -134,7 +134,19 @@ export const Route = createFileRoute("/product/$handle")({
             ]
           : []),
       ],
-      links: [{ rel: "canonical", href: url }],
+      links: [
+        { rel: "canonical", href: url },
+        ...(imageAbs
+          ? [
+              {
+                rel: "preload",
+                as: "image" as const,
+                href: imageAbs,
+                fetchpriority: "high",
+              },
+            ]
+          : []),
+      ],
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(productLd) },
         { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
@@ -245,9 +257,12 @@ function ProductPage() {
                 <img
                   src={getProductImage(handle, mainImage.url) ?? mainImage.url}
                   alt={mainImage.altText || product.title}
+                  fetchPriority="high"
+                  decoding="async"
                   className="absolute inset-0 w-[74%] h-[88%] m-auto object-contain drop-shadow-[0_32px_36px_rgba(0,0,0,0.22)]"
                 />
               ) : null}
+
             </div>
             {images.length > 1 && (
               <div className="mt-3 grid grid-cols-5 gap-2">

@@ -1,5 +1,5 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { type DietKey } from "@/lib/diets";
 import { RECIPES, type Recipe } from "@/lib/recipes";
@@ -7,6 +7,8 @@ import { ChevronDown, ArrowUpRight } from "lucide-react";
 import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
 import smokePoster from "@/assets/hero-smoke-poster.jpg";
 import { CountUp } from "@/components/site/CountUp";
+import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
+
 
 export const Route = createFileRoute("/cozinha")({
   head: () => ({
@@ -146,36 +148,32 @@ function BibliotecaHero() {
  * - Só carrega o vídeo se o usuário NÃO pediu reduced-motion.
  */
 function SmokeBackdrop() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [enableVideo, setEnableVideo] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const prefersReduced = window.matchMedia?.(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (!prefersReduced) setEnableVideo(true);
-  }, []);
+  const { containerRef, enableVideo } = useVideoBackdrop();
 
   return (
-    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      ref={containerRef}
+      aria-hidden
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+    >
       {/* Poster sempre presente — carrega antes do vídeo e cobre reduced-motion */}
       <img
         src={smokePoster}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover opacity-55"
         style={{ mixBlendMode: "screen" }}
       />
       {enableVideo && (
         <video
-          ref={videoRef}
           src={smokeVideo.url}
           poster={smokePoster}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 h-full w-full object-cover opacity-55"
           style={{ mixBlendMode: "screen" }}
         />
@@ -191,6 +189,7 @@ function SmokeBackdrop() {
     </div>
   );
 }
+
 
 
 // ═══════════════════════════════════════════════════════════════════
