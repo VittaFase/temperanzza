@@ -24,9 +24,22 @@ const NAV = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-foreground/15 bg-background/90 backdrop-blur">
-      <div className="mx-auto max-w-7xl flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-3 group" aria-label="Temperanzza — Início">
+    <header
+      className="sticky top-0 z-40 w-full border-b border-foreground/15 bg-background/90 backdrop-blur"
+      style={{ paddingTop: "env(safe-area-inset-top)" }}
+    >
+      <div
+        className="mx-auto max-w-7xl flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingLeft: "max(1rem, env(safe-area-inset-left))",
+          paddingRight: "max(1rem, env(safe-area-inset-right))",
+        }}
+      >
+        <Link
+          to="/"
+          className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          aria-label="Temperanzza — Início"
+        >
           <BrandSeal size="sm" eager className="shrink-0" />
           <span className="hidden sm:flex items-baseline gap-1.5 border-l border-foreground/20 pl-3">
             <span className="font-display text-2xl sm:text-3xl font-black tracking-wider uppercase leading-none">
@@ -37,13 +50,16 @@ export function SiteHeader() {
             </span>
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8" aria-label="Navegação principal">
           {NAV.map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              className="text-sm font-semibold uppercase tracking-wider text-foreground/70 hover:text-accent transition-colors"
-              activeProps={{ className: "text-accent" }}
+              className="text-sm font-semibold uppercase tracking-wider text-foreground/70 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              activeProps={{
+                className: "text-accent",
+                "aria-current": "page",
+              }}
               activeOptions={{ exact: n.to === "/" }}
             >
               {n.label}
@@ -57,7 +73,7 @@ export function SiteHeader() {
               <Button
                 variant="outline"
                 size="icon"
-                className="md:hidden rounded-none border-foreground/20 bg-transparent h-11 w-11"
+                className="md:hidden rounded-none border-foreground/20 bg-transparent h-11 w-11 focus-visible:ring-2 focus-visible:ring-accent"
                 aria-label="Abrir menu"
               >
                 <Menu className="h-5 w-5" />
@@ -67,13 +83,18 @@ export function SiteHeader() {
               <SheetTitle className="font-display text-xl uppercase">
                 Menu
               </SheetTitle>
-              <nav className="mt-8 flex flex-col gap-4">
+              <nav className="mt-8 flex flex-col gap-4" aria-label="Navegação principal">
                 {NAV.map((n) => (
                   <Link
                     key={n.to}
                     to={n.to}
                     onClick={() => setOpen(false)}
-                    className="text-2xl font-display uppercase tracking-wide hover:text-accent"
+                    className="text-2xl font-display uppercase tracking-wide hover:text-accent focus-visible:outline-none focus-visible:text-accent"
+                    activeProps={{
+                      className: "text-accent",
+                      "aria-current": "page",
+                    }}
+                    activeOptions={{ exact: n.to === "/" }}
                   >
                     {n.label}
                   </Link>
