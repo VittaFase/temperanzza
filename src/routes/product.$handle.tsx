@@ -255,7 +255,9 @@ function ProductPage() {
                   <button
                     key={img.node.url}
                     onClick={() => setImgIdx(i)}
-                    className={`relative aspect-square overflow-hidden border-2 bg-brand-cream ${
+                    aria-label={`Ver imagem ${i + 1} de ${product.title}`}
+                    aria-pressed={i === imgIdx}
+                    className={`relative aspect-square overflow-hidden border-2 bg-brand-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                       i === imgIdx ? "border-accent" : "border-foreground/10 hover:border-foreground/30"
                     }`}
                   >
