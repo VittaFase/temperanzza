@@ -162,7 +162,10 @@ export function CartDrawer() {
                   ))}
                 </div>
               </div>
-              <div className="flex-shrink-0 space-y-3 pt-4 border-t border-foreground/15 bg-background">
+              <div
+                className="flex-shrink-0 space-y-3 pt-4 border-t border-foreground/15 bg-background"
+                style={{ paddingBottom: "max(0px, env(safe-area-inset-bottom))" }}
+              >
                 <div className="flex justify-between items-baseline">
                   <span className="font-display uppercase text-sm tracking-wide">
                     Subtotal
@@ -176,7 +179,7 @@ export function CartDrawer() {
                 </p>
                 <Button
                   onClick={handleCheckout}
-                  className="w-full rounded-none h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-display uppercase tracking-widest text-sm"
+                  className="w-full rounded-none h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-display uppercase tracking-widest text-sm focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   disabled={items.length === 0 || isLoading || isSyncing}
                 >
                   {isLoading || isSyncing ? (
