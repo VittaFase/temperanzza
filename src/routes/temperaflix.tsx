@@ -16,39 +16,38 @@ import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
+import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
 
 /**
  * BokehBackdrop — vídeo em loop de bokeh dourado cinematográfico.
- * Espelha a atmosfera das artes dos potes Temperaflix: fundo preto profundo,
- * orbs âmbar/dourado desfocados e halo quente central.
- * blend-mode "screen" apaga o preto do vídeo/poster sobre o ink, mantendo só a luz.
+ * Poster estático sempre presente; vídeo só monta quando visível,
+ * conexão for boa e prefers-reduced-motion não estiver ativo.
  */
 function BokehBackdrop({ opacity = 0.55 }: { opacity?: number }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [enableVideo, setEnableVideo] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (!reduced) setEnableVideo(true);
-  }, []);
+  const { containerRef, enableVideo } = useVideoBackdrop();
   return (
-    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      ref={containerRef}
+      aria-hidden
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+    >
       <img
         src={bokehPoster}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ mixBlendMode: "screen", opacity }}
       />
       {enableVideo && (
         <video
-          ref={videoRef}
           src={bokehVideo.url}
           poster={bokehPoster}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 h-full w-full object-cover"
           style={{ mixBlendMode: "screen", opacity }}
         />
@@ -56,6 +55,7 @@ function BokehBackdrop({ opacity = 0.55 }: { opacity?: number }) {
     </div>
   );
 }
+
 
 export const Route = createFileRoute("/temperaflix")({
   head: () => ({
