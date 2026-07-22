@@ -89,6 +89,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Casa de temperos artesanais de Minas Gerais." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b0a45d4b-6c67-432d-985e-61a305bd88da" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b0a45d4b-6c67-432d-985e-61a305bd88da" },
+      { name: "google-site-verification", content: "7pDF9jW-6UORnGWAl-1L4FfN0aS-wyWAKLvik3gAsG8" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
