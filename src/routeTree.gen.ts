@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TemperaflixRouteImport } from './routes/temperaflix'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
 import { Route as CozinhaRouteImport } from './routes/cozinha'
@@ -37,6 +38,11 @@ const TemperaflixRoute = TemperaflixRouteImport.update({
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProdutosRoute = ProdutosRouteImport.update({
@@ -133,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/cozinha': typeof CozinhaRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
   '/admin/bling': typeof AdminBlingRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
   '/admin/bling': typeof AdminBlingRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/cozinha': typeof CozinhaRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
   '/admin/bling': typeof AdminBlingRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/cozinha'
     | '/lojas'
     | '/produtos'
+    | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
     | '/admin/bling'
@@ -216,6 +226,7 @@ export interface FileRouteTypes {
     | '/'
     | '/lojas'
     | '/produtos'
+    | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
     | '/admin/bling'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '/cozinha'
     | '/lojas'
     | '/produtos'
+    | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
     | '/admin/bling'
@@ -259,6 +271,7 @@ export interface RootRouteChildren {
   CozinhaRoute: typeof CozinhaRouteWithChildren
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   TemperaflixRoute: typeof TemperaflixRoute
   AdminBlingRoute: typeof AdminBlingRoute
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre'
       fullPath: '/sobre'
       preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/produtos': {
@@ -441,6 +461,7 @@ const rootRouteChildren: RootRouteChildren = {
   CozinhaRoute: CozinhaRouteWithChildren,
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   TemperaflixRoute: TemperaflixRoute,
   AdminBlingRoute: AdminBlingRoute,
