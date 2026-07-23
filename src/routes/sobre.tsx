@@ -3,20 +3,42 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandSeal } from "@/components/site/BrandSeal";
 import { CountUp } from "@/components/site/CountUp";
 
+const SOBRE_URL = "https://temperanzza.com.br/sobre";
+
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
-      { title: "A Casa — Temperanzza" },
+      { title: "A Casa Temperanzza — Nossa história" },
       {
         name: "description",
         content:
-          "A história da Temperanzza: uma casa de temperos nascida em Minas Gerais, dedicada a misturas autorais sem atalhos.",
+          "A história da Temperanzza: casa de temperos nascida em Minas Gerais, dedicada a misturas autorais sem atalhos, sem aditivos desnecessários.",
       },
-      { property: "og:title", content: "A Casa — Temperanzza" },
+      { property: "og:title", content: "A Casa Temperanzza — Nossa história" },
       {
         property: "og:description",
         content:
-          "A história da Temperanzza: uma casa de temperos nascida em Minas Gerais.",
+          "A história da Temperanzza: casa de temperos nascida em Minas Gerais.",
+      },
+      { property: "og:url", content: SOBRE_URL },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: SOBRE_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          name: "A Casa Temperanzza",
+          url: SOBRE_URL,
+          mainEntity: {
+            "@type": "Organization",
+            name: "Temperanzza",
+            url: "https://temperanzza.com.br",
+            foundingLocation: "Minas Gerais, Brasil",
+          },
+        }),
       },
     ],
   }),

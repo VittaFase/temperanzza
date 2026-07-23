@@ -10,29 +10,44 @@ import { CountUp } from "@/components/site/CountUp";
 import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
 
 
+const COZINHA_URL = "https://temperanzza.com.br/cozinha";
+
 export const Route = createFileRoute("/cozinha")({
   head: () => ({
     meta: [
-      { title: "Biblioteca Gastronômica Temperanzza" },
+      { title: "Biblioteca Gastronômica Temperanzza — Receitas autorais" },
       {
         name: "description",
         content:
-          "Receitas autorais desenvolvidas para transformar ingredientes simples em experiências memoráveis. Cozinha editorial da casa Temperanzza.",
+          "Receitas autorais Temperanzza — cetogênica, low carb, carnívora flexível e cozinha tradicional. Editorial, sem pressa, para quem cozinha com autoria.",
       },
       { property: "og:title", content: "Biblioteca Gastronômica Temperanzza" },
       {
         property: "og:description",
         content:
-          "Uma biblioteca de receitas autorais Temperanzza — cetogênica, low carb, carnívora, tradicional. Editorial, sem pressa, para quem cozinha com autoria.",
+          "Uma biblioteca de receitas autorais Temperanzza — cetogênica, low carb, carnívora, tradicional.",
       },
       { property: "og:type", content: "website" },
-      {
-        property: "og:url",
-        content: "https://temperanzza.com.br/cozinha",
-      },
+      { property: "og:url", content: COZINHA_URL },
     ],
-    links: [
-      { rel: "canonical", href: "https://temperanzza.com.br/cozinha" },
+    links: [{ rel: "canonical", href: COZINHA_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Biblioteca Gastronômica Temperanzza",
+          url: COZINHA_URL,
+          inLanguage: "pt-BR",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Temperanzza",
+            url: "https://temperanzza.com.br",
+          },
+          about: "Receitas autorais para cozinha tradicional, low carb, cetogênica e carnívora flexível",
+        }),
+      },
     ],
   }),
   component: CozinhaLayout,

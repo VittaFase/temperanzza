@@ -2,19 +2,37 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { MapPin } from "lucide-react";
 
+const LOJAS_URL = "https://temperanzza.com.br/lojas";
+
 export const Route = createFileRoute("/lojas")({
   head: () => ({
     meta: [
-      { title: "Onde encontrar — Temperanzza" },
+      { title: "Onde encontrar — Pontos de venda Temperanzza" },
       {
         name: "description",
         content:
-          "Pontos de venda físicos da Temperanzza e canais de compra online.",
+          "Pontos de venda físicos da Temperanzza e canais de compra online — entrega para todo o Brasil.",
       },
       { property: "og:title", content: "Onde encontrar — Temperanzza" },
       {
         property: "og:description",
         content: "Pontos de venda físicos da Temperanzza.",
+      },
+      { property: "og:url", content: LOJAS_URL },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: LOJAS_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Temperanzza",
+          url: "https://temperanzza.com.br",
+          areaServed: "BR",
+          sameAs: [],
+        }),
       },
     ],
   }),
