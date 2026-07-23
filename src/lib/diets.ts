@@ -3,7 +3,7 @@
  * A ordem deste array é a ordem de exibição em todo o site.
  */
 
-export type DietKey = "keto" | "lowcarb" | "carnivora-flex" | "carnivora-estrita";
+export type DietKey = "keto" | "lowcarb" | "carnivora-flex";
 
 export interface DietMeta {
   key: DietKey;
@@ -39,14 +39,8 @@ export const DIETS: DietMeta[] = [
       "Base em produtos de origem animal, com espaço para temperos, especiarias e alguns vegetais de baixo carboidrato para sabor.",
     token: "brand-red",
   },
-  {
-    key: "carnivora-estrita",
-    name: "Carnívora Restrita",
-    short: "Carnívora",
-    definition:
-      "Apenas produtos de origem animal, sal e água. Nenhum tempero vegetal ou especiaria é permitido.",
-    token: "brand-ink",
-  },
+
+
 ];
 
 export function getDiet(key: DietKey): DietMeta {

@@ -79,7 +79,6 @@ export const Route = createFileRoute("/cozinha/$slug")({
                 keto: "https://schema.org/LowCalorieDiet",
                 lowcarb: "https://schema.org/LowCalorieDiet",
                 "carnivora-flex": "https://schema.org/LowLactoseDiet",
-                "carnivora-estrita": "https://schema.org/LowLactoseDiet",
               };
               return map[d] ?? "https://schema.org/LowCalorieDiet";
             }),
