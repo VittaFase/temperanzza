@@ -54,7 +54,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
         verdict: "no",
         note: "Contém amido, urucum e dióxido de silício — ingredientes vegetais que não se alinham com a filosofia carnívora, mesmo na versão flexível.",
       },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -73,7 +72,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
         verdict: "no",
         note: "Contém óleo de soja e ingredientes vegetais processados — fora do escopo carnívoro flexível.",
       },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -83,7 +81,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Contém traços de óleo de soja em quantidade mínima. Uso normal não impacta a cetose." },
       lowcarb: { verdict: "ok", note: "Perfeito para ovos, peixes e frango — cítrico e picante em dose controlada." },
       "carnivora-flex": { verdict: "ok", note: "Permitido no protocolo flexível pelo teor mínimo de óleo vegetal." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -93,7 +90,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Especiaria pura, praticamente zero carboidratos líquidos por porção." },
       lowcarb: { verdict: "ok", note: "Uso livre — colore e adoça naturalmente sem carga glicêmica relevante." },
       "carnivora-flex": { verdict: "ok", note: "Excelente para carnes brancas e vermelhas no protocolo flexível." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -103,7 +99,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Pura, sem aditivos — encaixa em qualquer refeição cetogênica." },
       lowcarb: { verdict: "ok", note: "Toque de calor sem carboidratos. Ótima em carnes assadas e ovos." },
       "carnivora-flex": { verdict: "ok", note: "Permitida — pó de pimentão desidratado, sem óleos ou açúcares." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -113,7 +108,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Especiaria pura defumada. Sabor complexo, zero carga glicêmica." },
       lowcarb: { verdict: "ok", note: "Traz o gosto de churrasco sem carboidratos — coringa da despensa low carb." },
       "carnivora-flex": { verdict: "ok", note: "Ideal para carnes bovinas e suínas no protocolo flexível." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -123,7 +117,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Mix de ervas e especiarias sem aditivos restritivos." },
       lowcarb: { verdict: "ok", note: "Uso livre em carnes, aves e legumes de baixo carboidrato." },
       "carnivora-flex": { verdict: "ok", note: "Sem amidos ou açúcares — permitido no protocolo flexível." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -133,7 +126,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Base vegetal com pouco óleo de soja. Impacto glicêmico irrelevante." },
       lowcarb: { verdict: "ok", note: "Rico em polifenóis e ervas — combina com qualquer corte." },
       "carnivora-flex": { verdict: "ok", note: "Aceito no protocolo flexível como pasta de ervas." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -143,7 +135,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Ervas e pimenta com traços de óleo vegetal — dentro do escopo cetogênico." },
       lowcarb: { verdict: "ok", note: "Ideal para carnes grelhadas — dá calor e frescor ao mesmo tempo." },
       "carnivora-flex": { verdict: "ok", note: "Permitido no protocolo flexível pela composição herbal." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -153,7 +144,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Ervas e vegetais desidratados puros. Uso livre." },
       lowcarb: { verdict: "ok", note: "Coringa para refogados, peixes e ovos." },
       "carnivora-flex": { verdict: "ok", note: "Aceito como concentrado de sabor no protocolo flexível." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -163,7 +153,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Mix puro de ervas — zero carboidratos líquidos significativos." },
       lowcarb: { verdict: "ok", note: "Traz frescor a ovos, queijos e carnes brancas." },
       "carnivora-flex": { verdict: "ok", note: "Permitido no protocolo flexível como aromático." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -173,7 +162,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Base de sal e especiarias tradicionais — sem açúcares nem amidos." },
       lowcarb: { verdict: "ok", note: "Gosto de comida caseira sem carga glicêmica." },
       "carnivora-flex": { verdict: "ok", note: "Permitido — mix de especiarias sem óleos processados." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -186,7 +174,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       },
       lowcarb: { verdict: "ok", note: "Uso normal cabe no low carb sem stress." },
       "carnivora-flex": { verdict: "ok", note: "Vegetal desidratado — aceito no protocolo flexível." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -196,7 +183,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Mix vegetal com traços de óleo de soja — dentro do escopo cetogênico." },
       lowcarb: { verdict: "ok", note: "Ótimo em patês, ovos e carnes do dia a dia." },
       "carnivora-flex": { verdict: "ok", note: "Permitido no protocolo flexível." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -206,7 +192,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Raiz desidratada pura, anti-inflamatório natural. Uso livre." },
       lowcarb: { verdict: "ok", note: "Colore e perfuma sem impacto glicêmico." },
       "carnivora-flex": { verdict: "ok", note: "Aceita como especiaria pura no protocolo flexível." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -216,7 +201,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Especiaria pura — uso livre." },
       lowcarb: { verdict: "ok", note: "Coringa em qualquer prato low carb." },
       "carnivora-flex": { verdict: "ok", note: "Permitida no protocolo flexível." },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -229,7 +213,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
         verdict: "moderate",
         note: "Especiaria vegetal — cabe apenas em interpretações mais amplas da carnívora flexível.",
       },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
   {
@@ -245,7 +228,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
         verdict: "no",
         note: "Base para aderência inclui componentes vegetais que fogem do escopo carnívoro.",
       },
-      "carnivora-estrita": CARN_ESTRITA_NO,
     },
   },
 ];
