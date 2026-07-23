@@ -797,7 +797,7 @@ export const RECIPES: Recipe[] = [
     slug: "bife-cavalo-pimenta-reino",
     title: "Bife à cavalo com Pimenta-do-Reino Temperanzza",
     featuredHandle: "pimenta-do-reino",
-    compatibleDiets: ["keto", "lowcarb", "carnivora-flex", "carnivora-estrita"],
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
     moment: "almoco",
     profile: "puras",
     category: "tradicional",

@@ -248,18 +248,9 @@ const CATEGORIAS: CategoriaDef[] = [
       (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("carnivora-flex"),
   },
   {
-    key: "carnivora-estrita",
-    name: "Carnívora Restrita",
-    romano: "IV",
-    descricao:
-      "Somente proteína animal, sal e água. Um convite à essência do sabor.",
-    filter: (r) =>
-      (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("carnivora-estrita"),
-  },
-  {
     key: "tradicional",
     name: "Pratos Tradicionais",
-    romano: "V",
+    romano: "IV",
     descricao:
       "A mesa de todos os dias, elevada por temperos com autoria mineira.",
     filter: (r) => r.category === "tradicional",
@@ -267,7 +258,7 @@ const CATEGORIAS: CategoriaDef[] = [
 ];
 
 function BibliotecaIndice() {
-  const [aberta, setAberta] = useState<CategoriaKey | null>("keto");
+  const [aberta, setAberta] = useState<CategoriaKey | null>(null);
 
   return (
     <section id="indice" aria-labelledby="indice-title" className="bg-brand-paper py-24 sm:py-32">
