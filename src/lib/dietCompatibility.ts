@@ -31,11 +31,6 @@ const PROFILES = {
   citrico: "citrico-picante" as const,
 };
 
-/** Nota padrão para todas as carnívora-estrita (exceto sal puro). */
-const CARN_ESTRITA_NO: DietVerdictEntry = {
-  verdict: "no",
-  note: "A carnívora estrita permite apenas produtos de origem animal, sal e água — qualquer tempero vegetal fica fora.",
-};
 
 export const PRODUCT_DIETS: ProductDiet[] = [
   {
