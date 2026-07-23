@@ -57,6 +57,8 @@ function BokehBackdrop({ opacity = 0.55 }: { opacity?: number }) {
 }
 
 
+const TEMPERAFLIX_URL = "https://temperanzza.com.br/temperaflix";
+
 export const Route = createFileRoute("/temperaflix")({
   head: () => ({
     meta: [
@@ -64,13 +66,31 @@ export const Route = createFileRoute("/temperaflix")({
       {
         name: "description",
         content:
-          "Linha exclusiva Temperaflix: 3 shakers — Tradicional, Ervas Finas e Bacon. O sabor oficial dos seus momentos de tela.",
+          "Linha exclusiva Temperaflix: 3 shakers — Tradicional, Ervas Finas e Bacon. O sabor oficial dos seus momentos de tela: cinema, séries e games.",
       },
       { property: "og:title", content: "Temperaflix — O tempero que entra em cena" },
       {
         property: "og:description",
         content:
           "Três shakers exclusivos para temperar seus momentos de tela. Uma linha Temperanzza.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: TEMPERAFLIX_URL },
+    ],
+    links: [{ rel: "canonical", href: TEMPERAFLIX_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProductGroup",
+          name: "Linha Temperaflix",
+          brand: { "@type": "Brand", name: "Temperanzza" },
+          url: TEMPERAFLIX_URL,
+          description:
+            "Três shakers Temperaflix: Tradicional, Ervas Finas e Bacon — o tempero dos momentos de tela.",
+          category: "Temperos e Especiarias",
+        }),
       },
     ],
   }),

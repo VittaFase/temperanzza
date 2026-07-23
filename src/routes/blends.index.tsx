@@ -11,10 +11,12 @@ import {
 } from "@/lib/blendPricing";
 import { formatBRL } from "@/lib/shopify";
 
+const BLENDS_URL = "https://temperanzza.com.br/blends";
+
 export const Route = createFileRoute("/blends/")({
   head: () => ({
     meta: [
-      { title: "Blends Temperanzza — Caixas display de 12 potes | Temperanzza" },
+      { title: "Blends Temperanzza — Caixas display de 12 potes" },
       {
         name: "description",
         content:
@@ -25,6 +27,21 @@ export const Route = createFileRoute("/blends/")({
         property: "og:description",
         content:
           "Seis blends curados + a caixa Chefe Temperanzza para você montar a sua. 12 potes por caixa, em uma única apresentação.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: BLENDS_URL },
+    ],
+    links: [{ rel: "canonical", href: BLENDS_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Blends Temperanzza",
+          url: BLENDS_URL,
+          about: "Caixas display de 12 potes de temperos artesanais",
+        }),
       },
     ],
   }),

@@ -23,14 +23,50 @@ export const Route = createFileRoute("/blends/$slug")({
   },
   head: ({ params }) => {
     const blend = BLEND_BY_SLUG[params.slug as BlendSlug];
-    if (!blend) return { meta: [{ title: "Blend não encontrado" }] };
+    if (!blend) return { meta: [{ title: "Blend não encontrado" }, { name: "robots", content: "noindex" }] };
+    const url = `https://temperanzza.com.br/blends/${blend.slug}`;
+    const imageAbs = blend.image.startsWith("http")
+      ? blend.image
+      : `https://temperanzza.com.br${blend.image.startsWith("/") ? "" : "/"}${blend.image}`;
     return {
       meta: [
         { title: `${blend.name} — Blends Temperanzza` },
         { name: "description", content: blend.description },
-        { property: "og:title", content: blend.name },
+        { property: "og:title", content: `${blend.name} — Blends Temperanzza` },
         { property: "og:description", content: blend.description },
-        { property: "og:image", content: blend.image },
+        { property: "og:type", content: "product" },
+        { property: "og:url", content: url },
+        { property: "og:image", content: imageAbs },
+        { name: "twitter:image", content: imageAbs },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: blend.name,
+            description: blend.description,
+            image: imageAbs,
+            brand: { "@type": "Brand", name: "Temperanzza" },
+            category: "Temperos e Especiarias",
+            url,
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Início", item: "https://temperanzza.com.br/" },
+              { "@type": "ListItem", position: 2, name: "Blends", item: "https://temperanzza.com.br/blends" },
+              { "@type": "ListItem", position: 3, name: blend.name, item: url },
+            ],
+          }),
+        },
       ],
     };
   },
