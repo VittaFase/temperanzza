@@ -12,6 +12,7 @@ import {
 } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
 import { useCartStore } from "@/stores/cartStore";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
