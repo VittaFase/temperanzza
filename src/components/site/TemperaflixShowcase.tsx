@@ -428,13 +428,24 @@ export function TemperaflixShowcase() {
                         {formatBRL(price.amount, price.currencyCode)}
                       </div>
                     )}
+                    <div
+                      className="mt-2 font-mono text-[9px] sm:text-[10px] tracking-[0.28em] uppercase transition-opacity duration-300"
+                      style={{
+                        color: meta.accent,
+                        opacity: isActive ? 0.9 : 0,
+                      }}
+                      aria-hidden={!isActive}
+                    >
+                      &gt; Ver ficha
+                    </div>
                   </div>
-                  </button>
+                  </Link>
 
                   {/* ADD TO CART CTA — abaixo do preço */}
                   <Button
                     type="button"
                     onClick={(e) => {
+                      e.preventDefault();
                       e.stopPropagation();
                       handleAddOne(product);
                     }}
