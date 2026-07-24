@@ -369,6 +369,11 @@ function ProductPage() {
           </div>
         </div>
 
+        {/* Combina com — cross-sell por perfil sensorial */}
+        {allProducts && allProducts.length > 1 && (
+          <CombinaCom currentHandle={handle} products={allProducts} />
+        )}
+
         {/* Compatibilidade dietética */}
         <DietSectionForProduct handle={handle} />
       </div>
