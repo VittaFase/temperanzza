@@ -92,9 +92,8 @@ function Home() {
               PARA O SEU&nbsp;LIFESTYLE.
             </h1>
             <p className="mt-8 max-w-xl text-base sm:text-lg text-foreground/80 leading-relaxed">
-              Pratos autorais a cada oportunidade. Especiarias selecionadas para
-              dar a seu tempero tradicional uma explosão de sabor que cada prato
-              merece.
+              Especiarias selecionadas para dar a seus pratos a explosão de sabor
+              que eles merecem.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
