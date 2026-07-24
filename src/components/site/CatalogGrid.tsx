@@ -10,21 +10,15 @@ import { Loader2, Search, X } from "lucide-react";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DIETS, type DietKey } from "@/lib/diets";
 
-type LinhaKey = "todas" | "casa" | "premium" | "temperaflix";
-
-const PREMIUM_BLACK_HANDLES = new Set(["pimenta-do-reino", "canela-moida"]);
+type LinhaKey = "todas" | "temperaflix";
 
 const LINHAS: Array<{ key: LinhaKey; label: string; hint: string }> = [
   { key: "todas", label: "Toda a Casa", hint: "19 potes" },
-  { key: "casa", label: "Linha Casa", hint: "clássicos" },
-  { key: "premium", label: "Premium Black", hint: "30 g" },
   { key: "temperaflix", label: "Temperaflix", hint: "shakers" },
 ];
 
-function linhaOf(handle: string): Exclude<LinhaKey, "todas"> {
-  if (handle.startsWith("temperaflix-")) return "temperaflix";
-  if (PREMIUM_BLACK_HANDLES.has(handle)) return "premium";
-  return "casa";
+function isTemperaflix(handle: string): boolean {
+  return handle.startsWith("temperaflix-");
 }
 
 interface CatalogGridProps {
@@ -61,7 +55,7 @@ export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) 
       const handle = p.node.handle;
       const title = p.node.title.toLowerCase();
       if (t && !title.includes(t) && !handle.includes(t)) return false;
-      if (linha !== "todas" && linhaOf(handle) !== linha) return false;
+      if (linha === "temperaflix" && !isTemperaflix(handle)) return false;
       if (diet !== "todas") {
         const pd = getProductDiet(handle);
         const verdict = pd?.verdicts[diet]?.verdict;
