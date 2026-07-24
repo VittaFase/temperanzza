@@ -255,20 +255,22 @@ export function TemperaflixShowcase() {
                   onMouseEnter={() => setActive(key)}
                   onFocus={() => setActive(key)}
                 >
-                  {canOpen ? (
                   <Link
                     to="/product/$handle"
-                    params={{ handle: product!.node.handle }}
-                    preload="intent"
-                    aria-label={`Ver ficha de ${meta.label}`}
+                    params={{ handle: product?.node.handle ?? "" }}
+                    preload={canOpen ? "intent" : false}
+                    onClick={(e) => {
+                      if (!canOpen) {
+                        e.preventDefault();
+                        setActive(key);
+                      }
+                    }}
+                    aria-label={
+                      canOpen
+                        ? `Ver ficha de ${meta.label}`
+                        : `Selecionar ${meta.label}`
+                    }
                     className="contents cursor-pointer"
-                  >
-                  ) : (
-                  <button
-                    type="button"
-                    onClick={() => setActive(key)}
-                    aria-label={`Selecionar ${meta.label}`}
-                    className="contents"
                   >
 
 
