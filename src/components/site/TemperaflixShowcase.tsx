@@ -12,6 +12,7 @@ import {
 } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
 import { useCartStore } from "@/stores/cartStore";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
@@ -89,6 +90,7 @@ function classify(title: string): FlavorKey {
 const ORDER: FlavorKey[] = ["tradicional", "ervas", "bacon"];
 
 export function TemperaflixShowcase() {
+  const isMobile = useIsMobile();
   const addItem = useCartStore((s) => s.addItem);
   const isAdding = useCartStore((s) => s.isLoading);
   const { data, isLoading } = useQuery({
@@ -246,6 +248,11 @@ export function TemperaflixShowcase() {
                   )
                 : null;
               const price = product?.node.priceRange.minVariantPrice;
+              // Desktop: clique navega direto (hover já ativou o spotlight).
+              // Mobile: 1º toque ativa o pote, 2º toque abre a ficha do produto.
+              const canOpen = !!product && (!isMobile || isActive);
+
+
 
               return (
                 <div
@@ -255,12 +262,24 @@ export function TemperaflixShowcase() {
                   onMouseEnter={() => setActive(key)}
                   onFocus={() => setActive(key)}
                 >
-                  <button
-                    type="button"
-                    onClick={() => setActive(key)}
-                    aria-label={`Selecionar ${meta.label}`}
-                    className="contents"
+                  <Link
+                    to="/product/$handle"
+                    params={{ handle: product?.node.handle ?? "" }}
+                    preload={canOpen ? "intent" : false}
+                    onClick={(e) => {
+                      if (!canOpen) {
+                        e.preventDefault();
+                        setActive(key);
+                      }
+                    }}
+                    aria-label={
+                      canOpen
+                        ? `Ver ficha de ${meta.label}`
+                        : `Selecionar ${meta.label}`
+                    }
+                    className="contents cursor-pointer"
                   >
+
 
                   {/* TECH RING — anel de scan neutro girando atrás do pote ativo */}
                   <AnimatePresence>
@@ -416,13 +435,24 @@ export function TemperaflixShowcase() {
                         {formatBRL(price.amount, price.currencyCode)}
                       </div>
                     )}
+                    <div
+                      className="mt-2 font-mono text-[9px] sm:text-[10px] tracking-[0.28em] uppercase transition-opacity duration-300"
+                      style={{
+                        color: meta.accent,
+                        opacity: isActive ? 0.9 : 0,
+                      }}
+                      aria-hidden={!isActive}
+                    >
+                      &gt; Ver ficha
+                    </div>
                   </div>
-                  </button>
+                  </Link>
 
                   {/* ADD TO CART CTA — abaixo do preço */}
                   <Button
                     type="button"
                     onClick={(e) => {
+                      e.preventDefault();
                       e.stopPropagation();
                       handleAddOne(product);
                     }}
