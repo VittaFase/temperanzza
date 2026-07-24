@@ -17,10 +17,8 @@ const LINHAS: Array<{ key: LinhaKey; label: string; hint: string }> = [
   { key: "temperaflix", label: "Temperaflix", hint: "shakers" },
 ];
 
-function linhaOf(handle: string): Exclude<LinhaKey, "todas"> {
-  if (handle.startsWith("temperaflix-")) return "temperaflix";
-  if (PREMIUM_BLACK_HANDLES.has(handle)) return "premium";
-  return "casa";
+function isTemperaflix(handle: string): boolean {
+  return handle.startsWith("temperaflix-");
 }
 
 interface CatalogGridProps {
