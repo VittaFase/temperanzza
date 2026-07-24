@@ -55,7 +55,7 @@ export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) 
       const handle = p.node.handle;
       const title = p.node.title.toLowerCase();
       if (t && !title.includes(t) && !handle.includes(t)) return false;
-      if (linha !== "todas" && linhaOf(handle) !== linha) return false;
+      if (linha === "temperaflix" && !isTemperaflix(handle)) return false;
       if (diet !== "todas") {
         const pd = getProductDiet(handle);
         const verdict = pd?.verdicts[diet]?.verdict;
