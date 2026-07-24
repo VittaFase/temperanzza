@@ -200,7 +200,7 @@ function Home() {
                 <br />
                 CONVERSA COM SEU&nbsp;DLIFE ETA.
                 <br />
-                <span className="text-accent">LIFESTYLE</span>
+                <span className="text-accent tracking-tighter">LIFESTYLE</span>
               </h2>
               <p className="mt-6 font-serif italic text-lg sm:text-xl text-foreground/80 max-w-2xl leading-snug">
                 Guia didático de compatibilidade e receitas curadas para quem
