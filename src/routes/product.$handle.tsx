@@ -14,6 +14,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { Loader2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { FlavorTiles } from "@/components/site/FlavorTiles";
+import { CombinaCom } from "@/components/site/CombinaCom";
 import { getProductImage } from "@/lib/productImages";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DietCompatibilityPanel } from "@/components/site/DietCompatibilityPanel";
@@ -367,6 +368,11 @@ function ProductPage() {
             )}
           </div>
         </div>
+
+        {/* Combina com — cross-sell por perfil sensorial */}
+        {allProducts && allProducts.length > 1 && (
+          <CombinaCom currentHandle={handle} products={allProducts} />
+        )}
 
         {/* Compatibilidade dietética */}
         <DietSectionForProduct handle={handle} />

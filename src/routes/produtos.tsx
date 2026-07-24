@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { ProductGrid } from "@/components/site/ProductGrid";
+import { CatalogGrid } from "@/components/site/CatalogGrid";
 
 const PRODUTOS_URL = "https://temperanzza.com.br/produtos";
 
@@ -58,7 +58,7 @@ function ProdutosPage() {
       </section>
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ProductGrid first={50} />
+          <CatalogGrid />
         </div>
       </section>
     </SiteLayout>
