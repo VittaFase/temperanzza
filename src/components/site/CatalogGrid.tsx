@@ -10,14 +10,10 @@ import { Loader2, Search, X } from "lucide-react";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DIETS, type DietKey } from "@/lib/diets";
 
-type LinhaKey = "todas" | "casa" | "premium" | "temperaflix";
-
-const PREMIUM_BLACK_HANDLES = new Set(["pimenta-do-reino", "canela-moida"]);
+type LinhaKey = "todas" | "temperaflix";
 
 const LINHAS: Array<{ key: LinhaKey; label: string; hint: string }> = [
   { key: "todas", label: "Toda a Casa", hint: "19 potes" },
-  { key: "casa", label: "Linha Casa", hint: "clássicos" },
-  { key: "premium", label: "Premium Black", hint: "30 g" },
   { key: "temperaflix", label: "Temperaflix", hint: "shakers" },
 ];
 
