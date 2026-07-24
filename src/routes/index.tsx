@@ -87,9 +87,9 @@ function Home() {
             <h1 className="font-display font-black uppercase leading-[0.92] tracking-tight text-[12vw] sm:text-7xl lg:text-8xl xl:text-[7rem]">
               Temperanzza
               <br />
-              para quem
+              <span className="text-accent">NOVOS SABORES</span>
               <br />
-              ama <span className="text-accent">novos sabores</span>.
+              PARA O SEU&nbsp;LIFESTYLE.
             </h1>
             <p className="mt-8 max-w-xl text-base sm:text-lg text-foreground/80 leading-relaxed">
               Pratos autorais a cada oportunidade. Especiarias selecionadas para
