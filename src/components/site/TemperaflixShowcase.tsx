@@ -246,6 +246,11 @@ export function TemperaflixShowcase() {
                   )
                 : null;
               const price = product?.node.priceRange.minVariantPrice;
+              // Desktop: clique navega direto (hover já ativou o spotlight).
+              // Mobile: 1º toque ativa o pote, 2º toque abre a ficha do produto.
+              const canOpen = !!product && (!isMobile || isActive);
+
+
 
               return (
                 <div
