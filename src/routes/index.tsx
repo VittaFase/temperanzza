@@ -197,9 +197,9 @@ function Home() {
               <h2 className="font-display font-black uppercase text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.95]">
                 TEMPERO QUE
                 <br />
-                CONVERSA COM SEU&nbsp;DLIFE ETA.
+                CONVERSA COM SEU
                 <br />
-                <span className="text-accent tracking-tighter">LIFESTYLE</span>
+                <span className="text-accent tracking-tighter">LIFESTYLE.</span>
               </h2>
               <p className="mt-6 font-serif italic text-lg sm:text-xl text-foreground/80 max-w-2xl leading-snug">
                 Guia didático de compatibilidade e receitas curadas para quem
