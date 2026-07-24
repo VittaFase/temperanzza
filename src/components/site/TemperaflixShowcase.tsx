@@ -89,6 +89,7 @@ function classify(title: string): FlavorKey {
 const ORDER: FlavorKey[] = ["tradicional", "ervas", "bacon"];
 
 export function TemperaflixShowcase() {
+  const isMobile = useIsMobile();
   const addItem = useCartStore((s) => s.addItem);
   const isAdding = useCartStore((s) => s.isLoading);
   const { data, isLoading } = useQuery({
