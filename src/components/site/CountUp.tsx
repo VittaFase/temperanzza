@@ -41,30 +41,58 @@ export function CountUp({
       return;
     }
 
+    let raf = 0;
+    const runAnimation = () => {
+      if (startedRef.current) return;
+      startedRef.current = true;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        setValue(Math.round(from + (to - from) * eased));
+        if (t < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    };
+
+    // Fallback imediato: se o elemento já está no viewport no primeiro paint
+    // (comum em telas pequenas onde a seção "A Casa em Números" aparece
+    // acima da dobra ao rolar de uma vez), IntersectionObserver pode não
+    // disparar. Verificamos a bounding rect na hora.
+    const rect = el.getBoundingClientRect();
+    const viewportH =
+      typeof window !== "undefined" ? window.innerHeight : 800;
+    if (rect.top < viewportH && rect.bottom > 0) {
+      runAnimation();
+      return () => cancelAnimationFrame(raf);
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting && !startedRef.current) {
-            startedRef.current = true;
-            const start = performance.now();
-            let raf = 0;
-            const tick = (now: number) => {
-              const t = Math.min(1, (now - start) / duration);
-              // ease-out cubic
-              const eased = 1 - Math.pow(1 - t, 3);
-              setValue(Math.round(from + (to - from) * eased));
-              if (t < 1) raf = requestAnimationFrame(tick);
-            };
-            raf = requestAnimationFrame(tick);
+          if (entry.isIntersecting) {
+            runAnimation();
             io.disconnect();
-            return () => cancelAnimationFrame(raf);
+            return;
           }
         }
       },
-      { threshold: 0.4 },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    // Rede de segurança: se por algum motivo (mobile Safari + prerender)
+    // o observer não disparar em 1.5s, força o valor final para não
+    // deixar zero na tela.
+    const safety = setTimeout(() => {
+      if (!startedRef.current) setValue(to);
+    }, 1500);
+
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+      clearTimeout(safety);
+    };
   }, [to, from, duration]);
 
   const formatted = pad > 0 ? String(value).padStart(pad, "0") : String(value);
