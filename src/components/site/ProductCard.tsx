@@ -108,15 +108,15 @@ export function ProductCard({
         <h3 className="font-display font-black uppercase tracking-tight text-xl sm:text-2xl leading-[0.92] text-center">
           {product.node.title}
         </h3>
-        <div className="flex items-end justify-between gap-3">
-          <span className="font-display font-black text-2xl text-accent leading-none">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
+          <span className="font-display font-black text-2xl text-accent leading-none text-center sm:text-left">
             {formatBRL(price.amount, price.currencyCode)}
           </span>
           <Button
             size="sm"
             onClick={handleAdd}
             disabled={isLoading || !v?.availableForSale}
-            className="rounded-none h-11 min-w-11 px-3 bg-foreground hover:bg-accent text-background font-display uppercase tracking-wider text-xs"
+            className="w-full sm:w-auto rounded-none h-11 min-w-11 px-3 bg-foreground hover:bg-accent text-background font-display uppercase tracking-wider text-xs whitespace-nowrap"
           >
             {isLoading ? (
               <Loader2 className="w-3 h-3 animate-spin" />
