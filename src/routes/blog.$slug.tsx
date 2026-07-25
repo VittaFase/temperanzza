@@ -1,6 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { BLOG_CATEGORY_LABEL, BLOG_POSTS, getPost } from "@/lib/blog";
+import {
+  BLOG_CATEGORY_LABEL,
+  BLOG_POSTS,
+  getPost,
+  type BlogPost,
+} from "@/lib/blog";
 import { getProductImage } from "@/lib/productImages";
 import { RECIPES } from "@/lib/recipes";
 import { Button } from "@/components/ui/button";
@@ -8,13 +13,17 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const BASE = "https://temperanzza.com.br";
 
+interface PostLoaderData {
+  post: BlogPost;
+}
+
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): PostLoaderData => {
     const post = getPost(params.slug);
     if (!post) throw notFound();
     return { post };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData }: { loaderData?: PostLoaderData }) => {
     if (!loaderData) {
       return {
         meta: [
