@@ -151,7 +151,7 @@ function Home() {
       {/* PRODUCT GRID */}
       <section className="pb-20 sm:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+          <div className="flex items-end justify-between mb-6 flex-wrap gap-4">
             <div>
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 A Coleção
@@ -167,6 +167,9 @@ function Home() {
               Ver tudo →
             </Link>
           </div>
+          <p className="max-w-3xl mb-10 text-base sm:text-lg text-foreground/75 leading-relaxed">
+            Cada pote da Temperanzza reúne especiarias selecionadas em proporções testadas à exaustão — novos sabores que assinam o prato, do café ao jantar. Da páprica defumada ao chimichurri, do lemon pepper à linha Temperaflix: são sabores autorais, pensados para quem cozinha com intenção e não abre mão do lifestyle à mesa.
+          </p>
           <ProductGrid
             first={8}
             excludeHandles={[
