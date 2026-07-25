@@ -268,17 +268,17 @@ function Home() {
               {
                 icon: Flame,
                 title: "Sabor que assina",
-                body: "Cada mistura tem proporção testada à exaustão. Você abre o pote e reconhece de longe.",
+                body: "Cada mistura tem proporção testada à exaustão até virar receita da casa. Você abre o pote, sente o aroma e reconhece o sabor de longe — é o tempero que assina o prato e transforma refeições comuns em novos sabores memoráveis.",
               },
               {
                 icon: Leaf,
                 title: "Origem rastreada",
-                body: "Cada ingrediente escolhido com o cuidado que você merece.",
+                body: "Cada ingrediente é escolhido a dedo, de fornecedores que conhecemos pelo nome. Páprica, ervas, pimentas e sais: sabores íntegros, secos no tempo certo, sem enchimento e sem aditivos que mascarem a matéria-prima.",
               },
               {
                 icon: Award,
                 title: "Sem atalho",
-                body: "Qualidade em cada processo até chegar na sua mesa.",
+                body: "Do lote pequeno à embalagem hermética, cada etapa é conferida manualmente. Assim os sabores chegam vivos à sua mesa — como devem chegar temperos artesanais feitos em Minas Gerais.",
               },
             ].map((p) => (
               <div key={p.title} className="bg-background p-8 lg:p-10">
