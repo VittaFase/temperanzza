@@ -132,7 +132,7 @@ export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) 
                   key={l.key}
                   onClick={() => setLinha(l.key)}
                   aria-pressed={active}
-                  className={`inline-flex items-baseline gap-2 px-3 py-2 border font-display uppercase tracking-wider text-[11px] transition-colors ${
+                  className={`inline-flex min-h-11 items-center gap-2 px-4 py-2 border font-display uppercase tracking-wider text-xs transition-colors ${
                     active
                       ? "border-accent bg-accent text-accent-foreground"
                       : "border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background"
@@ -140,7 +140,7 @@ export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) 
                 >
                   <span className="font-black">{l.label}</span>
                   <span
-                    className={`text-[9px] tracking-widest ${
+                    className={`text-[11px] tracking-widest ${
                       active ? "opacity-80" : "text-foreground/50"
                     }`}
                   >
@@ -161,7 +161,7 @@ export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) 
             <button
               onClick={() => setDiet("todas")}
               aria-pressed={diet === "todas"}
-              className={`px-3 py-2 border font-display uppercase tracking-wider text-[11px] font-black transition-colors ${
+              className={`inline-flex min-h-11 items-center px-4 py-2 border font-display uppercase tracking-wider text-xs font-black transition-colors ${
                 diet === "todas"
                   ? "border-accent bg-accent text-accent-foreground"
                   : "border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background"
@@ -176,7 +176,7 @@ export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) 
                   key={d.key}
                   onClick={() => setDiet(d.key)}
                   aria-pressed={active}
-                  className={`px-3 py-2 border font-display uppercase tracking-wider text-[11px] font-black transition-colors ${
+                  className={`inline-flex min-h-11 items-center px-4 py-2 border font-display uppercase tracking-wider text-xs font-black transition-colors ${
                     active
                       ? "border-accent bg-accent text-accent-foreground"
                       : "border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background"

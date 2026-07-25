@@ -458,7 +458,7 @@ export function TemperaflixShowcase() {
                       handleAddOne(product);
                     }}
                     disabled={!product || isAdding}
-                    className="mt-3 w-full rounded-none h-10 sm:h-11 px-2 sm:px-3 bg-brand-paper text-brand-ink hover:bg-brand-paper/90 font-display uppercase tracking-widest text-[10px] sm:text-xs"
+                    className="mt-3 w-full rounded-none h-11 px-3 bg-brand-paper text-brand-ink hover:bg-brand-paper/90 font-display uppercase tracking-widest text-xs"
                     aria-label={`Adicionar ${meta.label} à sacola`}
                   >
                     <Plus className="mr-1 h-3.5 w-3.5" />
