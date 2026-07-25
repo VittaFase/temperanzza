@@ -45,9 +45,10 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link to="/lojas" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Onde encontrar
+                <Link to="/blog" className="inline-flex min-h-11 items-center hover:text-accent">
+                  Blog Temperanzza
                 </Link>
+
               </li>
             </ul>
           </div>

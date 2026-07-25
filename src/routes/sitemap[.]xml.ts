@@ -20,7 +20,7 @@ const STATIC_ROUTES: SitemapEntry[] = [
   { path: "/blends", changefreq: "monthly", priority: "0.8" },
   { path: "/temperaflix", changefreq: "monthly", priority: "0.8" },
   { path: "/sobre", changefreq: "monthly", priority: "0.6" },
-  { path: "/lojas", changefreq: "monthly", priority: "0.6" },
+  { path: "/blog", changefreq: "weekly", priority: "0.8" },
 ];
 
 const PRODUCTS_QUERY = `
