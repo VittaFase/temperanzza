@@ -18,6 +18,7 @@ import { Route as CozinhaRouteImport } from './routes/cozinha'
 import { Route as BlendsRouteImport } from './routes/blends'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CozinhaIndexRouteImport } from './routes/cozinha.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as CozinhaSlugRouteImport } from './routes/cozinha.$slug'
@@ -74,6 +75,11 @@ const CozinhaIndexRoute = CozinhaIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => CozinhaRoute,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BlendsIndexRoute = BlendsIndexRouteImport.update({
   id: '/',
@@ -147,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/cozinha/': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
@@ -167,6 +174,7 @@ export interface FileRoutesByTo {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
+  '/blog': typeof BlogIndexRoute
   '/cozinha': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/cozinha/': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
@@ -214,6 +223,7 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/blog/'
     | '/cozinha/'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
@@ -234,6 +244,7 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends'
+    | '/blog'
     | '/cozinha'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
@@ -256,6 +267,7 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/product/$handle'
     | '/blends/'
+    | '/blog/'
     | '/cozinha/'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
@@ -276,6 +288,7 @@ export interface RootRouteChildren {
   TemperaflixRoute: typeof TemperaflixRoute
   AdminBlingRoute: typeof AdminBlingRoute
   ProductHandleRoute: typeof ProductHandleRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicBlingCallbackRoute: typeof ApiPublicBlingCallbackRoute
   ApiPublicBlingConnectRoute: typeof ApiPublicBlingConnectRoute
   ApiPublicBlingDisconnectRoute: typeof ApiPublicBlingDisconnectRoute
@@ -348,6 +361,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/cozinha/'
       preLoaderRoute: typeof CozinhaIndexRouteImport
       parentRoute: typeof CozinhaRoute
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/blends/': {
       id: '/blends/'
@@ -466,6 +486,7 @@ const rootRouteChildren: RootRouteChildren = {
   TemperaflixRoute: TemperaflixRoute,
   AdminBlingRoute: AdminBlingRoute,
   ProductHandleRoute: ProductHandleRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ApiPublicBlingCallbackRoute: ApiPublicBlingCallbackRoute,
   ApiPublicBlingConnectRoute: ApiPublicBlingConnectRoute,
   ApiPublicBlingDisconnectRoute: ApiPublicBlingDisconnectRoute,
