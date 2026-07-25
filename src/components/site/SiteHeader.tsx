@@ -18,7 +18,7 @@ const NAV = [
   { to: "/cozinha", label: "Cozinha" },
   { to: "/temperaflix", label: "Temperaflix" },
   { to: "/sobre", label: "A Casa" },
-  { to: "/lojas", label: "Lojas" },
+  { to: "/blog", label: "Blog" },
 ] as const;
 
 export function SiteHeader() {

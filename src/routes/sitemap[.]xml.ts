@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { RECIPES } from "@/lib/recipes";
 import { BLENDS } from "@/lib/blends";
+import { BLOG_POSTS } from "@/lib/blog";
 import { storefrontApiRequest } from "@/lib/shopify";
 
 const BASE_URL = "https://temperanzza.com.br";
@@ -20,7 +21,7 @@ const STATIC_ROUTES: SitemapEntry[] = [
   { path: "/blends", changefreq: "monthly", priority: "0.8" },
   { path: "/temperaflix", changefreq: "monthly", priority: "0.8" },
   { path: "/sobre", changefreq: "monthly", priority: "0.6" },
-  { path: "/lojas", changefreq: "monthly", priority: "0.6" },
+  { path: "/blog", changefreq: "weekly", priority: "0.8" },
 ];
 
 const PRODUCTS_QUERY = `
@@ -68,7 +69,14 @@ export const Route = createFileRoute("/sitemap.xml")({
             changefreq: "monthly",
             priority: "0.7",
           })),
+          ...BLOG_POSTS.map<SitemapEntry>((p) => ({
+            path: `/blog/${p.slug}`,
+            changefreq: "monthly",
+            priority: "0.7",
+            lastmod: p.publishedAt,
+          })),
         ];
+
 
         const urls = entries.map((e) =>
           [
