@@ -116,13 +116,13 @@ export function ProductCard({
             size="sm"
             onClick={handleAdd}
             disabled={isLoading || !v?.availableForSale}
-            className="rounded-none h-7 px-2 bg-foreground hover:bg-accent text-background font-display uppercase tracking-wider text-[10px]"
+            className="rounded-none h-11 min-w-11 px-3 bg-foreground hover:bg-accent text-background font-display uppercase tracking-wider text-xs"
           >
             {isLoading ? (
               <Loader2 className="w-3 h-3 animate-spin" />
             ) : (
               <>
-                <Plus className="w-3 h-3 mr-0.5" />
+                <Plus className="w-3.5 h-3.5 mr-1" />
                 Sacola
               </>
             )}

@@ -95,7 +95,7 @@ export function FeaturedRow({
                 <button
                   onClick={() => handleAdd(p)}
                   disabled={isLoading}
-                  className="inline-flex items-center gap-1.5 font-display font-bold uppercase tracking-[0.18em] text-xs text-accent hover:text-foreground border-b border-accent/60 hover:border-foreground pb-0.5"
+                  className="inline-flex min-h-11 items-center gap-1.5 px-1 font-display font-bold uppercase tracking-[0.18em] text-xs text-accent hover:text-foreground border-b border-accent/60 hover:border-foreground"
                 >
                   {isLoading ? (
                     <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -111,7 +111,7 @@ export function FeaturedRow({
               <button
                 onClick={() => handleAdd(p)}
                 disabled={isLoading}
-                className="sm:hidden col-span-2 inline-flex items-center gap-1.5 font-display font-bold uppercase tracking-[0.18em] text-xs text-accent"
+                className="sm:hidden col-span-2 inline-flex min-h-11 items-center gap-1.5 py-2 font-display font-bold uppercase tracking-[0.18em] text-xs text-accent"
               >
                 <Plus className="w-3.5 h-3.5" />
                 Sacola

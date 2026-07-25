@@ -30,22 +30,22 @@ export function SiteFooter() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/produtos" className="hover:text-accent">
+                <Link to="/produtos" className="inline-flex min-h-11 items-center hover:text-accent">
                   Catálogo completo
                 </Link>
               </li>
               <li>
-                <Link to="/cozinha" className="hover:text-accent">
+                <Link to="/cozinha" className="inline-flex min-h-11 items-center hover:text-accent">
                   Cozinha & Dietas
                 </Link>
               </li>
               <li>
-                <Link to="/sobre" className="hover:text-accent">
+                <Link to="/sobre" className="inline-flex min-h-11 items-center hover:text-accent">
                   Nossa história
                 </Link>
               </li>
               <li>
-                <Link to="/lojas" className="hover:text-accent">
+                <Link to="/lojas" className="inline-flex min-h-11 items-center hover:text-accent">
                   Onde encontrar
                 </Link>
               </li>
@@ -60,7 +60,7 @@ export function SiteFooter() {
                 <Mail className="h-4 w-4" />
                 <a
                   href="mailto:contatotemperanzza@gmail.com"
-                  className="hover:text-accent"
+                  className="inline-flex min-h-11 items-center hover:text-accent"
                 >
                   contatotemperanzza@gmail.com
                 </a>
@@ -71,7 +71,7 @@ export function SiteFooter() {
                   href="https://instagram.com/temperanzzacondimentos"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-accent"
+                  className="inline-flex min-h-11 items-center hover:text-accent"
                 >
                   @temperanzzacondimentos
                 </a>

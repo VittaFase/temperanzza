@@ -162,7 +162,7 @@ function Home() {
             </div>
             <Link
               to="/produtos"
-              className="text-sm font-semibold uppercase tracking-wider hover:text-accent border-b border-foreground/40 hover:border-accent pb-0.5"
+              className="inline-flex min-h-11 items-center text-sm font-semibold uppercase tracking-wider hover:text-accent border-b border-foreground/40 hover:border-accent"
             >
               Ver tudo →
             </Link>
@@ -213,7 +213,7 @@ function Home() {
             <div className="lg:col-span-4 lg:text-right">
               <Link
                 to="/cozinha"
-                className="inline-flex items-center gap-2 border-b-2 border-foreground/30 hover:border-accent hover:text-accent pb-1 text-sm font-display font-black uppercase tracking-widest"
+                className="inline-flex min-h-11 items-center gap-2 border-b-2 border-foreground/30 hover:border-accent hover:text-accent text-sm font-display font-black uppercase tracking-widest"
               >
                 Explorar a Cozinha
                 <ArrowRight className="h-4 w-4" />
