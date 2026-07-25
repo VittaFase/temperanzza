@@ -477,7 +477,7 @@ export function TemperaflixShowcase() {
           <span>3 SABORES · SHAKERS · PRONTO PARA USO</span>
           <Link
             to="/temperaflix"
-            className="hover:text-brand-paper transition-colors"
+            className="inline-flex min-h-11 items-center hover:text-brand-paper transition-colors"
           >
             ver todos os episódios →
           </Link>
