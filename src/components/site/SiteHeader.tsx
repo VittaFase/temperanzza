@@ -37,7 +37,7 @@ export function SiteHeader() {
       >
         <Link
           to="/"
-          className="flex min-h-11 items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="flex min-h-11 min-w-11 items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label="Temperanzza — Início"
         >
           <BrandSeal size="sm" eager className="shrink-0" />
