@@ -142,7 +142,7 @@ function ProductDietDots({ handle }: { handle: string }) {
       className="flex items-center justify-between pt-2 border-t border-foreground/10"
       title="Compatibilidade dietética"
     >
-      <span className="text-[9px] font-display uppercase tracking-widest text-muted-foreground">
+      <span className="text-xs font-display uppercase tracking-widest text-muted-foreground">
         Dietas
       </span>
       <DietDotStrip

@@ -36,7 +36,7 @@ export function PromoAnnouncement() {
     <>
       {/* Top bar */}
       <div className="w-full bg-foreground text-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1 flex items-center justify-center gap-3 text-[11px] sm:text-xs font-display uppercase tracking-[0.2em]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-center gap-3 text-xs font-display uppercase tracking-[0.2em]">
           <Sparkles className="w-3 h-3 text-accent shrink-0" />
           <span className="text-center">
             <span className="text-accent">{BLEND_DISCOUNT_PCT}% off</span> na caixa a partir de {BLEND_DISCOUNT_MIN_ITEMS} potes — use
@@ -73,7 +73,7 @@ export function PromoAnnouncement() {
               <X className="w-4 h-4" />
             </button>
             <div className="p-8 sm:p-10 text-center">
-              <span className="inline-flex items-center gap-2 text-[10px] font-display uppercase tracking-[0.35em] text-accent border-l-2 border-accent pl-3">
+              <span className="inline-flex items-center gap-2 text-xs font-display uppercase tracking-[0.35em] text-accent border-l-2 border-accent pl-3">
                 <Sparkles className="w-3 h-3" /> Boas-vindas da casa
               </span>
               <h2
@@ -95,7 +95,7 @@ export function PromoAnnouncement() {
                 </code>
                 <button
                   onClick={copy}
-                  className="px-4 py-3 bg-foreground text-background hover:bg-accent transition-colors inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em]"
+                  className="px-4 min-h-11 bg-foreground text-background hover:bg-accent transition-colors inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em]"
                 >
                   {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   {copied ? "Copiado" : "Copiar"}
@@ -108,7 +108,7 @@ export function PromoAnnouncement() {
               >
                 Quero conhecer os blends
               </Button>
-              <p className="mt-3 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              <p className="mt-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 Válido em pedidos com {BLEND_DISCOUNT_MIN_ITEMS}+ potes
               </p>
             </div>
