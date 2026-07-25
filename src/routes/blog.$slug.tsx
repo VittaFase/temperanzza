@@ -155,7 +155,7 @@ function PostError() {
 }
 
 function BlogPostPage() {
-  const { post } = Route.useLoaderData();
+  const { post } = Route.useLoaderData() as PostLoaderData;
   const potSrc = getProductImage(post.productHandle);
   const recipes = post.relatedRecipes
     .map((slug) => RECIPES.find((r) => r.slug === slug))
