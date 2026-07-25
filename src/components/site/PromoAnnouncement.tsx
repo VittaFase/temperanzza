@@ -68,7 +68,7 @@ export function PromoAnnouncement() {
             <button
               onClick={() => setOpen(false)}
               aria-label="Fechar"
-              className="absolute top-3 right-3 p-1 text-foreground/60 hover:text-accent"
+              className="absolute top-2 right-2 grid h-11 w-11 place-items-center text-foreground/60 hover:text-accent"
             >
               <X className="w-4 h-4" />
             </button>
