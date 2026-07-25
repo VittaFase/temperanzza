@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Temperanzza: casa de temperos artesanais de Minas Gerais. Páprica, chimichurri, lemon pepper, linha Temperaflix e mais — embalado fresco, sem aditivos desnecessários.",
+          "Casa de temperos artesanais de Minas Gerais. Blends autorais, linha Temperaflix e páprica defumada — embalado fresco, lote a lote.",
       },
       {
         property: "og:title",
@@ -151,7 +151,7 @@ function Home() {
       {/* PRODUCT GRID */}
       <section className="pb-20 sm:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+          <div className="flex items-end justify-between mb-6 flex-wrap gap-4">
             <div>
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 A Coleção
@@ -167,6 +167,9 @@ function Home() {
               Ver tudo →
             </Link>
           </div>
+          <p className="max-w-3xl mb-10 text-base sm:text-lg text-foreground/75 leading-relaxed">
+            Cada pote da Temperanzza reúne especiarias selecionadas em proporções testadas à exaustão — novos sabores que assinam o prato, do café ao jantar. Da páprica defumada ao chimichurri, do lemon pepper à linha Temperaflix: são sabores autorais, pensados para quem cozinha com intenção e não abre mão do lifestyle à mesa.
+          </p>
           <ProductGrid
             first={8}
             excludeHandles={[
@@ -265,17 +268,17 @@ function Home() {
               {
                 icon: Flame,
                 title: "Sabor que assina",
-                body: "Cada mistura tem proporção testada à exaustão. Você abre o pote e reconhece de longe.",
+                body: "Cada mistura tem proporção testada à exaustão até virar receita da casa. Você abre o pote, sente o aroma e reconhece o sabor de longe — é o tempero que assina o prato e transforma refeições comuns em novos sabores memoráveis.",
               },
               {
                 icon: Leaf,
                 title: "Origem rastreada",
-                body: "Cada ingrediente escolhido com o cuidado que você merece.",
+                body: "Cada ingrediente é escolhido a dedo, de fornecedores que conhecemos pelo nome. Páprica, ervas, pimentas e sais: sabores íntegros, secos no tempo certo, sem enchimento e sem aditivos que mascarem a matéria-prima.",
               },
               {
                 icon: Award,
                 title: "Sem atalho",
-                body: "Qualidade em cada processo até chegar na sua mesa.",
+                body: "Do lote pequeno à embalagem hermética, cada etapa é conferida manualmente. Assim os sabores chegam vivos à sua mesa — como devem chegar temperos artesanais feitos em Minas Gerais.",
               },
             ].map((p) => (
               <div key={p.title} className="bg-background p-8 lg:p-10">

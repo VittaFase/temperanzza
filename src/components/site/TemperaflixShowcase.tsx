@@ -30,6 +30,7 @@ function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
       <img
         src={bokehPoster}
         alt=""
+        aria-hidden="true"
         loading="lazy"
         decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
