@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Temperanzza: casa de temperos artesanais de Minas Gerais. Páprica, chimichurri, lemon pepper, linha Temperaflix e mais — embalado fresco, sem aditivos desnecessários.",
+          "Casa de temperos artesanais de Minas Gerais. Blends autorais, linha Temperaflix e páprica defumada — embalado fresco, lote a lote.",
       },
       {
         property: "og:title",
