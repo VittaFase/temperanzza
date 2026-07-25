@@ -37,7 +37,7 @@ export function SiteHeader() {
       >
         <Link
           to="/"
-          className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="flex min-h-11 min-w-11 items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label="Temperanzza — Início"
         >
           <BrandSeal size="sm" eager className="shrink-0" />
@@ -45,7 +45,7 @@ export function SiteHeader() {
             <span className="font-display text-2xl sm:text-3xl font-black tracking-wider uppercase leading-none">
               Temperanzza
             </span>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground border-l border-foreground/30 pl-1.5">
+            <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground border-l border-foreground/30 pl-1.5">
               SPICE HOUSE
             </span>
           </span>

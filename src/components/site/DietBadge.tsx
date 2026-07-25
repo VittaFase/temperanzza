@@ -102,7 +102,7 @@ export function DietBadge({
       )}
     >
       <c.Icon className="h-3 w-3" strokeWidth={3} />
-      <span className="font-display font-black uppercase tracking-wider text-[10px]">
+      <span className="font-display font-black uppercase tracking-wider text-xs">
         {meta.short}
       </span>
     </span>

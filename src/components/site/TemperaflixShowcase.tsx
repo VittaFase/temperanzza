@@ -179,7 +179,7 @@ export function TemperaflixShowcase() {
         {/* HEADER — player bar */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
           <div>
-            <div className="flex items-center gap-3 mb-5 font-mono text-[11px] tracking-[0.25em] text-brand-paper/70">
+            <div className="flex items-center gap-3 mb-5 font-mono text-xs tracking-[0.25em] text-brand-paper/70">
               <span className="inline-flex items-center gap-2">
                 <span className="relative inline-block h-2 w-2">
                   <span className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-70" />
@@ -413,7 +413,7 @@ export function TemperaflixShowcase() {
                   {/* meta strip */}
                   <div className="relative mt-4 sm:mt-6 text-center w-full">
                     <div
-                      className="font-mono text-[10px] tracking-[0.3em] transition-colors"
+                      className="font-mono text-xs tracking-[0.3em] transition-colors"
                       style={{
                         color: isActive ? meta.accent : "rgba(245,240,232,0.5)",
                       }}
@@ -423,7 +423,7 @@ export function TemperaflixShowcase() {
                     <div className="mt-1 font-display font-black uppercase text-lg sm:text-2xl tracking-tight leading-none">
                       {meta.label}
                     </div>
-                    <div className="mt-1 hidden sm:block text-[11px] text-brand-paper/50 italic font-serif">
+                    <div className="mt-1 hidden sm:block text-xs text-brand-paper/50 italic font-serif">
                       {meta.tagline}
                     </div>
                     {price && (
@@ -437,7 +437,7 @@ export function TemperaflixShowcase() {
                       </div>
                     )}
                     <div
-                      className="mt-2 font-mono text-[9px] sm:text-[10px] tracking-[0.28em] uppercase transition-opacity duration-300"
+                      className="mt-2 font-mono text-xs tracking-[0.28em] uppercase transition-opacity duration-300"
                       style={{
                         color: meta.accent,
                         opacity: isActive ? 0.9 : 0,
@@ -472,7 +472,7 @@ export function TemperaflixShowcase() {
         )}
 
         {/* FOOTER — HUD strip */}
-        <div className="mt-14 pt-6 border-t border-brand-paper/15 flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] tracking-[0.3em] text-brand-paper/50 uppercase">
+        <div className="mt-14 pt-6 border-t border-brand-paper/15 flex flex-wrap items-center justify-between gap-4 font-mono text-xs tracking-[0.3em] text-brand-paper/50 uppercase">
           <span>// linha exclusiva · temperanzza</span>
           <span>3 SABORES · SHAKERS · PRONTO PARA USO</span>
           <Link
