@@ -1,53 +1,48 @@
-# Plano: GitHub Sync — Projeto Temperanzza → VittaFase/Site-Temperanzza-Spice-Emporium
+Diagnóstico atual das integrações
 
-## Objetivo
-Conectar o projeto Lovable atual (Temperanzza Spice Emporium) ao repositório GitHub já criado e enviar todo o código/estrutura atual para ele, habilitando sincronização bidirecional entre Lovable e GitHub.
+1. Shopify — Loja conectada, mas token admin expirado
+   - Loja: temperanzza-spice-emporium-dy1i0.myshopify.com (claimed).
+   - Storefront API (vitrine e checkout no site) está funcionando.
+   - Admin API (usada pelo sync Bling → Shopify) está retornando 401: "Invalid API key or access token".
+   - Resultado: o último sync de produtos falhou em 19/19 SKUs.
 
-## Estado atual confirmado
-- O projeto só possui remotes internos do Lovable (`origin` e `secondary`);
-- Não há configuração de GitHub sync ativa em `.lovable/project.json`;
-- O repositório de destino informado é: `https://github.com/VittaFase/Site-Temperanzza-Spice-Emporium`.
+2. Bling — OAuth conectado, mas token expirado
+   - Token salvo em `bling_tokens`, mas expirou em 2026-07-09.
+   - Refresh automático não manteve o token válido.
+   - Último sync: 0/0 atualizados, 19 erros, todos por falha no Shopify Admin.
+   - Nenhum pedido Shopify → Bling foi processado até agora.
 
-## Etapas
+3. Webhook Shopify → Bling
+   - Rota `/api/public/shopify/order-webhook` implementada e assinada com HMAC.
+   - Depende do Shopify admin token e do Bling token — ambos precisam estar válidos para criar pedidos e emitir NFe.
 
-### 1. Verificar o repositório de destino no GitHub
-- Confirmar se `VittaFase/Site-Temperanzza-Spice-Emporium` existe e está vazio ou já contém arquivos.
-- Se já contiver arquivos, avaliar se podem ser sobrescritos (README inicial, por exemplo) ou se é necessário clonar/fazer backup antes do push inicial.
-- **Restrição**: o sync do Lovable funciona melhor quando cria o repositório do zero. Se o repo já existir com conteúdo, pode ser necessário limpá-lo ou usar push manual como fallback.
+4. GitHub
+   - Sync bidirecional com VittaFase/temperanzza.git já está ativo (commits recentes confirmam).
 
-### 2. Autorizar o app Lovable no GitHub
-- Ação do usuário na interface do Lovable: menu **Plus (+)** → **GitHub** → **Connect project**.
-- Autorizar o app Lovable na conta/organização **VittaFase**.
-- Conceder acesso ao repositório desejado.
+Plano de correção
 
-### 3. Selecionar ou criar o repositório
-- Na tela de conexão do Lovable, escolher a conta/organização **VittaFase**.
-- Selecionar o repositório existente `Site-Temperanzza-Spice-Emporium` (ou criar um novo caso o existente não possa ser usado diretamente).
-- Definir o branch padrão como `main`.
+A. Reconectar Shopify
+   - Usar `shopify--connect_shopify_account` para renovar o online/admin token.
+   - Isso restaura a Admin API e permite que o sync Bling atualize preços e estoque.
 
-### 4. Push inicial do código
-- Após a conexão, o Lovable fará o push automático de todo o codebase atual para o GitHub.
-- Verificar se todos os arquivos essenciais foram enviados:
-  - `src/`, `public/`, `package.json`, `vite.config.ts`, etc.
-  - Arquivos de configuração do backend/migrations (se houver).
+B. Reconectar Bling
+   - O token atual expirou. Precisamos refazer o OAuth em `/admin/bling` para gerar novo access/refresh token.
+   - Isso garante que pedidos do Shopify possam ser criados no Bling automaticamente.
 
-### 5. Verificar sincronização bidirecional
-- Abrir o repositório no GitHub e confirmar que o commit inicial reflete a estrutura atual.
-- Testar se alterações futuras no Lovable aparecem no GitHub e vice-versa.
-- Verificar se `.gitignore` está correto para não subir arquivos sensíveis (`.env`, `node_modules`, etc.).
+C. Testar sync Bling → Shopify
+   - Após ambos conectados, executar o sync manual em `/admin/bling`.
+   - Verificar se os 19 SKUs foram mapeados e se preços/estoque foram atualizados.
 
-## Riscos e decisões
+D. Verificar webhook Shopify → Bling
+   - Confirmar se o webhook de "orders/create" ainda está configurado no admin Shopify apontando para `https://temperanzza.com.br/api/public/shopify/order-webhook`.
+   - Se necessário, reconfigurar após a reconexão.
 
-| Situação | Ação recomendada |
-|----------|------------------|
-| Repositório já existe e está vazio | Conectar diretamente e fazer push inicial. |
-| Repositório já existe com conteúdo | Avaliar se limpa ou faz push manual forçado; o sync automático pode falhar. |
-| Conta VittaFase não tem permissão para o app Lovable | Reautorizar ou usar conta com permissão de admin no repo. |
+E. Testar fluxo de pedido completo
+   - Simular um pedido de teste para confirmar que:
+     a) Carrinho Shopify gera checkoutUrl;
+     b) Pedido pago dispara webhook;
+     c) Pedido e NFe são criados no Bling.
 
-## O que será entregue
-- Projeto Temperanzza sincronizado com o GitHub;
-- Código atual disponível em `https://github.com/VittaFemperanzza-Spice-Emporium`;
-- Instruções de uso do fluxo bidirecional (editar no Lovable ou no IDE local).
+Observação importante: o Shopify admin token usado pelo sync é o mesmo que precisa ser renovado. A reconexão da conta Shopify é o passo crítico — sem ela, nem preços, nem estoque, nem pedidos fluem corretamente.
 
-## Nota importante
-A autorização do GitHub App e a seleção do repositório são etapas que exigem interação do usuário na interface do Lovable (não podem ser feitas 100% por código). Eu posso guiar passo a passo durante a execução.
+Quer que eu execute esse plano agora?
