@@ -142,11 +142,33 @@ export async function getValidAccessToken(): Promise<string> {
   return data.access_token;
 }
 
-export async function blingFetch<T = unknown>(
-  path: string,
-  init: RequestInit = {},
-): Promise<T> {
-  const token = await getValidAccessToken();
+async function forceRefreshAccessToken(): Promise<string | null> {
+  try {
+    const sb = getServiceClient();
+    const { data } = await sb
+      .from("bling_tokens")
+      .select("refresh_token")
+      .eq("id", true)
+      .maybeSingle();
+    if (!data?.refresh_token) return null;
+    const fresh = await refreshAccessToken(data.refresh_token);
+    await saveTokens(fresh);
+    return fresh.access_token;
+  } catch {
+    return null;
+  }
+}
+
+async function clearTokens() {
+  try {
+    const sb = getServiceClient();
+    await sb.from("bling_tokens").delete().eq("id", true);
+  } catch (err) {
+    console.error("[bling] clearTokens failed", err);
+  }
+}
+
+async function rawBlingFetch(path: string, init: RequestInit, token: string) {
   const url = path.startsWith("http") ? path : `${BLING_API_BASE}${path}`;
   const res = await fetch(url, {
     ...init,
@@ -157,7 +179,36 @@ export async function blingFetch<T = unknown>(
       ...(init.headers ?? {}),
     },
   });
-  const text = await res.text();
+  return { res, text: await res.text() };
+}
+
+export async function blingFetch<T = unknown>(
+  path: string,
+  init: RequestInit = {},
+): Promise<T> {
+  const token = await getValidAccessToken();
+  let { res, text } = await rawBlingFetch(path, init, token);
+
+  // Token revogado/inválido: tenta um refresh forçado antes de desistir.
+  if (res.status === 401) {
+    const fresh = await forceRefreshAccessToken();
+    if (fresh) {
+      ({ res, text } = await rawBlingFetch(path, init, fresh));
+    }
+    if (res.status === 401) {
+      await clearTokens();
+      await logSync(
+        "oauth",
+        "error",
+        "Token do Bling foi revogado. Reconecte em /admin/bling.",
+        { path },
+      );
+      throw new Error(
+        "Conexão com o Bling expirou ou foi revogada (o app foi desinstalado ou os escopos mudaram). Clique em “Conectar ao Bling” no painel para autorizar novamente.",
+      );
+    }
+  }
+
   if (!res.ok) {
     throw new Error(`Bling API ${path} [${res.status}]: ${text}`);
   }
