@@ -13,6 +13,7 @@ interface StatusResponse {
     kind: string;
     status: string;
     message: string | null;
+    details: Record<string, unknown> | null;
     created_at: string;
   }>;
 }
