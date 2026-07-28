@@ -7,10 +7,25 @@ const SHOP_DOMAIN = "temperanzza-spice-emporium-dy1i0.myshopify.com";
 const API_VERSION = "2025-07";
 const ADMIN_GRAPHQL_URL = `https://${SHOP_DOMAIN}/admin/api/${API_VERSION}/graphql.json`;
 
+function getOnlineAccessToken(): string | undefined {
+  // The connector stores the online token as a JSON blob keyed by user id.
+  for (const [key, value] of Object.entries(process.env)) {
+    if (key.startsWith("SHOPIFY_ONLINE_ACCESS_TOKEN:") && value) {
+      try {
+        const parsed = JSON.parse(value);
+        if (parsed.access_token) return parsed.access_token as string;
+      } catch {
+        // not JSON, ignore
+      }
+    }
+  }
+  return undefined;
+}
+
 function adminToken() {
-  // Prefer the connector-managed admin access token; fall back to the legacy env var.
-  const t = process.env.SHOPIFY_ACCESS_TOKEN ?? process.env.SHOPIFY_ADMIN_TOKEN;
-  if (!t) throw new Error("SHOPIFY_ACCESS_TOKEN or SHOPIFY_ADMIN_TOKEN not configured");
+  const online = getOnlineAccessToken();
+  const t = online ?? process.env.SHOPIFY_ACCESS_TOKEN ?? process.env.SHOPIFY_ADMIN_TOKEN;
+  if (!t) throw new Error("No Shopify admin token configured (SHOPIFY_ONLINE_ACCESS_TOKEN, SHOPIFY_ACCESS_TOKEN or SHOPIFY_ADMIN_TOKEN)");
   return t;
 }
 
