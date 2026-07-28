@@ -8,8 +8,9 @@ const API_VERSION = "2025-07";
 const ADMIN_GRAPHQL_URL = `https://${SHOP_DOMAIN}/admin/api/${API_VERSION}/graphql.json`;
 
 function adminToken() {
-  const t = process.env.SHOPIFY_ADMIN_TOKEN;
-  if (!t) throw new Error("SHOPIFY_ADMIN_TOKEN not configured");
+  // Prefer the connector-managed admin access token; fall back to the legacy env var.
+  const t = process.env.SHOPIFY_ACCESS_TOKEN ?? process.env.SHOPIFY_ADMIN_TOKEN;
+  if (!t) throw new Error("SHOPIFY_ACCESS_TOKEN or SHOPIFY_ADMIN_TOKEN not configured");
   return t;
 }
 
