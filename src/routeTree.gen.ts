@@ -29,6 +29,7 @@ import { Route as ApiPublicShopifyOrderWebhookRouteImport } from './routes/api/p
 import { Route as ApiPublicBlingSyncRouteImport } from './routes/api/public/bling/sync'
 import { Route as ApiPublicBlingStatusRouteImport } from './routes/api/public/bling/status'
 import { Route as ApiPublicBlingDisconnectRouteImport } from './routes/api/public/bling/disconnect'
+import { Route as ApiPublicBlingCronSyncRouteImport } from './routes/api/public/bling/cron-sync'
 import { Route as ApiPublicBlingConnectRouteImport } from './routes/api/public/bling/connect'
 import { Route as ApiPublicBlingCallbackRouteImport } from './routes/api/public/bling/callback'
 
@@ -134,6 +135,11 @@ const ApiPublicBlingDisconnectRoute =
     path: '/api/public/bling/disconnect',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicBlingCronSyncRoute = ApiPublicBlingCronSyncRouteImport.update({
+  id: '/api/public/bling/cron-sync',
+  path: '/api/public/bling/cron-sync',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicBlingConnectRoute = ApiPublicBlingConnectRouteImport.update({
   id: '/api/public/bling/connect',
   path: '/api/public/bling/connect',
@@ -164,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/cozinha/': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
+  '/api/public/bling/cron-sync': typeof ApiPublicBlingCronSyncRoute
   '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
   '/api/public/bling/status': typeof ApiPublicBlingStatusRoute
   '/api/public/bling/sync': typeof ApiPublicBlingSyncRoute
@@ -186,6 +193,7 @@ export interface FileRoutesByTo {
   '/cozinha': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
+  '/api/public/bling/cron-sync': typeof ApiPublicBlingCronSyncRoute
   '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
   '/api/public/bling/status': typeof ApiPublicBlingStatusRoute
   '/api/public/bling/sync': typeof ApiPublicBlingSyncRoute
@@ -211,6 +219,7 @@ export interface FileRoutesById {
   '/cozinha/': typeof CozinhaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
+  '/api/public/bling/cron-sync': typeof ApiPublicBlingCronSyncRoute
   '/api/public/bling/disconnect': typeof ApiPublicBlingDisconnectRoute
   '/api/public/bling/status': typeof ApiPublicBlingStatusRoute
   '/api/public/bling/sync': typeof ApiPublicBlingSyncRoute
@@ -237,6 +246,7 @@ export interface FileRouteTypes {
     | '/cozinha/'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
+    | '/api/public/bling/cron-sync'
     | '/api/public/bling/disconnect'
     | '/api/public/bling/status'
     | '/api/public/bling/sync'
@@ -259,6 +269,7 @@ export interface FileRouteTypes {
     | '/cozinha'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
+    | '/api/public/bling/cron-sync'
     | '/api/public/bling/disconnect'
     | '/api/public/bling/status'
     | '/api/public/bling/sync'
@@ -283,6 +294,7 @@ export interface FileRouteTypes {
     | '/cozinha/'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
+    | '/api/public/bling/cron-sync'
     | '/api/public/bling/disconnect'
     | '/api/public/bling/status'
     | '/api/public/bling/sync'
@@ -304,6 +316,7 @@ export interface RootRouteChildren {
   BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicBlingCallbackRoute: typeof ApiPublicBlingCallbackRoute
   ApiPublicBlingConnectRoute: typeof ApiPublicBlingConnectRoute
+  ApiPublicBlingCronSyncRoute: typeof ApiPublicBlingCronSyncRoute
   ApiPublicBlingDisconnectRoute: typeof ApiPublicBlingDisconnectRoute
   ApiPublicBlingStatusRoute: typeof ApiPublicBlingStatusRoute
   ApiPublicBlingSyncRoute: typeof ApiPublicBlingSyncRoute
@@ -452,6 +465,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicBlingDisconnectRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/bling/cron-sync': {
+      id: '/api/public/bling/cron-sync'
+      path: '/api/public/bling/cron-sync'
+      fullPath: '/api/public/bling/cron-sync'
+      preLoaderRoute: typeof ApiPublicBlingCronSyncRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/bling/connect': {
       id: '/api/public/bling/connect'
       path: '/api/public/bling/connect'
@@ -510,6 +530,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogIndexRoute: BlogIndexRoute,
   ApiPublicBlingCallbackRoute: ApiPublicBlingCallbackRoute,
   ApiPublicBlingConnectRoute: ApiPublicBlingConnectRoute,
+  ApiPublicBlingCronSyncRoute: ApiPublicBlingCronSyncRoute,
   ApiPublicBlingDisconnectRoute: ApiPublicBlingDisconnectRoute,
   ApiPublicBlingStatusRoute: ApiPublicBlingStatusRoute,
   ApiPublicBlingSyncRoute: ApiPublicBlingSyncRoute,
@@ -518,13 +539,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
