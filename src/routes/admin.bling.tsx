@@ -13,6 +13,7 @@ interface StatusResponse {
     kind: string;
     status: string;
     message: string | null;
+    details: Record<string, unknown> | null;
     created_at: string;
   }>;
 }
@@ -196,6 +197,16 @@ function BlingAdminPage() {
                     </span>
                   </div>
                   <div>{l.message}</div>
+                  {l.status === "error" && l.details && (
+                    <details className="mt-2">
+                      <summary className="cursor-pointer text-xs text-muted-foreground">
+                        Ver detalhes do erro
+                      </summary>
+                      <pre className="mt-1 max-h-40 overflow-auto rounded bg-gray-50 p-2 text-xs">
+                        {JSON.stringify(l.details, null, 2)}
+                      </pre>
+                    </details>
+                  )}
                   <div className="text-xs text-muted-foreground">
                     {new Date(l.created_at).toLocaleString("pt-BR")}
                   </div>

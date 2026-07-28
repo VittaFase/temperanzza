@@ -16,7 +16,7 @@ export const Route = createFileRoute("/api/public/bling/status")({
           .maybeSingle();
         const { data: logs } = await sb
           .from("bling_sync_log")
-          .select("id, kind, status, message, created_at")
+          .select("id, kind, status, message, details, created_at")
           .order("created_at", { ascending: false })
           .limit(30);
         const { count: mapped } = await sb
