@@ -187,7 +187,8 @@ function BlendsIndex() {
               <Sparkles className="w-3.5 h-3.5" /> Caixa autoral
             </span>
             <h2 className="mt-4 font-display font-black uppercase text-5xl sm:text-6xl tracking-tight leading-[0.9]">
-              Chefe <span className="text-accent">Temperanzza</span>
+              BLEND&nbsp;<br />
+              <span className="text-accent">DO CHEFE</span>
             </h2>
             <p className="mt-6 font-serif italic text-2xl text-foreground/80 leading-snug">
               {builder.tagline}.
