@@ -186,7 +186,7 @@ function BlendsIndex() {
             <span className="inline-flex items-center gap-2 text-[11px] font-display uppercase tracking-[0.35em] text-accent border-l-2 border-accent pl-3">
               <Sparkles className="w-3.5 h-3.5" /> Caixa autoral
             </span>
-            <h2 className="mt-4 font-display font-black uppercase text-5xl sm:text-6xl tracking-tight leading-[0.9]">
+            <h2 className="mt-4 font-display font-black uppercase text-6xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.9]">
               BLEND&nbsp;<br />
               <span className="text-accent">DO CHEFE</span>
             </h2>
