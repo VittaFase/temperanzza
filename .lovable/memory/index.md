@@ -10,3 +10,4 @@ Temperaflix: sub-marca de temperos para snacks de "momentos de tela" (cinema/sé
 
 ## Memories
 - [Temperaflix brand](mem://features/temperaflix-brand) — Briefing institucional, 3 SKUs (Tradicional/Ervas Finas/Bacon), tom de voz, paleta sugerida
+- Arquitetura mestra da plataforma: `docs/ARQUITETURA-TEMPERANZZA.md` — constituição técnica (front, back, dados, conteúdo, governança, auditoria). Consultar e atualizar antes de qualquer nova funcionalidade; sempre auditar o existente e reutilizar componentes antes de criar.
