@@ -157,7 +157,7 @@ export const BLENDS: Blend[] = [
     display: "MEU BLEND",
     tagline: "A sua caixa, o seu Blend, o seu gosto",
     description:
-      "Monte seu proprio blend para chamar de seu com 12 potes à sua escolha entre os sabores da casa.",
+      "Aqui você é o Chefe da Casa, monte seu próprio blend com 12 potes à sua escolha entre os sabores da casa.",
     pairing:
       "O que sua cozinha pedir. A caixa Chefe é tão única quanto quem a monta.",
     accent: "#111111",
