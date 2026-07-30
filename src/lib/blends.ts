@@ -12,7 +12,7 @@ import blendEssenza from "@/assets/blend-essenza.jpg.asset.json";
 import blendGourmet from "@/assets/blend-gourmet.jpg.asset.json";
 import blendSupremo from "@/assets/blend-supremo.jpg.asset.json";
 import blendTemperaflix from "@/assets/blend-temperaflix.jpg.asset.json";
-import blendChefe from "@/assets/blend-chefe-temperanzza.jpg.asset.json";
+import blendChefe from "@/assets/blend-do-chefe.png.asset.json";
 
 export type BlendSlug =
   | "brasil"
