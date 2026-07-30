@@ -13,13 +13,13 @@ import {
   type ReviewInput,
 } from "@/lib/reviews";
 
-function Stars({ value, size = 5 }: { value: number; size?: number }) {
+function Stars({ value, small = false }: { value: number; small?: boolean }) {
   return (
     <div className="flex" aria-label={`${value} de 5 estrelas`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}
-          className={`h-${size} w-${size} ${
+          className={`${small ? "h-4 w-4" : "h-5 w-5"} ${
             i <= Math.round(value) ? "text-accent fill-accent" : "text-foreground/25"
           }`}
           aria-hidden
@@ -105,7 +105,7 @@ export function ProductReviews({ handle, title }: { handle: string; title: strin
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {reviews.map((r) => (
             <li key={r.id} className="border border-foreground/10 bg-brand-cream/60 bg-paper-grain p-5">
-              <Stars value={r.rating} size={4} />
+              <Stars value={r.rating} small />
               {r.title && (
                 <h4 className="mt-3 font-display font-black uppercase text-base leading-[1.05]">{r.title}</h4>
               )}
