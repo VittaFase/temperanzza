@@ -175,6 +175,17 @@ function Home() {
           <p className="max-w-3xl mb-10 text-base sm:text-lg text-foreground/75 leading-relaxed">
             Cada pote da Temperanzza reúne especiarias selecionadas em proporções testadas à exaustão — novos sabores que assinam o prato, do café ao jantar. Da páprica defumada ao chimichurri, do lemon pepper à linha Temperaflix: são sabores autorais, pensados para quem cozinha com intenção e não abre mão do lifestyle à mesa.
           </p>
+          <p className="mb-10 -mt-4 text-sm text-foreground/70">
+            Vai levar mais de um?{" "}
+            <Link
+              to="/blends"
+              className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
+            >
+              Monte a caixa de 12 potes
+            </Link>{" "}
+            e leve a receita completa da casa com desconto.
+          </p>
+
           <ProductGrid
             first={8}
             excludeHandles={[
