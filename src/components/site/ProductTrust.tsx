@@ -1,14 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { Star, PackageCheck, MapPin, BookOpen, Leaf } from "lucide-react";
+import { PackageCheck, MapPin, BookOpen, Leaf } from "lucide-react";
 import { getRecipesByHandle } from "@/lib/recipes";
 import { getProductDiet } from "@/lib/dietCompatibility";
+import { ProductReviews } from "@/components/site/ProductReviews";
 
 /**
  * Prova social da casa no PDP.
  * Regra: nenhuma avaliação, nota ou depoimento é gerado.
  * Só entram sinais verificáveis da própria estrutura do projeto.
  */
-export function ProductTrust({ handle }: { handle: string }) {
+export function ProductTrust({ handle, title }: { handle: string; title: string }) {
   const recipes = getRecipesByHandle(handle);
   const diet = getProductDiet(handle);
   const dietCount = diet ? Object.keys(diet.verdicts ?? {}).length : 0;
@@ -82,24 +83,8 @@ export function ProductTrust({ handle }: { handle: string }) {
         ))}
       </div>
 
-      {/* Avaliações — estrutura vazia. Nada é preenchido sem review real de cliente. */}
-      <div className="mt-6 border border-foreground/15 p-6 sm:p-8">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex" aria-hidden>
-            {[0, 1, 2, 3, 4].map((i) => (
-              <Star key={i} className="h-5 w-5 text-foreground/25" />
-            ))}
-          </div>
-          <p className="font-display uppercase tracking-widest text-xs text-muted-foreground">
-            Ainda não há avaliações deste tempero
-          </p>
-        </div>
-        <p className="mt-3 text-sm text-foreground/70 max-w-2xl leading-relaxed">
-          Só publicamos avaliação de quem realmente cozinhou com o pote. Se você já
-          usou este tempero, conte para a casa pelo nosso contato — sua nota entra aqui,
-          com seu nome.
-        </p>
-      </div>
+      <ProductReviews handle={handle} title={title} />
+
     </section>
   );
 }
