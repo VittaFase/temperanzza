@@ -19,6 +19,7 @@ import { getProductImage } from "@/lib/productImages";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DietCompatibilityPanel } from "@/components/site/DietCompatibilityPanel";
 import { getRecipesByHandle } from "@/lib/recipes";
+import { ProductTrust } from "@/components/site/ProductTrust";
 import { BookOpen } from "lucide-react";
 
 const SITE_URL = "https://temperanzza.com.br";
@@ -379,6 +380,9 @@ function ProductPage() {
             )}
           </div>
         </div>
+
+        {/* Prova social da casa — sinais verificáveis, sem review fabricada */}
+        <ProductTrust handle={handle} />
 
         {/* Combina com — cross-sell por perfil sensorial */}
         {allProducts && allProducts.length > 1 && (
