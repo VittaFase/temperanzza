@@ -257,7 +257,7 @@ function PotImage({
   const src = getProductImage(handle);
   if (!src) return null;
   return (
-    <img
+    <img decoding="async"
       src={src}
       alt={`Pote de ${name} Temperanzza`}
       loading="lazy"

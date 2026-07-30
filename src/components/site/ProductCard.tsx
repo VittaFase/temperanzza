@@ -56,7 +56,7 @@ export function ProductCard({
         <ProductBadge label={badge} size="md" className="top-3 left-3" />
       )}
       {imgUrl ? (
-        <img
+        <img decoding="async"
           src={imgUrl}
           alt={image?.altText || product.node.title}
           className={`absolute inset-0 m-auto object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.04] ${sizeClass}`}

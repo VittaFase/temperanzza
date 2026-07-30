@@ -42,7 +42,7 @@ export function FlavorTiles({
                 className="aspect-square"
               >
                 {imgSrc ? (
-                  <img
+                  <img decoding="async"
                     src={imgSrc}
                     alt={image?.altText || p.node.title}
                     className="absolute inset-0 w-[72%] h-[80%] m-auto object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)] group-hover:scale-[1.06] transition-transform duration-300"

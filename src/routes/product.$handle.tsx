@@ -284,7 +284,7 @@ function ProductPage() {
                 }}
               />
               {mainImage ? (
-                <img
+                <img loading="eager"
                   src={getProductImage(handle, mainImage.url) ?? mainImage.url}
                   alt={mainImage.altText || product.title}
                   fetchPriority="high"
@@ -306,7 +306,7 @@ function ProductPage() {
                       i === imgIdx ? "border-accent" : "border-foreground/10 hover:border-foreground/30"
                     }`}
                   >
-                    <img
+                    <img decoding="async" loading="lazy"
                       src={getProductImage(handle, img.node.url) ?? img.node.url}
                       alt=""
                       className="absolute inset-0 w-[78%] h-[86%] m-auto object-contain"

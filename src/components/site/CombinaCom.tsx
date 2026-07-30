@@ -55,7 +55,7 @@ export function CombinaCom({
             >
               <div className="relative aspect-square overflow-hidden">
                 {img && (
-                  <img
+                  <img decoding="async"
                     src={img}
                     alt={p.node.title}
                     loading="lazy"

@@ -66,7 +66,7 @@ export function FeaturedRow({
                 style={{ backgroundColor: tone.bg }}
               >
                 {img && (
-                  <img
+                  <img decoding="async"
                     src={img}
                     alt={image?.altText || p.node.title}
                     className="absolute inset-0 w-[78%] h-[88%] m-auto object-contain drop-shadow-[0_10px_14px_rgba(0,0,0,0.4)] group-hover:scale-[1.06] transition-transform duration-500"
