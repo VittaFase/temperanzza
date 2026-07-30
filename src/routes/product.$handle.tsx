@@ -380,6 +380,9 @@ function ProductPage() {
           </div>
         </div>
 
+        {/* Prova social da casa — sinais verificáveis, sem review fabricada */}
+        <ProductTrust handle={handle} />
+
         {/* Combina com — cross-sell por perfil sensorial */}
         {allProducts && allProducts.length > 1 && (
           <CombinaCom currentHandle={handle} products={allProducts} />
