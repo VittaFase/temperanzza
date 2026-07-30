@@ -22,13 +22,16 @@ export const Route = createFileRoute("/api/public/bling/cron-sync")({
 
         try {
           const result = await runBlingToShopifySync();
+          const failed = result.errors.length > 0;
           await logSync(
             "product_sync",
-            "success",
-            "Sync automático concluído",
+            failed ? "error" : "success",
+            failed
+              ? `Sync automático concluído com falhas (${result.errors.length} erros)`
+              : `Sync automático concluído (${result.updated} atualizados)`,
             result as never,
           );
-          return Response.json({ ok: true, result });
+          return Response.json({ ok: !failed, result });
         } catch (err) {
           const msg = err instanceof Error ? err.message : String(err);
           await logSync("product_sync", "error", "Sync automático falhou", {
