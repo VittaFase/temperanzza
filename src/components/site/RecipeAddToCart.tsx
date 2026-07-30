@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { useShopifyProducts } from "@/hooks/useShopifyPrices";
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
+import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
 
 /**
  * Loop Cozinha → Carrinho.
@@ -34,6 +35,20 @@ export function RecipeAddToCart({
       price: variant.price,
       quantity: 1,
       selectedOptions: variant.selectedOptions || [],
+    });
+    trackEvent("add_to_cart", {
+      currency: variant.price.currencyCode,
+      value: parseFloat(variant.price.amount),
+      item_list_name: "Cozinha Temperanzza",
+      items: [
+        toAnalyticsItem({
+          handle,
+          title: product.node.title,
+          price: variant.price.amount,
+          quantity: 1,
+          listName: "Cozinha Temperanzza",
+        }),
+      ],
     });
     toast.success(`${product.node.title} foi para a sacola`);
   };
