@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
 import { BrandSeal } from "@/components/site/BrandSeal";
 import { TemperaflixShowcase } from "@/components/site/TemperaflixShowcase";
+import { HouseOffers } from "@/components/site/HouseOffers";
 import { Button } from "@/components/ui/button";
 import { Flame, Leaf, Award, ArrowRight, Salad } from "lucide-react";
 import { RECIPES, MOMENTS } from "@/lib/recipes";
@@ -201,6 +202,11 @@ function Home() {
           />
         </div>
       </section>
+
+      {/* OFERTAS DA CASA — combos estruturados com preço real */}
+      <HouseOffers />
+
+
 
       {/* COZINHA CONSCIENTE — dietas */}
       <section className="border-y border-foreground/15 bg-brand-cream/60 bg-paper-grain py-20 sm:py-28">

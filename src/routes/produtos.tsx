@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { CatalogGrid } from "@/components/site/CatalogGrid";
+import { HouseOffers } from "@/components/site/HouseOffers";
 
 const PRODUTOS_URL = "https://temperanzza.com.br/produtos";
 
@@ -85,6 +86,10 @@ function ProdutosPage() {
           <CatalogGrid />
         </div>
       </section>
+
+      {/* Ofertas da Casa — combos prontos para quem não quer escolher pote a pote */}
+      <HouseOffers />
     </SiteLayout>
+
   );
 }
