@@ -12,9 +12,14 @@ description: Use ao adicionar, revisar ou diagnosticar rastreamento de eventos d
 - Diagnosticar por que um evento não está disparando.
 
 ## Estado atual do projeto
-- **Nenhuma ferramenta de analytics está instalada atualmente.**
-- O site não tem Google Analytics, Meta Pixel, TikTok Pixel nem servidor de métricas próprio.
-- Antes de implementar, decidir com o usuário qual stack usar.
+- **Nenhuma ferramenta de terceiros está instalada** (sem GA4, Meta Pixel, TikTok, GTM).
+- Existe uma **camada agnóstica** em `src/lib/analytics.ts`: `trackEvent()` empilha os
+  eventos em `window.dataLayer` (formato GA4) e repassa para `gtag`/`fbq` só se a tag existir.
+- Já instrumentados: `view_item` e `add_to_cart` na PDP (`src/routes/product.$handle.tsx`),
+  `add_to_cart` na receita (`RecipeAddToCart.tsx`), `select_promotion` nas Ofertas da Casa
+  (`HouseOffers.tsx`), `begin_checkout` e `remove_from_cart` no `CartDrawer.tsx`.
+- Falta apenas plugar a tag (decisão do usuário: nenhuma por enquanto) e o `purchase`
+  no webhook Shopify.
 
 ## Opções recomendadas
 1. **Google Analytics 4 + Google Tag Manager** — padrão para SEO e relatórios.
