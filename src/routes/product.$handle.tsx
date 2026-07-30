@@ -410,7 +410,7 @@ function ProductPage() {
         </div>
 
         {/* Prova social da casa — sinais verificáveis, sem review fabricada */}
-        <ProductTrust handle={handle} />
+        <ProductTrust handle={handle} title={product.title} />
 
         {/* Combina com — cross-sell por perfil sensorial */}
         {allProducts && allProducts.length > 1 && (
