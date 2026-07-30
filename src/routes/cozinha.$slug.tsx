@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-ro
 import { useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
+import { RecipeAddToCart } from "@/components/site/RecipeAddToCart";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DietBadge } from "@/components/site/DietBadge";
 import {
@@ -450,14 +451,10 @@ function RecipeDrawer() {
                 </p>
               )}
 
-              <Link
-                to="/product/$handle"
-                params={{ handle: recipe.featuredHandle }}
-                className="mt-8 inline-flex items-center gap-3 bg-brand-mustard text-brand-ink hover:bg-brand-paper px-6 py-4 font-display uppercase tracking-widest text-sm transition"
-              >
-                Leve para minha cozinha
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <RecipeAddToCart
+                handle={recipe.featuredHandle}
+                label={humanHandle(recipe.featuredHandle)}
+              />
             </div>
             {productImg && (
               <div className="flex justify-center md:justify-end">
