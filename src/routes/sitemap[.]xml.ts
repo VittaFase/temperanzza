@@ -22,7 +22,9 @@ const STATIC_ROUTES: SitemapEntry[] = [
   { path: "/temperaflix", changefreq: "monthly", priority: "0.8" },
   { path: "/sobre", changefreq: "monthly", priority: "0.6" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  { path: "/embaixadores", changefreq: "monthly", priority: "0.6" },
 ];
+
 
 const PRODUCTS_QUERY = `
   query SitemapProducts($first: Int!) {

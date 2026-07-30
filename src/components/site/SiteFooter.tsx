@@ -50,6 +50,12 @@ export function SiteFooter() {
                 </Link>
 
               </li>
+              <li>
+                <Link to="/embaixadores" className="inline-flex min-h-11 items-center hover:text-accent">
+                  Programa de Embaixadores
+                </Link>
+              </li>
+
             </ul>
           </div>
           <div>

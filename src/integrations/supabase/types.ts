@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      ambassador_applications: {
+        Row: {
+          audience_size: string | null
+          city: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          instagram: string | null
+          message: string
+          phone: string | null
+          profile_type: string
+          state: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          audience_size?: string | null
+          city?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          instagram?: string | null
+          message: string
+          phone?: string | null
+          profile_type: string
+          state?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          audience_size?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          instagram?: string | null
+          message?: string
+          phone?: string | null
+          profile_type?: string
+          state?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       bling_order_map: {
         Row: {
           bling_nfe_id: string | null
