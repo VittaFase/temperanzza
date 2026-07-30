@@ -22,36 +22,75 @@ function getOnlineAccessToken(): string | undefined {
   return undefined;
 }
 
-function adminToken() {
-  const online = getOnlineAccessToken();
-  const t = online ?? process.env.SHOPIFY_ACCESS_TOKEN ?? process.env.SHOPIFY_ADMIN_TOKEN;
-  if (!t) throw new Error("No Shopify admin token configured (SHOPIFY_ONLINE_ACCESS_TOKEN, SHOPIFY_ACCESS_TOKEN or SHOPIFY_ADMIN_TOKEN)");
-  return t;
+/** All admin tokens configured, in preference order (online first, then offline). */
+function adminTokenCandidates(): string[] {
+  const list = [
+    getOnlineAccessToken(),
+    process.env.SHOPIFY_ACCESS_TOKEN,
+    process.env.SHOPIFY_ADMIN_TOKEN,
+  ].filter((t): t is string => !!t);
+  // dedupe, preserving order
+  return Array.from(new Set(list));
+}
+
+/** Token that last authenticated successfully (per server instance). */
+let workingToken: string | undefined;
+
+export class ShopifyAdminAuthError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ShopifyAdminAuthError";
+  }
 }
 
 async function adminGraphql<T = unknown>(
   query: string,
   variables: Record<string, unknown> = {},
 ): Promise<T> {
-  const res = await fetch(ADMIN_GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "X-Shopify-Access-Token": adminToken(),
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({ query, variables }),
-  });
-  const text = await res.text();
-  if (!res.ok) {
-    throw new Error(`Shopify admin ${res.status}: ${text}`);
+  const candidates = adminTokenCandidates();
+  if (candidates.length === 0) {
+    throw new ShopifyAdminAuthError(
+      "Nenhum token admin da Shopify configurado (SHOPIFY_ONLINE_ACCESS_TOKEN, SHOPIFY_ACCESS_TOKEN ou SHOPIFY_ADMIN_TOKEN).",
+    );
   }
-  const json = JSON.parse(text);
-  if (json.errors) {
-    throw new Error(`Shopify GraphQL errors: ${JSON.stringify(json.errors)}`);
+  const ordered = workingToken
+    ? [workingToken, ...candidates.filter((t) => t !== workingToken)]
+    : candidates;
+
+  let lastAuthError = "";
+  for (const token of ordered) {
+    const res = await fetch(ADMIN_GRAPHQL_URL, {
+      method: "POST",
+      headers: {
+        "X-Shopify-Access-Token": token,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ query, variables }),
+    });
+    const text = await res.text();
+
+    if (res.status === 401 || res.status === 403) {
+      lastAuthError = `${res.status}: ${text}`;
+      if (workingToken === token) workingToken = undefined;
+      continue; // try next token
+    }
+    if (!res.ok) {
+      throw new Error(`Shopify admin ${res.status}: ${text}`);
+    }
+    const json = JSON.parse(text);
+    if (json.errors) {
+      throw new Error(`Shopify GraphQL errors: ${JSON.stringify(json.errors)}`);
+    }
+    workingToken = token;
+    return json.data as T;
   }
-  return json.data as T;
+
+  throw new ShopifyAdminAuthError(
+    `Token admin da Shopify inválido ou expirado (${ordered.length} token(s) testado(s)). Último erro — ${lastAuthError}. Reconecte a conta Shopify para renovar o acesso.`,
+  );
 }
+
 
 export interface ShopifyVariantBySku {
   variantId: string;

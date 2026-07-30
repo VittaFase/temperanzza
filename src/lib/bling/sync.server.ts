@@ -7,7 +7,9 @@ import {
   findVariantBySku,
   setInventoryLevel,
   updateVariantPrice,
+  ShopifyAdminAuthError,
 } from "../shopify/admin.server";
+
 
 interface BlingProduct {
   id: number;
@@ -114,6 +116,16 @@ export async function runBlingToShopifySync(): Promise<SyncResult> {
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       result.errors.push({ sku, error: msg });
+      if (err instanceof ShopifyAdminAuthError) {
+        // Sem token válido não adianta percorrer os demais SKUs.
+        await logSync(
+          "product_sync",
+          "error",
+          "Sync interrompido: acesso admin da Shopify inválido ou expirado. Reconecte a conta Shopify.",
+          { ...result, aborted: "shopify_auth" },
+        );
+        return result;
+      }
     }
   }
 
@@ -123,5 +135,6 @@ export async function runBlingToShopifySync(): Promise<SyncResult> {
     `Sync: ${result.updated}/${result.matched} atualizados (${result.scanned} escaneados, ${result.skipped} pulados, ${result.errors.length} erros)`,
     result,
   );
+
   return result;
 }
