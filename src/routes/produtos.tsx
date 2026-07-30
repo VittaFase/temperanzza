@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { CatalogGrid } from "@/components/site/CatalogGrid";
 
@@ -54,8 +54,32 @@ function ProdutosPage() {
           <h1 className="font-display font-black uppercase text-5xl sm:text-6xl lg:text-7xl mt-3 tracking-tight">
             &nbsp;OS TEMPEROS
           </h1>
+          <p className="mt-6 max-w-2xl text-base sm:text-lg text-foreground/75 leading-relaxed">
+            Os 19 sabores da casa, em três sublinhas: Core para o dia a dia,
+            Premium Black para o toque final e Temperaflix para os momentos de
+            tela. Escolha pelo prato que você quer fazer — cada pote traz a
+            proporção já testada.
+          </p>
+          <p className="mt-5 text-sm text-foreground/70">
+            Primeira compra?{" "}
+            <Link
+              to="/cozinha"
+              className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
+            >
+              Comece pela receita
+            </Link>{" "}
+            e volte com o tempero certo na mão. Levando vários?{" "}
+            <Link
+              to="/blends"
+              className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
+            >
+              Monte a caixa de 12 potes
+            </Link>
+            .
+          </p>
         </div>
       </section>
+
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <CatalogGrid />

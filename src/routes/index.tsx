@@ -92,8 +92,9 @@ function Home() {
               PARA O SEU&nbsp;LIFESTYLE.
             </h1>
             <p className="mt-8 max-w-xl text-base sm:text-lg text-foreground/80 leading-relaxed">
-              Especiarias selecionadas para dar a seus pratos a explosão de sabor
-              que eles merecem.
+              Especiarias selecionadas e proporções testadas na cozinha da casa.
+              Você abre o pote, sente o aroma — e o prato de todo dia vira prato
+              de mesa posta.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
@@ -112,9 +113,13 @@ function Home() {
                 variant="outline"
                 className="rounded-none h-14 px-8 border-foreground/30 bg-transparent hover:bg-foreground hover:text-background font-display uppercase tracking-widest"
               >
-                <Link to="/sobre">A Casa</Link>
+                <Link to="/cozinha">Ver as Receitas</Link>
               </Button>
             </div>
+            <p className="mt-5 text-xs font-display uppercase tracking-[0.25em] text-muted-foreground">
+              Embalado lote a lote em Minas · 19 sabores da casa · Caixa de 12 potes com desconto
+            </p>
+
           </div>
           <div className="lg:col-span-5 relative">
             <div className="aspect-square relative group">
@@ -170,6 +175,17 @@ function Home() {
           <p className="max-w-3xl mb-10 text-base sm:text-lg text-foreground/75 leading-relaxed">
             Cada pote da Temperanzza reúne especiarias selecionadas em proporções testadas à exaustão — novos sabores que assinam o prato, do café ao jantar. Da páprica defumada ao chimichurri, do lemon pepper à linha Temperaflix: são sabores autorais, pensados para quem cozinha com intenção e não abre mão do lifestyle à mesa.
           </p>
+          <p className="mb-10 -mt-4 text-sm text-foreground/70">
+            Vai levar mais de um?{" "}
+            <Link
+              to="/blends"
+              className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
+            >
+              Monte a caixa de 12 potes
+            </Link>{" "}
+            e leve a receita completa da casa com desconto.
+          </p>
+
           <ProductGrid
             first={8}
             excludeHandles={[
