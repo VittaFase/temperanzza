@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,6 +21,7 @@ import { DietCompatibilityPanel } from "@/components/site/DietCompatibilityPanel
 import { getRecipesByHandle } from "@/lib/recipes";
 import { ProductTrust } from "@/components/site/ProductTrust";
 import { BookOpen } from "lucide-react";
+import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
 
 const SITE_URL = "https://temperanzza.com.br";
 
@@ -203,6 +204,21 @@ function ProductPage() {
     },
   });
 
+  useEffect(() => {
+    if (!product) return;
+    trackEvent("view_item", {
+      currency: product.priceRange?.minVariantPrice?.currencyCode ?? "BRL",
+      value: parseFloat(product.priceRange?.minVariantPrice?.amount ?? "0"),
+      items: [
+        toAnalyticsItem({
+          handle,
+          title: product.title,
+          price: product.priceRange?.minVariantPrice?.amount,
+        }),
+      ],
+    });
+  }, [product, handle]);
+
   if (loadingProduct) {
     return (
       <SiteLayout>
@@ -227,6 +243,18 @@ function ProductPage() {
       price: variant.price,
       quantity: qty,
       selectedOptions: variant.selectedOptions || [],
+    });
+    trackEvent("add_to_cart", {
+      currency: variant.price.currencyCode,
+      value: parseFloat(variant.price.amount) * qty,
+      items: [
+        toAnalyticsItem({
+          handle,
+          title: product.title,
+          price: variant.price.amount,
+          quantity: qty,
+        }),
+      ],
     });
     toast.success(`${product.title} adicionado à sacola`);
   };

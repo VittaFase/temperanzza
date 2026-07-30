@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
+import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
 
 export function CartDrawer() {
   const [open, setOpen] = useState(false);
@@ -45,6 +46,18 @@ export function CartDrawer() {
   const handleCheckout = () => {
     const url = getCheckoutUrl();
     if (url) {
+      trackEvent("begin_checkout", {
+        currency: items[0]?.price.currencyCode ?? "BRL",
+        value: totalPrice,
+        items: items.map((i) =>
+          toAnalyticsItem({
+            handle: i.product.node.handle,
+            title: i.product.node.title,
+            price: i.price.amount,
+            quantity: i.quantity,
+          }),
+        ),
+      });
       window.open(url, "_blank");
       setOpen(false);
     }
@@ -125,7 +138,22 @@ export function CartDrawer() {
                           variant="ghost"
                           size="icon"
                           className="h-6 w-6 hover:text-accent"
-                          onClick={() => removeItem(item.variantId)}
+                          onClick={() => {
+                            trackEvent("remove_from_cart", {
+                              currency: item.price.currencyCode,
+                              value:
+                                parseFloat(item.price.amount) * item.quantity,
+                              items: [
+                                toAnalyticsItem({
+                                  handle: item.product.node.handle,
+                                  title: item.product.node.title,
+                                  price: item.price.amount,
+                                  quantity: item.quantity,
+                                }),
+                              ],
+                            });
+                            removeItem(item.variantId);
+                          }}
                           aria-label="Remover"
                         >
                           <Trash2 className="h-3 w-3" />

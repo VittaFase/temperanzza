@@ -7,6 +7,7 @@ import { formatBRL } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
 import { HOUSE_OFFERS, type HouseOffer } from "@/lib/offers";
 import type { ShopifyProduct } from "@/lib/shopify";
+import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
 
 /**
  * Ofertas da Casa — blocos de oferta estruturada com preço real da Shopify.
@@ -92,6 +93,20 @@ function OfferCard({
         selectedOptions: v.selectedOptions || [],
       });
     }
+    trackEvent("select_promotion", {
+      promotion_name: offer.title,
+      currency,
+      value: total,
+      items: resolved.map((p) =>
+        toAnalyticsItem({
+          handle: p.node.handle,
+          title: p.node.title,
+          price: p.node.priceRange.minVariantPrice.amount,
+          quantity: 1,
+          listName: `Oferta: ${offer.title}`,
+        }),
+      ),
+    });
     toast.success(`${offer.title} foi para a sacola`);
   };
 
