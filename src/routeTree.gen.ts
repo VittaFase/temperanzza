@@ -14,6 +14,7 @@ import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
+import { Route as EmbaixadoresRouteImport } from './routes/embaixadores'
 import { Route as CozinhaRouteImport } from './routes/cozinha'
 import { Route as BlendsRouteImport } from './routes/blends'
 import { Route as IndexRouteImport } from './routes/index'
@@ -56,6 +57,11 @@ const ProdutosRoute = ProdutosRouteImport.update({
 const LojasRoute = LojasRouteImport.update({
   id: '/lojas',
   path: '/lojas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmbaixadoresRoute = EmbaixadoresRouteImport.update({
+  id: '/embaixadores',
+  path: '/embaixadores',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CozinhaRoute = CozinhaRouteImport.update({
@@ -155,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blends': typeof BlendsRouteWithChildren
   '/cozinha': typeof CozinhaRouteWithChildren
+  '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -178,6 +185,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -204,6 +212,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/blends': typeof BlendsRouteWithChildren
   '/cozinha': typeof CozinhaRouteWithChildren
+  '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -231,6 +240,7 @@ export interface FileRouteTypes {
     | '/'
     | '/blends'
     | '/cozinha'
+    | '/embaixadores'
     | '/lojas'
     | '/produtos'
     | '/sitemap.xml'
@@ -254,6 +264,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/embaixadores'
     | '/lojas'
     | '/produtos'
     | '/sitemap.xml'
@@ -279,6 +290,7 @@ export interface FileRouteTypes {
     | '/'
     | '/blends'
     | '/cozinha'
+    | '/embaixadores'
     | '/lojas'
     | '/produtos'
     | '/sitemap.xml'
@@ -305,6 +317,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlendsRoute: typeof BlendsRouteWithChildren
   CozinhaRoute: typeof CozinhaRouteWithChildren
+  EmbaixadoresRoute: typeof EmbaixadoresRoute
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       path: '/lojas'
       fullPath: '/lojas'
       preLoaderRoute: typeof LojasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/embaixadores': {
+      id: '/embaixadores'
+      path: '/embaixadores'
+      fullPath: '/embaixadores'
+      preLoaderRoute: typeof EmbaixadoresRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cozinha': {
@@ -519,6 +539,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlendsRoute: BlendsRouteWithChildren,
   CozinhaRoute: CozinhaRouteWithChildren,
+  EmbaixadoresRoute: EmbaixadoresRoute,
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
