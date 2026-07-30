@@ -74,8 +74,9 @@ function BlendsIndex() {
             Blends <span className="text-accent">Temperanzza</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-background/75 leading-relaxed">
-            Seis caixas curadas pela casa, cada uma com 12 potes para uma
-            ocasião. E uma sétima caixa — em branco — para você assinar.
+            Seis caixas montadas pelos chefes da casa, cada uma com 12 potes para
+            uma experiência. E uma sétima caixa — a caixa do chefe — para você
+            dar sua assinatura como Chefe da Casa.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a href="#curados">
