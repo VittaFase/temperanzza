@@ -356,7 +356,7 @@ export function TemperaflixShowcase() {
                     style={{ transformStyle: "preserve-3d" }}
                   >
                     {image ? (
-                      <img
+                      <img decoding="async"
                         src={image}
                         alt={product?.node.title ?? meta.label}
                         className="w-full h-auto object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)] max-h-[460px] mx-auto"

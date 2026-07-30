@@ -535,7 +535,7 @@ function TemperaflixPage() {
                       className="relative"
                       style={{ perspective: 1200 }}
                     >
-                      <img
+                      <img decoding="async"
                         src={
                           getProductImage(
                             activeProduct.node.handle,

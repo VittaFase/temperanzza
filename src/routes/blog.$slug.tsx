@@ -201,7 +201,7 @@ function BlogPostPage() {
           </div>
           {potSrc ? (
             <div className="flex justify-center md:justify-end">
-              <img
+              <img decoding="async" loading="eager" fetchPriority="high"
                 src={potSrc}
                 alt={`Pote de ${post.productName} Temperanzza`}
                 className="h-52 sm:h-72 w-auto object-contain drop-shadow-[0_28px_40px_rgba(0,0,0,0.5)]"
@@ -301,7 +301,7 @@ function BlogPostPage() {
               }}
             >
               {potSrc ? (
-                <img
+                <img decoding="async"
                   src={potSrc}
                   alt={`Pote de ${post.productName}`}
                   loading="lazy"

@@ -145,7 +145,7 @@ export function BlendBuilder() {
                     aria-label={`Adicionar ${labelFor(handle)}`}
                   >
                     {img ? (
-                      <img
+                      <img decoding="async"
                         src={img}
                         alt={labelFor(handle)}
                         className="max-h-full max-w-full object-contain drop-shadow-[0_10px_14px_rgba(0,0,0,0.25)]"

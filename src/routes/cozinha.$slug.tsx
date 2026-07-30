@@ -329,7 +329,7 @@ function RecipeDrawer() {
                       filter: "blur(8px)",
                     }}
                   />
-                  <img
+                  <img decoding="async" loading="eager" fetchPriority="high"
                     src={productImg}
                     alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
                     className="relative h-80 sm:h-[26rem] lg:h-[30rem] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.55)] animate-pote-float"
@@ -458,7 +458,7 @@ function RecipeDrawer() {
             </div>
             {productImg && (
               <div className="flex justify-center md:justify-end">
-                <img
+                <img decoding="async" loading="lazy"
                   src={productImg}
                   alt={humanHandle(recipe.featuredHandle)}
                   className="h-72 sm:h-96 w-auto object-contain drop-shadow-2xl"
@@ -485,7 +485,7 @@ function RecipeDrawer() {
                   params={{ handle: p.handle }}
                   className="group flex flex-col items-center text-center border border-brand-ink/15 bg-brand-cream/40 hover:border-accent p-6 transition"
                 >
-                  <img
+                  <img decoding="async" loading="lazy"
                     src={p.img!}
                     alt={p.name}
                     className="h-32 w-auto object-contain mb-4 group-hover:scale-105 transition-transform"

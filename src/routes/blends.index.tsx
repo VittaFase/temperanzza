@@ -130,7 +130,7 @@ function BlendsIndex() {
                 className="group flex flex-col border border-foreground/15 bg-background overflow-hidden hover:border-accent transition-colors"
               >
                 <div className="relative aspect-square bg-foreground overflow-hidden">
-                  <img
+                  <img decoding="async"
                     src={blend.image}
                     alt={`${blend.name} — caixa display Temperanzza`}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
@@ -181,7 +181,7 @@ function BlendsIndex() {
       <section className="py-20 sm:py-24 bg-secondary/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-square bg-foreground overflow-hidden">
-            <img
+            <img decoding="async"
               src={builder.image}
               alt="Caixa Chefe Temperanzza — monte seu próprio blend"
               className="absolute inset-0 w-full h-full object-cover"

@@ -112,7 +112,7 @@ export function CartDrawer() {
                     >
                       <div className="w-16 h-20 bg-brand-cream overflow-hidden flex-shrink-0">
                         {item.product.node.images?.edges?.[0]?.node && (
-                          <img
+                          <img decoding="async" loading="lazy"
                             src={item.product.node.images.edges[0].node.url}
                             alt={item.product.node.title}
                             className="w-full h-full object-cover"

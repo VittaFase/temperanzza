@@ -162,7 +162,7 @@ function CuratedView() {
         </div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center pb-20 lg:pb-28">
           <div className="relative aspect-square bg-black/30 overflow-hidden">
-            <img
+            <img decoding="async" loading="eager" fetchPriority="high"
               src={blend.image}
               alt={blend.name}
               className="absolute inset-0 w-full h-full object-cover"
@@ -275,7 +275,7 @@ function CuratedView() {
                   </span>
                   <div className="relative w-20 h-24 shrink-0 flex items-center justify-center">
                     {img ? (
-                      <img
+                      <img decoding="async"
                         src={img}
                         alt={handle}
                         className="max-h-full max-w-full object-contain drop-shadow-[0_10px_14px_rgba(0,0,0,0.25)] group-hover:-translate-y-1 transition-transform"
@@ -311,7 +311,7 @@ function CuratedView() {
                 className="group flex flex-col border border-foreground/15 bg-background overflow-hidden hover:border-accent transition-colors"
               >
                 <div className="relative aspect-square bg-foreground overflow-hidden">
-                  <img
+                  <img decoding="async"
                     src={b.image}
                     alt={b.name}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
@@ -370,7 +370,7 @@ function BuilderView() {
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center pb-20 lg:pb-24">
           <div className="relative aspect-square bg-black/30 overflow-hidden">
-            <img
+            <img decoding="async" loading="lazy"
               src={blend.image}
               alt="Caixa Chefe Temperanzza"
               className="absolute inset-0 w-full h-full object-cover"
