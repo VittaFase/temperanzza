@@ -85,6 +85,10 @@ function ProdutosPage() {
           <CatalogGrid />
         </div>
       </section>
+
+      {/* Ofertas da Casa — combos prontos para quem não quer escolher pote a pote */}
+      <HouseOffers />
     </SiteLayout>
+
   );
 }
