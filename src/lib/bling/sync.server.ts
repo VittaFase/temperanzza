@@ -7,7 +7,9 @@ import {
   findVariantBySku,
   setInventoryLevel,
   updateVariantPrice,
+  ShopifyAdminAuthError,
 } from "../shopify/admin.server";
+
 
 interface BlingProduct {
   id: number;
