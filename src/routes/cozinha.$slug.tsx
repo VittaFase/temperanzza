@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-ro
 import { useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
+import { RecipeAddToCart } from "@/components/site/RecipeAddToCart";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DietBadge } from "@/components/site/DietBadge";
 import {
