@@ -11,7 +11,7 @@ import { getProductDiet } from "@/lib/dietCompatibility";
 export function ProductTrust({ handle }: { handle: string }) {
   const recipes = getRecipesByHandle(handle);
   const diet = getProductDiet(handle);
-  const dietCount = diet ? Object.keys(diet.compatibility ?? {}).length : 0;
+  const dietCount = diet ? Object.keys(diet.verdicts ?? {}).length : 0;
 
   const signals = [
     {
