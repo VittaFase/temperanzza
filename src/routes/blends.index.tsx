@@ -94,8 +94,13 @@ function BlendsIndex() {
               </Button>
             </Link>
           </div>
+          </div>
+          <p className="mt-6 text-xs font-display uppercase tracking-[0.25em] text-background/60">
+            12 potes por caixa · {BLEND_DISCOUNT_PCT}% com o cupom {BLEND_DISCOUNT_CODE} · Embalado lote a lote
+          </p>
         </div>
       </section>
+
 
       {/* GRID DE CURADOS */}
       <section id="curados" className="py-20 sm:py-24 border-b border-foreground/15">
