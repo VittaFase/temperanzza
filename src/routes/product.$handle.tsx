@@ -361,6 +361,17 @@ function ProductPage() {
                 Esgotado no momento
               </p>
             )}
+            <p className="mt-4 text-xs text-muted-foreground leading-relaxed">
+              Embalado lote a lote em Minas Gerais · Envio calculado no
+              fechamento do pedido ·{" "}
+              <Link
+                to="/blends"
+                className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
+              >
+                12 potes com desconto
+              </Link>
+            </p>
+
 
             {/* Grid de outros sabores */}
             {allProducts && allProducts.length > 1 && (
