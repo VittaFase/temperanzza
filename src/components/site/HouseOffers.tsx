@@ -142,7 +142,7 @@ function OfferCard({
                 className={
                   isKit
                     ? "h-[86%] w-auto object-contain drop-shadow-[0_18px_22px_rgba(0,0,0,0.22)]"
-                    : "h-[74%] w-auto object-contain -ml-3 first:ml-0 drop-shadow-[0_14px_18px_rgba(0,0,0,0.2)]"
+                    : "h-[62%] sm:h-[70%] w-auto object-contain -ml-[7%] first:ml-0 drop-shadow-[0_14px_18px_rgba(0,0,0,0.2)]"
                 }
               />
             );
