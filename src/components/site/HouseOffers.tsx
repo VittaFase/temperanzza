@@ -110,14 +110,21 @@ function OfferCard({
     toast.success(`${offer.title} foi para a sacola`);
   };
 
+  const sceneHandles = isKit
+    ? offer.handles
+    : (offer.sceneHandles ?? []);
+
   return (
     <article className="flex flex-col border border-foreground/15 bg-background">
       {/* potes reais em cena */}
       <div className="relative h-40 sm:h-48 border-b border-foreground/10 bg-brand-cream bg-paper-grain overflow-hidden">
-        <div className="absolute inset-0 flex items-end justify-center gap-1 sm:gap-2 pb-3">
-          {(isKit ? offer.handles : ["tempero-mineiro", "paprica-defumada", "ervas-finas"]).map(
-            (h) => {
-              const src = getProductImage(h, products?.get(h)?.node.images.edges[0]?.node.url);
+        {isKit ? (
+          <div className="absolute inset-0 flex items-end justify-center gap-1 sm:gap-2 pb-3">
+            {sceneHandles.map((h) => {
+              const src = getProductImage(
+                h,
+                products?.get(h)?.node.images.edges[0]?.node.url,
+              );
               if (!src) return null;
               return (
                 <img
@@ -130,10 +137,38 @@ function OfferCard({
                   className="h-[86%] w-auto object-contain drop-shadow-[0_18px_22px_rgba(0,0,0,0.22)]"
                 />
               );
-            },
-          )}
-        </div>
+            })}
+          </div>
+        ) : (
+          <div className="absolute inset-0 grid grid-cols-7 grid-rows-2 items-end gap-x-0.5 gap-y-1 px-2 pb-3 pt-8">
+            {sceneHandles.slice(0, 14).map((h) => {
+              const src = getProductImage(
+                h,
+                products?.get(h)?.node.images.edges[0]?.node.url,
+              );
+              if (!src) return null;
+              return (
+                <img
+                  key={h}
+                  src={src}
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-contain drop-shadow-[0_8px_10px_rgba(0,0,0,0.2)]"
+                />
+              );
+            })}
+          </div>
+        )}
+        {!isKit && sceneHandles.length > 0 && (
+          <span className="absolute left-3 top-3 z-10 bg-foreground text-background px-2 py-1 font-display uppercase tracking-widest text-[10px]">
+            {sceneHandles.length} sabores da casa
+          </span>
+        )}
       </div>
+
+
 
       <div className="p-6 flex flex-col flex-1">
         <span className="inline-flex self-start bg-foreground text-background px-2.5 py-1 font-display uppercase tracking-widest text-[10px]">

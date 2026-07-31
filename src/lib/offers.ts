@@ -5,6 +5,7 @@
  * simplesmente não é exibida.
  */
 import { BLEND_DISCOUNT_CODE, BLEND_DISCOUNT_PCT } from "@/lib/blendPricing";
+import { BUILDER_HANDLES } from "@/lib/blends";
 
 export type OfferKind = "kit" | "link";
 
@@ -20,6 +21,8 @@ export interface HouseOffer {
   kind: OfferKind;
   /** Handles reais somados no preço e adicionados à sacola (kind: "kit"). */
   handles: string[];
+  /** Potes exibidos na cena do card (usado quando kind: "link"). */
+  sceneHandles?: string[];
   /** Rota de destino para ofertas do tipo "link". */
   to?: "/blends";
   cta: string;
@@ -65,10 +68,11 @@ export const HOUSE_OFFERS: HouseOffer[] = [
     slug: "caixa-do-chefe",
     tag: `Cupom ${BLEND_DISCOUNT_CODE}`,
     title: "Caixa do Chefe · 12 potes",
-    promise: `Monte sua caixa e o cupom tira ${BLEND_DISCOUNT_PCT}% no fechamento.`,
-    contains: "12 potes à sua escolha entre os sabores da casa",
+    promise: `Você escolhe 12 potes entre os ${BUILDER_HANDLES.length} sabores da casa — o cupom tira ${BLEND_DISCOUNT_PCT}% no fechamento.`,
+    contains: `${BUILDER_HANDLES.length} sabores disponíveis na Casa Temperanzza · repita os favoritos quantas vezes quiser`,
     kind: "link",
     handles: [],
+    sceneHandles: BUILDER_HANDLES,
     to: "/blends",
     cta: "Montar meu blend",
     accentClass: "text-accent",
