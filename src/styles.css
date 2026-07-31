@@ -190,6 +190,13 @@
   animation: pote-float 6s ease-in-out infinite;
 }
 
+/* Barra de progresso do carrossel de sabores (estilo stories). */
+@keyframes flavor-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+
 /* ─────────────────────────────────────────────────────────
  * View Transitions — cross-fade discreto entre páginas.
  * Suporte nativo Chromium/Safari; sem suporte = no-op.
