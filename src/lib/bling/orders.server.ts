@@ -51,18 +51,42 @@ interface BlingContactCreated {
   data: { id: number };
 }
 
+interface BlingContactList {
+  data: Array<{ id: number; nome?: string; numeroDocumento?: string; email?: string }>;
+}
+
+async function findBlingContact(
+  doc: string | null,
+  email: string | null,
+): Promise<number | null> {
+  const tries: string[] = [];
+  if (doc) tries.push(`/contatos?numeroDocumento=${encodeURIComponent(doc)}`);
+  if (email) tries.push(`/contatos?pesquisa=${encodeURIComponent(email)}`);
+  for (const path of tries) {
+    try {
+      const res = await blingFetch<BlingContactList>(path);
+      const hit = res?.data?.[0];
+      if (hit?.id) return hit.id;
+    } catch {
+      // ignore and try next strategy
+    }
+  }
+  return null;
+}
+
 async function upsertBlingContact(order: ShopifyOrderPayload): Promise<number | null> {
   const addr = order.shipping_address ?? order.billing_address ?? null;
   const first = order.customer?.first_name ?? addr?.first_name ?? "Cliente";
   const last = order.customer?.last_name ?? addr?.last_name ?? "";
   const name = `${first} ${last}`.trim() || "Cliente Shopify";
   const doc = extractCpfCnpj(order);
+  const email = order.email ?? order.customer?.email ?? null;
 
   const payload: Record<string, unknown> = {
     nome: name,
     tipo: doc && doc.length === 14 ? "J" : "F", // J=jurídica, F=física
     numeroDocumento: doc ?? undefined,
-    email: order.email ?? order.customer?.email ?? undefined,
+    email: email ?? undefined,
     telefone: order.customer?.phone ?? addr?.phone ?? undefined,
     endereco: addr
       ? {
@@ -82,12 +106,38 @@ async function upsertBlingContact(order: ShopifyOrderPayload): Promise<number | 
       method: "POST",
       body: JSON.stringify(payload),
     });
-    return res?.data?.id ?? null;
+    if (res?.data?.id) return res.data.id;
   } catch (err) {
-    console.error("[bling] contact upsert failed", err);
+    console.error("[bling] contact create failed, trying lookup", err);
+  }
+  // Contato já existe (ou criação falhou): busca o existente
+  return findBlingContact(doc, email);
+}
+
+/** Resolve o id do produto no Bling a partir do SKU (mapa local + busca na API). */
+async function resolveBlingProductId(sku: string): Promise<string | null> {
+  try {
+    const sb = getServiceClient();
+    const { data } = await sb
+      .from("bling_product_map")
+      .select("bling_product_id")
+      .eq("sku", sku)
+      .maybeSingle();
+    if (data?.bling_product_id) return data.bling_product_id;
+  } catch {
+    // continua para busca na API
+  }
+  try {
+    const res = await blingFetch<{ data: Array<{ id: number; codigo?: string }> }>(
+      `/produtos?codigo=${encodeURIComponent(sku)}`,
+    );
+    const hit = res?.data?.find((p) => (p.codigo ?? "").trim() === sku) ?? res?.data?.[0];
+    return hit?.id ? String(hit.id) : null;
+  } catch {
     return null;
   }
 }
+
 
 interface BlingOrderCreated {
   data: { id: number; numero?: number };
