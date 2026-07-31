@@ -155,22 +155,36 @@ export async function createBlingOrderFromShopify(
   order: ShopifyOrderPayload,
 ): Promise<CreateOrderResult> {
   const contactId = await upsertBlingContact(order);
+  if (!contactId) {
+    throw new Error(
+      "Não foi possível criar ou localizar o contato do cliente no Bling (verifique CPF/CNPJ do pedido).",
+    );
+  }
 
-  const itens = order.line_items
-    .filter((li) => li.sku)
-    .map((li) => ({
-      codigo: li.sku!,
-      descricao: li.name,
-      quantidade: li.quantity,
-      valor: Number(li.price),
-    }));
+  const itens = await Promise.all(
+    order.line_items
+      .filter((li) => li.sku)
+      .map(async (li) => {
+        const produtoId = await resolveBlingProductId(li.sku!);
+        return {
+          // Referencia o produto já cadastrado no Bling em vez de tentar criar
+          ...(produtoId
+            ? { produto: { id: Number(produtoId) } }
+            : { codigo: li.sku! }),
+          descricao: li.name,
+          quantidade: li.quantity,
+          valor: Number(li.price),
+        };
+      }),
+  );
 
   const payload: Record<string, unknown> = {
     data: new Date().toISOString().slice(0, 10),
     numeroLoja: order.name,
-    contato: contactId ? { id: contactId } : { nome: "Cliente Shopify" },
+    contato: { id: contactId },
     itens,
   };
+
 
   const orderRes = await blingFetch<BlingOrderCreated>("/pedidos/vendas", {
     method: "POST",
