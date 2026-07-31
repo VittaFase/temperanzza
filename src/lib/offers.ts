@@ -20,6 +20,8 @@ export interface HouseOffer {
   kind: OfferKind;
   /** Handles reais somados no preço e adicionados à sacola (kind: "kit"). */
   handles: string[];
+  /** Potes exibidos na cena do card (usado quando kind: "link"). */
+  sceneHandles?: string[];
   /** Rota de destino para ofertas do tipo "link". */
   to?: "/blends";
   cta: string;
