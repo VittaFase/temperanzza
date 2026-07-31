@@ -5,6 +5,7 @@
  * simplesmente não é exibida.
  */
 import { BLEND_DISCOUNT_CODE, BLEND_DISCOUNT_PCT } from "@/lib/blendPricing";
+import { BUILDER_HANDLES } from "@/lib/blends";
 
 export type OfferKind = "kit" | "link";
 
