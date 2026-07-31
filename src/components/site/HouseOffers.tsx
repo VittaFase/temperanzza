@@ -5,6 +5,8 @@ import { useShopifyProducts } from "@/hooks/useShopifyPrices";
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
+import { FlavorCarousel } from "@/components/site/FlavorCarousel";
+
 import { HOUSE_OFFERS, type HouseOffer } from "@/lib/offers";
 import type { ShopifyProduct } from "@/lib/shopify";
 import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
