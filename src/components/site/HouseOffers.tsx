@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useShopifyProducts } from "@/hooks/useShopifyPrices";
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
-import { getProductImage } from "@/lib/productImages";
+
 import { FlavorCarousel } from "@/components/site/FlavorCarousel";
 
 import { HOUSE_OFFERS, type HouseOffer } from "@/lib/offers";
@@ -35,7 +35,7 @@ export function HouseOffers() {
           moagem fina e a caixa que você assina como Chefe da Casa.
         </p>
 
-        <div className="mt-10 grid md:grid-cols-3 gap-5">
+        <div className="mt-10 grid md:grid-cols-3 gap-5 items-stretch">
           {HOUSE_OFFERS.map((offer) => (
             <OfferCard
               key={offer.slug}
@@ -138,9 +138,16 @@ function OfferCard({
           {offer.contains}
         </p>
 
-        {isKit && total > 0 && (
+        {isKit && total > 0 ? (
           <p className={`mt-5 font-display font-black text-3xl leading-none ${offer.accentClass}`}>
             {formatBRL(total, currency)}
+          </p>
+        ) : (
+          <p
+            aria-hidden
+            className="mt-5 font-display font-black text-3xl leading-none opacity-0 select-none"
+          >
+            &nbsp;
           </p>
         )}
 
