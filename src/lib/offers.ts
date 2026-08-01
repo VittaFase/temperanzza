@@ -72,7 +72,7 @@ export const HOUSE_OFFERS: HouseOffer[] = [
     slug: "caixa-do-chefe",
     tag: `Cupom ${BLEND_DISCOUNT_CODE}`,
     title: "Caixa do Chefe · 12 potes",
-    promise: `Você escolhe 12 potes entre os ${BUILDER_HANDLES.length} sabores da casa — o cupom tira ${BLEND_DISCOUNT_PCT}% no fechamento.`,
+    promise: "Você escolhe 12 potes entre os sabores da casa — o cupom tira 10% no fechamento.",
     contains: `${BUILDER_HANDLES.length} sabores disponíveis na Casa Temperanzza · repita os favoritos quantas vezes quiser`,
     kind: "link",
     handles: [],
