@@ -278,8 +278,7 @@ function BibliotecaIndice() {
             O Menu da Casa
           </h2>
           <p className="mt-6 font-serif italic text-lg sm:text-xl text-brand-ink/70 leading-relaxed">
-            Cinco estilos de cozinhar. Uma única obsessão: o sabor que
-            respeita quem come.
+            {"\u00a0"}Para cada estilo de cozinha. Um único objetivo: Dar sabor a seu lifestyle.
           </p>
         </div>
 
