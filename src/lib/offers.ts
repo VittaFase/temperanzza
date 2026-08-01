@@ -23,6 +23,8 @@ export interface HouseOffer {
   handles: string[];
   /** Potes exibidos na cena do card (usado quando kind: "link"). */
   sceneHandles?: string[];
+  /** Selo de contagem exibido no canto do carrossel. */
+  sceneLabel?: string;
   /** Rota de destino para ofertas do tipo "link". */
   to?: "/blends";
   cta: string;
