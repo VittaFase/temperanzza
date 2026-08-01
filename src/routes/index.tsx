@@ -330,7 +330,7 @@ function Home() {
             Casa de temperos. Minas Gerais. DESDE 2023.
           </p>
           <p className="mt-4 text-xs font-display uppercase tracking-[0.4em] text-muted-foreground">
-            Selo da Casa · Receita autoral · Lote a lote
+            FAZEMOS TUDO PENSANDO NOS  MOMENTOS DE MESA COM NOSSO MAIOR BEM, NOSSA FAMÍLIA!
           </p>
         </div>
       </section>
