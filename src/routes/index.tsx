@@ -118,7 +118,7 @@ function Home() {
               </Button>
             </div>
             <p className="mt-5 text-xs font-display uppercase tracking-[0.25em] text-muted-foreground">
-              Embalado lote a lote em Minas · 19 sabores da casa · Caixa de 12 potes com desconto
+              EMBALADO LOTE A LOTE EM MINAS ·  SABORES DA CASA · CAIXA DE 12 POTES COM DESCONTO
             </p>
 
           </div>
