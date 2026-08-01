@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useShopifyProducts } from "@/hooks/useShopifyPrices";
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
-import { getProductImage } from "@/lib/productImages";
+
 import { FlavorCarousel } from "@/components/site/FlavorCarousel";
 
 import { HOUSE_OFFERS, type HouseOffer } from "@/lib/offers";
@@ -35,7 +35,7 @@ export function HouseOffers() {
           moagem fina e a caixa que você assina como Chefe da Casa.
         </p>
 
-        <div className="mt-10 grid md:grid-cols-3 gap-5">
+        <div className="mt-10 grid md:grid-cols-3 gap-5 items-stretch">
           {HOUSE_OFFERS.map((offer) => (
             <OfferCard
               key={offer.slug}
@@ -112,48 +112,19 @@ function OfferCard({
     toast.success(`${offer.title} foi para a sacola`);
   };
 
-  const sceneHandles = isKit
-    ? offer.handles
-    : (offer.sceneHandles ?? []);
+  const sceneHandles = offer.sceneHandles ?? offer.handles;
 
   return (
-    <article className="flex flex-col border border-foreground/15 bg-background">
-      {/* potes reais em cena */}
-      {isKit ? (
-        <div className="relative h-40 sm:h-48 border-b border-foreground/10 bg-brand-cream bg-paper-grain overflow-hidden">
-          <div className="absolute inset-0 flex items-end justify-center gap-1 sm:gap-2 pb-3">
-            {sceneHandles.map((h) => {
-              const src = getProductImage(
-                h,
-                products?.get(h)?.node.images.edges[0]?.node.url,
-              );
-              if (!src) return null;
-              return (
-                <img
-                  key={h}
-                  src={src}
-                  alt=""
-                  aria-hidden
-                  loading="lazy"
-                  decoding="async"
-                  className="h-[86%] w-auto object-contain drop-shadow-[0_18px_22px_rgba(0,0,0,0.22)]"
-                />
-              );
-            })}
-          </div>
-        </div>
-      ) : (
-        <FlavorCarousel
-          handles={sceneHandles}
-          products={products}
-          countLabel={`${sceneHandles.length} sabores da casa`}
-        />
-      )}
-
-
-
+    <article className="flex h-full flex-col border border-foreground/15 bg-background">
+      {/* potes reais em cena — mesma vitrine em todas as ofertas */}
+      <FlavorCarousel
+        handles={sceneHandles}
+        products={products}
+        countLabel={offer.sceneLabel}
+      />
 
       <div className="p-6 flex flex-col flex-1">
+
         <span className="inline-flex self-start bg-foreground text-background px-2.5 py-1 font-display uppercase tracking-widest text-[10px]">
           {offer.tag}
         </span>
@@ -167,9 +138,16 @@ function OfferCard({
           {offer.contains}
         </p>
 
-        {isKit && total > 0 && (
+        {isKit && total > 0 ? (
           <p className={`mt-5 font-display font-black text-3xl leading-none ${offer.accentClass}`}>
             {formatBRL(total, currency)}
+          </p>
+        ) : (
+          <p
+            aria-hidden
+            className="mt-5 font-display font-black text-3xl leading-none opacity-0 select-none"
+          >
+            &nbsp;
           </p>
         )}
 

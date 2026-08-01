@@ -23,6 +23,8 @@ export interface HouseOffer {
   handles: string[];
   /** Potes exibidos na cena do card (usado quando kind: "link"). */
   sceneHandles?: string[];
+  /** Selo de contagem exibido no canto do carrossel. */
+  sceneLabel?: string;
   /** Rota de destino para ofertas do tipo "link". */
   to?: "/blends";
   cta: string;
@@ -46,6 +48,7 @@ export const HOUSE_OFFERS: HouseOffer[] = [
       "temperaflix-bacon",
     ],
     cta: "Assinar o combo",
+    sceneLabel: "3 episódios da temporada",
     accentClass: "text-brand-gold",
     note: "Frete único para os três · embalado lote a lote",
   },
@@ -61,6 +64,7 @@ export const HOUSE_OFFERS: HouseOffer[] = [
       "canela-premium-black-30g",
     ],
     cta: "Levar o duo",
+    sceneLabel: "2 potes Premium Black",
     accentClass: "text-brand-silver",
     note: "Moagem fina · pote a pote da linha Premium Black",
   },
@@ -75,6 +79,7 @@ export const HOUSE_OFFERS: HouseOffer[] = [
     sceneHandles: BUILDER_HANDLES,
     to: "/blends",
     cta: "Montar meu blend",
+    sceneLabel: `${BUILDER_HANDLES.length} sabores da casa`,
     accentClass: "text-accent",
     note: `Desconto de ${BLEND_DISCOUNT_PCT}% válido a partir de 12 potes`,
   },
