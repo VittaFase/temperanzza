@@ -31,9 +31,9 @@ export function HouseOffers() {
           </span>
         </div>
         <p className="mt-5 max-w-2xl text-foreground/75 leading-relaxed">
-          Experiências da casa: Linha de condimentos, linha duo premium com
-          Pimenta e Canela moida e a construção da caixa para você assina-la
-          como Chefe da Casa.
+          Experiências da casa: Linha Temperaflix, o duo premium com Pimenta e
+          Canela moida e a construção da caixa para você assina-la como Chefe da
+          Casa.
         </p>
 
         <div className="mt-10 grid md:grid-cols-3 gap-5 items-stretch">
