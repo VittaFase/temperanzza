@@ -93,9 +93,9 @@ function Home() {
               PARA O SEU&nbsp;LIFESTYLE.
             </h1>
             <p className="mt-8 max-w-xl text-base sm:text-lg text-foreground/80 leading-relaxed">
-              Especiarias selecionadas e proporções testadas na cozinha da casa.
-              Você abre o pote, sente o aroma — e o prato de todo dia vira prato
-              de mesa posta.
+              Especiarias selecionadas em proporções testadas na cozinha da casa.
+              Você abre o pote, sente o aroma — e vive uma explosão de sabores no
+              seu prato do dia.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
