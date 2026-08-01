@@ -122,7 +122,7 @@ export function FlavorCarousel({
             <div
               key={s.handle}
               aria-hidden={!isCurrent}
-              className="absolute inset-0 flex items-end justify-center pb-7"
+              className="absolute inset-0 flex items-end justify-center pb-14 sm:pb-16"
               style={{
                 opacity: isCurrent ? 1 : 0,
                 transform: `translateX(${isCurrent ? 0 : offset}%)`,
@@ -137,7 +137,7 @@ export function FlavorCarousel({
                 alt={isCurrent ? s.title : ""}
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
-                className="h-[78%] w-auto max-w-[70%] object-contain drop-shadow-[0_22px_20px_rgba(0,0,0,0.28)]"
+                className="h-[74%] w-auto max-w-[68%] object-contain drop-shadow-[0_10px_10px_rgba(0,0,0,0.22)]"
               />
             </div>
           );
