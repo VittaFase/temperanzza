@@ -63,7 +63,7 @@ function SobrePage() {
       <article className="py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 prose-lg space-y-6 text-foreground/85 leading-relaxed">
           <p className="text-xl font-serif italic text-foreground">
-            A Temperanzza nasceu em Minas Gerais com uma missão simples: transformar refeições comuns em experiências memoráveis.
+            A Casa Temperanzza nasceu em Minas Gerais com uma missão simples: transformar refeições comuns em experiências memoráveis.
           </p>
           <p>
             Desenvolvemos blends autorais que unem especiarias selecionadas, praticidade e muito sabor para acompanhar todos os momentos — do churrasco de domingo à pipoca do filme em família.
