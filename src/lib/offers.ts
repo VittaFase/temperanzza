@@ -56,7 +56,7 @@ export const HOUSE_OFFERS: HouseOffer[] = [
     slug: "duo-premium-black",
     tag: "Linha Premium Black",
     title: "Duo Premium Black",
-    promise: "Pimenta e canela na moagem mais fina da casa, lado a lado.",
+    promise: "Nossa linha gourmet de Pimenta do Reino e Canela em pó moida, lado a lado.",
     contains: "2 potes de 30g: Pimenta do Reino e Canela",
     kind: "kit",
     handles: [
