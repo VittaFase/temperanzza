@@ -227,7 +227,7 @@ function Home() {
                 <span className="text-accent tracking-tighter">LIFESTYLE.</span>
               </h2>
               <p className="mt-6 font-serif italic text-lg sm:text-xl text-foreground/80 max-w-2xl leading-snug">
-                Guia didático de compatibilidade e receitas curadas para quem
+                Guia didático de compatibilidade e dicas de receitas para quem
                 segue cetogênica, low carb ou carnívora — sem abrir mão do
                 prazer da mesa.
               </p>
