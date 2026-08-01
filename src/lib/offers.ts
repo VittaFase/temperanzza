@@ -40,7 +40,7 @@ export const HOUSE_OFFERS: HouseOffer[] = [
     tag: "Edição limitada",
     title: "Season Pass Temperaflix",
     promise: "Os três episódios no mesmo sofá — sem escolher favorito.",
-    contains: "3 shakers: Tradicional, Ervas Finas e Bacon",
+    contains: "3 snakers: Tradicional, Ervas Finas e Bacon",
     kind: "kit",
     handles: [
       "temperaflix-tradicional",
