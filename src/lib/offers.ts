@@ -66,7 +66,7 @@ export const HOUSE_OFFERS: HouseOffer[] = [
     cta: "Levar o duo",
     sceneLabel: "2 potes Premium Black",
     accentClass: "text-brand-silver",
-    note: "Moagem fina · pote a pote da linha Premium Black",
+    note: "Potes da linha Premium Black",
   },
   {
     slug: "caixa-do-chefe",
