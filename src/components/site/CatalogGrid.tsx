@@ -14,7 +14,7 @@ type LinhaKey = "todas" | "temperaflix";
 
 const LINHAS: Array<{ key: LinhaKey; label: string; hint: string }> = [
   { key: "todas", label: "Toda a Casa", hint: "19 potes" },
-  { key: "temperaflix", label: "Temperaflix", hint: "shakers" },
+  { key: "temperaflix", label: "Temperaflix", hint: "SNAKERS" },
 ];
 
 function isTemperaflix(handle: string): boolean {
