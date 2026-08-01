@@ -449,7 +449,7 @@ export function TemperaflixShowcase() {
                   </div>
                   </Link>
 
-                  {/* ADD TO CART CTA — abaixo do preço */}
+                  {/* ADD TO CART CTA — abaixo do preço, fora do alcance das sombras */}
                   <Button
                     type="button"
                     onClick={(e) => {
@@ -458,7 +458,7 @@ export function TemperaflixShowcase() {
                       handleAddOne(product);
                     }}
                     disabled={!product || isAdding}
-                    className="mt-3 w-full rounded-none h-11 px-3 bg-brand-paper text-brand-ink hover:bg-brand-paper/90 font-display uppercase tracking-widest text-xs"
+                    className="relative z-20 mt-8 sm:mt-10 w-full rounded-none h-11 px-3 bg-brand-paper text-brand-ink hover:bg-brand-paper/90 font-display uppercase tracking-widest text-xs"
                     aria-label={`Adicionar ${meta.label} à sacola`}
                   >
                     <Plus className="mr-1 h-3.5 w-3.5" />
