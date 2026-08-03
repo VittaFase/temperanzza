@@ -22,6 +22,7 @@ import { Route as CozinhaIndexRouteImport } from './routes/cozinha.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
+import { Route as ImprimirSlugRouteImport } from './routes/imprimir.$slug'
 import { Route as CozinhaSlugRouteImport } from './routes/cozinha.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as BlendsSlugRouteImport } from './routes/blends.$slug'
@@ -99,6 +100,11 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ImprimirSlugRoute = ImprimirSlugRouteImport.update({
+  id: '/imprimir/$slug',
+  path: '/imprimir/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CozinhaSlugRoute = CozinhaSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -171,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
+  '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
@@ -195,6 +202,7 @@ export interface FileRoutesByTo {
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
+  '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
   '/blog': typeof BlogIndexRoute
@@ -222,6 +230,7 @@ export interface FileRoutesById {
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
+  '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
@@ -250,6 +259,7 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/blog/$slug'
     | '/cozinha/$slug'
+    | '/imprimir/$slug'
     | '/product/$handle'
     | '/blends/'
     | '/blog/'
@@ -274,6 +284,7 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/blog/$slug'
     | '/cozinha/$slug'
+    | '/imprimir/$slug'
     | '/product/$handle'
     | '/blends'
     | '/blog'
@@ -300,6 +311,7 @@ export interface FileRouteTypes {
     | '/blends/$slug'
     | '/blog/$slug'
     | '/cozinha/$slug'
+    | '/imprimir/$slug'
     | '/product/$handle'
     | '/blends/'
     | '/blog/'
@@ -325,6 +337,7 @@ export interface RootRouteChildren {
   TemperaflixRoute: typeof TemperaflixRoute
   AdminBlingRoute: typeof AdminBlingRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  ImprimirSlugRoute: typeof ImprimirSlugRoute
   ProductHandleRoute: typeof ProductHandleRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicBlingCallbackRoute: typeof ApiPublicBlingCallbackRoute
@@ -427,6 +440,13 @@ declare module '@tanstack/react-router' {
       path: '/product/$handle'
       fullPath: '/product/$handle'
       preLoaderRoute: typeof ProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/imprimir/$slug': {
+      id: '/imprimir/$slug'
+      path: '/imprimir/$slug'
+      fullPath: '/imprimir/$slug'
+      preLoaderRoute: typeof ImprimirSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cozinha/$slug': {
@@ -547,6 +567,7 @@ const rootRouteChildren: RootRouteChildren = {
   TemperaflixRoute: TemperaflixRoute,
   AdminBlingRoute: AdminBlingRoute,
   BlogSlugRoute: BlogSlugRoute,
+  ImprimirSlugRoute: ImprimirSlugRoute,
   ProductHandleRoute: ProductHandleRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiPublicBlingCallbackRoute: ApiPublicBlingCallbackRoute,
@@ -560,13 +581,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

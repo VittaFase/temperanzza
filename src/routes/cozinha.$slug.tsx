@@ -3,6 +3,9 @@ import { useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
 import { RecipeAddToCart } from "@/components/site/RecipeAddToCart";
+import { RecipeShareBar } from "@/components/site/RecipeShareBar";
+import { RecipeHeroMedia } from "@/components/site/RecipeHeroMedia";
+import { HarmonizeAddButton } from "@/components/site/HarmonizeAddButton";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DietBadge } from "@/components/site/DietBadge";
 import {
@@ -303,38 +306,23 @@ function RecipeDrawer() {
                   value={perfilLabel(recipe.profile)}
                 />
               </dl>
+
+              {/* Compartilhar + imprimir */}
+              <RecipeShareBar
+                slug={recipe.slug}
+                title={recipe.title}
+                tagline={subtitle}
+              />
             </div>
 
-            {/* Pote real — protagonista: maior, com sombra de chão e flutuação idle */}
+            {/* Pote real — vídeo em loop quando existir, com fallback para a imagem */}
             {productImg && (
               <div className="lg:col-span-5 flex justify-center lg:justify-end">
-                <div className="relative group">
-                  {/* Halo âmbar */}
-                  <div
-                    aria-hidden
-                    className="absolute -inset-10 rounded-full opacity-60"
-                    style={{
-                      background:
-                        "radial-gradient(circle, oklch(0.72 0.16 75 / 0.55) 0%, transparent 70%)",
-                      filter: "blur(40px)",
-                    }}
-                  />
-                  {/* Sombra de chão elíptica */}
-                  <div
-                    aria-hidden
-                    className="absolute left-1/2 -translate-x-1/2 -bottom-6 w-[70%] h-4 pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, transparent 75%)",
-                      filter: "blur(8px)",
-                    }}
-                  />
-                  <img decoding="async" loading="eager" fetchPriority="high"
-                    src={productImg}
-                    alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
-                    className="relative h-80 sm:h-[26rem] lg:h-[30rem] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.55)] animate-pote-float"
-                  />
-                </div>
+                <RecipeHeroMedia
+                  slug={recipe.slug}
+                  poster={productImg}
+                  alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
+                />
               </div>
             )}
           </div>
@@ -479,21 +467,26 @@ function RecipeDrawer() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {harmonization.slice(0, 3).map((p) => (
-                <Link
+                <div
                   key={p.handle}
-                  to="/product/$handle"
-                  params={{ handle: p.handle }}
                   className="group flex flex-col items-center text-center border border-brand-ink/15 bg-brand-cream/40 hover:border-accent p-6 transition"
                 >
-                  <img decoding="async" loading="lazy"
-                    src={p.img!}
-                    alt={p.name}
-                    className="h-32 w-auto object-contain mb-4 group-hover:scale-105 transition-transform"
-                  />
-                  <p className="font-display font-bold uppercase text-sm tracking-tight leading-tight">
-                    {p.name}
-                  </p>
-                </Link>
+                  <Link
+                    to="/product/$handle"
+                    params={{ handle: p.handle }}
+                    className="flex flex-col items-center"
+                  >
+                    <img decoding="async" loading="lazy"
+                      src={p.img!}
+                      alt={p.name}
+                      className="h-32 w-auto object-contain mb-4 group-hover:scale-105 transition-transform"
+                    />
+                    <p className="font-display font-bold uppercase text-sm tracking-tight leading-tight">
+                      {p.name}
+                    </p>
+                  </Link>
+                  <HarmonizeAddButton handle={p.handle} name={p.name} />
+                </div>
               ))}
             </div>
           </section>
