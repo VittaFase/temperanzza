@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Mail, Instagram, MessageCircle, Printer } from "lucide-react";
 import { toast } from "sonner";
 
@@ -18,8 +19,9 @@ export function RecipeShareBar({
   title: string;
   tagline: string;
 }) {
-  const url =
-    typeof window !== "undefined" ? window.location.href : `${BASE}/cozinha/${slug}`;
+  // URL só é lida do browser após a hidratação (evita divergência SSR/cliente)
+  const [url, setUrl] = useState(`${BASE}/cozinha/${slug}`);
+  useEffect(() => setUrl(window.location.href), [slug]);
 
   const waText = encodeURIComponent(`${title}\n\n${tagline}\n\n${url}`);
   const mailto = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(

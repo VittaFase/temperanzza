@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Maximize2 } from "lucide-react";
 
 /**
@@ -18,9 +18,12 @@ export function RecipeHeroMedia({
   const [videoOk, setVideoOk] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const reduced =
-    typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    setReduced(
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
+    );
+  }, []);
 
   const goFullscreen = () => {
     const el = videoRef.current;
