@@ -1358,3 +1358,89 @@ export function getRecipeBySlug(slug: string): Recipe | undefined {
 export function getRecipesByHandle(handle: string): Recipe[] {
   return RECIPES.filter((r) => r.featuredHandle === handle);
 }
+
+// ═══════════════════════════════════════════════════════════════════
+// Proteína principal — filtro complementar da Biblioteca Gastronômica
+// ═══════════════════════════════════════════════════════════════════
+
+export type Protein =
+  | "frango"
+  | "bovina"
+  | "suino"
+  | "pescados"
+  | "ovo"
+  | "vegetariano";
+
+export const PROTEINS: Record<Protein, string> = {
+  frango: "Frango",
+  bovina: "Carne bovina",
+  suino: "Suíno",
+  pescados: "Peixe & Frutos do Mar",
+  ovo: "Ovo",
+  vegetariano: "Vegetariano",
+};
+
+export const PROTEIN_ORDER: Protein[] = [
+  "frango",
+  "bovina",
+  "suino",
+  "pescados",
+  "ovo",
+  "vegetariano",
+];
+
+/**
+ * Classificação da proteína dominante de cada receita.
+ * Mantida como mapa por slug (em vez de campo repetido em cada objeto)
+ * para não tocar em nenhum registro existente.
+ */
+export const RECIPE_PROTEIN: Record<string, Protein> = {
+  "omelete-bacon-em-po": "ovo",
+  "frango-assado-paprica-defumada": "frango",
+  "hamburguer-bacon-em-po": "bovina",
+  "ovos-mexidos-ervas-finas": "ovo",
+  "peixe-grelhado-salsa-cebola-alho": "pescados",
+  "bife-manteiga-chimi-churri": "bovina",
+  "ovos-cozidos-tempero-edu": "ovo",
+  "carne-moida-tempero-mineiro": "bovina",
+  "frango-panela-ana-maria": "frango",
+  "ovos-dourados-curcuma": "ovo",
+  "frango-grelhado-cebola-em-po": "frango",
+  "sopa-legumes-cebola-em-po": "vegetariano",
+  "ovo-frito-lemon-pepper": "ovo",
+  "porco-assado-paprica-picante": "suino",
+  "camarao-chimi-churri-picante": "pescados",
+  "pao-de-queijo-tempero-mineiro": "vegetariano",
+  "arroz-soltinho-cebola-em-po": "vegetariano",
+  "frango-quiabo-ana-maria": "frango",
+  "ovos-fritos-bacon-tradicional": "ovo",
+  "bife-acebolado-lemon-pepper": "bovina",
+  "costelinha-paprica-defumada-tradicional": "suino",
+  "omelete-ervas-finas-tradicional": "ovo",
+  "frango-chimi-churri-tradicional": "frango",
+  "legumes-assados-curcuma-tradicional": "vegetariano",
+  "frango-dourado-paprica-doce": "frango",
+  "costela-porco-du-chefe": "suino",
+  "bife-cavalo-pimenta-reino": "bovina",
+  "cafe-ritual-canela": "vegetariano",
+  "maca-assada-canela": "vegetariano",
+  "pipoca-caseira-temperaflix-tradicional": "vegetariano",
+  "mix-castanhas-temperaflix-ervas": "vegetariano",
+  "salmao-crosta-ervas-finas": "pescados",
+  "abacate-recheado-frango-chimi-churri": "frango",
+  "couve-flor-gratinada-curcuma": "vegetariano",
+  "sardinha-grelhada-lemon-pepper": "pescados",
+  "panqueca-proteica-tempero-edu": "ovo",
+  "berinjela-assada-tempero-mineiro": "vegetariano",
+  "costela-bovina-pimenta-reino": "bovina",
+  "figado-acebolado-cebola-po": "bovina",
+  "camarao-manteiga-salsa-cebola-alho": "pescados",
+  "carne-panela-batatas-tempero-mineiro": "bovina",
+  "peixe-assado-legumes-salsa-cebola-alho": "pescados",
+  "feijao-tropeiro-ana-maria": "vegetariano",
+};
+
+/** Proteína dominante da receita (campo explícito tem prioridade sobre o mapa). */
+export function getRecipeProtein(r: Recipe): Protein | undefined {
+  return r.proteinaPrincipal ?? RECIPE_PROTEIN[r.slug];
+}
