@@ -1,48 +1,47 @@
-Diagnóstico atual das integrações
+## Feedback antes de executar
 
-1. Shopify — Loja conectada, mas token admin expirado
-   - Loja: temperanzza-spice-emporium-dy1i0.myshopify.com (claimed).
-   - Storefront API (vitrine e checkout no site) está funcionando.
-   - Admin API (usada pelo sync Bling → Shopify) está retornando 401: "Invalid API key or access token".
-   - Resultado: o último sync de produtos falhou em 19/19 SKUs.
+Boa notícia: **90% do prompt já é suportado pela estrutura atual — e vários itens dele são desnecessários (e até arriscados) se executados literalmente.**
 
-2. Bling — OAuth conectado, mas token expirado
-   - Token salvo em `bling_tokens`, mas expirou em 2026-07-09.
-   - Refresh automático não manteve o token válido.
-   - Último sync: 0/0 atualizados, 19 erros, todos por falha no Shopify Admin.
-   - Nenhum pedido Shopify → Bling foi processado até agora.
+O que **não** deve ser feito (evita quebra de estrutura):
 
-3. Webhook Shopify → Bling
-   - Rota `/api/public/shopify/order-webhook` implementada e assinada com HMAC.
-   - Depende do Shopify admin token e do Bling token — ambos precisam estar válidos para criar pedidos e emitir NFe.
+1. **Não criar rotas novas.** `/cozinha/$slug` e `/product/$handle` já são rotas dinâmicas. Criar 12 arquivos `cozinha.salmao-....tsx` duplicaria o layout, quebraria o drawer editorial e o `routeTree.gen.ts`. As 12 receitas entram como **12 objetos no array `RECIPES`** em `src/lib/recipes.ts` — SEO, breadcrumb, meta bar, pote, Palavra do Chef, pills, "Assinatura desta receita", harmonização e "Continue a leitura" são gerados automaticamente pelo template existente.
+2. **Não criar páginas de produto.** `/product/$handle` busca da Shopify em tempo real. Os 10 produtos citados existem no catálogo — não há link quebrado a criar. Vou apenas **validar os handles** (ver ponto técnico abaixo).
+3. **Não criar perfis sensoriais novos.** O campo `profile` é um enum fechado de 5 valores (`defumado | ervas | casa | puras | citrico-picante`) usado pela harmonização e pelo painel de compatibilidade. "Herbáceo", "Terroso", "Encorpado", "Intenso", "Picante suave" seriam tokens inválidos → erro de tipo. Vou mapear para o enum existente e preservar a nuance no `subtitle`/tagline.
+4. **Não mexer na numeração nem nos índices de categoria.** O accordion de `/cozinha` filtra `RECIPES` por dieta/categoria e numera automaticamente — inserir no fim do array já coloca as novas como 18, 19, 20 etc.
 
-4. GitHub
-   - Sync bidirecional com VittaFase/temperanzza.git já está ativo (commits recentes confirmam).
+Correção real que o prompt revelou: o contador do hero diz **"5 estilos"** hardcoded, mas hoje existem **4 categorias**. Vou corrigir para 4. O número de receitas já é dinâmico (`RECIPES.length`).
 
-Plano de correção
+## O que será implementado
 
-A. Reconectar Shopify
-   - Usar `shopify--connect_shopify_account` para renovar o online/admin token.
-   - Isso restaura a Admin API e permite que o sync Bling atualize preços e estoque.
+**Arquivo alterado: `src/lib/recipes.ts`** — 12 novas entradas ao final do array, cada uma com: `slug`, `title`, `featuredHandle`, `compatibleDiets`, `moment`, `profile`, `category`, `subtitle` (tagline), `intro`, `ingredients`, `steps`, `chefWord`, `whyItWorks`, `substitution`, `time`, `serves`, `difficulty`, `harmonization`, `hero.color`.
 
-B. Reconectar Bling
-   - O token atual expirou. Precisamos refazer o OAuth em `/admin/bling` para gerar novo access/refresh token.
-   - Isso garante que pedidos do Shopify possam ser criados no Bling automaticamente.
+Mapeamento de dados:
 
-C. Testar sync Bling → Shopify
-   - Após ambos conectados, executar o sync manual em `/admin/bling`.
-   - Verificar se os 19 SKUs foram mapeados e se preços/estoque foram atualizados.
+| # | slug | handle | dietas / categoria | profile |
+|---|------|--------|--------------------|---------|
+| 1 | salmao-crosta-ervas-finas | ervas-finas | keto, lowcarb, carnivora-flex | ervas |
+| 2 | abacate-recheado-frango-chimi-churri | chimi-churri-sem-pimenta | keto, lowcarb | ervas |
+| 3 | couve-flor-gratinada-curcuma | curcuma | keto, lowcarb | puras |
+| 4 | sardinha-grelhada-lemon-pepper | lemon-pepper | lowcarb, keto, carnivora-flex | citrico-picante |
+| 5 | panqueca-proteica-tempero-edu | tempero-do-edu | lowcarb, keto | casa |
+| 6 | berinjela-assada-tempero-mineiro | tempero-mineiro | lowcarb | casa |
+| 7 | costela-bovina-pimenta-reino | pimenta-do-reino | carnivora-flex, keto, lowcarb | puras |
+| 8 | figado-acebolado-cebola-po | cebola-em-po | carnivora-flex, keto, lowcarb | puras |
+| 9 | camarao-manteiga-salsa-cebola-alho | salsa-cebola-e-alho | carnivora-flex, keto, lowcarb | casa |
+| 10 | carne-panela-batatas-tempero-mineiro | tempero-mineiro | tradicional | casa |
+| 11 | peixe-assado-legumes-salsa-cebola-alho | salsa-cebola-e-alho | tradicional | casa |
+| 12 | feijao-tropeiro-ana-maria | ana-maria | tradicional | casa |
 
-D. Verificar webhook Shopify → Bling
-   - Confirmar se o webhook de "orders/create" ainda está configurado no admin Shopify apontando para `https://temperanzza.com.br/api/public/shopify/order-webhook`.
-   - Se necessário, reconfigurar após a reconexão.
+Momentos: café (5), almoço (2, 4, 8, 12), jantar (1, 3, 6, 7, 9, 10, 11) — o "Continue a leitura" já prioriza mesmo momento.
 
-E. Testar fluxo de pedido completo
-   - Simular um pedido de teste para confirmar que:
-     a) Carrinho Shopify gera checkoutUrl;
-     b) Pedido pago dispara webhook;
-     c) Pedido e NFe são criados no Bling.
+**Arquivo alterado: `src/routes/cozinha.tsx`** — contador do hero: `5 estilos` → `4 estilos`.
 
-Observação importante: o Shopify admin token usado pelo sync é o mesmo que precisa ser renovado. A reconexão da conta Shopify é o passo crítico — sem ela, nem preços, nem estoque, nem pedidos fluem corretamente.
+## Validações técnicas antes de fechar
 
-Quer que eu execute esse plano agora?
+- Conferir na Shopify que os 10 handles resolvem em `/product/[handle]` (`tempero-do-edu` vs `edu-guedes`, `chimi-churri-sem-pimenta` vs `chimichurri-sem-pimenta`). Se o handle real divergir, uso o handle Shopify em `featuredHandle` — `getProductImage` já tem alias para os dois formatos, então o pote continua aparecendo.
+- Todos os 12 potes já têm PNG local em `src/lib/productImages.ts` — nenhum placeholder necessário.
+- `bun run build` + checagem visual do accordion e de 2 receitas no preview.
+
+## Impacto em back-end
+
+Zero. Nenhuma migração, nenhuma função de servidor, nada em Shopify/Bling. O `sitemap.xml` já é gerado a partir de `RECIPES`, então as 12 novas URLs entram no sitemap automaticamente.
