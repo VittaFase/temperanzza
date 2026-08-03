@@ -3,6 +3,9 @@ import { useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
 import { RecipeAddToCart } from "@/components/site/RecipeAddToCart";
+import { RecipeShareBar } from "@/components/site/RecipeShareBar";
+import { RecipeHeroMedia } from "@/components/site/RecipeHeroMedia";
+import { HarmonizeAddButton } from "@/components/site/HarmonizeAddButton";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DietBadge } from "@/components/site/DietBadge";
 import {
