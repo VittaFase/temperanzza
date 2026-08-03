@@ -1,9 +1,18 @@
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { type DietKey } from "@/lib/diets";
-import { RECIPES, type Recipe } from "@/lib/recipes";
-import { ChevronDown, ArrowUpRight } from "lucide-react";
+import {
+  RECIPES,
+  MOMENTS,
+  PROTEINS,
+  PROTEIN_ORDER,
+  getRecipeProtein,
+  type Recipe,
+  type Moment,
+  type Protein,
+} from "@/lib/recipes";
+import { ChevronDown, ArrowUpRight, X } from "lucide-react";
 import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
 import smokePoster from "@/assets/hero-smoke-poster.jpg";
 import { CountUp } from "@/components/site/CountUp";
