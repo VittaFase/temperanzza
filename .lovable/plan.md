@@ -1,47 +1,94 @@
-## Feedback antes de executar
+## Leitura da referência (kinders.com/recipes)
 
-Boa notícia: **90% do prompt já é suportado pela estrutura atual — e vários itens dele são desnecessários (e até arriscados) se executados literalmente.**
+A estrutura do Kinder's tem 3 camadas, e hoje temos só uma delas:
 
-O que **não** deve ser feito (evita quebra de estrutura):
+| Camada Kinder's | Temperanzza hoje |
+|---|---|
+| **Hub `/recipes`** — hero com receita em destaque, faixa de vídeos how-to, texto de convite, carrosséis curados por tema ("Easy Grilling", "Teriyaki Favorites"), grade de coleções | `/cozinha` tem hero + accordion de índice apenas |
+| **Índice `/recipes/all`** — grade de cards com foto + filtros facetados (Tipo de refeição, Ingrediente, Ocasião, Tempero, Método), busca, contador, "carregar mais" | não existe |
+| **Receita `/recipes/[slug]`** — foto grande do prato, ficha (tempo/rende/dificuldade), **compartilhar**, **imprimir**, ingredientes com checkbox, passos numerados, produto usado com "add to cart", receitas relacionadas | drawer editorial já cobre ficha, ingredientes, passos, pote, add-to-cart e relacionadas — falta foto do prato, compartilhar, imprimir, checkbox, print view |
 
-1. **Não criar rotas novas.** `/cozinha/$slug` e `/product/$handle` já são rotas dinâmicas. Criar 12 arquivos `cozinha.salmao-....tsx` duplicaria o layout, quebraria o drawer editorial e o `routeTree.gen.ts`. As 12 receitas entram como **12 objetos no array `RECIPES`** em `src/lib/recipes.ts` — SEO, breadcrumb, meta bar, pote, Palavra do Chef, pills, "Assinatura desta receita", harmonização e "Continue a leitura" são gerados automaticamente pelo template existente.
-2. **Não criar páginas de produto.** `/product/$handle` busca da Shopify em tempo real. Os 10 produtos citados existem no catálogo — não há link quebrado a criar. Vou apenas **validar os handles** (ver ponto técnico abaixo).
-3. **Não criar perfis sensoriais novos.** O campo `profile` é um enum fechado de 5 valores (`defumado | ervas | casa | puras | citrico-picante`) usado pela harmonização e pelo painel de compatibilidade. "Herbáceo", "Terroso", "Encorpado", "Intenso", "Picante suave" seriam tokens inválidos → erro de tipo. Vou mapear para o enum existente e preservar a nuance no `subtitle`/tagline.
-4. **Não mexer na numeração nem nos índices de categoria.** O accordion de `/cozinha` filtra `RECIPES` por dieta/categoria e numera automaticamente — inserir no fim do array já coloca as novas como 18, 19, 20 etc.
+Nada da estrutura atual é descartado: o drawer, o SEO, o JSON-LD `Recipe`, o `RecipeAddToCart`, a harmonização e o "Continue a leitura" continuam sendo o núcleo. O trabalho é **envelopar** isso com as camadas que faltam.
 
-Correção real que o prompt revelou: o contador do hero diz **"5 estilos"** hardcoded, mas hoje existem **4 categorias**. Vou corrigir para 4. O número de receitas já é dinâmico (`RECIPES.length`).
+## Decisões confirmadas
 
-## O que será implementado
+- Cada receita ganha **foto do prato pronto gerada por IA**, no padrão visual da casa (luz lateral quente, madeira escura, fundo ink, o pote real da Temperanzza em cena). Isso **muda a diretriz atual** de "sem foto de prato" — vou atualizar a memória do projeto e a skill de imagem para o novo padrão.
+- A faixa de vídeos how-to fica **estruturada mas oculta**, ligada por uma flag quando você enviar os vídeos reais.
+- Filtros facetados completos: **Tipo de refeição · Ingrediente principal · Ocasião · Tempero · Dieta**.
 
-**Arquivo alterado: `src/lib/recipes.ts`** — 12 novas entradas ao final do array, cada uma com: `slug`, `title`, `featuredHandle`, `compatibleDiets`, `moment`, `profile`, `category`, `subtitle` (tagline), `intro`, `ingredients`, `steps`, `chefWord`, `whyItWorks`, `substitution`, `time`, `serves`, `difficulty`, `harmonization`, `hero.color`.
+## Etapa 1 — Camada de dados (sem quebrar nada)
 
-Mapeamento de dados:
+`src/lib/recipes.ts`: novos campos **todos opcionais**, então nenhuma receita existente quebra em tipo nem em runtime.
 
-| # | slug | handle | dietas / categoria | profile |
-|---|------|--------|--------------------|---------|
-| 1 | salmao-crosta-ervas-finas | ervas-finas | keto, lowcarb, carnivora-flex | ervas |
-| 2 | abacate-recheado-frango-chimi-churri | chimi-churri-sem-pimenta | keto, lowcarb | ervas |
-| 3 | couve-flor-gratinada-curcuma | curcuma | keto, lowcarb | puras |
-| 4 | sardinha-grelhada-lemon-pepper | lemon-pepper | lowcarb, keto, carnivora-flex | citrico-picante |
-| 5 | panqueca-proteica-tempero-edu | tempero-do-edu | lowcarb, keto | casa |
-| 6 | berinjela-assada-tempero-mineiro | tempero-mineiro | lowcarb | casa |
-| 7 | costela-bovina-pimenta-reino | pimenta-do-reino | carnivora-flex, keto, lowcarb | puras |
-| 8 | figado-acebolado-cebola-po | cebola-em-po | carnivora-flex, keto, lowcarb | puras |
-| 9 | camarao-manteiga-salsa-cebola-alho | salsa-cebola-e-alho | carnivora-flex, keto, lowcarb | casa |
-| 10 | carne-panela-batatas-tempero-mineiro | tempero-mineiro | tradicional | casa |
-| 11 | peixe-assado-legumes-salsa-cebola-alho | salsa-cebola-e-alho | tradicional | casa |
-| 12 | feijao-tropeiro-ana-maria | ana-maria | tradicional | casa |
+- `mealType?: MealType` — pratos principais, ensopados/sopas, aperitivos e molhos, acompanhamentos, hambúrgueres, café da manhã, sanduíches, saladas
+- `mainIngredient?: MainIngredient` — frango, carne bovina, porco, frutos do mar, ovos, vegetariano, legumes
+- `occasion?: Occasion[]` — rápido e fácil, comida reconfortante, jantar compartilhado, uma panela, dia de churrasco, prático para a semana, sazonal
+- `image?: string` — pointer do asset da foto do prato
+- `imageAlt?: string`
+- `featured?: boolean` — elege a receita do hero
+- `collections?: string[]` — pertence a carrosséis curados
+- `videoUrl?: string` — reservado para os how-to
 
-Momentos: café (5), almoço (2, 4, 8, 12), jantar (1, 3, 6, 7, 9, 10, 11) — o "Continue a leitura" já prioriza mesmo momento.
+Fallback obrigatório: onde `image` não existir, o card e o hero continuam usando o bloco `hero.color` + pote + tipografia atual. Assim a implementação nunca depende de todas as fotos existirem ao mesmo tempo.
 
-**Arquivo alterado: `src/routes/cozinha.tsx`** — contador do hero: `5 estilos` → `4 estilos`.
+Novo arquivo `src/lib/recipeFacets.ts`: rótulos em PT-BR, ordem de exibição, contagem por faceta e a função de filtro (aplicada em memória sobre `RECIPES` — zero backend).
 
-## Validações técnicas antes de fechar
+Novo arquivo `src/lib/recipeCollections.ts`: as coleções curadas do hub (título, subtítulo, filtro ou lista de slugs, link "ver mais" pré-filtrado).
 
-- Conferir na Shopify que os 10 handles resolvem em `/product/[handle]` (`tempero-do-edu` vs `edu-guedes`, `chimi-churri-sem-pimenta` vs `chimichurri-sem-pimenta`). Se o handle real divergir, uso o handle Shopify em `featuredHandle` — `getProductImage` já tem alias para os dois formatos, então o pote continua aparecendo.
-- Todos os 12 potes já têm PNG local em `src/lib/productImages.ts` — nenhum placeholder necessário.
-- `bun run build` + checagem visual do accordion e de 2 receitas no preview.
+## Etapa 2 — Hub `/cozinha`
 
-## Impacto em back-end
+Mantém hero atual e passa a ter, na ordem:
 
-Zero. Nenhuma migração, nenhuma função de servidor, nada em Shopify/Bling. O `sitemap.xml` já é gerado a partir de `RECIPES`, então as 12 novas URLs entram no sitemap automaticamente.
+1. **Receita em destaque** — foto grande do prato, título, ficha resumida, CTA "Ver receita" (e slot de vídeo quando existir).
+2. **Faixa "Aprenda a técnica"** — 3 cards de vídeo com duração; oculta enquanto não houver `videoUrl`.
+3. **"O que estamos cozinhando"** — texto de convite + botão **Ver todas as receitas** → `/cozinha/todas`.
+4. **Carrosséis curados** (3 a 4 faixas, ex.: "Fogo e Defumado", "Mesa de Todos os Dias", "Low Carb sem tristeza"), cada card com foto, nome e "Ver receita" com o traço fino da casa; cabeçalho e rodapé com "Ver mais".
+5. **Grade de coleções** — 4 blocos que levam ao índice já filtrado.
+6. O **accordion "O Menu da Casa"** atual permanece, agora como índice tipográfico no fim da página (é a assinatura Temperanzza e ninguém perde o que já conhece).
+
+## Etapa 3 — Índice `/cozinha/todas`
+
+Nova rota irmã (não conflita com `/cozinha/$slug`, que é o drawer).
+
+- Coluna/painel de filtros com as 5 facetas em colunas maiúsculas espaçadas, exatamente no ritmo do print que você enviou (versão mobile em drawer).
+- Busca por texto (título, subtítulo, ingredientes).
+- Estado dos filtros na **URL** (`?meal=&ingredient=&occasion=&tempero=&dieta=&q=`), então cada combinação é linkável, compartilhável e indexável.
+- Grade de cards com foto, contador "N receitas", chips de filtro ativo removíveis, "Limpar tudo" e paginação incremental.
+- Estado vazio editorial com sugestão de remover filtros.
+
+## Etapa 4 — Receita: compartilhar, imprimir e leitura ativa
+
+Dentro do drawer atual (`src/routes/cozinha.$slug.tsx`), sem trocar a arquitetura:
+
+- **Foto do prato no hero** ao lado do pote real; sem foto, cai no visual atual.
+- **Barra de ações** sticky: `Compartilhar` (Web Share API nativa no mobile; no desktop popover com WhatsApp, Facebook, X, Pinterest, e-mail e "copiar link" com toast) + `Imprimir` + `Salvar` (favoritos em localStorage, sem backend).
+- **Ingredientes com checkbox** — marcar risca o item; estado por receita em localStorage.
+- **Passos numerados clicáveis** — passo concluído esmaece; ajuda quem cozinha com o celular na bancada.
+- **Ajuste de porções** — botões 1x/2x/3x recalculando as quantidades numéricas dos ingredientes (heurística segura: só multiplica número no início da string; texto sem número fica intacto).
+- Bloco do tempero protagonista, harmonização e "Continue a leitura" ficam como estão.
+
+## Etapa 5 — Área de impressão
+
+Nova rota `/cozinha/$slug/imprimir` (layout limpo, sem drawer): logo da casa, título, ficha, ingredientes, passos, tempero usado e rodapé `temperanzza.com.br`. CSS `@page` com margens, cores desligadas para não gastar tinta e quebras controladas. O botão Imprimir abre essa view e chama `window.print()`.
+
+## Etapa 6 — Fotos dos pratos
+
+Geração em lotes, com prompt padronizado da casa (madeira escura, luz lateral quente, louça sóbria, pote real ao lado, sem texto, sem mãos, sem clichê de banco de imagens), salvas como asset pointers em `src/assets/receitas/`. Ordem: destaques do hub → capas dos carrosséis → restante do índice. Cada lote é validado no preview antes do próximo, e o fallback garante que o site nunca fica quebrado no meio do processo.
+
+## Detalhes técnicos
+
+- **Backend: zero mudanças.** Nenhuma migração, nenhuma server function, nada em Shopify ou Bling. Tudo roda sobre o array `RECIPES` em memória.
+- Rotas novas: `src/routes/cozinha.todas.tsx` e `src/routes/cozinha.$slug.imprimir.tsx`. `routeTree.gen.ts` é regerado pelo plugin — não editado à mão.
+- Componentes novos em `src/components/site/`: `RecipeCard`, `RecipeCarousel` (reaproveitando o padrão do `FlavorCarousel`), `RecipeFacetFilters`, `RecipeShare`, `RecipePrintButton`, `RecipeHeroFeatured`, `RecipeCollectionGrid`.
+- SEO: hub e índice ganham `head()` próprio; o índice filtrado recebe `canonical` para `/cozinha/todas` (evita conteúdo duplicado por combinação de filtro) e a rota de impressão fica `noindex`. `ItemList` JSON-LD no hub e no índice; o `Recipe` JSON-LD da receita passa a incluir `image` da foto do prato, `prepTime`/`cookTime`/`recipeYield`.
+- Acessibilidade: filtros como `fieldset`/`legend`, checkbox de ingrediente com label real, carrossel navegável por teclado, foco visível, `prefers-reduced-motion` respeitado.
+- Assinatura Temperanzza mantida em tudo: `rounded-none`, Big Shoulders Stencil nos títulos, Playfair itálico nas linhas editoriais, tokens `brand-*` (nenhuma cor hardcoded), traço fino como separador em vez do dash-line do Kinder's.
+- Validação: `tsgo`, build, e verificação no preview do hub, do índice com filtros combinados, de 3 receitas, do compartilhar e da view de impressão.
+
+## Ordem de entrega sugerida
+
+1. Etapas 1 + 4 (dados + ações na receita) — ganho imediato, risco mínimo.
+2. Etapa 5 (impressão).
+3. Etapa 3 (índice com filtros).
+4. Etapa 2 (hub curado).
+5. Etapa 6 (fotos, em lotes) rodando em paralelo a partir da etapa 2.
