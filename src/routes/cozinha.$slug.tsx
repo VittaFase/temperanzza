@@ -467,21 +467,26 @@ function RecipeDrawer() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {harmonization.slice(0, 3).map((p) => (
-                <Link
+                <div
                   key={p.handle}
-                  to="/product/$handle"
-                  params={{ handle: p.handle }}
                   className="group flex flex-col items-center text-center border border-brand-ink/15 bg-brand-cream/40 hover:border-accent p-6 transition"
                 >
-                  <img decoding="async" loading="lazy"
-                    src={p.img!}
-                    alt={p.name}
-                    className="h-32 w-auto object-contain mb-4 group-hover:scale-105 transition-transform"
-                  />
-                  <p className="font-display font-bold uppercase text-sm tracking-tight leading-tight">
-                    {p.name}
-                  </p>
-                </Link>
+                  <Link
+                    to="/product/$handle"
+                    params={{ handle: p.handle }}
+                    className="flex flex-col items-center"
+                  >
+                    <img decoding="async" loading="lazy"
+                      src={p.img!}
+                      alt={p.name}
+                      className="h-32 w-auto object-contain mb-4 group-hover:scale-105 transition-transform"
+                    />
+                    <p className="font-display font-bold uppercase text-sm tracking-tight leading-tight">
+                      {p.name}
+                    </p>
+                  </Link>
+                  <HarmonizeAddButton handle={p.handle} name={p.name} />
+                </div>
               ))}
             </div>
           </section>
