@@ -303,38 +303,23 @@ function RecipeDrawer() {
                   value={perfilLabel(recipe.profile)}
                 />
               </dl>
+
+              {/* Compartilhar + imprimir */}
+              <RecipeShareBar
+                slug={recipe.slug}
+                title={recipe.title}
+                tagline={subtitle}
+              />
             </div>
 
-            {/* Pote real — protagonista: maior, com sombra de chão e flutuação idle */}
+            {/* Pote real — vídeo em loop quando existir, com fallback para a imagem */}
             {productImg && (
               <div className="lg:col-span-5 flex justify-center lg:justify-end">
-                <div className="relative group">
-                  {/* Halo âmbar */}
-                  <div
-                    aria-hidden
-                    className="absolute -inset-10 rounded-full opacity-60"
-                    style={{
-                      background:
-                        "radial-gradient(circle, oklch(0.72 0.16 75 / 0.55) 0%, transparent 70%)",
-                      filter: "blur(40px)",
-                    }}
-                  />
-                  {/* Sombra de chão elíptica */}
-                  <div
-                    aria-hidden
-                    className="absolute left-1/2 -translate-x-1/2 -bottom-6 w-[70%] h-4 pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, transparent 75%)",
-                      filter: "blur(8px)",
-                    }}
-                  />
-                  <img decoding="async" loading="eager" fetchPriority="high"
-                    src={productImg}
-                    alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
-                    className="relative h-80 sm:h-[26rem] lg:h-[30rem] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.55)] animate-pote-float"
-                  />
-                </div>
+                <RecipeHeroMedia
+                  slug={recipe.slug}
+                  poster={productImg}
+                  alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
+                />
               </div>
             )}
           </div>
