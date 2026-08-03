@@ -270,8 +270,35 @@ const CATEGORIAS: CategoriaDef[] = [
   },
 ];
 
+const MOMENT_ORDER: Moment[] = ["cafe", "almoco", "jantar"];
+
 function BibliotecaIndice() {
   const [aberta, setAberta] = useState<CategoriaKey | null>(null);
+  const { refeicao, proteina } = Route.useSearch();
+  const navigate = useNavigate({ from: "/cozinha" });
+
+  const setFilter = (key: "refeicao" | "proteina", value: string) =>
+    navigate({
+      search: (prev) => ({
+        ...prev,
+        [key]: prev[key] === value ? "" : value,
+      }),
+      resetScroll: false,
+    });
+
+  const clearFilters = () =>
+    navigate({ search: { refeicao: "", proteina: "" }, resetScroll: false });
+
+  const extraFilter = useMemo(() => {
+    return (r: Recipe) => {
+      if (refeicao && r.moment !== refeicao) return false;
+      if (proteina && getRecipeProtein(r) !== proteina) return false;
+      return true;
+    };
+  }, [refeicao, proteina]);
+
+  const total = useMemo(() => RECIPES.filter(extraFilter).length, [extraFilter]);
+  const ativo = Boolean(refeicao || proteina);
 
   return (
     <section id="indice" aria-labelledby="indice-title" className="bg-brand-paper py-24 sm:py-32">
@@ -295,6 +322,55 @@ function BibliotecaIndice() {
           </p>
         </div>
 
+        {/* Filtros complementares — refeição e proteína, combinam com as dietas */}
+        <div className="mb-14 border-y border-brand-ink/15 py-8 grid gap-8 sm:grid-cols-2">
+          <fieldset>
+            <legend className="text-[10px] font-display uppercase tracking-[0.4em] text-brand-ink/50 mb-4">
+              Refeição
+            </legend>
+            <div className="flex flex-wrap gap-2">
+              {MOMENT_ORDER.map((m) => (
+                <FilterChip
+                  key={m}
+                  label={MOMENTS[m]}
+                  active={refeicao === m}
+                  onClick={() => setFilter("refeicao", m)}
+                />
+              ))}
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend className="text-[10px] font-display uppercase tracking-[0.4em] text-brand-ink/50 mb-4">
+              Proteína principal
+            </legend>
+            <div className="flex flex-wrap gap-2">
+              {PROTEIN_ORDER.map((p) => (
+                <FilterChip
+                  key={p}
+                  label={PROTEINS[p]}
+                  active={proteina === p}
+                  onClick={() => setFilter("proteina", p)}
+                />
+              ))}
+            </div>
+          </fieldset>
+          <div className="sm:col-span-2 flex flex-wrap items-center gap-4">
+            <span className="font-display uppercase tracking-[0.25em] text-[11px] text-brand-ink/60 tabular-nums">
+              {total} {total === 1 ? "receita" : "receitas"}
+            </span>
+            {ativo && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="inline-flex min-h-[36px] items-center gap-2 border border-brand-ink/25 hover:border-accent px-3 py-2 font-display uppercase tracking-[0.2em] text-[10px] transition-colors"
+              >
+                <X className="h-3.5 w-3.5" />
+                Limpar filtros
+              </button>
+            )}
+          </div>
+        </div>
+
         {/* Accordion — Michelin menu style */}
         <div>
           {CATEGORIAS.map((cat) => (
@@ -302,6 +378,7 @@ function BibliotecaIndice() {
             <CategoriaAccordion
               key={cat.key}
               cat={cat}
+              extraFilter={extraFilter}
               open={aberta === cat.key}
               onToggle={() => setAberta(aberta === cat.key ? null : cat.key)}
             />
@@ -309,6 +386,31 @@ function BibliotecaIndice() {
         </div>
       </div>
     </section>
+  );
+}
+
+function FilterChip({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={`inline-flex min-h-[40px] items-center px-4 py-2 border font-display uppercase tracking-[0.2em] text-[10px] transition-colors ${
+        active
+          ? "border-accent bg-brand-ink text-brand-paper"
+          : "border-brand-ink/25 text-brand-ink/75 hover:border-accent"
+      }`}
+    >
+      {label}
+    </button>
   );
 }
 
