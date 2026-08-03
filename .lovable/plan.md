@@ -1,94 +1,70 @@
-## Leitura da referência (kinders.com/recipes)
+## Feedback do novo prompt
 
-A estrutura do Kinder's tem 3 camadas, e hoje temos só uma delas:
+O prompt novo é **compatível** com o que já planejamos — não conflita, mas é um subconjunto mais enxuto, com 3 diferenças que valem incorporar e 2 pontos que precisam de correção porque partem de premissas desatualizadas do projeto.
 
-| Camada Kinder's | Temperanzza hoje |
-|---|---|
-| **Hub `/recipes`** — hero com receita em destaque, faixa de vídeos how-to, texto de convite, carrosséis curados por tema ("Easy Grilling", "Teriyaki Favorites"), grade de coleções | `/cozinha` tem hero + accordion de índice apenas |
-| **Índice `/recipes/all`** — grade de cards com foto + filtros facetados (Tipo de refeição, Ingrediente, Ocasião, Tempero, Método), busca, contador, "carregar mais" | não existe |
-| **Receita `/recipes/[slug]`** — foto grande do prato, ficha (tempo/rende/dificuldade), **compartilhar**, **imprimir**, ingredientes com checkbox, passos numerados, produto usado com "add to cart", receitas relacionadas | drawer editorial já cobre ficha, ingredientes, passos, pote, add-to-cart e relacionadas — falta foto do prato, compartilhar, imprimir, checkbox, print view |
+**Traz de novo (vale adotar):**
+- Compartilhamento explícito em **WhatsApp / Instagram (copiar link) / E-mail** — mais preciso que o "popover genérico" do plano anterior. Adotado.
+- **Vídeo em loop no hero** por convenção `/videos/[slug].mp4`, com `poster` no PNG do pote e botão "Assistir em tela cheia". Isso substitui bem a "faixa de vídeos how-to" que estava planejada como oculta — melhor solução, porque o vídeo entra na receita e não numa faixa vazia.
+- Campo **`proteinaPrincipal`** com lista de valores fechada e revisão humana da classificação antes de aplicar. Adotado (no plano anterior eu chamava de `mainIngredient`).
 
-Nada da estrutura atual é descartado: o drawer, o SEO, o JSON-LD `Recipe`, o `RecipeAddToCart`, a harmonização e o "Continue a leitura" continuam sendo o núcleo. O trabalho é **envelopar** isso com as camadas que faltam.
+**Precisa ser corrigido no prompt:**
+1. **Carrinho já existe.** O item 4 é condicional, mas a condição já está satisfeita: há `src/stores/cartStore.ts` (Zustand + Shopify Cart API), `CartDrawer`, checkout real e — mais importante — o botão **"Adicionar ao Carrinho" já está implementado dentro do drawer da receita** (`src/components/site/RecipeAddToCart.tsx`, com preço, esgotado e evento de analytics). Então o item 4 já está pronto; o que resta é só **replicar o botão nos cards de "Harmoniza também com"**.
+2. **Impressão via `window.print()` na própria página** é mais frágil que a rota dedicada `/cozinha/$slug/imprimir` que eu havia planejado (o drawer tem scroll interno, backdrop e `position: fixed`, que costumam sair recortados no papel). Sugiro manter a rota de impressão, e o botão "Imprimir" abre essa rota e chama `window.print()` — o resultado visual para o cliente é o mesmo, sem risco de página cortada.
+3. São **45 receitas**, não 43 (o `RECIPES` cresceu depois daquela contagem). O campo novo será preenchido nas 45.
 
-## Decisões confirmadas
+**O que fica de fora desta rodada** (do plano anterior, para entregar mais rápido): índice `/cozinha/todas` com facetas completas, carrosséis curados, grade de coleções e as fotos de prato geradas por IA. Nada disso é descartado — os filtros desta rodada já entram no formato que a página `/todas` vai reaproveitar depois.
 
-- Cada receita ganha **foto do prato pronto gerada por IA**, no padrão visual da casa (luz lateral quente, madeira escura, fundo ink, o pote real da Temperanzza em cena). Isso **muda a diretriz atual** de "sem foto de prato" — vou atualizar a memória do projeto e a skill de imagem para o novo padrão.
-- A faixa de vídeos how-to fica **estruturada mas oculta**, ligada por uma flag quando você enviar os vídeos reais.
-- Filtros facetados completos: **Tipo de refeição · Ingrediente principal · Ocasião · Tempero · Dieta**.
+## Etapa 1 — Dados (adições apenas)
 
-## Etapa 1 — Camada de dados (sem quebrar nada)
+`src/lib/recipes.ts`: novo campo **opcional** `proteinaPrincipal?: Protein` com `Protein = "frango" | "bovina" | "suino" | "pescados" | "ovo" | "vegetariano"` e um mapa `PROTEINS` de rótulos PT-BR. `moment` já existe nas 45 receitas e só precisa virar filtro.
 
-`src/lib/recipes.ts`: novos campos **todos opcionais**, então nenhuma receita existente quebra em tipo nem em runtime.
+Antes de aplicar, eu **listo no chat a proteína atribuída a cada uma das 45 receitas** para você revisar e corrigir o que discordar. Nada é publicado antes do seu OK nessa lista.
 
-- `mealType?: MealType` — pratos principais, ensopados/sopas, aperitivos e molhos, acompanhamentos, hambúrgueres, café da manhã, sanduíches, saladas
-- `mainIngredient?: MainIngredient` — frango, carne bovina, porco, frutos do mar, ovos, vegetariano, legumes
-- `occasion?: Occasion[]` — rápido e fácil, comida reconfortante, jantar compartilhado, uma panela, dia de churrasco, prático para a semana, sazonal
-- `image?: string` — pointer do asset da foto do prato
-- `imageAlt?: string`
-- `featured?: boolean` — elege a receita do hero
-- `collections?: string[]` — pertence a carrosséis curados
-- `videoUrl?: string` — reservado para os how-to
+## Etapa 2 — Filtros complementares em `/cozinha`
 
-Fallback obrigatório: onde `image` não existir, o card e o hero continuam usando o bloco `hero.color` + pote + tipografia atual. Assim a implementação nunca depende de todas as fotos existirem ao mesmo tempo.
+Barra de filtros acima do índice "O Menu da Casa", em cima da estrutura atual (as 4 dietas continuam intactas):
 
-Novo arquivo `src/lib/recipeFacets.ts`: rótulos em PT-BR, ordem de exibição, contagem por faceta e a função de filtro (aplicada em memória sobre `RECIPES` — zero backend).
+- **Refeição**: Café da manhã · Almoço · Jantar
+- **Proteína principal**: Frango · Carne bovina · Suíno · Peixe & Frutos do Mar · Ovo · Vegetariano
 
-Novo arquivo `src/lib/recipeCollections.ts`: as coleções curadas do hub (título, subtítulo, filtro ou lista de slugs, link "ver mais" pré-filtrado).
+Combinam entre si e com a dieta (dieta E refeição E proteína), filtragem client-side, sem recarregar. Numeração e link de cada receita preservados. Chips ativos removíveis, contador "N receitas", "Limpar filtros" e estado vazio editorial. Estado espelhado na URL (`?refeicao=&proteina=`) para o filtro ser linkável e compartilhável.
 
-## Etapa 2 — Hub `/cozinha`
+## Etapa 3 — Compartilhar na receita
 
-Mantém hero atual e passa a ter, na ordem:
+Linha de ações logo abaixo da barra de meta (Tempo/Rende/Dificuldade/Perfil), antes do bloco do pote:
 
-1. **Receita em destaque** — foto grande do prato, título, ficha resumida, CTA "Ver receita" (e slot de vídeo quando existir).
-2. **Faixa "Aprenda a técnica"** — 3 cards de vídeo com duração; oculta enquanto não houver `videoUrl`.
-3. **"O que estamos cozinhando"** — texto de convite + botão **Ver todas as receitas** → `/cozinha/todas`.
-4. **Carrosséis curados** (3 a 4 faixas, ex.: "Fogo e Defumado", "Mesa de Todos os Dias", "Low Carb sem tristeza"), cada card com foto, nome e "Ver receita" com o traço fino da casa; cabeçalho e rodapé com "Ver mais".
-5. **Grade de coleções** — 4 blocos que levam ao índice já filtrado.
-6. O **accordion "O Menu da Casa"** atual permanece, agora como índice tipográfico no fim da página (é a assinatura Temperanzza e ninguém perde o que já conhece).
+- **WhatsApp** → `https://wa.me/?text=` com título + tagline + URL codificados.
+- **Instagram** → copia a URL e mostra toast "Link copiado! Cole no story ou direct do Instagram."
+- **E-mail** → `mailto:` com assunto e corpo.
+- **Imprimir** → abre `/cozinha/$slug/imprimir`.
 
-## Etapa 3 — Índice `/cozinha/todas`
+Ícones Lucide, `rounded-none`, traço fino da casa, alvo de toque mínimo 44px, `aria-label` em todos.
 
-Nova rota irmã (não conflita com `/cozinha/$slug`, que é o drawer).
+## Etapa 4 — Área de impressão
 
-- Coluna/painel de filtros com as 5 facetas em colunas maiúsculas espaçadas, exatamente no ritmo do print que você enviou (versão mobile em drawer).
-- Busca por texto (título, subtítulo, ingredientes).
-- Estado dos filtros na **URL** (`?meal=&ingredient=&occasion=&tempero=&dieta=&q=`), então cada combinação é linkável, compartilhável e indexável.
-- Grade de cards com foto, contador "N receitas", chips de filtro ativo removíveis, "Limpar tudo" e paginação incremental.
-- Estado vazio editorial com sugestão de remover filtros.
+Rota `/cozinha/$slug/imprimir`: logo, título, tagline, ficha (tempo/rende/dificuldade), imagem pequena do pote, ingredientes, modo de preparo e rodapé `temperanzza.com.br`. Uma coluna, preto sobre branco, sem cor de fundo, `@page` com margens e quebras controladas, `noindex`. Sem menu, rodapé, compartilhamento, harmonização ou "Continue a leitura".
 
-## Etapa 4 — Receita: compartilhar, imprimir e leitura ativa
+## Etapa 5 — Vídeo no hero da receita
 
-Dentro do drawer atual (`src/routes/cozinha.$slug.tsx`), sem trocar a arquitetura:
+Componente `RecipeHeroMedia`: `<video muted loop autoplay playsinline poster={PNG do pote}>` apontando para `/videos/[slug].mp4`. Enquanto o arquivo não existir, o `onError` derruba para exatamente o visual atual (pote + `animate-pote-float` + gradiente), então o site nunca fica quebrado. Botão discreto **"Assistir em tela cheia"** sobre o vídeo (Fullscreen API) e `prefers-reduced-motion` respeitado (não dá autoplay).
 
-- **Foto do prato no hero** ao lado do pote real; sem foto, cai no visual atual.
-- **Barra de ações** sticky: `Compartilhar` (Web Share API nativa no mobile; no desktop popover com WhatsApp, Facebook, X, Pinterest, e-mail e "copiar link" com toast) + `Imprimir` + `Salvar` (favoritos em localStorage, sem backend).
-- **Ingredientes com checkbox** — marcar risca o item; estado por receita em localStorage.
-- **Passos numerados clicáveis** — passo concluído esmaece; ajuda quem cozinha com o celular na bancada.
-- **Ajuste de porções** — botões 1x/2x/3x recalculando as quantidades numéricas dos ingredientes (heurística segura: só multiplica número no início da string; texto sem número fica intacto).
-- Bloco do tempero protagonista, harmonização e "Continue a leitura" ficam como estão.
+## Etapa 6 — Carrinho (só o que falta)
 
-## Etapa 5 — Área de impressão
-
-Nova rota `/cozinha/$slug/imprimir` (layout limpo, sem drawer): logo da casa, título, ficha, ingredientes, passos, tempero usado e rodapé `temperanzza.com.br`. CSS `@page` com margens, cores desligadas para não gastar tinta e quebras controladas. O botão Imprimir abre essa view e chama `window.print()`.
-
-## Etapa 6 — Fotos dos pratos
-
-Geração em lotes, com prompt padronizado da casa (madeira escura, luz lateral quente, louça sóbria, pote real ao lado, sem texto, sem mãos, sem clichê de banco de imagens), salvas como asset pointers em `src/assets/receitas/`. Ordem: destaques do hub → capas dos carrosséis → restante do índice. Cada lote é validado no preview antes do próximo, e o fallback garante que o site nunca fica quebrado no meio do processo.
+`RecipeAddToCart` já cobre o card "Assinatura desta receita". Falta apenas um botão compacto **"Adicionar"** nos cards de "Harmoniza também com", reutilizando `useCartStore` + `useShopifyProducts` e o mesmo evento de analytics — sem nova lógica de carrinho.
 
 ## Detalhes técnicos
 
-- **Backend: zero mudanças.** Nenhuma migração, nenhuma server function, nada em Shopify ou Bling. Tudo roda sobre o array `RECIPES` em memória.
-- Rotas novas: `src/routes/cozinha.todas.tsx` e `src/routes/cozinha.$slug.imprimir.tsx`. `routeTree.gen.ts` é regerado pelo plugin — não editado à mão.
-- Componentes novos em `src/components/site/`: `RecipeCard`, `RecipeCarousel` (reaproveitando o padrão do `FlavorCarousel`), `RecipeFacetFilters`, `RecipeShare`, `RecipePrintButton`, `RecipeHeroFeatured`, `RecipeCollectionGrid`.
-- SEO: hub e índice ganham `head()` próprio; o índice filtrado recebe `canonical` para `/cozinha/todas` (evita conteúdo duplicado por combinação de filtro) e a rota de impressão fica `noindex`. `ItemList` JSON-LD no hub e no índice; o `Recipe` JSON-LD da receita passa a incluir `image` da foto do prato, `prepTime`/`cookTime`/`recipeYield`.
-- Acessibilidade: filtros como `fieldset`/`legend`, checkbox de ingrediente com label real, carrossel navegável por teclado, foco visível, `prefers-reduced-motion` respeitado.
-- Assinatura Temperanzza mantida em tudo: `rounded-none`, Big Shoulders Stencil nos títulos, Playfair itálico nas linhas editoriais, tokens `brand-*` (nenhuma cor hardcoded), traço fino como separador em vez do dash-line do Kinder's.
-- Validação: `tsgo`, build, e verificação no preview do hub, do índice com filtros combinados, de 3 receitas, do compartilhar e da view de impressão.
+- **Backend: zero mudanças.** Nenhuma migração, nenhuma server function, nada em Shopify ou Bling. Tudo em memória sobre `RECIPES`.
+- Rota nova: `src/routes/cozinha.$slug.imprimir.tsx`. `routeTree.gen.ts` é regerado pelo plugin.
+- Componentes novos em `src/components/site/`: `RecipeShareBar`, `RecipeFilters`, `RecipeHeroMedia`, `HarmonizeAddButton`.
+- Vídeos ficam em `public/videos/[slug].mp4` (arquivos grandes entram como asset pointer).
+- SEO: rota de impressão `noindex`; `/cozinha` com filtro recebe `canonical` para `/cozinha`; `Recipe` JSON-LD ganha `video` quando o arquivo existir.
+- Assinatura da casa mantida: `rounded-none`, Big Shoulders Stencil, Playfair itálico, tokens `brand-*`, nenhuma cor hardcoded.
+- Validação: `tsgo`, build e conferência no preview de 3 receitas, dos filtros combinados, do compartilhar e da view de impressão.
 
-## Ordem de entrega sugerida
+## Ordem de entrega
 
-1. Etapas 1 + 4 (dados + ações na receita) — ganho imediato, risco mínimo.
-2. Etapa 5 (impressão).
-3. Etapa 3 (índice com filtros).
-4. Etapa 2 (hub curado).
-5. Etapa 6 (fotos, em lotes) rodando em paralelo a partir da etapa 2.
+1. Etapa 1 (lista das 45 proteínas para sua revisão).
+2. Etapas 3 + 4 (compartilhar + impressão).
+3. Etapa 2 (filtros).
+4. Etapas 5 + 6 (vídeo + botão na harmonização).
