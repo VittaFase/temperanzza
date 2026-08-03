@@ -416,14 +416,19 @@ function FilterChip({
 
 function CategoriaAccordion({
   cat,
+  extraFilter,
   open,
   onToggle,
 }: {
   cat: CategoriaDef;
+  extraFilter: (r: Recipe) => boolean;
   open: boolean;
   onToggle: () => void;
 }) {
-  const receitas = useMemo(() => RECIPES.filter(cat.filter), [cat]);
+  const receitas = useMemo(
+    () => RECIPES.filter((r) => cat.filter(r) && extraFilter(r)),
+    [cat, extraFilter],
+  );
 
   return (
     <article className="border-t border-brand-ink/20 last:border-b">
