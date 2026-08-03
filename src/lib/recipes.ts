@@ -41,6 +41,8 @@ export interface Recipe {
   difficulty?: "Fácil" | "Médio" | "Avançado";
   /** Handles de temperos que harmonizam (2-3 sugestões). */
   harmonization?: string[];
+  /** Proteína dominante do prato (filtro complementar). Fallback: RECIPE_PROTEIN. */
+  proteinaPrincipal?: Protein;
 }
 
 
