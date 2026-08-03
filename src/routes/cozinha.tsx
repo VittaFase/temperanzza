@@ -10,7 +10,6 @@ import {
   getRecipeProtein,
   type Recipe,
   type Moment,
-  type Protein,
 } from "@/lib/recipes";
 import { ChevronDown, ArrowUpRight, X } from "lucide-react";
 import smokeVideo from "@/assets/hero-smoke.mp4.asset.json";
