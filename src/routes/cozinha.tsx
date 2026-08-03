@@ -279,7 +279,7 @@ function BibliotecaIndice() {
 
   const setFilter = (key: "refeicao" | "proteina", value: string) =>
     navigate({
-      search: (prev) => ({
+      search: (prev: { refeicao: string; proteina: string }) => ({
         ...prev,
         [key]: prev[key] === value ? "" : value,
       }),
