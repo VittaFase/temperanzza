@@ -931,6 +931,422 @@ export const RECIPES: Recipe[] = [
       "Sem forno? Use a air fryer a 160 °C por 8 minutos. Sem mix pronto? Use só amêndoas — funciona igual.",
     hero: { color: "oklch(0.6 0.11 130)" },
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // Capítulo novo — 12 receitas autorais (2026)
+  // ═══════════════════════════════════════════════════════════════
+
+  // ── I. Cetogênicas ──
+  {
+    slug: "salmao-crosta-ervas-finas",
+    title: "Salmão selado com crosta de Ervas Finas",
+    featuredHandle: "ervas-finas",
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
+    moment: "jantar",
+    profile: "ervas",
+    subtitle: "Ômega-3 e crocância numa selada rápida.",
+    intro: "Ômega-3 e crocância numa selada rápida.",
+    time: "15 min",
+    serves: "2 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "2 postas de salmão com pele",
+      "1 colher (sopa) de azeite",
+      "1 colher (sopa) cheia de Ervas Finas Temperanzza",
+      "Sal grosso a gosto",
+      "½ limão siciliano",
+    ],
+    steps: [
+      "Seque as postas de salmão e tempere com sal e Ervas Finas dos dois lados.",
+      "Aqueça o azeite em frigideira antiaderente até quase fumegar.",
+      "Sele o salmão com a pele para baixo por 4 minutos, vire e finalize por mais 2 minutos.",
+      "Regue com limão siciliano antes de servir.",
+    ],
+    chefWord:
+      "Salmão é rico em ômega-3 e praticamente livre de carboidrato — a Ervas Finas realça sem competir com a gordura do peixe.",
+    whyItWorks:
+      "Salmão é rico em ômega-3 e praticamente livre de carboidrato — a Ervas Finas realça sem competir com a gordura do peixe.",
+    substitution:
+      "Sem salmão? Truta ou robalo funcionam com o mesmo tempo de selada.",
+    harmonization: ["lemon-pepper", "salsa-cebola-e-alho"],
+    hero: { color: "oklch(0.58 0.10 140)" },
+  },
+  {
+    slug: "abacate-recheado-frango-chimi-churri",
+    title: "Abacate recheado com frango e Chimichurri sem Pimenta",
+    featuredHandle: "chimichurri-sem-pimenta",
+    compatibleDiets: ["keto", "lowcarb"],
+    moment: "almoco",
+    profile: "ervas",
+    subtitle: "Gordura boa e proteína num só abacate.",
+    intro: "Gordura boa e proteína num só abacate.",
+    time: "20 min",
+    serves: "2 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "2 abacates maduros",
+      "200 g de frango cozido desfiado",
+      "1 colher (sopa) de Chimichurri sem Pimenta Temperanzza",
+      "1 colher (sopa) de azeite",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Corte os abacates ao meio e retire o caroço.",
+      "Misture o frango desfiado com azeite, sal e Chimichurri sem Pimenta.",
+      "Recheie as metades de abacate com a mistura.",
+      "Sirva em temperatura ambiente ou leve 5 minutos ao forno para gratinar levemente.",
+    ],
+    chefWord:
+      "O abacate é gordura monoinsaturada pura; o Chimichurri sem Pimenta traz acidez e verde sem abrir mão do baixo carboidrato.",
+    whyItWorks:
+      "O abacate é gordura monoinsaturada pura; o Chimichurri sem Pimenta traz acidez e verde sem abrir mão do baixo carboidrato.",
+    substitution:
+      "Troque o frango por atum em lata escorrido para uma versão ainda mais rápida.",
+    harmonization: ["chimichurri-picante", "salsa-cebola-e-alho"],
+    hero: { color: "oklch(0.56 0.11 145)" },
+  },
+  {
+    slug: "couve-flor-gratinada-curcuma",
+    title: "Couve-flor gratinada com manteiga e Cúrcuma",
+    featuredHandle: "curcuma",
+    compatibleDiets: ["keto", "lowcarb"],
+    moment: "jantar",
+    profile: "puras",
+    subtitle: "Dourada por fora, cremosa por dentro.",
+    intro: "Dourada por fora, cremosa por dentro.",
+    time: "30 min",
+    serves: "4 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "1 couve-flor média em buquês",
+      "2 colheres (sopa) de manteiga derretida",
+      "1 colher (chá) de Cúrcuma Temperanzza",
+      "100 g de queijo ralado",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Cozinhe os buquês no vapor por 8 minutos, até ficarem macios.",
+      "Misture a manteiga com a Cúrcuma e o sal, e regue sobre a couve-flor.",
+      "Cubra com queijo ralado e leve ao forno a 200 °C por 12 minutos, até gratinar.",
+    ],
+    chefWord:
+      "Cúrcuma tem função anti-inflamatória reconhecida e zero carboidrato líquido — perfeita para pratos vegetarianos dentro do protocolo cetogênico.",
+    whyItWorks:
+      "Cúrcuma tem função anti-inflamatória reconhecida e zero carboidrato líquido — perfeita para pratos vegetarianos dentro do protocolo cetogênico.",
+    substitution:
+      "Sem lactose? Troque a manteiga por ghee e o queijo por castanhas trituradas.",
+    harmonization: ["cebola-em-po", "ervas-finas"],
+    hero: { color: "oklch(0.68 0.15 85)" },
+  },
+
+  // ── II. Low Carb ──
+  {
+    slug: "sardinha-grelhada-lemon-pepper",
+    title: "Sardinha grelhada com Lemon Pepper",
+    featuredHandle: "lemon-pepper",
+    compatibleDiets: ["lowcarb", "keto", "carnivora-flex"],
+    moment: "almoco",
+    profile: "citrico-picante",
+    subtitle: "Peixe do dia, tempero da casa.",
+    intro: "Peixe do dia, tempero da casa.",
+    time: "12 min",
+    serves: "2 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "6 sardinhas limpas",
+      "1 colher (sopa) de azeite",
+      "1 colher (sopa) de Lemon Pepper Temperanzza",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Tempere as sardinhas com azeite, sal e Lemon Pepper, por dentro e por fora.",
+      "Grelhe em fogo alto por 3 minutos de cada lado.",
+      "Sirva imediatamente, ainda quente.",
+    ],
+    chefWord:
+      "Peixes pequenos como a sardinha são a fonte de ômega-3 mais acessível — o limão do Lemon Pepper equilibra o gosto mais forte do peixe.",
+    whyItWorks:
+      "Peixes pequenos como a sardinha são a fonte de ômega-3 mais acessível — o limão do Lemon Pepper equilibra o gosto mais forte do peixe.",
+    substitution:
+      "Prefira sardinha fresca; se usar congelada, seque bem antes de temperar para dourar melhor.",
+    harmonization: ["ervas-finas", "salsa-cebola-e-alho"],
+    hero: { color: "oklch(0.72 0.14 100)" },
+  },
+  {
+    slug: "panqueca-proteica-tempero-edu",
+    title: "Panqueca proteica com Tempero do Edu",
+    featuredHandle: "edu-guedes",
+    compatibleDiets: ["lowcarb", "keto"],
+    moment: "cafe",
+    profile: "casa",
+    subtitle: "Café da manhã salgado, sem pressa.",
+    intro: "Café da manhã salgado, sem pressa.",
+    time: "10 min",
+    serves: "1 pessoa",
+    difficulty: "Fácil",
+    ingredients: [
+      "2 ovos",
+      "30 g de queijo cottage ou ricota",
+      "1 colher (chá) de Tempero do Edu Temperanzza",
+      "1 colher (sopa) de manteiga para a frigideira",
+    ],
+    steps: [
+      "Bata os ovos com o queijo e o Tempero do Edu até ficar homogêneo.",
+      "Derreta a manteiga numa frigideira antiaderente em fogo médio-baixo.",
+      "Despeje a massa e cozinhe 2 minutos de cada lado, até dourar.",
+    ],
+    chefWord:
+      "Ovo e queijo formam uma dupla de proteína completa; o Tempero do Edu dá o toque de casa sem precisar de farinha.",
+    whyItWorks:
+      "Ovo e queijo formam uma dupla de proteína completa; o Tempero do Edu dá o toque de casa sem precisar de farinha.",
+    substitution:
+      "Adicione espinafre picado à massa para mais volume sem carboidrato.",
+    harmonization: ["ervas-finas", "cebola-em-po"],
+    hero: { color: "oklch(0.62 0.12 60)" },
+  },
+  {
+    slug: "berinjela-assada-tempero-mineiro",
+    title: "Berinjela assada recheada com Tempero Mineiro",
+    featuredHandle: "tempero-mineiro",
+    compatibleDiets: ["lowcarb"],
+    moment: "jantar",
+    profile: "casa",
+    subtitle: "A berinjela vira prato principal.",
+    intro: "A berinjela vira prato principal.",
+    time: "35 min",
+    serves: "2 pessoas",
+    difficulty: "Médio",
+    ingredients: [
+      "2 berinjelas médias",
+      "2 colheres (sopa) de azeite",
+      "1 colher (sopa) de Tempero Mineiro Temperanzza",
+      "100 g de queijo muçarela ralado",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Corte as berinjelas ao meio, risque a polpa em quadriculado e regue com azeite, sal e Tempero Mineiro.",
+      "Asse a 200 °C por 20 minutos, até a polpa amaciar.",
+      "Amasse levemente a polpa, cubra com queijo e volte ao forno por mais 8 minutos, até gratinar.",
+    ],
+    chefWord:
+      "Berinjela assada tem baixa carga de carboidrato e absorve bem o Tempero Mineiro, feito para dar profundidade sem pesar.",
+    whyItWorks:
+      "Berinjela assada tem baixa carga de carboidrato e absorve bem o Tempero Mineiro, feito para dar profundidade sem pesar.",
+    substitution:
+      "Adicione carne moída refogada ao recheio para uma versão mais robusta.",
+    harmonization: ["cebola-em-po", "ana-maria"],
+    hero: { color: "oklch(0.42 0.09 320)" },
+  },
+
+  // ── III. Carnívora Flexível ──
+  {
+    slug: "costela-bovina-pimenta-reino",
+    title: "Costela bovina lenta com Pimenta-do-Reino",
+    featuredHandle: "pimenta-do-reino-premium-black-30g",
+    compatibleDiets: ["carnivora-flex", "keto", "lowcarb"],
+    moment: "jantar",
+    profile: "puras",
+    subtitle: "Fogo baixo, sabor que não se apressa.",
+    intro: "Fogo baixo, sabor que não se apressa.",
+    time: "3 h",
+    serves: "4 pessoas",
+    difficulty: "Médio",
+    ingredients: [
+      "1,5 kg de costela bovina em peça única",
+      "Sal grosso a gosto",
+      "1 colher (sopa) de Pimenta-do-Reino Temperanzza",
+      "2 colheres (sopa) de azeite",
+    ],
+    steps: [
+      "Tempere a costela com sal, azeite e Pimenta-do-Reino, cobrindo toda a peça.",
+      "Embrulhe em papel-alumínio e leve ao forno a 150 °C por 2h30.",
+      "Retire o papel-alumínio e volte ao forno por 20 minutos, até dourar por fora.",
+      "Deixe descansar 10 minutos antes de fatiar.",
+    ],
+    chefWord:
+      "Costela é proteína e gordura em estado puro; a Pimenta-do-Reino da casa realça sem disfarçar o sabor da carne — base de qualquer protocolo carnívoro.",
+    whyItWorks:
+      "Costela é proteína e gordura em estado puro; a Pimenta-do-Reino da casa realça sem disfarçar o sabor da carne — base de qualquer protocolo carnívoro.",
+    substitution:
+      "Sem tempo? Use panela de pressão por 45 minutos no lugar do forno lento.",
+    harmonization: ["edu-guedes", "paprica-defumada"],
+    hero: { color: "oklch(0.3 0.05 30)" },
+  },
+  {
+    slug: "figado-acebolado-cebola-po",
+    title: "Fígado acebolado com Cebola em Pó",
+    featuredHandle: "cebola-em-po",
+    compatibleDiets: ["carnivora-flex", "keto", "lowcarb"],
+    moment: "almoco",
+    profile: "puras",
+    subtitle: "Densidade nutricional em 15 minutos.",
+    intro: "Densidade nutricional em 15 minutos.",
+    time: "15 min",
+    serves: "2 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "400 g de fígado bovino fatiado",
+      "1 cebola grande fatiada",
+      "1 colher (sopa) de manteiga",
+      "1 colher (chá) de Cebola em Pó Temperanzza",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Tempere o fígado com sal e Cebola em Pó.",
+      "Refogue a cebola fatiada na manteiga até dourar e murchar; reserve.",
+      "Na mesma panela, sele o fígado em fogo alto por 2 minutos de cada lado — não passe do ponto.",
+      "Devolva a cebola à panela, misture e sirva.",
+    ],
+    chefWord:
+      "Fígado é um dos alimentos mais densos em nutrientes que existem; a Cebola em Pó suaviza o gosto sem mascarar o que importa.",
+    whyItWorks:
+      "Fígado é um dos alimentos mais densos em nutrientes que existem; a Cebola em Pó suaviza o gosto sem mascarar o que importa.",
+    substitution:
+      "Fígado de frango reduz o sabor mais forte e cozinha em metade do tempo.",
+    harmonization: ["tempero-mineiro", "ana-maria"],
+    hero: { color: "oklch(0.36 0.06 25)" },
+  },
+  {
+    slug: "camarao-manteiga-salsa-cebola-alho",
+    title: "Camarão na manteiga com Salsa, Cebola e Alho",
+    featuredHandle: "salsa-cebola-e-alho",
+    compatibleDiets: ["carnivora-flex", "keto", "lowcarb"],
+    moment: "jantar",
+    profile: "casa",
+    subtitle: "Cinco minutos entre a panela e a mesa.",
+    intro: "Cinco minutos entre a panela e a mesa.",
+    time: "10 min",
+    serves: "2 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "400 g de camarão limpo",
+      "2 colheres (sopa) de manteiga",
+      "1 colher (sopa) de Salsa, Cebola e Alho Temperanzza",
+      "Suco de ½ limão",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Derreta a manteiga em fogo alto numa frigideira ampla.",
+      "Adicione o camarão temperado com sal e Salsa, Cebola e Alho.",
+      "Salteie por 2 a 3 minutos, até o camarão ficar rosado — não passe do ponto.",
+      "Finalize com o suco de limão e sirva imediatamente.",
+    ],
+    chefWord:
+      "Camarão cozinha rápido e é praticamente proteína pura; a Salsa, Cebola e Alho já traz a base aromática pronta, sem precisar picar nada.",
+    whyItWorks:
+      "Camarão cozinha rápido e é praticamente proteína pura; a Salsa, Cebola e Alho já traz a base aromática pronta, sem precisar picar nada.",
+    substitution:
+      "Reserve um pouco da manteiga da panela para regar arroz ou legumes de acompanhamento.",
+    harmonization: ["chimichurri-sem-pimenta", "lemon-pepper"],
+    hero: { color: "oklch(0.66 0.14 45)" },
+  },
+
+  // ── IV. Pratos Tradicionais ──
+  {
+    slug: "carne-panela-batatas-tempero-mineiro",
+    title: "Carne de panela com batatas e Tempero Mineiro",
+    featuredHandle: "tempero-mineiro",
+    compatibleDiets: [],
+    moment: "jantar",
+    profile: "casa",
+    category: "tradicional",
+    subtitle: "O prato de domingo, todo dia.",
+    intro: "O prato de domingo, todo dia.",
+    time: "1h20",
+    serves: "4 pessoas",
+    difficulty: "Médio",
+    ingredients: [
+      "800 g de acém em cubos",
+      "4 batatas médias em pedaços grandes",
+      "1 cebola picada",
+      "2 colheres (sopa) cheias de Tempero Mineiro Temperanzza",
+      "2 colheres (sopa) de óleo",
+    ],
+    steps: [
+      "Doure a carne no óleo em fogo alto, em porções, até selar todos os lados.",
+      "Adicione a cebola e o Tempero Mineiro, refogue por 2 minutos.",
+      "Cubra com água quente, tampe e cozinhe em fogo baixo por 50 minutos.",
+      "Acrescente as batatas e cozinhe por mais 20 minutos, até a carne desmanchar e o molho encorpar.",
+    ],
+    chefWord:
+      "Carne de panela é sobre paciência — o Tempero Mineiro foi feito para segurar o sabor durante o cozimento longo, sem se perder no caldo.",
+    whyItWorks:
+      "Carne de panela é sobre paciência — o Tempero Mineiro foi feito para segurar o sabor durante o cozimento longo, sem se perder no caldo.",
+    substitution:
+      "Panela de pressão reduz o tempo total para cerca de 35 minutos.",
+    harmonization: ["ana-maria", "pimenta-do-reino-premium-black-30g"],
+    hero: { color: "oklch(0.38 0.08 40)" },
+  },
+  {
+    slug: "peixe-assado-legumes-salsa-cebola-alho",
+    title: "Peixe assado com legumes e Salsa, Cebola e Alho",
+    featuredHandle: "salsa-cebola-e-alho",
+    compatibleDiets: [],
+    moment: "jantar",
+    profile: "casa",
+    category: "tradicional",
+    subtitle: "Uma travessa só, sem complicação.",
+    intro: "Uma travessa só, sem complicação.",
+    time: "40 min",
+    serves: "2 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "2 filés de peixe branco (tilápia ou merluza)",
+      "2 xícaras de legumes variados (abobrinha, cenoura, pimentão) em fatias",
+      "2 colheres (sopa) de azeite",
+      "1 colher (sopa) de Salsa, Cebola e Alho Temperanzza",
+      "Sal a gosto",
+    ],
+    steps: [
+      "Disponha os legumes numa assadeira, regue com metade do azeite e metade do tempero.",
+      "Leve ao forno a 200 °C por 15 minutos.",
+      "Retire, acomode os filés de peixe sobre os legumes e regue com o restante do azeite e do tempero.",
+      "Volte ao forno por mais 15 minutos, até o peixe ficar macio e os legumes dourados.",
+    ],
+    chefWord:
+      "Peixe branco é leve e neutro; a Salsa, Cebola e Alho dá a base de sabor que uma travessa só precisa para virar refeição completa.",
+    whyItWorks:
+      "Peixe branco é leve e neutro; a Salsa, Cebola e Alho dá a base de sabor que uma travessa só precisa para virar refeição completa.",
+    substitution:
+      "Troque os legumes conforme a estação — brócolis e couve-flor também funcionam bem.",
+    harmonization: ["lemon-pepper", "ervas-finas"],
+    hero: { color: "oklch(0.6 0.10 130)" },
+  },
+  {
+    slug: "feijao-tropeiro-ana-maria",
+    title: "Feijão tropeiro com Ana Maria",
+    featuredHandle: "ana-maria",
+    compatibleDiets: [],
+    moment: "almoco",
+    profile: "casa",
+    category: "tradicional",
+    subtitle: "Tradição mineira, do jeito que deve ser.",
+    intro: "Tradição mineira, do jeito que deve ser.",
+    time: "30 min",
+    serves: "4 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "3 xícaras de feijão carioca cozido e escorrido",
+      "150 g de bacon em cubos",
+      "2 ovos",
+      "1 xícara de farinha de mandioca",
+      "1 colher (sopa) de Ana Maria Temperanzza",
+    ],
+    steps: [
+      "Frite o bacon até dourar e soltar gordura; reserve parte da gordura na panela.",
+      "Frite os ovos mexidos na mesma gordura e reserve.",
+      "Refogue o feijão escorrido com a Ana Maria por 3 minutos.",
+      "Adicione a farinha de mandioca aos poucos, misturando, e finalize com o bacon e os ovos.",
+    ],
+    chefWord:
+      "Feijão tropeiro é memória afetiva de Minas — a Ana Maria é a nossa homenagem a esse tempero de fundo de quintal, que dá liga sem exagero.",
+    whyItWorks:
+      "Feijão tropeiro é memória afetiva de Minas — a Ana Maria é a nossa homenagem a esse tempero de fundo de quintal, que dá liga sem exagero.",
+    substitution:
+      "Sirva com couve refogada e arroz branco para o combo mineiro completo.",
+    harmonization: ["tempero-mineiro", "cebola-em-po"],
+    hero: { color: "oklch(0.45 0.09 55)" },
+  },
 ];
 
 
