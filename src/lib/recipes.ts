@@ -16,6 +16,7 @@ import carneMoidaMineiroAsset from "@/assets/receitas/carne-moida-tempero-mineir
 import ovosCurcumaAsset from "@/assets/receitas/ovos-dourados-curcuma.jpg.asset.json";
 import frangoAnaMariaAsset from "@/assets/receitas/frango-grelhado-ana-maria.jpg.asset.json";
 import sopaLegumesAsset from "@/assets/receitas/sopa-legumes-salsa-cebola-alho.png.asset.json";
+import ovoFritoLemonAsset from "@/assets/receitas/ovo-frito-lemon-pepper.jpg.asset.json";
 
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
@@ -474,7 +475,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona lindamente em ovos 'poché' feitos em água.",
     harmonization: ["curcuma", "pimenta-do-reino"],
     relatedSlugs: ["ovos-cozidos-tempero-edu", "ovos-dourados-curcuma", "ovos-mexidos-ervas-finas", "ovos-fritos-bacon-tradicional"],
-    dish: { src: "/receitas/ovo-frito-lemon-pepper.jpg", alt: "Ovo frito com Lemon Pepper" },
+    dish: { src: ovoFritoLemonAsset.url, alt: "Ovo frito com Lemon Pepper" },
     hero: { color: "oklch(0.65 0.12 90)" },
   },
   // Nº13
