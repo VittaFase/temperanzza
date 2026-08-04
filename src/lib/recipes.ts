@@ -25,6 +25,7 @@ import mixCastanhasAsset from "@/assets/receitas/mix-castanhas-temperaflix-ervas
 import salmaoCrostaAsset from "@/assets/receitas/salmao-crosta-ervas-finas.jpg.asset.json";
 import abacateFrangoAsset from "@/assets/receitas/abacate-recheado-frango-chimi-churri.jpg.asset.json";
 import couveFlorAsset from "@/assets/receitas/couve-flor-gratinada-curcuma.jpg.asset.json";
+import sardinhaLemonAsset from "@/assets/receitas/sardinha-grelhada-lemon-pepper.jpg.asset.json";
 
 
 
@@ -795,7 +796,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com cavalinha ou manjuba.",
     harmonization: ["salsa-cebola-e-alho", "erva-doce"],
     relatedSlugs: ["peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "camarao-chimi-churri-picante", "ovo-frito-lemon-pepper"],
-    dish: { src: "/receitas/sardinha-grelhada-lemon-pepper.jpg", alt: "Sardinha grelhada com Lemon Pepper" },
+    dish: { src: sardinhaLemonAsset.url, alt: "Sardinha grelhada com Lemon Pepper" },
     hero: { color: "oklch(0.55 0.1 110)" },
   },
   // Nº22
