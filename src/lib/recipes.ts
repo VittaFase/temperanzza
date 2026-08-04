@@ -396,7 +396,7 @@ export const RECIPES: Recipe[] = [
     ],
     steps: [
       "Abra os filés na espessura de 1,5 cm para grelharem por igual.",
-      "Regue com azeite e cubra os dois lados com o Ana Maria e o sal.",
+      "Regue with azeite e cubra os dois lados com o Ana Maria e o sal.",
       "Grelhe em chapa bem quente, 4 minutos de cada lado, sem mexer.",
       "Deixe descansar 3 minutos antes de servir.",
     ],
@@ -405,7 +405,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona igual em sobrecoxa desossada; aumente para 6 minutos por lado.",
     harmonization: ["ervas-finas", "salsa-cebola-e-alho"],
     relatedSlugs: ["frango-panela-ana-maria", "frango-quiabo-ana-maria", "frango-dourado-paprica-doce", "frango-chimi-churri-picante"],
-    dish: { src: "/receitas/frango-grelhado-ana-maria.jpg", alt: "Frango grelhado com Ana Maria" },
+    dish: { src: frangoAnaMariaAsset.url, alt: "Frango grelhado com Ana Maria" },
     hero: { color: "oklch(0.55 0.12 50)" },
   },
 
