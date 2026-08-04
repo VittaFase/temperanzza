@@ -68,7 +68,7 @@ export const RECIPES: Recipe[] = [
   {
     slug: "omelete-bacon-em-po",
     title: "Omelete simples com Temperaflix Bacon",
-    subtitle: "Três ovos e um shaker — o café da manhã que não pede pão.",
+    subtitle: "Três ovos e um snaker — o café da manhã que não pede pão.",
     intro: "O gostinho de defumado que transforma três ovos em algo memorável.",
     featuredHandle: "temperaflix-bacon",
     compatibleDiets: ["keto", "lowcarb"],
