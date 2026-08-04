@@ -15,6 +15,7 @@ import ovosCozidosEduAsset from "@/assets/receitas/ovos-cozidos-tempero-edu.jpg.
 import carneMoidaMineiroAsset from "@/assets/receitas/carne-moida-tempero-mineiro.jpg.asset.json";
 import ovosCurcumaAsset from "@/assets/receitas/ovos-dourados-curcuma.jpg.asset.json";
 import frangoAnaMariaAsset from "@/assets/receitas/frango-grelhado-ana-maria.jpg.asset.json";
+import sopaLegumesAsset from "@/assets/receitas/sopa-legumes-salsa-cebola-alho.png.asset.json";
 
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
