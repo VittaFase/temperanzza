@@ -474,7 +474,7 @@ export function TemperaflixShowcase() {
         {/* FOOTER — HUD strip */}
         <div className="mt-14 pt-6 border-t border-brand-paper/15 flex flex-wrap items-center justify-between gap-4 font-mono text-xs tracking-[0.3em] text-brand-paper/50 uppercase">
           <span>// linha exclusiva · temperanzza</span>
-          <span>3 SABORES · SHAKERS · PRONTO PARA USO</span>
+          <span>3 SABORES · SNAKERS · PRONTO PARA USO</span>
           <Link
             to="/temperaflix"
             className="inline-flex min-h-11 items-center hover:text-brand-paper transition-colors"
