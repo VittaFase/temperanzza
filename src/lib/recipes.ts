@@ -548,8 +548,9 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com anéis de lula ou tiras de peixe branco firme.",
     harmonization: ["lemon-pepper", "salsa-cebola-e-alho"],
     relatedSlugs: ["camarao-manteiga-salsa-cebola-alho", "peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "bife-manteiga-chimi-churri"],
-    dish: { src: "/receitas/camarao-chimi-churri-picante.jpg", alt: "Camarão salteado com Chimi Churri Picante" },
+    dish: { src: camaraoChimiAsset.url, alt: "Camarão salteado com Chimi Churri Picante" },
     hero: { color: "oklch(0.6 0.14 40)" },
+
   },
   // Nº15
   {
