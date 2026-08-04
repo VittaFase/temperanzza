@@ -1,4 +1,4 @@
-// Execute esta instrucao no projeto: para proteção de toda implementação das imagens das receitas podemos implementar uma primeira imagem de teste e a partir do teste darmos prosseguimento seguro?
+// Execute esta instrucao no projeto: Você não irá criar as imagens, eu vou enviar uma a uma das imagens que foram geradas para cada receita, desconsidere sua criação e se prepare para receber as imagens autorais para cada receita!
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
