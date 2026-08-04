@@ -762,7 +762,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona também com brócolis ou uma mistura dos dois.",
     harmonization: ["salsa-cebola-e-alho", "pimenta-do-reino"],
     relatedSlugs: ["legumes-assados-curcuma-tradicional", "berinjela-assada-tempero-mineiro", "sopa-legumes-salsa-cebola-alho", "ovos-dourados-curcuma"],
-    dish: { src: "/receitas/couve-flor-gratinada-curcuma.jpg", alt: "Couve-flor gratinada com Cúrcuma" },
+    dish: { src: couveFlorAsset.url, alt: "Couve-flor gratinada com Cúrcuma" },
     hero: { color: "oklch(0.7 0.16 85)" },
   },
   // Nº21
