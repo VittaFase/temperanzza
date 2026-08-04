@@ -37,20 +37,19 @@ export function RecipeHeroMedia({
   // Se houver foto do prato, o layout muda para editorial
   if (dish) {
     return (
-      <div className="relative w-full max-w-lg aspect-[4/5] sm:aspect-square lg:aspect-[4/5] group overflow-hidden bg-brand-ink">
+      <div className="relative w-full lg:w-[120%] lg:-mr-[10%] aspect-[4/5] sm:aspect-square lg:aspect-[4/3] group overflow-hidden bg-brand-ink shadow-2xl">
         {/* Foto do prato — preenche o container */}
         <img
           src={dish.src}
           alt={dish.alt}
-          className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105"
         />
         
-        {/* Overlay gradiente para profundidade */}
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-brand-ink/60 via-transparent to-transparent opacity-60" />
+        {/* Overlay gradiente para profundidade e legibilidade nas bordas */}
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-brand-ink/40 via-transparent to-transparent opacity-60" />
 
-
-        {/* Bordas decorativas estilo editorial */}
-        <div className="absolute inset-4 border border-brand-paper/20 pointer-events-none" />
+        {/* Bordas decorativas estilo editorial - Mais finas e elegantes */}
+        <div className="absolute inset-6 border border-brand-paper/10 pointer-events-none" />
       </div>
     );
   }
