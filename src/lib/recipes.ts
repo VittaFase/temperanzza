@@ -18,6 +18,8 @@ import frangoAnaMariaAsset from "@/assets/receitas/frango-grelhado-ana-maria.jpg
 import sopaLegumesAsset from "@/assets/receitas/sopa-legumes-salsa-cebola-alho.png.asset.json";
 import ovoFritoLemonAsset from "@/assets/receitas/ovo-frito-lemon-pepper.jpg.asset.json";
 import porcoPapricaAsset from "@/assets/receitas/porco-assado-paprica-picante.jpg.asset.json";
+import camaraoChimiAsset from "@/assets/receitas/camarao-chimi-churri-picante.jpg.asset.json";
+
 
 
 
@@ -546,8 +548,9 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com anéis de lula ou tiras de peixe branco firme.",
     harmonization: ["lemon-pepper", "salsa-cebola-e-alho"],
     relatedSlugs: ["camarao-manteiga-salsa-cebola-alho", "peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "bife-manteiga-chimi-churri"],
-    dish: { src: "/receitas/camarao-chimi-churri-picante.jpg", alt: "Camarão salteado com Chimi Churri Picante" },
+    dish: { src: camaraoChimiAsset.url, alt: "Camarão salteado com Chimi Churri Picante" },
     hero: { color: "oklch(0.6 0.14 40)" },
+
   },
   // Nº15
   {
