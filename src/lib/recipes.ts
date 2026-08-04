@@ -935,8 +935,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Use azeite no lugar da manteiga para uma versão sem lactose.",
     harmonization: ["lemon-pepper", "chimichurri-sem-pimenta"],
     relatedSlugs: ["camarao-chimi-churri-picante", "peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "sardinha-grelhada-lemon-pepper"],
-    dish: { src: "/receitas/camarao-manteiga-salsa-cebola-alho.jpg", alt: "Camarão na manteiga com Salsa, Cebola e Alho" },
-    hero: { color: "oklch(0.66 0.14 45)" },
+    dish: { src: camaraoManteigaAsset.url, alt: "Camarão na manteiga com Salsa, Cebola e Alho Temperanzza" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº26
   {
