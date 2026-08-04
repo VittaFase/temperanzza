@@ -11,6 +11,7 @@ import hamburguerBaconAsset from "@/assets/receitas/hamburguer-bacon-em-po.jpg.a
 import ovosErvasAsset from "@/assets/receitas/ovos-mexidos-ervas-finas.jpg.asset.json";
 import peixeGrelhadoAsset from "@/assets/receitas/peixe-grelhado-salsa-cebola-alho.jpg.asset.json";
 import bifeChimiAsset from "@/assets/receitas/bife-manteiga-chimi-churri.jpg.asset.json";
+import ovosCozidosEduAsset from "@/assets/receitas/ovos-cozidos-tempero-edu.jpg.asset.json";
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
@@ -301,7 +302,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Para gema mole, reduza para 6 minutos e sirva com pão.",
     harmonization: ["lemon-pepper", "pimenta-do-reino"],
     relatedSlugs: ["ovo-frito-lemon-pepper", "panqueca-proteica-tempero-edu", "ovos-mexidos-ervas-finas", "ovos-dourados-curcuma"],
-    dish: { src: "/receitas/ovos-cozidos-tempero-edu.jpg", alt: "Ovos cozidos com Tempero do Edu" },
+    dish: { src: ovosCozidosEduAsset.url, alt: "Ovos cozidos com Tempero do Edu" },
     hero: { color: "oklch(0.6 0.1 60)" },
   },
   // Nº08
