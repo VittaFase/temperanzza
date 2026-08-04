@@ -1551,7 +1551,42 @@ export const RECIPES: Recipe[] = [
     dish: { src: "/receitas/sopa-legumes-ervas-finas.jpg", alt: "Sopa de legumes com Ervas Finas" },
     hero: { color: "oklch(0.6 0.12 145)" },
   },
-];
+  // Nº45
+  {
+    slug: "camarao-grelhado-edu",
+    title: "Camarão grelhado com Tempero do Edu",
+    subtitle: "O mar encontra o pomar em um prato vibrante.",
+    intro: "Camarões suculentos com a base vegetal perfeita do Tempero do Edu.",
+    featuredHandle: "tempero-do-edu",
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
+    moment: "jantar",
+    profile: "casa",
+    time: "10 min",
+    serves: "2 pessoas",
+    difficulty: "Fácil",
+    ingredients: [
+      "400g de camarão médio limpo",
+      "1 colher (sopa) de azeite extra virgem",
+      "1 colher (sopa) de Tempero do Edu Temperanzza",
+      "Sal marinho a gosto",
+      "Gomos de limão para servir"
+    ],
+    steps: [
+      "Seque bem os camarões com papel toalha.",
+      "Em uma tigela, envolva os camarões com o azeite, o sal e o Tempero do Edu.",
+      "Aqueça uma frigideira ampla até soltar fumaça leve.",
+      "Grelhe os camarões por 2 minutos de cada lado até ficarem rosados e opacos.",
+      "Sirva imediatamente com limão espremido na hora."
+    ],
+    chefWord: "O Tempero do Edu tem o equilíbrio ideal de vegetais desidratados que não sobrepõe a delicadeza do camarão, apenas realça sua doçura natural.",
+    whyItWorks: "Proteína de rápida absorção com tempero zero açúcar e baixo sódio.",
+    substitution: "Pode ser feito com lagostins ou anéis de lula no mesmo tempo.",
+    harmonization: ["lemon-pepper", "salsa-cebola-e-alho"],
+    relatedSlugs: ["camarao-manteiga-salsa-cebola-alho", "camarao-chimi-churri-picante", "peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas"],
+    dish: { src: "/receitas/camarao-grelhado-edu.jpg", alt: "Camarão grelhado com Tempero do Edu" },
+    hero: { color: "oklch(0.65 0.15 45)" },
+  },
+  ];
 
 
 
