@@ -42,6 +42,7 @@ import omeleteErvasAsset from "@/assets/receitas/omelete-temperaflix-ervas-finas
 import frangoChimiPicanteAsset from "@/assets/receitas/frango-chimi-churri-picante.jpg.asset.json";
 import legumesCurcumaAsset from "@/assets/receitas/legumes-assados-curcuma.jpg.asset.json";
 import costelaDuChefeAsset from "@/assets/receitas/costela-porco-du-chefe.jpg.asset.json";
+import bifeCavaloAsset from "@/assets/receitas/bife-cavalo-pimenta-reino.jpg.asset.json";
 
 
 
@@ -1390,8 +1391,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Use azeite no lugar da manteiga se preferir.",
     harmonization: ["lemon-pepper", "tempero-mineiro"],
     relatedSlugs: ["bife-acebolado-lemon-pepper", "bife-manteiga-chimi-churri", "ovos-fritos-bacon-tradicional", "costela-bovina-pimenta-reino"],
-    dish: { src: "/receitas/bife-cavalo-pimenta-reino.jpg", alt: "Bife a cavalo com Pimenta-do-Reino Premium Black" },
-    hero: { color: "oklch(0.32 0.08 25)" },
+    dish: { src: bifeCavaloAsset.url, alt: "Bife a cavalo com Pimenta-do-Reino Premium Black" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº39
   {
