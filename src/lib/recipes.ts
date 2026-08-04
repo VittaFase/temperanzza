@@ -38,6 +38,7 @@ import frangoQuiaboAsset from "@/assets/receitas/frango-quiabo-ana-maria.jpg.ass
 import ovosFritosBaconAsset from "@/assets/receitas/ovos-fritos-bacon-temperaflix.jpg.asset.json";
 import bifeAceboladoLemonAsset from "@/assets/receitas/bife-acebolado-lemon-pepper.jpg.asset.json";
 import costelinhaPapricaAsset from "@/assets/receitas/costelinha-paprica-defumada-tradicional.jpg.asset.json";
+import omeleteErvasAsset from "@/assets/receitas/omelete-temperaflix-ervas-finas.jpg.asset.json";
 
 
 
@@ -1249,8 +1250,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione tomate picado ou espinafre ao recheio.",
     harmonization: ["salsa-cebola-e-alho", "curcuma"],
     relatedSlugs: ["omelete-bacon-em-po", "ovos-mexidos-ervas-finas", "panqueca-proteica-tempero-edu", "ovos-cozidos-tempero-edu"],
-    dish: { src: "/receitas/omelete-temperaflix-ervas-finas.jpg", alt: "Omelete de Ervas com Temperaflix Ervas Finas" },
-    hero: { color: "oklch(0.6 0.1 140)" },
+    dish: { src: omeleteErvasAsset.url, alt: "Omelete de Ervas com Temperaflix Ervas Finas" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº35
   {
