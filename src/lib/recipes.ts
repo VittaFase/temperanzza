@@ -17,6 +17,8 @@ import ovosCurcumaAsset from "@/assets/receitas/ovos-dourados-curcuma.jpg.asset.
 import frangoAnaMariaAsset from "@/assets/receitas/frango-grelhado-ana-maria.jpg.asset.json";
 import sopaLegumesAsset from "@/assets/receitas/sopa-legumes-salsa-cebola-alho.png.asset.json";
 import ovoFritoLemonAsset from "@/assets/receitas/ovo-frito-lemon-pepper.jpg.asset.json";
+import porcoPapricaAsset from "@/assets/receitas/porco-assado-paprica-picante.jpg.asset.json";
+
 
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
@@ -509,8 +511,9 @@ export const RECIPES: Recipe[] = [
     substitution: "Substitua por sobrepaleta suína para um resultado ainda mais suculento.",
     harmonization: ["chimi-churri-picante", "paprica-defumada"],
     relatedSlugs: ["costelinha-paprica-defumada-tradicional", "costela-porco-du-chefe", "frango-assado-paprica-defumada", "bife-manteiga-chimi-churri"],
-    dish: { src: "/receitas/porco-assado-paprica-picante.jpg", alt: "Lombo suíno com Páprica Picante" },
+    dish: { src: porcoPapricaAsset.url, alt: "Lombo suíno com Páprica Picante" },
     hero: { color: "oklch(0.48 0.16 35)" },
+
   },
   // Nº14
   {
