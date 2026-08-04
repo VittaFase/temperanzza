@@ -1004,8 +1004,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Faça o mesmo com abobrinha ou fatias de pimentão.",
     harmonization: ["ana-maria", "curcuma"],
     relatedSlugs: ["couve-flor-gratinada-curcuma", "legumes-assados-curcuma-tradicional", "sopa-legumes-salsa-cebola-alho", "carne-moida-tempero-mineiro"],
-    dish: { src: "/receitas/berinjela-assada-tempero-mineiro.jpg", alt: "Berinjela assada com Tempero Mineiro" },
-    hero: { color: "oklch(0.35 0.08 300)" },
+    dish: { src: berinjelaMineiroAsset.url, alt: "Berinjela assada com Tempero Mineiro Temperanzza" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº28
   {
