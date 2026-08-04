@@ -95,7 +95,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem bacon em casa? O shaker sozinho já entrega o defumado — só aumente a manteiga.",
     harmonization: ["temperaflix-ervas-finas", "paprica-defumada"],
     relatedSlugs: ["ovos-fritos-bacon-tradicional", "hamburguer-bacon-em-po", "omelete-temperaflix-ervas-finas", "ovos-mexidos-ervas-finas"],
-    dish: { src: "/assets/receitas/omelete-bacon-em-po.jpg", alt: "Omelete simples com Temperaflix Bacon" },
+    dish: { src: omeleteAsset.url, alt: "Omelete simples com Temperaflix Bacon" },
     hero: { color: "oklch(0.35 0.08 40)" },
   },
   // Nº02
