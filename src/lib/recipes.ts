@@ -30,6 +30,7 @@ import panquecaEduAsset from "@/assets/receitas/panqueca-proteica-tempero-edu.jp
 import costelaBovinaAsset from "@/assets/receitas/costela-bovina-pimenta-reino.jpg.asset.json";
 import figadoAceboladoAsset from "@/assets/receitas/figado-acebolado-salsa-cebola-alho.jpg.asset.json";
 import camaraoManteigaAsset from "@/assets/receitas/camarao-manteiga-salsa-cebola-alho.jpg.asset.json";
+import frangoPanelaAnaMariaAsset from "@/assets/receitas/frango-panela-ana-maria.jpg.asset.json";
 
 
 
@@ -969,8 +970,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione quiabo picado nos últimos 10 minutos.",
     harmonization: ["tempero-mineiro", "salsa-cebola-e-alho"],
     relatedSlugs: ["frango-quiabo-ana-maria", "frango-grelhado-ana-maria", "carne-moida-tempero-mineiro", "carne-panela-batatas-tempero-mineiro"],
-    dish: { src: "/receitas/frango-panela-ana-maria.jpg", alt: "Frango de panela com Ana Maria" },
-    hero: { color: "oklch(0.52 0.12 55)" },
+    dish: { src: frangoPanelaAnaMariaAsset.url, alt: "Frango de panela com Ana Maria Temperanzza" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº27
   {
