@@ -1285,8 +1285,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Use a versão sem pimenta para crianças.",
     harmonization: ["paprica-picante", "lemon-pepper"],
     relatedSlugs: ["bife-manteiga-chimi-churri", "camarao-chimi-churri-picante", "frango-grelhado-ana-maria", "frango-dourado-paprica-doce"],
-    dish: { src: "/receitas/frango-chimi-churri-picante.jpg", alt: "Frango grelhado com Chimi Churri Picante" },
-    hero: { color: "oklch(0.55 0.14 45)" },
+    dish: { src: frangoChimiPicanteAsset.url, alt: "Frango grelhado com Chimi Churri Picante" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº36
   {
