@@ -475,7 +475,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona lindamente em ovos 'poché' feitos em água.",
     harmonization: ["curcuma", "pimenta-do-reino"],
     relatedSlugs: ["ovos-cozidos-tempero-edu", "ovos-dourados-curcuma", "ovos-mexidos-ervas-finas", "ovos-fritos-bacon-tradicional"],
-    dish: { src: "/receitas/ovo-frito-lemon-pepper.jpg", alt: "Ovo frito com Lemon Pepper" },
+    dish: { src: ovoFritoLemonAsset.url, alt: "Ovo frito com Lemon Pepper" },
     hero: { color: "oklch(0.65 0.12 90)" },
   },
   // Nº13
