@@ -46,6 +46,8 @@ import bifeCavaloAsset from "@/assets/receitas/bife-cavalo-pimenta-reino.jpg.ass
 import macaCanelaAsset from "@/assets/receitas/maca-assada-canela-moida.jpg.asset.json";
 import pipocaTradicionalAsset from "@/assets/receitas/pipoca-caseira-temperaflix-tradicional.jpg.asset.json";
 import carnePanelaMineiroAsset from "@/assets/receitas/carne-panela-batatas-tempero-mineiro.jpg.asset.json";
+import peixeAssadoSalsaAsset from "@/assets/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg.asset.json";
+
 
 
 
@@ -1533,8 +1535,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Troque os legumes conforme a estação — brócolis e couve-flor também funcionam bem.",
     harmonization: ["lemon-pepper", "ervas-finas"],
     relatedSlugs: ["peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "sardinha-grelhada-lemon-pepper", "camarao-manteiga-salsa-cebola-alho"],
-    dish: { src: "/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg", alt: "Peixe assado com legumes e Salsa, Cebola e Alho" },
-    hero: { color: "oklch(0.6 0.10 130)" },
+    dish: { src: peixeAssadoSalsaAsset.url, alt: "Peixe assado com legumes e Salsa, Cebola e Alho" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº43
   {
