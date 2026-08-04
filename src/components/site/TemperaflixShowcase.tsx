@@ -197,7 +197,7 @@ export function TemperaflixShowcase() {
               A linha que <span style={{ color: activeMeta.accent }}>entra em cena</span>.
             </h2>
             <p className="mt-6 max-w-xl text-brand-paper/70 leading-relaxed">
-              Três shakers exclusivos para seus momentos de tela. Pipoca,
+              Três snakers exclusivos para seus momentos de tela. Pipoca,
               batata, amendoim — do clássico de domingo à maratona de madrugada.
             </p>
           </div>
