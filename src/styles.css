@@ -196,6 +196,14 @@
   to { transform: scaleX(1); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[flavor-progress_3000ms_linear_forwards\] {
+    animation: none !important;
+    transform: scaleX(1) !important;
+    transition: none !important;
+  }
+}
+
 
 /* ─────────────────────────────────────────────────────────
  * View Transitions — cross-fade discreto entre páginas.
