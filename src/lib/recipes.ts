@@ -91,7 +91,7 @@ export const RECIPES: Recipe[] = [
       "Despeje na frigideira em fogo médio-baixo e puxe as bordas para o centro até firmar.",
       "Coloque o bacon, polvilhe o Temperaflix Bacon, dobre ao meio e sirva.",
     ],
-    chefWord: "Ovo inteiro é proteína completa e gordura boa no mesmo alimento. O shaker de bacon entrega o sabor defumado sem a água que a fatia de bacon solta na frigideira.",
+    chefWord: "Ovo inteiro é proteína completa e gordura boa no mesmo alimento. O snaker de bacon entrega o sabor defumado sem a água que a fatia de bacon solta na frigideira.",
     whyItWorks: "Ovos e queijo são a base de proteína e gordura das dietas cetogênica e low carb. O Temperaflix Bacon entra em porção pequena, mantendo os carboidratos controlados.",
     substitution: "Sem bacon em casa? O shaker sozinho já entrega o defumado — só aumente a manteiga.",
     harmonization: ["temperaflix-ervas-finas", "paprica-defumada"],
