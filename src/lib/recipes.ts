@@ -32,6 +32,7 @@ import figadoAceboladoAsset from "@/assets/receitas/figado-acebolado-salsa-cebol
 import camaraoManteigaAsset from "@/assets/receitas/camarao-manteiga-salsa-cebola-alho.jpg.asset.json";
 import frangoPanelaAnaMariaAsset from "@/assets/receitas/frango-panela-ana-maria.jpg.asset.json";
 import berinjelaMineiroAsset from "@/assets/receitas/berinjela-assada-tempero-mineiro.jpg.asset.json";
+import paoQueijoMineiroAsset from "@/assets/receitas/pao-de-queijo-tempero-mineiro.jpg.asset.json";
 
 
 
@@ -1039,8 +1040,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Use queijo meia cura se não encontrar o canastra.",
     harmonization: ["ana-maria", "canela-premium-black-30g"],
     relatedSlugs: ["cafe-ritual-canela", "feijao-tropeiro-tempero-mineiro", "panqueca-proteica-tempero-edu", "pipoca-caseira-temperaflix-tradicional"],
-    dish: { src: "/receitas/pao-de-queijo-tempero-mineiro.jpg", alt: "Pão de queijo com toque de Tempero Mineiro" },
-    hero: { color: "oklch(0.75 0.1 70)" },
+    dish: { src: paoQueijoMineiroAsset.url, alt: "Pão de queijo com Tempero Mineiro Temperanzza" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº29
   {
