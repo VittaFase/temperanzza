@@ -41,6 +41,7 @@ import costelinhaPapricaAsset from "@/assets/receitas/costelinha-paprica-defumad
 import omeleteErvasAsset from "@/assets/receitas/omelete-temperaflix-ervas-finas.jpg.asset.json";
 import frangoChimiPicanteAsset from "@/assets/receitas/frango-chimi-churri-picante.jpg.asset.json";
 import legumesCurcumaAsset from "@/assets/receitas/legumes-assados-curcuma.jpg.asset.json";
+import costelaDuChefeAsset from "@/assets/receitas/costela-porco-du-chefe.jpg.asset.json";
 
 
 
