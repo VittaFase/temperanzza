@@ -478,18 +478,42 @@ function CategoriaAccordion({
                   <Link
                     to="/cozinha/$slug"
                     params={{ slug: r.slug }}
-                    className="group/item flex items-baseline gap-6 sm:gap-10 py-5 sm:py-6 pl-16 sm:pl-24 pr-4 hover:bg-brand-ink hover:text-brand-paper transition-colors -mx-4 sm:-mx-6 sm:pr-6"
+                    className="group/item flex items-center gap-6 sm:gap-10 py-5 sm:py-8 pl-16 sm:pl-24 pr-4 hover:bg-brand-ink hover:text-brand-paper transition-all -mx-4 sm:-mx-6 sm:pr-6"
                   >
                     <span className="shrink-0 font-display text-brand-ink/30 text-xs tabular-nums group-hover/item:text-brand-mustard w-8">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="flex-1 min-w-0 font-display font-bold uppercase tracking-tight text-xl sm:text-2xl lg:text-3xl leading-[1.05] group-hover/item:translate-x-2 transition-transform">
-                      {r.title}
-                    </span>
-                    <span className="shrink-0 hidden md:inline font-serif italic text-sm text-brand-ink/40 group-hover/item:text-brand-paper/70 max-w-xs text-right leading-tight">
-                      {r.subtitle ?? r.intro}
-                    </span>
-                    <ArrowUpRight className="shrink-0 h-5 w-5 opacity-0 group-hover/item:opacity-100 transition-opacity" />
+
+                    {/* Thumbnail do Prato (Master Chef look) */}
+                    <div className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 overflow-hidden bg-brand-ink/5 border border-brand-ink/10 group-hover/item:border-brand-paper/20 transition-colors">
+                      {r.dish ? (
+                        <img
+                          src={r.dish.src}
+                          alt={r.dish.alt}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition duration-500 group-hover/item:scale-110"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center opacity-20">
+                          <span className="font-display text-[8px] uppercase tracking-widest">
+                            Temperanzza
+                          </span>
+                        </div>
+                      )}
+                      {/* Overlay sutil */}
+                      <div className="absolute inset-0 bg-brand-ink/0 group-hover/item:bg-brand-ink/20 transition-colors" />
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <span className="block font-display font-bold uppercase tracking-tight text-xl sm:text-2xl lg:text-3xl leading-[1.05] group-hover/item:translate-x-2 transition-transform">
+                        {r.title}
+                      </span>
+                      <span className="mt-1 block font-serif italic text-sm text-brand-ink/40 group-hover/item:text-brand-paper/70 line-clamp-1">
+                        {r.subtitle ?? r.intro}
+                      </span>
+                    </div>
+
+                    <ArrowUpRight className="shrink-0 h-5 w-5 opacity-0 group-hover/item:opacity-100 transition-all group-hover/item:translate-x-1 group-hover/item:-translate-y-1" />
                   </Link>
                 </li>
               ))}
