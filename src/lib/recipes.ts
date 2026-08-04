@@ -1425,8 +1425,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona também com bananas maduras.",
     harmonization: ["cafe-ritual-canela"],
     relatedSlugs: ["cafe-ritual-canela", "mix-castanhas-temperaflix-ervas", "pipoca-caseira-temperaflix-tradicional", "pao-de-queijo-tempero-mineiro"],
-    dish: { src: "/receitas/maca-assada-canela.jpg", alt: "Maçã assada com Canela Premium Black" },
-    hero: { color: "oklch(0.42 0.1 40)" },
+    dish: { src: macaCanelaAsset.url, alt: "Maçã assada com Canela Premium Black" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº40
   {
