@@ -6,6 +6,7 @@
 import type { DietKey } from "./diets";
 import type { ProductDiet } from "./dietCompatibility";
 import omeleteAsset from "@/assets/receitas/omelete-bacon-em-po.jpg.asset.json";
+import frangoPapricaAsset from "@/assets/receitas/frango-assado-paprica-defumada.jpg.asset.json";
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
@@ -129,7 +130,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Prefere peito? Corte em cubos grandes e reduza o forno para 25 minutos.",
     harmonization: ["temperaflix-bacon", "paprica-doce"],
     relatedSlugs: ["costelinha-paprica-defumada-tradicional", "frango-dourado-paprica-doce", "porco-assado-paprica-picante", "frango-grelhado-ana-maria"],
-    dish: { src: "/receitas/frango-assado-paprica-defumada.jpg", alt: "Frango assado com Páprica Defumada" },
+    dish: { src: frangoPapricaAsset.url, alt: "Frango assado com Páprica Defumada" },
     hero: { color: "oklch(0.5 0.18 40)" },
   },
   // Nº03

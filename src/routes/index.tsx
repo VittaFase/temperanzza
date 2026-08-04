@@ -1,4 +1,4 @@
-// Execute esta instrucao no projeto: substitua a imagem da receita Omelete simples com Temperaflix Bacon pela imagem em anexo
+// Execute esta instrucao no projeto: Vamos a segunda imagem
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
