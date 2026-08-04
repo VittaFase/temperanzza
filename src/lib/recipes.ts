@@ -54,6 +54,7 @@ export const MOMENTS: Record<Moment, string> = {
   cafe: "Café da manhã",
   almoco: "Almoço",
   jantar: "Jantar",
+  lanche: "Lanche",
 };
 
 export const CATEGORIES: Record<RecipeCategory, { label: string; short: string }> = {
