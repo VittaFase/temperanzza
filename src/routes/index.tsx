@@ -1,4 +1,4 @@
-// Execute esta instrucao no projeto: Antes de implementar me fale quantas imagens recebeu e se tudo está seguro para não gerarmos duplicidade por falta da sua comunicação!
+// Execute esta instrucao no projeto: me responda somente quantas imagens recebeu relativas as 44 imagens para as receitas!
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
