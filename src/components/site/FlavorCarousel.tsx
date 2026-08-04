@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getProductImage } from "@/lib/productImages";
 import type { ShopifyProduct } from "@/lib/shopify";
@@ -46,7 +46,7 @@ export function FlavorCarousel({
   const total = slides.length;
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState<1 | -1>(1);
-  const [reduced, setReduced] = useState(true);
+  const [reduced, setReduced] = useState(false);
   const [tick, setTick] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
