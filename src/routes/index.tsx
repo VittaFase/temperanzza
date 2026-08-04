@@ -1,3 +1,4 @@
+// Execute esta instrucao no projeto: para proteção de toda implementação das imagens das receitas podemos implementar uma primeira imagem de teste e a partir do teste darmos prosseguimento seguro?
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
