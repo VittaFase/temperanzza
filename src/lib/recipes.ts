@@ -23,6 +23,8 @@ import frangoPapricaDoceAsset from "@/assets/receitas/frango-dourado-paprica-doc
 import cafeCanelaAsset from "@/assets/receitas/cafe-ritual-canela.jpg.asset.json";
 import mixCastanhasAsset from "@/assets/receitas/mix-castanhas-temperaflix-ervas.jpg.asset.json";
 import salmaoCrostaAsset from "@/assets/receitas/salmao-crosta-ervas-finas.jpg.asset.json";
+import abacateFrangoAsset from "@/assets/receitas/abacate-recheado-frango-chimi-churri.jpg.asset.json";
+
 
 
 
@@ -724,7 +726,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Substitua o frango por atum em lata ou camarões pequenos.",
     harmonization: ["lemon-pepper", "ana-maria"],
     relatedSlugs: ["frango-grelhado-ana-maria", "salmao-crosta-ervas-finas", "sardinha-grelhada-lemon-pepper", "sopa-legumes-salsa-cebola-alho"],
-    dish: { src: "/receitas/abacate-recheado-frango-chimi-churri.jpg", alt: "Abacate recheado com frango e Chimi Churri" },
+    dish: { src: abacateFrangoAsset.url, alt: "Abacate recheado com frango e Chimi Churri" },
     hero: { color: "oklch(0.6 0.12 120)" },
   },
   // Nº20
