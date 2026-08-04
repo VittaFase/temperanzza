@@ -20,6 +20,8 @@ import ovoFritoLemonAsset from "@/assets/receitas/ovo-frito-lemon-pepper.jpg.ass
 import porcoPapricaAsset from "@/assets/receitas/porco-assado-paprica-picante.jpg.asset.json";
 import camaraoChimiAsset from "@/assets/receitas/camarao-chimi-churri-picante.jpg.asset.json";
 import frangoPapricaDoceAsset from "@/assets/receitas/frango-dourado-paprica-doce.jpg.asset.json";
+import cafeCanelaAsset from "@/assets/receitas/cafe-ritual-canela.jpg.asset.json";
+
 
 
 
@@ -617,8 +619,9 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem mixer? Misture com força na xícara, mas a textura será menos cremosa.",
     harmonization: ["pimenta-reino-premium-black-30g"],
     relatedSlugs: ["maca-assada-canela", "ovos-dourados-curcuma", "ovos-mexidos-ervas-finas", "ovos-cozidos-tempero-edu"],
-    dish: { src: "/receitas/cafe-ritual-canela.jpg", alt: "Café Ritual com Canela" },
+    dish: { src: cafeCanelaAsset.url, alt: "Café Ritual com Canela" },
     hero: { color: "oklch(0.35 0.08 45)" },
+
   },
   // Nº17
   {
