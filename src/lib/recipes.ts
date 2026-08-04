@@ -21,6 +21,8 @@ import porcoPapricaAsset from "@/assets/receitas/porco-assado-paprica-picante.jp
 import camaraoChimiAsset from "@/assets/receitas/camarao-chimi-churri-picante.jpg.asset.json";
 import frangoPapricaDoceAsset from "@/assets/receitas/frango-dourado-paprica-doce.jpg.asset.json";
 import cafeCanelaAsset from "@/assets/receitas/cafe-ritual-canela.jpg.asset.json";
+import mixCastanhasAsset from "@/assets/receitas/mix-castanhas-temperaflix-ervas.jpg.asset.json";
+
 
 
 
