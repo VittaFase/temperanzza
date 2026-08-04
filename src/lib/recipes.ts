@@ -48,6 +48,8 @@ import pipocaTradicionalAsset from "@/assets/receitas/pipoca-caseira-temperaflix
 import carnePanelaMineiroAsset from "@/assets/receitas/carne-panela-batatas-tempero-mineiro.jpg.asset.json";
 import peixeAssadoSalsaAsset from "@/assets/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg.asset.json";
 import feijaoTropeiroAsset from "@/assets/receitas/feijao-tropeiro-tempero-mineiro.jpg.asset.json";
+import sopaLegumesErvasAsset from "@/assets/receitas/sopa-legumes-ervas-finas.jpg.asset.json";
+
 
 
 
@@ -1608,8 +1610,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione macarrão tipo ave-maria para as crianças.",
     harmonization: ["salsa-cebola-e-alho", "curcuma"],
     relatedSlugs: ["sopa-legumes-salsa-cebola-alho", "legumes-assados-curcuma-tradicional", "berinjela-assada-tempero-mineiro", "couve-flor-gratinada-curcuma"],
-    dish: { src: "/receitas/sopa-legumes-ervas-finas.jpg", alt: "Sopa de legumes com Ervas Finas" },
-    hero: { color: "oklch(0.6 0.12 145)" },
+    dish: { src: sopaLegumesErvasAsset.url, alt: "Sopa de legumes com Ervas Finas" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   ];
 
