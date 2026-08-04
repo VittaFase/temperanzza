@@ -1551,6 +1551,8 @@ export const RECIPES: Recipe[] = [
     dish: { src: "/receitas/sopa-legumes-ervas-finas.jpg", alt: "Sopa de legumes com Ervas Finas" },
     hero: { color: "oklch(0.6 0.12 145)" },
   },
+];
+
 
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
