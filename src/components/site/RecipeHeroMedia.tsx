@@ -48,14 +48,6 @@ export function RecipeHeroMedia({
         {/* Overlay gradiente para profundidade */}
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-brand-ink/60 via-transparent to-transparent opacity-60" />
 
-        {/* Assinatura: O pote real no canto inferior direito - Oculto quando a imagem já contém o pote */}
-        <div className="hidden absolute bottom-4 right-4 w-24 sm:w-32 lg:w-40 drop-shadow-2xl animate-pote-float pointer-events-none select-none">
-          <img
-            src={poster}
-            alt="Pote Temperanzza"
-            className="w-full h-auto object-contain"
-          />
-        </div>
 
         {/* Bordas decorativas estilo editorial */}
         <div className="absolute inset-4 border border-brand-paper/20 pointer-events-none" />
