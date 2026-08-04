@@ -15,6 +15,7 @@ import ovosCozidosEduAsset from "@/assets/receitas/ovos-cozidos-tempero-edu.jpg.
 import carneMoidaMineiroAsset from "@/assets/receitas/carne-moida-tempero-mineiro.jpg.asset.json";
 import ovosCurcumaAsset from "@/assets/receitas/ovos-dourados-curcuma.jpg.asset.json";
 import frangoAnaMariaAsset from "@/assets/receitas/frango-grelhado-ana-maria.jpg.asset.json";
+import sopaLegumesAsset from "@/assets/receitas/sopa-legumes-salsa-cebola-alho.png.asset.json";
 
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
@@ -440,7 +441,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Para a versão tradicional, adicione batata e cenoura e aumente a água.",
     harmonization: ["tempero-mineiro", "curcuma"],
     relatedSlugs: ["sopa-legumes-ervas-finas", "berinjela-assada-tempero-mineiro", "legumes-assados-curcuma-tradicional", "couve-flor-gratinada-curcuma"],
-    dish: { src: "/receitas/sopa-legumes-salsa-cebola-alho.jpg", alt: "Sopa de legumes com Salsa, Cebola e Alho" },
+    dish: { src: sopaLegumesAsset.url, alt: "Sopa de legumes com Salsa, Cebola e Alho" },
     hero: { color: "oklch(0.62 0.1 145)" },
   },
   // Nº12
