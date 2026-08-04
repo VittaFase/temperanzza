@@ -1,4 +1,4 @@
-// Execute esta instrucao no projeto: retire a imagem do pote flutuante do condimento da imagem enviada para a receita, pois a imagem enviada já contem a imagem do pote utilizado!
+// Execute esta instrucao no projeto: substitua a imagem da receita Omelete simples com Temperaflix Bacon pela imagem em anexo
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
