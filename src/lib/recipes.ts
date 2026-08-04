@@ -30,6 +30,7 @@ import panquecaEduAsset from "@/assets/receitas/panqueca-proteica-tempero-edu.jp
 import costelaBovinaAsset from "@/assets/receitas/costela-bovina-pimenta-reino.jpg.asset.json";
 import figadoAceboladoAsset from "@/assets/receitas/figado-acebolado-salsa-cebola-alho.jpg.asset.json";
 import camaraoManteigaAsset from "@/assets/receitas/camarao-manteiga-salsa-cebola-alho.jpg.asset.json";
+import frangoPanelaAnaMariaAsset from "@/assets/receitas/frango-panela-ana-maria.jpg.asset.json";
 
 
 
