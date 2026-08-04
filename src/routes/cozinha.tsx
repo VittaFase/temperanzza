@@ -269,7 +269,7 @@ const CATEGORIAS: CategoriaDef[] = [
   },
 ];
 
-const MOMENT_ORDER: Moment[] = ["cafe", "almoco", "jantar"];
+const MOMENT_ORDER: Moment[] = ["cafe", "almoco", "jantar", "lanche"];
 
 function BibliotecaIndice() {
   const [aberta, setAberta] = useState<CategoriaKey | null>(null);
