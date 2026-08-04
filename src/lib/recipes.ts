@@ -32,6 +32,7 @@ import figadoAceboladoAsset from "@/assets/receitas/figado-acebolado-salsa-cebol
 import camaraoManteigaAsset from "@/assets/receitas/camarao-manteiga-salsa-cebola-alho.jpg.asset.json";
 import frangoPanelaAnaMariaAsset from "@/assets/receitas/frango-panela-ana-maria.jpg.asset.json";
 import berinjelaMineiroAsset from "@/assets/receitas/berinjela-assada-tempero-mineiro.jpg.asset.json";
+import paoQueijoMineiroAsset from "@/assets/receitas/pao-de-queijo-tempero-mineiro.jpg.asset.json";
 
 
 
