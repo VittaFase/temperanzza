@@ -1065,7 +1065,7 @@ export const RECIPES: Recipe[] = [
       "Sal e óleo a gosto",
     ],
     steps: [
-      "Refogue o arroz no óleo com o sal por 1 minuto.",
+      "Refogue the arroz no óleo com o sal por 1 minuto.",
       "Adicione a água fervente e a Cebola em Pó.",
       "Cozinhe em fogo baixo com a panela semi-tampada até a água secar.",
       "Desligue e deixe descansar 5 minutos antes de soltar com um garfo.",
@@ -1075,8 +1075,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Use no arroz integral aumentando a água e o tempo de cozimento.",
     harmonization: ["salsa-cebola-e-alho", "ana-maria"],
     relatedSlugs: ["feijao-tropeiro-tempero-mineiro", "carne-moida-tempero-mineiro", "frango-panela-ana-maria", "carne-panela-batatas-tempero-mineiro"],
-    dish: { src: "/receitas/arroz-soltinho-cebola-em-po.jpg", alt: "Arroz soltinho com Cebola em Pó" },
-    hero: { color: "oklch(0.85 0.05 90)" },
+    dish: { src: arrozBrancoAsset.url, alt: "Arroz soltinho com Cebola em Pó" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº30
   {
