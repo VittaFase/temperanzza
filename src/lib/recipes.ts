@@ -47,6 +47,8 @@ import macaCanelaAsset from "@/assets/receitas/maca-assada-canela-moida.jpg.asse
 import pipocaTradicionalAsset from "@/assets/receitas/pipoca-caseira-temperaflix-tradicional.jpg.asset.json";
 import carnePanelaMineiroAsset from "@/assets/receitas/carne-panela-batatas-tempero-mineiro.jpg.asset.json";
 import peixeAssadoSalsaAsset from "@/assets/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg.asset.json";
+import feijaoTropeiroAsset from "@/assets/receitas/feijao-tropeiro-tempero-mineiro.jpg.asset.json";
+
 
 
 
@@ -1570,8 +1572,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Sirva com couve refogada e arroz branco para o combo mineiro completo.",
     harmonization: ["ana-maria", "cebola-em-po"],
     relatedSlugs: ["carne-panela-batatas-tempero-mineiro", "pao-de-queijo-tempero-mineiro", "arroz-soltinho-cebola-em-po", "frango-quiabo-ana-maria"],
-    dish: { src: "/receitas/feijao-tropeiro-tempero-mineiro.jpg", alt: "Feijão tropeiro com Tempero Mineiro" },
-    hero: { color: "oklch(0.45 0.09 55)" },
+    dish: { src: feijaoTropeiroAsset.url, alt: "Feijão tropeiro com Tempero Mineiro" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº44
   {
