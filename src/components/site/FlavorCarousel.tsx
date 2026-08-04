@@ -70,9 +70,9 @@ export function FlavorCarousel({
   );
 
   useEffect(() => {
-    if (reduced || total < 2) return;
+    if (total < 2) return;
     
-    // Inicia o timer imediatamente
+    // Inicia o timer mesmo se reducedMotion estiver on (apenas a animação visual é afetada no CSS)
     timer.current = setTimeout(() => {
       go(index + 1, 1);
     }, AUTOPLAY_MS);
@@ -80,7 +80,7 @@ export function FlavorCarousel({
     return () => {
       if (timer.current) clearTimeout(timer.current);
     };
-  }, [index, tick, reduced, total, go]);
+  }, [index, tick, total, go]);
 
   if (total === 0) return null;
 
@@ -98,7 +98,7 @@ export function FlavorCarousel({
             <span
               key={`${tick}-${i}`}
               className={`block h-full bg-foreground origin-left ${
-                i === index && !reduced ? "animate-[flavor-progress_3000ms_linear_forwards]" : ""
+                i === index ? "animate-[flavor-progress_3000ms_linear_forwards]" : ""
               }`}
               style={{
                 width: i < index ? "100%" : i === index ? "0%" : "0%",
