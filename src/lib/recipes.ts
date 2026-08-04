@@ -10,6 +10,7 @@ import frangoPapricaAsset from "@/assets/receitas/frango-assado-paprica-defumada
 import hamburguerBaconAsset from "@/assets/receitas/hamburguer-bacon-em-po.jpg.asset.json";
 import ovosErvasAsset from "@/assets/receitas/ovos-mexidos-ervas-finas.jpg.asset.json";
 import peixeGrelhadoAsset from "@/assets/receitas/peixe-grelhado-salsa-cebola-alho.jpg.asset.json";
+import bifeChimiAsset from "@/assets/receitas/bife-manteiga-chimi-churri.jpg.asset.json";
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
@@ -267,7 +268,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem picância? O Chimi Churri sem Pimenta faz a mesma manteiga.",
     harmonization: ["paprica-picante", "tempero-do-edu"],
     relatedSlugs: ["frango-chimi-churri-picante", "camarao-chimi-churri-picante", "costela-bovina-pimenta-reino", "bife-acebolado-lemon-pepper"],
-    dish: { src: "/receitas/bife-manteiga-chimi-churri.jpg", alt: "Bife grelhado com manteiga de Chimi Churri Picante" },
+    dish: { src: bifeChimiAsset.url, alt: "Bife grelhado com manteiga de Chimi Churri Picante" },
     hero: { color: "oklch(0.42 0.14 30)" },
   },
   // Nº07
