@@ -31,7 +31,7 @@ import costelaBovinaAsset from "@/assets/receitas/costela-bovina-pimenta-reino.j
 import figadoAceboladoAsset from "@/assets/receitas/figado-acebolado-salsa-cebola-alho.jpg.asset.json";
 import camaraoManteigaAsset from "@/assets/receitas/camarao-manteiga-salsa-cebola-alho.jpg.asset.json";
 import frangoPanelaAnaMariaAsset from "@/assets/receitas/frango-panela-ana-maria.jpg.asset.json";
-import berinjelaMineiroAsset from "@/assets/receitas/berinjela-assada-tempero-mineiro.jpg.asset.json";
+import berinjelaMineiroAsset from "@/assets/receitas/berinjela-assada-tempero-mineiro-v2.jpg.asset.json";
 import paoQueijoMineiroAsset from "@/assets/receitas/pao-de-queijo-tempero-mineiro.jpg.asset.json";
 import arrozBrancoAsset from "@/assets/receitas/arroz-branco-salsa-cebola-alho.jpg.asset.json";
 import frangoQuiaboAsset from "@/assets/receitas/frango-quiabo-ana-maria.jpg.asset.json";
