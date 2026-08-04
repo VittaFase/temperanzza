@@ -8,6 +8,7 @@ import type { ProductDiet } from "./dietCompatibility";
 import omeleteAsset from "@/assets/receitas/omelete-bacon-em-po.jpg.asset.json";
 import frangoPapricaAsset from "@/assets/receitas/frango-assado-paprica-defumada.jpg.asset.json";
 import hamburguerBaconAsset from "@/assets/receitas/hamburguer-bacon-em-po.jpg.asset.json";
+import ovosErvasAsset from "@/assets/receitas/ovos-mexidos-ervas-finas.jpg.asset.json";
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
