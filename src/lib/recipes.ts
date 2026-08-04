@@ -35,6 +35,7 @@ import berinjelaMineiroAsset from "@/assets/receitas/berinjela-assada-tempero-mi
 import paoQueijoMineiroAsset from "@/assets/receitas/pao-de-queijo-tempero-mineiro.jpg.asset.json";
 import arrozBrancoAsset from "@/assets/receitas/arroz-branco-salsa-cebola-alho.jpg.asset.json";
 import frangoQuiaboAsset from "@/assets/receitas/frango-quiabo-ana-maria.jpg.asset.json";
+import ovosFritosBaconAsset from "@/assets/receitas/ovos-fritos-bacon-temperaflix.jpg.asset.json";
 
 
 
@@ -1144,8 +1145,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Sirva com torrada de pão de fermentação natural.",
     harmonization: ["pimenta-do-reino", "ervas-finas"],
     relatedSlugs: ["omelete-bacon-em-po", "hamburguer-bacon-em-po", "ovo-frito-lemon-pepper", "ovos-cozidos-tempero-edu"],
-    dish: { src: "/receitas/ovos-fritos-bacon-tradicional.jpg", alt: "Ovos fritos com bacon e Temperaflix Bacon" },
-    hero: { color: "oklch(0.38 0.1 40)" },
+    dish: { src: ovosFritosBaconAsset.url, alt: "Ovos fritos com bacon e Temperaflix Bacon" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº32
   {
