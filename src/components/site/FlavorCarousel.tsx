@@ -97,15 +97,12 @@ export function FlavorCarousel({
           >
             <span
               key={`${tick}-${i}`}
-              className="block h-full bg-foreground origin-left"
+              className={`block h-full bg-foreground origin-left ${
+                i === index && !reduced ? "animate-[flavor-progress_3000ms_linear_forwards]" : ""
+              }`}
               style={{
-                width: i < index ? "100%" : i === index ? "100%" : "0%",
-                transform:
-                  i === index && !reduced ? "scaleX(0)" : "scaleX(1)",
-                animation:
-                  i === index && !reduced
-                    ? `flavor-progress ${AUTOPLAY_MS}ms linear forwards`
-                    : undefined,
+                width: i < index ? "100%" : i === index ? "0%" : "0%",
+                transform: i < index ? "scaleX(1)" : undefined,
               }}
             />
           </span>
