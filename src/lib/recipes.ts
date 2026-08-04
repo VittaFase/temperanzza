@@ -8,6 +8,7 @@ import type { ProductDiet } from "./dietCompatibility";
 import omeleteAsset from "@/assets/receitas/omelete-bacon-em-po.jpg.asset.json";
 import frangoPapricaAsset from "@/assets/receitas/frango-assado-paprica-defumada.jpg.asset.json";
 import hamburguerBaconAsset from "@/assets/receitas/hamburguer-bacon-em-po.jpg.asset.json";
+import ovosErvasAsset from "@/assets/receitas/ovos-mexidos-ervas-finas.jpg.asset.json";
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
@@ -199,7 +200,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem creme de leite, uma colher de requeijão faz o mesmo trabalho.",
     harmonization: ["salsa-cebola-e-alho", "curcuma"],
     relatedSlugs: ["ovos-dourados-curcuma", "omelete-temperaflix-ervas-finas", "salmao-crosta-ervas-finas", "ovos-cozidos-tempero-edu"],
-    dish: { src: "/receitas/ovos-mexidos-ervas-finas.jpg", alt: "Ovos mexidos com Ervas Finas" },
+    dish: { src: ovosErvasAsset.url, alt: "Ovos mexidos com Ervas Finas" },
     hero: { color: "oklch(0.5 0.13 145)" },
   },
   // Nº05
