@@ -165,7 +165,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem pão, monte sobre folhas de alface — a versão keto não perde nada.",
     harmonization: ["paprica-defumada", "cebola-em-po"],
     relatedSlugs: ["omelete-bacon-em-po", "ovos-fritos-bacon-tradicional", "bife-manteiga-chimi-churri", "carne-moida-tempero-mineiro"],
-    dish: { src: "/receitas/hamburguer-bacon-em-po.jpg", alt: "Hambúrguer caseiro com Temperaflix Bacon" },
+    dish: { src: hamburguerBaconAsset.url, alt: "Hambúrguer caseiro com Temperaflix Bacon" },
     hero: { color: "oklch(0.32 0.08 30)" },
   },
   // Nº04
