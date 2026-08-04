@@ -19,6 +19,8 @@ import sopaLegumesAsset from "@/assets/receitas/sopa-legumes-salsa-cebola-alho.p
 import ovoFritoLemonAsset from "@/assets/receitas/ovo-frito-lemon-pepper.jpg.asset.json";
 import porcoPapricaAsset from "@/assets/receitas/porco-assado-paprica-picante.jpg.asset.json";
 import camaraoChimiAsset from "@/assets/receitas/camarao-chimi-churri-picante.jpg.asset.json";
+import frangoPapricaDoceAsset from "@/assets/receitas/frango-dourado-paprica-doce.jpg.asset.json";
+
 
 
 
