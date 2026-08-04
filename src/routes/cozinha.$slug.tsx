@@ -119,6 +119,23 @@ export const Route = createFileRoute("/cozinha/$slug")({
     };
   },
   loader: ({ params }) => {
+    // 301 Redirects - Normalização da Biblioteca v2
+    const redirects: Record<string, string> = {
+      "frango-grelhado-cebola-em-po": "frango-grelhado-ana-maria",
+      "sopa-legumes-cebola-em-po": "sopa-legumes-salsa-cebola-alho",
+      "figado-acebolado-cebola-po": "figado-acebolado-salsa-cebola-alho",
+      "omelete-ervas-finas-tradicional": "omelete-temperaflix-ervas-finas",
+      "frango-chimi-churri-tradicional": "frango-chimi-churri-picante",
+      "feijao-tropeiro-ana-maria": "feijao-tropeiro-tempero-mineiro",
+    };
+
+    if (redirects[params.slug]) {
+      throw new Response(null, {
+        status: 301,
+        headers: { Location: `/cozinha/${redirects[params.slug]}` },
+      });
+    }
+
     const r = getRecipeBySlug(params.slug);
     if (!r) throw notFound();
     return r;
