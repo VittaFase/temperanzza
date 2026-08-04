@@ -43,6 +43,10 @@ export interface Recipe {
   harmonization?: string[];
   /** Proteína dominante do prato (filtro complementar). Fallback: RECIPE_PROTEIN. */
   proteinaPrincipal?: Protein;
+  /** Foto do prato pronto (adição v2) */
+  dish?: { src: string; alt: string };
+  /** Sugestões específicas para "Continue a leitura" */
+  relatedSlugs?: string[];
 }
 
 
