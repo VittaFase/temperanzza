@@ -1,4 +1,4 @@
-// Execute esta instrucao no projeto: recebeu alguma imagem?
+// Execute esta instrucao no projeto: Antes de implementar me fale quantas imagens recebeu e se tudo está seguro para não gerarmos duplicidade por falta da sua comunicação!
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
