@@ -184,13 +184,16 @@ function RecipeDrawer() {
       .filter((p) => p.img);
   }, [recipe]);
 
-  const related = useMemo(
-    () =>
-      RECIPES.filter(
-        (r) => r.profile === recipe.profile && r.slug !== recipe.slug,
-      ).slice(0, 4),
-    [recipe],
-  );
+  const related = useMemo(() => {
+    if (recipe.relatedSlugs && recipe.relatedSlugs.length > 0) {
+      return recipe.relatedSlugs
+        .map((slug) => getRecipeBySlug(slug))
+        .filter((r): r is Recipe => !!r);
+    }
+    return RECIPES.filter(
+      (r) => r.profile === recipe.profile && r.slug !== recipe.slug,
+    ).slice(0, 4);
+  }, [recipe]);
 
   const subtitle = recipe.subtitle ?? recipe.intro;
   const chefWord = recipe.chefWord ?? recipe.whyItWorks;
