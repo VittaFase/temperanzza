@@ -43,6 +43,7 @@ import frangoChimiPicanteAsset from "@/assets/receitas/frango-chimi-churri-pican
 import legumesCurcumaAsset from "@/assets/receitas/legumes-assados-curcuma.jpg.asset.json";
 import costelaDuChefeAsset from "@/assets/receitas/costela-porco-du-chefe.jpg.asset.json";
 import bifeCavaloAsset from "@/assets/receitas/bife-cavalo-pimenta-reino.jpg.asset.json";
+import macaCanelaAsset from "@/assets/receitas/maca-assada-canela-moida.jpg.asset.json";
 
 
 
