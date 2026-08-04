@@ -1356,8 +1356,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com lombo suíno fatiado.",
     harmonization: ["paprica-defumada", "pimenta-do-reino"],
     relatedSlugs: ["costelinha-paprica-defumada-tradicional", "porco-assado-paprica-picante", "costela-bovina-pimenta-reino", "bife-manteiga-chimi-churri"],
-    dish: { src: "/receitas/costela-porco-du-chefe.jpg", alt: "Costelinha de porco com Du Chefe" },
-    hero: { color: "oklch(0.42 0.14 30)" },
+    dish: { src: costelaDuChefeAsset.url, alt: "Costelinha de porco com Du Chefe" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº38
   {
