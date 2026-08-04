@@ -24,6 +24,8 @@ import cafeCanelaAsset from "@/assets/receitas/cafe-ritual-canela.jpg.asset.json
 import mixCastanhasAsset from "@/assets/receitas/mix-castanhas-temperaflix-ervas.jpg.asset.json";
 import salmaoCrostaAsset from "@/assets/receitas/salmao-crosta-ervas-finas.jpg.asset.json";
 import abacateFrangoAsset from "@/assets/receitas/abacate-recheado-frango-chimi-churri.jpg.asset.json";
+import couveFlorAsset from "@/assets/receitas/couve-flor-gratinada-curcuma.jpg.asset.json";
+
 
 
 
@@ -760,7 +762,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona também com brócolis ou uma mistura dos dois.",
     harmonization: ["salsa-cebola-e-alho", "pimenta-do-reino"],
     relatedSlugs: ["legumes-assados-curcuma-tradicional", "berinjela-assada-tempero-mineiro", "sopa-legumes-salsa-cebola-alho", "ovos-dourados-curcuma"],
-    dish: { src: "/receitas/couve-flor-gratinada-curcuma.jpg", alt: "Couve-flor gratinada com Cúrcuma" },
+    dish: { src: couveFlorAsset.url, alt: "Couve-flor gratinada com Cúrcuma" },
     hero: { color: "oklch(0.7 0.16 85)" },
   },
   // Nº21
