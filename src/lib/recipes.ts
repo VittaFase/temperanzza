@@ -12,6 +12,8 @@ import ovosErvasAsset from "@/assets/receitas/ovos-mexidos-ervas-finas.jpg.asset
 import peixeGrelhadoAsset from "@/assets/receitas/peixe-grelhado-salsa-cebola-alho.jpg.asset.json";
 import bifeChimiAsset from "@/assets/receitas/bife-manteiga-chimi-churri.jpg.asset.json";
 import ovosCozidosEduAsset from "@/assets/receitas/ovos-cozidos-tempero-edu.jpg.asset.json";
+import carneMoidaMineiroAsset from "@/assets/receitas/carne-moida-tempero-mineiro.jpg.asset.json";
+
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
@@ -335,7 +337,7 @@ export const RECIPES: Recipe[] = [
     substitution: "A mesma base vira ragu com uma lata de tomate e 20 minutos a mais.",
     harmonization: ["ana-maria", "du-chefe-com-paprica"],
     relatedSlugs: ["carne-panela-batatas-tempero-mineiro", "berinjela-assada-tempero-mineiro", "feijao-tropeiro-tempero-mineiro", "hamburguer-bacon-em-po"],
-    dish: { src: "/receitas/carne-moida-tempero-mineiro.jpg", alt: "Carne moída refogada com Tempero Mineiro" },
+    dish: { src: carneMoidaMineiroAsset.url, alt: "Carne moída refogada com Tempero Mineiro" },
     hero: { color: "oklch(0.42 0.1 30)" },
   },
   // Nº09
