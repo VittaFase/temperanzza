@@ -26,6 +26,7 @@ import salmaoCrostaAsset from "@/assets/receitas/salmao-crosta-ervas-finas.jpg.a
 import abacateFrangoAsset from "@/assets/receitas/abacate-recheado-frango-chimi-churri.jpg.asset.json";
 import couveFlorAsset from "@/assets/receitas/couve-flor-gratinada-curcuma.jpg.asset.json";
 import sardinhaLemonAsset from "@/assets/receitas/sardinha-grelhada-lemon-pepper.jpg.asset.json";
+import panquecaEduAsset from "@/assets/receitas/panqueca-proteica-tempero-edu.jpg.asset.json";
 
 
 
@@ -830,7 +831,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Use frango desfiado com Tempero Mineiro como recheio.",
     harmonization: ["ana-maria", "salsa-cebola-e-alho"],
     relatedSlugs: ["ovos-cozidos-tempero-edu", "omelete-bacon-em-po", "ovos-mexidos-ervas-finas", "pao-de-queijo-tempero-mineiro"],
-    dish: { src: "/receitas/panqueca-proteica-tempero-edu.jpg", alt: "Panqueca proteica com Tempero do Edu" },
+    dish: { src: panquecaEduAsset.url, alt: "Panqueca proteica com Tempero do Edu" },
     hero: { color: "oklch(0.62 0.1 65)" },
   },
   // Nº23
