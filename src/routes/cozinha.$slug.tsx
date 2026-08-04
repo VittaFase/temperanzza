@@ -341,6 +341,7 @@ function RecipeDrawer() {
                 <RecipeHeroMedia
                   slug={recipe.slug}
                   poster={productImg}
+                  dish={recipe.dish}
                   alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
                 />
               </div>
