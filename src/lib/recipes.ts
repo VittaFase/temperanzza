@@ -5,6 +5,7 @@
 
 import type { DietKey } from "./diets";
 import type { ProductDiet } from "./dietCompatibility";
+import omeleteAsset from "@/assets/receitas/omelete-bacon-em-po.jpg.asset.json";
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
