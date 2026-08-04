@@ -36,6 +36,7 @@ import paoQueijoMineiroAsset from "@/assets/receitas/pao-de-queijo-tempero-minei
 import arrozBrancoAsset from "@/assets/receitas/arroz-branco-salsa-cebola-alho.jpg.asset.json";
 import frangoQuiaboAsset from "@/assets/receitas/frango-quiabo-ana-maria.jpg.asset.json";
 import ovosFritosBaconAsset from "@/assets/receitas/ovos-fritos-bacon-temperaflix.jpg.asset.json";
+import bifeAceboladoLemonAsset from "@/assets/receitas/bife-acebolado-lemon-pepper.jpg.asset.json";
 
 
 
@@ -1179,8 +1180,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona muito bem com bifes de fígado ou de porco.",
     harmonization: ["pimenta-do-reino", "chimichurri-sem-pimenta"],
     relatedSlugs: ["bife-manteiga-chimi-churri", "figado-acebolado-salsa-cebola-alho", "bife-cavalo-pimenta-reino", "carne-moida-tempero-mineiro"],
-    dish: { src: "/receitas/bife-acebolado-lemon-pepper.jpg", alt: "Bife acebolado com Lemon Pepper" },
-    hero: { color: "oklch(0.45 0.12 80)" },
+    dish: { src: bifeAceboladoLemonAsset.url, alt: "Bife acebolado com Lemon Pepper" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº33
   {
