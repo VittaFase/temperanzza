@@ -50,11 +50,10 @@ export function FlavorCarousel({
   const [tick, setTick] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Autoplay e transições respeitando a preferência de movimento do sistema.
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);
-
     const handleChange = (e: MediaQueryListEvent) => setReduced(e.matches);
     mq.addEventListener("change", handleChange);
     return () => mq.removeEventListener("change", handleChange);
@@ -72,7 +71,12 @@ export function FlavorCarousel({
 
   useEffect(() => {
     if (reduced || total < 2) return;
-    timer.current = setTimeout(() => go(index + 1, 1), AUTOPLAY_MS);
+    
+    // Inicia o timer imediatamente
+    timer.current = setTimeout(() => {
+      go(index + 1, 1);
+    }, AUTOPLAY_MS);
+
     return () => {
       if (timer.current) clearTimeout(timer.current);
     };
