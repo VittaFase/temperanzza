@@ -7,6 +7,7 @@ import type { DietKey } from "./diets";
 import type { ProductDiet } from "./dietCompatibility";
 import omeleteAsset from "@/assets/receitas/omelete-bacon-em-po.jpg.asset.json";
 import frangoPapricaAsset from "@/assets/receitas/frango-assado-paprica-defumada.jpg.asset.json";
+import hamburguerBaconAsset from "@/assets/receitas/hamburguer-bacon-em-po.jpg.asset.json";
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
@@ -164,7 +165,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem pão, monte sobre folhas de alface — a versão keto não perde nada.",
     harmonization: ["paprica-defumada", "cebola-em-po"],
     relatedSlugs: ["omelete-bacon-em-po", "ovos-fritos-bacon-tradicional", "bife-manteiga-chimi-churri", "carne-moida-tempero-mineiro"],
-    dish: { src: "/receitas/hamburguer-bacon-em-po.jpg", alt: "Hambúrguer caseiro com Temperaflix Bacon" },
+    dish: { src: hamburguerBaconAsset.url, alt: "Hambúrguer caseiro com Temperaflix Bacon" },
     hero: { color: "oklch(0.32 0.08 30)" },
   },
   // Nº04

@@ -1,4 +1,5 @@
 // Execute esta instrucao no projeto: Vamos a segunda imagem
+{/* Execute esta instrucao no projeto: prossiga para a proxima receita mantendo as mesmas estruturas já acertadas nas duas imagens implementadas */}
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
