@@ -584,8 +584,9 @@ export const RECIPES: Recipe[] = [
     substitution: "Fica ótimo em espetinhos mistos com pimentão e cebola.",
     harmonization: ["ana-maria", "paprica-picante"],
     relatedSlugs: ["frango-assado-paprica-defumada", "frango-grelhado-ana-maria", "frango-panela-ana-maria", "frango-chimi-churri-picante"],
-    dish: { src: "/receitas/frango-dourado-paprica-doce.jpg", alt: "Frango dourado com Páprica Doce" },
+    dish: { src: frangoPapricaDoceAsset.url, alt: "Frango dourado com Páprica Doce" },
     hero: { color: "oklch(0.58 0.16 50)" },
+
   },
   // Nº16
   {
