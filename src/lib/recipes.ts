@@ -6,7 +6,7 @@
 import type { DietKey } from "./diets";
 import type { ProductDiet } from "./dietCompatibility";
 
-export type Moment = "cafe" | "almoco" | "jantar";
+export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
 
 export interface Recipe {
