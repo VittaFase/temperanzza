@@ -970,8 +970,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione quiabo picado nos últimos 10 minutos.",
     harmonization: ["tempero-mineiro", "salsa-cebola-e-alho"],
     relatedSlugs: ["frango-quiabo-ana-maria", "frango-grelhado-ana-maria", "carne-moida-tempero-mineiro", "carne-panela-batatas-tempero-mineiro"],
-    dish: { src: "/receitas/frango-panela-ana-maria.jpg", alt: "Frango de panela com Ana Maria" },
-    hero: { color: "oklch(0.52 0.12 55)" },
+    dish: { src: frangoPanelaAnaMariaAsset.url, alt: "Frango de panela com Ana Maria Temperanzza" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº27
   {
