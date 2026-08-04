@@ -37,6 +37,7 @@ import arrozBrancoAsset from "@/assets/receitas/arroz-branco-salsa-cebola-alho.j
 import frangoQuiaboAsset from "@/assets/receitas/frango-quiabo-ana-maria.jpg.asset.json";
 import ovosFritosBaconAsset from "@/assets/receitas/ovos-fritos-bacon-temperaflix.jpg.asset.json";
 import bifeAceboladoLemonAsset from "@/assets/receitas/bife-acebolado-lemon-pepper.jpg.asset.json";
+import costelinhaPapricaAsset from "@/assets/receitas/costelinha-paprica-defumada-tradicional.jpg.asset.json";
 
 
 
@@ -1214,8 +1215,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Sirva com molho barbecue caseiro ou apenas gomos de limão.",
     harmonization: ["paprica-picante", "chimi-churri-picante"],
     relatedSlugs: ["frango-assado-paprica-defumada", "porco-assado-paprica-picante", "costela-porco-du-chefe", "frango-dourado-paprica-doce"],
-    dish: { src: "/receitas/costelinha-paprica-defumada-tradicional.jpg", alt: "Costelinha suína com Páprica Defumada" },
-    hero: { color: "oklch(0.48 0.14 40)" },
+    dish: { src: costelinhaPapricaAsset.url, alt: "Costelinha suína com Páprica Defumada" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº34
   {
