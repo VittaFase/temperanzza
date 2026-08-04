@@ -22,6 +22,8 @@ import camaraoChimiAsset from "@/assets/receitas/camarao-chimi-churri-picante.jp
 import frangoPapricaDoceAsset from "@/assets/receitas/frango-dourado-paprica-doce.jpg.asset.json";
 import cafeCanelaAsset from "@/assets/receitas/cafe-ritual-canela.jpg.asset.json";
 import mixCastanhasAsset from "@/assets/receitas/mix-castanhas-temperaflix-ervas.jpg.asset.json";
+import salmaoCrostaAsset from "@/assets/receitas/salmao-crosta-ervas-finas.jpg.asset.json";
+
 
 
 
@@ -688,7 +690,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Troque o salmão por truta ou postas de peixe branco grosso.",
     harmonization: ["lemon-pepper", "salsa-cebola-e-alho"],
     relatedSlugs: ["peixe-grelhado-salsa-cebola-alho", "camarao-chimi-churri-picante", "peixe-assado-legumes-salsa-cebola-alho", "abacate-recheado-frango-chimi-churri"],
-    dish: { src: "/receitas/salmao-crosta-ervas-finas.jpg", alt: "Salmão em crosta de Ervas Finas" },
+    dish: { src: salmaoCrostaAsset.url, alt: "Salmão em crosta de Ervas Finas" },
     hero: { color: "oklch(0.52 0.14 145)" },
   },
   // Nº19
