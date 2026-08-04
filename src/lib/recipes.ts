@@ -41,6 +41,7 @@ import costelinhaPapricaAsset from "@/assets/receitas/costelinha-paprica-defumad
 import omeleteErvasAsset from "@/assets/receitas/omelete-temperaflix-ervas-finas.jpg.asset.json";
 import frangoChimiPicanteAsset from "@/assets/receitas/frango-chimi-churri-picante.jpg.asset.json";
 import legumesCurcumaAsset from "@/assets/receitas/legumes-assados-curcuma.jpg.asset.json";
+import costelaDuChefeAsset from "@/assets/receitas/costela-porco-du-chefe.jpg.asset.json";
 
 
 
@@ -1355,8 +1356,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com lombo suíno fatiado.",
     harmonization: ["paprica-defumada", "pimenta-do-reino"],
     relatedSlugs: ["costelinha-paprica-defumada-tradicional", "porco-assado-paprica-picante", "costela-bovina-pimenta-reino", "bife-manteiga-chimi-churri"],
-    dish: { src: "/receitas/costela-porco-du-chefe.jpg", alt: "Costelinha de porco com Du Chefe" },
-    hero: { color: "oklch(0.42 0.14 30)" },
+    dish: { src: costelaDuChefeAsset.url, alt: "Costelinha de porco com Du Chefe" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº38
   {
