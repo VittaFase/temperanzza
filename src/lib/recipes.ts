@@ -1321,8 +1321,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione dentes de alho inteiros com casca para assar junto.",
     harmonization: ["pimenta-do-reino", "salsa-cebola-e-alho"],
     relatedSlugs: ["couve-flor-gratinada-curcuma", "berinjela-assada-tempero-mineiro", "sopa-legumes-salsa-cebola-alho", "ovos-dourados-curcuma"],
-    dish: { src: "/receitas/legumes-assados-curcuma-tradicional.jpg", alt: "Legumes assados com Cúrcuma" },
-    hero: { color: "oklch(0.72 0.16 80)" },
+    dish: { src: legumesCurcumaAsset.url, alt: "Legumes assados com Cúrcuma" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº37
   {
