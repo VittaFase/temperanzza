@@ -3,16 +3,18 @@ import { Maximize2 } from "lucide-react";
 
 /**
  * Mídia do hero da receita.
- * Tenta um vídeo em loop mudo em /videos/[slug].mp4 e, se o arquivo ainda não
- * existir (ou o navegador falhar), cai exatamente no visual atual do pote.
+ * Versão v2: Se houver foto do prato pronto (dish), exibe-a como protagonista.
+ * O pote real aparece como assinatura no canto.
  */
 export function RecipeHeroMedia({
   slug,
   poster,
+  dish,
   alt,
 }: {
   slug: string;
   poster: string;
+  dish?: { src: string; alt: string };
   alt: string;
 }) {
   const [videoOk, setVideoOk] = useState(true);
@@ -32,6 +34,36 @@ export function RecipeHeroMedia({
     el.play?.().catch(() => {});
   };
 
+  // Se houver foto do prato, o layout muda para editorial
+  if (dish) {
+    return (
+      <div className="relative w-full max-w-lg aspect-[4/5] sm:aspect-square lg:aspect-[4/5] group overflow-hidden bg-brand-ink">
+        {/* Foto do prato — preenche o container */}
+        <img
+          src={dish.src}
+          alt={dish.alt}
+          className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
+        />
+        
+        {/* Overlay gradiente para profundidade */}
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-brand-ink/60 via-transparent to-transparent opacity-60" />
+
+        {/* Assinatura: O pote real no canto inferior direito */}
+        <div className="absolute bottom-4 right-4 w-24 sm:w-32 lg:w-40 drop-shadow-2xl animate-pote-float pointer-events-none select-none">
+          <img
+            src={poster}
+            alt="Pote Temperanzza"
+            className="w-full h-auto object-contain"
+          />
+        </div>
+
+        {/* Bordas decorativas estilo editorial */}
+        <div className="absolute inset-4 border border-brand-paper/20 pointer-events-none" />
+      </div>
+    );
+  }
+
+  // Fallback: visual atual focado no pote (vídeo ou imagem)
   return (
     <div className="relative group">
       {/* Halo âmbar */}

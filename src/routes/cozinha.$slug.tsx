@@ -119,6 +119,23 @@ export const Route = createFileRoute("/cozinha/$slug")({
     };
   },
   loader: ({ params }) => {
+    // 301 Redirects - Normalização da Biblioteca v2
+    const redirects: Record<string, string> = {
+      "frango-grelhado-cebola-em-po": "frango-grelhado-ana-maria",
+      "sopa-legumes-cebola-em-po": "sopa-legumes-salsa-cebola-alho",
+      "figado-acebolado-cebola-po": "figado-acebolado-salsa-cebola-alho",
+      "omelete-ervas-finas-tradicional": "omelete-temperaflix-ervas-finas",
+      "frango-chimi-churri-tradicional": "frango-chimi-churri-picante",
+      "feijao-tropeiro-ana-maria": "feijao-tropeiro-tempero-mineiro",
+    };
+
+    if (redirects[params.slug]) {
+      throw new Response(null, {
+        status: 301,
+        headers: { Location: `/cozinha/${redirects[params.slug]}` },
+      });
+    }
+
     const r = getRecipeBySlug(params.slug);
     if (!r) throw notFound();
     return r;
@@ -167,13 +184,16 @@ function RecipeDrawer() {
       .filter((p) => p.img);
   }, [recipe]);
 
-  const related = useMemo(
-    () =>
-      RECIPES.filter(
-        (r) => r.profile === recipe.profile && r.slug !== recipe.slug,
-      ).slice(0, 4),
-    [recipe],
-  );
+  const related = useMemo(() => {
+    if (recipe.relatedSlugs && recipe.relatedSlugs.length > 0) {
+      return recipe.relatedSlugs
+        .map((slug) => getRecipeBySlug(slug))
+        .filter((r): r is Recipe => !!r);
+    }
+    return RECIPES.filter(
+      (r) => r.profile === recipe.profile && r.slug !== recipe.slug,
+    ).slice(0, 4);
+  }, [recipe]);
 
   const subtitle = recipe.subtitle ?? recipe.intro;
   const chefWord = recipe.chefWord ?? recipe.whyItWorks;
@@ -321,6 +341,7 @@ function RecipeDrawer() {
                 <RecipeHeroMedia
                   slug={recipe.slug}
                   poster={productImg}
+                  dish={recipe.dish}
                   alt={`Pote de ${humanHandle(recipe.featuredHandle)} Temperanzza`}
                 />
               </div>
