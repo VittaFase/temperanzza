@@ -28,6 +28,7 @@ import couveFlorAsset from "@/assets/receitas/couve-flor-gratinada-curcuma.jpg.a
 import sardinhaLemonAsset from "@/assets/receitas/sardinha-grelhada-lemon-pepper.jpg.asset.json";
 import panquecaEduAsset from "@/assets/receitas/panqueca-proteica-tempero-edu.jpg.asset.json";
 import costelaBovinaAsset from "@/assets/receitas/costela-bovina-pimenta-reino.jpg.asset.json";
+import figadoAceboladoAsset from "@/assets/receitas/figado-acebolado-salsa-cebola-alho.jpg.asset.json";
 
 
 
@@ -899,8 +900,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com fígado de galinha, que é mais suave.",
     harmonization: ["ana-maria", "pimenta-do-reino"],
     relatedSlugs: ["carne-moida-tempero-mineiro", "bife-acebolado-lemon-pepper", "bife-manteiga-chimi-churri", "carne-panela-batatas-tempero-mineiro"],
-    dish: { src: "/receitas/figado-acebolado-salsa-cebola-alho.jpg", alt: "Fígado acebolado com Salsa, Cebola e Alho" },
-    hero: { color: "oklch(0.38 0.1 35)" },
+    dish: { src: figadoAceboladoAsset.url, alt: "Fígado acebolado com Salsa, Cebola e Alho Temperanzza" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº25
   {
