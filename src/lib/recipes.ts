@@ -34,6 +34,7 @@ import frangoPanelaAnaMariaAsset from "@/assets/receitas/frango-panela-ana-maria
 import berinjelaMineiroAsset from "@/assets/receitas/berinjela-assada-tempero-mineiro.jpg.asset.json";
 import paoQueijoMineiroAsset from "@/assets/receitas/pao-de-queijo-tempero-mineiro.jpg.asset.json";
 import arrozBrancoAsset from "@/assets/receitas/arroz-branco-salsa-cebola-alho.jpg.asset.json";
+import frangoQuiaboAsset from "@/assets/receitas/frango-quiabo-ana-maria.jpg.asset.json";
 
 
 
@@ -1109,8 +1110,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione polenta cremosa como acompanhamento.",
     harmonization: ["tempero-mineiro", "paprica-doce"],
     relatedSlugs: ["frango-panela-ana-maria", "feijao-tropeiro-tempero-mineiro", "arroz-soltinho-cebola-em-po", "frango-grelhado-ana-maria"],
-    dish: { src: "/receitas/frango-quiabo-ana-maria.jpg", alt: "Frango com quiabo e Ana Maria" },
-    hero: { color: "oklch(0.5 0.12 60)" },
+    dish: { src: frangoQuiaboAsset.url, alt: "Frango com quiabo e Ana Maria" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº31
   {
