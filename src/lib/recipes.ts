@@ -9,6 +9,7 @@ import omeleteAsset from "@/assets/receitas/omelete-bacon-em-po.jpg.asset.json";
 import frangoPapricaAsset from "@/assets/receitas/frango-assado-paprica-defumada.jpg.asset.json";
 import hamburguerBaconAsset from "@/assets/receitas/hamburguer-bacon-em-po.jpg.asset.json";
 import ovosErvasAsset from "@/assets/receitas/ovos-mexidos-ervas-finas.jpg.asset.json";
+import peixeGrelhadoAsset from "@/assets/receitas/peixe-grelhado-salsa-cebola-alho.jpg.asset.json";
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
 export type RecipeCategory = "dieta" | "tradicional";
@@ -233,7 +234,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Em filés finos, reduza para 2 minutos por lado.",
     harmonization: ["lemon-pepper", "ervas-finas"],
     relatedSlugs: ["peixe-assado-legumes-salsa-cebola-alho", "sardinha-grelhada-lemon-pepper", "salmao-crosta-ervas-finas", "camarao-manteiga-salsa-cebola-alho"],
-    dish: { src: "/receitas/peixe-grelhado-salsa-cebola-alho.jpg", alt: "Peixe grelhado com Salsa, Cebola e Alho" },
+    dish: { src: peixeGrelhadoAsset.url, alt: "Peixe grelhado com Salsa, Cebola e Alho" },
     hero: { color: "oklch(0.55 0.12 145)" },
   },
   // Nº06
