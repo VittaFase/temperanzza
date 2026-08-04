@@ -39,6 +39,7 @@ import ovosFritosBaconAsset from "@/assets/receitas/ovos-fritos-bacon-temperafli
 import bifeAceboladoLemonAsset from "@/assets/receitas/bife-acebolado-lemon-pepper.jpg.asset.json";
 import costelinhaPapricaAsset from "@/assets/receitas/costelinha-paprica-defumada-tradicional.jpg.asset.json";
 import omeleteErvasAsset from "@/assets/receitas/omelete-temperaflix-ervas-finas.jpg.asset.json";
+import frangoChimiPicanteAsset from "@/assets/receitas/frango-chimi-churri-picante.jpg.asset.json";
 
 
 
@@ -1284,8 +1285,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Use a versão sem pimenta para crianças.",
     harmonization: ["paprica-picante", "lemon-pepper"],
     relatedSlugs: ["bife-manteiga-chimi-churri", "camarao-chimi-churri-picante", "frango-grelhado-ana-maria", "frango-dourado-paprica-doce"],
-    dish: { src: "/receitas/frango-chimi-churri-picante.jpg", alt: "Frango grelhado com Chimi Churri Picante" },
-    hero: { color: "oklch(0.55 0.14 45)" },
+    dish: { src: frangoChimiPicanteAsset.url, alt: "Frango grelhado com Chimi Churri Picante" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº36
   {
