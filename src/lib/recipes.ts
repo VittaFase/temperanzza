@@ -27,6 +27,7 @@ import abacateFrangoAsset from "@/assets/receitas/abacate-recheado-frango-chimi-
 import couveFlorAsset from "@/assets/receitas/couve-flor-gratinada-curcuma.jpg.asset.json";
 import sardinhaLemonAsset from "@/assets/receitas/sardinha-grelhada-lemon-pepper.jpg.asset.json";
 import panquecaEduAsset from "@/assets/receitas/panqueca-proteica-tempero-edu.jpg.asset.json";
+import costelaBovinaAsset from "@/assets/receitas/costela-bovina-pimenta-reino.jpg.asset.json";
 
 
 
@@ -864,8 +865,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feita na pressão por 50 minutos para quem tem pressa.",
     harmonization: ["paprica-defumada", "chimi-churri-picante"],
     relatedSlugs: ["costela-porco-du-chefe", "bife-manteiga-chimi-churri", "carne-moida-tempero-mineiro", "bife-cavalo-pimenta-reino"],
-    dish: { src: "/receitas/costela-bovina-pimenta-reino.jpg", alt: "Costela bovina com Pimenta-do-Reino Premium Black" },
-    hero: { color: "oklch(0.3 0.08 30)" },
+    dish: { src: costelaBovinaAsset.url, alt: "Costela bovina com Pimenta-do-Reino Premium Black" },
+    hero: { color: "oklch(0.25 0.05 40)" },
   },
   // Nº24
   {
