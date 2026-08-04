@@ -371,7 +371,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Uma pitada de pimenta-do-reino multiplica a absorção da cúrcuma — não pule.",
     harmonization: ["pimenta-do-reino", "ervas-finas"],
     relatedSlugs: ["couve-flor-gratinada-curcuma", "legumes-assados-curcuma-tradicional", "ovos-mexidos-ervas-finas", "ovos-cozidos-tempero-edu"],
-    dish: { src: "/receitas/ovos-dourados-curcuma.jpg", alt: "Ovos mexidos dourados com Cúrcuma" },
+    dish: { src: ovosCurcumaAsset.url, alt: "Ovos mexidos dourados com Cúrcuma" },
     hero: { color: "oklch(0.75 0.16 80)" },
   },
   // Nº10
