@@ -1,4 +1,3 @@
-// Execute esta instrucao no projeto: recebeu alguma imagem?
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
