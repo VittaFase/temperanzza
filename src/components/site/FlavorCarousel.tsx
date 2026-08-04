@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getProductImage } from "@/lib/productImages";
 import type { ShopifyProduct } from "@/lib/shopify";
@@ -46,17 +46,18 @@ export function FlavorCarousel({
   const total = slides.length;
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState<1 | -1>(1);
-  const [reduced, setReduced] = useState(true);
+  const [reduced, setReduced] = useState(false);
   const [tick, setTick] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Autoplay e transições só depois da hidratação, respeitando a preferência.
-  useEffect(() => {
+  // Autoplay e transições respeitando a preferência de movimento do sistema.
+  useLayoutEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => setReduced(mq.matches);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    setReduced(mq.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
   }, []);
 
   const go = useCallback(
