@@ -29,6 +29,7 @@ import sardinhaLemonAsset from "@/assets/receitas/sardinha-grelhada-lemon-pepper
 import panquecaEduAsset from "@/assets/receitas/panqueca-proteica-tempero-edu.jpg.asset.json";
 import costelaBovinaAsset from "@/assets/receitas/costela-bovina-pimenta-reino.jpg.asset.json";
 import figadoAceboladoAsset from "@/assets/receitas/figado-acebolado-salsa-cebola-alho.jpg.asset.json";
+import camaraoManteigaAsset from "@/assets/receitas/camarao-manteiga-salsa-cebola-alho.jpg.asset.json";
 
 
 
@@ -934,8 +935,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Use azeite no lugar da manteiga para uma versão sem lactose.",
     harmonization: ["lemon-pepper", "chimichurri-sem-pimenta"],
     relatedSlugs: ["camarao-chimi-churri-picante", "peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "sardinha-grelhada-lemon-pepper"],
-    dish: { src: "/receitas/camarao-manteiga-salsa-cebola-alho.jpg", alt: "Camarão na manteiga com Salsa, Cebola e Alho" },
-    hero: { color: "oklch(0.66 0.14 45)" },
+    dish: { src: camaraoManteigaAsset.url, alt: "Camarão na manteiga com Salsa, Cebola e Alho Temperanzza" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº26
   {
