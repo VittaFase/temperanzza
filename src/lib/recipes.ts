@@ -13,6 +13,7 @@ import peixeGrelhadoAsset from "@/assets/receitas/peixe-grelhado-salsa-cebola-al
 import bifeChimiAsset from "@/assets/receitas/bife-manteiga-chimi-churri.jpg.asset.json";
 import ovosCozidosEduAsset from "@/assets/receitas/ovos-cozidos-tempero-edu.jpg.asset.json";
 import carneMoidaMineiroAsset from "@/assets/receitas/carne-moida-tempero-mineiro.jpg.asset.json";
+import ovosCurcumaAsset from "@/assets/receitas/ovos-dourados-curcuma.jpg.asset.json";
 
 
 export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
@@ -370,7 +371,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Uma pitada de pimenta-do-reino multiplica a absorção da cúrcuma — não pule.",
     harmonization: ["pimenta-do-reino", "ervas-finas"],
     relatedSlugs: ["couve-flor-gratinada-curcuma", "legumes-assados-curcuma-tradicional", "ovos-mexidos-ervas-finas", "ovos-cozidos-tempero-edu"],
-    dish: { src: "/receitas/ovos-dourados-curcuma.jpg", alt: "Ovos mexidos dourados com Cúrcuma" },
+    dish: { src: ovosCurcumaAsset.url, alt: "Ovos mexidos dourados com Cúrcuma" },
     hero: { color: "oklch(0.75 0.16 80)" },
   },
   // Nº10
