@@ -44,6 +44,8 @@ import legumesCurcumaAsset from "@/assets/receitas/legumes-assados-curcuma.jpg.a
 import costelaDuChefeAsset from "@/assets/receitas/costela-porco-du-chefe.jpg.asset.json";
 import bifeCavaloAsset from "@/assets/receitas/bife-cavalo-pimenta-reino.jpg.asset.json";
 import macaCanelaAsset from "@/assets/receitas/maca-assada-canela-moida.jpg.asset.json";
+import pipocaTradicionalAsset from "@/assets/receitas/pipoca-caseira-temperaflix-tradicional.jpg.asset.json";
+
 
 
 
@@ -1459,8 +1461,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Use a versão de Ervas Finas para um toque mais aromático.",
     harmonization: ["lemon-pepper", "paprica-defumada"],
     relatedSlugs: ["mix-castanhas-temperaflix-ervas", "pao-de-queijo-tempero-mineiro", "maca-assada-canela", "cafe-ritual-canela"],
-    dish: { src: "/receitas/pipoca-caseira-temperaflix-tradicional.jpg", alt: "Pipoca caseira com Temperaflix Tradicional" },
-    hero: { color: "oklch(0.8 0.12 70)" },
+    dish: { src: pipocaTradicionalAsset.url, alt: "Pipoca caseira com Temperaflix Tradicional" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº41
   {
