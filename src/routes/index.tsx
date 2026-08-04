@@ -1,4 +1,4 @@
-// Execute esta instrucao no projeto: segue a primeira, gere a primeira implementação
+// Execute esta instrucao no projeto: retire a imagem do pote flutuante do condimento da imagem enviada para a receita, pois a imagem enviada já contem a imagem do pote utilizado!
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";
