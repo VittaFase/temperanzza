@@ -19,6 +19,8 @@ import sopaLegumesAsset from "@/assets/receitas/sopa-legumes-salsa-cebola-alho.p
 import ovoFritoLemonAsset from "@/assets/receitas/ovo-frito-lemon-pepper.jpg.asset.json";
 import porcoPapricaAsset from "@/assets/receitas/porco-assado-paprica-picante.jpg.asset.json";
 import camaraoChimiAsset from "@/assets/receitas/camarao-chimi-churri-picante.jpg.asset.json";
+import frangoPapricaDoceAsset from "@/assets/receitas/frango-dourado-paprica-doce.jpg.asset.json";
+
 
 
 
@@ -582,8 +584,9 @@ export const RECIPES: Recipe[] = [
     substitution: "Fica ótimo em espetinhos mistos com pimentão e cebola.",
     harmonization: ["ana-maria", "paprica-picante"],
     relatedSlugs: ["frango-assado-paprica-defumada", "frango-grelhado-ana-maria", "frango-panela-ana-maria", "frango-chimi-churri-picante"],
-    dish: { src: "/receitas/frango-dourado-paprica-doce.jpg", alt: "Frango dourado com Páprica Doce" },
+    dish: { src: frangoPapricaDoceAsset.url, alt: "Frango dourado com Páprica Doce" },
     hero: { color: "oklch(0.58 0.16 50)" },
+
   },
   // Nº16
   {
