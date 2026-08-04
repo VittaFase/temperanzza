@@ -45,6 +45,8 @@ import costelaDuChefeAsset from "@/assets/receitas/costela-porco-du-chefe.jpg.as
 import bifeCavaloAsset from "@/assets/receitas/bife-cavalo-pimenta-reino.jpg.asset.json";
 import macaCanelaAsset from "@/assets/receitas/maca-assada-canela-moida.jpg.asset.json";
 import pipocaTradicionalAsset from "@/assets/receitas/pipoca-caseira-temperaflix-tradicional.jpg.asset.json";
+import carnePanelaMineiroAsset from "@/assets/receitas/carne-panela-batatas-tempero-mineiro.jpg.asset.json";
+
 
 
 
@@ -1496,8 +1498,8 @@ export const RECIPES: Recipe[] = [
     substitution: "Panela de pressão reduz o tempo total para cerca de 35 minutos.",
     harmonization: ["ana-maria", "pimenta-do-reino-premium-black-30g"],
     relatedSlugs: ["carne-moida-tempero-mineiro", "feijao-tropeiro-tempero-mineiro", "frango-panela-ana-maria", "bife-acebolado-lemon-pepper"],
-    dish: { src: "/receitas/carne-panela-batatas-tempero-mineiro.jpg", alt: "Carne de panela com batatas e Tempero Mineiro" },
-    hero: { color: "oklch(0.38 0.08 40)" },
+    dish: { src: carnePanelaMineiroAsset.url, alt: "Carne de panela com batatas e Tempero Mineiro" },
+    hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº42
   {
