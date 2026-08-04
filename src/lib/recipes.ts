@@ -655,7 +655,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito no forno por 10 minutos a 160 °C para lotes maiores.",
     harmonization: ["lemon-pepper", "paprica-defumada"],
     relatedSlugs: ["pipoca-caseira-temperaflix-tradicional", "pao-de-queijo-tempero-mineiro", "ovos-cozidos-tempero-edu", "maca-assada-canela"],
-    dish: { src: "/receitas/mix-castanhas-temperaflix-ervas.jpg", alt: "Mix de castanhas com Temperaflix Ervas Finas" },
+    dish: { src: mixCastanhasAsset.url, alt: "Mix de castanhas com Temperaflix Ervas Finas" },
     hero: { color: "oklch(0.45 0.1 140)" },
   },
   // Nº18
