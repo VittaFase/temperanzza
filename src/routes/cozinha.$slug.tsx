@@ -280,8 +280,8 @@ function RecipeDrawer() {
             }}
           />
 
-          <div className="relative mx-auto max-w-6xl px-4 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10 items-center overflow-visible">
+            <div className="lg:col-span-6">
               <div className="flex flex-wrap items-center gap-2 mb-6">
                 {/* Chips uniformizados — ambos outline, apenas tags semânticas */}
                 <span className="inline-block px-3 py-1 border border-brand-mustard/70 text-brand-mustard font-display font-black uppercase tracking-widest text-[10px]">
@@ -337,7 +337,7 @@ function RecipeDrawer() {
 
             {/* Pote real — vídeo em loop quando existir, com fallback para a imagem */}
             {productImg && (
-              <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="lg:col-span-6 flex justify-center lg:justify-end">
                 <RecipeHeroMedia
                   slug={recipe.slug}
                   poster={productImg}
