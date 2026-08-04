@@ -98,7 +98,7 @@ export function FlavorCarousel({
             <span
               key={`${tick}-${i}`}
               className={`block h-full bg-foreground origin-left ${
-                i === index && !reduced ? "animate-[flavor-progress_3000ms_linear_forwards]" : ""
+                i === index ? "animate-[flavor-progress_3000ms_linear_forwards]" : ""
               }`}
               style={{
                 width: i < index ? "100%" : i === index ? "0%" : "0%",
