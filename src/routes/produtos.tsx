@@ -8,11 +8,11 @@ const PRODUTOS_URL = "https://temperanzza.com.br/produtos";
 export const Route = createFileRoute("/produtos")({
   head: () => ({
     meta: [
-      { title: "Catálogo — Temperos Artesanais Temperanzza" },
+      { title: "Catálogo Temperanzza — Temperos Artesanais, Blends e Especiarias de Minas Gerais" },
       {
         name: "description",
         content:
-          "Todas as misturas e especiarias da casa Temperanzza. Páprica, chimichurri, lemon pepper, tempero mineiro e mais — sem aditivos desnecessários.",
+          "Explore o catálogo completo de temperos artesanais Temperanzza. Blends autorais, linha Temperaflix e especiarias puras embaladas em Minas Gerais para transformar sua cozinha."
       },
       { property: "og:title", content: "Catálogo — Temperos Artesanais Temperanzza" },
       {

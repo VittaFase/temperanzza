@@ -30,8 +30,8 @@ export const Route = createFileRoute("/blends/$slug")({
       : `https://temperanzza.com.br${blend.image.startsWith("/") ? "" : "/"}${blend.image}`;
     return {
       meta: [
-        { title: `${blend.name} — Blends Temperanzza` },
-        { name: "description", content: blend.description },
+        { title: `${blend.name} — Blends Temperanzza | Caixa de 12 Temperos com Desconto` },
+        { name: "description", content: `${blend.description} Leve a experiência completa da Temperanzza com nossa seleção curada de 12 potes artesanais.` },
         { property: "og:title", content: `${blend.name} — Blends Temperanzza` },
         { property: "og:description", content: blend.description },
         { property: "og:type", content: "product" },

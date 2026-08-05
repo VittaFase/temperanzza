@@ -23,11 +23,11 @@ const COZINHA_URL = "https://temperanzza.com.br/cozinha";
 export const Route = createFileRoute("/cozinha")({
   head: () => ({
     meta: [
-      { title: "Biblioteca Gastronômica Temperanzza — Receitas autorais" },
+      { title: "Biblioteca Gastronômica Temperanzza — Receitas Autorais e Temperos de Minas Gerais" },
       {
         name: "description",
         content:
-          "Receitas autorais Temperanzza — cetogênica, low carb, carnívora flexível e cozinha tradicional. Editorial, sem pressa, para quem cozinha com autoria.",
+          "Descubra a Biblioteca Gastronômica Temperanzza: receitas autorais para dietas cetogênica, low carb, carnívora e cozinha tradicional mineira. Aprenda a usar temperos artesanais para elevar seu lifestyle."
       },
       { property: "og:title", content: "Biblioteca Gastronômica Temperanzza" },
       {

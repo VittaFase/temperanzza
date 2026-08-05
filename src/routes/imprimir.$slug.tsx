@@ -7,7 +7,7 @@ export const Route = createFileRoute("/imprimir/$slug")({
   head: ({ params }) => ({
     meta: [
       { title: `Imprimir receita — Temperanzza` },
-      { name: "robots", content: "noindex, nofollow" },
+      { name: "robots", content: "noindex, nofollow" }, // Pág. de impressão: não deve ser indexada para evitar conteúdo duplicado
       { name: "description", content: `Versão para impressão da receita ${params.slug}.` },
     ],
   }),
