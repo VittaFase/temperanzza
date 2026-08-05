@@ -8,7 +8,7 @@ const SOBRE_URL = "https://temperanzza.com.br/sobre";
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
-      { title: "A Casa Temperanzza — Nossa história" },
+      { title: "A Casa Temperanzza — Temperos Artesanais de Minas Gerais | Nossa História" },
       {
         name: "description",
         content:

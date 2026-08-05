@@ -9,7 +9,7 @@ import { getProductImage } from "@/lib/productImages";
 import { useState } from "react";
 
 const BLOG_URL = "https://temperanzza.com.br/blog";
-const TITLE = "Blog Temperanzza — o conhecimento por trás de cada tempero";
+const TITLE = "Blog Temperanzza — O Conhecimento por Trás de Cada Tempero e Especiaria";
 const DESCRIPTION =
   "Técnica, ingrediente e dieta explicados por quem faz tempero artesanal em Minas Gerais. Respostas diretas para as dúvidas reais de quem cozinha.";
 

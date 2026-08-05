@@ -123,8 +123,8 @@ export const Route = createFileRoute("/product/$handle")({
 
     return {
       meta: [
-        { title: `${p.title} — Temperanzza` },
-        { name: "description", content: description },
+        { title: `${p.title} — Temperanzza | Temperos Artesanais de Minas Gerais` },
+        { name: "description", content: `${description}. Compre online o tempero artesanal ${p.title} da Temperanzza. Embalado fresco em Minas Gerais, sem aditivos.` },
         { property: "og:title", content: `${p.title} — Temperanzza` },
         { property: "og:description", content: description },
         { property: "og:type", content: "product" },

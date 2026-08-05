@@ -45,7 +45,7 @@ export const Route = createFileRoute("/cozinha/$slug")({
     return {
       meta: [
         { title: `${r.title} — Biblioteca Gastronômica Temperanzza` },
-        { name: "description", content: desc },
+        { name: "description", content: desc + " | Explore esta receita exclusiva da Biblioteca Gastronômica Temperanzza, feita com nossos temperos artesanais de Minas Gerais." },
         { property: "og:title", content: r.title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
