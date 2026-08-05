@@ -14,11 +14,11 @@ import { DietBadge } from "@/components/site/DietBadge";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Temperanzza — Casa de Temperos Artesanais de Minas Gerais" },
+      { title: "Temperanzza — Temperos Artesanais de Minas Gerais | Novos Sabores para seu Lifestyle" },
       {
         name: "description",
         content:
-          "Casa de temperos artesanais de Minas Gerais. Blends autorais, linha Temperaflix e páprica defumada — embalado fresco, lote a lote.",
+          "Temperanzza: a casa dos temperos artesanais de Minas Gerais. Blends autorais, linha Temperaflix e especiarias selecionadas sem aditivos. Sabor que assina cada prato."
       },
       {
         property: "og:title",
