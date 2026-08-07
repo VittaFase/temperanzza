@@ -153,7 +153,7 @@ function RecipeDrawer() {
   const navigate = useNavigate();
   const panelRef = useRef<HTMLDivElement>(null);
 
-  const close = () => navigate({ to: "/cozinha" });
+  const close = () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } });
 
   // ESC fecha; body scroll lock enquanto drawer está montado
   useEffect(() => {
@@ -228,7 +228,7 @@ function RecipeDrawer() {
                 </li>
                 <li aria-hidden className="hidden sm:inline text-brand-ink/30">/</li>
                 <li>
-                  <Link to="/cozinha" className="hover:text-accent">
+                  <Link to="/cozinha" search={{ refeicao: "", proteina: "" }} className="hover:text-accent">
                     Biblioteca
                   </Link>
                 </li>

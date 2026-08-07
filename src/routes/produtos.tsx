@@ -65,6 +65,7 @@ function ProdutosPage() {
             Primeira compra?{" "}
             <Link
               to="/cozinha"
+              search={{ refeicao: "", proteina: "" }}
               className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
             >
               Comece pela receita

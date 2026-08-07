@@ -116,7 +116,7 @@ function Home() {
                 variant="outline"
                 className="rounded-none h-14 px-8 border-foreground/30 bg-transparent hover:bg-foreground hover:text-background font-display uppercase tracking-widest"
               >
-                <Link to="/cozinha">Ver as Receitas</Link>
+                <Link to="/cozinha" search={{ refeicao: "", proteina: "" }}>Ver as Receitas</Link>
               </Button>
             </div>
             <p className="mt-5 text-xs font-display uppercase tracking-[0.25em] text-muted-foreground">
@@ -237,6 +237,7 @@ function Home() {
             <div className="lg:col-span-4 lg:text-right">
               <Link
                 to="/cozinha"
+                search={{ refeicao: "", proteina: "" }}
                 className="inline-flex min-h-11 items-center gap-2 border-b-2 border-foreground/30 hover:border-accent hover:text-accent text-sm font-display font-black uppercase tracking-widest"
               >
                 Explorar a Cozinha
@@ -251,6 +252,7 @@ function Home() {
                 key={r.slug}
                 to="/cozinha/$slug"
                 params={{ slug: r.slug }}
+                search={{ refeicao: "", proteina: "" }}
                 className="group block border border-foreground/15 bg-background hover:border-accent transition"
               >
                 <div

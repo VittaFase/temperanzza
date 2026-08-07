@@ -40,7 +40,7 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link to="/cozinha" className="inline-flex min-h-11 items-center hover:text-accent">
+                <Link to="/cozinha" search={{ refeicao: "", proteina: "" }} className="inline-flex min-h-11 items-center hover:text-accent">
                   Cozinha
                 </Link>
               </li>

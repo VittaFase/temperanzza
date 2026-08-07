@@ -453,6 +453,7 @@ function DietSectionForProduct({ handle }: { handle: string }) {
               <Link
                 to="/cozinha/$slug"
                 params={{ slug: r.slug }}
+                search={{ refeicao: "", proteina: "" }}
                 className="group flex items-start gap-3 text-sm hover:text-accent"
               >
                 <span
