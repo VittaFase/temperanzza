@@ -539,6 +539,7 @@ function RecipeDrawer() {
                   <Link
                     to="/cozinha/$slug"
                     params={{ slug: r.slug }}
+                    search={{ refeicao: "", proteina: "" }}
                     className="group flex items-baseline gap-6 py-5 hover:bg-brand-ink/[0.03] transition -mx-2 px-2"
                   >
                     <span className="shrink-0 font-display italic text-brand-ink/40 text-sm">
@@ -641,7 +642,7 @@ function RecipeNotFoundDrawer() {
           Ela pode ter sido arquivada ou a URL está incorreta.
         </p>
         <button
-          onClick={() => navigate({ to: "/cozinha" })}
+          onClick={() => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } })}
           className="inline-flex items-center gap-2 bg-brand-ink text-brand-paper px-6 py-3 font-display uppercase tracking-widest text-sm hover:bg-accent transition"
         >
           Voltar à biblioteca

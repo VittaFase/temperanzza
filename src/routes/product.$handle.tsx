@@ -470,6 +470,7 @@ function DietSectionForProduct({ handle }: { handle: string }) {
         </ul>
         <Link
           to="/cozinha"
+          search={{ refeicao: "", proteina: "" }}
           className="mt-6 inline-flex items-center gap-2 text-xs font-display font-black uppercase tracking-widest text-accent hover:underline underline-offset-4"
         >
           Ir para a Cozinha →
