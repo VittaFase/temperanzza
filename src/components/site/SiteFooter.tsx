@@ -31,31 +31,34 @@ export function SiteFooter() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/produtos" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Catálogo completo
+                  Catálogo
+                </Link>
+              </li>
+              <li>
+                <Link to="/blends" className="inline-flex min-h-11 items-center hover:text-accent">
+                  Blends
                 </Link>
               </li>
               <li>
                 <Link to="/cozinha" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Cozinha & Dietas
+                  Cozinha
                 </Link>
               </li>
               <li>
                 <Link to="/sobre" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Nossa história
+                  A Casa
                 </Link>
               </li>
               <li>
                 <Link to="/blog" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Blog Temperanzza
+                  Blog
                 </Link>
-
               </li>
               <li>
                 <Link to="/embaixadores" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Programa de Embaixadores
+                  Embaixadores
                 </Link>
               </li>
-
             </ul>
           </div>
           <div>
