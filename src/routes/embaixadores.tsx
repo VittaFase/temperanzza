@@ -201,7 +201,7 @@ function EmbaixadoresPage() {
               Veja o catálogo completo
             </Link>{" "}
             ou{" "}
-            <Link to="/cozinha" className="text-accent underline underline-offset-4">
+            <Link to="/cozinha" search={{ refeicao: "", proteina: "" }} className="text-accent underline underline-offset-4">
               explore a Cozinha Temperanzza
             </Link>
             .
