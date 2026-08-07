@@ -94,16 +94,16 @@ function SobrePage() {
           </div>
           <dl className="grid grid-cols-3 gap-6 sm:gap-10">
             {[
-              { n: 19, label: "SKUs autorais", pad: 0 },
-              { n: 3, label: "sublinhas", pad: 0 },
-              { n: 2023, label: "desde", pad: 0 },
+              { n: 19, label: "SKUs autorais" },
+              { n: 15, label: "receitas autorais" },
+              { n: 2023, label: "desde" },
             ].map((s) => (
               <div key={s.label} className="border-l-2 border-brand-mustard/50 pl-4 sm:pl-6">
                 <dt className="text-[10px] font-display uppercase tracking-[0.3em] text-brand-paper/50 order-2">
                   {s.label}
                 </dt>
                 <dd className="font-display font-black leading-none text-brand-paper text-5xl sm:text-6xl lg:text-7xl mb-2">
-                  <CountUp to={s.n} duration={s.n > 1000 ? 1400 : 900} />
+                  <CountUp to={s.n} from={s.n} duration={0} />
                 </dd>
               </div>
             ))}

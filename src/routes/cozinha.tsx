@@ -152,7 +152,7 @@ function BibliotecaHero() {
             <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
           </a>
           <span className="text-[11px] font-display uppercase tracking-[0.3em] text-brand-paper/50">
-            <CountUp to={RECIPES.length} duration={900} /> receitas · <CountUp to={4} duration={700} /> estilos
+            <CountUp to={RECIPES.length} from={RECIPES.length} duration={0} /> receitas · <CountUp to={4} from={4} duration={0} /> estilos
           </span>
         </div>
       </div>
