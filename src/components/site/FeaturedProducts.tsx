@@ -28,7 +28,7 @@ export function FeaturedProducts() {
         <div className="mt-20">
           <div className="mb-10 text-center">
             <span className="font-display uppercase tracking-[0.3em] text-[10px] text-muted-foreground">Catálogo</span>
-            <h2 className="mt-2 font-display font-black uppercase text-4xl sm:text-5xl">Os 19 da Casa</h2>
+            <h2 className="mt-2 font-display font-black uppercase text-4xl sm:text-5xl">OS SABORES DA CASA</h2>
           </div>
           <ProductGrid first={8} />
         </div>
