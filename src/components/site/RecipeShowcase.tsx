@@ -8,11 +8,12 @@ import { RECIPES } from "@/lib/recipes";
  */
 export function RecipeShowcase() {
   // Selecionamos 3 receitas estratégicas para o destaque (ex: as primeiras com foto real)
-  const featuredRecipes = RECIPES.filter(r => r.dish && (
-    r.slug === "omelete-bacon-em-po" || 
-    r.slug === "frango-assado-paprica-defumada" || 
-    r.slug === "hamburguer-bacon-em-po"
-  )).slice(0, 3);
+  // Selecionamos 3 receitas estratégicas para o destaque
+  const featuredRecipes = [
+    RECIPES.find(r => r.slug === "omelete-bacon-em-po"),
+    RECIPES.find(r => r.slug === "frango-assado-paprica-defumada"),
+    RECIPES.find(r => r.slug === "hamburguer-bacon-em-po")
+  ].filter(Boolean) as any[];
 
   if (featuredRecipes.length === 0) return null;
 
