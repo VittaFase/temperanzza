@@ -46,8 +46,8 @@ export function SiteHero() {
         </span>
         
         <h1 className="font-display font-black uppercase text-6xl sm:text-8xl lg:text-[10rem] leading-[0.85] tracking-tight mb-8">
-          A Essência do <br />
-          <span className="text-brand-mustard">Tempero Mineiro</span>
+          A ESSÊNCIA DA <br />
+          <span className="text-brand-mustard">CASA TEMPERANZZA</span>
         </h1>
 
         <p className="max-w-2xl text-lg sm:text-xl text-brand-paper/80 font-serif italic mb-10 leading-relaxed">
