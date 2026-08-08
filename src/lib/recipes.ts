@@ -49,6 +49,10 @@ import carnePanelaMineiroAsset from "@/assets/receitas/carne-panela-batatas-temp
 import peixeAssadoSalsaAsset from "@/assets/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg.asset.json";
 import feijaoTropeiroAsset from "@/assets/receitas/feijao-tropeiro-tempero-mineiro.jpg.asset.json";
 import sopaLegumesErvasAsset from "@/assets/receitas/sopa-legumes-ervas-finas.jpg.asset.json";
+import paoTradicionalAsset from "@/assets/receitas/pao-carnivoro-tradicional.png.asset.json";
+import paoHamburguerAsset from "@/assets/receitas/pao-carnivoro-hamburguer.png.asset.json";
+import paoTorradaAsset from "@/assets/receitas/pao-carnivoro-torrada.png.asset.json";
+
 
 
 
@@ -1613,7 +1617,128 @@ export const RECIPES: Recipe[] = [
     dish: { src: sopaLegumesErvasAsset.url, alt: "Sopa de legumes com Ervas Finas" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
-  ];
+  // Nº45
+  {
+    slug: "pao-carnivoro-tradicional",
+    title: "Pão Carnívoro Temperanzza — Versão Tradicional",
+    subtitle: "Sem farinha, com a alma do tempero da casa.",
+    intro: "Esse pão não usa um grama de farinha — a estrutura vem inteira do ovo e do queijo.",
+    featuredHandle: "salsa-cebola-e-alho",
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
+    moment: "cafe",
+    profile: "ervas",
+    time: "45 min",
+    serves: "8 fatias",
+    difficulty: "Fácil",
+    ingredients: [
+      "6 ovos",
+      "200 g de cream cheese",
+      "150 g de queijo parmesão ralado",
+      "80 g de queijo muçarela ralado",
+      "1 colher (chá) de fermento químico",
+      "1 colher (chá) de sal (opcional)",
+      "1 colher (chá) de Salsa, Cebola e Alho Temperanzza",
+      "½ colher (chá) de Ervas Finas Temperanzza",
+    ],
+    steps: [
+      "Bata os ovos até espumarem.",
+      "Acrescente o cream cheese e misture bem.",
+      "Adicione o parmesão e a muçarela ralados.",
+      "Incorpore a Salsa, Cebola e Alho e as Ervas Finas Temperanzza.",
+      "Misture o fermento químico por último, delicadamente.",
+      "Despeje numa forma untada e leve ao forno a 180 °C por 30–40 minutos.",
+      "Aguarde esfriar por 10 minutos antes de fatiar e servir.",
+    ],
+    chefWord: "A Salsa, Cebola e Alho traz a base aromática que qualquer pão de forma pede, e as Ervas Finas fecham com frescor.",
+    whyItWorks: "Base de ovos e queijos sem qualquer farinha, garantindo densidade nutricional e baixíssimo carboidrato.",
+    substitution: "Sem cream cheese? Use ricota bem escorrida — a textura fica um pouco mais firme, mas funciona.",
+    harmonization: ["ervas-finas", "cebola-em-po"],
+    relatedSlugs: ["ovos-mexidos-ervas-finas", "pao-de-queijo-tempero-mineiro", "sopa-legumes-salsa-cebola-alho", "peixe-assado-legumes-salsa-cebola-alho"],
+    dish: { src: paoTradicionalAsset.url, alt: "Pão Carnívoro Temperanzza — Versão Tradicional" },
+    hero: { color: "oklch(0.35 0.08 40)" },
+  },
+  // Nº46
+  {
+    slug: "pao-carnivoro-hamburguer",
+    title: "Pão Carnívoro Temperanzza — Versão Hambúrguer",
+    subtitle: "O pão de hambúrguer que cabe no protocolo.",
+    intro: "O pão de hambúrguer sem nenhuma farinha entre o disco de carne e o queijo.",
+    featuredHandle: "lemon-pepper",
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
+    moment: "jantar",
+    profile: "citrico-picante",
+    time: "35 min",
+    serves: "6 unidades",
+    difficulty: "Fácil",
+    ingredients: [
+      "6 ovos",
+      "200 g de cream cheese",
+      "150 g de queijo parmesão ralado",
+      "80 g de queijo muçarela ralado",
+      "1 colher (chá) de fermento químico",
+      "1 colher (chá) de sal (opcional)",
+      "1 colher (chá) de Lemon Pepper Temperanzza",
+      "½ colher (chá) de Páprica Defumada Temperanzza",
+    ],
+    steps: [
+      "Bata os ovos até espumarem.",
+      "Acrescente o cream cheese e misture bem.",
+      "Adicione o parmesão e a muçarela ralados.",
+      "Incorpore o Lemon Pepper e a Páprica Defumada Temperanzza.",
+      "Misture o fermento químico por último, delicadamente.",
+      "Divida a masa em porções individuais numa forma de muffin untada e leve ao forno a 180 °C por 20–25 minutos, até dourar.",
+      "Aguarde esfriar por 10 minutos, corte ao meio e monte como pão de hambúrguer.",
+    ],
+    chefWord: "A Páprica Defumada dá o tom de churrasco que todo pão de hambúrguer deveria ter, e o Lemon Pepper corta a gordura do queijo com um toque cítrico.",
+    whyItWorks: "Formato individual ideal para hambúrgueres, com perfil sensorial defumado que harmoniza com grelhados.",
+    substitution: "Para um pão mais firme (melhor pra segurar hambúrguer suculento), deixe assar 5 minutos a mais e espere esfriar por completo antes de montar.",
+    harmonization: ["paprica-defumada", "chimi-churri-picante"],
+    relatedSlugs: ["hamburguer-bacon-em-po", "bife-manteiga-chimi-churri", "camarao-chimi-churri-picante", "frango-assado-paprica-defumada"],
+    dish: { src: paoHamburguerAsset.url, alt: "Pão Carnívoro Temperanzza — Versão Hambúrguer" },
+    hero: { color: "oklch(0.32 0.08 30)" },
+  },
+  // Nº47
+  {
+    slug: "pao-carnivoro-torrada",
+    title: "Pão Carnívoro Temperanzza — Versão Torrada",
+    subtitle: "Fatiado fino, tostado, pronto pra qualquer base.",
+    intro: "Fatiado fino e tostado, esse pão vira base pra qualquer coisa — do abacate ao ovo.",
+    featuredHandle: "tempero-mineiro",
+    compatibleDiets: ["keto", "lowcarb", "carnivora-flex"],
+    moment: "lanche",
+    profile: "casa",
+    time: "40 min",
+    serves: "10 fatias",
+    difficulty: "Fácil",
+    ingredients: [
+      "6 ovos",
+      "200 g de cream cheese",
+      "150 g de queijo parmesão ralado",
+      "80 g de queijo muçarela ralado",
+      "1 colher (chá) de fermento químico",
+      "1 colher (chá) de sal (opcional)",
+      "1 colher (chá) de Tempero Mineiro Temperanzza",
+      "½ colher (chá) de Chimi Churri Sem Pimenta Temperanzza",
+    ],
+    steps: [
+      "Bata os ovos até espumarem.",
+      "Acrescente o cream cheese e misture bem.",
+      "Adicione o parmesão e a muçarela ralados.",
+      "Incorpore o Tempero Mineiro e o Chimi Churri Sem Pimenta Temperanzza.",
+      "Misture o fermento químico por último, delicadamente.",
+      "Asse numa forma baixa e retangular untada, a 180 °C por 25–30 minutos.",
+      "Deixe esfriar por completo, fatie fino e leve à grelha ou frigideira seca por 1–2 minutos de cada lado até tostar as bordas.",
+    ],
+    chefWord: "O Tempero Mineiro segura o fundo de sabor e o Chimi Churri Sem Pimenta traz o verde que uma torrada de queijo pede.",
+    whyItWorks: "O re-tostado na frigideira cria a crocância característica da torrada, impossível de obter apenas com farinhas low carb.",
+    substitution: "Sem grelha? Use uma frigideira antiaderente seca, em fogo médio, virando as fatias quando as bordas começarem a dourar.",
+    harmonization: ["chimi-churri-sem-pimenta", "ana-maria"],
+    relatedSlugs: ["carne-moida-tempero-mineiro", "berinjela-assada-tempero-mineiro", "carne-panela-batatas-tempero-mineiro", "abacate-recheado-frango-chimi-churri"],
+    dish: { src: paoTorradaAsset.url, alt: "Pão Carnívoro Temperanzza — Versão Torrada" },
+    hero: { color: "oklch(0.42 0.08 60)" },
+  },
+];
+
 
 
 
@@ -1699,7 +1824,11 @@ export const RECIPE_PROTEIN: Record<string, Protein> = {
   "peixe-assado-legumes-salsa-cebola-alho": "pescados",
   "feijao-tropeiro-tempero-mineiro": "vegetariano",
   "sopa-legumes-ervas-finas": "vegetariano",
+  "pao-carnivoro-tradicional": "ovo",
+  "pao-carnivoro-hamburguer": "bovina",
+  "pao-carnivoro-torrada": "ovo",
 };
+
 
 /** Proteína dominante da receita (campo explícito tem prioridade sobre o mapa). */
 export function getRecipeProtein(r: Recipe): Protein | undefined {

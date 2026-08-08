@@ -153,6 +153,7 @@ function BibliotecaHero() {
           </a>
           <span className="text-[11px] font-display uppercase tracking-[0.3em] text-brand-paper/50">
             <CountUp to={RECIPES.length} from={RECIPES.length} duration={0} /> receitas · <CountUp to={4} from={4} duration={0} /> estilos
+
           </span>
         </div>
       </div>

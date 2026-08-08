@@ -75,7 +75,9 @@ export function ProductTrust({ handle, title }: { handle: string; title: string 
             {"to" in s && s.to ? (
               <Link
                 to={s.to}
+                search={s.search}
                 className="mt-4 inline-flex min-h-[44px] items-center text-xs font-display font-black uppercase tracking-widest text-accent hover:underline underline-offset-4"
+
               >
                 {s.cta} →
               </Link>
