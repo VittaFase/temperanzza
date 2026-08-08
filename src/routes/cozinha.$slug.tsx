@@ -133,13 +133,11 @@ export const Route = createFileRoute("/cozinha/$slug")({
 
     if (redirects[params.slug]) {
       const target = `/cozinha/${redirects[params.slug]}`;
-      if (typeof window !== "undefined") {
-        window.location.replace(target);
-        return null;
-      }
       throw new Response(null, {
         status: 301,
-        headers: { Location: target },
+        headers: {
+          Location: target,
+        },
       });
     }
 
