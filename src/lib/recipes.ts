@@ -1824,7 +1824,11 @@ export const RECIPE_PROTEIN: Record<string, Protein> = {
   "peixe-assado-legumes-salsa-cebola-alho": "pescados",
   "feijao-tropeiro-tempero-mineiro": "vegetariano",
   "sopa-legumes-ervas-finas": "vegetariano",
+  "pao-carnivoro-tradicional": "ovo",
+  "pao-carnivoro-hamburguer": "bovina",
+  "pao-carnivoro-torrada": "ovo",
 };
+
 
 /** Proteína dominante da receita (campo explícito tem prioridade sobre o mapa). */
 export function getRecipeProtein(r: Recipe): Protein | undefined {
