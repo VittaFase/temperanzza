@@ -36,8 +36,8 @@ export function PromoAnnouncement() {
     <>
       {/* Top bar */}
       <div className="w-full bg-foreground text-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-center gap-3 text-xs font-display uppercase tracking-[0.2em]">
-          <Sparkles className="w-3 h-3 text-accent shrink-0" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] sm:text-xs font-display uppercase tracking-[0.2em]">
+          <Sparkles className="w-3 h-3 text-accent shrink-0 hidden sm:block" />
           <span className="text-center">
             <span className="text-accent">{BLEND_DISCOUNT_PCT}% off</span> na caixa a partir de {BLEND_DISCOUNT_MIN_ITEMS} potes — use
           </span>
