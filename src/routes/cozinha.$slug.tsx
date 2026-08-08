@@ -132,7 +132,7 @@ export const Route = createFileRoute("/cozinha/$slug")({
       "feijao-tropeiro-ana-maria": "feijao-tropeiro-tempero-mineiro",
     };
 
-    if (redirects[params.slug]) {
+    if (typeof window !== 'undefined' && redirects[params.slug]) {
       const url = new URL(window.location.href);
       url.pathname = `/cozinha/${redirects[params.slug]}`;
       window.location.replace(url.toString());
