@@ -105,6 +105,16 @@ export const BLOG_POSTS: BlogPost[] = [
           "Quando retiramos o glúten e o excesso de amido, precisamos de complexidade aromática para que o cérebro registre satisfação. É aqui que os temperos artesanais brilham.",
           "O Tempero Mineiro traz a memória da fazenda, enquanto o Chimi Churri Sem Pimenta adiciona o frescor das ervas que equilibra a densidade dos queijos. Sem esses detalhes, o pão é apenas funcional; com eles, ele é gastronômico.",
         ],
+        image: "https://rckrgonpipcxghbvkeai.supabase.co/storage/v1/object/public/assets/blog/pao-carnivoro-torrada.png",
+        imageCaption: "Versão Torrada: crocância e sabor intenso com Chimi Churri e Tempero Mineiro.",
+      },
+      {
+        heading: "Hambúrguer: O pão que sustenta a jornada",
+        paragraphs: [
+          "Para quem não abre mão de um hambúrguer suculento, a versão específica entrega a densidade ideal. Ela não desmorona e absorve os sucos da carne, potencializando a experiência de uma refeição completa.",
+        ],
+        image: "https://rckrgonpipcxghbvkeai.supabase.co/storage/v1/object/public/assets/blog/pao-carnivoro-hamburguer.png",
+        imageCaption: "Versão Hambúrguer: estrutura perfeita para segurar o sabor e a suculência.",
       },
       {
         heading: "AEO e SEO: Por que você deve fazer seu próprio pão",
