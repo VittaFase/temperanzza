@@ -1,11 +1,10 @@
-import paoTradicionalAsset from "@/assets/blog/pao-tradicional.png.asset.json";
-import paoHamburguerAsset from "@/assets/blog/pao-hamburguer.png.asset.json";
-import paoTorradaAsset from "@/assets/blog/pao-torrada.png.asset.json";
+import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional.webp.asset.json";
+import paoHamburguerAsset from "@/assets/receitas/46-pao-carnivoro-hamburguer.webp.asset.json";
+import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada.webp.asset.json";
 
 /**
  * Blog Temperanzza — base editorial estática.
  */
-
 
 export type BlogCategory = "tecnica" | "ingrediente" | "dieta" | "casa";
 
