@@ -18,6 +18,10 @@ export interface BlogSection {
   paragraphs: string[];
   /** lista opcional de bullets após os parágrafos */
   bullets?: string[];
+  /** Imagem opcional para ilustrar a seção */
+  image?: string;
+  /** Legenda da imagem */
+  imageCaption?: string;
 }
 
 export interface BlogFaq {
@@ -92,6 +96,8 @@ export const BLOG_POSTS: BlogPost[] = [
           "Hambúrguer: Densidade perfeita para segurar o suco da carne e o derretimento do queijo sem desmoronar.",
           "Torrada: Fatiado fino e tostado na frigideira, entrega a crocância que a memória afetiva pede.",
         ],
+        image: "https://rckrgonpipcxghbvkeai.supabase.co/storage/v1/object/public/assets/blog/pao-carnivoro-tradicional.png",
+        imageCaption: "Pão Carnívoro Tradicional: a base versátil e proteica para o seu café da manhã.",
       },
       {
         heading: "O papel do tempero na saciedade",
