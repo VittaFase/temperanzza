@@ -7,6 +7,7 @@ export const Route = createFileRoute("/termos")({
     meta: [
       { name: "description", content: "Termos e condições para uso do site e compras na Temperanzza." },
     ],
+    links: [{ rel: "canonical", href: "https://temperanzza.com.br/termos" }],
   }),
   component: TermosPage,
 });

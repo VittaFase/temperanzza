@@ -7,6 +7,7 @@ export const Route = createFileRoute("/trocas-e-devolucoes")({
     meta: [
       { name: "description", content: "Saiba como funciona o processo de troca e devolução na Temperanzza." },
     ],
+    links: [{ rel: "canonical", href: "https://temperanzza.com.br/trocas-e-devolucoes" }],
   }),
   component: TrocasDevolucoesPage,
 });
