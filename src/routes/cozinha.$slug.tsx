@@ -88,6 +88,7 @@ export const Route = createFileRoute("/cozinha/$slug")({
               };
               return map[d] ?? "https://schema.org/LowCalorieDiet";
             }),
+            ...(getRecipeProtein(r) === 'paes' ? { recipeCategory: "Pães e Massas Proteicas" } : {}),
           }),
         },
         {
