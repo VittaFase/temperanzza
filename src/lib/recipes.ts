@@ -49,9 +49,8 @@ import carnePanelaMineiroAsset from "@/assets/receitas/carne-panela-batatas-temp
 import peixeAssadoSalsaAsset from "@/assets/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg.asset.json";
 import feijaoTropeiroAsset from "@/assets/receitas/feijao-tropeiro-tempero-mineiro.jpg.asset.json";
 import sopaLegumesErvasAsset from "@/assets/receitas/sopa-legumes-ervas-finas.jpg.asset.json";
-import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional.webp.asset.json";
-import paoHamburguerAsset from "@/assets/receitas/46-pao-carnivoro-hamburguer.webp.asset.json";
-import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada.webp.asset.json";
+// Imagens de pães removidas conforme solicitação do usuário.
+// As receitas permanecem no catálogo sem o asset visual.
 
 
 
