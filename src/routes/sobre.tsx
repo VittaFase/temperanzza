@@ -104,7 +104,7 @@ function SobrePage() {
                   {s.label}
                 </dt>
                 <dd className="font-display font-black leading-none text-brand-paper text-5xl sm:text-6xl lg:text-7xl mb-2">
-                  {s.n}
+                  <CountUp to={s.n} from={s.n} duration={0} />
                 </dd>
               </div>
             ))}

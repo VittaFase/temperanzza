@@ -152,7 +152,8 @@ function BibliotecaHero() {
             <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
           </a>
           <span className="text-[11px] font-display uppercase tracking-[0.3em] text-brand-paper/50">
-            {RECIPES.length.toString().padStart(2, "0")} receitas · 04 estilos
+            <CountUp to={47} from={44} duration={2000} /> receitas · <CountUp to={4} from={4} duration={0} /> estilos
+
           </span>
         </div>
       </div>
@@ -449,7 +450,7 @@ function CategoriaAccordion({
         </div>
         <span className="shrink-0 flex items-center gap-4 text-brand-ink/50 self-center">
           <span className="text-[11px] font-display uppercase tracking-[0.25em] tabular-nums hidden sm:inline">
-            {receitas.length.toString().padStart(2, "0")}
+            <CountUp to={receitas.length} pad={2} duration={700} />
           </span>
           <ChevronDown
             className={`h-6 w-6 transition-transform duration-500 ${open ? "rotate-180" : ""}`}
