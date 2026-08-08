@@ -35,12 +35,6 @@ export const Route = createFileRoute("/blog/$slug")({
     const { post } = loaderData;
     const url = `${BASE}/blog/${post.slug}`;
     const title = `${post.question} | Blog Temperanzza`;
-    const potImg = getProductImage(post.productHandle);
-    const imageAbs = potImg
-      ? potImg.startsWith("http")
-        ? potImg
-        : `https://temperanzza.com.br${potImg.startsWith("/") ? "" : "/"}${potImg}`
-      : undefined;
     return {
       meta: [
         { title },
@@ -49,13 +43,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:description", content: post.directAnswer.slice(0, 200) },
         { property: "og:url", content: url },
         { property: "og:type", content: "article" },
-        ...(imageAbs
-          ? [
-              { property: "og:image", content: imageAbs },
-              { name: "twitter:image", content: imageAbs },
-              { name: "twitter:card", content: "summary_large_image" },
-            ]
-          : []),
+        { name: "twitter:card", content: "summary_large_image" },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [

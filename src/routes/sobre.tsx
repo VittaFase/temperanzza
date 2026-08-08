@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandSeal } from "@/components/site/BrandSeal";
 import { CountUp } from "@/components/site/CountUp";
-import { RECIPES } from "@/lib/recipes";
 
 const SOBRE_URL = "https://temperanzza.com.br/sobre";
 
@@ -96,7 +95,7 @@ function SobrePage() {
           <dl className="grid grid-cols-3 gap-6 sm:gap-10">
             {[
               { n: 19, label: "SKUs autorais" },
-              { n: RECIPES.length, label: "receitas autorais" },
+              { n: 15, label: "receitas autorais" },
               { n: 2023, label: "desde" },
             ].map((s) => (
               <div key={s.label} className="border-l-2 border-brand-mustard/50 pl-4 sm:pl-6">

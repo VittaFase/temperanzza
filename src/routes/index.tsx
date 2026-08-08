@@ -30,24 +30,6 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://temperanzza.com.br" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Temperanzza",
-          url: "https://temperanzza.com.br",
-          logo: "https://temperanzza.com.br/logo.png", // Fallback for brasão if available as file
-          contactPoint: {
-            "@type": "ContactPoint",
-            email: "contatotemperanzza@gmail.com",
-            contactType: "customer service",
-          },
-          sameAs: ["https://instagram.com/temperanzzacondimentos"],
-        }),
-      },
-    ],
   }),
   component: Index,
 });

@@ -101,10 +101,10 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "Torradas Crocantes: O Toque do Chef",
         paragraphs: [
-          "Fatiado e levado à frigideira com manteiga e Tempero Mineiro ou Chimichurri, o pão carnívoro se transforma em torradas de elite, perfeitas para acompanhar caldos ou servir de base para antepastos.",
+          "Fatiado e levado à frigideira com manteiga e Tempero Mineiro ou Chimi Churri, o pão carnívoro se transforma em torradas de elite, perfeitas para acompanhar caldos ou servir de base para antepastos.",
         ],
         image: paoTorradaAsset.url,
-        imageCaption: "Torradas Carnívoras: crocância absoluta com Chimichurri e Tempero Mineiro.",
+        imageCaption: "Torradas Carnívoras: crocância absoluta com Chimi Churri e Tempero Mineiro.",
       },
     ],
     faq: [

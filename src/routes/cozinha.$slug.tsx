@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef } from "react";
-import { getRecipeBySlug, MOMENTS, RECIPES, getRecipeProtein, type Recipe } from "@/lib/recipes";
+import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
 import { RecipeAddToCart } from "@/components/site/RecipeAddToCart";
 import { RecipeShareBar } from "@/components/site/RecipeShareBar";
@@ -37,12 +37,10 @@ export const Route = createFileRoute("/cozinha/$slug")({
     const url = `https://temperanzza.com.br/cozinha/${r.slug}`;
     const desc = r.subtitle ?? r.intro;
     const potePath = getProductImage(r.featuredHandle);
-    const dishImg = r.dish?.src;
-    const ogImage = dishImg || potePath;
-    const imageAbs = ogImage
-      ? ogImage.startsWith("http")
-        ? ogImage
-        : `https://temperanzza.com.br${ogImage.startsWith("/") ? "" : "/"}${ogImage}`
+    const imageAbs = potePath
+      ? potePath.startsWith("http")
+        ? potePath
+        : `https://temperanzza.com.br${potePath.startsWith("/") ? "" : "/"}${potePath}`
       : undefined;
     return {
       meta: [
@@ -88,7 +86,6 @@ export const Route = createFileRoute("/cozinha/$slug")({
               };
               return map[d] ?? "https://schema.org/LowCalorieDiet";
             }),
-            ...(getRecipeProtein(r) === 'paes' ? { recipeCategory: "Pães e Massas Proteicas" } : {}),
           }),
         },
         {
