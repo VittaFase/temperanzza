@@ -49,9 +49,9 @@ import carnePanelaMineiroAsset from "@/assets/receitas/carne-panela-batatas-temp
 import peixeAssadoSalsaAsset from "@/assets/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg.asset.json";
 import feijaoTropeiroAsset from "@/assets/receitas/feijao-tropeiro-tempero-mineiro.jpg.asset.json";
 import sopaLegumesErvasAsset from "@/assets/receitas/sopa-legumes-ervas-finas.jpg.asset.json";
-import paoTradicionalAsset from "@/assets/receitas/pao-carnivoro-tradicional.png.asset.json";
-import paoHamburguerAsset from "@/assets/receitas/pao-carnivoro-hamburguer.png.asset.json";
-import paoTorradaAsset from "@/assets/receitas/pao-carnivoro-torrada.png.asset.json";
+import paoTradicionalAsset from "@/assets/receitas/45_-_Pão_Carnívoro_-_Tradicional.webp.asset.json";
+import paoHamburguerAsset from "@/assets/receitas/46_-_Pão_Carnívoro_-_Versão_Hambúrguer.webp.asset.json";
+import paoTorradaAsset from "@/assets/receitas/47_-_Pão_Carnívoro_-_Versão_Torrada.webp.asset.json";
 
 
 

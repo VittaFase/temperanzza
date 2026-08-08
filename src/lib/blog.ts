@@ -1,6 +1,6 @@
-import tradAsset from "@/assets/blog/pao-carnivoro-tradicional.png.asset.json";
-import burgerAsset from "@/assets/blog/pao-carnivoro-hamburguer.png.asset.json";
-import toastAsset from "@/assets/blog/pao-carnivoro-torrada.png.asset.json";
+import tradAsset from "@/assets/receitas/45_-_Pão_Carnívoro_-_Tradicional.webp.asset.json";
+import burgerAsset from "@/assets/receitas/46_-_Pão_Carnívoro_-_Versão_Hambúrguer.webp.asset.json";
+import toastAsset from "@/assets/receitas/47_-_Pão_Carnívoro_-_Versão_Torrada.webp.asset.json";
 
 /**
  * Blog Temperanzza — base editorial estática.
