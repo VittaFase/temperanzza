@@ -1651,7 +1651,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode usar Temperaflix Bacon para uma versão mais rústica.",
     harmonization: ["salsa-cebola-e-alho", "tempero-mineiro"],
     relatedSlugs: ["pao-carnivoro-hamburguer", "pao-carnivoro-torrada"],
-    // dish: { src: paoTradicionalAsset.url, alt: "Pão Carnívoro Tradicional" },
+    dish: { src: paoTradicionalAsset.url, alt: "Pão Carnívoro Tradicional" },
     hero: { color: "oklch(0.52 0.21 28)" },
   },
   // Nº46
@@ -1685,7 +1685,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Use Chimi Churri para um perfil mais argentino.",
     harmonization: ["temperaflix-bacon", "paprica-defumada"],
     relatedSlugs: ["hamburguer-bacon-em-po", "pao-carnivoro-tradicional"],
-    // dish: { src: paoHamburguerAsset.url, alt: "Pão de Hambúrguer Carnívoro" },
+    dish: { src: paoHamburguerAsset.url, alt: "Pão de Hambúrguer Carnívoro" },
     hero: { color: "oklch(0.52 0.21 28)" },
   },
   // Nº47
@@ -1717,7 +1717,7 @@ export const RECIPES: Recipe[] = [
     substitution: "Experimente com Ervas Finas para um toque mais suave.",
     harmonization: ["salsa-cebola-e-alho", "curcuma"],
     relatedSlugs: ["pao-carnivoro-tradicional", "sopa-legumes-ervas-finas"],
-    // dish: { src: paoTorradaAsset.url, alt: "Torradas Carnívoras Temperanzza" },
+    dish: { src: paoTorradaAsset.url, alt: "Torradas Carnívoras Temperanzza" },
     hero: { color: "oklch(0.52 0.21 28)" },
   },
 ];
