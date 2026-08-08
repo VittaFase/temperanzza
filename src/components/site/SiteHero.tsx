@@ -19,7 +19,7 @@ export function SiteHero() {
   }, []);
 
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-brand-ink text-brand-paper">
+    <section className="relative min-h-[90vh] md:min-h-[95vh] flex items-center justify-center overflow-hidden bg-brand-ink text-brand-paper py-20 md:py-32">
       {/* Vídeo de fundo com overlay */}
       {!reduced && (
         <div className="absolute inset-0 z-0">
@@ -38,7 +38,7 @@ export function SiteHero() {
       )}
 
       {/* Conteúdo central */}
-      <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+      <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center pb-12">
         <BrandSeal size="xl" embossed eager className="mb-8 sm:mb-12 animate-pote-float" />
         
         <span className="font-display uppercase tracking-[0.4em] text-xs sm:text-sm text-brand-mustard mb-4 block">
