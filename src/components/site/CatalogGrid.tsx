@@ -234,35 +234,35 @@ export function CatalogGrid({ query = null, excludeHandles, showSections = false
           )}
         </div>
       ) : (
-      {showSections && diet === "todas" && !term ? (
-        <div className="space-y-16">
-          {LINHAS.filter(l => l.key !== "todas").map(l => {
-            const sectionItems = filtered.filter(item => getLinha(item.node.handle) === l.key);
-            if (sectionItems.length === 0) return null;
-            return (
-              <div key={l.key}>
-                <div className="flex items-center gap-3 mb-8">
-                  <h2 className="font-display font-black uppercase tracking-tight text-3xl sm:text-4xl">
-                    Linha {l.label}
-                  </h2>
-                  <span className="h-px flex-1 bg-foreground/15" />
+        showSections && diet === "todas" && !term ? (
+          <div className="space-y-16">
+            {LINHAS.filter(l => l.key !== "todas").map(l => {
+              const sectionItems = filtered.filter(item => getLinha(item.node.handle) === l.key);
+              if (sectionItems.length === 0) return null;
+              return (
+                <div key={l.key}>
+                  <div className="flex items-center gap-3 mb-8">
+                    <h2 className="font-display font-black uppercase tracking-tight text-3xl sm:text-4xl">
+                      Linha {l.label}
+                    </h2>
+                    <span className="h-px flex-1 bg-foreground/15" />
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+                    {sectionItems.map((p) => (
+                      <ProductCard key={p.node.id} product={p} />
+                    ))}
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
-                  {sectionItems.map((p) => (
-                    <ProductCard key={p.node.id} product={p} />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
-          {filtered.map((p) => (
-            <ProductCard key={p.node.id} product={p} />
-          ))}
-        </div>
-      )}
+              );
+            })}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+            {filtered.map((p) => (
+              <ProductCard key={p.node.id} product={p} />
+            ))}
+          </div>
+        )
       )}
     </div>
   );
