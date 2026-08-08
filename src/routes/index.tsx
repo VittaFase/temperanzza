@@ -1,5 +1,4 @@
-// Execute esta instrucao no projeto: Vamos a segunda imagem
-{/* Execute esta instrucao no projeto: prossiga para a proxima receita mantendo as mesmas estruturas já acertadas nas duas imagens implementadas */}
+{/* Execute esta instrucao no projeto: agora com as imagens novas. analise a possibilidade de implementarmos toda estrutura na area das receitas e no blog com as imagens limpas e proficionai! Analise a possibilidade e antes de executar me de seu feedback sobre a saude de toda estrutura! analise tambem a passagem de cada implementação pelas nossas regras e proteção da estrutura para que nada gere uma quebra de toda nossa implementação temperanzza! */}
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductGrid } from "@/components/site/ProductGrid";

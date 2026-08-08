@@ -1,9 +1,9 @@
+import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional.webp.asset.json";
+import paoHamburguerAsset from "@/assets/receitas/46-pao-carnivoro-hamburguer.webp.asset.json";
+import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada.webp.asset.json";
 
 /**
  * Blog Temperanzza — base editorial estática.
-...
- * O `productHandle` puxa o PNG transparente oficial via
- * `getProductImage`.
  */
 
 export type BlogCategory = "tecnica" | "ingrediente" | "dieta" | "casa";
@@ -61,6 +61,72 @@ export const BLOG_CATEGORY_LABEL: Record<BlogCategory, string> = {
 };
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "coma-pao-em-sua-dieta",
+    title: "Coma pão em sua dieta: a volta da textura à mesa carnívora e low carb",
+    question: "Posso comer pão na dieta cetogênica ou carnívora?",
+    directAnswer:
+      "Sim, é possível através de versões proteicas sem farinha de trigo. Utilizando ovos, carne ou queijos como base, o pão carnívoro entrega a textura e o conforto do pão tradicional com zero carboidratos e alta densidade nutricional, permitindo sanduíches e torradas sem quebrar a cetose.",
+    standfirst:
+      "O conforto da padaria, reconstruído com densidade nutricional mineira.",
+    category: "dieta",
+    readTime: 6,
+    publishedAt: "2026-08-08",
+    tone: "oklch(0.52 0.21 28)",
+    sections: [
+      {
+        heading: "A quebra do paradigma: pão sem grãos",
+        paragraphs: [
+          "Para muitos, o pão é a maior barreira para a adesão a longo prazo em dietas de baixo carboidrato. A falta da textura 'mastigável' e da praticidade do sanduíche gera um vazio que receitas à base de farinhas de oleaginosas (como amêndoas) nem sempre preenchem.",
+          "O Pão Carnívoro Temperanzza surge como uma solução de performance: base proteica, sem glúten e sem antinutrientes de sementes.",
+        ],
+        image: paoTradicionalAsset.url,
+        imageCaption: "Pão Carnívoro Tradicional: fofinho, proteico e perfeito para fatiar.",
+      },
+      {
+        heading: "Versão Tradicional — O café da manhã mineiro",
+        paragraphs: [
+          "A versão clássica utiliza Ervas Finas e um toque de Salsa, Cebola e Alho para conferir aquele aroma de padaria artesanal. É ideal para comer com manteiga de garrafa ou queijo canastra derretido.",
+        ],
+      },
+      {
+        heading: "O Hambúrguer Perfeito",
+        paragraphs: [
+          "Moldado em formato circular e finalizado com Lemon Pepper ou Páprica Defumada, esta variação sustenta o peso de um blend de carne sem desmanchar, entregando a experiência completa de uma hamburgueria gourmet.",
+        ],
+        image: paoHamburguerAsset.url,
+        imageCaption: "Versão Hambúrguer: estrutura firme e sabor realçado com Lemon Pepper.",
+      },
+      {
+        heading: "Torradas Crocantes: O Toque do Chef",
+        paragraphs: [
+          "Fatiado e levado à frigideira com manteiga e Tempero Mineiro ou Chimi Churri, o pão carnívoro se transforma em torradas de elite, perfeitas para acompanhar caldos ou servir de base para antepastos.",
+        ],
+        image: paoTorradaAsset.url,
+        imageCaption: "Torradas Carnívoras: crocância absoluta com Chimi Churri e Tempero Mineiro.",
+      },
+    ],
+    faq: [
+      {
+        question: "O pão carnívoro tem gosto de ovo?",
+        answer:
+          "Se preparado com a técnica correta e os temperos certos (como nossas Ervas Finas), o sabor residual de ovo desaparece, dando lugar ao perfil aromático dos condimentos.",
+      },
+      {
+        question: "Como conservar meu pão proteico?",
+        answer:
+          "Por ser rico em proteína e gordura, ele dura até 5 dias na geladeira em pote fechado ou pode ser congelado fatiado por 3 meses.",
+      },
+    ],
+    productHandle: "ervas-finas",
+    productName: "Ervas Finas",
+    relatedRecipes: [
+      "pao-carnivoro-tradicional",
+      "pao-carnivoro-hamburguer",
+      "pao-carnivoro-torrada",
+    ],
+    relatedPosts: ["por-que-tempero-artesanal-e-diferente", "o-que-e-temperaflix"],
+  },
   {
     slug: "por-que-tempero-artesanal-e-diferente",
     title: "Tempero artesanal versus industrial: onde está a diferença real",
