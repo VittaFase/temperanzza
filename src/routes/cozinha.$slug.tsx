@@ -122,7 +122,6 @@ export const Route = createFileRoute("/cozinha/$slug")({
     };
   },
   loader: ({ params }) => {
-    // 301 Redirects - Normalização da Biblioteca v2
     const redirects: Record<string, string> = {
       "frango-grelhado-cebola-em-po": "frango-grelhado-ana-maria",
       "sopa-legumes-cebola-em-po": "sopa-legumes-salsa-cebola-alho",
@@ -132,19 +131,19 @@ export const Route = createFileRoute("/cozinha/$slug")({
       "feijao-tropeiro-ana-maria": "feijao-tropeiro-tempero-mineiro",
     };
 
-    const r = getRecipeBySlug(params.slug);
-
     if (redirects[params.slug]) {
-      const targetSlug = redirects[params.slug];
-      // Redirecionamento 301 (SEO-friendly)
+      const target = `/cozinha/${redirects[params.slug]}`;
+      if (typeof window !== "undefined") {
+        window.location.replace(target);
+        return null;
+      }
       throw new Response(null, {
         status: 301,
-        headers: {
-          Location: `/cozinha/${targetSlug}`,
-        },
+        headers: { Location: target },
       });
     }
 
+    const r = getRecipeBySlug(params.slug);
     if (!r) throw notFound();
     return r;
   },
