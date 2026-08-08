@@ -9,10 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TrocasEDevolucoesRouteImport } from './routes/trocas-e-devolucoes'
+import { Route as TermosRouteImport } from './routes/termos'
 import { Route as TemperaflixRouteImport } from './routes/temperaflix'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProdutosRouteImport } from './routes/produtos'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as LojasRouteImport } from './routes/lojas'
 import { Route as EmbaixadoresRouteImport } from './routes/embaixadores'
 import { Route as CozinhaRouteImport } from './routes/cozinha'
@@ -35,6 +38,16 @@ import { Route as ApiPublicBlingCronSyncRouteImport } from './routes/api/public/
 import { Route as ApiPublicBlingConnectRouteImport } from './routes/api/public/bling/connect'
 import { Route as ApiPublicBlingCallbackRouteImport } from './routes/api/public/bling/callback'
 
+const TrocasEDevolucoesRoute = TrocasEDevolucoesRouteImport.update({
+  id: '/trocas-e-devolucoes',
+  path: '/trocas-e-devolucoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosRoute = TermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TemperaflixRoute = TemperaflixRouteImport.update({
   id: '/temperaflix',
   path: '/temperaflix',
@@ -53,6 +66,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ProdutosRoute = ProdutosRouteImport.update({
   id: '/produtos',
   path: '/produtos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LojasRoute = LojasRouteImport.update({
@@ -169,10 +187,13 @@ export interface FileRoutesByFullPath {
   '/cozinha': typeof CozinhaRouteWithChildren
   '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/termos': typeof TermosRoute
+  '/trocas-e-devolucoes': typeof TrocasEDevolucoesRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -194,10 +215,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/termos': typeof TermosRoute
+  '/trocas-e-devolucoes': typeof TrocasEDevolucoesRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -222,10 +246,13 @@ export interface FileRoutesById {
   '/cozinha': typeof CozinhaRouteWithChildren
   '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/termos': typeof TermosRoute
+  '/trocas-e-devolucoes': typeof TrocasEDevolucoesRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -251,10 +278,13 @@ export interface FileRouteTypes {
     | '/cozinha'
     | '/embaixadores'
     | '/lojas'
+    | '/privacidade'
     | '/produtos'
     | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
+    | '/termos'
+    | '/trocas-e-devolucoes'
     | '/admin/bling'
     | '/blends/$slug'
     | '/blog/$slug'
@@ -276,10 +306,13 @@ export interface FileRouteTypes {
     | '/'
     | '/embaixadores'
     | '/lojas'
+    | '/privacidade'
     | '/produtos'
     | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
+    | '/termos'
+    | '/trocas-e-devolucoes'
     | '/admin/bling'
     | '/blends/$slug'
     | '/blog/$slug'
@@ -303,10 +336,13 @@ export interface FileRouteTypes {
     | '/cozinha'
     | '/embaixadores'
     | '/lojas'
+    | '/privacidade'
     | '/produtos'
     | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
+    | '/termos'
+    | '/trocas-e-devolucoes'
     | '/admin/bling'
     | '/blends/$slug'
     | '/blog/$slug'
@@ -331,10 +367,13 @@ export interface RootRouteChildren {
   CozinhaRoute: typeof CozinhaRouteWithChildren
   EmbaixadoresRoute: typeof EmbaixadoresRoute
   LojasRoute: typeof LojasRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
   ProdutosRoute: typeof ProdutosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   TemperaflixRoute: typeof TemperaflixRoute
+  TermosRoute: typeof TermosRoute
+  TrocasEDevolucoesRoute: typeof TrocasEDevolucoesRoute
   AdminBlingRoute: typeof AdminBlingRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ImprimirSlugRoute: typeof ImprimirSlugRoute
@@ -351,6 +390,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/trocas-e-devolucoes': {
+      id: '/trocas-e-devolucoes'
+      path: '/trocas-e-devolucoes'
+      fullPath: '/trocas-e-devolucoes'
+      preLoaderRoute: typeof TrocasEDevolucoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos': {
+      id: '/termos'
+      path: '/termos'
+      fullPath: '/termos'
+      preLoaderRoute: typeof TermosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/temperaflix': {
       id: '/temperaflix'
       path: '/temperaflix'
@@ -377,6 +430,13 @@ declare module '@tanstack/react-router' {
       path: '/produtos'
       fullPath: '/produtos'
       preLoaderRoute: typeof ProdutosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lojas': {
@@ -561,10 +621,13 @@ const rootRouteChildren: RootRouteChildren = {
   CozinhaRoute: CozinhaRouteWithChildren,
   EmbaixadoresRoute: EmbaixadoresRoute,
   LojasRoute: LojasRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
   ProdutosRoute: ProdutosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   TemperaflixRoute: TemperaflixRoute,
+  TermosRoute: TermosRoute,
+  TrocasEDevolucoesRoute: TrocasEDevolucoesRoute,
   AdminBlingRoute: AdminBlingRoute,
   BlogSlugRoute: BlogSlugRoute,
   ImprimirSlugRoute: ImprimirSlugRoute,
@@ -581,3 +644,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
