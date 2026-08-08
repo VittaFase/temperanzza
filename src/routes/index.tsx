@@ -1,15 +1,15 @@
-// Execute esta instrucao no projeto: agora reeplenete as novas imagens cada uma em sua devida receita
+// Execute esta instrucao no projeto: analise porque aconteceu uma quebra na implementação das tres imagens dos pães
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { Hero } from "@/components/site/Hero";
-import { FeatureGrid } from "@/components/site/FeatureGrid";
-import { ProductShowcase } from "@/components/site/ProductShowcase";
-import { BrandStory } from "@/components/site/BrandStory";
+import { Hero } from "@/components/home/Hero";
+import { FeatureGrid } from "@/components/home/FeatureGrid";
+import { ProductShowcase } from "@/components/home/ProductShowcase";
+import { BrandStory } from "@/components/home/BrandStory";
 import { HouseOffers } from "@/components/site/HouseOffers";
 import { TemperaflixShowcase } from "@/components/site/TemperaflixShowcase";
-import { FAQSection } from "@/components/site/FAQSection";
-import { RecipeHighlights } from "@/components/site/RecipeHighlights";
-import { SEO } from "@/components/site/SEO";
+import { FAQSection } from "@/components/home/FAQSection";
+import { RecipeHighlights } from "@/components/home/RecipeHighlights";
+import { SEO } from "@/components/home/SEO";
 
 export const Route = createFileRoute("/")({
   head: () => ({
