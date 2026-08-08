@@ -7,6 +7,7 @@ export const Route = createFileRoute("/privacidade")({
     meta: [
       { name: "description", content: "Saiba como a Temperanzza protege seus dados pessoais de acordo com a LGPD." },
     ],
+    links: [{ rel: "canonical", href: "https://temperanzza.com.br/privacidade" }],
   }),
   component: PrivacidadePage,
 });

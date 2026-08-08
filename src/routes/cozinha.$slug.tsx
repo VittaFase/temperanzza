@@ -122,7 +122,9 @@ export const Route = createFileRoute("/cozinha/$slug")({
     };
   },
   loader: ({ params }) => {
-    // 301 Redirects - Normalização da Biblioteca v2
+    const r = getRecipeBySlug(params.slug);
+    
+    // Fallback manual para redirects via slug se a rota for acessada diretamente
     const redirects: Record<string, string> = {
       "frango-grelhado-cebola-em-po": "frango-grelhado-ana-maria",
       "sopa-legumes-cebola-em-po": "sopa-legumes-salsa-cebola-alho",
@@ -133,13 +135,11 @@ export const Route = createFileRoute("/cozinha/$slug")({
     };
 
     if (redirects[params.slug]) {
-      throw new Response(null, {
-        status: 301,
-        headers: { Location: `/cozinha/${redirects[params.slug]}` },
-      });
+      const target = `/cozinha/${redirects[params.slug]}`;
+      // Em TanStack Start v1, para 301 real em tempo de execução SSR:
+      return { redirect: target };
     }
 
-    const r = getRecipeBySlug(params.slug);
     if (!r) throw notFound();
     return r;
   },
@@ -152,9 +152,18 @@ export const Route = createFileRoute("/cozinha/$slug")({
 // ═══════════════════════════════════════════════════════════════════
 
 function RecipeDrawer() {
-  const recipe = Route.useLoaderData() as Recipe;
+  const data = Route.useLoaderData() as Recipe | { redirect: string };
   const navigate = useNavigate();
   const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (data && 'redirect' in data) {
+      navigate({ to: data.redirect as any, replace: true });
+    }
+  }, [data, navigate]);
+
+  if (!data || 'redirect' in data) return null;
+  const recipe = data as Recipe;
 
   const close = () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } });
 
