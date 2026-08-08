@@ -1,13 +1,11 @@
+import tradAsset from "@/assets/blog/pao-carnivoro-tradicional.png.asset.json";
+import burgerAsset from "@/assets/blog/pao-carnivoro-hamburguer.png.asset.json";
+import toastAsset from "@/assets/blog/pao-carnivoro-torrada.png.asset.json";
+
 /**
  * Blog Temperanzza — base editorial estática.
- *
- * Cada artigo nasce de uma pergunta real de quem cozinha. A estrutura segue o
- * padrão AEO (Answer Engine Optimization): resposta direta no topo, corpo
- * aprofundado em seções, FAQ ao final. Isso alimenta tanto o snippet do Google
- * quanto os assistentes de IA.
- *
- * Sem fotos de pratos — a identidade da casa é o pote real, tipografia stencil
- * e blocos de cor. O `productHandle` puxa o PNG transparente oficial via
+...
+ * O `productHandle` puxa o PNG transparente oficial via
  * `getProductImage`.
  */
 
@@ -96,7 +94,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Hambúrguer: Densidade perfeita para segurar o suco da carne e o derretimento do queijo sem desmoronar.",
           "Torrada: Fatiado fino e tostado na frigideira, entrega a crocância que a memória afetiva pede.",
         ],
-        image: "https://rckrgonpipcxghbvkeai.supabase.co/storage/v1/object/public/assets/blog/pao-carnivoro-tradicional.png",
+        image: tradAsset.url,
         imageCaption: "Pão Carnívoro Tradicional: a base versátil e proteica para o seu café da manhã.",
       },
       {
@@ -105,7 +103,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Quando retiramos o glúten e o excesso de amido, precisamos de complexidade aromática para que o cérebro registre satisfação. É aqui que os temperos artesanais brilham.",
           "O Tempero Mineiro traz a memória da fazenda, enquanto o Chimi Churri Sem Pimenta adiciona o frescor das ervas que equilibra a densidade dos queijos. Sem esses detalhes, o pão é apenas funcional; com eles, ele é gastronômico.",
         ],
-        image: "https://rckrgonpipcxghbvkeai.supabase.co/storage/v1/object/public/assets/blog/pao-carnivoro-torrada.png",
+        image: toastAsset.url,
         imageCaption: "Versão Torrada: crocância e sabor intenso com Chimi Churri e Tempero Mineiro.",
       },
       {
@@ -113,7 +111,7 @@ export const BLOG_POSTS: BlogPost[] = [
         paragraphs: [
           "Para quem não abre mão de um hambúrguer suculento, a versão específica entrega a densidade ideal. Ela não desmorona e absorve os sucos da carne, potencializando a experiência de uma refeição completa.",
         ],
-        image: "https://rckrgonpipcxghbvkeai.supabase.co/storage/v1/object/public/assets/blog/pao-carnivoro-hamburguer.png",
+        image: burgerAsset.url,
         imageCaption: "Versão Hambúrguer: estrutura perfeita para segurar o sabor e a suculência.",
       },
       {
