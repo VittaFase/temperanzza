@@ -1,4 +1,4 @@
-import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional.webp.asset.json";
+import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional-clean.png.asset.json";
 import paoHamburguerAsset from "@/assets/receitas/46-pao-carnivoro-hamburguer.webp.asset.json";
 import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada.webp.asset.json";
 
