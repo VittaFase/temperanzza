@@ -132,14 +132,19 @@ export const Route = createFileRoute("/cozinha/$slug")({
       "feijao-tropeiro-ana-maria": "feijao-tropeiro-tempero-mineiro",
     };
 
-    if (typeof window !== 'undefined' && redirects[params.slug]) {
-      const url = new URL(window.location.href);
-      url.pathname = `/cozinha/${redirects[params.slug]}`;
-      window.location.replace(url.toString());
-      return null;
+    const r = getRecipeBySlug(params.slug);
+
+    if (redirects[params.slug]) {
+      const targetSlug = redirects[params.slug];
+      // Redirecionamento 301 (SEO-friendly)
+      throw new Response(null, {
+        status: 301,
+        headers: {
+          Location: `/cozinha/${targetSlug}`,
+        },
+      });
     }
 
-    const r = getRecipeBySlug(params.slug);
     if (!r) throw notFound();
     return r;
   },
