@@ -51,7 +51,7 @@ export function SiteHero() {
         </h1>
 
         <p className="max-w-2xl text-lg sm:text-xl text-brand-paper/80 font-serif italic mb-10 leading-relaxed">
-          Blends autorais nascidos em Minas Gerais, criados para quem não aceita atalhos na cozinha nem aditivos no pote.
+          Sua casa de tempero mineira — com sabores para todos os seus momentos à mesa combinados ao seu Lifestyle.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
