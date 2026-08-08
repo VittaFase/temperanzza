@@ -152,9 +152,18 @@ export const Route = createFileRoute("/cozinha/$slug")({
 // ═══════════════════════════════════════════════════════════════════
 
 function RecipeDrawer() {
-  const recipe = Route.useLoaderData() as Recipe;
+  const data = Route.useLoaderData() as Recipe | { redirect: string };
   const navigate = useNavigate();
   const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (data && 'redirect' in data) {
+      navigate({ to: data.redirect as any, replace: true });
+    }
+  }, [data, navigate]);
+
+  if (!data || 'redirect' in data) return null;
+  const recipe = data as Recipe;
 
   const close = () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } });
 
