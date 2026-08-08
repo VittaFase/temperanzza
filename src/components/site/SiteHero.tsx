@@ -51,7 +51,7 @@ export function SiteHero() {
         </h1>
 
         <p className="max-w-2xl text-lg sm:text-xl text-brand-paper/80 font-serif italic mb-10 leading-relaxed">
-          Sua Casa de Condimentos e Temperos — com Sabores para todos os seus momentos à mesa combinados a seu Lifestyle.
+          Sua Casa de Condimentos e Temperos — com Sabores para todos os seus momentos à mesa combinados ao seu Lifestyle.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
