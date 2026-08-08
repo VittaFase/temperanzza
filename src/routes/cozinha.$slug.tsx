@@ -133,10 +133,10 @@ export const Route = createFileRoute("/cozinha/$slug")({
     };
 
     if (redirects[params.slug]) {
-      throw new Response(null, {
-        status: 301,
-        headers: { Location: `/cozinha/${redirects[params.slug]}` },
-      });
+      const url = new URL(window.location.href);
+      url.pathname = `/cozinha/${redirects[params.slug]}`;
+      window.location.replace(url.toString());
+      return null;
     }
 
     const r = getRecipeBySlug(params.slug);
