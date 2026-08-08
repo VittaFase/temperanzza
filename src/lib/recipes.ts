@@ -1739,7 +1739,7 @@ export type Protein =
   | "suino"
   | "pescados"
   | "ovo"
-  
+  | "paes"
   | "vegetariano";
 
 export const PROTEINS: Record<Protein, string> = {
@@ -1748,7 +1748,7 @@ export const PROTEINS: Record<Protein, string> = {
   suino: "Suíno",
   pescados: "Peixe & Frutos do Mar",
   ovo: "Ovo",
-  
+  paes: "Pães",
   vegetariano: "Vegetariano",
 };
 
@@ -1758,6 +1758,7 @@ export const PROTEIN_ORDER: Protein[] = [
   "suino",
   "pescados",
   "ovo",
+  "paes",
   "vegetariano",
 ];
 
@@ -1809,9 +1810,9 @@ export const RECIPE_PROTEIN: Record<string, Protein> = {
   "peixe-assado-legumes-salsa-cebola-alho": "pescados",
   "feijao-tropeiro-tempero-mineiro": "vegetariano",
   "sopa-legumes-ervas-finas": "vegetariano",
-  "pao-carnivoro-tradicional": "ovo",
-  "pao-carnivoro-hamburguer": "bovina",
-  "pao-carnivoro-torrada": "ovo",
+  "pao-carnivoro-tradicional": "paes",
+  "pao-carnivoro-hamburguer": "paes",
+  "pao-carnivoro-torrada": "paes",
 };
 
 

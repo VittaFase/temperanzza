@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef } from "react";
-import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
+import { getRecipeBySlug, MOMENTS, RECIPES, getRecipeProtein, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
 import { RecipeAddToCart } from "@/components/site/RecipeAddToCart";
 import { RecipeShareBar } from "@/components/site/RecipeShareBar";
@@ -88,6 +88,7 @@ export const Route = createFileRoute("/cozinha/$slug")({
               };
               return map[d] ?? "https://schema.org/LowCalorieDiet";
             }),
+            ...(getRecipeProtein(r) === 'paes' ? { recipeCategory: "Pães e Massas Proteicas" } : {}),
           }),
         },
         {
