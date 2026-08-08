@@ -239,6 +239,21 @@ function BlogPostPage() {
                   {p}
                 </p>
               ))}
+              {section.image ? (
+                <figure className="mt-8 mb-6 overflow-hidden border border-foreground/10 bg-brand-cream/10">
+                  <img
+                    src={section.image}
+                    alt={section.imageCaption || section.heading}
+                    loading="lazy"
+                    className="w-full h-auto object-cover aspect-[16/9]"
+                  />
+                  {section.imageCaption ? (
+                    <figcaption className="p-3 text-xs uppercase tracking-widest text-muted-foreground border-t border-foreground/10">
+                      {section.imageCaption}
+                    </figcaption>
+                  ) : null}
+                </figure>
+              ) : null}
               {section.bullets ? (
                 <ul className="mt-5 space-y-2">
                   {section.bullets.map((b) => (
