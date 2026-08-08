@@ -122,6 +122,9 @@ export const Route = createFileRoute("/cozinha/$slug")({
     };
   },
   loader: ({ params }) => {
+    const r = getRecipeBySlug(params.slug);
+    
+    // Fallback manual para redirects via slug se a rota for acessada diretamente
     const redirects: Record<string, string> = {
       "frango-grelhado-cebola-em-po": "frango-grelhado-ana-maria",
       "sopa-legumes-cebola-em-po": "sopa-legumes-salsa-cebola-alho",
@@ -133,15 +136,10 @@ export const Route = createFileRoute("/cozinha/$slug")({
 
     if (redirects[params.slug]) {
       const target = `/cozinha/${redirects[params.slug]}`;
-      throw new Response(null, {
-        status: 301,
-        headers: {
-          Location: target,
-        },
-      });
+      // Em TanStack Start v1, para 301 real em tempo de execução SSR:
+      return { redirect: target };
     }
 
-    const r = getRecipeBySlug(params.slug);
     if (!r) throw notFound();
     return r;
   },
