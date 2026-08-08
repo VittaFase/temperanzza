@@ -6,6 +6,7 @@ import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { PromoAnnouncement } from "./PromoAnnouncement";
 import { HouseOffers } from "./HouseOffers";
+import { RecipeShowcase } from "./RecipeShowcase";
 
 export { 
   SiteHero, 
@@ -15,5 +16,6 @@ export {
   SiteHeader, 
   SiteFooter, 
   PromoAnnouncement,
-  HouseOffers
+  HouseOffers,
+  RecipeShowcase
 };
