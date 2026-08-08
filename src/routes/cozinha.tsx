@@ -152,7 +152,7 @@ function BibliotecaHero() {
             <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
           </a>
           <span className="text-[11px] font-display uppercase tracking-[0.3em] text-brand-paper/50">
-            {RECIPES.length} receitas · 4 estilos
+            {RECIPES.length.toString().padStart(2, "0")} receitas · 04 estilos
           </span>
         </div>
       </div>
