@@ -10,7 +10,7 @@ export function RecipeShowcase() {
   // Selecionamos 3 receitas estratégicas para o destaque (ex: as primeiras com foto real)
   // Selecionamos 3 receitas estratégicas para o destaque
   const featuredRecipes = [
-    RECIPES.find(r => r.slug === "omelete-bacon-em-po"),
+    RECIPES.find(r => r.slug === "pao-carnivoro-tradicional"),
     RECIPES.find(r => r.slug === "frango-assado-paprica-defumada"),
     RECIPES.find(r => r.slug === "hamburguer-bacon-em-po")
   ].filter(Boolean) as any[];
