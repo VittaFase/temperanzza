@@ -1,9 +1,11 @@
-// Imagens de pães removidas conforme solicitação do usuário.
-// O conteúdo do blog permanece sem os assets visuais.
+import paoTradicionalAsset from "@/assets/blog/pao-tradicional.png.asset.json";
+import paoHamburguerAsset from "@/assets/blog/pao-hamburguer.png.asset.json";
+import paoTorradaAsset from "@/assets/blog/pao-torrada.png.asset.json";
 
 /**
  * Blog Temperanzza — base editorial estática.
  */
+
 
 export type BlogCategory = "tecnica" | "ingrediente" | "dieta" | "casa";
 
@@ -79,8 +81,8 @@ export const BLOG_POSTS: BlogPost[] = [
           "Para muitos, o pão é a maior barreira para a adesão a longo prazo em dietas de baixo carboidrato. A falta da textura 'mastigável' e da praticidade do sanduíche gera um vazio que receitas à base de farinhas de oleaginosas (como amêndoas) nem sempre preenchem.",
           "O Pão Carnívoro Temperanzza surge como uma solução de performance: base proteica, sem glúten e sem antinutrientes de sementes.",
         ],
-        // image: paoTradicionalAsset.url,
-        // imageCaption: "Pão Carnívoro Tradicional: fofinho, proteico e perfeito para fatiar.",
+        image: paoTradicionalAsset.url,
+        imageCaption: "Pão Carnívoro Tradicional: fofinho, proteico e perfeito para fatiar.",
       },
       {
         heading: "Versão Tradicional — O café da manhã mineiro",
@@ -93,16 +95,16 @@ export const BLOG_POSTS: BlogPost[] = [
         paragraphs: [
           "Moldado em formato circular e finalizado com Lemon Pepper ou Páprica Defumada, esta variação sustenta o peso de um blend de carne sem desmanchar, entregando a experiência completa de uma hamburgueria gourmet.",
         ],
-        // image: paoHamburguerAsset.url,
-        // imageCaption: "Versão Hambúrguer: estrutura firme e sabor realçado com Lemon Pepper.",
+        image: paoHamburguerAsset.url,
+        imageCaption: "Versão Hambúrguer: estrutura firme e sabor realçado com Lemon Pepper.",
       },
       {
         heading: "Torradas Crocantes: O Toque do Chef",
         paragraphs: [
           "Fatiado e levado à frigideira com manteiga e Tempero Mineiro ou Chimi Churri, o pão carnívoro se transforma em torradas de elite, perfeitas para acompanhar caldos ou servir de base para antepastos.",
         ],
-        // image: paoTorradaAsset.url,
-        // imageCaption: "Torradas Carnívoras: crocância absoluta com Chimi Churri e Tempero Mineiro.",
+        image: paoTorradaAsset.url,
+        imageCaption: "Torradas Carnívoras: crocância absoluta com Chimi Churri e Tempero Mineiro.",
       },
     ],
     faq: [
