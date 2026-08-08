@@ -88,6 +88,28 @@ export function SiteFooter() {
               </li>
             </ul>
           </div>
+          <div>
+            <h3 className="font-display uppercase text-sm tracking-widest text-brand-paper/60 mb-3">
+              Legal
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/privacidade" className="inline-flex min-h-11 items-center hover:text-accent">
+                  Privacidade
+                </Link>
+              </li>
+              <li>
+                <Link to="/termos" className="inline-flex min-h-11 items-center hover:text-accent">
+                  Termos
+                </Link>
+              </li>
+              <li>
+                <Link to="/trocas-e-devolucoes" className="inline-flex min-h-11 items-center hover:text-accent">
+                  Trocas e Devoluções
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="mt-12 pt-6 border-t border-brand-paper/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-paper/50">
           <p>© {new Date().getFullYear()} Temperanzza. Todos os direitos reservados.</p>
