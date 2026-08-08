@@ -35,7 +35,7 @@ export function PromoAnnouncement() {
   return (
     <>
       {/* Top bar */}
-      <div className="w-full bg-foreground text-background">
+      <div className="w-full bg-foreground text-background overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] sm:text-xs font-display uppercase tracking-[0.2em]">
           <Sparkles className="w-3 h-3 text-accent shrink-0 hidden sm:block" />
           <span className="text-center">
