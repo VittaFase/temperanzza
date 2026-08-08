@@ -10,24 +10,29 @@ import { Loader2, Search, X } from "lucide-react";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DIETS, type DietKey } from "@/lib/diets";
 
-type LinhaKey = "todas" | "temperaflix";
+type LinhaKey = "todas" | "core" | "premium" | "temperaflix";
 
 const LINHAS: Array<{ key: LinhaKey; label: string; hint: string }> = [
   { key: "todas", label: "Toda a Casa", hint: "19 potes" },
-  { key: "temperaflix", label: "Temperaflix", hint: "SNAKERS" },
+  { key: "core", label: "Core", hint: "Essenciais" },
+  { key: "premium", label: "Premium Black", hint: "30g" },
+  { key: "temperaflix", label: "Temperaflix", hint: "Snakers" },
 ];
 
-function isTemperaflix(handle: string): boolean {
-  return handle.startsWith("temperaflix-");
+function getLinha(handle: string): LinhaKey {
+  if (handle.startsWith("temperaflix-")) return "temperaflix";
+  if (handle.includes("premium-black")) return "premium";
+  return "core";
 }
 
 interface CatalogGridProps {
   /** Pré-filtragem via Storefront query (mantém compatibilidade com /produtos) */
   query?: string | null;
   excludeHandles?: string[];
+  showSections?: boolean;
 }
 
-export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) {
+export function CatalogGrid({ query = null, excludeHandles, showSections = false }: CatalogGridProps) {
   const [term, setTerm] = useState("");
   const [linha, setLinha] = useState<LinhaKey>("todas");
   const [diet, setDiet] = useState<DietKey | "todas">("todas");
@@ -55,7 +60,7 @@ export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) 
       const handle = p.node.handle;
       const title = p.node.title.toLowerCase();
       if (t && !title.includes(t) && !handle.includes(t)) return false;
-      if (linha === "temperaflix" && !isTemperaflix(handle)) return false;
+      if (linha !== "todas" && getLinha(handle) !== linha) return false;
       if (diet !== "todas") {
         const pd = getProductDiet(handle);
         const verdict = pd?.verdicts[diet]?.verdict;
@@ -229,11 +234,35 @@ export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) 
           )}
         </div>
       ) : (
+      {showSections && diet === "todas" && !term ? (
+        <div className="space-y-16">
+          {LINHAS.filter(l => l.key !== "todas").map(l => {
+            const sectionItems = filtered.filter(item => getLinha(item.node.handle) === l.key);
+            if (sectionItems.length === 0) return null;
+            return (
+              <div key={l.key}>
+                <div className="flex items-center gap-3 mb-8">
+                  <h2 className="font-display font-black uppercase tracking-tight text-3xl sm:text-4xl">
+                    Linha {l.label}
+                  </h2>
+                  <span className="h-px flex-1 bg-foreground/15" />
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+                  {sectionItems.map((p) => (
+                    <ProductCard key={p.node.id} product={p} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
           {filtered.map((p) => (
             <ProductCard key={p.node.id} product={p} />
           ))}
         </div>
+      )}
       )}
     </div>
   );
