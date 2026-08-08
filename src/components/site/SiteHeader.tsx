@@ -29,7 +29,7 @@ export function SiteHeader() {
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
       <div
-        className="mx-auto max-w-7xl flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8"
+        className="mx-auto max-w-7xl flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6 lg:px-8 gap-4"
         style={{
           paddingLeft: "max(1rem, env(safe-area-inset-left))",
           paddingRight: "max(1rem, env(safe-area-inset-right))",
@@ -40,7 +40,7 @@ export function SiteHeader() {
           className="flex min-h-11 items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background shrink-0"
           aria-label="Temperanzza — Início"
         >
-          <BrandSeal size="sm" eager className="shrink-0" />
+          <BrandSeal size="sm" eager className="shrink-0 w-8 h-8 sm:w-10 sm:h-10" />
           <div className="flex items-baseline gap-1.5 border-l border-foreground/20 pl-3">
             <span className="font-display text-2xl sm:text-3xl font-black tracking-wider uppercase leading-none">
               Temperanzza
@@ -50,7 +50,7 @@ export function SiteHeader() {
             </span>
           </div>
         </Link>
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 overflow-hidden" aria-label="Navegação principal">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-8 overflow-hidden" aria-label="Navegação principal">
           {NAV.map((n) => (
             <Link
               key={n.to}
