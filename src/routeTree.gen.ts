@@ -9,10 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TrocasEDevolucoesRouteImport } from './routes/trocas-e-devolucoes'
+import { Route as TermosRouteImport } from './routes/termos'
 import { Route as TemperaflixRouteImport } from './routes/temperaflix'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProdutosRouteImport } from './routes/produtos'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as LojasRouteImport } from './routes/lojas'
 import { Route as EmbaixadoresRouteImport } from './routes/embaixadores'
 import { Route as CozinhaRouteImport } from './routes/cozinha'
@@ -21,6 +24,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CozinhaIndexRouteImport } from './routes/cozinha.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
+import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
+import { Route as RobotsTxtRouteImport } from './routes/robots.txt'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as ImprimirSlugRouteImport } from './routes/imprimir.$slug'
 import { Route as CozinhaSlugRouteImport } from './routes/cozinha.$slug'
@@ -35,6 +40,16 @@ import { Route as ApiPublicBlingCronSyncRouteImport } from './routes/api/public/
 import { Route as ApiPublicBlingConnectRouteImport } from './routes/api/public/bling/connect'
 import { Route as ApiPublicBlingCallbackRouteImport } from './routes/api/public/bling/callback'
 
+const TrocasEDevolucoesRoute = TrocasEDevolucoesRouteImport.update({
+  id: '/trocas-e-devolucoes',
+  path: '/trocas-e-devolucoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosRoute = TermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TemperaflixRoute = TemperaflixRouteImport.update({
   id: '/temperaflix',
   path: '/temperaflix',
@@ -53,6 +68,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ProdutosRoute = ProdutosRouteImport.update({
   id: '/produtos',
   path: '/produtos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LojasRoute = LojasRouteImport.update({
@@ -94,6 +114,16 @@ const BlendsIndexRoute = BlendsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => BlendsRoute,
+} as any)
+const SitemapXmlRoute = SitemapXmlRouteImport.update({
+  id: '/sitemap/xml',
+  path: '/sitemap/xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsTxtRoute = RobotsTxtRouteImport.update({
+  id: '/robots/txt',
+  path: '/robots/txt',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
@@ -169,16 +199,21 @@ export interface FileRoutesByFullPath {
   '/cozinha': typeof CozinhaRouteWithChildren
   '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/termos': typeof TermosRoute
+  '/trocas-e-devolucoes': typeof TrocasEDevolucoesRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/cozinha/': typeof CozinhaIndexRoute
@@ -194,16 +229,21 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/termos': typeof TermosRoute
+  '/trocas-e-devolucoes': typeof TrocasEDevolucoesRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/blends': typeof BlendsIndexRoute
   '/blog': typeof BlogIndexRoute
   '/cozinha': typeof CozinhaIndexRoute
@@ -222,16 +262,21 @@ export interface FileRoutesById {
   '/cozinha': typeof CozinhaRouteWithChildren
   '/embaixadores': typeof EmbaixadoresRoute
   '/lojas': typeof LojasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
+  '/termos': typeof TermosRoute
+  '/trocas-e-devolucoes': typeof TrocasEDevolucoesRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/cozinha/': typeof CozinhaIndexRoute
@@ -251,16 +296,21 @@ export interface FileRouteTypes {
     | '/cozinha'
     | '/embaixadores'
     | '/lojas'
+    | '/privacidade'
     | '/produtos'
     | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
+    | '/termos'
+    | '/trocas-e-devolucoes'
     | '/admin/bling'
     | '/blends/$slug'
     | '/blog/$slug'
     | '/cozinha/$slug'
     | '/imprimir/$slug'
     | '/product/$handle'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/blends/'
     | '/blog/'
     | '/cozinha/'
@@ -276,16 +326,21 @@ export interface FileRouteTypes {
     | '/'
     | '/embaixadores'
     | '/lojas'
+    | '/privacidade'
     | '/produtos'
     | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
+    | '/termos'
+    | '/trocas-e-devolucoes'
     | '/admin/bling'
     | '/blends/$slug'
     | '/blog/$slug'
     | '/cozinha/$slug'
     | '/imprimir/$slug'
     | '/product/$handle'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/blends'
     | '/blog'
     | '/cozinha'
@@ -303,16 +358,21 @@ export interface FileRouteTypes {
     | '/cozinha'
     | '/embaixadores'
     | '/lojas'
+    | '/privacidade'
     | '/produtos'
     | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
+    | '/termos'
+    | '/trocas-e-devolucoes'
     | '/admin/bling'
     | '/blends/$slug'
     | '/blog/$slug'
     | '/cozinha/$slug'
     | '/imprimir/$slug'
     | '/product/$handle'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/blends/'
     | '/blog/'
     | '/cozinha/'
@@ -331,14 +391,19 @@ export interface RootRouteChildren {
   CozinhaRoute: typeof CozinhaRouteWithChildren
   EmbaixadoresRoute: typeof EmbaixadoresRoute
   LojasRoute: typeof LojasRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
   ProdutosRoute: typeof ProdutosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   TemperaflixRoute: typeof TemperaflixRoute
+  TermosRoute: typeof TermosRoute
+  TrocasEDevolucoesRoute: typeof TrocasEDevolucoesRoute
   AdminBlingRoute: typeof AdminBlingRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ImprimirSlugRoute: typeof ImprimirSlugRoute
   ProductHandleRoute: typeof ProductHandleRoute
+  RobotsTxtRoute: typeof RobotsTxtRoute
+  SitemapXmlRoute: typeof SitemapXmlRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicBlingCallbackRoute: typeof ApiPublicBlingCallbackRoute
   ApiPublicBlingConnectRoute: typeof ApiPublicBlingConnectRoute
@@ -351,6 +416,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/trocas-e-devolucoes': {
+      id: '/trocas-e-devolucoes'
+      path: '/trocas-e-devolucoes'
+      fullPath: '/trocas-e-devolucoes'
+      preLoaderRoute: typeof TrocasEDevolucoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos': {
+      id: '/termos'
+      path: '/termos'
+      fullPath: '/termos'
+      preLoaderRoute: typeof TermosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/temperaflix': {
       id: '/temperaflix'
       path: '/temperaflix'
@@ -377,6 +456,13 @@ declare module '@tanstack/react-router' {
       path: '/produtos'
       fullPath: '/produtos'
       preLoaderRoute: typeof ProdutosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lojas': {
@@ -434,6 +520,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/blends/'
       preLoaderRoute: typeof BlendsIndexRouteImport
       parentRoute: typeof BlendsRoute
+    }
+    '/sitemap/xml': {
+      id: '/sitemap/xml'
+      path: '/sitemap/xml'
+      fullPath: '/sitemap/xml'
+      preLoaderRoute: typeof SitemapXmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots/txt': {
+      id: '/robots/txt'
+      path: '/robots/txt'
+      fullPath: '/robots/txt'
+      preLoaderRoute: typeof RobotsTxtRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/product/$handle': {
       id: '/product/$handle'
@@ -561,14 +661,19 @@ const rootRouteChildren: RootRouteChildren = {
   CozinhaRoute: CozinhaRouteWithChildren,
   EmbaixadoresRoute: EmbaixadoresRoute,
   LojasRoute: LojasRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
   ProdutosRoute: ProdutosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   TemperaflixRoute: TemperaflixRoute,
+  TermosRoute: TermosRoute,
+  TrocasEDevolucoesRoute: TrocasEDevolucoesRoute,
   AdminBlingRoute: AdminBlingRoute,
   BlogSlugRoute: BlogSlugRoute,
   ImprimirSlugRoute: ImprimirSlugRoute,
   ProductHandleRoute: ProductHandleRoute,
+  RobotsTxtRoute: RobotsTxtRoute,
+  SitemapXmlRoute: SitemapXmlRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiPublicBlingCallbackRoute: ApiPublicBlingCallbackRoute,
   ApiPublicBlingConnectRoute: ApiPublicBlingConnectRoute,

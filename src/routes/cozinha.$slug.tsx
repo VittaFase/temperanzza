@@ -37,10 +37,12 @@ export const Route = createFileRoute("/cozinha/$slug")({
     const url = `https://temperanzza.com.br/cozinha/${r.slug}`;
     const desc = r.subtitle ?? r.intro;
     const potePath = getProductImage(r.featuredHandle);
-    const imageAbs = potePath
-      ? potePath.startsWith("http")
-        ? potePath
-        : `https://temperanzza.com.br${potePath.startsWith("/") ? "" : "/"}${potePath}`
+    const dishImg = r.dish?.src;
+    const ogImage = dishImg || potePath;
+    const imageAbs = ogImage
+      ? ogImage.startsWith("http")
+        ? ogImage
+        : `https://temperanzza.com.br${ogImage.startsWith("/") ? "" : "/"}${ogImage}`
       : undefined;
     return {
       meta: [
