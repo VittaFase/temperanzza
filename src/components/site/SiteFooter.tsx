@@ -15,7 +15,7 @@ export function SiteFooter() {
       >
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <BrandSeal size="lg" tone="paper" className="-ml-2" />
+            <BrandSeal size="lg" embossed className="-ml-2" />
             <div className="mt-4 font-display text-2xl font-black uppercase tracking-wider">
               Temperanzza
             </div>
