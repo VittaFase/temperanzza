@@ -24,6 +24,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CozinhaIndexRouteImport } from './routes/cozinha.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
+import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
+import { Route as RobotsTxtRouteImport } from './routes/robots.txt'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as ImprimirSlugRouteImport } from './routes/imprimir.$slug'
 import { Route as CozinhaSlugRouteImport } from './routes/cozinha.$slug'
@@ -113,6 +115,16 @@ const BlendsIndexRoute = BlendsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BlendsRoute,
 } as any)
+const SitemapXmlRoute = SitemapXmlRouteImport.update({
+  id: '/sitemap/xml',
+  path: '/sitemap/xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsTxtRoute = RobotsTxtRouteImport.update({
+  id: '/robots/txt',
+  path: '/robots/txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
   path: '/product/$handle',
@@ -200,6 +212,8 @@ export interface FileRoutesByFullPath {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/cozinha/': typeof CozinhaIndexRoute
@@ -228,6 +242,8 @@ export interface FileRoutesByTo {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/blends': typeof BlendsIndexRoute
   '/blog': typeof BlogIndexRoute
   '/cozinha': typeof CozinhaIndexRoute
@@ -259,6 +275,8 @@ export interface FileRoutesById {
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/cozinha/': typeof CozinhaIndexRoute
@@ -291,6 +309,8 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/imprimir/$slug'
     | '/product/$handle'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/blends/'
     | '/blog/'
     | '/cozinha/'
@@ -319,6 +339,8 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/imprimir/$slug'
     | '/product/$handle'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/blends'
     | '/blog'
     | '/cozinha'
@@ -349,6 +371,8 @@ export interface FileRouteTypes {
     | '/cozinha/$slug'
     | '/imprimir/$slug'
     | '/product/$handle'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/blends/'
     | '/blog/'
     | '/cozinha/'
@@ -378,6 +402,8 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   ImprimirSlugRoute: typeof ImprimirSlugRoute
   ProductHandleRoute: typeof ProductHandleRoute
+  RobotsTxtRoute: typeof RobotsTxtRoute
+  SitemapXmlRoute: typeof SitemapXmlRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicBlingCallbackRoute: typeof ApiPublicBlingCallbackRoute
   ApiPublicBlingConnectRoute: typeof ApiPublicBlingConnectRoute
@@ -494,6 +520,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/blends/'
       preLoaderRoute: typeof BlendsIndexRouteImport
       parentRoute: typeof BlendsRoute
+    }
+    '/sitemap/xml': {
+      id: '/sitemap/xml'
+      path: '/sitemap/xml'
+      fullPath: '/sitemap/xml'
+      preLoaderRoute: typeof SitemapXmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots/txt': {
+      id: '/robots/txt'
+      path: '/robots/txt'
+      fullPath: '/robots/txt'
+      preLoaderRoute: typeof RobotsTxtRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/product/$handle': {
       id: '/product/$handle'
@@ -632,6 +672,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   ImprimirSlugRoute: ImprimirSlugRoute,
   ProductHandleRoute: ProductHandleRoute,
+  RobotsTxtRoute: RobotsTxtRoute,
+  SitemapXmlRoute: SitemapXmlRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiPublicBlingCallbackRoute: ApiPublicBlingCallbackRoute,
   ApiPublicBlingConnectRoute: ApiPublicBlingConnectRoute,
