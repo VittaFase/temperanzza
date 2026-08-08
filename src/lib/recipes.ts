@@ -1808,6 +1808,9 @@ export const RECIPE_PROTEIN: Record<string, Protein> = {
   "peixe-assado-legumes-salsa-cebola-alho": "pescados",
   "feijao-tropeiro-tempero-mineiro": "vegetariano",
   "sopa-legumes-ervas-finas": "vegetariano",
+  "pao-carnivoro-tradicional": "ovo",
+  "pao-carnivoro-hamburguer": "bovina",
+  "pao-carnivoro-torrada": "ovo",
 };
 
 
