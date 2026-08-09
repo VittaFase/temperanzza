@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Loader2, Handshake, Camera, Percent, Sparkles, Send } from "lucide-react";
-import { SiteLayout } from "@/components/site/SiteLayout";
+
 import { BrandSeal } from "@/components/site/BrandSeal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

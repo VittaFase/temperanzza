@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
+
 import {
   BLOG_POSTS,
   BLOG_CATEGORY_LABEL,

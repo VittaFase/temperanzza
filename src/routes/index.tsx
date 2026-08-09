@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: analise */}
+{/* Execute esta instrucao no projeto: a duplicidade dos menus está totalmente resolvida? */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'

@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, ShoppingBag, Sparkles, Tag, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { SiteLayout } from "@/components/site/SiteLayout";
+
 import { Button } from "@/components/ui/button";
 import { BLEND_BY_SLUG, BLENDS, type BlendSlug } from "@/lib/blends";
 import { getProductImage } from "@/lib/productImages";

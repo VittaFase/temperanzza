@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, Plus, Film, Popcorn, Flame, Play, ArrowRight } from "lucide-react";
-import { SiteLayout } from "@/components/site/SiteLayout";
+
 import { Button } from "@/components/ui/button";
 import {
   storefrontApiRequest,
