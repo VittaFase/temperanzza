@@ -3,7 +3,7 @@
  * A ordem deste array é a ordem de exibição em todo o site.
  */
 
-export type DietKey = "keto" | "lowcarb" | "carnivora-flex";
+export type DietKey = "keto" | "lowcarb" | "carnivora-flex" | "selva";
 
 export interface DietMeta {
   key: DietKey;
@@ -38,6 +38,14 @@ export const DIETS: DietMeta[] = [
     definition:
       "Base em produtos de origem animal, com espaço para temperos, especiarias e alguns vegetais de baixo carboidrato para sabor.",
     token: "brand-red",
+  },
+  {
+    key: "selva",
+    name: "Dieta da Selva",
+    short: "Selva",
+    definition:
+      "Carne, ovo e o que a natureza oferece sem industrialização. Um protocolo primitivo focado em ingredientes ancestrais e pureza absoluta.",
+    token: "brand-amber",
   },
 
 

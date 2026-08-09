@@ -154,7 +154,7 @@ function BibliotecaHero() {
             <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
           </a>
           <span className="text-[11px] font-display uppercase tracking-[0.3em] text-brand-paper/50">
-            <CountUp to={47} from={44} duration={2000} /> receitas · <CountUp to={4} from={4} duration={0} /> estilos
+            <CountUp to={47} from={44} duration={2000} /> receitas · <CountUp to={5} from={4} duration={700} /> estilos
 
           </span>
         </div>
@@ -263,9 +263,17 @@ const CATEGORIAS: CategoriaDef[] = [
       (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("carnivora-flex"),
   },
   {
+    key: "selva",
+    name: "Dieta da Selva",
+    romano: "IV",
+    descricao:
+      "Carne, ovo e o que a natureza oferece sem industrialização. Tempero que valoriza o ingrediente, não disfarça.",
+    filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("selva"),
+  },
+  {
     key: "tradicional",
     name: "Pratos Tradicionais",
-    romano: "IV",
+    romano: "V",
     descricao:
       "A mesa de todos os dias, elevada por temperos com autoria mineira.",
     filter: (r) => r.category === "tradicional",

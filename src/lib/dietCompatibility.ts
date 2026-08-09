@@ -49,6 +49,10 @@ export const PRODUCT_DIETS: ProductDiet[] = [
         verdict: "no",
         note: "Contém amido, urucum e dióxido de silício — ingredientes vegetais que não se alinham com a filosofia carnívora, mesmo na versão flexível.",
       },
+      selva: {
+        verdict: "no",
+        note: "Base de snacker processada. Incompatível com a Dieta da Selva, que prioriza o estado bruto da natureza.",
+      },
     },
   },
   {
@@ -67,6 +71,10 @@ export const PRODUCT_DIETS: ProductDiet[] = [
         verdict: "no",
         note: "Contém óleo de soja e ingredientes vegetais processados — fora do escopo carnívoro flexível.",
       },
+      selva: {
+        verdict: "no",
+        note: "Contém açúcar e aditivos industriais, violando a regra de pureza da Dieta da Selva.",
+      },
     },
   },
   {
@@ -76,6 +84,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Contém traços de óleo de soja em quantidade mínima. Uso normal não impacta a cetose." },
       lowcarb: { verdict: "ok", note: "Perfeito para ovos, peixes e frango — cítrico e picante em dose controlada." },
       "carnivora-flex": { verdict: "ok", note: "Permitido no protocolo flexível pelo teor mínimo de óleo vegetal." },
+      selva: { verdict: "ok", note: "Temperança mineira: cítrico e picante naturais." },
     },
   },
   {
@@ -85,6 +94,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Especiaria pura, praticamente zero carboidratos líquidos por porção." },
       lowcarb: { verdict: "ok", note: "Uso livre — colore e adoça naturalmente sem carga glicêmica relevante." },
       "carnivora-flex": { verdict: "ok", note: "Excelente para carnes brancas e vermelhas no protocolo flexível." },
+      selva: { verdict: "ok", note: "Especiaria pura da terra. Essência preservada." },
     },
   },
   {
@@ -103,6 +113,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Especiaria pura defumada. Sabor complexo, zero carga glicêmica." },
       lowcarb: { verdict: "ok", note: "Traz o gosto de churrasco sem carboidratos — coringa da despensa low carb." },
       "carnivora-flex": { verdict: "ok", note: "Ideal para carnes bovinas e suínas no protocolo flexível." },
+      selva: { verdict: "ok", note: "O sabor do fogo sem artifícios químicos. Ancestral." },
     },
   },
   {
@@ -139,6 +150,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Ervas e vegetais desidratados puros. Uso livre." },
       lowcarb: { verdict: "ok", note: "Coringa para refogados, peixes e ovos." },
       "carnivora-flex": { verdict: "ok", note: "Aceito como concentrado de sabor no protocolo flexível." },
+      selva: { verdict: "ok", note: "Trindade da cozinha limpa: salsa, cebola e alho." },
     },
   },
   {
@@ -148,6 +160,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Mix puro de ervas — zero carboidratos líquidos significativos." },
       lowcarb: { verdict: "ok", note: "Traz frescor a ovos, queijos e carnes brancas." },
       "carnivora-flex": { verdict: "ok", note: "Permitido no protocolo flexível como aromático." },
+      selva: { verdict: "ok", note: "Herança herbal pura para pratos limpos." },
     },
   },
   {
@@ -157,6 +170,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Base de sal e especiarias tradicionais — sem açúcares nem amidos." },
       lowcarb: { verdict: "ok", note: "Gosto de comida caseira sem carga glicêmica." },
       "carnivora-flex": { verdict: "ok", note: "Permitido — mix de especiarias sem óleos processados." },
+      selva: { verdict: "ok", note: "A essência mineira em sua forma mais pura." },
     },
   },
   {
@@ -169,6 +183,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       },
       lowcarb: { verdict: "ok", note: "Uso normal cabe no low carb sem stress." },
       "carnivora-flex": { verdict: "ok", note: "Vegetal desidratado — aceito no protocolo flexível." },
+      selva: { verdict: "ok", note: "Apenas cebola. O que a terra deu, o sol secou." },
     },
   },
   {
@@ -187,6 +202,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Raiz desidratada pura, anti-inflamatório natural. Uso livre." },
       lowcarb: { verdict: "ok", note: "Colore e perfuma sem impacto glicêmico." },
       "carnivora-flex": { verdict: "ok", note: "Aceita como especiaria pura no protocolo flexível." },
+      selva: { verdict: "ok", note: "Raiz ancestral. Cor e saúde direto da natureza." },
     },
   },
   {
@@ -196,6 +212,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Especiaria pura — uso livre." },
       lowcarb: { verdict: "ok", note: "Coringa em qualquer prato low carb." },
       "carnivora-flex": { verdict: "ok", note: "Permitida no protocolo flexível." },
+      selva: { verdict: "ok", note: "O tempero mais antigo do mundo. Obrigatório." },
     },
   },
   {

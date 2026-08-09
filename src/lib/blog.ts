@@ -28,6 +28,10 @@ export interface BlogPost {
   slug: string;
   /** título editorial (H1) */
   title: string;
+  /** Autor ou Embaixador (slug) */
+  authorSlug?: string;
+  /** Estilo de Vida (DietKey) */
+  lifestyleKey?: DietKey;
   /** a pergunta real que originou o artigo — usada no <title> e no FAQPage */
   question: string;
   /** resposta direta, 2–3 frases, para snippet e motores de resposta */
