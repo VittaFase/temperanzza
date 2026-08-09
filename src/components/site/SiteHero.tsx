@@ -41,7 +41,7 @@ export function SiteHero() {
       <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center pb-12">
         <BrandSeal size="xl" embossed eager className="mb-8 sm:mb-12 animate-pote-float" />
         
-        <span className="font-display uppercase tracking-[0.4em] text-xs sm:text-sm text-brand-mustard mb-4 block">
+        <span className="font-display uppercase tracking-[0.4em] text-xs sm:text-sm text-brand-mustard mb-8 block">
           Casa de Temperos Artesanais
         </span>
         
