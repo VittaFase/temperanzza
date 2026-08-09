@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
+
 import { CatalogGrid } from "@/components/site/CatalogGrid";
 import { HouseOffers } from "@/components/site/HouseOffers";
 

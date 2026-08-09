@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { SiteLayout } from "@/components/site/SiteLayout";
+
 import { type DietKey } from "@/lib/diets";
 import {
   RECIPES,
