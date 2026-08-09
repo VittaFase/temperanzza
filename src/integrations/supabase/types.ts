@@ -62,6 +62,56 @@ export type Database = {
         }
         Relationships: []
       }
+      ambassadors: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          coupon_code: string
+          created_at: string
+          curation_settings: Json
+          id: string
+          lifestyle_id: string
+          name: string
+          slug: string
+          status: Database["public"]["Enums"]["ambassador_status"]
+          user_id: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          coupon_code: string
+          created_at?: string
+          curation_settings?: Json
+          id?: string
+          lifestyle_id: string
+          name: string
+          slug: string
+          status?: Database["public"]["Enums"]["ambassador_status"]
+          user_id?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          coupon_code?: string
+          created_at?: string
+          curation_settings?: Json
+          id?: string
+          lifestyle_id?: string
+          name?: string
+          slug?: string
+          status?: Database["public"]["Enums"]["ambassador_status"]
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ambassadors_lifestyle_id_fkey"
+            columns: ["lifestyle_id"]
+            isOneToOne: false
+            referencedRelation: "lifestyles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       bling_order_map: {
         Row: {
           bling_nfe_id: string | null
@@ -311,6 +361,33 @@ export type Database = {
         }
         Relationships: []
       }
+      lifestyles: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          name: string
+          slug: string
+          tone_settings: Json
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          id?: string
+          name: string
+          slug: string
+          tone_settings?: Json
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          name?: string
+          slug?: string
+          tone_settings?: Json
+        }
+        Relationships: []
+      }
       pricing_history: {
         Row: {
           applied_at: string
@@ -510,6 +587,7 @@ export type Database = {
       }
     }
     Enums: {
+      ambassador_status: "active" | "inactive"
       app_role: "admin" | "manager" | "user"
     }
     CompositeTypes: {
@@ -638,6 +716,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      ambassador_status: ["active", "inactive"],
       app_role: ["admin", "manager", "user"],
     },
   },

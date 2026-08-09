@@ -104,6 +104,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Pura, sem aditivos — encaixa em qualquer refeição cetogênica." },
       lowcarb: { verdict: "ok", note: "Toque de calor sem carboidratos. Ótima em carnes assadas e ovos." },
       "carnivora-flex": { verdict: "ok", note: "Permitida — pó de pimentão desidratado, sem óleos ou açúcares." },
+      selva: { verdict: "ok", note: "Pureza picante da terra." },
     },
   },
   {
@@ -123,6 +124,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Mix de ervas e especiarias sem aditivos restritivos." },
       lowcarb: { verdict: "ok", note: "Uso livre em carnes, aves e legumes de baixo carboidrato." },
       "carnivora-flex": { verdict: "ok", note: "Sem amidos ou açúcares — permitido no protocolo flexível." },
+      selva: { verdict: "ok", note: "Curadoria do chef com ingredientes limpos." },
     },
   },
   {
@@ -132,6 +134,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Base vegetal com pouco óleo de soja. Impacto glicêmico irrelevante." },
       lowcarb: { verdict: "ok", note: "Rico em polifenóis e ervas — combina com qualquer corte." },
       "carnivora-flex": { verdict: "ok", note: "Aceito no protocolo flexível como pasta de ervas." },
+      selva: { verdict: "ok", note: "Mix herbal sem aditivos." },
     },
   },
   {
@@ -141,6 +144,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Ervas e pimenta com traços de óleo vegetal — dentro do escopo cetogênico." },
       lowcarb: { verdict: "ok", note: "Ideal para carnes grelhadas — dá calor e frescor ao mesmo tempo." },
       "carnivora-flex": { verdict: "ok", note: "Permitido no protocolo flexível pela composição herbal." },
+      selva: { verdict: "ok", note: "O vigor das ervas e pimentas naturais." },
     },
   },
   {
@@ -193,6 +197,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
       keto: { verdict: "ok", note: "Mix vegetal com traços de óleo de soja — dentro do escopo cetogênico." },
       lowcarb: { verdict: "ok", note: "Ótimo em patês, ovos e carnes do dia a dia." },
       "carnivora-flex": { verdict: "ok", note: "Permitido no protocolo flexível." },
+      selva: { verdict: "ok", note: "Equilíbrio vegetal para paladares ancestrais." },
     },
   },
   {
@@ -225,6 +230,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
         verdict: "moderate",
         note: "Especiaria vegetal — cabe apenas em interpretações mais amplas da carnívora flexível.",
       },
+      selva: { verdict: "moderate", note: "Especiaria vegetal aromática." },
     },
   },
   {
@@ -240,6 +246,7 @@ export const PRODUCT_DIETS: ProductDiet[] = [
         verdict: "no",
         note: "Base para aderência inclui componentes vegetais que fogem do escopo carnívoro.",
       },
+      selva: { verdict: "no", note: "Contém aditivos de aderência, fora do escopo da Dieta da Selva." },
     },
   },
 ];
