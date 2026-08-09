@@ -90,7 +90,7 @@ function ProdutosPage() {
 
       {/* Ofertas da Casa — combos prontos para quem não quer escolher pote a pote */}
       <HouseOffers />
-    </SiteLayout>
+    </div>
 
   );
 }
