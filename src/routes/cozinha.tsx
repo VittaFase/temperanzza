@@ -61,6 +61,8 @@ export const Route = createFileRoute("/cozinha")({
   validateSearch: (search: Record<string, unknown>) => ({
     refeicao: typeof search.refeicao === "string" ? search.refeicao : "",
     proteina: typeof search.proteina === "string" ? search.proteina : "",
+    lifestyle: typeof search.lifestyle === "string" ? search.lifestyle : "",
+    autor: typeof search.autor === "string" ? search.autor : "",
   }),
   component: CozinhaLayout,
 });
