@@ -1,3 +1,4 @@
+import { type DietKey } from "./diets";
 import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional-clean.png.asset.json";
 import paoHamburguerAsset from "@/assets/receitas/46-pao-carnivoro-hamburguer-v5.webp.asset.json";
 import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada-v5.webp.asset.json";
@@ -28,6 +29,10 @@ export interface BlogPost {
   slug: string;
   /** título editorial (H1) */
   title: string;
+  /** Autor ou Embaixador (slug) */
+  authorSlug?: string;
+  /** Estilo de Vida (DietKey) */
+  lifestyleKey?: DietKey;
   /** a pergunta real que originou o artigo — usada no <title> e no FAQPage */
   question: string;
   /** resposta direta, 2–3 frases, para snippet e motores de resposta */
