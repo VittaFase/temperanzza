@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: de um pequeno espaço dentro das normas entre a frase Casa de Temperos Artesanais e a frase A ESSÊNCIA DA\nCASA TEMPERANZZA */}
+{/* Execute esta instrucao no projeto: em nossa estrutura quais são as responsabilidade e atuações do lovable cloude em nossa estrutura, me responda didaticamente! */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
