@@ -1,3 +1,4 @@
+import { type DietKey } from "./diets";
 import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional-clean.png.asset.json";
 import paoHamburguerAsset from "@/assets/receitas/46-pao-carnivoro-hamburguer-v5.webp.asset.json";
 import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada-v5.webp.asset.json";
