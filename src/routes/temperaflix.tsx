@@ -271,168 +271,10 @@ function TemperaflixPage() {
     ) ?? 0;
 
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       {/* ═══════════════ HERO CINEMATOGRÁFICO ═══════════════ */}
       <section className="relative overflow-hidden bg-brand-ink text-brand-paper">
-        {/* atmosphere layers */}
-        <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-        <BokehBackdrop opacity={0.35} />
-        <motion.div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          animate={{
-            background: `radial-gradient(55% 55% at 30% 45%, ${activeMeta.halo}66 0%, transparent 60%), radial-gradient(45% 45% at 80% 65%, ${activeMeta.halo}33 0%, transparent 65%)`,
-          }}
-          transition={{ duration: 1.4, ease: "easeInOut" }}
-        />
-        {/* scanlines */}
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(90deg, rgba(255,255,255,0.7) 0 1px, transparent 1px 3px)",
-          }}
-        />
-
-        {/* player bar */}
-        <div className="relative border-b border-brand-paper/15">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-brand-paper/70">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-2">
-                <span className="relative inline-block h-2 w-2">
-                  <span className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-70" />
-                  <span className="absolute inset-0 rounded-full bg-red-500" />
-                </span>
-                REC
-              </span>
-              <span className="text-brand-paper/30">·</span>
-              <Film className="h-3.5 w-3.5" />
-              <span>TEMPERAFLIX</span>
-              <span className="text-brand-paper/30">·</span>
-              <span>S01 · 3 EPISÓDIOS</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span>NOW PLAYING</span>
-              <span style={{ color: activeMeta.accent }}>
-                {activeMeta.code} · {activeMeta.genre}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7">
-            <TerminalTag color={activeMeta.accent}>
-              Uma produção Temperanzza · MG
-            </TerminalTag>
-            <h1 className="mt-6 font-display font-black uppercase text-5xl sm:text-6xl lg:text-8xl leading-[0.88] tracking-tight max-w-4xl">
-              O tempero que{" "}
-              <motion.span
-                key={active}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                style={{ color: activeMeta.accent }}
-                className="inline-block"
-              >
-                entra em cena
-              </motion.span>
-              .
-            </h1>
-            <p className="mt-8 max-w-xl text-lg text-brand-paper/75 leading-relaxed">
-              Três shakers prontos para a hora do sofá. Pipoca, batata,
-              amendoim — o sabor oficial dos seus momentos de tela, do clássico
-              de domingo à maratona de madrugada.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a href="#episodios">
-                <Button className="rounded-none h-12 px-6 bg-brand-paper text-brand-ink hover:bg-brand-paper/90 font-display uppercase tracking-widest">
-                  <Play className="mr-2 w-4 h-4 fill-current" />
-                  Ver os 3 sabores
-                </Button>
-              </a>
-              <a href="#season-pass">
-                <Button
-                  variant="outline"
-                  className="rounded-none h-12 px-6 border-brand-paper/40 bg-transparent text-brand-paper hover:bg-brand-paper hover:text-brand-ink font-display uppercase tracking-widest"
-                >
-                  Levar o combo
-                </Button>
-              </a>
-            </div>
-          </div>
-
-          {/* floating shaker preview */}
-          <div className="lg:col-span-5 relative min-h-[380px] sm:min-h-[460px] flex items-center justify-center">
-            <motion.div
-              aria-hidden
-              className="absolute inset-0 blur-3xl rounded-full mx-auto"
-              animate={{ background: `${activeMeta.halo}` }}
-              transition={{ duration: 1.4 }}
-              style={{ opacity: 0.5, width: "80%", height: "80%", top: "10%", left: "10%" }}
-            />
-            {/* PISO — gradiente unificado do palco */}
-            <motion.div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 pointer-events-none"
-              animate={{
-                background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0.15) 60%, transparent 100%), radial-gradient(ellipse 60% 80% at 50% 100%, ${activeMeta.halo}22 0%, transparent 65%)`,
-              }}
-              transition={{ duration: 1.4, ease: "easeInOut" }}
-              style={{ height: "35%" }}
-            />
-            {/* pedestal — sombra de contato no piso */}
-            <div
-              aria-hidden
-              className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-              style={{
-                width: "55%",
-                height: "38px",
-                bottom: "8%",
-                background: `radial-gradient(ellipse 50% 55% at 50% 50%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 45%, transparent 75%)`,
-                filter: "blur(6px)",
-              }}
-            />
-            <motion.div
-              aria-hidden
-              className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-              animate={{ background: activeMeta.halo }}
-              transition={{ duration: 1.2 }}
-              style={{
-                width: "40%",
-                height: "8px",
-                bottom: "11%",
-                opacity: 0.5,
-                filter: "blur(4px)",
-                mixBlendMode: "screen",
-                borderRadius: "50%",
-              }}
-            />
-            <AnimatePresence mode="wait">
-              {activeProduct && (
-                <motion.img
-                  key={active}
-                  src={
-                    getProductImage(
-                      activeProduct.node.handle,
-                      activeProduct.node.images.edges[0]?.node.url,
-                    ) ?? ""
-                  }
-                  alt={activeProduct.node.title}
-                  initial={{ opacity: 0, y: 30, rotateY: -15 }}
-                  animate={{ opacity: 1, y: 0, rotateY: 0 }}
-                  exit={{ opacity: 0, y: -30, rotateY: 15 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="relative max-h-[440px] w-auto object-contain drop-shadow-[0_40px_50px_rgba(0,0,0,0.6)]"
-                  loading="eager"
-                />
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </section>
-
+...
       {/* ═══════════════ EPISÓDIOS — player + playlist ═══════════════ */}
       <section
         id="episodios"
@@ -909,6 +751,6 @@ function TemperaflixPage() {
           </Link>
         </div>
       </section>
-    </SiteLayout>
+    </div>
   );
 }
