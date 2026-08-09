@@ -34,6 +34,13 @@ export function CartDrawer() {
   } = useCartStore();
 
   const totalItems = items.reduce((s, i) => s + i.quantity, 0);
+  
+  // Lógica de Presente do Embaixador (13º Pote)
+  // Regra: Se >= 13 potes E cupom de embaixador ativo, o 13º é bonificado (preço zero).
+  // Nota: O cupom de embaixador substitui o BLENDS10.
+  const hasAmbassadorCoupon = false; // TODO: Integrar com estado de cupom
+  const qualifiesForGift = totalItems >= 13 && hasAmbassadorCoupon;
+
   const totalPrice = items.reduce(
     (s, i) => s + parseFloat(i.price.amount) * i.quantity,
     0,

@@ -61,6 +61,8 @@ export const Route = createFileRoute("/cozinha")({
   validateSearch: (search: Record<string, unknown>) => ({
     refeicao: typeof search.refeicao === "string" ? search.refeicao : "",
     proteina: typeof search.proteina === "string" ? search.proteina : "",
+    lifestyle: typeof search.lifestyle === "string" ? search.lifestyle : "",
+    autor: typeof search.autor === "string" ? search.autor : "",
   }),
   component: CozinhaLayout,
 });
@@ -274,12 +276,12 @@ const MOMENT_ORDER: Moment[] = ["cafe", "almoco", "jantar", "lanche"];
 
 function BibliotecaIndice() {
   const [aberta, setAberta] = useState<CategoriaKey | null>(null);
-  const { refeicao, proteina } = Route.useSearch();
+  const { refeicao, proteina, lifestyle, autor } = Route.useSearch();
   const navigate = useNavigate({ from: "/cozinha" });
 
-  const setFilter = (key: "refeicao" | "proteina", value: string) =>
+  const setFilter = (key: "refeicao" | "proteina" | "lifestyle" | "autor", value: string) =>
     navigate({
-      search: (prev: { refeicao: string; proteina: string }) => ({
+      search: (prev: { refeicao: string; proteina: string; lifestyle: string; autor: string }) => ({
         ...prev,
         [key]: prev[key] === value ? "" : value,
       }),
@@ -287,7 +289,7 @@ function BibliotecaIndice() {
     });
 
   const clearFilters = () =>
-    navigate({ search: { refeicao: "", proteina: "" }, resetScroll: false });
+    navigate({ search: { refeicao: "", proteina: "", lifestyle: "", autor: "" }, resetScroll: false });
 
   const extraFilter = useMemo(() => {
     return (r: Recipe) => {
@@ -295,10 +297,10 @@ function BibliotecaIndice() {
       if (proteina && getRecipeProtein(r) !== proteina) return false;
       return true;
     };
-  }, [refeicao, proteina]);
+  }, [refeicao, proteina, lifestyle, autor]);
 
   const total = useMemo(() => RECIPES.filter(extraFilter).length, [extraFilter]);
-  const ativo = Boolean(refeicao || proteina);
+  const ativo = Boolean(refeicao || proteina || lifestyle || autor);
 
   return (
     <section id="indice" aria-labelledby="indice-title" className="bg-brand-paper py-24 sm:py-32">
