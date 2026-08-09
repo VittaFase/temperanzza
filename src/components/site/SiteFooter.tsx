@@ -89,7 +89,25 @@ export function SiteFooter() {
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-6 border-t border-brand-paper/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-paper/50">
+        <div className="mt-12 pt-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-start border-t border-brand-paper/15">
+          <div>
+            <h3 className="font-display uppercase text-xs tracking-widest text-brand-paper/60 mb-3">
+              Legal
+            </h3>
+            <ul className="space-y-1 text-xs">
+              <li>
+                <Link to="/legal/privacidade" className="hover:text-accent py-1 inline-block">Privacidade</Link>
+              </li>
+              <li>
+                <Link to="/legal/termos" className="hover:text-accent py-1 inline-block">Termos</Link>
+              </li>
+              <li>
+                <Link to="/legal/trocas" className="hover:text-accent py-1 inline-block">Trocas e Devoluções</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-paper/50">
           <p>© {new Date().getFullYear()} Temperanzza. Todos os direitos reservados.</p>
           <p className="font-display uppercase tracking-widest">
             Feito com fogo, sal e tempo.

@@ -14,6 +14,7 @@ import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as EmbaixadoresRouteImport } from './routes/embaixadores'
 import { Route as CozinhaRouteImport } from './routes/cozinha'
 import { Route as BlendsRouteImport } from './routes/blends'
@@ -22,6 +23,9 @@ import { Route as CozinhaIndexRouteImport } from './routes/cozinha.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
+import { Route as LegalTrocasRouteImport } from './routes/legal.trocas'
+import { Route as LegalTermosRouteImport } from './routes/legal.termos'
+import { Route as LegalPrivacidadeRouteImport } from './routes/legal.privacidade'
 import { Route as ImprimirSlugRouteImport } from './routes/imprimir.$slug'
 import { Route as CozinhaSlugRouteImport } from './routes/cozinha.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -58,6 +62,11 @@ const ProdutosRoute = ProdutosRouteImport.update({
 const LojasRoute = LojasRouteImport.update({
   id: '/lojas',
   path: '/lojas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmbaixadoresRoute = EmbaixadoresRouteImport.update({
@@ -99,6 +108,21 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTrocasRoute = LegalTrocasRouteImport.update({
+  id: '/trocas',
+  path: '/trocas',
+  getParentRoute: () => LegalRoute,
+} as any)
+const LegalTermosRoute = LegalTermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
+  getParentRoute: () => LegalRoute,
+} as any)
+const LegalPrivacidadeRoute = LegalPrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => LegalRoute,
 } as any)
 const ImprimirSlugRoute = ImprimirSlugRouteImport.update({
   id: '/imprimir/$slug',
@@ -168,6 +192,7 @@ export interface FileRoutesByFullPath {
   '/blends': typeof BlendsRouteWithChildren
   '/cozinha': typeof CozinhaRouteWithChildren
   '/embaixadores': typeof EmbaixadoresRoute
+  '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -178,6 +203,9 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
+  '/legal/privacidade': typeof LegalPrivacidadeRoute
+  '/legal/termos': typeof LegalTermosRoute
+  '/legal/trocas': typeof LegalTrocasRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
@@ -193,6 +221,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/embaixadores': typeof EmbaixadoresRoute
+  '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -203,6 +232,9 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
+  '/legal/privacidade': typeof LegalPrivacidadeRoute
+  '/legal/termos': typeof LegalTermosRoute
+  '/legal/trocas': typeof LegalTrocasRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends': typeof BlendsIndexRoute
   '/blog': typeof BlogIndexRoute
@@ -221,6 +253,7 @@ export interface FileRoutesById {
   '/blends': typeof BlendsRouteWithChildren
   '/cozinha': typeof CozinhaRouteWithChildren
   '/embaixadores': typeof EmbaixadoresRoute
+  '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -231,6 +264,9 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/cozinha/$slug': typeof CozinhaSlugRoute
   '/imprimir/$slug': typeof ImprimirSlugRoute
+  '/legal/privacidade': typeof LegalPrivacidadeRoute
+  '/legal/termos': typeof LegalTermosRoute
+  '/legal/trocas': typeof LegalTrocasRoute
   '/product/$handle': typeof ProductHandleRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
@@ -250,6 +286,7 @@ export interface FileRouteTypes {
     | '/blends'
     | '/cozinha'
     | '/embaixadores'
+    | '/legal'
     | '/lojas'
     | '/produtos'
     | '/sitemap.xml'
@@ -260,6 +297,9 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/cozinha/$slug'
     | '/imprimir/$slug'
+    | '/legal/privacidade'
+    | '/legal/termos'
+    | '/legal/trocas'
     | '/product/$handle'
     | '/blends/'
     | '/blog/'
@@ -275,6 +315,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/embaixadores'
+    | '/legal'
     | '/lojas'
     | '/produtos'
     | '/sitemap.xml'
@@ -285,6 +326,9 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/cozinha/$slug'
     | '/imprimir/$slug'
+    | '/legal/privacidade'
+    | '/legal/termos'
+    | '/legal/trocas'
     | '/product/$handle'
     | '/blends'
     | '/blog'
@@ -302,6 +346,7 @@ export interface FileRouteTypes {
     | '/blends'
     | '/cozinha'
     | '/embaixadores'
+    | '/legal'
     | '/lojas'
     | '/produtos'
     | '/sitemap.xml'
@@ -312,6 +357,9 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/cozinha/$slug'
     | '/imprimir/$slug'
+    | '/legal/privacidade'
+    | '/legal/termos'
+    | '/legal/trocas'
     | '/product/$handle'
     | '/blends/'
     | '/blog/'
@@ -330,6 +378,7 @@ export interface RootRouteChildren {
   BlendsRoute: typeof BlendsRouteWithChildren
   CozinhaRoute: typeof CozinhaRouteWithChildren
   EmbaixadoresRoute: typeof EmbaixadoresRoute
+  LegalRoute: typeof LegalRouteWithChildren
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -384,6 +433,13 @@ declare module '@tanstack/react-router' {
       path: '/lojas'
       fullPath: '/lojas'
       preLoaderRoute: typeof LojasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/embaixadores': {
@@ -441,6 +497,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/product/$handle'
       preLoaderRoute: typeof ProductHandleRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/legal/trocas': {
+      id: '/legal/trocas'
+      path: '/trocas'
+      fullPath: '/legal/trocas'
+      preLoaderRoute: typeof LegalTrocasRouteImport
+      parentRoute: typeof LegalRoute
+    }
+    '/legal/termos': {
+      id: '/legal/termos'
+      path: '/termos'
+      fullPath: '/legal/termos'
+      preLoaderRoute: typeof LegalTermosRouteImport
+      parentRoute: typeof LegalRoute
+    }
+    '/legal/privacidade': {
+      id: '/legal/privacidade'
+      path: '/privacidade'
+      fullPath: '/legal/privacidade'
+      preLoaderRoute: typeof LegalPrivacidadeRouteImport
+      parentRoute: typeof LegalRoute
     }
     '/imprimir/$slug': {
       id: '/imprimir/$slug'
@@ -555,11 +632,26 @@ const CozinhaRouteChildren: CozinhaRouteChildren = {
 const CozinhaRouteWithChildren =
   CozinhaRoute._addFileChildren(CozinhaRouteChildren)
 
+interface LegalRouteChildren {
+  LegalPrivacidadeRoute: typeof LegalPrivacidadeRoute
+  LegalTermosRoute: typeof LegalTermosRoute
+  LegalTrocasRoute: typeof LegalTrocasRoute
+}
+
+const LegalRouteChildren: LegalRouteChildren = {
+  LegalPrivacidadeRoute: LegalPrivacidadeRoute,
+  LegalTermosRoute: LegalTermosRoute,
+  LegalTrocasRoute: LegalTrocasRoute,
+}
+
+const LegalRouteWithChildren = LegalRoute._addFileChildren(LegalRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlendsRoute: BlendsRouteWithChildren,
   CozinhaRoute: CozinhaRouteWithChildren,
   EmbaixadoresRoute: EmbaixadoresRoute,
+  LegalRoute: LegalRouteWithChildren,
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
