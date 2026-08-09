@@ -71,7 +71,7 @@ export const Route = createFileRoute("/blends/$slug")({
     };
   },
   notFoundComponent: () => (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       <div className="mx-auto max-w-3xl px-4 py-32 text-center">
         <h1 className="font-display text-5xl uppercase">Blend não encontrado</h1>
         <p className="mt-4 text-muted-foreground">
@@ -86,16 +86,16 @@ export const Route = createFileRoute("/blends/$slug")({
           </Link>
         </div>
       </div>
-    </SiteLayout>
+    </div>
   ),
   errorComponent: () => (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       <div className="mx-auto max-w-3xl px-4 py-32 text-center">
         <h1 className="font-display text-4xl uppercase">
           Algo travou ao carregar este blend
         </h1>
       </div>
-    </SiteLayout>
+    </div>
   ),
   component: BlendDetail,
 });
@@ -149,7 +149,7 @@ function CuratedView() {
   const others = BLENDS.filter((b) => b.slug !== blend.slug && !b.isBuilder).slice(0, 3);
 
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       <section className="relative bg-foreground text-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           <Link
@@ -339,7 +339,7 @@ function CuratedView() {
         loading={submitting}
         onClose={() => setCelebrationOpen(false)}
       />
-    </SiteLayout>
+    </div>
   );
 }
 
@@ -349,7 +349,7 @@ function BuilderView() {
   const blend = BLEND_BY_SLUG.chefe;
 
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       <section className="relative bg-foreground text-background overflow-hidden">
         <div
           aria-hidden
@@ -394,6 +394,6 @@ function BuilderView() {
       </section>
 
       <BlendBuilder />
-    </SiteLayout>
+    </div>
   );
 }

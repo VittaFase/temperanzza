@@ -119,7 +119,7 @@ export const Route = createFileRoute("/blog/$slug")({
 
 function PostNotFound() {
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       <section className="py-24 text-center">
         <div className="mx-auto max-w-xl px-4">
           <h1 className="font-display font-black uppercase text-4xl">
@@ -133,13 +133,13 @@ function PostNotFound() {
           </Button>
         </div>
       </section>
-    </SiteLayout>
+    </div>
   );
 }
 
 function PostError() {
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       <section className="py-24 text-center">
         <div className="mx-auto max-w-xl px-4">
           <h1 className="font-display font-black uppercase text-3xl">
@@ -150,7 +150,7 @@ function PostError() {
           </Button>
         </div>
       </section>
-    </SiteLayout>
+    </div>
   );
 }
 
@@ -165,7 +165,7 @@ function BlogPostPage() {
     .filter((p): p is (typeof BLOG_POSTS)[number] => Boolean(p));
 
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       <nav aria-label="Você está aqui" className="border-b border-foreground/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
           <Link to="/" className="hover:text-accent">
@@ -388,6 +388,6 @@ function BlogPostPage() {
           ) : null}
         </aside>
       </div>
-    </SiteLayout>
+    </div>
   );
 }

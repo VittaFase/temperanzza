@@ -55,7 +55,7 @@ function BlendsIndex() {
 
 
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       {/* HERO */}
       <section className="relative bg-foreground text-background overflow-hidden">
         <div
@@ -213,6 +213,6 @@ function BlendsIndex() {
           </div>
         </div>
       </section>
-    </SiteLayout>
+    </div>
   );
 }
