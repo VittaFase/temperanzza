@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { SiteLayout } from "@/components/site/SiteLayout";
+
 import { Button } from "@/components/ui/button";
 import {
   storefrontApiRequest,
@@ -158,21 +158,21 @@ export const Route = createFileRoute("/product/$handle")({
   },
   component: ProductPage,
   notFoundComponent: () => (
-    <SiteLayout>
+    <div className="min-h-screen bg-paper-grain">
       <div className="mx-auto max-w-3xl py-24 px-6 text-center">
         <h1 className="font-display uppercase text-4xl">Produto não encontrado</h1>
         <Link to="/produtos" className="inline-block mt-6 underline underline-offset-4">
           Voltar ao catálogo
         </Link>
       </div>
-    </SiteLayout>
+    </div>
   ),
   errorComponent: () => (
-    <SiteLayout>
+    <div className="min-h-screen bg-paper-grain">
       <div className="mx-auto max-w-3xl py-24 px-6 text-center">
         <h1 className="font-display uppercase text-4xl">Erro ao carregar</h1>
       </div>
-    </SiteLayout>
+    </div>
   ),
 });
 
@@ -221,11 +221,11 @@ function ProductPage() {
 
   if (loadingProduct) {
     return (
-      <SiteLayout>
+      <div className="min-h-screen bg-paper-grain">
         <div className="flex justify-center py-32">
           <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
         </div>
-      </SiteLayout>
+      </div>
     );
   }
   if (!product) return null;
@@ -260,7 +260,7 @@ function ProductPage() {
   };
 
   return (
-    <SiteLayout>
+    <div className="min-h-screen bg-paper-grain">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 lg:py-14">
         <Link
           to="/produtos"
@@ -420,7 +420,7 @@ function ProductPage() {
         {/* Compatibilidade dietética */}
         <DietSectionForProduct handle={handle} />
       </div>
-    </SiteLayout>
+    </div>
   );
 }
 
