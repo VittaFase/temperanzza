@@ -47,7 +47,7 @@ export const Route = createFileRoute("/sobre")({
 
 function SobrePage() {
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       <section className="border-b border-foreground/15 py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <BrandSeal size="lg" className="mb-6" />
@@ -110,6 +110,6 @@ function SobrePage() {
           </dl>
         </div>
       </section>
-    </SiteLayout>
+    </div>
   );
 }

@@ -51,18 +51,14 @@ export const Route = createFileRoute("/embaixadores")({
   }),
   component: EmbaixadoresPage,
   errorComponent: () => (
-    <SiteLayout>
-      <div className="mx-auto max-w-3xl py-24 px-6 text-center">
-        <h1 className="font-display uppercase text-4xl">Erro ao carregar</h1>
-      </div>
-    </SiteLayout>
+    <div className="mx-auto max-w-3xl py-24 px-6 text-center">
+      <h1 className="font-display uppercase text-4xl">Erro ao carregar</h1>
+    </div>
   ),
   notFoundComponent: () => (
-    <SiteLayout>
-      <div className="mx-auto max-w-3xl py-24 px-6 text-center">
-        <h1 className="font-display uppercase text-4xl">Página não encontrada</h1>
-      </div>
-    </SiteLayout>
+    <div className="mx-auto max-w-3xl py-24 px-6 text-center">
+      <h1 className="font-display uppercase text-4xl">Página não encontrada</h1>
+    </div>
   ),
 });
 
@@ -132,7 +128,7 @@ function EmbaixadoresPage() {
   const fieldClass = "rounded-none border-foreground/25 bg-background";
 
   return (
-    <SiteLayout>
+    <div className="flex flex-col min-h-screen">
       {/* HERO */}
       <section className="border-b border-foreground/15 bg-brand-cream bg-paper-grain py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -387,6 +383,6 @@ function EmbaixadoresPage() {
           )}
         </div>
       </section>
-    </SiteLayout>
+    </div>
   );
 }
