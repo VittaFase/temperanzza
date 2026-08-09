@@ -1,3 +1,4 @@
+{/* Execute esta instrucao no projeto: analise */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'

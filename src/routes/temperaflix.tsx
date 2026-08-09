@@ -274,7 +274,73 @@ function TemperaflixPage() {
     <div className="flex flex-col min-h-screen">
       {/* ═══════════════ HERO CINEMATOGRÁFICO ═══════════════ */}
       <section className="relative overflow-hidden bg-brand-ink text-brand-paper">
-...
+        <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
+        <BokehBackdrop opacity={0.25} />
+        
+        {/* halo dinâmico do sabor ativo */}
+        <motion.div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          animate={{
+            background: `radial-gradient(70% 80% at 50% 50%, ${activeMeta.halo}33 0%, transparent 60%)`,
+          }}
+          transition={{ duration: 1.5 }}
+        />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32 flex flex-col items-center text-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col items-center"
+            >
+              <TerminalTag color={activeMeta.accent} className="mb-6">
+                {activeMeta.code}
+              </TerminalTag>
+              
+              <h1 className="font-display font-black uppercase text-6xl sm:text-8xl lg:text-[10rem] leading-[0.85] tracking-tight mb-8">
+                {activeMeta.genre.split(' ').map((word, i) => (
+                  <span key={i} className={i === 1 ? "text-brand-mustard" : ""}>
+                    {word}{" "}
+                  </span>
+                ))}
+              </h1>
+
+              <p className="max-w-2xl text-lg sm:text-xl text-brand-paper/80 font-serif italic mb-10 leading-relaxed">
+                {activeMeta.tagline}
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button
+                  onClick={() => handleAddOne(activeProduct)}
+                  disabled={isAdding || !activeProduct}
+                  className="rounded-none h-14 px-8 bg-brand-paper text-brand-ink hover:bg-brand-paper/90 font-display uppercase tracking-widest"
+                >
+                  {isAdding ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      <Plus className="mr-2 w-4 h-4" />
+                      Adicionar à Sessão
+                    </>
+                  )}
+                </Button>
+                
+                <a
+                  href="#episodios"
+                  className="inline-flex items-center justify-center rounded-none h-14 px-8 border-2 border-brand-paper/30 text-brand-paper font-display uppercase tracking-widest hover:border-brand-paper transition-colors"
+                >
+                  Explorar Episódios
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
+
       {/* ═══════════════ EPISÓDIOS — player + playlist ═══════════════ */}
       <section
         id="episodios"
