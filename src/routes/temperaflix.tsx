@@ -466,7 +466,7 @@ function TemperaflixPage() {
                           ) ?? ""
                         }
                         alt={activeProduct.node.title}
-                        className="max-h-[500px] w-auto object-contain drop-shadow-[0_40px_50px_rgba(0,0,0,0.65)]"
+                        className="max-h-[580px] w-auto object-contain drop-shadow-[0_45px_60px_rgba(0,0,0,0.85)]"
                         loading="lazy"
                       />
                       {/* scanline sweep */}
