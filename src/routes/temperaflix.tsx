@@ -64,7 +64,7 @@ export const Route = createFileRoute("/temperaflix")({
       {
         name: "description",
         content:
-          "Linha exclusiva Temperaflix: 3 shakers — Tradicional, Ervas Finas e Bacon. O sabor oficial dos seus momentos de tela: cinema, séries e games.",
+          "Linha exclusiva Temperaflix: 3 snakers — Tradicional, Ervas Finas e Bacon. O sabor oficial dos seus momentos de tela: cinema, séries e games.",
       },
       { property: "og:title", content: "Temperaflix — O tempero que entra em cena" },
       {
@@ -86,7 +86,7 @@ export const Route = createFileRoute("/temperaflix")({
           brand: { "@type": "Brand", name: "Temperanzza" },
           url: TEMPERAFLIX_URL,
           description:
-            "Três shakers Temperaflix: Tradicional, Ervas Finas e Bacon — o tempero dos momentos de tela.",
+            "Três snakers Temperaflix: Tradicional, Ervas Finas e Bacon — o tempero dos momentos de tela.",
           category: "Temperos e Especiarias",
         }),
       },
@@ -390,7 +390,7 @@ function TemperaflixPage() {
           ) : error || !data || data.length === 0 ? (
             <div className="border-2 border-dashed border-brand-paper/20 py-20 px-6 text-center">
               <p className="font-display text-2xl uppercase tracking-wide">
-                Shakers a caminho
+                Snakers a caminho
               </p>
               <p className="mt-3 text-brand-paper/60 max-w-md mx-auto">
                 A linha Temperaflix está sendo finalizada no estoque.
@@ -798,7 +798,7 @@ function TemperaflixPage() {
                   {formatBRL(total, "BRL")}
                 </span>
                 <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-brand-paper/50">
-                  pelos 3 shakers · frete único
+                  PELOS 3 SNAKERS · FRETE ÚNICO
                 </span>
               </div>
             )}
