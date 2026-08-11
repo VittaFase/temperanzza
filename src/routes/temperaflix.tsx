@@ -366,7 +366,8 @@ function TemperaflixPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/40 to-brand-ink/90" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
-        <BokehBackdrop opacity={0.15} />
+        {/* bokeh removido do palco — luz de estúdio assume a cena */}
+
         <motion.div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
