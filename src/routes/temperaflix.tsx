@@ -446,28 +446,20 @@ function TemperaflixPage() {
                   style={{ width: "60%", height: "60%", top: "10%", left: "20%" }}
                 />
 
-                {/* PEDESTAL & SOMBRA DE CONTATO — "Apple Box" Estilo Estúdio */}
+                {/* SOMBRA DE CONTATO — Ajustada para realismo sem obstrução */}
                 <div
                   aria-hidden
                   className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-20"
                   style={{
                     width: "70%",
-                    height: "80px",
-                    bottom: "2%",
+                    height: "40px",
+                    bottom: "5%",
                   }}
                 >
                   {/* Sombra de oclusão profunda sob o pote */}
                   <div 
-                    className="absolute left-1/2 -translate-x-1/2 top-0 w-1/2 h-4 bg-black/90 blur-[6px] rounded-full"
+                    className="absolute left-1/2 -translate-x-1/2 top-0 w-1/2 h-4 bg-black/90 blur-[8px] rounded-full"
                   />
-
-                  {/* A Base (Apple Box de Estúdio) - Removida a caixa preta, mantendo apenas a sombra e o palco */}
-                  <div className="absolute inset-0 z-20 pointer-events-none">
-                    {/* Sombra de oclusão profunda sob o pote */}
-                    <div 
-                      className="absolute left-1/2 -translate-x-1/2 top-0 w-1/2 h-4 bg-black/90 blur-[8px] rounded-full"
-                    />
-                  </div>
                 </div>
                 <AnimatePresence mode="wait">
                   {activeProduct && (
