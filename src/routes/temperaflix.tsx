@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
 import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
+import studioBg from "@/assets/FUNDO_TEMPERAFLIX-2.png.asset.json";
 
 /**
  * BokehBackdrop — vídeo em loop de bokeh dourado cinematográfico.
@@ -274,8 +275,17 @@ function TemperaflixPage() {
     <div className="flex flex-col min-h-screen">
       {/* ═══════════════ HERO CINEMATOGRÁFICO ═══════════════ */}
       <section className="relative overflow-hidden bg-brand-ink text-brand-paper">
+        {/* Fundo de estúdio solicitado */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img 
+            src={studioBg.url} 
+            alt="" 
+            className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-brand-ink/40" />
+        </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-        <BokehBackdrop opacity={0.25} />
+        <BokehBackdrop opacity={0.15} />
         
         {/* halo dinâmico do sabor ativo */}
         <motion.div
@@ -346,8 +356,17 @@ function TemperaflixPage() {
         id="episodios"
         className="relative overflow-hidden bg-brand-ink text-brand-paper border-t border-brand-paper/15 py-20 sm:py-24"
       >
+        {/* Fundo de estúdio solicitado */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img 
+            src={studioBg.url} 
+            alt="" 
+            className="w-full h-full object-cover opacity-40 mix-blend-luminosity scale-x-[-1]"
+          />
+          <div className="absolute inset-0 bg-brand-ink/60" />
+        </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
-        <BokehBackdrop opacity={0.25} />
+        <BokehBackdrop opacity={0.15} />
         <motion.div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
