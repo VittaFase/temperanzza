@@ -381,8 +381,7 @@ function TemperaflixPage() {
               </h2>
             </div>
             <p className="max-w-md text-brand-paper/60 leading-relaxed">
-              Cada blend é um episódio. Toque para trocar, adicione à sacola,
-              colecione os três.
+              Cada pote, um episódio, colecione os três.
             </p>
           </div>
 
