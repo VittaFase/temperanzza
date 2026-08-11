@@ -15,7 +15,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 import { FilmGate } from "@/components/site/FilmGate";
-import studioBg from "@/assets/estudio_cinema_final.png.asset.json";
+import studioBg from "@/assets/FUNDO_TEMPERAFLIX-7.png.asset.json";
 import studioVideo from "@/assets/Novo_filme_temperaflix.mp4.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
