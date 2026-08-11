@@ -415,12 +415,8 @@ function TemperaflixPage() {
                   >
                     {/* Fundo da tela */}
                     <FilmGate>
-                      <img
-                        src={studioBg.url}
-                        alt=""
-                        className="w-full h-full object-cover opacity-100 scale-125 translate-y-[10%]"
-                        style={{ objectPosition: "50% 50%" }}
-                      />
+                      {/* Removida imagem secundária de fundo da tela conforme solicitação */}
+                      <div className="absolute inset-0 bg-brand-ink/40" />
                     </FilmGate>
                     
                     {/* Brilho interno reativo */}

@@ -158,12 +158,8 @@ export function TemperaflixShowcase() {
       <FilmGate>
         {/* atmosphere: studio background */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <img 
-            src={studioBg.url} 
-            alt="" 
-            className="w-full h-full object-cover opacity-100 scale-105"
-            style={{ objectPosition: "50% 65%" }}
-          />
+          {/* Removida imagem secundária do background menor conforme solicitação */}
+          <div className="absolute inset-0 bg-brand-ink/20" />
 
           {/* 1. SCENE WRAPPER (Centro Óptico do Palco Home) */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
