@@ -153,7 +153,7 @@ function RecipeDrawer() {
   const navigate = useNavigate();
   const panelRef = useRef<HTMLDivElement>(null);
 
-  const close = () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "", lifestyle: "", autor: "" } });
+  const close = () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } });
 
   // ESC fecha; body scroll lock enquanto drawer está montado
   useEffect(() => {
@@ -228,7 +228,7 @@ function RecipeDrawer() {
                 </li>
                 <li aria-hidden className="hidden sm:inline text-brand-ink/30">/</li>
                 <li>
-                  <Link to="/cozinha" search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="hover:text-accent">
+                  <Link to="/cozinha" search={{ refeicao: "", proteina: "" }} className="hover:text-accent">
                     Biblioteca
                   </Link>
                 </li>
@@ -526,7 +526,7 @@ function RecipeDrawer() {
                 </h2>
               </div>
               <button
-                onClick={() => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "", lifestyle: "", autor: "" } })}
+                onClick={() => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } })}
                 className="inline-flex items-center gap-3 bg-brand-ink text-brand-paper hover:bg-accent px-6 py-3 font-display uppercase tracking-widest text-xs sm:text-sm transition-colors border border-brand-ink hover:border-accent shadow-md"
               >
                 <ArrowRight className="h-4 w-4 rotate-180" />
@@ -539,7 +539,7 @@ function RecipeDrawer() {
                   <Link
                     to="/cozinha/$slug"
                     params={{ slug: r.slug }}
-                    search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
+                    search={{ refeicao: "", proteina: "" }}
                     className="group flex items-baseline gap-6 py-5 hover:bg-brand-ink/[0.03] transition -mx-2 px-2"
                   >
                     <span className="shrink-0 font-display italic text-brand-ink/40 text-sm">
@@ -559,7 +559,7 @@ function RecipeDrawer() {
         {/* Rodapé do drawer — CTA de retorno + assinatura da casa */}
         <footer className="border-t border-brand-ink/10 py-12 text-center flex flex-col items-center gap-6">
           <button
-            onClick={() => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "", lifestyle: "", autor: "" } })}
+            onClick={() => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } })}
             className="inline-flex items-center gap-3 bg-brand-ink text-brand-paper hover:bg-accent px-8 py-4 font-display uppercase tracking-widest text-sm transition-colors"
           >
             <ArrowRight className="h-4 w-4 rotate-180" />
@@ -642,7 +642,7 @@ function RecipeNotFoundDrawer() {
           Ela pode ter sido arquivada ou a URL está incorreta.
         </p>
         <button
-          onClick={() => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "", lifestyle: "", autor: "" } })}
+          onClick={() => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } })}
           className="inline-flex items-center gap-2 bg-brand-ink text-brand-paper px-6 py-3 font-display uppercase tracking-widest text-sm hover:bg-accent transition"
         >
           Voltar à biblioteca
