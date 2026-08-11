@@ -406,7 +406,7 @@ function TemperaflixPage() {
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — big shaker stage */}
-              <div className="relative min-w-0 overflow-hidden min-h-[420px] sm:min-h-[520px] flex items-center justify-center lg:col-span-7">
+              <div className="relative min-w-0 overflow-visible min-h-[460px] sm:min-h-[580px] flex items-center justify-center lg:col-span-7">
                 {/* CENÁRIO DE GRAVAÇÃO DINÂMICO — Fundo integrado */}
                 <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                   <motion.div
@@ -451,11 +451,11 @@ function TemperaflixPage() {
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -40, y: -40, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, y: -40, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 40, y: -40, filter: "blur(6px)" }}
+                      initial={{ opacity: 0, x: -40, y: -20, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, x: 0, y: -20, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, x: 40, y: -20, filter: "blur(6px)" }}
                       transition={{ duration: 0.55, ease: "easeOut" }}
-                      className="relative"
+                      className="relative z-30"
                       style={{ perspective: 1200 }}
                     >
                       <img decoding="async"
