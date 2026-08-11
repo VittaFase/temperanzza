@@ -495,7 +495,7 @@ function TemperaflixPage() {
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: 500 // Mantém a sombra no baú (delta de subida compensado para y: -360)
+                          y: 560 // Mantém a sombra no baú (delta de subida compensado para y: -420)
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
