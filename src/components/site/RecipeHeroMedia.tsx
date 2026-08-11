@@ -37,7 +37,20 @@ export function RecipeHeroMedia({
   // Se houver foto do prato, o layout muda para editorial
   if (dish) {
     return (
-      <div className="relative w-full lg:w-[120%] lg:-mr-[10%] aspect-[4/5] sm:aspect-square lg:aspect-[4/3] group overflow-hidden bg-brand-ink shadow-2xl">
+      <div className="relative w-full lg:w-[120%] lg:-mr-[10%] aspect-[4/5] sm:aspect-square lg:aspect-[4/3] group overflow-hidden bg-brand-ink shadow-2xl flex items-center justify-center">
+        {/* SCENE WRAPPER (Centro Óptico Editorial) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+          {/* HALO / KEY LIGHT — Projetado sobre o prato */}
+          <div
+            aria-hidden
+            className="absolute blur-[80px] sm:blur-[120px] rounded-full z-10 pointer-events-none w-[70%] sm:w-[50%] h-[50%] sm:h-[45%] mix-blend-soft-light"
+            style={{
+              background: "oklch(0.82 0.16 90 / 0.35)",
+              opacity: 0.6,
+            }}
+          />
+        </div>
+
         {/* Foto do prato — preenche o container */}
         <img
           src={dish.src}
@@ -45,14 +58,24 @@ export function RecipeHeroMedia({
           className="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105"
         />
         
-        {/* Overlay gradiente para profundidade e legibilidade nas bordas */}
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-brand-ink/40 via-transparent to-transparent opacity-60" />
+        {/* Pote real em miniatura no canto (como assinatura do autor) */}
+        <div className="absolute bottom-6 right-6 z-20 w-[18%] sm:w-[15%] max-w-[80px] drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-110">
+          <img 
+            src={poster} 
+            alt="Tempero utilizado" 
+            className="w-full h-auto object-contain"
+          />
+        </div>
 
-        {/* Bordas decorativas estilo editorial - Mais finas e elegantes */}
-        <div className="absolute inset-6 border border-brand-paper/10 pointer-events-none" />
+        {/* Overlay gradiente para profundidade */}
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-brand-ink/60 via-transparent to-transparent opacity-60 z-10" />
+
+        {/* Bordas decorativas estilo editorial */}
+        <div className="absolute inset-6 border border-brand-paper/15 pointer-events-none z-20" />
       </div>
     );
   }
+
 
   // Fallback: visual atual focado no pote (vídeo ou imagem)
   return (
