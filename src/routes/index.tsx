@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: a segurança está solucionada? */}
+{/* Execute esta instrucao no projeto: SUBSTITUA O FUNDO DA AREA SELECIONADA PELA IMAGEM EM ANEXO! */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
