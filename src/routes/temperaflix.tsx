@@ -461,43 +461,21 @@ function TemperaflixPage() {
                     className="absolute left-1/2 -translate-x-1/2 top-0 w-1/2 h-4 bg-black/90 blur-[6px] rounded-full"
                   />
 
-                  {/* A Base (Apple Box de Estúdio) */}
-                  <motion.div
-                    className="absolute inset-0 bg-neutral-900 border-t border-x border-white/10"
-                    animate={{
-                      backgroundColor: "#0a0a0a",
-                    }}
-                    style={{
-                      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
-                    }}
-                  >
-                    {/* Efeito de iluminação frontal na borda da caixa */}
-                    <motion.div 
-                      className="absolute top-0 inset-x-0 h-[1px]"
-                      animate={{ 
-                        background: `linear-gradient(90deg, transparent, ${activeMeta.accent}cc, transparent)`,
-                        opacity: [0.4, 0.8, 0.4]
-                      }}
-                      transition={{ duration: 3, repeat: Infinity }}
+                  {/* A Base (Apple Box de Estúdio) - Removida a caixa preta, mantendo apenas a sombra e o palco */}
+                  <div className="absolute inset-0 z-20 pointer-events-none">
+                    {/* Sombra de oclusão profunda sob o pote */}
+                    <div 
+                      className="absolute left-1/2 -translate-x-1/2 top-0 w-1/2 h-4 bg-black/90 blur-[8px] rounded-full"
                     />
-                    
-                    {/* "Branding" sutil na caixa */}
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 opacity-10 font-mono text-[8px] tracking-[0.5em] whitespace-nowrap">
-                      TEMPERANZZA STUDIO PROPERTY
-                    </div>
-                  </motion.div>
-
-                  {/* Sombra projetada da caixa no chão */}
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[115%] h-12 bg-black/80 blur-xl rounded-full -z-10" />
+                  </div>
                 </div>
                 <AnimatePresence mode="wait">
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -40, y: -20, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, y: -20, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 40, y: -20, filter: "blur(6px)" }}
+                      initial={{ opacity: 0, x: -40, y: -40, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, x: 0, y: -40, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, x: 40, y: -40, filter: "blur(6px)" }}
                       transition={{ duration: 0.55, ease: "easeOut" }}
                       className="relative"
                       style={{ perspective: 1200 }}
