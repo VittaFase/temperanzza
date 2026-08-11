@@ -162,13 +162,24 @@ export function TemperaflixShowcase() {
             src={studioBg.url} 
             alt="" 
             className="w-full h-full object-cover opacity-100 scale-105"
-            style={{ objectPosition: "50% 80%" }}
+            style={{ objectPosition: "50% 65%" }}
           />
-          {/* CINEMA SCREEN AREA */}
+          {/* CINEMA SCREEN AREA — Retângulo 16:9 centralizado */}
           <div 
-            className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[70%] h-[40%] bg-black/40 blur-xl rounded-[20%]"
-            style={{ boxShadow: `0 0 100px ${activeMeta.accent}11` }}
-          />
+            className="absolute top-[35%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md overflow-hidden ring-1 ring-white/10"
+            style={{ 
+              boxShadow: `0 0 80px ${activeMeta.accent}33`,
+              transform: "translateY(-50%)" 
+            }}
+          >
+            {/* Projeção de luz na tela */}
+            <motion.div
+              animate={{
+                background: `radial-gradient(circle at 50% 50%, ${activeMeta.accent}22 0%, transparent 70%)`,
+              }}
+              className="absolute inset-0"
+            />
+          </div>
           <div className="absolute inset-0 bg-brand-ink/5" />
         </div>
         
@@ -229,15 +240,15 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[320px] sm:min-h-[520px] pb-[10%] overflow-visible max-w-5xl mx-auto px-4">
-            {/* PISO — gradiente neutro (sem tint colorido) */}
+          <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[550px] overflow-visible max-w-5xl mx-auto px-4">
+            {/* PISO / SOMBRA BASE */}
             <div
               aria-hidden
               className="absolute inset-x-[-20%] bottom-0 pointer-events-none"
               style={{
-                height: "38%",
+                height: "15%",
                 background:
-                  "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.2) 50%, transparent 100%)",
+                  "linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%)",
               }}
             />
             {/* linha de luz no horizonte — sincroniza com accent do sabor ativo */}
@@ -252,7 +263,6 @@ export function TemperaflixShowcase() {
               const product = byFlavor[key];
               const meta = FLAVOR[key];
               const isActive = active === key;
-              const isCenter = key === "ervas";
               const image = product
                 ? getProductImage(
                     product.node.handle,
@@ -260,16 +270,14 @@ export function TemperaflixShowcase() {
                   )
                 : null;
               const price = product?.node.priceRange.minVariantPrice;
-              // Desktop: clique navega direto (hover já ativou o spotlight).
-              // Mobile: 1º toque ativa o pote, 2º toque abre a ficha do produto.
               const canOpen = !!product && (!isMobile || isActive);
-
-
 
               return (
                 <div
                   key={key}
-                  className="group relative flex flex-col items-center justify-end outline-none"
+                  className={`relative flex flex-col items-center justify-center transition-all duration-700 ${
+                    isActive ? "w-[45%] z-30 scale-110" : "w-[25%] z-10 opacity-40 grayscale-[0.5] blur-[2px]"
+                  }`}
                   style={{ perspective: 1200 }}
                   onMouseEnter={() => setActive(key)}
                   onFocus={() => setActive(key)}
@@ -284,117 +292,48 @@ export function TemperaflixShowcase() {
                         setActive(key);
                       }
                     }}
-                    aria-label={
-                      canOpen
-                        ? `Ver ficha de ${meta.label}`
-                        : `Selecionar ${meta.label}`
-                    }
                     className="contents cursor-pointer"
                   >
-
-
-                  {/* TECH RING — anel de scan neutro girando atrás do pote ativo */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.div
-                        key="tech-ring"
-                        aria-hidden
-                        className="absolute left-1/2 -translate-x-1/2 rounded-full pointer-events-none"
-                        initial={{ opacity: 0, scale: 0.7 }}
-                        animate={{ opacity: 0.55, scale: 1, rotate: 360 }}
-                        exit={{ opacity: 0, scale: 0.7 }}
-                        transition={{
-                          opacity: { duration: 0.6 },
-                          scale: { duration: 0.6 },
-                          rotate: { duration: 18, ease: "linear", repeat: Infinity },
-                        }}
-                        style={{
-                          width: "82%",
-                          aspectRatio: "1 / 1",
-                          bottom: "18%",
-                          border: `1px dashed ${meta.accent}55`,
-                          boxShadow: `inset 0 0 24px ${meta.accent}22, 0 0 24px ${meta.accent}22`,
-                        }}
-                      />
-                    )}
-                  </AnimatePresence>
-
-                  {/* AMBIENT GLOW — halo bem sutil, neutro/branco (não colorido) */}
-                  <motion.div
-                    aria-hidden
-                    className="absolute left-1/2 -translate-x-1/2 rounded-full pointer-events-none blur-2xl"
-                    animate={{
-                      opacity: isActive ? 0.28 : 0.08,
-                      scale: isActive ? 1.15 : 0.9,
-                    }}
-                    transition={{ duration: 0.9, ease: "easeInOut" }}
-                    style={{
-                      background: "rgba(255,255,255,0.6)",
-                      width: isCenter ? "80%" : "65%",
-                      height: isCenter ? "80%" : "65%",
-                      bottom: "14%",
-                    }}
-                  />
-
-                  {/* ORIGEM — sombra no baú que permanece enquanto o pote sobe */}
-                  <motion.div
-                    aria-hidden
-                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
-                    animate={{
-                      opacity: isActive ? 0.4 : 0.6,
-                      width: isActive ? "50%" : "48%",
-                      y: isActive ? 120 : 0 // Mantém a sombra no baú
-                    }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    style={{
-                      bottom: "-4px",
-                      height: "12px",
-                      background:
-                        "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
-                      filter: "blur(6px)",
-                    }}
-                  />
-                  {!isActive && (
-                    <div
+                    {/* ORIGEM / SOMBRA NO BAÚ */}
+                    <motion.div
                       aria-hidden
                       className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
+                      animate={{
+                        opacity: isActive ? 0.3 : 0.5,
+                        width: isActive ? "60%" : "50%",
+                        y: isActive ? 180 : 0
+                      }}
                       style={{
-                        bottom: "-12px",
-                        width: "80%",
-                        height: "28px",
-                        background:
-                          "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 75%)",
-                        filter: "blur(12px)",
+                        bottom: "0px",
+                        height: "10px",
+                        background: "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
+                        filter: "blur(5px)",
                       }}
                     />
-                  )}
 
-                  {/* pot */}
-                  <motion.div
-                    className="relative w-full z-10"
-                    layoutId={`pote-${key}`}
-                    animate={{
-                      y: isActive ? -120 : isCenter ? -4 : 0,
-                      x: isActive ? 0 : 0,
-                      rotateY: isActive ? [0, 10, -10, 0] : 0,
-                      scale: isActive ? 1.3 : isCenter ? 1.02 : 0.92,
-                      filter: isActive ? "drop-shadow(0 20px 40px rgba(0,0,0,0.8))" : "none",
-                    }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: isActive ? 80 : 120, 
-                      damping: 20,
-                      rotateY: { duration: 8, repeat: Infinity, ease: "easeInOut" }
-                    }}
-                    style={{ transformStyle: "preserve-3d", transformOrigin: "bottom center" }}
-                  >
-                    {image ? (
-                      <img decoding="async"
-                        src={image}
-                        alt={product?.node.title ?? meta.label}
-                        className="w-full h-auto object-contain max-h-[280px] sm:max-h-[340px] mx-auto"
-                        loading="lazy"
-                      />
+                    {/* pot */}
+                    <motion.div
+                      className="relative w-full z-10 flex justify-center"
+                      layoutId={`pote-${key}`}
+                      animate={{
+                        y: isActive ? -60 : 0, 
+                        scale: isActive ? 1.2 : 0.9,
+                        filter: isActive ? "drop-shadow(0 20px 40px rgba(0,0,0,0.6))" : "none",
+                      }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 80, 
+                        damping: 20
+                      }}
+                      style={{ transformOrigin: "bottom center" }}
+                    >
+                      {image ? (
+                        <img decoding="async"
+                          src={image}
+                          alt={product?.node.title ?? meta.label}
+                          className="w-full h-auto object-contain max-h-[250px] sm:max-h-[380px]"
+                          loading="lazy"
+                        />
 
                     ) : (
                       <div className="w-full aspect-[3/4] bg-brand-paper/5" />

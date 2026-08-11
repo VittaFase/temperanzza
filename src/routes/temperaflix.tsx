@@ -410,12 +410,15 @@ function TemperaflixPage() {
                       src={studioBg.url}
                       alt=""
                       className="w-full h-full object-cover opacity-100 scale-105"
-                      style={{ objectPosition: "50% 82%" }}
+                      style={{ objectPosition: "50% 65%" }}
                     />
-                    {/* A TELA DE CINEMA */}
+                    {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
                     <div 
-                      className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[75%] h-[45%] bg-black/60 blur-2xl rounded-[15%]"
-                      style={{ boxShadow: `0 0 120px ${activeMeta.accent}22` }}
+                      className="absolute top-[40%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
+                      style={{ 
+                        boxShadow: `0 0 100px ${activeMeta.accent}33`,
+                        transform: "translateY(-50%)"
+                      }}
                     />
                     <motion.div
                       animate={{
@@ -434,7 +437,7 @@ function TemperaflixPage() {
                     background: `linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 40%, transparent 100%), radial-gradient(ellipse 55% 70% at 50% 100%, ${activeMeta.halo}22 0%, transparent 80%)`,
                   }}
                   transition={{ duration: 1.4, ease: "easeInOut" }}
-                  style={{ height: "26%" }}
+                  style={{ height: "14%" }}
                 />
 
                 {/* KEY LIGHT lateral suave */}
@@ -457,8 +460,8 @@ function TemperaflixPage() {
                       initial={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
                       animate={{ 
                         opacity: 1, 
-                        scale: 1.25, 
-                        y: -150, // Projetado para a tela de cinema no fundo
+                        scale: 1.15, 
+                        y: -80, // Centralizado na tela de cinema no fundo
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
@@ -492,7 +495,7 @@ function TemperaflixPage() {
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: 150 // Mantém a sombra no baú enquanto o pote sobe
+                          y: 230 // Mantém a sombra no baú enquanto o pote sobe
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
