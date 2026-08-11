@@ -461,7 +461,7 @@ function TemperaflixPage() {
                       animate={{ 
                         opacity: 1, 
                         scale: 1.15, 
-                        y: -260, // Recalibrado para alinhar com o centro da playlist elevada
+                        y: -332, // Ajustado para centralizar perfeitamente no halo e na playlist (-260 - 72)
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
@@ -495,7 +495,7 @@ function TemperaflixPage() {
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: 400 // Mantém a sombra no baú (delta de subida compensado para y: -260)
+                          y: 472 // Mantém a sombra no baú (compensando o novo y: -332)
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
