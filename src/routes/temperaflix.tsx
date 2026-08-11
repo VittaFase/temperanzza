@@ -307,7 +307,7 @@ function TemperaflixPage() {
             <video 
               src={studioVideo.url} 
               poster={studioBg.url}
-              className="w-full h-full object-cover opacity-100"
+              className="w-full h-full object-cover opacity-100 relative z-0"
               autoPlay 
               muted 
               loop 
