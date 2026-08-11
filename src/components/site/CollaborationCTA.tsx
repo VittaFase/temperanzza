@@ -30,7 +30,7 @@ export function CollaborationCTA() {
             to="/colaborar"
             className="bg-brand-mustard text-brand-ink px-10 py-4 font-display font-black uppercase text-xs tracking-[0.2em] hover:bg-brand-paper transition-colors duration-300"
           >
-            Quero Cozinhar com a Casa
+            QUERO ENVIAR MINHA RECEITA
           </Link>
         </div>
       </div>
