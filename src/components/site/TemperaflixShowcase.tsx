@@ -336,35 +336,38 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* CONTATO — sombra curta na madeira, atrás do pote */}
+                  {/* ORIGEM — sombra no baú que permanece enquanto o pote sobe */}
                   <motion.div
                     aria-hidden
                     className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
                     animate={{
-                      opacity: isActive ? 0.85 : 0.6,
-                      width: isActive ? "58%" : "48%",
+                      opacity: isActive ? 0.4 : 0.6,
+                      width: isActive ? "50%" : "48%",
+                      y: isActive ? 120 : 0 // Mantém a sombra no baú
                     }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     style={{
                       bottom: "-4px",
-                      height: "16px",
+                      height: "12px",
                       background:
-                        "radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 80%)",
-                      filter: "blur(5px)",
+                        "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
+                      filter: "blur(6px)",
                     }}
                   />
-                  <div
-                    aria-hidden
-                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
-                    style={{
-                      bottom: "-12px",
-                      width: "80%",
-                      height: "28px",
-                      background:
-                        "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 75%)",
-                      filter: "blur(12px)",
-                    }}
-                  />
+                  {!isActive && (
+                    <div
+                      aria-hidden
+                      className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
+                      style={{
+                        bottom: "-12px",
+                        width: "80%",
+                        height: "28px",
+                        background:
+                          "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 75%)",
+                        filter: "blur(12px)",
+                      }}
+                    />
+                  )}
 
                   {/* pot */}
                   <motion.div
