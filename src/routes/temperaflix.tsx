@@ -413,7 +413,7 @@ function TemperaflixPage() {
                     />
                     {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
                     <div 
-                      className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
+                      className="absolute top-[35%] sm:top-[28%] left-1/2 -translate-x-1/2 w-[85%] sm:w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
                       style={{ 
                         boxShadow: `0 0 100px ${activeMeta.accent}33`,
                         transform: "translateY(-50%)"
