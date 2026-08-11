@@ -314,6 +314,9 @@ function TemperaflixPage() {
           
           {/* Studio Lighting Rig replaces Bokeh */}
           <StudioLightRig accent={activeMeta.accent} opacity={0.5} />
+          
+          {/* Textura de filme em movimento entre o fundo e o conteúdo */}
+          <FilmTexture />
         </FilmGate>
         
         {/* halo dinâmico do sabor ativo */}
@@ -398,6 +401,9 @@ function TemperaflixPage() {
         
         {/* Studio Lighting Rig replaces Bokeh — lower opacity for secondary stage */}
         <StudioLightRig accent={activeMeta.accent} opacity={0.3} />
+
+        {/* Textura de filme em movimento entre o fundo e o conteúdo */}
+        <FilmTexture />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-12">
