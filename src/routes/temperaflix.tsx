@@ -15,7 +15,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 import { FilmGate } from "@/components/site/FilmGate";
-import studioBg from "@/assets/FUNDO_TEMPERAFLIX-6.png.asset.json";
+import studioBg from "@/assets/Gemini_Generated_Image_u3ur3ku3ur3ku3ur.png.asset.json";
 import studioVideo from "@/assets/filme_temperaflix.mp4.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
@@ -306,6 +306,7 @@ function TemperaflixPage() {
           <div className="absolute inset-0 z-0 pointer-events-none">
             <video 
               src={studioVideo.url} 
+              poster={studioBg.url}
               className="w-full h-full object-cover opacity-100"
               autoPlay 
               muted 
@@ -396,6 +397,7 @@ function TemperaflixPage() {
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <video 
             src={studioVideo.url} 
+            poster={studioBg.url}
             className="w-full h-full object-cover opacity-100 brightness-100"
             autoPlay 
             muted 
