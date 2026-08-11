@@ -357,13 +357,13 @@ function TemperaflixPage() {
         className="relative overflow-hidden bg-brand-ink text-brand-paper border-t border-brand-paper/15 py-20 sm:py-24"
       >
         {/* Fundo de estúdio solicitado */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img 
             src={studioBg.url} 
             alt="" 
-            className="w-full h-full object-cover opacity-40 mix-blend-luminosity scale-x-[-1]"
+            className="w-full h-full object-cover opacity-30 mix-blend-luminosity scale-x-[-1] brightness-50"
           />
-          <div className="absolute inset-0 bg-brand-ink/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/40 to-brand-ink/90" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
         <BokehBackdrop opacity={0.15} />
@@ -407,46 +407,68 @@ function TemperaflixPage() {
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — big shaker stage */}
               <div className="relative min-w-0 overflow-hidden min-h-[420px] sm:min-h-[520px] flex items-center justify-center lg:col-span-7">
-                {/* PISO — gradiente unificado do palco */}
+                {/* CENÁRIO DE GRAVAÇÃO DINÂMICO — Fundo integrado */}
+                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                  <motion.div
+                    animate={{
+                      background: `radial-gradient(circle at 50% 50%, ${activeMeta.halo}15 0%, transparent 70%)`
+                    }}
+                    className="absolute inset-0 z-10"
+                  />
+                  <img 
+                    src={studioBg.url} 
+                    alt="" 
+                    className="w-full h-full object-cover opacity-20 mix-blend-luminosity scale-110 blur-[2px]"
+                  />
+                </div>
+
+                {/* PISO DO PALCO — Convergência focal */}
                 <motion.div
                   aria-hidden
-                  className="absolute inset-x-0 bottom-0 pointer-events-none z-0"
+                  className="absolute inset-x-0 bottom-0 pointer-events-none z-10"
                   animate={{
-                    background: `linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 28%, rgba(0,0,0,0.18) 58%, transparent 100%), radial-gradient(ellipse 65% 85% at 50% 100%, ${activeMeta.halo}22 0%, transparent 65%)`,
+                    background: `linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 100%), radial-gradient(ellipse 70% 80% at 50% 100%, ${activeMeta.halo}25 0%, transparent 75%)`,
                   }}
                   transition={{ duration: 1.4, ease: "easeInOut" }}
-                  style={{ height: "36%" }}
+                  style={{ height: "45%" }}
                 />
+
+                {/* RIM LIGHT — Efeito de luz de borda no cenário */}
                 <motion.div
                   aria-hidden
-                  className="absolute inset-0 blur-3xl rounded-full mx-auto"
-                  animate={{ background: activeMeta.halo }}
-                  transition={{ duration: 1.2 }}
-                  style={{ opacity: 0.55, width: "75%", height: "75%", top: "12%", left: "12%" }}
+                  className="absolute inset-0 blur-[100px] rounded-full mx-auto"
+                  animate={{ 
+                    background: activeMeta.halo,
+                    scale: [1, 1.1, 1],
+                    opacity: [0.3, 0.45, 0.3]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ width: "60%", height: "60%", top: "10%", left: "20%" }}
                 />
-                {/* pedestal — sombra de contato no piso */}
+
+                {/* PEDESTAL & SOMBRA DE CONTATO */}
                 <div
                   aria-hidden
-                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-20"
                   style={{
-                    width: "60%",
-                    height: "44px",
-                    bottom: "6%",
-                    background: `radial-gradient(ellipse 50% 55% at 50% 50%, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)`,
-                    filter: "blur(7px)",
+                    width: "70%",
+                    height: "60px",
+                    bottom: "4%",
+                    background: `radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 80%)`,
+                    filter: "blur(12px)",
                   }}
                 />
                 <motion.div
                   aria-hidden
-                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                  animate={{ background: activeMeta.halo }}
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-20"
+                  animate={{ background: activeMeta.accent }}
                   transition={{ duration: 1.2 }}
                   style={{
-                    width: "45%",
-                    height: "10px",
-                    bottom: "9%",
-                    opacity: 0.55,
-                    filter: "blur(5px)",
+                    width: "50%",
+                    height: "12px",
+                    bottom: "8%",
+                    opacity: 0.4,
+                    filter: "blur(8px)",
                     mixBlendMode: "screen",
                     borderRadius: "50%",
                   }}
