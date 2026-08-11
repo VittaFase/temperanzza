@@ -1,4 +1,4 @@
-{/* CASA TEMPERANZZA - ESTRUTURA LIMPA */}
+{/* Execute esta instrucao no projeto: onde a Cozinhe com a Temperanzza está implementada no site? */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
