@@ -31,7 +31,7 @@ function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: num
       {/* Main Spotlight — Central focus that follows the scene */}
       <motion.div
         animate={{
-          background: `radial-gradient(circle at 50% 45%, ${accent}33 0%, transparent 70%)`,
+          background: `radial-gradient(circle at 50% 40%, ${accent}33 0%, transparent 70%)`,
         }}
         transition={{ duration: 1.5 }}
         className="absolute inset-0"
@@ -414,7 +414,7 @@ function TemperaflixPage() {
                     />
                     {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
                     <div 
-                      className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
+                      className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
                       style={{ 
                         boxShadow: `0 0 100px ${activeMeta.accent}33`,
                         transform: "translateY(-50%)"
