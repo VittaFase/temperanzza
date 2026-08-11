@@ -414,7 +414,7 @@ function TemperaflixPage() {
                     />
                     {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
                     <div 
-                      className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
+                      className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
                       style={{ 
                         boxShadow: `0 0 100px ${activeMeta.accent}33`,
                         transform: "translateY(-50%)"
@@ -449,7 +449,7 @@ function TemperaflixPage() {
                     opacity: [0.18, 0.3, 0.18],
                   }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ width: "65%", height: "55%", top: "0%" }}
+                  style={{ width: "65%", height: "55%", top: "-15%" }}
                 />
 
                 <AnimatePresence mode="wait">
@@ -461,7 +461,7 @@ function TemperaflixPage() {
                       animate={{ 
                         opacity: 1, 
                         scale: 1.15, 
-                        y: -300, // Centralizado na altura do Ep 01 da playlist
+                        y: -420, // Elevado para alinhar o centro do pote com o Episódio 01 (Tradicional)
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
@@ -495,7 +495,7 @@ function TemperaflixPage() {
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: 440 // Mantém a sombra no baú (delta de subida compensado)
+                          y: 560 // Mantém a sombra no baú (delta de subida compensado para y: -420)
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
