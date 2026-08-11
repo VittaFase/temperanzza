@@ -400,18 +400,19 @@ export function TemperaflixShowcase() {
                       <div className="w-full aspect-[3/4] bg-brand-paper/5" />
                     )}
 
-                    {/* CROSSHAIR — colchetes de mira nos 4 cantos do pote ativo */}
+                    {/* SCAN FRAME — mira na tela de cinema para o pote ativo */}
                     <AnimatePresence>
                       {isActive && (
                         <motion.div
                           key="crosshair"
                           aria-hidden
-                          initial={{ opacity: 0, scale: 1.15 }}
-                          animate={{ opacity: 0.7, scale: 1 }}
-                          exit={{ opacity: 0, scale: 1.15 }}
-                          transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="absolute inset-[6%] pointer-events-none"
+                          initial={{ opacity: 0, scale: 1.2 }}
+                          animate={{ opacity: 0.8, scale: 1 }}
+                          exit={{ opacity: 0, scale: 1.2 }}
+                          transition={{ duration: 0.6 }}
+                          className="absolute -inset-[15%] pointer-events-none"
                         >
+                          <div className="absolute inset-0 border border-white/10 rounded-lg blur-[1px]" />
                           {["top-0 left-0 border-t border-l", "top-0 right-0 border-t border-r", "bottom-0 left-0 border-b border-l", "bottom-0 right-0 border-b border-r"].map((pos, i) => (
                             <span
                               key={i}
