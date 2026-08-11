@@ -15,7 +15,9 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
 import { Route as LegalRouteImport } from './routes/legal'
+import { Route as EmbaixadoresRouteImport } from './routes/embaixadores'
 import { Route as CozinhaRouteImport } from './routes/cozinha'
+import { Route as ColaborarRouteImport } from './routes/colaborar'
 import { Route as BlendsRouteImport } from './routes/blends'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CozinhaIndexRouteImport } from './routes/cozinha.index'
@@ -68,9 +70,19 @@ const LegalRoute = LegalRouteImport.update({
   path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmbaixadoresRoute = EmbaixadoresRouteImport.update({
+  id: '/embaixadores',
+  path: '/embaixadores',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CozinhaRoute = CozinhaRouteImport.update({
   id: '/cozinha',
   path: '/cozinha',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ColaborarRoute = ColaborarRouteImport.update({
+  id: '/colaborar',
+  path: '/colaborar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlendsRoute = BlendsRouteImport.update({
@@ -184,7 +196,9 @@ const ApiPublicBlingCallbackRoute = ApiPublicBlingCallbackRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blends': typeof BlendsRouteWithChildren
+  '/colaborar': typeof ColaborarRoute
   '/cozinha': typeof CozinhaRouteWithChildren
+  '/embaixadores': typeof EmbaixadoresRoute
   '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
@@ -213,6 +227,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/colaborar': typeof ColaborarRoute
+  '/embaixadores': typeof EmbaixadoresRoute
   '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
@@ -243,7 +259,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blends': typeof BlendsRouteWithChildren
+  '/colaborar': typeof ColaborarRoute
   '/cozinha': typeof CozinhaRouteWithChildren
+  '/embaixadores': typeof EmbaixadoresRoute
   '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
@@ -275,7 +293,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blends'
+    | '/colaborar'
     | '/cozinha'
+    | '/embaixadores'
     | '/legal'
     | '/lojas'
     | '/produtos'
@@ -304,6 +324,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/colaborar'
+    | '/embaixadores'
     | '/legal'
     | '/lojas'
     | '/produtos'
@@ -333,7 +355,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blends'
+    | '/colaborar'
     | '/cozinha'
+    | '/embaixadores'
     | '/legal'
     | '/lojas'
     | '/produtos'
@@ -364,7 +388,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlendsRoute: typeof BlendsRouteWithChildren
+  ColaborarRoute: typeof ColaborarRoute
   CozinhaRoute: typeof CozinhaRouteWithChildren
+  EmbaixadoresRoute: typeof EmbaixadoresRoute
   LegalRoute: typeof LegalRouteWithChildren
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
@@ -429,11 +455,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/embaixadores': {
+      id: '/embaixadores'
+      path: '/embaixadores'
+      fullPath: '/embaixadores'
+      preLoaderRoute: typeof EmbaixadoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cozinha': {
       id: '/cozinha'
       path: '/cozinha'
       fullPath: '/cozinha'
       preLoaderRoute: typeof CozinhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/colaborar': {
+      id: '/colaborar'
+      path: '/colaborar'
+      fullPath: '/colaborar'
+      preLoaderRoute: typeof ColaborarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blends': {
@@ -629,7 +669,9 @@ const LegalRouteWithChildren = LegalRoute._addFileChildren(LegalRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlendsRoute: BlendsRouteWithChildren,
+  ColaborarRoute: ColaborarRoute,
   CozinhaRoute: CozinhaRouteWithChildren,
+  EmbaixadoresRoute: EmbaixadoresRoute,
   LegalRoute: LegalRouteWithChildren,
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
@@ -652,3 +694,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
