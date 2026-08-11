@@ -184,11 +184,11 @@ export function TemperaflixShowcase() {
             {/* HALO / KEY LIGHT — Centrado atrás do trio, na mesma posição da tela */}
             <motion.div
               aria-hidden
-              className="absolute blur-[80px] sm:blur-[120px] rounded-full z-10 pointer-events-none w-[80%] sm:w-[60%] h-[50%] sm:h-[45%]"
+              className="absolute blur-[100px] sm:blur-[160px] rounded-full z-20 pointer-events-none w-[90%] sm:w-[70%] h-[60%]"
               animate={{
                 background: activeMeta.halo,
-                opacity: [0.15, 0.25, 0.15],
-                scale: [1, 1.05, 1],
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.1, 1],
               }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
