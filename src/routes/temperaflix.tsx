@@ -446,19 +446,28 @@ function TemperaflixPage() {
                   style={{ width: "60%", height: "60%", top: "10%", left: "20%" }}
                 />
 
-                {/* SOMBRA DE CONTATO — Ajustada para realismo sem obstrução */}
+                {/* SOMBRA DE CONTATO — Realista e Cinematográfica */}
                 <div
                   aria-hidden
                   className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-20"
                   style={{
-                    width: "70%",
-                    height: "40px",
-                    bottom: "5%",
+                    width: "40%",
+                    height: "12px",
+                    bottom: "12%",
                   }}
                 >
-                  {/* Sombra de oclusão profunda sob o pote */}
+                  <motion.div 
+                    animate={{
+                      scale: [1, 1.05, 1],
+                      opacity: [0.8, 0.95, 0.8]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 bg-black/95 blur-[10px] rounded-[100%]"
+                    style={{ transform: "scaleY(0.3)" }}
+                  />
                   <div 
-                    className="absolute left-1/2 -translate-x-1/2 top-0 w-1/2 h-4 bg-black/90 blur-[8px] rounded-full"
+                    className="absolute inset-0 bg-black blur-[4px] rounded-[100%]"
+                    style={{ transform: "scaleY(0.2) scaleX(0.7)" }}
                   />
                 </div>
                 <AnimatePresence mode="wait">
