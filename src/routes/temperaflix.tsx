@@ -301,28 +301,28 @@ function TemperaflixPage() {
     <div className="flex flex-col min-h-screen">
       {/* ═══════════════ HERO CINEMATOGRÁFICO ═══════════════ */}
       <section className="relative overflow-hidden bg-brand-ink text-brand-paper">
-        <FilmGate>
-          {/* Fundo de estúdio solicitado */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <FilmGate>
+            {/* Fundo de estúdio solicitado */}
             <video 
               src={studioVideo.url} 
               poster={studioBg.url}
-              className="w-full h-full object-cover opacity-100"
+              className="absolute inset-0 w-full h-full object-cover opacity-100 z-0"
               autoPlay 
               muted 
               loop 
               playsInline
-              style={{ objectPosition: "50% 50%" }}
+              style={{ objectPosition: "center center" }}
             />
-            <div className="absolute inset-0 bg-brand-ink/10" />
-          </div>
-          
-          {/* Studio Lighting Rig replaces Bokeh */}
-          <StudioLightRig accent={activeMeta.accent} opacity={0.5} />
-          
-          {/* Textura de filme em movimento entre o fundo e o conteúdo */}
-          <FilmTexture />
-        </FilmGate>
+            <div className="absolute inset-0 bg-brand-ink/10 z-10" />
+            
+            {/* Studio Lighting Rig replaces Bokeh */}
+            <StudioLightRig accent={activeMeta.accent} opacity={0.5} />
+            
+            {/* Textura de filme em movimento entre o fundo e o conteúdo */}
+            <FilmTexture />
+          </FilmGate>
+        </div>
         
         {/* halo dinâmico do sabor ativo */}
         <motion.div
