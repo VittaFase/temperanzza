@@ -15,6 +15,8 @@ import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
+import { FilmGate } from "@/components/site/FilmGate";
+
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
     <div
@@ -365,6 +367,7 @@ function TemperaflixPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/20 to-brand-ink/90" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
+        <FilmGate activeAccent={activeMeta.accent} opacity={0.05} />
         
         {/* Studio Lighting Rig replaces Bokeh — lower opacity for secondary stage */}
         <StudioLightRig accent={activeMeta.accent} opacity={0.3} />
@@ -443,10 +446,14 @@ function TemperaflixPage() {
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -28, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 28, filter: "blur(6px)" }}
-                      transition={{ duration: 0.55, ease: "easeOut" }}
+                      initial={{ opacity: 0, x: -28, filter: "blur(12px) brightness(1.2)" }}
+                      animate={{ opacity: 1, x: 0, filter: "blur(0px) brightness(1)" }}
+                      exit={{ opacity: 0, x: 28, filter: "blur(12px) brightness(0.8)" }}
+                      transition={{ 
+                        duration: 0.8, 
+                        ease: [0.16, 1, 0.3, 1],
+                        filter: { duration: 1.2 }
+                      }}
                       className="relative z-30 flex flex-col items-center"
                       style={{ perspective: 1200, transformOrigin: "bottom center" }}
                     >
