@@ -1,31 +1,30 @@
-# Plano de Implementação: Base Cinematográfica para Potes Temperaflix
+# Refinamento Temperaflix — Cenário de Estúdio Cinematográfico
 
-O objetivo é transformar a base de apresentação dos potes Temperaflix em um elemento intencional e natural, como se estivessem sobre uma caixa de estúdio (apple box) que serve de pedestal, reforçando a estética de "cenário de gravação" e destacando os produtos como estrelas.
+Dois ajustes: corrigir a cadeira espelhada e trocar as bolhas de bokeh por uma linguagem de luz de estúdio (troca de cena).
 
-## Alterações Visuais
+## 1. Cadeira "TEMPERANZZA" legível
 
-1.  **Criação da Base (Caixa de Estúdio)**:
-    *   Implementar um elemento visual que simule uma caixa de madeira escura ou plataforma metálica industrial na base de cada pote.
-    *   A caixa terá perspectiva 3D, sombras de oclusão realistas e luz de borda (rim light) sincronizada com o sabor ativo.
+Na seção "Escolha sua sessão" o fundo de estúdio recebe `scale-x-[-1]` (espelhamento horizontal), o que inverte a escrita na cadeira. Solução: remover o espelhamento e diferenciar o fundo da seção de baixo em relação ao topo por outros meios — enquadramento (`object-position` deslocado à esquerda), escala leve e brilho/contraste — mantendo a leitura correta da marca.
 
-2.  **Harmonização com o Cenário**:
-    *   Ajustar o "piso" do palco para que a caixa pareça estar firmemente apoiada nele.
-    *   Melhorar a sombra de contato entre o pote e a caixa para evitar o efeito de "flutuação".
+## 2. Substituir as bolhas por luz cinematográfica
 
-3.  **Composição "Estrela"**:
-    *   Ajustar a escala e posição dos potes para que a caixa seja a base natural, elevando o produto na hierarquia visual.
-    *   Adicionar efeitos de reflexo na base da caixa para simular materiais premium.
+Sai o `BokehBackdrop` (vídeo/poster de bokeh dourado, hoje presente nos dois blocos de `/temperaflix` e no showcase da Home). Entra um novo componente de atmosfera de estúdio, `StudioLightRig`, com três camadas discretas e sem "festa":
 
-## Detalhes Técnicos
+- **Key light lateral**: feixe suave e alongado entrando pelo canto superior (gradiente cônico/elíptico), fixo, dando direção de luz coerente com as luminárias da foto.
+- **Troca de cena**: quando o sabor ativo muda, a cor da luz de fundo faz um cross-fade lento (~1,2 s) para o tom do sabor — como um gelatinado sendo trocado no set. Sem pulsação contínua.
+- **Respiro de set**: variação lentíssima de intensidade (opacidade 0,22 → 0,30, ciclo de ~8 s) apenas na luz de fundo, para o ambiente não parecer congelado. Um "haze" de fumaça muito sutil, em gradiente, substitui o brilho pontilhado.
 
-### `src/routes/temperaflix.tsx` (Seção de Episódios)
-*   Substituir o gradiente de pedestal atual por uma estrutura JSX que represente a caixa.
-*   Utilizar `motion.div` para animar a iluminação da caixa conforme o sabor troca.
+Nada de círculos desfocados, `animate-ping` de partículas ou halos redondos flutuando. O halo redondo pulsante atrás do pote (`rim light` com `blur-[100px] rounded-full`) também sai, trocado por um **rim light direcional** atrás do produto: faixa vertical estreita e desfocada, na cor do sabor, que reforça a silhueta do pote em vez de criar uma bolha.
 
-### `src/components/site/TemperaflixShowcase.tsx` (Seção da Home)
-*   Aplicar a mesma lógica de base para manter a consistência visual em toda a plataforma.
-*   Ajustar os `staggered layout` para que as caixas se alinhem de forma harmoniosa.
+## 3. Coerência em cima e embaixo
 
----
+O mesmo rig é aplicado no Hero e na seção de episódios, com intensidades diferentes (topo mais claro, embaixo mais fechado e com queda para o piso), e no showcase Temperaflix da Home — para que Home e página dedicada contem a mesma cena.
 
-Este ajuste resolverá o problema de percepção de "fora da base" e elevará a experiência de marca para um nível cinematográfico profissional.
+Acessibilidade e performance: tudo em CSS/gradientes + Motion (nenhum vídeo novo), `prefers-reduced-motion` desativa a animação e mantém o estado estático; um arquivo de vídeo a menos carregando na seção.
+
+## Detalhes técnicos
+
+- `src/routes/temperaflix.tsx`: remover `scale-x-[-1]` do fundo dos episódios; substituir `BokehBackdrop` por `StudioLightRig`; trocar o bloco de rim light circular por faixa direcional.
+- `src/components/site/TemperaflixShowcase.tsx`: mesma troca de backdrop e remoção dos halos circulares.
+- Novo `src/components/site/StudioLightRig.tsx` com props `intensity` e `accent` (cor do sabor ativo), usando tokens `brand-*` já existentes.
+- Imports de `hero-bokeh` removidos onde deixarem de ser usados; o asset permanece no projeto para outras seções.
