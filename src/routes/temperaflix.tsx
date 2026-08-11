@@ -307,12 +307,12 @@ function TemperaflixPage() {
             <video 
               src={studioVideo.url} 
               poster={studioBg.url}
-              className="w-full h-full object-cover opacity-100 relative z-0"
+              className="absolute inset-0 w-full h-full object-cover opacity-100 z-0"
               autoPlay 
               muted 
               loop 
               playsInline
-              style={{ objectPosition: "50% 50%" }}
+              style={{ objectPosition: "center center" }}
             />
             <div className="absolute inset-0 bg-brand-ink/10" />
           </div>
