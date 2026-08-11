@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: execute e implemente */}
+{/* A ESSÊNCIA DA CASA TEMPERANZZA - COZINHE COM A TEMPERANZZA */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'

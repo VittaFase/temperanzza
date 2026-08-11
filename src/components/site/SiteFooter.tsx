@@ -56,8 +56,9 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link to="/embaixadores" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Embaixadores
+                  Cozinhe conosco
                 </Link>
+
               </li>
             </ul>
           </div>
