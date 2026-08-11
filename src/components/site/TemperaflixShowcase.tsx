@@ -226,7 +226,7 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[300px] sm:min-h-[560px]">
+          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[360px] sm:min-h-[620px] overflow-visible">
             {/* PISO — gradiente neutro (sem tint colorido) */}
             <div
               aria-hidden
@@ -339,7 +339,7 @@ export function TemperaflixShowcase() {
                   <motion.div
                     className="relative w-full"
                     animate={{
-                      y: isActive ? -42 : isCenter ? -6 : 0,
+                      y: isActive ? -28 : isCenter ? -6 : 0,
                       rotateY: isActive ? 6 : 0,
                       scale: isActive ? 1.12 : isCenter ? 1 : 0.85,
                     }}
