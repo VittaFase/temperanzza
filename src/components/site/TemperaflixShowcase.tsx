@@ -333,24 +333,50 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* pedestal — sombra de contato neutra */}
-                  <motion.div
-                    aria-hidden
-                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                    animate={{
-                      opacity: isActive ? 1 : 0.55,
-                      scale: isActive ? 1.15 : 0.9,
-                    }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    style={{
-                      width: "80%",
-                      height: "48px",
-                      bottom: "2%",
-                      background:
-                        "radial-gradient(ellipse 50% 55% at 50% 50%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 45%, transparent 75%)",
-                      filter: "blur(7px)",
-                    }}
-                  />
+                  {/* PEDESTAL & SOMBRA — "Apple Box" de estúdio para base física */}
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[85%] h-12 pointer-events-none z-10">
+                    {/* Sombra de oclusão (mais escura perto do pé do pote) */}
+                    <motion.div
+                      aria-hidden
+                      className="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none"
+                      animate={{
+                        opacity: isActive ? 0.9 : 0.4,
+                        scale: isActive ? 1 : 0.8,
+                      }}
+                      transition={{ duration: 0.6 }}
+                      style={{
+                        width: "70%",
+                        height: "12px",
+                        background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.9) 0%, transparent 80%)",
+                        filter: "blur(4px)",
+                      }}
+                    />
+                    
+                    {/* Estrutura física do pedestal (Apple Box) */}
+                    <motion.div
+                      className="absolute inset-0 bg-neutral-900 border-x border-t border-white/10"
+                      animate={{
+                        height: isActive ? "24px" : "16px",
+                        y: isActive ? "0px" : "8px",
+                      }}
+                      style={{
+                        clipPath: "polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%)",
+                        boxShadow: `inset 0 1px 0 rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.8)`,
+                      }}
+                    >
+                      {/* Brilho na quina da caixa */}
+                      <motion.div 
+                        className="absolute top-0 inset-x-0 h-[1px]"
+                        animate={{ background: isActive ? `linear-gradient(90deg, transparent, ${meta.accent}aa, transparent)` : "rgba(255,255,255,0.05)" }}
+                      />
+                    </motion.div>
+
+                    {/* Sombra projetada no chão da caixa */}
+                    <motion.div
+                      className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[110%] h-8 bg-black/60 blur-md rounded-full -z-10"
+                      animate={{ opacity: isActive ? 0.7 : 0.3 }}
+                    />
+                  </div>
 
                   {/* pot */}
                   <motion.div
