@@ -153,7 +153,7 @@ function RecipeDrawer() {
   const navigate = useNavigate();
   const panelRef = useRef<HTMLDivElement>(null);
 
-  const close = () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "" } });
+  const close = () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "", lifestyle: "", autor: "" } });
 
   // ESC fecha; body scroll lock enquanto drawer está montado
   useEffect(() => {
@@ -228,7 +228,7 @@ function RecipeDrawer() {
                 </li>
                 <li aria-hidden className="hidden sm:inline text-brand-ink/30">/</li>
                 <li>
-                  <Link to="/cozinha" search={{ refeicao: "", proteina: "" }} className="hover:text-accent">
+                  <Link to="/cozinha" search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="hover:text-accent">
                     Biblioteca
                   </Link>
                 </li>
@@ -539,7 +539,7 @@ function RecipeDrawer() {
                   <Link
                     to="/cozinha/$slug"
                     params={{ slug: r.slug }}
-                    search={{ refeicao: "", proteina: "" }}
+                    search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
                     className="group flex items-baseline gap-6 py-5 hover:bg-brand-ink/[0.03] transition -mx-2 px-2"
                   >
                     <span className="shrink-0 font-display italic text-brand-ink/40 text-sm">
