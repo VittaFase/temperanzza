@@ -493,7 +493,7 @@ function TemperaflixPage() {
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: window.innerWidth < 640 ? 150 : 472
+                          y: typeof window !== 'undefined' && window.innerWidth < 640 ? 150 : 472
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
