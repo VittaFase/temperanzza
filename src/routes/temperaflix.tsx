@@ -482,11 +482,11 @@ function TemperaflixPage() {
                       {/* ORIGEM — leve sombra no baú para ancorar a 'saída' do produto */}
                       <motion.div
                         aria-hidden
-                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
+                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1] max-sm:translate-y-[150px]"
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: typeof window !== 'undefined' && window.innerWidth < 640 ? 150 : 472
+                          y: 472
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
