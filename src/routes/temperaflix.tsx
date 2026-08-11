@@ -458,8 +458,9 @@ function TemperaflixPage() {
                       initial={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
                       animate={{ 
                         opacity: 1, 
-                        scale: 1.15, 
+                        scale: typeof window !== 'undefined' && window.innerWidth < 640 ? 1.35 : 1.15, 
                         y: typeof window !== 'undefined' && window.innerWidth < 640 ? -120 : -332, 
+
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
