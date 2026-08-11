@@ -86,7 +86,7 @@ export const Route = createFileRoute("/temperaflix")({
           brand: { "@type": "Brand", name: "Temperanzza" },
           url: TEMPERAFLIX_URL,
           description:
-            "Três shakers Temperaflix: Tradicional, Ervas Finas e Bacon — o tempero dos momentos de tela.",
+            "Três snakers Temperaflix: Tradicional, Ervas Finas e Bacon — o tempero dos momentos de tela.",
           category: "Temperos e Especiarias",
         }),
       },
