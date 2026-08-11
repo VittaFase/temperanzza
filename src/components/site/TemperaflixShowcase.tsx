@@ -226,15 +226,15 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[360px] sm:min-h-[620px] overflow-visible">
+          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[360px] sm:min-h-[620px] overflow-visible max-w-5xl mx-auto px-4">
             {/* PISO — gradiente neutro (sem tint colorido) */}
             <div
               aria-hidden
-              className="absolute inset-x-0 bottom-0 pointer-events-none"
+              className="absolute inset-x-[-20%] bottom-0 pointer-events-none"
               style={{
                 height: "38%",
                 background:
-                  "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0.2) 55%, transparent 100%)",
+                  "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.2) 50%, transparent 100%)",
               }}
             />
             {/* linha de luz no horizonte — sincroniza com accent do sabor ativo */}
