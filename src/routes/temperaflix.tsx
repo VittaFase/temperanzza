@@ -406,31 +406,31 @@ function TemperaflixPage() {
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — big shaker stage */}
-              <div className="relative min-w-0 overflow-visible min-h-[460px] sm:min-h-[580px] flex items-center justify-center lg:col-span-7">
+              <div className="relative min-w-0 overflow-visible min-h-[460px] sm:min-h-[620px] flex items-center justify-center lg:col-span-7">
                 {/* CENÁRIO DE GRAVAÇÃO DINÂMICO — Fundo integrado */}
                 <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                   <motion.div
                     animate={{
-                      background: `radial-gradient(circle at 50% 50%, ${activeMeta.halo}15 0%, transparent 70%)`
+                      background: `radial-gradient(circle at 50% 55%, ${activeMeta.halo}18 0%, transparent 65%)`
                     }}
                     className="absolute inset-0 z-10"
                   />
                   <img 
                     src={studioBg.url} 
                     alt="" 
-                    className="w-full h-full object-cover opacity-20 mix-blend-luminosity blur-[2px]"
+                    className="w-full h-full object-cover opacity-25 mix-blend-luminosity blur-[1px]"
                   />
                 </div>
 
                 {/* PISO DO PALCO — Convergência focal */}
                 <motion.div
                   aria-hidden
-                  className="absolute inset-x-0 bottom-0 pointer-events-none z-10"
+                  className="absolute inset-x-[-10%] bottom-0 pointer-events-none z-10"
                   animate={{
-                    background: `linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 100%), radial-gradient(ellipse 70% 80% at 50% 100%, ${activeMeta.halo}25 0%, transparent 75%)`,
+                    background: `linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 25%, transparent 100%), radial-gradient(ellipse 65% 75% at 50% 100%, ${activeMeta.halo}28 0%, transparent 80%)`,
                   }}
                   transition={{ duration: 1.4, ease: "easeInOut" }}
-                  style={{ height: "45%" }}
+                  style={{ height: "48%" }}
                 />
 
                 {/* RIM LIGHT — Efeito de luz de borda no cenário */}
@@ -451,8 +451,8 @@ function TemperaflixPage() {
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -40, y: -20, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, y: -20, filter: "blur(0px)" }}
+                      initial={{ opacity: 0, x: -40, y: -40, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, x: 0, y: -40, filter: "blur(0px)" }}
                       exit={{ opacity: 0, x: 40, y: -20, filter: "blur(6px)" }}
                       transition={{ duration: 0.55, ease: "easeOut" }}
                       className="relative z-30"
@@ -466,7 +466,7 @@ function TemperaflixPage() {
                           ) ?? ""
                         }
                         alt={activeProduct.node.title}
-                        className="max-h-[500px] w-auto object-contain drop-shadow-[0_40px_50px_rgba(0,0,0,0.65)]"
+                        className="max-h-[580px] w-auto object-contain drop-shadow-[0_45px_60px_rgba(0,0,0,0.85)]"
                         loading="lazy"
                       />
                       {/* scanline sweep */}
