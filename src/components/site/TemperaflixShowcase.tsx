@@ -14,7 +14,6 @@ import { getProductImage } from "@/lib/productImages";
 import { useCartStore } from "@/stores/cartStore";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
-import { FilmGate } from "./FilmGate";
 import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
@@ -169,7 +168,6 @@ export function TemperaflixShowcase() {
       
       {/* Studio Lighting Rig replaces Bokeh */}
       <StudioLightRig accent={activeMeta.accent} opacity={0.6} />
-      <FilmGate activeAccent={activeMeta.accent} />
 
       {/* ambient neutral vignette — substitui o halo colorido global */}
       <div
@@ -373,19 +371,12 @@ export function TemperaflixShowcase() {
                   {/* pot */}
                   <motion.div
                     className="relative w-full z-10"
-                    initial={false}
                     animate={{
                       y: isActive ? -14 : isCenter ? -4 : 0,
                       rotateY: isActive ? 4 : 0,
                       scale: isActive ? 1.08 : isCenter ? 1.02 : 0.92,
-                      filter: isActive ? "blur(0px) brightness(1.05)" : "blur(0.5px) brightness(0.8)",
                     }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 120, 
-                      damping: 20,
-                      filter: { duration: 0.6 }
-                    }}
+                    transition={{ type: "spring", stiffness: 120, damping: 20 }}
                     style={{ transformStyle: "preserve-3d", transformOrigin: "bottom center" }}
                   >
                     {image ? (
