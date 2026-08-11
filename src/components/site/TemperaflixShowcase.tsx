@@ -159,11 +159,13 @@ export function TemperaflixShowcase() {
           src={studioBg.url} 
           alt="" 
           className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+          style={{ objectPosition: "50% 72%" }}
         />
         <div className="absolute inset-0 bg-brand-ink/40" />
       </div>
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-      <BokehBackdrop opacity={0.12} />
+      {/* bokeh removido do palco — luz de estúdio assume a cena */}
+
       {/* ambient neutral vignette — substitui o halo colorido global */}
       <div
         aria-hidden
