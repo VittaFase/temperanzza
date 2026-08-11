@@ -54,12 +54,6 @@ export function SiteFooter() {
                   Blog
                 </Link>
               </li>
-              <li>
-                <Link to="/embaixadores" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Cozinhe conosco
-                </Link>
-
-              </li>
             </ul>
           </div>
           <div>
