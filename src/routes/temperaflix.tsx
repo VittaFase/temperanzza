@@ -14,45 +14,42 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
-import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
-import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
-import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
 import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
-
-/**
- * BokehBackdrop — vídeo em loop de bokeh dourado cinematográfico.
- * Poster estático sempre presente; vídeo só monta quando visível,
- * conexão for boa e prefers-reduced-motion não estiver ativo.
- */
-function BokehBackdrop({ opacity = 0.55 }: { opacity?: number }) {
-  const { containerRef, enableVideo } = useVideoBackdrop();
+function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
     <div
-      ref={containerRef}
       aria-hidden
-      className="absolute inset-0 overflow-hidden pointer-events-none"
+      className="absolute inset-0 overflow-hidden pointer-events-none z-0"
+      style={{ opacity }}
     >
-      <img
-        src={bokehPoster}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ mixBlendMode: "screen", opacity }}
+      {/* Top Studio Light — Soft overhead illumination */}
+      <div 
+        className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-white/10 to-transparent mix-blend-overlay" 
       />
-      {enableVideo && (
-        <video
-          src={bokehVideo.url}
-          poster={bokehPoster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ mixBlendMode: "screen", opacity }}
-        />
-      )}
+      
+      {/* Main Spotlight — Central focus that follows the scene */}
+      <motion.div
+        animate={{
+          background: `radial-gradient(circle at 50% 45%, ${accent}33 0%, transparent 70%)`,
+        }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0"
+      />
+
+      {/* Rim Lights — Directional studio lighting to define shape */}
+      <div className="absolute inset-0 flex justify-between px-[10%] pt-[5%]">
+        <div className="w-[1px] h-[60%] bg-gradient-to-b from-white/20 via-white/10 to-transparent blur-[60px] rotate-[15deg] transform-origin-top" />
+        <div className="w-[1px] h-[60%] bg-gradient-to-b from-white/20 via-white/10 to-transparent blur-[60px] rotate-[-15deg] transform-origin-top" />
+      </div>
+
+      {/* Atmospheric Fog/Volume — Subtle cinematic depth */}
+      <div className="absolute inset-0 bg-brand-ink/10 mix-blend-multiply" />
+      <div 
+        className="absolute inset-0 opacity-20 mix-blend-soft-light"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
     </div>
   );
 }
@@ -285,7 +282,9 @@ function TemperaflixPage() {
           <div className="absolute inset-0 bg-brand-ink/40" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-        <BokehBackdrop opacity={0.15} />
+        
+        {/* Studio Lighting Rig replaces Bokeh */}
+        <StudioLightRig accent={activeMeta.accent} opacity={0.5} />
         
         {/* halo dinâmico do sabor ativo */}
         <motion.div
@@ -366,16 +365,9 @@ function TemperaflixPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/40 to-brand-ink/90" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
-        {/* bokeh removido do palco — luz de estúdio assume a cena */}
-
-        <motion.div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          animate={{
-            background: `radial-gradient(50% 60% at 20% 50%, ${activeMeta.halo}44 0%, transparent 60%)`,
-          }}
-          transition={{ duration: 1.2 }}
-        />
+        
+        {/* Studio Lighting Rig replaces Bokeh — lower opacity for secondary stage */}
+        <StudioLightRig accent={activeMeta.accent} opacity={0.3} />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
