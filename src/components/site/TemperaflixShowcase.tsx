@@ -382,7 +382,7 @@ export function TemperaflixShowcase() {
                   <motion.div
                     className="relative w-full"
                     animate={{
-                      y: isActive ? -16 : isCenter ? -6 : 0,
+                      y: isActive ? -24 : isCenter ? -6 : 0,
                       rotateY: isActive ? 6 : 0,
                       scale: isActive ? 1.12 : isCenter ? 1 : 0.85,
                     }}

@@ -495,9 +495,9 @@ function TemperaflixPage() {
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -40, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 40, filter: "blur(6px)" }}
+                      initial={{ opacity: 0, x: -40, y: -20, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, x: 0, y: -20, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, x: 40, y: -20, filter: "blur(6px)" }}
                       transition={{ duration: 0.55, ease: "easeOut" }}
                       className="relative"
                       style={{ perspective: 1200 }}
