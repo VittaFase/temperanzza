@@ -485,19 +485,23 @@ function TemperaflixPage() {
                         loading="lazy"
                       />
 
-                      {/* CONTATO — sombra curta presa à base, atrás do pote */}
+                      {/* ORIGEM — leve sombra no baú para ancorar a 'saída' do produto */}
                       <motion.div
                         aria-hidden
                         className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
-                        animate={{ opacity: [0.75, 0.9, 0.75] }}
+                        animate={{ 
+                          opacity: [0.3, 0.5, 0.3],
+                          scale: [1, 1.1, 1],
+                          y: 150 // Mantém a sombra no baú enquanto o pote sobe
+                        }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
-                          bottom: "-6px",
-                          width: "62%",
-                          height: "20px",
+                          bottom: "-10px",
+                          width: "50%",
+                          height: "15px",
                           background:
-                            "radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 55%, transparent 80%)",
-                          filter: "blur(5px)",
+                            "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
+                          filter: "blur(8px)",
                         }}
                       />
                       <div
