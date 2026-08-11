@@ -453,10 +453,23 @@ function TemperaflixPage() {
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -28, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 28, filter: "blur(6px)" }}
-                      transition={{ duration: 0.55, ease: "easeOut" }}
+                      layoutId={`pote-detalhe-${active}`}
+                      initial={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
+                      animate={{ 
+                        opacity: 1, 
+                        scale: 1.25, 
+                        y: -150, // Projetado para a tela de cinema no fundo
+                        x: 0,
+                        filter: "blur(0px)",
+                        rotateY: [0, 5, -5, 0],
+                      }}
+                      exit={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 70, 
+                        damping: 18,
+                        rotateY: { duration: 10, repeat: Infinity, ease: "easeInOut" }
+                      }}
                       className="relative z-30 flex flex-col items-center"
                       style={{ perspective: 1200, transformOrigin: "bottom center" }}
                     >
@@ -468,7 +481,7 @@ function TemperaflixPage() {
                           ) ?? ""
                         }
                         alt={activeProduct.node.title}
-                        className="max-h-[300px] sm:max-h-[400px] w-auto object-contain drop-shadow-[0_18px_26px_rgba(0,0,0,0.7)]"
+                        className="max-h-[300px] sm:max-h-[400px] w-auto object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.9)]"
                         loading="lazy"
                       />
 
