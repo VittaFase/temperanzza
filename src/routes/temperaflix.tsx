@@ -277,7 +277,7 @@ function TemperaflixPage() {
           <img 
             src={studioBg.url} 
             alt="" 
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover opacity-100"
           />
           <div className="absolute inset-0 bg-brand-ink/30" />
         </div>
