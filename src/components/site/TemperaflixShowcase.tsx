@@ -333,25 +333,25 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* SOMBRA DE CONTATO — Posicionada estritamente atrás/abaixo do pote */}
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[14%] w-[35%] h-4 pointer-events-none z-0">
+                  {/* SOMBRA DE CONTATO — Maior opacidade e realismo */}
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[14%] w-[40%] h-6 pointer-events-none z-0">
                     <motion.div
                       aria-hidden
                       animate={{
-                        opacity: isActive ? 0.9 : 0.4,
+                        opacity: isActive ? 1 : 0.6,
                         scale: isActive ? 1.1 : 0.9,
                       }}
                       transition={{ duration: 0.6 }}
-                      className="absolute inset-0 bg-black/90 blur-[12px] rounded-[100%]"
-                      style={{ transform: "scaleY(0.3) translateY(8px)" }}
+                      className="absolute inset-0 bg-black blur-[14px] rounded-[100%]"
+                      style={{ transform: "scaleY(0.4) translateY(10px)" }}
                     />
                     <motion.div
                       aria-hidden
                       animate={{
-                        opacity: isActive ? 1 : 0.5,
+                        opacity: isActive ? 1 : 0.7,
                       }}
-                      className="absolute inset-0 bg-black blur-[5px] rounded-[100%]"
-                      style={{ transform: "scaleY(0.2) scaleX(0.6) translateY(8px)" }}
+                      className="absolute inset-0 bg-black/90 blur-[6px] rounded-[100%]"
+                      style={{ transform: "scaleY(0.25) scaleX(0.65) translateY(10px)" }}
                     />
                   </div>
 
