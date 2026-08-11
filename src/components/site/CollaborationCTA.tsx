@@ -22,7 +22,7 @@ export function CollaborationCTA() {
         </h2>
         
         <p className="font-serif italic text-lg sm:text-xl text-brand-paper/70 max-w-2xl mx-auto mb-12 leading-relaxed">
-          Buscamos chefs, criadores e apaixonados pela boa mesa para levar a essência mineira a mais cozinhas.
+          Envie sua receita — nossa curadoria ajusta com você o que for preciso, ela ganha sua assinatura no site e os potes dos condimentos que você usou - Leva de presente da casa.
         </p>
         
         <div className="flex justify-center">
