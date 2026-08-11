@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: ANALISE O FRONT END DO FUNDO DA AREA TEMPERAFLIX E OBSERVE QUE O FUNDO AINDA NÃO FOI MUDADO! */}
+
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
