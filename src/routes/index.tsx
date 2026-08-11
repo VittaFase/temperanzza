@@ -1,9 +1,9 @@
-{/* A ESSÊNCIA DA CASA TEMPERANZZA - COZINHE COM A TEMPERANZZA */}
+{/* CASA TEMPERANZZA - ESTRUTURA LIMPA */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
 import { HouseOffers } from '@/components/site/HouseOffers'
-import { AmbassadorsSection } from '@/components/site/AmbassadorsSection'
+
 import { RecipeShowcase } from '@/components/site/RecipeShowcase'
 import { SEO } from '@/components/site/SEO'
 
@@ -34,7 +34,7 @@ function Home() {
         <FeaturedProducts />
         <RecipeShowcase />
         <HouseOffers />
-        <AmbassadorsSection />
+        
       </main>
     </div>
   )
