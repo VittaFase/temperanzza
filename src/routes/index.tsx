@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: em nossa estrutura quais são as responsabilidade e atuações do lovable cloude em nossa estrutura, me responda didaticamente! */}
+{/* Execute esta instrucao no projeto: execute e implemente */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
