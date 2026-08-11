@@ -66,8 +66,9 @@ export const Route = createFileRoute("/embaixadores")({
 const PILLARS = [
   {
     icon: Percent,
-    title: "Condição de casa",
-    body: "Cupom pessoal para sua audiência e preço de embaixador nas suas próprias compras — sem meta agressiva, sem contrato amarrado.",
+    title: "Condição de Parceiro",
+    body: "Cupom pessoal para sua audiência e preço diferenciado nas suas próprias compras — sem meta agressiva.",
+
   },
   {
     icon: Camera,
