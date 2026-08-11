@@ -277,9 +277,9 @@ function TemperaflixPage() {
           <img 
             src={studioBg.url} 
             alt="" 
-            className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+            className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-brand-ink/40" />
+          <div className="absolute inset-0 bg-brand-ink/30" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
         
@@ -360,9 +360,9 @@ function TemperaflixPage() {
           <img 
             src={studioBg.url} 
             alt="" 
-            className="w-full h-full object-cover opacity-30 mix-blend-luminosity brightness-50"
+            className="w-full h-full object-cover opacity-50 brightness-75"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/40 to-brand-ink/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/20 to-brand-ink/90" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
         
@@ -405,12 +405,12 @@ function TemperaflixPage() {
                   <img
                     src={studioBg.url}
                     alt=""
-                    className="w-full h-full object-cover opacity-30 mix-blend-luminosity"
+                    className="w-full h-full object-cover opacity-50"
                     style={{ objectPosition: "50% 78%" }}
                   />
                   <motion.div
                     animate={{
-                      background: `radial-gradient(circle at 50% 72%, ${activeMeta.halo}1f 0%, transparent 62%)`,
+                      background: `radial-gradient(circle at 50% 72%, ${activeMeta.halo}15 0%, transparent 62%)`,
                     }}
                     className="absolute inset-0 z-10"
                   />
