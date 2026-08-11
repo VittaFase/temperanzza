@@ -333,7 +333,7 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* PEDESTAL & SOMBRA — "Apple Box" de estúdio para base física */}
+                  {/* PEDESTAL & SOMBRA — Removida a caixa preta, mantendo apenas a sombra de contato */}
                   <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[85%] h-12 pointer-events-none z-10">
                     {/* Sombra de oclusão (mais escura perto do pé do pote) */}
                     <motion.div
@@ -348,33 +348,8 @@ export function TemperaflixShowcase() {
                         width: "70%",
                         height: "12px",
                         background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.9) 0%, transparent 80%)",
-                        filter: "blur(4px)",
+                        filter: "blur(6px)",
                       }}
-                    />
-                    
-                    {/* Estrutura física do pedestal (Apple Box) */}
-                    <motion.div
-                      className="absolute inset-0 bg-neutral-900 border-x border-t border-white/10"
-                      animate={{
-                        height: isActive ? "24px" : "16px",
-                        y: isActive ? "0px" : "8px",
-                      }}
-                      style={{
-                        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                        boxShadow: `inset 0 1px 0 rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.8)`,
-                      }}
-                    >
-                      {/* Brilho na quina da caixa */}
-                      <motion.div 
-                        className="absolute top-0 inset-x-0 h-[1px]"
-                        animate={{ background: isActive ? `linear-gradient(90deg, transparent, ${meta.accent}aa, transparent)` : "rgba(255,255,255,0.05)" }}
-                      />
-                    </motion.div>
-
-                    {/* Sombra projetada no chão da caixa */}
-                    <motion.div
-                      className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[110%] h-8 bg-black/60 blur-md rounded-full -z-10"
-                      animate={{ opacity: isActive ? 0.7 : 0.3 }}
                     />
                   </div>
 
@@ -382,7 +357,7 @@ export function TemperaflixShowcase() {
                   <motion.div
                     className="relative w-full"
                     animate={{
-                      y: isActive ? -24 : isCenter ? -6 : 0,
+                      y: isActive ? -42 : isCenter ? -6 : 0,
                       rotateY: isActive ? 6 : 0,
                       scale: isActive ? 1.12 : isCenter ? 1 : 0.85,
                     }}
