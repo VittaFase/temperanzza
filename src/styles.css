@@ -190,6 +190,25 @@
   animation: pote-float 6s ease-in-out infinite;
 }
 
+/* Film grain movement simulation */
+@keyframes film-grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, -1%); }
+  20% { transform: translate(1%, 1%); }
+  30% { transform: translate(-2%, 0); }
+  40% { transform: translate(0, 2%); }
+  50% { transform: translate(1%, -1%); }
+  60% { transform: translate(-1%, 1%); }
+  70% { transform: translate(2%, 1%); }
+  80% { transform: translate(-1%, -2%); }
+  90% { transform: translate(1%, 0); }
+}
+
+@utility animate-film-grain {
+  animation: film-grain 0.6s steps(6) infinite;
+}
+
+
 /* Barra de progresso do carrossel de sabores (estilo stories). */
 @keyframes flavor-progress {
   from { transform: scaleX(0); }
