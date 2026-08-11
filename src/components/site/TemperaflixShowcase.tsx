@@ -16,6 +16,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
+import temperaflixBg from "@/assets/FUNDO_TEMPERAFLIX.png.asset.json";
 import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
 
 
@@ -152,16 +153,26 @@ export function TemperaflixShowcase() {
 
   return (
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
+      {/* background image: a nova imagem do set com a cadeira Temperanzza */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={temperaflixBg.url}
+          alt=""
+          className="w-full h-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-brand-ink/40" />
+      </div>
+
       {/* atmosphere: paper grain + bokeh neutro (sem tint colorido de sabor) */}
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-      <BokehBackdrop opacity={0.18} />
+      <BokehBackdrop opacity={0.12} />
       {/* ambient neutral vignette — substitui o halo colorido global */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(70% 60% at 50% 45%, rgba(255,255,255,0.05) 0%, transparent 60%), radial-gradient(50% 40% at 50% 100%, rgba(0,0,0,0.6) 0%, transparent 70%)",
+            "radial-gradient(70% 60% at 50% 45%, rgba(255,255,255,0.02) 0%, transparent 60%), radial-gradient(50% 40% at 50% 100%, rgba(0,0,0,0.8) 0%, transparent 70%)",
         }}
       />
       {/* faint vertical scanlines */}
