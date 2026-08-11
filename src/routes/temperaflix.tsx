@@ -64,7 +64,7 @@ export const Route = createFileRoute("/temperaflix")({
       {
         name: "description",
         content:
-          "Linha exclusiva Temperaflix: 3 shakers — Tradicional, Ervas Finas e Bacon. O sabor oficial dos seus momentos de tela: cinema, séries e games.",
+          "Linha exclusiva Temperaflix: 3 snakers — Tradicional, Ervas Finas e Bacon. O sabor oficial dos seus momentos de tela: cinema, séries e games.",
       },
       { property: "og:title", content: "Temperaflix — O tempero que entra em cena" },
       {
