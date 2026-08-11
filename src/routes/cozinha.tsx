@@ -497,7 +497,7 @@ function CategoriaAccordion({
                   <Link
                     to="/cozinha/$slug"
                     params={{ slug: r.slug }}
-                    search={{ refeicao: "", proteina: "" }}
+                    search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
                     className="group/item flex items-center gap-6 sm:gap-10 py-5 sm:py-8 pl-16 sm:pl-24 pr-4 hover:bg-brand-ink hover:text-brand-paper transition-all -mx-4 sm:-mx-6 sm:pr-6"
                   >
                     <span className="shrink-0 font-display text-brand-ink/30 text-xs tabular-nums group-hover/item:text-brand-mustard w-8">
