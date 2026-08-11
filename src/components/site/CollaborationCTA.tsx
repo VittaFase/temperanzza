@@ -15,7 +15,7 @@ export function CollaborationCTA() {
           CONVITE ABERTO
         </span>
         
-        <h2 className="font-display font-black uppercase text-5xl sm:text-7xl lg:text-8xl leading-[0.85] tracking-tighter mb-8">
+        <h2 className="font-display font-black uppercase text-4xl sm:text-7xl lg:text-8xl leading-[0.85] tracking-tighter mb-8">
           <span className="text-brand-paper">Cozinhe com a</span>
           <br />
           <span className="text-brand-mustard">Temperanzza</span>
