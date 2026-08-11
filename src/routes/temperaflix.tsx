@@ -277,9 +277,9 @@ function TemperaflixPage() {
           <img 
             src={studioBg.url} 
             alt="" 
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover opacity-100"
           />
-          <div className="absolute inset-0 bg-brand-ink/30" />
+          <div className="absolute inset-0 bg-brand-ink/10" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
         
@@ -360,7 +360,7 @@ function TemperaflixPage() {
           <img 
             src={studioBg.url} 
             alt="" 
-            className="w-full h-full object-cover opacity-50 brightness-75"
+            className="w-full h-full object-cover opacity-100 brightness-100"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/20 to-brand-ink/90" />
         </div>
@@ -405,7 +405,7 @@ function TemperaflixPage() {
                   <img
                     src={studioBg.url}
                     alt=""
-                    className="w-full h-full object-cover opacity-50"
+                    className="w-full h-full object-cover opacity-100"
                     style={{ objectPosition: "50% 78%" }}
                   />
                   <motion.div
