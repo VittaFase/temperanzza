@@ -18,10 +18,11 @@ import {
 } from "@/lib/ambassadors";
 import { trackEvent } from "@/lib/analytics";
 
-const URL = "https://temperanzza.com.br/embaixadores";
-const TITLE = "Programa de Embaixadores — Temperanzza";
+const URL = "https://temperanzza.com.br/cozinhe-conosco";
+const TITLE = "Cozinhe com a Temperanzza — Programa de Parceria";
 const DESCRIPTION =
-  "Cozinhe com a Temperanzza: programa de embaixadores para chefs, criadores de conteúdo, restaurantes e revendas. Condições de casa, kits autorais e curadoria de conteúdo.";
+  "Buscamos chefs, criadores e apaixonados pela boa mesa para levar a essência mineira a mais cozinhas. Programa de parceria Temperanzza.";
+
 
 export const Route = createFileRoute("/embaixadores")({
   head: () => ({
@@ -65,8 +66,9 @@ export const Route = createFileRoute("/embaixadores")({
 const PILLARS = [
   {
     icon: Percent,
-    title: "Condição de casa",
-    body: "Cupom pessoal para sua audiência e preço de embaixador nas suas próprias compras — sem meta agressiva, sem contrato amarrado.",
+    title: "Condição de Parceiro",
+    body: "Cupom pessoal para sua audiência e preço diferenciado nas suas próprias compras — sem meta agressiva.",
+
   },
   {
     icon: Camera,
@@ -75,8 +77,9 @@ const PILLARS = [
   },
   {
     icon: Sparkles,
-    title: "Coautoria de blend",
-    body: "Embaixadores ativos participam de testes de blends autorais antes do lançamento e podem assinar uma receita na Cozinha Temperanzza.",
+    title: "Coautoria de Conteúdo",
+    body: "Parceiros ativos participam de testes de blends e podem assinar uma receita na Cozinha Temperanzza.",
+
   },
   {
     icon: Handshake,
@@ -147,7 +150,8 @@ function EmbaixadoresPage() {
             href="#candidatura"
             className="mt-8 inline-flex items-center gap-2 bg-accent px-6 py-4 font-display font-black uppercase tracking-widest text-sm text-accent-foreground hover:bg-foreground hover:text-background"
           >
-            Quero me candidatar
+            Quero Cozinhar com a Casa
+
           </a>
         </div>
       </section>

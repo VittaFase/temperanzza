@@ -24,7 +24,8 @@ export function AmbassadorsSection() {
             to="/embaixadores"
             className="inline-flex min-h-[56px] items-center bg-brand-mustard text-brand-ink px-10 py-3 font-display uppercase tracking-widest text-sm hover:bg-brand-paper transition-colors"
           >
-            Quero ser Embaixador
+            Quero Cozinhar com a Casa
+
           </Link>
         </div>
       </div>
