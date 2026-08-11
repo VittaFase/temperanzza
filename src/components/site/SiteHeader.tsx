@@ -45,8 +45,8 @@ export function SiteHeader() {
             <span className="font-display text-2xl sm:text-3xl font-black tracking-wider uppercase leading-none">
               Temperanzza
             </span>
-            <span className="hidden sm:inline text-xs uppercase tracking-[0.25em] text-muted-foreground border-l border-foreground/30 pl-1.5">
-              SPICE HOUSE
+            <span className="hidden sm:inline text-[0.6rem] sm:text-[0.65rem] font-bold uppercase tracking-[0.2em] text-muted-foreground border-l border-foreground/30 pl-2 ml-0.5">
+              FEITO COM FOGO, SAL E TEMPO.
             </span>
           </div>
         </Link>
