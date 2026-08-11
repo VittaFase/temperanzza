@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
 import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
-import studioBg from "@/assets/FUNDO_TEMPERAFLIX-2.png.asset.json";
+import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
 
 /**
  * BokehBackdrop — vídeo em loop de bokeh dourado cinematográfico.
