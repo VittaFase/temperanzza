@@ -373,14 +373,14 @@ function TemperaflixPage() {
         <StudioLightRig accent={activeMeta.accent} opacity={0.3} />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <TerminalTag color={activeMeta.accent}>Episódios</TerminalTag>
               <h2 className="mt-3 font-display font-black uppercase text-4xl sm:text-5xl lg:text-6xl tracking-tight">
                 Escolha sua sessão
               </h2>
             </div>
-            <p className="max-w-md text-brand-paper/60 leading-relaxed">
+            <p className="max-w-md text-brand-paper/60 leading-relaxed text-sm sm:text-base">
               Cada pote, um episódio, colecione os três.
             </p>
           </div>
@@ -401,7 +401,7 @@ function TemperaflixPage() {
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — palco: pote projetado na tela de cinema no fundo */}
-              <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[700px] flex sm:items-end sm:pb-[6%] items-center pb-0 justify-center lg:col-span-7">
+              <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[700px] flex sm:items-end sm:pb-[6%] items-center pb-0 justify-center lg:col-span-7 mt-12 sm:mt-0">
                 <FilmGate>
                   {/* CENÁRIO — enquadramento aberto com tela de cinema no fundo */}
                   <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -413,7 +413,7 @@ function TemperaflixPage() {
                     />
                     {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
                     <div 
-                      className="absolute top-[35%] sm:top-[28%] left-1/2 -translate-x-1/2 w-[85%] sm:w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
+                      className="absolute top-[42%] sm:top-[28%] left-1/2 -translate-x-1/2 w-[85%] sm:w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
                       style={{ 
                         boxShadow: `0 0 100px ${activeMeta.accent}33`,
                         transform: "translateY(-50%)"
@@ -442,7 +442,7 @@ function TemperaflixPage() {
                 {/* KEY LIGHT centralizado atrás do pote — SUBIU para altura do Ep 01 */}
                 <motion.div
                   aria-hidden
-                  className="absolute blur-[80px] sm:blur-[120px] rounded-full z-10 pointer-events-none left-1/2 -translate-x-1/2 w-[90%] sm:w-[65%] h-[60%] sm:h-[55%] top-[8%] sm:top-[1%]"
+                  className="absolute blur-[60px] sm:blur-[120px] rounded-full z-10 pointer-events-none left-1/2 -translate-x-1/2 w-[80%] sm:w-[65%] h-[50%] sm:h-[55%] top-[15%] sm:top-[1%]"
                   animate={{
                     background: activeMeta.halo,
                     opacity: [0.18, 0.3, 0.18],
@@ -459,12 +459,12 @@ function TemperaflixPage() {
                       animate={{ 
                         opacity: 1, 
                         scale: 1.15, 
-                        y: -332, 
+                        y: typeof window !== 'undefined' && window.innerWidth < 640 ? -160 : -332, 
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
                       }}
-                      className="relative z-30 flex flex-col items-center max-sm:-translate-y-[20px]"
+                      className="relative z-30 flex flex-col items-center"
                       style={{ perspective: 1200, transformOrigin: "bottom center" }}
                     >
                       <img decoding="async"
@@ -482,11 +482,11 @@ function TemperaflixPage() {
                       {/* ORIGEM — leve sombra no baú para ancorar a 'saída' do produto */}
                       <motion.div
                         aria-hidden
-                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1] max-sm:translate-y-[150px]"
+                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: 472
+                          y: typeof window !== 'undefined' && window.innerWidth < 640 ? 300 : 472
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
