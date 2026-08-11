@@ -182,22 +182,23 @@ export function TemperaflixShowcase() {
 
   return (
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <FilmGate>
-          {/* atmosphere: studio background */}
+      <FilmGate>
+        {/* atmosphere: studio background */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <video 
             src={studioVideo.url} 
             poster={studioBg.url}
-            className="absolute inset-0 w-full h-full object-cover opacity-100 brightness-100 z-0"
+            className="w-full h-full object-cover opacity-100 brightness-100"
             autoPlay 
             muted 
             loop 
             playsInline
           />
-          <div className="absolute inset-0 bg-brand-ink/20 z-10" />
+          <div className="absolute inset-0 bg-brand-ink/20" />
 
           {/* 1. SCENE WRAPPER (Centro Óptico do Palco Home) */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            
             {/* TELA DE CINEMA 16:9 — Centrada na scene */}
             <div 
               className="relative w-[85%] sm:w-[75%] lg:w-[72%] aspect-[16/9] overflow-hidden"
@@ -224,13 +225,15 @@ export function TemperaflixShowcase() {
             />
           </div>
 
-          {/* Studio Lighting Rig replaces Bokeh */}
-          <StudioLightRig accent={activeMeta.accent} opacity={0.6} />
-          
-          {/* Textura de filme em movimento entre o fundo e o conteúdo */}
-          <FilmTexture />
-        </FilmGate>
-      </div>
+          <div className="absolute inset-0 bg-brand-ink/5" />
+        </div>
+        
+        {/* Studio Lighting Rig replaces Bokeh */}
+        <StudioLightRig accent={activeMeta.accent} opacity={0.6} />
+        
+        {/* Textura de filme em movimento entre o fundo e o conteúdo */}
+        <FilmTexture />
+      </FilmGate>
 
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28">
