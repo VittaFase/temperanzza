@@ -461,7 +461,7 @@ function TemperaflixPage() {
                       animate={{ 
                         opacity: 1, 
                         scale: 1.15, 
-                        y: -80, // Centralizado na tela de cinema no fundo
+                        y: -170, // Centralizado na altura do Ep 02 da playlist
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
@@ -495,7 +495,7 @@ function TemperaflixPage() {
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: 230 // Mantém a sombra no baú enquanto o pote sobe
+                          y: 320 // Mantém a sombra no baú enquanto o pote sobe (230 + 90 de diferença)
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
