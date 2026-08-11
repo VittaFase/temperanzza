@@ -155,14 +155,14 @@ export function TemperaflixShowcase() {
   return (
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
       {/* atmosphere: studio background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
           src={studioBg.url} 
           alt="" 
-          className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+          className="w-full h-full object-cover opacity-80"
           style={{ objectPosition: "50% 72%" }}
         />
-        <div className="absolute inset-0 bg-brand-ink/40" />
+        <div className="absolute inset-0 bg-brand-ink/30" />
       </div>
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
       
