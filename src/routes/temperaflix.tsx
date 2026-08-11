@@ -449,7 +449,7 @@ function TemperaflixPage() {
                     opacity: [0.18, 0.3, 0.18],
                   }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ width: "65%", height: "55%", top: "0%" }}
+                  style={{ width: "65%", height: "55%", top: "-10%" }}
                 />
 
                 <AnimatePresence mode="wait">
