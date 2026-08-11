@@ -302,8 +302,8 @@ function TemperaflixPage() {
       {/* ═══════════════ HERO CINEMATOGRÁFICO ═══════════════ */}
       <section className="relative overflow-hidden bg-brand-ink text-brand-paper">
         <FilmGate>
-          {/* Fundo de estúdio solicitado */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* Fundo de estúdio solicitado — increased visibility */}
+          <div className="absolute inset-0 z-0 pointer-events-none min-h-screen">
             <video 
               src={studioVideo.url} 
               poster={studioBg.url}
