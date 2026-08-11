@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: onde a Cozinhe com a Temperanzza está implementada no site? */}
+{/* Execute esta instrucao no projeto: crie e implemente um espaço dessa maneira da referencia na pagina inicial do site para o usuario ter acesso e uma experiencia facilitata com todas as funcionalidades */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
@@ -6,6 +6,7 @@ import { HouseOffers } from '@/components/site/HouseOffers'
 
 import { RecipeShowcase } from '@/components/site/RecipeShowcase'
 import { SEO } from '@/components/site/SEO'
+import { CollaborationCTA } from '@/components/site/CollaborationCTA'
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -33,6 +34,7 @@ function Home() {
         <SiteHero />
         <FeaturedProducts />
         <RecipeShowcase />
+        <CollaborationCTA />
         <HouseOffers />
         
       </main>
