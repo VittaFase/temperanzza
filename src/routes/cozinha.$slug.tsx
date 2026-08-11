@@ -295,7 +295,7 @@ function RecipeDrawer() {
               </div>
               <h1
                 id="recipe-drawer-title"
-                className="font-display font-black uppercase leading-[0.9] tracking-tight text-4xl sm:text-6xl lg:text-7xl"
+                className="font-display font-black uppercase leading-[0.9] tracking-tight text-3xl sm:text-6xl lg:text-7xl"
               >
                 {recipe.title}
               </h1>

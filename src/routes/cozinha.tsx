@@ -131,7 +131,7 @@ function BibliotecaHero() {
 
         <h1
           id="biblioteca-hero-title"
-          className="font-display font-black uppercase text-brand-paper leading-[0.88] tracking-tight text-[15vw] sm:text-8xl lg:text-[9.5rem]"
+          className="font-display font-black uppercase text-brand-paper leading-[0.88] tracking-tight text-[12vw] sm:text-8xl lg:text-[9.5rem]"
         >
           Biblioteca
           <br />
