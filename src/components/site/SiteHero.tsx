@@ -45,7 +45,7 @@ export function SiteHero() {
           Casa de Temperos Artesanais
         </span>
         
-        <h1 className="font-display font-black uppercase text-6xl sm:text-8xl lg:text-[10rem] leading-[0.85] tracking-tight mb-8">
+        <h1 className="font-display font-black uppercase text-5xl sm:text-8xl lg:text-[10rem] leading-[0.85] tracking-tight mb-8">
           A ESSÊNCIA DA <br />
           <span className="text-brand-mustard">CASA TEMPERANZZA</span>
         </h1>

@@ -38,10 +38,10 @@ export function FeaturedRow({
   if (!products?.length) return null;
 
   return (
-    <div className="relative border-2 border-accent px-4 sm:px-10 py-12 sm:py-14">
+    <div className="relative border-2 border-accent px-4 sm:px-10 py-12 sm:py-14 bg-background">
       {/* label cortando a borda */}
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-background px-5">
-        <span className="font-display font-black uppercase tracking-[0.4em] text-xs sm:text-sm text-accent">
+      <div className="absolute -top-[13px] left-1/2 -translate-x-1/2 bg-background px-5 whitespace-nowrap z-10">
+        <span className="font-display font-black uppercase tracking-[0.4em] text-[10px] sm:text-sm text-accent">
           ─ {label} ─
         </span>
       </div>
