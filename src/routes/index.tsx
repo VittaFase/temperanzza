@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: Envie sua receita — nossa curadoria ajusta com você o que for preciso, e ela ganha assinatura no site e os potes dos condimentos que você usou, de presente da casa. */}
+{/* Execute esta instrucao no projeto: veja essas duas opcoes de verificação de segurança */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
