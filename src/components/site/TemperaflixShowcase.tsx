@@ -333,22 +333,21 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* PEDESTAL & SOMBRA — Removida a caixa preta, mantendo apenas a sombra de contato */}
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[85%] h-12 pointer-events-none z-10">
-                    {/* Sombra de oclusão (mais escura perto do pé do pote) */}
+                  {/* SOMBRA DE CONTATO — Mantendo apenas o essencial para o realismo */}
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[10%] w-[60%] h-6 pointer-events-none z-10">
                     <motion.div
                       aria-hidden
                       className="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none"
                       animate={{
                         opacity: isActive ? 0.9 : 0.4,
-                        scale: isActive ? 1 : 0.8,
+                        scale: isActive ? 1.1 : 0.8,
                       }}
                       transition={{ duration: 0.6 }}
                       style={{
-                        width: "70%",
-                        height: "12px",
+                        width: "100%",
+                        height: "100%",
                         background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.9) 0%, transparent 80%)",
-                        filter: "blur(6px)",
+                        filter: "blur(8px)",
                       }}
                     />
                   </div>
