@@ -414,7 +414,7 @@ function TemperaflixPage() {
                     />
                     {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
                     <div 
-                      className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
+                      className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
                       style={{ 
                         boxShadow: `0 0 100px ${activeMeta.accent}33`,
                         transform: "translateY(-50%)"
@@ -449,7 +449,7 @@ function TemperaflixPage() {
                     opacity: [0.18, 0.3, 0.18],
                   }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ width: "65%", height: "55%", top: "-15%" }}
+                  style={{ width: "65%", height: "55%", top: "1%" }}
                 />
 
                 <AnimatePresence mode="wait">
@@ -461,7 +461,7 @@ function TemperaflixPage() {
                       animate={{ 
                         opacity: 1, 
                         scale: 1.15, 
-                        y: -420, // Elevado para alinhar o centro do pote com o Episódio 01 (Tradicional)
+                        y: -260, // Recalibrado para alinhar com o centro da playlist elevada
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
@@ -495,7 +495,7 @@ function TemperaflixPage() {
                         animate={{ 
                           opacity: [0.3, 0.5, 0.3],
                           scale: [1, 1.1, 1],
-                          y: 560 // Mantém a sombra no baú (delta de subida compensado para y: -420)
+                          y: 400 // Mantém a sombra no baú (delta de subida compensado para y: -260)
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
@@ -554,7 +554,7 @@ function TemperaflixPage() {
               </div>
 
               {/* RIGHT — playlist */}
-              <div className="flex w-full min-w-0 flex-col divide-y divide-brand-paper/15 border-y border-brand-paper/15 lg:col-span-5">
+              <div className="flex w-full min-w-0 flex-col divide-y divide-brand-paper/15 border-y border-brand-paper/15 lg:col-span-5 lg:-translate-y-[150px]">
                 {ORDER.map((k) => {
                   const meta = FLAVOR[k];
                   const p = byFlavor[k];
