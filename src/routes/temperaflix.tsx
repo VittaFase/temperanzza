@@ -16,6 +16,7 @@ import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 import { FilmGate } from "@/components/site/FilmGate";
 import studioBg from "@/assets/FUNDO_TEMPERAFLIX-6.png.asset.json";
+import studioVideo from "@/assets/filme_temperaflix.mp4.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
     <div
@@ -303,10 +304,13 @@ function TemperaflixPage() {
         <FilmGate>
           {/* Fundo de estúdio solicitado */}
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <img 
-              src={studioBg.url} 
-              alt="" 
+            <video 
+              src={studioVideo.url} 
               className="w-full h-full object-cover opacity-100"
+              autoPlay 
+              muted 
+              loop 
+              playsInline
               style={{ objectPosition: "50% 50%" }}
             />
             <div className="absolute inset-0 bg-brand-ink/10" />
@@ -390,10 +394,13 @@ function TemperaflixPage() {
       >
         {/* Fundo de estúdio solicitado */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <img 
-            src={studioBg.url} 
-            alt="" 
+          <video 
+            src={studioVideo.url} 
             className="w-full h-full object-cover opacity-100 brightness-100"
+            autoPlay 
+            muted 
+            loop 
+            playsInline
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/20 to-brand-ink/90" />
         </div>
