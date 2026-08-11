@@ -36,6 +36,7 @@ export function RecipeShowcase() {
           
           <Link 
             to="/cozinha"
+            search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
             className="group inline-flex items-center gap-2 border-b border-brand-mustard/30 pb-1 text-[10px] font-display uppercase tracking-[0.3em] text-brand-mustard hover:text-brand-paper hover:border-brand-paper transition-all"
           >
             Ver todas as {RECIPES.length} receitas
@@ -49,6 +50,7 @@ export function RecipeShowcase() {
               key={recipe.slug}
               to="/cozinha/$slug"
               params={{ slug: recipe.slug }}
+              search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
               className="group block relative"
             >
               <div className="relative aspect-[4/5] overflow-hidden bg-brand-paper/5">
