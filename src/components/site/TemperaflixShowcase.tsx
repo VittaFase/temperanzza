@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import bokehVideo from "@/assets/hero-bokeh.mp4.asset.json";
 import bokehPoster from "@/assets/hero-bokeh-poster.jpg";
 import { useVideoBackdrop } from "@/lib/useVideoBackdrop";
+import studioBg from "@/assets/FUNDO_TEMPERAFLIX-2.png.asset.json";
 
 
 function BokehBackdrop({ opacity = 0.3 }: { opacity?: number }) {
@@ -152,9 +153,17 @@ export function TemperaflixShowcase() {
 
   return (
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
-      {/* atmosphere: paper grain + bokeh neutro (sem tint colorido de sabor) */}
+      {/* atmosphere: studio background */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={studioBg.url} 
+          alt="" 
+          className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+        />
+        <div className="absolute inset-0 bg-brand-ink/40" />
+      </div>
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-      <BokehBackdrop opacity={0.18} />
+      <BokehBackdrop opacity={0.12} />
       {/* ambient neutral vignette — substitui o halo colorido global */}
       <div
         aria-hidden
