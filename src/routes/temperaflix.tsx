@@ -446,28 +446,28 @@ function TemperaflixPage() {
                   style={{ width: "60%", height: "60%", top: "10%", left: "20%" }}
                 />
 
-                {/* SOMBRA DE CONTATO — Posicionada estritamente atrás/abaixo do pote */}
+                {/* SOMBRA DE CONTATO — Maior opacidade e realismo */}
                 <div
                   aria-hidden
                   className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
                   style={{
-                    width: "40%",
-                    height: "12px",
+                    width: "45%",
+                    height: "15px",
                     bottom: "12%",
                   }}
                 >
                   <motion.div 
                     animate={{
                       scale: [1, 1.05, 1],
-                      opacity: [0.8, 0.95, 0.8]
+                      opacity: [0.9, 1, 0.9]
                     }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-black/95 blur-[12px] rounded-[100%]"
-                    style={{ transform: "scaleY(0.3) translateY(10px)" }}
+                    className="absolute inset-0 bg-black blur-[14px] rounded-[100%]"
+                    style={{ transform: "scaleY(0.4) translateY(12px)" }}
                   />
                   <div 
-                    className="absolute inset-0 bg-black blur-[6px] rounded-[100%]"
-                    style={{ transform: "scaleY(0.2) scaleX(0.7) translateY(10px)" }}
+                    className="absolute inset-0 bg-black/95 blur-[6px] rounded-[100%]"
+                    style={{ transform: "scaleY(0.25) scaleX(0.7) translateY(12px)" }}
                   />
                 </div>
                 <AnimatePresence mode="wait">
