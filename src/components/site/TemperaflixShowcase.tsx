@@ -269,6 +269,7 @@ export function TemperaflixShowcase() {
                     product.node.images.edges[0]?.node.url,
                   )
                 : null;
+              const price = product?.node.priceRange.minVariantPrice;
               const canOpen = !!product && (!isMobile || isActive);
 
               return (
