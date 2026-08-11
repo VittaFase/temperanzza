@@ -228,7 +228,7 @@ function RecipeDrawer() {
                 </li>
                 <li aria-hidden className="hidden sm:inline text-brand-ink/30">/</li>
                 <li>
-                  <Link to="/cozinha" search={{ refeicao: "", proteina: "" }} className="hover:text-accent">
+                  <Link to="/cozinha" search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="hover:text-accent">
                     Biblioteca
                   </Link>
                 </li>
