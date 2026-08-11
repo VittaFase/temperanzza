@@ -446,33 +446,51 @@ function TemperaflixPage() {
                   style={{ width: "60%", height: "60%", top: "10%", left: "20%" }}
                 />
 
-                {/* PEDESTAL & SOMBRA DE CONTATO */}
+                {/* PEDESTAL & SOMBRA DE CONTATO — "Apple Box" Estilo Estúdio */}
                 <div
                   aria-hidden
                   className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-20"
                   style={{
                     width: "70%",
-                    height: "60px",
-                    bottom: "4%",
-                    background: `radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 80%)`,
-                    filter: "blur(12px)",
+                    height: "80px",
+                    bottom: "2%",
                   }}
-                />
-                <motion.div
-                  aria-hidden
-                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-20"
-                  animate={{ background: activeMeta.accent }}
-                  transition={{ duration: 1.2 }}
-                  style={{
-                    width: "50%",
-                    height: "12px",
-                    bottom: "8%",
-                    opacity: 0.4,
-                    filter: "blur(8px)",
-                    mixBlendMode: "screen",
-                    borderRadius: "50%",
-                  }}
-                />
+                >
+                  {/* Sombra de oclusão profunda sob o pote */}
+                  <div 
+                    className="absolute left-1/2 -translate-x-1/2 top-0 w-1/2 h-4 bg-black/90 blur-[6px] rounded-full"
+                  />
+
+                  {/* A Base (Apple Box de Estúdio) */}
+                  <motion.div
+                    className="absolute inset-0 bg-neutral-900 border-t border-x border-white/10"
+                    animate={{
+                      backgroundColor: "#0a0a0a",
+                    }}
+                    style={{
+                      clipPath: "polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%)",
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
+                    }}
+                  >
+                    {/* Efeito de iluminação frontal na borda da caixa */}
+                    <motion.div 
+                      className="absolute top-0 inset-x-0 h-[1px]"
+                      animate={{ 
+                        background: `linear-gradient(90deg, transparent, ${activeMeta.accent}cc, transparent)`,
+                        opacity: [0.4, 0.8, 0.4]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    />
+                    
+                    {/* "Branding" sutil na caixa */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 opacity-10 font-mono text-[8px] tracking-[0.5em] whitespace-nowrap">
+                      TEMPERANZZA STUDIO PROPERTY
+                    </div>
+                  </motion.div>
+
+                  {/* Sombra projetada da caixa no chão */}
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[115%] h-12 bg-black/80 blur-xl rounded-full -z-10" />
+                </div>
                 <AnimatePresence mode="wait">
                   {activeProduct && (
                     <motion.div
