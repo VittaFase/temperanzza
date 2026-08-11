@@ -405,7 +405,7 @@ function TemperaflixPage() {
                   <img
                     src={studioBg.url}
                     alt=""
-                    className="w-full h-full object-cover opacity-50"
+                    className="w-full h-full object-cover opacity-100"
                     style={{ objectPosition: "50% 78%" }}
                   />
                   <motion.div
