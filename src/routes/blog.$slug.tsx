@@ -353,7 +353,7 @@ function BlogPostPage() {
                     <Link
                       to="/cozinha/$slug"
                       params={{ slug: r.slug }}
-                      search={{ refeicao: "", proteina: "" }}
+                      search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
                       className="flex min-h-11 items-center gap-2 text-sm text-foreground/80 hover:text-accent"
                     >
                       <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />

@@ -36,7 +36,7 @@ export function ProductTrust({ handle, title }: { handle: string; title: string 
           ? "Este tempero aparece no modo de fazer da nossa Cozinha, com o pote em cena."
           : "A Cozinha Temperanzza mostra o preparo com o pote em cena.",
       to: "/cozinha" as const,
-      search: { refeicao: "", proteina: "" },
+      search: { refeicao: "", proteina: "", lifestyle: "", autor: "" },
       cta: "Ver a Cozinha",
     },
     ...(dietCount > 0
