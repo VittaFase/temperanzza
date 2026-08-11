@@ -468,7 +468,7 @@ function TemperaflixPage() {
                       backgroundColor: "#0a0a0a",
                     }}
                     style={{
-                      clipPath: "polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%)",
+                      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
                     }}
                   >
@@ -495,9 +495,9 @@ function TemperaflixPage() {
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -40, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 40, filter: "blur(6px)" }}
+                      initial={{ opacity: 0, x: -40, y: -20, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, x: 0, y: -20, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, x: 40, y: -20, filter: "blur(6px)" }}
                       transition={{ duration: 0.55, ease: "easeOut" }}
                       className="relative"
                       style={{ perspective: 1200 }}
