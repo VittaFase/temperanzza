@@ -215,7 +215,7 @@ export function TemperaflixShowcase() {
               <span className="text-brand-paper/30">·</span>
               <span>S01 · 3 EPISÓDIOS</span>
             </div>
-            <h2 className="font-display font-black uppercase text-5xl sm:text-6xl lg:text-7xl leading-[0.9] tracking-tight max-w-3xl">
+            <h2 className="font-display font-black uppercase text-4xl sm:text-6xl lg:text-7xl leading-[0.9] tracking-tight max-w-3xl">
               A linha que <span style={{ color: activeMeta.accent }}>entra em cena</span>.
             </h2>
             <p className="mt-6 max-w-xl text-brand-paper/70 leading-relaxed">

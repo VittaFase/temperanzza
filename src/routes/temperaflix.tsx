@@ -313,7 +313,7 @@ function TemperaflixPage() {
                 {activeMeta.code}
               </TerminalTag>
               
-              <h1 className="font-display font-black uppercase text-6xl sm:text-8xl lg:text-[10rem] leading-[0.85] tracking-tight mb-8">
+              <h1 className="font-display font-black uppercase text-4xl sm:text-8xl lg:text-[10rem] leading-[0.85] tracking-tight mb-8">
                 {activeMeta.genre.split(' ').map((word, i) => (
                   <span key={i} className={i === 1 ? "text-brand-mustard" : ""}>
                     {word}{" "}
