@@ -238,20 +238,20 @@ interface CategoriaDef {
 
 const CATEGORIAS: CategoriaDef[] = [
   {
-    key: "keto",
-    name: "Cetogênicas",
-    romano: "I",
-    descricao:
-      "Alta gordura, proteínas moderadas, carboidratos silenciados. Sabor sem concessão.",
-    filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("keto"),
-  },
-  {
     key: "lowcarb",
     name: "Low Carb",
-    romano: "II",
+    romano: "I",
     descricao:
       "Menos carboidrato, mais textura. A cozinha que sustenta sem pesar.",
     filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("lowcarb"),
+  },
+  {
+    key: "keto",
+    name: "Cetogênicas",
+    romano: "II",
+    descricao:
+      "Alta gordura, proteínas moderadas, carboidratos silenciados. Sabor sem concessão.",
+    filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("keto"),
   },
   {
     key: "carnivora-flex",
@@ -271,16 +271,24 @@ const CATEGORIAS: CategoriaDef[] = [
     filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("selva"),
   },
   {
-    key: "tradicional",
-    name: "Pratos Tradicionais",
+    key: "vegetariana",
+    name: "Vegetariana",
     romano: "V",
+    descricao:
+      "Sabor e ética no mesmo prato. O protagonismo dos vegetais elevado pela autoria mineira.",
+    filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("vegetariana"),
+  },
+  {
+    key: "tradicional",
+    name: "Cozinha Tradicional",
+    romano: "VI",
     descricao:
       "A mesa de todos os dias, elevada por temperos com autoria mineira.",
     filter: (r) => r.category === "tradicional",
   },
 ];
 
-const MOMENT_ORDER: Moment[] = ["cafe", "almoco", "jantar", "lanche"];
+const MOMENT_ORDER: Moment[] = ["cafe", "almoco", "jantar", "lanche", "sobremesa"];
 
 function BibliotecaIndice() {
   const [aberta, setAberta] = useState<CategoriaKey | null>(null);

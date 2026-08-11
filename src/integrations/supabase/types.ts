@@ -427,6 +427,36 @@ export type Database = {
         }
         Relationships: []
       }
+      recipe_submissions: {
+        Row: {
+          author_name: string
+          category: string
+          content: string
+          created_at: string
+          email: string
+          id: string
+          used_condiments: Json
+        }
+        Insert: {
+          author_name: string
+          category: string
+          content: string
+          created_at?: string
+          email: string
+          id?: string
+          used_condiments?: Json
+        }
+        Update: {
+          author_name?: string
+          category?: string
+          content?: string
+          created_at?: string
+          email?: string
+          id?: string
+          used_condiments?: Json
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
