@@ -162,13 +162,24 @@ export function TemperaflixShowcase() {
             src={studioBg.url} 
             alt="" 
             className="w-full h-full object-cover opacity-100 scale-105"
-            style={{ objectPosition: "50% 80%" }}
+            style={{ objectPosition: "50% 65%" }}
           />
-          {/* CINEMA SCREEN AREA */}
+          {/* CINEMA SCREEN AREA — Retângulo 16:9 centralizado */}
           <div 
-            className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[70%] h-[40%] bg-black/40 blur-xl rounded-[20%]"
-            style={{ boxShadow: `0 0 100px ${activeMeta.accent}11` }}
-          />
+            className="absolute top-[35%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md overflow-hidden ring-1 ring-white/10"
+            style={{ 
+              boxShadow: `0 0 80px ${activeMeta.accent}33`,
+              transform: "translateY(-50%)" 
+            }}
+          >
+            {/* Projeção de luz na tela */}
+            <motion.div
+              animate={{
+                background: `radial-gradient(circle at 50% 50%, ${activeMeta.accent}22 0%, transparent 70%)`,
+              }}
+              className="absolute inset-0"
+            />
+          </div>
           <div className="absolute inset-0 bg-brand-ink/5" />
         </div>
         
@@ -229,15 +240,15 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[320px] sm:min-h-[520px] pb-[10%] overflow-visible max-w-5xl mx-auto px-4">
-            {/* PISO — gradiente neutro (sem tint colorido) */}
+          <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[550px] overflow-visible max-w-5xl mx-auto px-4">
+            {/* PISO / SOMBRA BASE */}
             <div
               aria-hidden
               className="absolute inset-x-[-20%] bottom-0 pointer-events-none"
               style={{
-                height: "38%",
+                height: "15%",
                 background:
-                  "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.2) 50%, transparent 100%)",
+                  "linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%)",
               }}
             />
             {/* linha de luz no horizonte — sincroniza com accent do sabor ativo */}
