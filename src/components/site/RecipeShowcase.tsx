@@ -7,7 +7,6 @@ import { RECIPES } from "@/lib/recipes";
  * Implementa a estética "Biblioteca Gastronômica" com foco em imagens de pratos + produtos.
  */
 export function RecipeShowcase() {
-  // Selecionamos 3 receitas estratégicas para o destaque (ex: as primeiras com foto real)
   // Selecionamos 3 receitas estratégicas para o destaque
   const featuredRecipes = [
     RECIPES.find(r => r.slug === "pao-carnivoro-tradicional"),
