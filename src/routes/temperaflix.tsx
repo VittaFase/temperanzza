@@ -401,7 +401,7 @@ function TemperaflixPage() {
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — palco: pote projetado na tela de cinema no fundo */}
-              <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[700px] flex sm:items-end sm:pb-[6%] items-center pb-0 justify-center lg:col-span-7 mt-12 sm:mt-0">
+              <div className="relative min-w-0 overflow-visible min-h-[380px] sm:min-h-[700px] flex sm:items-end sm:pb-[6%] items-center pb-0 justify-center lg:col-span-7 mt-0 sm:mt-0">
                 <FilmGate>
                   {/* CENÁRIO — enquadramento aberto com tela de cinema no fundo */}
                   <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
