@@ -446,10 +446,14 @@ function TemperaflixPage() {
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -28, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 28, filter: "blur(6px)" }}
-                      transition={{ duration: 0.55, ease: "easeOut" }}
+                      initial={{ opacity: 0, x: -28, filter: "blur(12px) brightness(1.2)" }}
+                      animate={{ opacity: 1, x: 0, filter: "blur(0px) brightness(1)" }}
+                      exit={{ opacity: 0, x: 28, filter: "blur(12px) brightness(0.8)" }}
+                      transition={{ 
+                        duration: 0.8, 
+                        ease: [0.16, 1, 0.3, 1],
+                        filter: { duration: 1.2 }
+                      }}
                       className="relative z-30 flex flex-col items-center"
                       style={{ perspective: 1200, transformOrigin: "bottom center" }}
                     >
