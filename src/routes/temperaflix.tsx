@@ -361,7 +361,7 @@ function TemperaflixPage() {
           <img 
             src={studioBg.url} 
             alt="" 
-            className="w-full h-full object-cover opacity-30 mix-blend-luminosity scale-x-[-1] brightness-50"
+            className="w-full h-full object-cover opacity-30 mix-blend-luminosity brightness-50"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/40 to-brand-ink/90" />
         </div>
@@ -418,7 +418,7 @@ function TemperaflixPage() {
                   <img 
                     src={studioBg.url} 
                     alt="" 
-                    className="w-full h-full object-cover opacity-20 mix-blend-luminosity scale-110 blur-[2px]"
+                    className="w-full h-full object-cover opacity-20 mix-blend-luminosity blur-[2px]"
                   />
                 </div>
 
