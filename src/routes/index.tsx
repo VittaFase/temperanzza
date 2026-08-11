@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: crie e implemente um espaço dessa maneira da referencia na pagina inicial do site para o usuario ter acesso e uma experiencia facilitata com todas as funcionalidades */}
+{/* Execute esta instrucao no projeto: Envie sua receita — nossa curadoria ajusta com você o que for preciso, e ela ganha assinatura no site e os potes dos condimentos que você usou, de presente da casa. */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
