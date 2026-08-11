@@ -14,6 +14,7 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
+import { FilmGate } from "@/components/site/FilmGate";
 import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
@@ -272,19 +273,21 @@ function TemperaflixPage() {
     <div className="flex flex-col min-h-screen">
       {/* ═══════════════ HERO CINEMATOGRÁFICO ═══════════════ */}
       <section className="relative overflow-hidden bg-brand-ink text-brand-paper">
-        {/* Fundo de estúdio solicitado */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img 
-            src={studioBg.url} 
-            alt="" 
-            className="w-full h-full object-cover opacity-100"
-          />
-          <div className="absolute inset-0 bg-brand-ink/10" />
-        </div>
-        <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-        
-        {/* Studio Lighting Rig replaces Bokeh */}
-        <StudioLightRig accent={activeMeta.accent} opacity={0.5} />
+        <FilmGate>
+          {/* Fundo de estúdio solicitado */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <img 
+              src={studioBg.url} 
+              alt="" 
+              className="w-full h-full object-cover opacity-100 scale-110"
+              style={{ objectPosition: "50% 85%" }}
+            />
+            <div className="absolute inset-0 bg-brand-ink/10" />
+          </div>
+          
+          {/* Studio Lighting Rig replaces Bokeh */}
+          <StudioLightRig accent={activeMeta.accent} opacity={0.5} />
+        </FilmGate>
         
         {/* halo dinâmico do sabor ativo */}
         <motion.div
@@ -398,23 +401,30 @@ function TemperaflixPage() {
             </div>
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
-              {/* LEFT — palco: pote assentado no tampo da mesa */}
+              {/* LEFT — palco: pote projetado na tela de cinema no fundo */}
               <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[600px] flex items-end justify-center pb-[16%] lg:col-span-7">
-                {/* CENÁRIO — tampo da mesa alinhado à base do produto */}
-                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                  <img
-                    src={studioBg.url}
-                    alt=""
-                    className="w-full h-full object-cover opacity-100"
-                    style={{ objectPosition: "50% 78%" }}
-                  />
-                  <motion.div
-                    animate={{
-                      background: `radial-gradient(circle at 50% 72%, ${activeMeta.halo}15 0%, transparent 62%)`,
-                    }}
-                    className="absolute inset-0 z-10"
-                  />
-                </div>
+                <FilmGate>
+                  {/* CENÁRIO — enquadramento aberto com tela de cinema no fundo */}
+                  <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                    <img
+                      src={studioBg.url}
+                      alt=""
+                      className="w-full h-full object-cover opacity-100 scale-105"
+                      style={{ objectPosition: "50% 82%" }}
+                    />
+                    {/* A TELA DE CINEMA */}
+                    <div 
+                      className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[75%] h-[45%] bg-black/60 blur-2xl rounded-[15%]"
+                      style={{ boxShadow: `0 0 120px ${activeMeta.accent}22` }}
+                    />
+                    <motion.div
+                      animate={{
+                        background: `radial-gradient(circle at 50% 40%, ${activeMeta.accent}11 0%, transparent 70%)`,
+                      }}
+                      className="absolute inset-0 z-10"
+                    />
+                  </div>
+                </FilmGate>
 
                 {/* PISO / QUEDA DE LUZ sob a linha do tampo */}
                 <motion.div
