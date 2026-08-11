@@ -15,7 +15,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { FilmGate } from "./FilmGate";
-import studioBg from "@/assets/FUNDO_TEMPERAFLIX-5.png.asset.json";
+import studioBg from "@/assets/FUNDO_TEMPERAFLIX-6.png.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
     <div

@@ -15,7 +15,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 import { FilmGate } from "@/components/site/FilmGate";
-import studioBg from "@/assets/FUNDO_TEMPERAFLIX-5.png.asset.json";
+import studioBg from "@/assets/FUNDO_TEMPERAFLIX-6.png.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
     <div
