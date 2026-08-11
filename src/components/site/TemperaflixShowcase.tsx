@@ -333,27 +333,7 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* SOMBRA DE CONTATO — Posicionada estritamente atrás/abaixo do pote */}
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[14%] w-[35%] h-4 pointer-events-none z-0">
-                    <motion.div
-                      aria-hidden
-                      animate={{
-                        opacity: isActive ? 0.9 : 0.4,
-                        scale: isActive ? 1.1 : 0.9,
-                      }}
-                      transition={{ duration: 0.6 }}
-                      className="absolute inset-0 bg-black/90 blur-[12px] rounded-[100%]"
-                      style={{ transform: "scaleY(0.3) translateY(8px)" }}
-                    />
-                    <motion.div
-                      aria-hidden
-                      animate={{
-                        opacity: isActive ? 1 : 0.5,
-                      }}
-                      className="absolute inset-0 bg-black blur-[5px] rounded-[100%]"
-                      style={{ transform: "scaleY(0.2) scaleX(0.6) translateY(8px)" }}
-                    />
-                  </div>
+                  {/* SOMBRA REMOVIDA A PEDIDO DO USUÁRIO */}
 
                   {/* pot */}
                   <motion.div
