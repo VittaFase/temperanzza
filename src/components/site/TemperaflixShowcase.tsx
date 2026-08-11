@@ -14,6 +14,7 @@ import { getProductImage } from "@/lib/productImages";
 import { useCartStore } from "@/stores/cartStore";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
+import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
     <div
