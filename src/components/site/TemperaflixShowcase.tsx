@@ -162,7 +162,7 @@ export function TemperaflixShowcase() {
           className="w-full h-full object-cover opacity-100"
           style={{ objectPosition: "50% 72%" }}
         />
-        <div className="absolute inset-0 bg-brand-ink/30" />
+        <div className="absolute inset-0 bg-brand-ink/10" />
       </div>
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
       
