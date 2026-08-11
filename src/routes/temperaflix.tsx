@@ -461,7 +461,7 @@ function TemperaflixPage() {
                       animate={{ 
                         opacity: 1, 
                         scale: 1.15, 
-                        y: -360, // Centralizado na altura do Ep 01 da playlist (alinhamento visual)
+                        y: -420, // Elevado para alinhar o centro do pote com o Episódio 01 (Tradicional)
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
