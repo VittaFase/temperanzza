@@ -373,14 +373,14 @@ function TemperaflixPage() {
         <StudioLightRig accent={activeMeta.accent} opacity={0.3} />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <TerminalTag color={activeMeta.accent}>Episódios</TerminalTag>
               <h2 className="mt-3 font-display font-black uppercase text-4xl sm:text-5xl lg:text-6xl tracking-tight">
                 Escolha sua sessão
               </h2>
             </div>
-            <p className="max-w-md text-brand-paper/60 leading-relaxed">
+            <p className="max-w-md text-brand-paper/60 leading-relaxed text-sm sm:text-base">
               Cada pote, um episódio, colecione os três.
             </p>
           </div>
