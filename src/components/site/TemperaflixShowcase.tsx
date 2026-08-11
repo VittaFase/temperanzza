@@ -15,7 +15,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { FilmGate } from "./FilmGate";
-import studioBg from "@/assets/Gemini_Generated_Image_u3ur3ku3ur3ku3ur.png.asset.json";
+import studioBg from "@/assets/estudio_cinema_final.png.asset.json";
 import studioVideo from "@/assets/Novo_filme_temperaflix.mp4.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
