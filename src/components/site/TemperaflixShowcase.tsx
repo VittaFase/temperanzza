@@ -349,7 +349,7 @@ export function TemperaflixShowcase() {
                           bottom: "10%",
                           width: "50%",
                           height: "8px",
-                          background: `radial-gradient(ellipse at center, ${activeFlavor.accent} 0%, transparent 80%)`,
+                          background: `radial-gradient(ellipse at center, ${activeMeta.accent} 0%, transparent 80%)`,
                           filter: "blur(8px)",
                         }}
                       />
