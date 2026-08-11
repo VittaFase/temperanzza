@@ -366,7 +366,8 @@ function TemperaflixPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/40 to-brand-ink/90" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
-        <BokehBackdrop opacity={0.15} />
+        {/* bokeh removido do palco — luz de estúdio assume a cena */}
+
         <motion.div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
@@ -405,58 +406,57 @@ function TemperaflixPage() {
             </div>
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
-              {/* LEFT — big shaker stage */}
-              <div className="relative min-w-0 overflow-visible min-h-[460px] sm:min-h-[620px] flex items-center justify-center lg:col-span-7">
-                {/* CENÁRIO DE GRAVAÇÃO DINÂMICO — Fundo integrado */}
+              {/* LEFT — palco: pote assentado no tampo da mesa */}
+              <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[600px] flex items-end justify-center pb-[16%] lg:col-span-7">
+                {/* CENÁRIO — tampo da mesa alinhado à base do produto */}
                 <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                  <img
+                    src={studioBg.url}
+                    alt=""
+                    className="w-full h-full object-cover opacity-30 mix-blend-luminosity"
+                    style={{ objectPosition: "50% 78%" }}
+                  />
                   <motion.div
                     animate={{
-                      background: `radial-gradient(circle at 50% 55%, ${activeMeta.halo}18 0%, transparent 65%)`
+                      background: `radial-gradient(circle at 50% 72%, ${activeMeta.halo}1f 0%, transparent 62%)`,
                     }}
                     className="absolute inset-0 z-10"
                   />
-                  <img 
-                    src={studioBg.url} 
-                    alt="" 
-                    className="w-full h-full object-cover opacity-25 mix-blend-luminosity blur-[1px]"
-                  />
                 </div>
 
-                {/* PISO DO PALCO — Convergência focal */}
+                {/* PISO / QUEDA DE LUZ sob a linha do tampo */}
                 <motion.div
                   aria-hidden
                   className="absolute inset-x-[-10%] bottom-0 pointer-events-none z-10"
                   animate={{
-                    background: `linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 25%, transparent 100%), radial-gradient(ellipse 65% 75% at 50% 100%, ${activeMeta.halo}28 0%, transparent 80%)`,
+                    background: `linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 40%, transparent 100%), radial-gradient(ellipse 55% 70% at 50% 100%, ${activeMeta.halo}22 0%, transparent 80%)`,
                   }}
                   transition={{ duration: 1.4, ease: "easeInOut" }}
-                  style={{ height: "48%" }}
+                  style={{ height: "26%" }}
                 />
 
-                {/* RIM LIGHT — Efeito de luz de borda no cenário */}
+                {/* KEY LIGHT lateral suave */}
                 <motion.div
                   aria-hidden
-                  className="absolute inset-0 blur-[100px] rounded-full mx-auto"
-                  animate={{ 
+                  className="absolute blur-[110px] rounded-full z-10 pointer-events-none"
+                  animate={{
                     background: activeMeta.halo,
-                    scale: [1, 1.1, 1],
-                    opacity: [0.3, 0.45, 0.3]
+                    opacity: [0.22, 0.34, 0.22],
                   }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ width: "60%", height: "60%", top: "10%", left: "20%" }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ width: "55%", height: "50%", top: "12%", left: "22%" }}
                 />
 
-                {/* SOMBRA REMOVIDA A PEDIDO DO USUÁRIO */}
                 <AnimatePresence mode="wait">
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -40, y: -40, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, y: -40, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 40, y: -20, filter: "blur(6px)" }}
+                      initial={{ opacity: 0, x: -28, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, x: 28, filter: "blur(6px)" }}
                       transition={{ duration: 0.55, ease: "easeOut" }}
-                      className="relative z-30"
-                      style={{ perspective: 1200 }}
+                      className="relative z-30 flex flex-col items-center"
+                      style={{ perspective: 1200, transformOrigin: "bottom center" }}
                     >
                       <img decoding="async"
                         src={
@@ -466,9 +466,38 @@ function TemperaflixPage() {
                           ) ?? ""
                         }
                         alt={activeProduct.node.title}
-                        className="max-h-[580px] w-auto object-contain drop-shadow-[0_45px_60px_rgba(0,0,0,0.85)]"
+                        className="max-h-[300px] sm:max-h-[400px] w-auto object-contain drop-shadow-[0_18px_26px_rgba(0,0,0,0.7)]"
                         loading="lazy"
                       />
+
+                      {/* CONTATO — sombra curta presa à base, atrás do pote */}
+                      <motion.div
+                        aria-hidden
+                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
+                        animate={{ opacity: [0.75, 0.9, 0.75] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                        style={{
+                          bottom: "-6px",
+                          width: "62%",
+                          height: "20px",
+                          background:
+                            "radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 55%, transparent 80%)",
+                          filter: "blur(5px)",
+                        }}
+                      />
+                      <div
+                        aria-hidden
+                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
+                        style={{
+                          bottom: "-14px",
+                          width: "95%",
+                          height: "34px",
+                          background:
+                            "radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 75%)",
+                          filter: "blur(14px)",
+                        }}
+                      />
+
                       {/* scanline sweep */}
                       <motion.div
                         aria-hidden
@@ -485,6 +514,7 @@ function TemperaflixPage() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
 
                 {/* ep tag */}
                 <div className="absolute top-4 left-4 sm:top-8 sm:left-8">

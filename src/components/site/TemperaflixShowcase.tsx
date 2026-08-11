@@ -159,11 +159,13 @@ export function TemperaflixShowcase() {
           src={studioBg.url} 
           alt="" 
           className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+          style={{ objectPosition: "50% 72%" }}
         />
         <div className="absolute inset-0 bg-brand-ink/40" />
       </div>
       <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-      <BokehBackdrop opacity={0.12} />
+      {/* bokeh removido do palco — luz de estúdio assume a cena */}
+
       {/* ambient neutral vignette — substitui o halo colorido global */}
       <div
         aria-hidden
@@ -226,7 +228,7 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[360px] sm:min-h-[620px] overflow-visible max-w-5xl mx-auto px-4">
+          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[320px] sm:min-h-[520px] pb-[10%] overflow-visible max-w-5xl mx-auto px-4">
             {/* PISO — gradiente neutro (sem tint colorido) */}
             <div
               aria-hidden
@@ -333,26 +335,55 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* SOMBRA REMOVIDA A PEDIDO DO USUÁRIO */}
+                  {/* CONTATO — sombra curta na madeira, atrás do pote */}
+                  <motion.div
+                    aria-hidden
+                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
+                    animate={{
+                      opacity: isActive ? 0.85 : 0.6,
+                      width: isActive ? "58%" : "48%",
+                    }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    style={{
+                      bottom: "-4px",
+                      height: "16px",
+                      background:
+                        "radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 80%)",
+                      filter: "blur(5px)",
+                    }}
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
+                    style={{
+                      bottom: "-12px",
+                      width: "80%",
+                      height: "28px",
+                      background:
+                        "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 75%)",
+                      filter: "blur(12px)",
+                    }}
+                  />
 
                   {/* pot */}
                   <motion.div
-                    className="relative w-full"
+                    className="relative w-full z-10"
                     animate={{
-                      y: isActive ? -40 : isCenter ? -12 : 0,
+                      y: isActive ? -14 : isCenter ? -4 : 0,
                       rotateY: isActive ? 4 : 0,
-                      scale: isActive ? 1.15 : isCenter ? 1.05 : 0.9,
+                      scale: isActive ? 1.08 : isCenter ? 1.02 : 0.92,
                     }}
                     transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                    style={{ transformStyle: "preserve-3d" }}
+                    style={{ transformStyle: "preserve-3d", transformOrigin: "bottom center" }}
                   >
                     {image ? (
                       <img decoding="async"
                         src={image}
                         alt={product?.node.title ?? meta.label}
-                        className="w-full h-auto object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)] max-h-[460px] mx-auto"
+                        className="w-full h-auto object-contain drop-shadow-[0_14px_20px_rgba(0,0,0,0.65)] max-h-[300px] sm:max-h-[360px] mx-auto"
                         loading="lazy"
                       />
+
                     ) : (
                       <div className="w-full aspect-[3/4] bg-brand-paper/5" />
                     )}
