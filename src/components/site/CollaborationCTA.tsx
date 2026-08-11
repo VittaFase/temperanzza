@@ -12,7 +12,7 @@ export function CollaborationCTA() {
       
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center relative z-10">
         <span className="text-[10px] font-display uppercase tracking-[0.4em] text-brand-mustard mb-8 block">
-          Programa de Parceria
+          CONVITE ABERTO
         </span>
         
         <h2 className="font-display font-black uppercase text-5xl sm:text-7xl lg:text-8xl leading-[0.85] tracking-tighter mb-8">
