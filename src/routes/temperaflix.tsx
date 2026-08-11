@@ -15,7 +15,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 import { FilmGate } from "@/components/site/FilmGate";
-import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
+import studioBg from "@/assets/FUNDO_TEMPERAFLIX-5.png.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
     <div
@@ -279,8 +279,8 @@ function TemperaflixPage() {
             <img 
               src={studioBg.url} 
               alt="" 
-              className="w-full h-full object-cover opacity-100 scale-110"
-              style={{ objectPosition: "50% 85%" }}
+              className="w-full h-full object-cover opacity-100"
+              style={{ objectPosition: "50% 50%" }}
             />
             <div className="absolute inset-0 bg-brand-ink/10" />
           </div>
