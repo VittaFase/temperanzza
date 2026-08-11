@@ -360,7 +360,7 @@ function TemperaflixPage() {
           <img 
             src={studioBg.url} 
             alt="" 
-            className="w-full h-full object-cover opacity-50 brightness-75"
+            className="w-full h-full object-cover opacity-100 brightness-100"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/20 to-brand-ink/90" />
         </div>
