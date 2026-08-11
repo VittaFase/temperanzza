@@ -1,4 +1,4 @@
-{/* Execute esta instrucao no projeto: veja essas duas opcoes de verificação de segurança */}
+{/* Execute esta instrucao no projeto: Analise os anexos enviados. */}
 import { createFileRoute } from '@tanstack/react-router'
 import { SiteHero } from '@/components/site/SiteHero'
 import { FeaturedProducts } from '@/components/site/FeaturedProducts'
