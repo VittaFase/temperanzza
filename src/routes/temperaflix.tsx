@@ -55,6 +55,33 @@ function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: num
   );
 }
 
+function FilmTexture() {
+  return (
+    <div 
+      className="absolute inset-[-5%] z-[15] pointer-events-none overflow-hidden mix-blend-screen opacity-15"
+      aria-hidden="true"
+    >
+      <div 
+        className="absolute inset-0 w-[110%] h-[110%] animate-film-grain"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='filmGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23filmGrain)'/%3E%3C/svg%3E")`,
+          backgroundSize: '250px 250px'
+        }}
+      />
+      {/* Subtle dust and scratches effect */}
+      <div 
+        className="absolute inset-0 w-[110%] h-[110%] animate-film-grain"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='scratches'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.01' numOctaves='2' seed='5'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3CfeThreshold target='0.99'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23scratches)'/%3E%3C/svg%3E")`,
+          backgroundSize: '800px 800px',
+          opacity: 0.1
+        }}
+      />
+    </div>
+  );
+}
+
+
 
 const TEMPERAFLIX_URL = "https://temperanzza.com.br/temperaflix";
 
