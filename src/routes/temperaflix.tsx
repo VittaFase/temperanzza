@@ -292,9 +292,9 @@ function TemperaflixPage() {
         {/* halo dinâmico do sabor ativo */}
         <motion.div
           aria-hidden
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none z-10"
           animate={{
-            background: `radial-gradient(70% 80% at 50% 50%, ${activeMeta.halo}33 0%, transparent 60%)`,
+            background: `radial-gradient(70% 80% at 50% 50%, ${activeMeta.halo}66 0%, transparent 60%)`,
           }}
           transition={{ duration: 1.5 }}
         />
@@ -422,11 +422,11 @@ function TemperaflixPage() {
                   {/* HALO / KEY LIGHT — Centrado atrás do pote, na mesma posição da tela */}
                   <motion.div
                     aria-hidden
-                    className="absolute blur-[80px] sm:blur-[120px] rounded-full z-10 pointer-events-none w-[70%] sm:w-[50%] h-[50%] sm:h-[45%]"
+                    className="absolute blur-[100px] sm:blur-[160px] rounded-full z-20 pointer-events-none w-[80%] h-[60%]"
                     animate={{
                       background: activeMeta.halo,
-                      opacity: [0.15, 0.25, 0.15],
-                      scale: [1, 1.05, 1],
+                      opacity: [0.3, 0.5, 0.3],
+                      scale: [1, 1.1, 1],
                     }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   />
