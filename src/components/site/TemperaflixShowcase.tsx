@@ -14,6 +14,7 @@ import { getProductImage } from "@/lib/productImages";
 import { useCartStore } from "@/stores/cartStore";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
+import { FilmGate } from "./FilmGate";
 import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
@@ -154,39 +155,36 @@ export function TemperaflixShowcase() {
 
   return (
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
-      {/* atmosphere: studio background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <img 
-          src={studioBg.url} 
-          alt="" 
-          className="w-full h-full object-cover opacity-100"
-          style={{ objectPosition: "50% 72%" }}
-        />
-        <div className="absolute inset-0 bg-brand-ink/10" />
-      </div>
-      <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-      
-      {/* Studio Lighting Rig replaces Bokeh */}
-      <StudioLightRig accent={activeMeta.accent} opacity={0.6} />
+      <FilmGate>
+        {/* atmosphere: studio background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img 
+            src={studioBg.url} 
+            alt="" 
+            className="w-full h-full object-cover opacity-100 scale-105"
+            style={{ objectPosition: "50% 80%" }}
+          />
+          {/* CINEMA SCREEN AREA */}
+          <div 
+            className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[70%] h-[40%] bg-black/40 blur-xl rounded-[20%]"
+            style={{ boxShadow: `0 0 100px ${activeMeta.accent}11` }}
+          />
+          <div className="absolute inset-0 bg-brand-ink/5" />
+        </div>
+        
+        {/* Studio Lighting Rig replaces Bokeh */}
+        <StudioLightRig accent={activeMeta.accent} opacity={0.6} />
 
-      {/* ambient neutral vignette — substitui o halo colorido global */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(70% 60% at 50% 45%, rgba(255,255,255,0.05) 0%, transparent 60%), radial-gradient(50% 40% at 50% 100%, rgba(0,0,0,0.6) 0%, transparent 70%)",
-        }}
-      />
-      {/* faint vertical scanlines */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.06] mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(90deg, rgba(255,255,255,0.7) 0 1px, transparent 1px 3px)",
-        }}
-      />
+        {/* ambient neutral vignette */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(70% 60% at 50% 45%, rgba(255,255,255,0.02) 0%, transparent 60%), radial-gradient(50% 40% at 50% 100%, rgba(0,0,0,0.7) 0%, transparent 80%)",
+          }}
+        />
+      </FilmGate>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28">
         {/* HEADER — player bar */}
@@ -338,52 +336,63 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* CONTATO — sombra curta na madeira, atrás do pote */}
+                  {/* ORIGEM — sombra no baú que permanece enquanto o pote sobe */}
                   <motion.div
                     aria-hidden
                     className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
                     animate={{
-                      opacity: isActive ? 0.85 : 0.6,
-                      width: isActive ? "58%" : "48%",
+                      opacity: isActive ? 0.4 : 0.6,
+                      width: isActive ? "50%" : "48%",
+                      y: isActive ? 120 : 0 // Mantém a sombra no baú
                     }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     style={{
                       bottom: "-4px",
-                      height: "16px",
+                      height: "12px",
                       background:
-                        "radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 80%)",
-                      filter: "blur(5px)",
+                        "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
+                      filter: "blur(6px)",
                     }}
                   />
-                  <div
-                    aria-hidden
-                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
-                    style={{
-                      bottom: "-12px",
-                      width: "80%",
-                      height: "28px",
-                      background:
-                        "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 75%)",
-                      filter: "blur(12px)",
-                    }}
-                  />
+                  {!isActive && (
+                    <div
+                      aria-hidden
+                      className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
+                      style={{
+                        bottom: "-12px",
+                        width: "80%",
+                        height: "28px",
+                        background:
+                          "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 75%)",
+                        filter: "blur(12px)",
+                      }}
+                    />
+                  )}
 
                   {/* pot */}
                   <motion.div
                     className="relative w-full z-10"
+                    layoutId={`pote-${key}`}
                     animate={{
-                      y: isActive ? -14 : isCenter ? -4 : 0,
-                      rotateY: isActive ? 4 : 0,
-                      scale: isActive ? 1.08 : isCenter ? 1.02 : 0.92,
+                      y: isActive ? -120 : isCenter ? -4 : 0,
+                      x: isActive ? 0 : 0,
+                      rotateY: isActive ? [0, 10, -10, 0] : 0,
+                      scale: isActive ? 1.3 : isCenter ? 1.02 : 0.92,
+                      filter: isActive ? "drop-shadow(0 20px 40px rgba(0,0,0,0.8))" : "none",
                     }}
-                    transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: isActive ? 80 : 120, 
+                      damping: 20,
+                      rotateY: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+                    }}
                     style={{ transformStyle: "preserve-3d", transformOrigin: "bottom center" }}
                   >
                     {image ? (
                       <img decoding="async"
                         src={image}
                         alt={product?.node.title ?? meta.label}
-                        className="w-full h-auto object-contain drop-shadow-[0_14px_20px_rgba(0,0,0,0.65)] max-h-[300px] sm:max-h-[360px] mx-auto"
+                        className="w-full h-auto object-contain max-h-[280px] sm:max-h-[340px] mx-auto"
                         loading="lazy"
                       />
 
@@ -391,18 +400,19 @@ export function TemperaflixShowcase() {
                       <div className="w-full aspect-[3/4] bg-brand-paper/5" />
                     )}
 
-                    {/* CROSSHAIR — colchetes de mira nos 4 cantos do pote ativo */}
+                    {/* SCAN FRAME — mira na tela de cinema para o pote ativo */}
                     <AnimatePresence>
                       {isActive && (
                         <motion.div
                           key="crosshair"
                           aria-hidden
-                          initial={{ opacity: 0, scale: 1.15 }}
-                          animate={{ opacity: 0.7, scale: 1 }}
-                          exit={{ opacity: 0, scale: 1.15 }}
-                          transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="absolute inset-[6%] pointer-events-none"
+                          initial={{ opacity: 0, scale: 1.2 }}
+                          animate={{ opacity: 0.8, scale: 1 }}
+                          exit={{ opacity: 0, scale: 1.2 }}
+                          transition={{ duration: 0.6 }}
+                          className="absolute -inset-[15%] pointer-events-none"
                         >
+                          <div className="absolute inset-0 border border-white/10 rounded-lg blur-[1px]" />
                           {["top-0 left-0 border-t border-l", "top-0 right-0 border-t border-r", "bottom-0 left-0 border-b border-l", "bottom-0 right-0 border-b border-r"].map((pos, i) => (
                             <span
                               key={i}

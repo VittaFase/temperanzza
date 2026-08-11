@@ -14,6 +14,7 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
+import { FilmGate } from "@/components/site/FilmGate";
 import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
@@ -272,19 +273,21 @@ function TemperaflixPage() {
     <div className="flex flex-col min-h-screen">
       {/* ═══════════════ HERO CINEMATOGRÁFICO ═══════════════ */}
       <section className="relative overflow-hidden bg-brand-ink text-brand-paper">
-        {/* Fundo de estúdio solicitado */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img 
-            src={studioBg.url} 
-            alt="" 
-            className="w-full h-full object-cover opacity-100"
-          />
-          <div className="absolute inset-0 bg-brand-ink/10" />
-        </div>
-        <div className="absolute inset-0 bg-paper-grain opacity-[0.08]" />
-        
-        {/* Studio Lighting Rig replaces Bokeh */}
-        <StudioLightRig accent={activeMeta.accent} opacity={0.5} />
+        <FilmGate>
+          {/* Fundo de estúdio solicitado */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <img 
+              src={studioBg.url} 
+              alt="" 
+              className="w-full h-full object-cover opacity-100 scale-110"
+              style={{ objectPosition: "50% 85%" }}
+            />
+            <div className="absolute inset-0 bg-brand-ink/10" />
+          </div>
+          
+          {/* Studio Lighting Rig replaces Bokeh */}
+          <StudioLightRig accent={activeMeta.accent} opacity={0.5} />
+        </FilmGate>
         
         {/* halo dinâmico do sabor ativo */}
         <motion.div
@@ -398,23 +401,30 @@ function TemperaflixPage() {
             </div>
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
-              {/* LEFT — palco: pote assentado no tampo da mesa */}
+              {/* LEFT — palco: pote projetado na tela de cinema no fundo */}
               <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[600px] flex items-end justify-center pb-[16%] lg:col-span-7">
-                {/* CENÁRIO — tampo da mesa alinhado à base do produto */}
-                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                  <img
-                    src={studioBg.url}
-                    alt=""
-                    className="w-full h-full object-cover opacity-100"
-                    style={{ objectPosition: "50% 78%" }}
-                  />
-                  <motion.div
-                    animate={{
-                      background: `radial-gradient(circle at 50% 72%, ${activeMeta.halo}15 0%, transparent 62%)`,
-                    }}
-                    className="absolute inset-0 z-10"
-                  />
-                </div>
+                <FilmGate>
+                  {/* CENÁRIO — enquadramento aberto com tela de cinema no fundo */}
+                  <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                    <img
+                      src={studioBg.url}
+                      alt=""
+                      className="w-full h-full object-cover opacity-100 scale-105"
+                      style={{ objectPosition: "50% 82%" }}
+                    />
+                    {/* A TELA DE CINEMA */}
+                    <div 
+                      className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[75%] h-[45%] bg-black/60 blur-2xl rounded-[15%]"
+                      style={{ boxShadow: `0 0 120px ${activeMeta.accent}22` }}
+                    />
+                    <motion.div
+                      animate={{
+                        background: `radial-gradient(circle at 50% 40%, ${activeMeta.accent}11 0%, transparent 70%)`,
+                      }}
+                      className="absolute inset-0 z-10"
+                    />
+                  </div>
+                </FilmGate>
 
                 {/* PISO / QUEDA DE LUZ sob a linha do tampo */}
                 <motion.div
@@ -443,10 +453,23 @@ function TemperaflixPage() {
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
-                      initial={{ opacity: 0, x: -28, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, x: 28, filter: "blur(6px)" }}
-                      transition={{ duration: 0.55, ease: "easeOut" }}
+                      layoutId={`pote-detalhe-${active}`}
+                      initial={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
+                      animate={{ 
+                        opacity: 1, 
+                        scale: 1.25, 
+                        y: -150, // Projetado para a tela de cinema no fundo
+                        x: 0,
+                        filter: "blur(0px)",
+                        rotateY: [0, 5, -5, 0],
+                      }}
+                      exit={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 70, 
+                        damping: 18,
+                        rotateY: { duration: 10, repeat: Infinity, ease: "easeInOut" }
+                      }}
                       className="relative z-30 flex flex-col items-center"
                       style={{ perspective: 1200, transformOrigin: "bottom center" }}
                     >
@@ -458,23 +481,27 @@ function TemperaflixPage() {
                           ) ?? ""
                         }
                         alt={activeProduct.node.title}
-                        className="max-h-[300px] sm:max-h-[400px] w-auto object-contain drop-shadow-[0_18px_26px_rgba(0,0,0,0.7)]"
+                        className="max-h-[300px] sm:max-h-[400px] w-auto object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.9)]"
                         loading="lazy"
                       />
 
-                      {/* CONTATO — sombra curta presa à base, atrás do pote */}
+                      {/* ORIGEM — leve sombra no baú para ancorar a 'saída' do produto */}
                       <motion.div
                         aria-hidden
                         className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
-                        animate={{ opacity: [0.75, 0.9, 0.75] }}
+                        animate={{ 
+                          opacity: [0.3, 0.5, 0.3],
+                          scale: [1, 1.1, 1],
+                          y: 150 // Mantém a sombra no baú enquanto o pote sobe
+                        }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
-                          bottom: "-6px",
-                          width: "62%",
-                          height: "20px",
+                          bottom: "-10px",
+                          width: "50%",
+                          height: "15px",
                           background:
-                            "radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 55%, transparent 80%)",
-                          filter: "blur(5px)",
+                            "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
+                          filter: "blur(8px)",
                         }}
                       />
                       <div
