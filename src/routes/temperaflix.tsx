@@ -442,7 +442,7 @@ function TemperaflixPage() {
                 {/* KEY LIGHT centralizado atrás do pote — SUBIU para altura do Ep 01 */}
                 <motion.div
                   aria-hidden
-                  className="absolute blur-[60px] sm:blur-[120px] rounded-full z-10 pointer-events-none left-1/2 -translate-x-1/2 w-[80%] sm:w-[65%] h-[50%] sm:h-[55%] top-[15%] sm:top-[1%]"
+                  className="absolute blur-[60px] sm:blur-[120px] rounded-full z-10 pointer-events-none left-1/2 -translate-x-1/2 w-[80%] sm:w-[65%] h-[50%] sm:h-[55%] top-[18%] sm:top-[1%]"
                   animate={{
                     background: activeMeta.halo,
                     opacity: [0.18, 0.3, 0.18],
