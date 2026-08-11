@@ -166,12 +166,9 @@ export function TemperaflixShowcase() {
             
             {/* TELA DE CINEMA 16:9 — Centrada na scene */}
             <div 
-              className="relative w-[85%] sm:w-[75%] lg:w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10 overflow-hidden"
-              style={{ 
-                boxShadow: `0 0 100px ${activeMeta.accent}33`,
-              }}
+              className="relative w-[85%] sm:w-[75%] lg:w-[72%] aspect-[16/9] overflow-hidden"
             >
-              {/* Projeção de luz na tela */}
+              {/* Projeção de luz na tela sem o quadro preto */}
               <motion.div
                 animate={{
                   background: `radial-gradient(circle at 50% 50%, ${activeMeta.accent}22 0%, transparent 70%)`,
