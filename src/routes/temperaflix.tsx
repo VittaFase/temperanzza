@@ -402,7 +402,7 @@ function TemperaflixPage() {
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — palco: pote projetado na tela de cinema no fundo */}
-              <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[600px] flex items-center justify-center lg:col-span-7">
+              <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[600px] flex items-end justify-center pb-[16%] lg:col-span-7">
                 <FilmGate>
                   {/* CENÁRIO — enquadramento aberto com tela de cinema no fundo */}
                   <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -410,41 +410,31 @@ function TemperaflixPage() {
                       src={studioBg.url}
                       alt=""
                       className="w-full h-full object-cover opacity-100 scale-105"
-                      style={{ objectPosition: "50% 68%" }}
+                      style={{ objectPosition: "50% 82%" }}
                     />
-                    
-                    {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[72%] aspect-[16/9] z-10">
-                      {/* Brilho da tela */}
-                      <motion.div 
-                        animate={{
-                          background: `radial-gradient(circle at center, ${activeMeta.accent}15 0%, transparent 80%)`,
-                          boxShadow: `0 0 100px ${activeMeta.accent}11`,
-                        }}
-                        className="absolute inset-0 rounded-sm overflow-hidden"
-                      >
-                        <div className="absolute inset-0 bg-black/40 backdrop-blur-3xl" />
-                        <div className="absolute inset-0 border border-white/5" />
-                      </motion.div>
-                    </div>
-
+                    {/* A TELA DE CINEMA */}
+                    <div 
+                      className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[75%] h-[45%] bg-black/60 blur-2xl rounded-[15%]"
+                      style={{ boxShadow: `0 0 120px ${activeMeta.accent}22` }}
+                    />
                     <motion.div
                       animate={{
-                        background: `radial-gradient(circle at 50% 50%, ${activeMeta.accent}08 0%, transparent 70%)`,
+                        background: `radial-gradient(circle at 50% 40%, ${activeMeta.accent}11 0%, transparent 70%)`,
                       }}
-                      className="absolute inset-0 z-20"
+                      className="absolute inset-0 z-10"
                     />
                   </div>
                 </FilmGate>
 
-                {/* PISO / QUEDA DE LUZ reduzida para não invadir a tela */}
+                {/* PISO / QUEDA DE LUZ sob a linha do tampo */}
                 <motion.div
                   aria-hidden
                   className="absolute inset-x-[-10%] bottom-0 pointer-events-none z-10"
                   animate={{
-                    background: `linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 100%)`,
+                    background: `linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 40%, transparent 100%), radial-gradient(ellipse 55% 70% at 50% 100%, ${activeMeta.halo}22 0%, transparent 80%)`,
                   }}
-                  style={{ height: "18%" }}
+                  transition={{ duration: 1.4, ease: "easeInOut" }}
+                  style={{ height: "26%" }}
                 />
 
                 {/* KEY LIGHT lateral suave */}
@@ -464,15 +454,16 @@ function TemperaflixPage() {
                     <motion.div
                       key={`stage-${active}`}
                       layoutId={`pote-detalhe-${active}`}
-                      initial={{ opacity: 0, scale: 0.8, y: 20, filter: "blur(8px)" }}
+                      initial={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
                       animate={{ 
                         opacity: 1, 
-                        scale: 1, 
-                        y: 0,
+                        scale: 1.25, 
+                        y: -150, // Projetado para a tela de cinema no fundo
+                        x: 0,
                         filter: "blur(0px)",
-                        rotateY: [0, 3, -3, 0],
+                        rotateY: [0, 5, -5, 0],
                       }}
-                      exit={{ opacity: 0, scale: 0.8, y: 20, filter: "blur(8px)" }}
+                      exit={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
                       transition={{ 
                         type: "spring", 
                         stiffness: 70, 
@@ -490,25 +481,27 @@ function TemperaflixPage() {
                           ) ?? ""
                         }
                         alt={activeProduct.node.title}
-                        className="max-h-[220px] sm:max-h-[320px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] z-30"
+                        className="max-h-[300px] sm:max-h-[400px] w-auto object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.9)]"
                         loading="lazy"
                       />
 
-                      {/* REFLEXO INTERNO DA TELA */}
+                      {/* ORIGEM — leve sombra no baú para ancorar a 'saída' do produto */}
                       <motion.div
                         aria-hidden
                         className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
                         animate={{ 
-                          opacity: [0.1, 0.2, 0.1],
-                          scale: [1, 1.05, 1],
+                          opacity: [0.3, 0.5, 0.3],
+                          scale: [1, 1.1, 1],
+                          y: 150 // Mantém a sombra no baú enquanto o pote sobe
                         }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                         style={{
-                          bottom: "10%",
-                          width: "60%",
-                          height: "10px",
-                          background: `radial-gradient(ellipse at center, ${activeMeta.accent}44 0%, transparent 80%)`,
-                          filter: "blur(12px)",
+                          bottom: "-10px",
+                          width: "50%",
+                          height: "15px",
+                          background:
+                            "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
+                          filter: "blur(8px)",
                         }}
                       />
                       <div

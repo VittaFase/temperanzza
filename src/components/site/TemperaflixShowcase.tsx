@@ -229,7 +229,7 @@ export function TemperaflixShowcase() {
             <Loader2 className="h-8 w-8 animate-spin text-brand-paper/50" />
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-center justify-center min-h-[320px] sm:min-h-[520px] overflow-visible max-w-5xl mx-auto px-4 z-20">
+          <div className="relative grid grid-cols-3 gap-2 sm:gap-6 items-end min-h-[320px] sm:min-h-[520px] pb-[10%] overflow-visible max-w-5xl mx-auto px-4">
             {/* PISO — gradiente neutro (sem tint colorido) */}
             <div
               aria-hidden
@@ -336,35 +336,48 @@ export function TemperaflixShowcase() {
                     }}
                   />
 
-                  {/* REFLEXO INTERNO NA TELA (SÓ ATIVO) */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.div
-                        aria-hidden
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.2 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
-                        style={{
-                          bottom: "10%",
-                          width: "50%",
-                          height: "8px",
-                          background: `radial-gradient(ellipse at center, ${activeMeta.accent} 0%, transparent 80%)`,
-                          filter: "blur(8px)",
-                        }}
-                      />
-                    )}
-                  </AnimatePresence>
+                  {/* ORIGEM — sombra no baú que permanece enquanto o pote sobe */}
+                  <motion.div
+                    aria-hidden
+                    className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
+                    animate={{
+                      opacity: isActive ? 0.4 : 0.6,
+                      width: isActive ? "50%" : "48%",
+                      y: isActive ? 120 : 0 // Mantém a sombra no baú
+                    }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    style={{
+                      bottom: "-4px",
+                      height: "12px",
+                      background:
+                        "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
+                      filter: "blur(6px)",
+                    }}
+                  />
+                  {!isActive && (
+                    <div
+                      aria-hidden
+                      className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-0"
+                      style={{
+                        bottom: "-12px",
+                        width: "80%",
+                        height: "28px",
+                        background:
+                          "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 75%)",
+                        filter: "blur(12px)",
+                      }}
+                    />
+                  )}
 
                   {/* pot */}
                   <motion.div
                     className="relative w-full z-10"
                     layoutId={`pote-${key}`}
                     animate={{
-                      y: isActive ? 0 : 0,
-                      x: 0,
-                      rotateY: isActive ? [0, 5, -5, 0] : 0,
-                      scale: isActive ? 1.05 : isCenter ? 0.95 : 0.85,
+                      y: isActive ? -120 : isCenter ? -4 : 0,
+                      x: isActive ? 0 : 0,
+                      rotateY: isActive ? [0, 10, -10, 0] : 0,
+                      scale: isActive ? 1.3 : isCenter ? 1.02 : 0.92,
                       filter: isActive ? "drop-shadow(0 20px 40px rgba(0,0,0,0.8))" : "none",
                     }}
                     transition={{ 
