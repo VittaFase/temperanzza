@@ -459,19 +459,12 @@ function TemperaflixPage() {
                       animate={{ 
                         opacity: 1, 
                         scale: 1.15, 
-                        y: typeof window !== 'undefined' && window.innerWidth < 640 ? -20 : -332, 
+                        y: -332, 
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
                       }}
-                      exit={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
-                      transition={{ 
-                        type: "spring", 
-                        stiffness: 70, 
-                        damping: 18,
-                        rotateY: { duration: 10, repeat: Infinity, ease: "easeInOut" }
-                      }}
-                      className="relative z-30 flex flex-col items-center"
+                      className="relative z-30 flex flex-col items-center max-sm:-translate-y-[20px]"
                       style={{ perspective: 1200, transformOrigin: "bottom center" }}
                     >
                       <img decoding="async"
