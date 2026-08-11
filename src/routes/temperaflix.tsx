@@ -798,7 +798,7 @@ function TemperaflixPage() {
                   {formatBRL(total, "BRL")}
                 </span>
                 <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-brand-paper/50">
-                  pelos 3 shakers · frete único
+                  PELOS 3 SNAKERS · FRETE ÚNICO
                 </span>
               </div>
             )}
