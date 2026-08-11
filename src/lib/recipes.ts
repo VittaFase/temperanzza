@@ -68,7 +68,7 @@ import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada-v5.webp.
 
 
 
-export type Moment = "cafe" | "almoco" | "jantar" | "lanche";
+export type Moment = "cafe" | "almoco" | "jantar" | "lanche" | "sobremesa";
 export type RecipeCategory = "dieta" | "tradicional";
 
 export interface Recipe {
@@ -117,6 +117,7 @@ export const MOMENTS: Record<Moment, string> = {
   almoco: "Almoço",
   jantar: "Jantar",
   lanche: "Lanche",
+  sobremesa: "Sobremesa",
 };
 
 export const CATEGORIES: Record<RecipeCategory, { label: string; short: string }> = {
