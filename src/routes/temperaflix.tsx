@@ -402,7 +402,7 @@ function TemperaflixPage() {
           ) : (
             <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
               {/* LEFT — palco: pote projetado na tela de cinema no fundo */}
-              <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[600px] flex items-end justify-center pb-[10%] lg:col-span-7">
+              <div className="relative min-w-0 overflow-visible min-h-[420px] sm:min-h-[700px] flex items-end justify-center pb-[6%] lg:col-span-7">
                 <FilmGate>
                   {/* CENÁRIO — enquadramento aberto com tela de cinema no fundo */}
                   <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -414,7 +414,7 @@ function TemperaflixPage() {
                     />
                     {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
                     <div 
-                      className="absolute top-[35%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
+                      className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
                       style={{ 
                         boxShadow: `0 0 100px ${activeMeta.accent}33`,
                         transform: "translateY(-50%)"
@@ -440,16 +440,16 @@ function TemperaflixPage() {
                   style={{ height: "14%" }}
                 />
 
-                {/* KEY LIGHT centralizado atrás do pote */}
+                {/* KEY LIGHT centralizado atrás do pote — SUBIU para altura do Ep 01 */}
                 <motion.div
                   aria-hidden
-                  className="absolute blur-[110px] rounded-full z-10 pointer-events-none left-1/2 -translate-x-1/2"
+                  className="absolute blur-[120px] rounded-full z-10 pointer-events-none left-1/2 -translate-x-1/2"
                   animate={{
                     background: activeMeta.halo,
-                    opacity: [0.18, 0.28, 0.18],
+                    opacity: [0.18, 0.3, 0.18],
                   }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ width: "60%", height: "55%", top: "15%" }}
+                  style={{ width: "65%", height: "55%", top: "5%" }}
                 />
 
                 <AnimatePresence mode="wait">
