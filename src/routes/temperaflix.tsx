@@ -399,75 +399,69 @@ function TemperaflixPage() {
               </p>
             </div>
           ) : (
-            <div className="grid min-w-0 grid-cols-1 gap-10 items-center lg:grid-cols-12">
-              {/* LEFT — palco: pote projetado na tela de cinema no fundo */}
-              <div className="relative min-w-0 overflow-visible min-h-[300px] sm:min-h-[700px] flex sm:items-end sm:pb-[6%] items-center pb-0 justify-center lg:col-span-7 -mt-24 sm:mt-0">
-                <FilmGate>
-                  {/* CENÁRIO — enquadramento aberto com tela de cinema no fundo */}
-                  <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                    <img
-                      src={studioBg.url}
-                      alt=""
-                      className="w-full h-full object-cover opacity-100 scale-105"
-                      style={{ objectPosition: "50% 65%" }}
-                    />
-                    {/* A TELA DE CINEMA — Retângulo 16:9 centralizado */}
-                    <div 
-                      className="absolute top-[42%] sm:top-[28%] left-1/2 -translate-x-1/2 w-[85%] sm:w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10"
-                      style={{ 
-                        boxShadow: `0 0 100px ${activeMeta.accent}33`,
-                        transform: "translateY(-50%)"
-                      }}
-                    />
+            <div className="grid min-w-0 grid-cols-1 gap-10 lg:grid-cols-12 items-center">
+              {/* LEFT — palco centralizado */}
+              <div className="relative flex flex-col items-center justify-center lg:col-span-7 min-h-[360px] sm:min-h-[500px] lg:min-h-[700px]">
+                
+                {/* 1. SCENE WRAPPER (Centro Óptico) */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  
+                  {/* TELA DE CINEMA 16:9 — Centrada na scene */}
+                  <div 
+                    className="relative w-[85%] sm:w-[75%] lg:w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10 overflow-hidden"
+                    style={{ 
+                      boxShadow: `0 0 100px ${activeMeta.accent}33`,
+                    }}
+                  >
+                    {/* Fundo da tela */}
+                    <FilmGate>
+                      <img
+                        src={studioBg.url}
+                        alt=""
+                        className="w-full h-full object-cover opacity-100 scale-125 translate-y-[10%]"
+                        style={{ objectPosition: "50% 50%" }}
+                      />
+                    </FilmGate>
+                    
+                    {/* Brilho interno reativo */}
                     <motion.div
                       animate={{
-                        background: `radial-gradient(circle at 50% 40%, ${activeMeta.accent}11 0%, transparent 70%)`,
+                        background: `radial-gradient(circle at 50% 50%, ${activeMeta.accent}22 0%, transparent 70%)`,
                       }}
                       className="absolute inset-0 z-10"
                     />
                   </div>
-                </FilmGate>
 
-                {/* PISO / QUEDA DE LUZ sob a linha do tampo */}
-                <motion.div
-                  aria-hidden
-                  className="absolute inset-x-[-10%] bottom-0 pointer-events-none z-10"
-                  animate={{
-                    background: `linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 40%, transparent 100%), radial-gradient(ellipse 55% 70% at 50% 100%, ${activeMeta.halo}22 0%, transparent 80%)`,
-                  }}
-                  transition={{ duration: 1.4, ease: "easeInOut" }}
-                  style={{ height: "14%" }}
-                />
+                  {/* HALO / KEY LIGHT — Centrado atrás do pote, na mesma posição da tela */}
+                  <motion.div
+                    aria-hidden
+                    className="absolute blur-[80px] sm:blur-[120px] rounded-full z-10 pointer-events-none w-[70%] sm:w-[50%] h-[50%] sm:h-[45%]"
+                    animate={{
+                      background: activeMeta.halo,
+                      opacity: [0.15, 0.25, 0.15],
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
 
-                {/* KEY LIGHT centralizado atrás do pote — SUBIU para altura do Ep 01 */}
-                <motion.div
-                  aria-hidden
-                  className="absolute blur-[60px] sm:blur-[120px] rounded-full z-10 pointer-events-none left-1/2 -translate-x-1/2 w-[80%] sm:w-[65%] h-[50%] sm:h-[55%] top-[12%] sm:top-[1%]"
-                  animate={{
-                    background: activeMeta.halo,
-                    opacity: [0.18, 0.3, 0.18],
-                  }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                />
-
+                {/* 2. POTE (Ancorado ao centro, mas cresce a partir da base) */}
                 <AnimatePresence mode="wait">
                   {activeProduct && (
                     <motion.div
                       key={`stage-${active}`}
                       layoutId={`pote-detalhe-${active}`}
-                      initial={{ opacity: 0, scale: 0.8, y: 0, filter: "blur(6px)" }}
+                      initial={{ opacity: 0, scale: 0.8, y: 20, filter: "blur(6px)" }}
                       animate={{ 
                         opacity: 1, 
-                        scale: typeof window !== 'undefined' && window.innerWidth < 640 ? 1.5 : 1.15, 
-                        y: typeof window !== 'undefined' && window.innerWidth < 640 ? -140 : -332, 
-
-
+                        scale: 1, 
+                        y: 0,
                         x: 0,
                         filter: "blur(0px)",
                         rotateY: [0, 5, -5, 0],
                       }}
                       className="relative z-30 flex flex-col items-center"
-                      style={{ perspective: 1200, transformOrigin: "bottom center" }}
+                      style={{ perspective: 1200 }}
                     >
                       <img decoding="async"
                         src={
@@ -477,40 +471,8 @@ function TemperaflixPage() {
                           ) ?? ""
                         }
                         alt={activeProduct.node.title}
-                        className="max-h-[300px] sm:max-h-[400px] w-auto object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.9)]"
+                        className="h-[220px] sm:h-[320px] lg:h-[420px] w-auto object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.9)]"
                         loading="lazy"
-                      />
-
-                      {/* ORIGEM — leve sombra no baú para ancorar a 'saída' do produto */}
-                      <motion.div
-                        aria-hidden
-                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
-                        animate={{ 
-                          opacity: [0.3, 0.5, 0.3],
-                          scale: [1, 1.1, 1],
-                          y: typeof window !== 'undefined' && window.innerWidth < 640 ? 260 : 472
-                        }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                        style={{
-                          bottom: "-10px",
-                          width: "50%",
-                          height: "15px",
-                          background:
-                            "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%)",
-                          filter: "blur(8px)",
-                        }}
-                      />
-                      <div
-                        aria-hidden
-                        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[-1]"
-                        style={{
-                          bottom: "-14px",
-                          width: "95%",
-                          height: "34px",
-                          background:
-                            "radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 75%)",
-                          filter: "blur(14px)",
-                        }}
                       />
 
                       {/* scanline sweep */}
@@ -530,6 +492,21 @@ function TemperaflixPage() {
                   )}
                 </AnimatePresence>
 
+                {/* 3. SOMBRA DE ORIGEM — Ancorada no "piso" do baú */}
+                <div className="absolute inset-x-0 bottom-0 pointer-events-none flex justify-center h-[10%]">
+                   <motion.div
+                    aria-hidden
+                    className="w-[40%] h-[20px] blur-[10px]"
+                    animate={{ 
+                      opacity: [0.3, 0.5, 0.3],
+                      scale: [1, 1.1, 1],
+                    }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    style={{
+                      background: "radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, transparent 80%)",
+                    }}
+                  />
+                </div>
 
                 {/* ep tag */}
                 <div className="absolute top-4 left-4 sm:top-8 sm:left-8">
@@ -546,8 +523,9 @@ function TemperaflixPage() {
                 </div>
               </div>
 
-              {/* RIGHT — playlist */}
-              <div className="flex w-full min-w-0 flex-col divide-y divide-brand-paper/15 border-y border-brand-paper/15 lg:col-span-5 lg:-translate-y-[150px]">
+              {/* RIGHT — playlist alinhada ao centro do palco */}
+              <div className="flex w-full min-w-0 flex-col divide-y divide-brand-paper/15 border-y border-brand-paper/15 lg:col-span-5">
+
                 {ORDER.map((k) => {
                   const meta = FLAVOR[k];
                   const p = byFlavor[k];

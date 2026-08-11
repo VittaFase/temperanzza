@@ -157,45 +157,53 @@ export function TemperaflixShowcase() {
     <section className="relative overflow-hidden bg-brand-ink text-brand-paper border-y border-foreground/20">
       <FilmGate>
         {/* atmosphere: studio background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img 
             src={studioBg.url} 
             alt="" 
             className="w-full h-full object-cover opacity-100 scale-105"
             style={{ objectPosition: "50% 65%" }}
           />
-          {/* CINEMA SCREEN AREA — Retângulo 16:9 centralizado */}
-          <div 
-            className="absolute top-[35%] left-1/2 -translate-x-1/2 w-[72%] aspect-[16/9] bg-black/60 rounded-md overflow-hidden ring-1 ring-white/10"
-            style={{ 
-              boxShadow: `0 0 80px ${activeMeta.accent}33`,
-              transform: "translateY(-50%)" 
-            }}
-          >
-            {/* Projeção de luz na tela */}
-            <motion.div
-              animate={{
-                background: `radial-gradient(circle at 50% 50%, ${activeMeta.accent}22 0%, transparent 70%)`,
+
+          {/* 1. SCENE WRAPPER (Centro Óptico do Palco Home) */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            
+            {/* TELA DE CINEMA 16:9 — Centrada na scene */}
+            <div 
+              className="relative w-[85%] sm:w-[75%] lg:w-[72%] aspect-[16/9] bg-black/60 rounded-md ring-1 ring-white/10 overflow-hidden"
+              style={{ 
+                boxShadow: `0 0 100px ${activeMeta.accent}33`,
               }}
-              className="absolute inset-0"
+            >
+              {/* Projeção de luz na tela */}
+              <motion.div
+                animate={{
+                  background: `radial-gradient(circle at 50% 50%, ${activeMeta.accent}22 0%, transparent 70%)`,
+                }}
+                className="absolute inset-0 z-10"
+              />
+            </div>
+
+            {/* HALO / KEY LIGHT — Centrado atrás do trio, na mesma posição da tela */}
+            <motion.div
+              aria-hidden
+              className="absolute blur-[80px] sm:blur-[120px] rounded-full z-10 pointer-events-none w-[80%] sm:w-[60%] h-[50%] sm:h-[45%]"
+              animate={{
+                background: activeMeta.halo,
+                opacity: [0.15, 0.25, 0.15],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
+
           <div className="absolute inset-0 bg-brand-ink/5" />
         </div>
         
         {/* Studio Lighting Rig replaces Bokeh */}
         <StudioLightRig accent={activeMeta.accent} opacity={0.6} />
-
-        {/* ambient neutral vignette */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(70% 60% at 50% 45%, rgba(255,255,255,0.02) 0%, transparent 60%), radial-gradient(50% 40% at 50% 100%, rgba(0,0,0,0.7) 0%, transparent 80%)",
-          }}
-        />
       </FilmGate>
+
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28">
         {/* HEADER — player bar */}
