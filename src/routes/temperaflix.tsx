@@ -15,6 +15,8 @@ import { useCartStore } from "@/stores/cartStore";
 import { getProductImage } from "@/lib/productImages";
 import { toast } from "sonner";
 import studioBg from "@/assets/FUNDO_TEMPERAFLIX-3.png.asset.json";
+import { FilmGate } from "@/components/site/FilmGate";
+
 function StudioLightRig({ accent, opacity = 1 }: { accent: string; opacity?: number }) {
   return (
     <div
@@ -365,6 +367,7 @@ function TemperaflixPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/20 to-brand-ink/90" />
         </div>
         <div className="absolute inset-0 bg-paper-grain opacity-[0.06]" />
+        <FilmGate activeAccent={activeMeta.accent} opacity={0.05} />
         
         {/* Studio Lighting Rig replaces Bokeh — lower opacity for secondary stage */}
         <StudioLightRig accent={activeMeta.accent} opacity={0.3} />
