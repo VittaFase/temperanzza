@@ -468,7 +468,7 @@ function TemperaflixPage() {
                       backgroundColor: "#0a0a0a",
                     }}
                     style={{
-                      clipPath: "polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%)",
+                      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
                     }}
                   >

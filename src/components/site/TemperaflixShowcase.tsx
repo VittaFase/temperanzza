@@ -360,7 +360,7 @@ export function TemperaflixShowcase() {
                         y: isActive ? "0px" : "8px",
                       }}
                       style={{
-                        clipPath: "polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%)",
+                        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
                         boxShadow: `inset 0 1px 0 rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.8)`,
                       }}
                     >
