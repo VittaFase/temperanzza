@@ -339,11 +339,11 @@ export function TemperaflixShowcase() {
                   <motion.div
                     className="relative w-full"
                     animate={{
-                      y: isActive ? -28 : isCenter ? -6 : 0,
-                      rotateY: isActive ? 6 : 0,
-                      scale: isActive ? 1.12 : isCenter ? 1 : 0.85,
+                      y: isActive ? -40 : isCenter ? -12 : 0,
+                      rotateY: isActive ? 4 : 0,
+                      scale: isActive ? 1.15 : isCenter ? 1.05 : 0.9,
                     }}
-                    transition={{ type: "spring", stiffness: 180, damping: 22 }}
+                    transition={{ type: "spring", stiffness: 120, damping: 20 }}
                     style={{ transformStyle: "preserve-3d" }}
                   >
                     {image ? (
