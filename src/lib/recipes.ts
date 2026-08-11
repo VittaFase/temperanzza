@@ -1469,7 +1469,7 @@ export const RECIPES: Recipe[] = [
       "Adicione o Temperaflix Tradicional e sacuda bem para envolver.",
       "Aproveite!",
     ],
-    chefWord: "O shaker tradicional traz a base de sal, alho e cebola que adere perfeitamente à pipoca quente, eliminando a necessidade de temperos artificiais.",
+    chefWord: "O snaker tradicional traz a base de sal, alho e cebola que adere perfeitamente à pipoca quente, eliminando a necessidade de temperos artificiais.",
     whyItWorks: "Lanche prático com sabor de verdade.",
     substitution: "Use a versão de Ervas Finas para um toque mais aromático.",
     harmonization: ["lemon-pepper", "paprica-defumada"],
