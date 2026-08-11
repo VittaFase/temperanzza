@@ -390,7 +390,7 @@ function TemperaflixPage() {
           ) : error || !data || data.length === 0 ? (
             <div className="border-2 border-dashed border-brand-paper/20 py-20 px-6 text-center">
               <p className="font-display text-2xl uppercase tracking-wide">
-                Shakers a caminho
+                Snakers a caminho
               </p>
               <p className="mt-3 text-brand-paper/60 max-w-md mx-auto">
                 A linha Temperaflix está sendo finalizada no estoque.
