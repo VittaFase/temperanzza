@@ -185,14 +185,10 @@ export function TemperaflixShowcase() {
       <FilmGate>
         {/* atmosphere: studio background */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <video 
-            src={studioVideo.url} 
-            poster={studioBg.url}
+          <img 
+            src={studioBg.url}
+            alt="Cenário de estúdio"
             className="w-full h-full object-cover opacity-100 brightness-100"
-            autoPlay 
-            muted 
-            loop 
-            playsInline
           />
           <div className="absolute inset-0 bg-brand-ink/20" />
 

@@ -304,14 +304,10 @@ function TemperaflixPage() {
         <FilmGate>
           {/* Fundo de estúdio solicitado */}
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <video 
-              src={studioVideo.url} 
-              poster={studioBg.url}
+            <img 
+              src={studioBg.url}
+              alt="Cenário de estúdio"
               className="w-full h-full object-cover opacity-100"
-              autoPlay 
-              muted 
-              loop 
-              playsInline
               style={{ objectPosition: "50% 50%" }}
             />
             <div className="absolute inset-0 bg-brand-ink/10" />
@@ -395,14 +391,10 @@ function TemperaflixPage() {
       >
         {/* Fundo de estúdio solicitado */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <video 
-            src={studioVideo.url} 
-            poster={studioBg.url}
+          <img 
+            src={studioBg.url}
+            alt="Cenário de estúdio"
             className="w-full h-full object-cover opacity-100 brightness-100"
-            autoPlay 
-            muted 
-            loop 
-            playsInline
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-ink/20 to-brand-ink/90" />
         </div>
