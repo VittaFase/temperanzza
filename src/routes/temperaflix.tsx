@@ -324,12 +324,12 @@ function TemperaflixPage() {
           <FilmTexture />
         </FilmGate>
         
-        {/* halo dinâmico do sabor ativo */}
+        {/* halo dinâmico do sabor ativo — Opacidade ajustada para 0.6 a 0.8 */}
         <motion.div
           aria-hidden
           className="absolute inset-0 pointer-events-none z-10"
           animate={{
-            background: `radial-gradient(70% 80% at 50% 50%, ${activeMeta.halo}66 0%, transparent 60%)`,
+            background: `radial-gradient(70% 80% at 50% 50%, ${activeMeta.halo}cc 0%, transparent 60%)`,
           }}
           transition={{ duration: 1.5 }}
         />
@@ -464,13 +464,19 @@ function TemperaflixPage() {
                   {/* HALO / KEY LIGHT — Centrado atrás do pote, na mesma posição da tela */}
                   <motion.div
                     aria-hidden
+                    key={`halo-${active}`}
                     className="absolute blur-[120px] sm:blur-[180px] rounded-full z-[10] pointer-events-none w-[95%] sm:w-[85%] h-[70%]"
+                    initial={{ opacity: 0, scale: 0.8 }}
                     animate={{
                       background: activeMeta.halo,
-                      opacity: [0.7, 0.9, 0.7],
+                      opacity: [0.6, 0.8, 0.6],
                       scale: [1, 1.15, 1],
                     }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ 
+                      background: { duration: 0.5 },
+                      opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                      scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                    }}
                   />
                 </div>
 
