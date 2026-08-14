@@ -217,12 +217,13 @@ export function TemperaflixShowcase() {
               aria-hidden
               key={`halo-showcase-${active}`}
               className="absolute blur-[120px] sm:blur-[180px] rounded-full z-[10] pointer-events-none w-[95%] sm:w-[85%] h-[70%]"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{
                 background: activeMeta.halo,
                 opacity: [0.6, 0.8, 0.6],
                 scale: [1, 1.15, 1],
               }}
+              exit={{ opacity: 0, scale: 0.9 }}
               transition={{ 
                 background: { duration: 0.5 },
                 opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },

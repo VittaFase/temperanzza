@@ -472,12 +472,13 @@ function TemperaflixPage() {
                     aria-hidden
                     key={`halo-${active}`}
                     className="absolute blur-[120px] sm:blur-[180px] rounded-full z-[10] pointer-events-none w-[95%] sm:w-[85%] h-[70%]"
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     animate={{
                       background: activeMeta.halo,
                       opacity: [0.6, 0.8, 0.6],
                       scale: [1, 1.15, 1],
                     }}
+                    exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ 
                       background: { duration: 0.5 },
                       opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
@@ -492,15 +493,16 @@ function TemperaflixPage() {
                     <motion.div
                       key={`stage-${active}`}
                       layoutId={`pote-detalhe-${active}`}
-                      initial={{ opacity: 0, scale: 0.8, y: 20, filter: "blur(6px)" }}
+                      initial={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
                       animate={{ 
                         opacity: 1, 
                         scale: 1, 
                         y: 0,
                         x: 0,
                         filter: "blur(0px)",
-                        rotateY: [0, 5, -5, 0],
                       }}
+                      exit={{ opacity: 0, scale: 0.9, y: -10, filter: "blur(4px)" }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
                       className="relative z-30 flex flex-col items-center"
                       style={{ perspective: 1200 }}
                     >
