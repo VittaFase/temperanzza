@@ -327,11 +327,17 @@ function TemperaflixPage() {
         {/* halo dinâmico do sabor ativo — Opacidade ajustada para 0.6 a 0.8 */}
         <motion.div
           aria-hidden
+          key={`hero-halo-${active}`}
           className="absolute inset-0 pointer-events-none z-10"
+          initial={{ opacity: 0 }}
           animate={{
             background: `radial-gradient(70% 80% at 50% 50%, ${activeMeta.halo}cc 0%, transparent 60%)`,
+            opacity: [0.6, 0.8, 0.6],
           }}
-          transition={{ duration: 1.5 }}
+          transition={{ 
+            background: { duration: 1.5 },
+            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+          }}
         />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32 flex flex-col items-center text-center">
