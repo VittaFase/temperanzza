@@ -1,63 +1,42 @@
-# Escolha sua sessão — pote dentro do halo nas 3 plataformas
+# Sua caixa — Blend do Chefe
 
-## O que está errado hoje
+## Proposta
+Substituir a apresentação dos seis blends prontos por uma única experiência: o cliente monta sua caixa autoral com **exatamente 12 potes**, repetindo os sabores que quiser entre os disponíveis. Ao completar a caixa, recebe **10% de desconto no fechamento da compra**, com o cupom **BLENDS10**.
 
-Na seção `#episodios` de `/temperaflix`, a composição é montada com números mágicos independentes:
+## Apresentação
+- Menu: **Sua caixa** no lugar de Blends.
+- Título principal: **Monte sua caixa**.
+- Identidade da opção autoral: **Blend do Chefe · Sua caixa autoral**.
+- Frase: **A sua caixa, o seu blend, o seu gosto.**
+- Descrição: **Aqui você é o chefe da casa. Monte sua própria caixa com 12 potes à sua escolha entre os sabores da casa.**
+- Observação: **Complete sua caixa com 12 potes e ganhe 10% de desconto no fechamento da compra com o cupom BLENDS10.**
+- Botão: **Montar sua caixa**.
+- Manter a imagem atual da caixa do chefe, a identidade visual e os sabores disponíveis. Rebranding da logo e adaptação ao site de referência ficam fora desta etapa.
 
-- pote: `y: -140` (mobile) / `y: -332` (desktop), `scale` 1.5 / 1.15
-- halo (key light): `top: 12%` / `top: 1%`
-- tela de cinema 16:9: `top: 42%` / `top: 28%`
-- sombra de origem: `y: 260` / `y: 472`
-- palco: `-mt-24` no mobile, `min-h-[300px]` / `min-h-[700px]`
-- playlist: `lg:-translate-y-[150px]`
+## Retirada dos seis blends
+Remover Brasil, Churrasco, Essenza, Gourmet, Supremo e Temperaflix da apresentação, das configurações de kits e das páginas de compra correspondentes. Remover também o botão “Ver os 6 blends” e referências promocionais a essas seis caixas.
 
-Como cada camada tem seu próprio deslocamento, o centro do pote e o centro do halo não coincidem — e no mobile o palco com `-mt-24` sobe por cima do título "Escolha sua sessão" e da frase "Cada pote, um episódio…" (visível no print).
+**Preservar todos os temperos individuais**, inclusive a linha Temperaflix, seus estoques, receitas e integrações. Outras ofertas, como o combo de três Temperaflix e o Duo Premium Black, não fazem parte desta exclusão.
 
-Além disso, `typeof window !== 'undefined' && window.innerWidth < 640` é lido dentro do `animate`: não reage a redimensionamento nem a rotação de tela, e no primeiro render (SSR) sempre assume desktop — daí o "salto" da composição. Não existe nenhum tratamento intermediário para tablet.
+## Estrutura e segurança da mudança
+A leitura do código confirmou que os kits são composições de produtos individuais: os seis registros têm `shopifyHandle: null`. O montador já limita a seleção a 12 potes e permite repetições. Isso permite reaproveitar a estrutura, sem reconstruir a compra.
 
-## Abordagem: um único centro de cena
+Não é possível garantir ausência de quebras só pela análise: os pontos principais a validar são links antigos, referências aos kits e aplicação efetiva do desconto. O código encaminha BLENDS10 ao fechamento da compra; a configuração vigente do cupom na Shopify ainda precisa ser conferida.
 
-Trocar os offsets soltos por um **palco com centro único**. O halo, a tela de cinema e o pote passam a ser filhos de um mesmo contêiner centralizado, então o pote fica dentro do halo por construção — sem calibragem por pixel.
+### Detalhes técnicos
+1. Usar `/sua-caixa` para a apresentação e `/sua-caixa/chefe` para o montador, reaproveitando os componentes existentes.
+2. Redirecionar permanentemente `/blends`, `/blends/chefe` e as seis URLs antigas para a experiência correspondente. Os kits retirados levam à apresentação da caixa autoral, não a páginas quebradas.
+3. Atualizar menu, rodapé, ofertas que levam ao montador, links internos, títulos, descrições, canonical e sitemap.
+4. Remover configurações e lógica exclusivas dos kits curados; preservar o montador, preços e integração do carrinho usados pela caixa autoral.
+5. Conferir registros remotos antes de qualquer exclusão. Só retirar eventuais registros exclusivos dos seis kits, caso existam; não excluir produtos individuais nem históricos de pedidos. O código não comprova a existência de cadastros remotos exclusivos.
+6. Conferir BLENDS10 na Shopify e testar 10% com a caixa completa. Não alterar regras globais de descontos ou acumulação sem necessidade comprovada.
 
-```text
-  stage (relative, altura por breakpoint)
-  └── scene (absolute, centro do palco)  ← centro comum
-      ├── halo        (centrado na scene)
-      ├── tela 16:9   (centrada na scene)
-      └── pote        (base ancorada, centro óptico = centro da scene)
-      └── sombra      (ancorada ao pé do baú, único offset restante)
-```
+## Validação
+- Montar uma caixa com sabores repetidos até totalizar 12 potes.
+- Confirmar que menos de 12 não permite concluir a caixa e que não é possível adicionar um 13º pote ao montador.
+- Conferir quantidades, preços e desconto no fechamento da compra, sem concluir um pedido real.
+- Verificar menus, links antigos e ausência dos seis kits na navegação e no sitemap.
+- Conferir apresentação no celular, tablet e computador.
 
-O pote é dimensionado por altura relativa ao palco (não por `scale`), então cresce/encolhe junto com a cena em cada breakpoint.
-
-### Três plataformas, três presets
-
-Um único objeto de preset por breakpoint (mobile / tablet / desktop) controla: altura do palco, altura do pote, tamanho do halo, largura da tela de cinema e offset da sombra. Nada de valores duplicados espalhados no JSX.
-
-- **Celular** — palco compacto, sem `-mt-24` (fim da sobreposição com o título), pote grande mas contido, playlist logo abaixo com pouco respiro morto.
-- **Tablet** — preset próprio (hoje inexistente): palco médio, pote intermediário, playlist ainda empilhada.
-- **PC** — palco alto, pote e halo grandes, playlist em coluna ao lado, alinhada ao centro da cena sem `-translate-y` fixo.
-
-### Reatividade correta
-
-Substituir a leitura de `window.innerWidth` dentro do `animate` por um hook de breakpoint com listener de `matchMedia` (mesmo padrão de `src/hooks/use-mobile.tsx`), com fallback SSR estável. Assim a cena se reorganiza ao girar o telefone e não pisca na hidratação.
-
-### Backend
-
-Nada muda: a seção só consome os 3 produtos Temperaflix já carregados via Shopify. Sem alteração de dados, rotas, banco ou integrações.
-
-## Detalhes técnicos
-
-Arquivo principal: `src/routes/temperaflix.tsx` (seção `#episodios`).
-
-1. Extrair a cena para um subcomponente local (`EpisodeStage`) com um mapa `STAGE = { mobile, tablet, desktop }` de tokens: `stageH`, `potH`, `haloW/haloH`, `screenW`, `shadowY`.
-2. Envolver halo + tela + pote num wrapper `absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`; remover `y: -140/-332`, `top: 12%/1%`, `top: 42%/28%`.
-3. Pote: `style={{ height: preset.potH }}` + `object-contain`, `transformOrigin: "center"`; manter `layoutId`, scanline e `AnimatePresence`.
-4. Palco: remover `-mt-24`; usar `min-h` por breakpoint e `items-center` uniforme.
-5. Playlist: trocar `lg:-translate-y-[150px]` por `lg:self-center` no grid (`items-center` já presente), alinhando pelo centro real.
-6. Novo hook `useBreakpoint()` em `src/hooks/` (matchMedia 640/1024) usado pelo palco.
-7. Reaplicar o mesmo preset em `src/components/site/TemperaflixShowcase.tsx` (Home) apenas se houver divergência visível — sem mudar sua composição.
-
-## Verificação
-
-Medir na pré-visualização, em 393px, 820px e 1440px: centro do pote vs. centro do halo (diferença < 10px), ausência de sobreposição com o título/parágrafo, e nenhum corte de tampa do pote. Screenshots nos três tamanhos antes e depois.
+## Esforço
+Mudança concentrada na apresentação, configurações dos kits e navegação, reaproveitando o montador existente. Não exige uma nova estrutura de compra; o consumo exato de créditos não pode ser garantido antecipadamente.
