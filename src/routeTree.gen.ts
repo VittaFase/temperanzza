@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TemperaflixRouteImport } from './routes/temperaflix'
+import { Route as SuaCaixaRouteImport } from './routes/sua-caixa'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProdutosRouteImport } from './routes/produtos'
@@ -20,9 +21,11 @@ import { Route as CozinhaRouteImport } from './routes/cozinha'
 import { Route as ColaborarRouteImport } from './routes/colaborar'
 import { Route as BlendsRouteImport } from './routes/blends'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SuaCaixaIndexRouteImport } from './routes/sua-caixa.index'
 import { Route as CozinhaIndexRouteImport } from './routes/cozinha.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlendsIndexRouteImport } from './routes/blends.index'
+import { Route as SuaCaixaSlugRouteImport } from './routes/sua-caixa.$slug'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as LegalTrocasRouteImport } from './routes/legal.trocas'
 import { Route as LegalTermosRouteImport } from './routes/legal.termos'
@@ -43,6 +46,11 @@ import { Route as ApiPublicBlingCallbackRouteImport } from './routes/api/public/
 const TemperaflixRoute = TemperaflixRouteImport.update({
   id: '/temperaflix',
   path: '/temperaflix',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuaCaixaRoute = SuaCaixaRouteImport.update({
+  id: '/sua-caixa',
+  path: '/sua-caixa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -95,6 +103,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SuaCaixaIndexRoute = SuaCaixaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SuaCaixaRoute,
+} as any)
 const CozinhaIndexRoute = CozinhaIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -109,6 +122,11 @@ const BlendsIndexRoute = BlendsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => BlendsRoute,
+} as any)
+const SuaCaixaSlugRoute = SuaCaixaSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => SuaCaixaRoute,
 } as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
@@ -204,6 +222,7 @@ export interface FileRoutesByFullPath {
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
+  '/sua-caixa': typeof SuaCaixaRouteWithChildren
   '/temperaflix': typeof TemperaflixRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
@@ -214,9 +233,11 @@ export interface FileRoutesByFullPath {
   '/legal/termos': typeof LegalTermosRoute
   '/legal/trocas': typeof LegalTrocasRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/sua-caixa/$slug': typeof SuaCaixaSlugRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/cozinha/': typeof CozinhaIndexRoute
+  '/sua-caixa/': typeof SuaCaixaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
   '/api/public/bling/cron-sync': typeof ApiPublicBlingCronSyncRoute
@@ -244,9 +265,11 @@ export interface FileRoutesByTo {
   '/legal/termos': typeof LegalTermosRoute
   '/legal/trocas': typeof LegalTrocasRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/sua-caixa/$slug': typeof SuaCaixaSlugRoute
   '/blends': typeof BlendsIndexRoute
   '/blog': typeof BlogIndexRoute
   '/cozinha': typeof CozinhaIndexRoute
+  '/sua-caixa': typeof SuaCaixaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
   '/api/public/bling/cron-sync': typeof ApiPublicBlingCronSyncRoute
@@ -267,6 +290,7 @@ export interface FileRoutesById {
   '/produtos': typeof ProdutosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
+  '/sua-caixa': typeof SuaCaixaRouteWithChildren
   '/temperaflix': typeof TemperaflixRoute
   '/admin/bling': typeof AdminBlingRoute
   '/blends/$slug': typeof BlendsSlugRoute
@@ -277,9 +301,11 @@ export interface FileRoutesById {
   '/legal/termos': typeof LegalTermosRoute
   '/legal/trocas': typeof LegalTrocasRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/sua-caixa/$slug': typeof SuaCaixaSlugRoute
   '/blends/': typeof BlendsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/cozinha/': typeof CozinhaIndexRoute
+  '/sua-caixa/': typeof SuaCaixaIndexRoute
   '/api/public/bling/callback': typeof ApiPublicBlingCallbackRoute
   '/api/public/bling/connect': typeof ApiPublicBlingConnectRoute
   '/api/public/bling/cron-sync': typeof ApiPublicBlingCronSyncRoute
@@ -301,6 +327,7 @@ export interface FileRouteTypes {
     | '/produtos'
     | '/sitemap.xml'
     | '/sobre'
+    | '/sua-caixa'
     | '/temperaflix'
     | '/admin/bling'
     | '/blends/$slug'
@@ -311,9 +338,11 @@ export interface FileRouteTypes {
     | '/legal/termos'
     | '/legal/trocas'
     | '/product/$handle'
+    | '/sua-caixa/$slug'
     | '/blends/'
     | '/blog/'
     | '/cozinha/'
+    | '/sua-caixa/'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
     | '/api/public/bling/cron-sync'
@@ -341,9 +370,11 @@ export interface FileRouteTypes {
     | '/legal/termos'
     | '/legal/trocas'
     | '/product/$handle'
+    | '/sua-caixa/$slug'
     | '/blends'
     | '/blog'
     | '/cozinha'
+    | '/sua-caixa'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
     | '/api/public/bling/cron-sync'
@@ -363,6 +394,7 @@ export interface FileRouteTypes {
     | '/produtos'
     | '/sitemap.xml'
     | '/sobre'
+    | '/sua-caixa'
     | '/temperaflix'
     | '/admin/bling'
     | '/blends/$slug'
@@ -373,9 +405,11 @@ export interface FileRouteTypes {
     | '/legal/termos'
     | '/legal/trocas'
     | '/product/$handle'
+    | '/sua-caixa/$slug'
     | '/blends/'
     | '/blog/'
     | '/cozinha/'
+    | '/sua-caixa/'
     | '/api/public/bling/callback'
     | '/api/public/bling/connect'
     | '/api/public/bling/cron-sync'
@@ -396,6 +430,7 @@ export interface RootRouteChildren {
   ProdutosRoute: typeof ProdutosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
+  SuaCaixaRoute: typeof SuaCaixaRouteWithChildren
   TemperaflixRoute: typeof TemperaflixRoute
   AdminBlingRoute: typeof AdminBlingRoute
   BlogSlugRoute: typeof BlogSlugRoute
@@ -418,6 +453,13 @@ declare module '@tanstack/react-router' {
       path: '/temperaflix'
       fullPath: '/temperaflix'
       preLoaderRoute: typeof TemperaflixRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sua-caixa': {
+      id: '/sua-caixa'
+      path: '/sua-caixa'
+      fullPath: '/sua-caixa'
+      preLoaderRoute: typeof SuaCaixaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -490,6 +532,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sua-caixa/': {
+      id: '/sua-caixa/'
+      path: '/'
+      fullPath: '/sua-caixa/'
+      preLoaderRoute: typeof SuaCaixaIndexRouteImport
+      parentRoute: typeof SuaCaixaRoute
+    }
     '/cozinha/': {
       id: '/cozinha/'
       path: '/'
@@ -510,6 +559,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/blends/'
       preLoaderRoute: typeof BlendsIndexRouteImport
       parentRoute: typeof BlendsRoute
+    }
+    '/sua-caixa/$slug': {
+      id: '/sua-caixa/$slug'
+      path: '/$slug'
+      fullPath: '/sua-caixa/$slug'
+      preLoaderRoute: typeof SuaCaixaSlugRouteImport
+      parentRoute: typeof SuaCaixaRoute
     }
     '/product/$handle': {
       id: '/product/$handle'
@@ -666,6 +722,20 @@ const LegalRouteChildren: LegalRouteChildren = {
 
 const LegalRouteWithChildren = LegalRoute._addFileChildren(LegalRouteChildren)
 
+interface SuaCaixaRouteChildren {
+  SuaCaixaSlugRoute: typeof SuaCaixaSlugRoute
+  SuaCaixaIndexRoute: typeof SuaCaixaIndexRoute
+}
+
+const SuaCaixaRouteChildren: SuaCaixaRouteChildren = {
+  SuaCaixaSlugRoute: SuaCaixaSlugRoute,
+  SuaCaixaIndexRoute: SuaCaixaIndexRoute,
+}
+
+const SuaCaixaRouteWithChildren = SuaCaixaRoute._addFileChildren(
+  SuaCaixaRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlendsRoute: BlendsRouteWithChildren,
@@ -677,6 +747,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProdutosRoute: ProdutosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
+  SuaCaixaRoute: SuaCaixaRouteWithChildren,
   TemperaflixRoute: TemperaflixRoute,
   AdminBlingRoute: AdminBlingRoute,
   BlogSlugRoute: BlogSlugRoute,
