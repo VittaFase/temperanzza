@@ -51,11 +51,11 @@ export function BlendBuilder() {
     [picks],
   );
   const remaining = BUILDER_TARGET - total;
-  const isFull = total >= BUILDER_TARGET;
+  const isFull = total === BUILDER_TARGET;
 
   function inc(handle: string) {
     if (isFull) return;
-    setPicks((p) => ({ ...p, [handle]: (p[handle] ?? 0) + 1 }));
+    setPicks((p) => Object.values(p).reduce((sum, qty) => sum + qty, 0) >= BUILDER_TARGET ? p : ({ ...p, [handle]: (p[handle] ?? 0) + 1 }));
   }
   function dec(handle: string) {
     setPicks((p) => {
@@ -122,7 +122,7 @@ export function BlendBuilder() {
             {BUILDER_HANDLES.map((handle) => {
               const qty = picks[handle] ?? 0;
               const img = getProductImage(handle);
-              const disabled = isFull && qty === 0;
+              const disabled = isFull;
               return (
                 <div
                   key={handle}
@@ -307,7 +307,7 @@ export function BlendBuilder() {
 
       <BlendCelebration
         open={celebrationOpen}
-        blendName="Meu Blend"
+        blendName="Blend do Chefe"
         checkoutUrl={checkoutUrl}
         loading={submitting}
         onClose={() => setCelebrationOpen(false)}

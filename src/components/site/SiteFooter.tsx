@@ -35,8 +35,8 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link to="/blends" className="inline-flex min-h-11 items-center hover:text-accent">
-                  Blends
+                <Link to="/sua-caixa" className="inline-flex min-h-11 items-center hover:text-accent">
+                  Sua caixa
                 </Link>
               </li>
               <li>

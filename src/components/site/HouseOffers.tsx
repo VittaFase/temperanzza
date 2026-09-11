@@ -171,7 +171,7 @@ function OfferCard({
             </button>
           ) : (
             <Link
-              to={offer.to ?? "/blends"}
+              to={offer.to ?? "/sua-caixa"}
               className="w-full inline-flex min-h-[48px] items-center justify-center gap-2 border-2 border-foreground hover:bg-foreground hover:text-background px-6 font-display uppercase tracking-widest text-sm transition"
             >
               {offer.cta}

@@ -394,7 +394,7 @@ function ProductPage() {
               Embalado lote a lote em Minas Gerais · Envio calculado no
               fechamento do pedido ·{" "}
               <Link
-                to="/blends"
+                to="/sua-caixa"
                 className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
               >
                 12 potes com desconto
