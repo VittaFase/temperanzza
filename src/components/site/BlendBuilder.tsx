@@ -122,7 +122,7 @@ export function BlendBuilder() {
             {BUILDER_HANDLES.map((handle) => {
               const qty = picks[handle] ?? 0;
               const img = getProductImage(handle);
-              const disabled = isFull;
+              const disabled = isFull && qty === 0;
               return (
                 <div
                   key={handle}
