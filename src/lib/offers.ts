@@ -26,7 +26,7 @@ export interface HouseOffer {
   /** Selo de contagem exibido no canto do carrossel. */
   sceneLabel?: string;
   /** Rota de destino para ofertas do tipo "link". */
-  to?: "/blends";
+  to?: "/sua-caixa";
   cta: string;
   /** Cor de acento do bloco (token da marca). */
   accentClass: string;
@@ -77,8 +77,8 @@ export const HOUSE_OFFERS: HouseOffer[] = [
     kind: "link",
     handles: [],
     sceneHandles: BUILDER_HANDLES,
-    to: "/blends",
-    cta: "Montar meu blend",
+    to: "/sua-caixa",
+    cta: "Montar sua caixa",
     sceneLabel: `${BUILDER_HANDLES.length} sabores da casa`,
     accentClass: "text-accent",
     note: `Desconto de ${BLEND_DISCOUNT_PCT}% válido a partir de 12 potes`,

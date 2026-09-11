@@ -72,7 +72,7 @@ function ProdutosPage() {
             </Link>{" "}
             e volte com o tempero certo na mão. Levando vários?{" "}
             <Link
-              to="/blends"
+              to="/sua-caixa"
               className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
             >
               Monte a caixa de 12 potes

@@ -94,7 +94,7 @@ export function RecipeAddToCart({
         Embalado lote a lote em Minas Gerais · Envio calculado no fechamento do
         pedido ·{" "}
         <Link
-          to="/blends"
+          to="/sua-caixa"
           className="font-display uppercase tracking-wider text-brand-mustard border-b border-brand-mustard/40 hover:border-brand-mustard"
         >
           12 potes com desconto
