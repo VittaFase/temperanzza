@@ -46,7 +46,7 @@ export function SiteHeader() {
               Temperanzza
             </span>
             <span className="hidden sm:inline text-[0.6rem] sm:text-[0.65rem] font-bold uppercase tracking-[0.2em] text-muted-foreground border-l border-foreground/30 pl-2 ml-0.5">
-              FEITO COM FOGO, SAL E TEMPO.
+              FEITO COM FOGO, SABOR E TEMPO.
             </span>
           </div>
         </Link>
