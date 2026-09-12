@@ -85,7 +85,7 @@ export function PromoAnnouncement() {
                 className="mt-5 font-display font-black uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight"
               >
                 {BLEND_DISCOUNT_PCT}% off na sua{" "}
-                <span className="text-accent">caixa blend</span>
+                <span className="text-accent">caixa</span>
               </h2>
               <p className="mt-4 text-sm text-foreground/75 leading-relaxed">
                 Monte sua caixa com {BLEND_DISCOUNT_MIN_ITEMS} potes e
