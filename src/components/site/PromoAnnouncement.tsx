@@ -110,7 +110,7 @@ export function PromoAnnouncement() {
                 onClick={() => setOpen(false)}
                 className="mt-6 w-full rounded-none h-11 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider"
               >
-                Quero conhecer os blends
+                Quero montar minha caixa
               </Button>
               <p className="mt-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 Válido em pedidos com {BLEND_DISCOUNT_MIN_ITEMS}+ potes
