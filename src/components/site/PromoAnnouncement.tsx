@@ -39,7 +39,7 @@ export function PromoAnnouncement() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] sm:text-xs font-display uppercase tracking-[0.2em]">
           <Sparkles className="w-3 h-3 text-accent shrink-0 hidden sm:block" />
           <span className="text-center">
-            <span className="text-accent">{BLEND_DISCOUNT_PCT}% off</span> na caixa a partir de {BLEND_DISCOUNT_MIN_ITEMS} potes — use
+            <span className="text-accent">{BLEND_DISCOUNT_PCT}% off</span> na caixa com {BLEND_DISCOUNT_MIN_ITEMS} potes — use
           </span>
           <button
             onClick={copy}
@@ -88,7 +88,7 @@ export function PromoAnnouncement() {
                 <span className="text-accent">caixa blend</span>
               </h2>
               <p className="mt-4 text-sm text-foreground/75 leading-relaxed">
-                Monte uma caixa com {BLEND_DISCOUNT_MIN_ITEMS} potes ou mais e
+                Monte sua caixa com {BLEND_DISCOUNT_MIN_ITEMS} potes e
                 ganhe {BLEND_DISCOUNT_PCT}% de desconto no fechamento. Use o
                 código abaixo no checkout.
               </p>
@@ -113,7 +113,7 @@ export function PromoAnnouncement() {
                 Quero montar minha caixa
               </Button>
               <p className="mt-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                Válido em pedidos com {BLEND_DISCOUNT_MIN_ITEMS}+ potes
+                Válido na caixa fechada com {BLEND_DISCOUNT_MIN_ITEMS} potes
               </p>
             </div>
           </div>
