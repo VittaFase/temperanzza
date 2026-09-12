@@ -105,7 +105,7 @@ export function SiteFooter() {
         <div className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-paper/50">
           <p>© {new Date().getFullYear()} Temperanzza. Todos os direitos reservados.</p>
           <p className="font-display uppercase tracking-widest">
-            Feito com fogo, sal e tempo.
+             FEITO COM FOGO, SABOR E TEMPO.
           </p>
         </div>
       </div>
