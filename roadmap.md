@@ -1,4 +1,4 @@
 # Sua caixa
-- [ ] Retirar kits curados, criar apresentação e montador com links antigos preservados.
-- [ ] Atualizar navegação, textos e sitemap; validar seleção e telas.
-- [ ] Conferir registros exclusivos e cupom na Shopify (bloqueado: autenticação expirada).
+- [x] Kits retirados; apresentação e montador em /sua-caixa com links antigos redirecionando.
+- [x] Navegação, textos, aviso do cupom e sitemap atualizados; seleção de 12 potes validada.
+- [ ] Conferir cupom BLENDS10 na loja (bloqueado: acesso da Shopify expirado).

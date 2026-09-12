@@ -3,6 +3,7 @@
 ## Core
 Brand: Temperanzza (casa de temperos artesanais, Minas Gerais). Industrial spice-house aesthetic.
 Design: Big Shoulders Stencil headings (font-display), Inter body, Playfair italic for editorial. Sharp corners (rounded-none on CTAs). Paper cream bg + deep ink fg + brick-red accent (oklch 0.52 0.21 28). Brand tokens: brand-ink, brand-paper, brand-cream, brand-red, brand-mustard, brand-emerald, brand-cyan, brand-amber, brand-gold, brand-silver.
+Caixa: sem blends prontos. Só a caixa autoral Blend do Chefe em /sua-caixa (12 potes, repetições livres, 10% com BLENDS10). Antigas URLs /blends redirecionam.
 Catalog: 19 SKUs em 3 sublinhas — Core (13), Premium Black (2: Pimenta/Canela 30g), Temperaflix (3 shakers).
 Shopify: store temperanzza-spice-emporium-dy1i0.myshopify.com, claimed. Storefront token in src/lib/shopify.ts.
 Language: Português brasileiro em toda a UI.
