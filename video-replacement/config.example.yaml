@@ -1,0 +1,23 @@
+project: temperanzza-lemon-pepper
+input_video: input/video.mp4
+product_asset: assets/lemon-pepper.png
+output_dir: output
+product_prompt: seasoning jar
+fps_mode: source
+tracking:
+  engine: grounded-sam2
+  model: sam2.1
+  mask_dilation_px: 4
+inpainting:
+  engine: propainter
+composition:
+  preserve_asset_text: true
+  occlusion: true
+  perspective_warp: true
+  color_match: true
+  contact_shadow: true
+  motion_blur: true
+render:
+  video_codec: libx264
+  audio_codec: aac
+  crf: 18
