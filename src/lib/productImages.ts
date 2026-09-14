@@ -20,12 +20,11 @@ import rebrandPapricaDoce from "@/assets/rebrand-products/PÁPRICA DOCE - 1.png
 import rebrandPapricaPicante from "@/assets/rebrand-products/PÁPRICA PICANTE - 1.png";
 import rebrandSalsaCebolaAlho from "@/assets/rebrand-products/SALSA, CEBOLA E ALHO - 1.png";
 import rebrandFlixBacon from "@/assets/rebrand-products/TEMPERAFLIX BACON - 1.png";
+import rebrandFlixTradicional from "@/assets/rebrand-products/Untitled design - 1.png";
 
 import canela from "@/assets/canela-moida.png.asset.json";
-import cebola from "@/assets/cebola-em-po.png.asset.json";
 import pimenta from "@/assets/pimenta-do-reino.png.asset.json";
 import flixErvas from "@/assets/temperaflix-ervas-finas.png.asset.json";
-import flixTrad from "@/assets/temperaflix-tradicional.png.asset.json";
 import mineiro from "@/assets/tempero-mineiro.png.asset.json";
 import { canonicalProductHandle } from "@/lib/rebrandCatalog";
 
@@ -46,16 +45,15 @@ const REBRAND_IMAGE_MAP: Record<string, string> = {
   "paprica-picante": rebrandPapricaPicante,
   "salsa-cebola-e-alho": rebrandSalsaCebolaAlho,
   "temperaflix-bacon": rebrandFlixBacon,
+  "temperaflix-tradicional": rebrandFlixTradicional,
   "tempero-do-edu": rebrandEdu,
 };
 
 /** Assets legados mantidos somente para SKUs ainda sem rebrand identificado. */
 const LEGACY_IMAGE_MAP: Record<string, string> = {
   "canela-moida": canela.url,
-  "cebola-em-po": cebola.url,
   "pimenta-do-reino": pimenta.url,
   "temperaflix-ervas-finas": flixErvas.url,
-  "temperaflix-tradicional": flixTrad.url,
   "tempero-mineiro": mineiro.url,
 };
 
