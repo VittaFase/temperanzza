@@ -19,23 +19,25 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <main className="bg-brand-paper px-4 py-20 sm:py-28">
+      <div className="mx-auto max-w-3xl overflow-hidden rounded-[2.75rem] bg-brand-cream px-6 py-16 text-center sm:px-12 sm:py-20">
+        <span className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Casa Temperanzza · 404</span>
+        <h1 className="mt-5 font-display text-[clamp(3.5rem,9vw,7rem)] font-semibold leading-[.88] tracking-[-0.04em] text-brand-ink">
+          Essa página não está mais à mesa.
+        </h1>
+        <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+          O endereço pode ter mudado. Volte para a Casa Temperanzza ou explore os sabores disponíveis na loja.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <Link to="/" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-ink px-6 text-sm font-semibold text-brand-paper transition hover:-translate-y-0.5 hover:opacity-90">
+            Voltar ao início
+          </Link>
+          <Link to="/produtos" className="inline-flex min-h-12 items-center justify-center rounded-full border border-brand-ink/15 bg-white px-6 text-sm font-semibold text-brand-ink transition hover:border-brand-ink/30">
+            Conhecer os sabores
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -47,33 +49,31 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+    <main className="bg-brand-paper px-4 py-20 sm:py-28">
+      <div className="mx-auto max-w-3xl overflow-hidden rounded-[2.75rem] bg-brand-cream px-6 py-16 text-center sm:px-12 sm:py-20">
+        <span className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Casa Temperanzza</span>
+        <h1 className="mt-5 font-display text-[clamp(3rem,8vw,6rem)] font-semibold leading-[.9] tracking-[-0.035em] text-brand-ink">
+          Não conseguimos servir esta página agora.
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+        <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+          Houve uma falha no carregamento. Você pode tentar novamente ou voltar para o início sem perder o caminho da Casa.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-ink px-6 text-sm font-semibold text-brand-paper transition hover:-translate-y-0.5 hover:opacity-90"
           >
-            Try again
+            Tentar novamente
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
+          <a href="/" className="inline-flex min-h-12 items-center justify-center rounded-full border border-brand-ink/15 bg-white px-6 text-sm font-semibold text-brand-ink transition hover:border-brand-ink/30">
+            Voltar ao início
           </a>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
