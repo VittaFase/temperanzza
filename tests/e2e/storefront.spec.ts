@@ -47,10 +47,8 @@ test.describe("Casa Temperanzza storefront", () => {
     await page.goto("/", { waitUntil: "domcontentloaded" }); const heading = page.getByRole("heading", { name: "Descubra seu sabor" }); const rendered = await heading.waitFor({ state: "visible", timeout: 15000 }).then(() => true).catch(() => false);
     if (!rendered) { await expect(page.getByRole("heading", { name: "A despensa da Casa Temperanzza" })).toBeVisible(); await expectNoDocumentOverflow(page); return; }
     const carousel = heading.locator("xpath=ancestor::section[1]"); await expect(carousel).toBeVisible(); await expect(carousel.locator('article[aria-current="true"]')).toBeVisible();
-    const confirmedCards = carousel.locator('[data-featured-product][data-image-source="rebrand"]');
-    expect(await confirmedCards.count(), "featured carousel must expose at least one confirmed rebrand asset when Shopify products render").toBeGreaterThan(0);
-    const nonRebrandConfirmed = await carousel.locator('[data-featured-product]').evaluateAll((nodes, confirmed) => nodes.filter((node) => confirmed.includes(node.getAttribute("data-featured-product") || "") && node.getAttribute("data-image-source") !== "rebrand").map((node) => ({ handle: node.getAttribute("data-featured-product"), source: node.getAttribute("data-image-source") })), [...CONFIRMED_REBRAND_HANDLES]);
-    expect(nonRebrandConfirmed, `confirmed carousel SKUs must never fall back: ${JSON.stringify(nonRebrandConfirmed)}`).toEqual([]);
+    const confirmedCards = carousel.locator('[data-featured-product][data-image-source="rebrand"]'); expect(await confirmedCards.count(), "featured carousel must expose at least one confirmed rebrand asset when Shopify products render").toBeGreaterThan(0);
+    const nonRebrandConfirmed = await carousel.locator('[data-featured-product]').evaluateAll((nodes, confirmed) => nodes.filter((node) => confirmed.includes(node.getAttribute("data-featured-product") || "") && node.getAttribute("data-image-source") !== "rebrand").map((node) => ({ handle: node.getAttribute("data-featured-product"), source: node.getAttribute("data-image-source") })), [...CONFIRMED_REBRAND_HANDLES]); expect(nonRebrandConfirmed).toEqual([]);
     const nextButton = carousel.getByRole("button", { name: "Próximo produto" }); if (await nextButton.isVisible()) { const activeTitleBefore = await carousel.locator('article[aria-current="true"] h3').textContent(); await nextButton.click(); await expect.poll(async () => carousel.locator('article[aria-current="true"] h3').textContent()).not.toBe(activeTitleBefore); } else { const pagination = carousel.getByRole("button", { name: "Ir para produto 2" }); await pagination.click(); await expect(pagination).toHaveAttribute("aria-current", "true"); }
     await expectNoDocumentOverflow(page);
   });
@@ -58,22 +56,26 @@ test.describe("Casa Temperanzza storefront", () => {
   test("rebrand catalog excludes standalone Cebola and confirmed cards never use fallback imagery", async ({ page }) => {
     await page.goto("/produtos", { waitUntil: "domcontentloaded" }); const search = page.getByRole("searchbox", { name: "Buscar tempero pelo nome" }); const catalogReady = await search.waitFor({ state: "visible", timeout: 15000 }).then(() => true).catch(() => false);
     if (!catalogReady) { await expect(page.locator("main")).toBeVisible(); await expect(page.getByRole("heading", { name: "Encontre o sabor para a sua cozinha." })).toBeVisible(); await expectNoDocumentOverflow(page); return; }
-    const violations = await page.locator('[data-product-card]').evaluateAll((nodes, confirmed) => nodes.filter((node) => confirmed.includes(node.getAttribute("data-product-card") || "") && node.getAttribute("data-image-source") !== "rebrand").map((node) => ({ handle: node.getAttribute("data-product-card"), source: node.getAttribute("data-image-source") })), [...CONFIRMED_REBRAND_HANDLES]);
-    expect(violations, `confirmed catalog SKUs must never fall back: ${JSON.stringify(violations)}`).toEqual([]);
+    const violations = await page.locator('[data-product-card]').evaluateAll((nodes, confirmed) => nodes.filter((node) => confirmed.includes(node.getAttribute("data-product-card") || "") && node.getAttribute("data-image-source") !== "rebrand").map((node) => ({ handle: node.getAttribute("data-product-card"), source: node.getAttribute("data-image-source") })), [...CONFIRMED_REBRAND_HANDLES]); expect(violations).toEqual([]);
     await search.fill("Cebola"); await expect(page.getByText("Salsa, Cebola e Alho", { exact: true })).toBeVisible(); await expect(page.getByText("Cebola em Pó", { exact: true })).toHaveCount(0); await expectNoDocumentOverflow(page);
   });
 
+  test("standalone Cebola is excluded from the rebrand PDP while Salsa, Cebola e Alho remains", async ({ page }) => {
+    await page.goto("/product/cebola-em-po", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("heading", { name: "Produto não encontrado" })).toBeVisible();
+    await expect(page.locator(".product-stage")).toHaveCount(0);
+    await expect(page.getByRole("link", { name: "Voltar ao catálogo" })).toBeVisible();
+    await expectNoDocumentOverflow(page);
+    await page.goto("/product/salsa-cebola-e-alho", { waitUntil: "domcontentloaded" });
+    const stage = page.locator('[data-product-stage="salsa-cebola-e-alho"]');
+    await expect(stage).toBeVisible(); await expect(stage).toHaveAttribute("data-image-source", "rebrand"); await expectNoDocumentOverflow(page);
+  });
+
   test("confirmed PDP stages use locked rebrand provenance", async ({ page }) => {
-    for (const handle of ["salsa-cebola-e-alho", "temperaflix-tradicional", "temperaflix-bacon", "paprica-defumada"]) {
-      await page.goto(`/product/${handle}`, { waitUntil: "domcontentloaded" }); const stage = page.locator(`[data-product-stage="${handle}"]`); await expect(stage).toBeVisible(); await expect(stage).toHaveAttribute("data-image-source", "rebrand"); const image = stage.locator("img"); await expect(image).toBeVisible(); await expect(image).toHaveAttribute("data-image-source", "rebrand"); const src = await image.getAttribute("src"); expect(src, `${handle} must resolve to a local locked rebrand asset`).toMatch(/\/assets\//); await expectNoDocumentOverflow(page);
-    }
+    for (const handle of ["salsa-cebola-e-alho", "temperaflix-tradicional", "temperaflix-bacon", "paprica-defumada"]) { await page.goto(`/product/${handle}`, { waitUntil: "domcontentloaded" }); const stage = page.locator(`[data-product-stage="${handle}"]`); await expect(stage).toBeVisible(); await expect(stage).toHaveAttribute("data-image-source", "rebrand"); const image = stage.locator("img"); await expect(image).toBeVisible(); await expect(image).toHaveAttribute("data-image-source", "rebrand"); const src = await image.getAttribute("src"); expect(src).toMatch(/\/assets\//); await expectNoDocumentOverflow(page); }
   });
 
-  test("Salsa, Cebola e Alho PDP preserves the premium product stage", async ({ page }) => {
-    await page.goto("/product/salsa-cebola-e-alho", { waitUntil: "domcontentloaded" }); await expect(page.locator("main")).toBeVisible(); await expect(page.getByRole("heading", { level: 1 })).toBeVisible(); await expect(page.getByRole("link", { name: "Voltar aos sabores" })).toBeVisible(); await expect(page.locator(".product-stage")).toBeVisible(); await expect(page.locator(".product-stage img")).toBeVisible(); await expectNoDocumentOverflow(page);
-  });
+  test("Salsa, Cebola e Alho PDP preserves the premium product stage", async ({ page }) => { await page.goto("/product/salsa-cebola-e-alho", { waitUntil: "domcontentloaded" }); await expect(page.locator("main")).toBeVisible(); await expect(page.getByRole("heading", { level: 1 })).toBeVisible(); await expect(page.getByRole("link", { name: "Voltar aos sabores" })).toBeVisible(); await expect(page.locator(".product-stage")).toBeVisible(); await expect(page.locator(".product-stage img")).toBeVisible(); await expectNoDocumentOverflow(page); });
 
-  test("unknown route uses the branded Portuguese 404", async ({ page }) => {
-    await page.goto("/pagina-que-nao-existe", { waitUntil: "domcontentloaded" }); await expect(page.getByRole("heading", { name: "Essa página não está mais à mesa." })).toBeVisible(); await expect(page.getByRole("link", { name: "Voltar ao início" })).toBeVisible(); await expect(page.getByRole("link", { name: "Conhecer os sabores" })).toBeVisible(); await expectNoDocumentOverflow(page);
-  });
+  test("unknown route uses the branded Portuguese 404", async ({ page }) => { await page.goto("/pagina-que-nao-existe", { waitUntil: "domcontentloaded" }); await expect(page.getByRole("heading", { name: "Essa página não está mais à mesa." })).toBeVisible(); await expect(page.getByRole("link", { name: "Voltar ao início" })).toBeVisible(); await expect(page.getByRole("link", { name: "Conhecer os sabores" })).toBeVisible(); await expectNoDocumentOverflow(page); });
 });
