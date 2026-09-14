@@ -1,8 +1,32 @@
 import { expect, test } from "@playwright/test";
 
 async function expectNoDocumentOverflow(page: import("@playwright/test").Page) {
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  expect(overflow).toBeLessThanOrEqual(1);
+  const diagnostics = await page.evaluate(() => {
+    const root = document.documentElement;
+    const viewportWidth = root.clientWidth;
+    const overflow = root.scrollWidth - viewportWidth;
+    const offenders = Array.from(document.querySelectorAll<HTMLElement>("body *"))
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          tag: element.tagName.toLowerCase(),
+          id: element.id || undefined,
+          className: typeof element.className === "string" ? element.className.slice(0, 180) : undefined,
+          left: Math.round(rect.left),
+          right: Math.round(rect.right),
+          width: Math.round(rect.width),
+          scrollWidth: element.scrollWidth,
+          text: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 100),
+        };
+      })
+      .filter((item) => item.right > viewportWidth + 1 || item.left < -1)
+      .sort((a, b) => Math.max(b.right - viewportWidth, -b.left) - Math.max(a.right - viewportWidth, -a.left))
+      .slice(0, 12);
+
+    return { viewportWidth, documentWidth: root.scrollWidth, overflow, offenders };
+  });
+
+  expect(diagnostics.overflow, `Horizontal overflow diagnostics:\n${JSON.stringify(diagnostics, null, 2)}`).toBeLessThanOrEqual(1);
 }
 
 test.describe("Casa Temperanzza storefront", () => {
