@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
 import { getFlavorTone } from "@/lib/flavorPalette";
@@ -85,7 +85,10 @@ function RecipeDrawer() {
   const recipe = Route.useLoaderData() as Recipe;
   const navigate = useNavigate();
   const panelRef = useRef<HTMLDivElement>(null);
-  const close = () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "", lifestyle: "", autor: "" } });
+  const close = useCallback(
+    () => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "", lifestyle: "", autor: "" } }),
+    [navigate],
+  );
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && close();
@@ -98,7 +101,7 @@ function RecipeDrawer() {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", onKey);
     };
-  }, [recipe.slug]);
+  }, [close, recipe.slug]);
 
   const productImg = getProductImage(recipe.featuredHandle);
   const tone = getFlavorTone(recipe.featuredHandle, recipe.title);
@@ -209,11 +212,11 @@ function RecipeDrawer() {
           </section>
 
           {harmonization.length > 0 && (
-            <section className="page-shell pb-16 sm:pb-24"><div className="mb-7"><span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Explore também</span><h2 className="mt-2 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Outros sabores que combinam</h2></div><div className="grid grid-cols-2 gap-4 md:grid-cols-3">{harmonization.slice(0, 3).map((item) => <div key={item.handle} className="rounded-[1.75rem] bg-brand-cream/60 p-5 text-center"><Link to="/product/$handle" params={{ handle: item.handle }}><img src={item.img!} alt={item.name} loading="lazy" className="mx-auto h-32 object-contain" /><p className="mt-3 font-display text-lg font-semibold">{item.name}</p></Link><HarmonizeAddButton handle={item.handle} name={item.name} /></div>)}</div></section>
+            <section className="page-shell pb-16 sm:pb-24"><div className="mb-7"><span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Explore também</span><h2 className="mt-2 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Outros sabores que combinam</h2></div><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">{harmonization.map((item) => <article key={item.handle} className="rounded-[1.5rem] border border-brand-ink/8 bg-white p-4"><Link to="/product/$handle" params={{ handle: item.handle }} className="block"><div className="grid h-40 place-items-center rounded-[1.1rem] bg-brand-cream/55 p-3"><img src={item.img!} alt={item.name} loading="lazy" decoding="async" className="h-full w-full object-contain" /></div><h3 className="mt-3 font-display text-lg leading-tight text-brand-ink">{item.name}</h3></Link><HarmonizeAddButton handle={item.handle} label={item.name} /></article>)}</div></section>
           )}
 
           {related.length > 0 && (
-            <section className="section-space bg-brand-cream/45"><div className="page-shell"><div className="mb-8 flex items-end justify-between gap-5"><div><span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Continue cozinhando</span><h2 className="mt-2 font-display text-4xl font-semibold text-brand-ink sm:text-5xl">Mais receitas</h2></div><button onClick={close} className="hidden items-center gap-2 text-sm font-semibold sm:inline-flex">Ver todas <ArrowRight className="h-4 w-4" /></button></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{related.map((item) => <Link key={item.slug} to="/cozinha/$slug" params={{ slug: item.slug }} search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="group overflow-hidden rounded-[1.75rem] bg-white"><div className="aspect-[4/3] overflow-hidden bg-brand-cream">{item.dish && <img src={item.dish.src} alt={item.dish.alt} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />}</div><div className="p-5"><span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{MOMENTS[item.moment]}</span><h3 className="mt-2 font-display text-xl font-semibold leading-tight">{item.title}</h3></div></Link>)}</div></div></section>
+            <section className="section-space bg-brand-cream/45"><div className="page-shell"><div className="mb-8 flex items-end justify-between gap-4"><div><span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Continue cozinhando</span><h2 className="mt-2 font-display text-4xl font-semibold text-brand-ink">Receitas relacionadas</h2></div><Link to="/cozinha" search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="hidden items-center gap-2 text-sm font-semibold sm:flex">Ver todas <ArrowRight className="h-4 w-4" /></Link></div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{related.map((item) => <RelatedCard key={item.slug} recipe={item} />)}</div></div></section>
           )}
         </main>
       </div>
@@ -222,19 +225,28 @@ function RecipeDrawer() {
 }
 
 function FichaItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return <div className="rounded-[1.25rem] bg-brand-cream/60 p-3 sm:p-4"><dt className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">{icon}{label}</dt><dd className="mt-2 text-xs font-semibold text-brand-ink sm:text-sm">{value}</dd></div>;
+  return <div className="rounded-[1.25rem] bg-brand-cream/60 p-4"><dt className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">{icon}{label}</dt><dd className="mt-2 text-sm font-semibold text-brand-ink sm:text-base">{value}</dd></div>;
+}
+
+function RelatedCard({ recipe }: { recipe: Recipe }) {
+  const img = recipe.dish?.src ?? getProductImage(recipe.featuredHandle);
+  return <Link to="/cozinha/$slug" params={{ slug: recipe.slug }} search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="group block"><div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-white">{img ? <img src={img} alt={recipe.dish?.alt ?? recipe.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" /> : null}</div><h3 className="mt-3 font-display text-xl leading-tight text-brand-ink">{recipe.title}</h3><p className="mt-1 text-xs text-muted-foreground">{MOMENTS[recipe.moment]}</p></Link>;
+}
+
+function RecipeNotFoundDrawer() {
+  return <div className="fixed inset-0 z-[100] grid place-items-center bg-brand-paper/95 p-6"><div className="max-w-lg text-center"><span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Cozinha Temperanzza</span><h1 className="mt-4 font-display text-5xl font-semibold text-brand-ink">Essa receita não está mais à mesa.</h1><p className="mt-5 leading-7 text-muted-foreground">Explore a cozinha para encontrar outro preparo e o condimento certo para ele.</p><Link to="/cozinha" search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="mt-8 inline-flex min-h-12 items-center rounded-full bg-brand-ink px-6 text-sm font-semibold text-brand-paper">Voltar para a cozinha</Link></div></div>;
+}
+
+function deriveHarmonization(recipe: Recipe): string[] {
+  const handles = new Set<string>();
+  for (const other of RECIPES) {
+    if (other.slug === recipe.slug) continue;
+    if (other.profile === recipe.profile || other.moment === recipe.moment) handles.add(other.featuredHandle);
+    if (handles.size >= 4) break;
+  }
+  return [...handles];
 }
 
 function humanHandle(handle: string) {
   return handle.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-}
-
-function deriveHarmonization(recipe: Recipe): string[] {
-  const pool = RECIPES.filter((item) => item.profile === recipe.profile && item.featuredHandle !== recipe.featuredHandle).map((item) => item.featuredHandle);
-  return Array.from(new Set(pool)).slice(0, 3);
-}
-
-function RecipeNotFoundDrawer() {
-  const navigate = useNavigate();
-  return <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-ink/35 backdrop-blur"><div className="mx-4 w-full max-w-md rounded-[2rem] bg-brand-paper p-9 text-center shadow-2xl"><h1 className="font-display text-3xl font-semibold">Receita não encontrada</h1><p className="mt-3 text-muted-foreground">Ela pode ter sido arquivada ou o endereço está incorreto.</p><button onClick={() => navigate({ to: "/cozinha", search: { refeicao: "", proteina: "", lifestyle: "", autor: "" } })} className="mt-7 rounded-full bg-brand-ink px-6 py-3 text-sm font-semibold text-brand-paper">Voltar à cozinha</button></div></div>;
 }
