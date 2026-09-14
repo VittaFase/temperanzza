@@ -241,7 +241,7 @@ function BibliotecaIndice() {
       if (proteina && getRecipeProtein(r) !== proteina) return false;
       return true;
     };
-  }, [refeicao, proteina, lifestyle, autor]);
+  }, [refeicao, proteina]);
 
   const total = useMemo(() => RECIPES.filter(extraFilter).length, [extraFilter]);
   const ativo = Boolean(refeicao || proteina || lifestyle || autor);
@@ -315,46 +315,32 @@ function CategoriaAccordion({ cat, extraFilter, open, onToggle }: { cat: Categor
   return (
     <article className="border-t border-brand-ink/12 last:border-b">
       <button onClick={onToggle} aria-expanded={open} className="group -mx-2 flex w-[calc(100%+1rem)] items-center gap-5 rounded-2xl px-2 py-8 text-left transition hover:bg-white/60 sm:gap-8 sm:py-10">
-        <span className="w-10 shrink-0 text-sm font-semibold text-brand-ink/30 sm:w-12">{cat.romano}</span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-display text-3xl font-semibold leading-none text-brand-ink sm:text-4xl">{cat.name}</h3>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">{cat.descricao}</p>
-        </div>
-        <span className="flex shrink-0 items-center gap-3 text-brand-ink/50">
-          <span className="hidden text-xs tabular-nums sm:inline">{receitas.length}</span>
-          <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
-        </span>
+        <span className="w-10 shrink-0 text-sm font-semibold text-brand-ink/35 sm:w-12">{cat.romano}</span>
+        <div className="min-w-0 flex-1"><h3 className="font-display text-3xl font-semibold leading-none text-brand-ink sm:text-4xl">{cat.name}</h3><p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">{cat.descricao}</p></div>
+        <span className="shrink-0 text-sm tabular-nums text-muted-foreground">{receitas.length}</span>
+        <ChevronDown className={`h-5 w-5 shrink-0 text-brand-ink/55 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
-      <div className={`grid transition-[grid-template-rows] duration-500 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-        <div className="overflow-hidden">
-          {receitas.length === 0 ? (
-            <p className="pb-10 pl-14 text-sm text-muted-foreground sm:pl-20">Novas receitas deste estilo estão em desenvolvimento.</p>
-          ) : (
-            <ul className="grid gap-3 pb-10 sm:grid-cols-2">
-              {receitas.map((r) => (
-                <li key={r.slug}>
-                  <Link
-                    to="/cozinha/$slug"
-                    params={{ slug: r.slug }}
-                    search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
-                    className="group/item grid min-h-28 grid-cols-[92px_1fr_auto] items-center gap-4 overflow-hidden rounded-[1.5rem] bg-white p-2 pr-4 transition hover:-translate-y-0.5 hover:shadow-md"
-                  >
-                    <div className="h-full min-h-24 overflow-hidden rounded-[1.15rem] bg-brand-cream">
-                      {r.dish ? <img src={r.dish.src} alt={r.dish.alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover/item:scale-105" /> : null}
-                    </div>
-                    <div className="min-w-0">
-                      <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">Com {r.featuredHandle.replace(/-/g, " ")}</span>
-                      <span className="mt-1 block font-display text-xl font-semibold leading-[1.05] text-brand-ink">{r.title}</span>
-                    </div>
-                    <ArrowUpRight className="h-4 w-4 text-brand-ink/40 transition group-hover/item:-translate-y-0.5 group-hover/item:translate-x-0.5" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+      {open && (
+        <div className="grid gap-5 pb-10 sm:grid-cols-2 lg:grid-cols-3">
+          {receitas.length > 0 ? receitas.map((recipe) => <RecipeCard key={recipe.slug} recipe={recipe} />) : <p className="col-span-full rounded-[1.5rem] bg-white p-6 text-sm text-muted-foreground">Nenhuma receita encontrada com estes filtros.</p>}
         </div>
-      </div>
+      )}
     </article>
+  );
+}
+
+function RecipeCard({ recipe }: { recipe: Recipe }) {
+  const productImg = getProductImage(recipe.featuredHandle);
+  const tone = getFlavorTone(recipe.featuredHandle, recipe.title);
+
+  return (
+    <Link to="/cozinha/$slug" params={{ slug: recipe.slug }} search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="group block overflow-hidden rounded-[1.75rem] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+      <div className="relative aspect-[4/3] overflow-hidden bg-brand-cream">
+        {recipe.dish ? <img src={recipe.dish.src} alt={recipe.dish.alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" /> : <div className="absolute inset-0" style={{ backgroundColor: tone.bg }} />}
+        {productImg && <div className="absolute bottom-3 right-3 grid h-24 w-20 place-items-center rounded-[1.25rem] p-2 shadow-lg" style={{ backgroundColor: tone.bg }}><img src={productImg} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain" /></div>}
+      </div>
+      <div className="p-5"><span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{MOMENTS[recipe.moment]}</span><h4 className="mt-2 font-display text-2xl font-semibold leading-[1.02] text-brand-ink">{recipe.title}</h4><p className="mt-3 line-clamp-2 text-sm leading-6 text-muted-foreground">{recipe.subtitle ?? recipe.intro}</p></div>
+    </Link>
   );
 }
