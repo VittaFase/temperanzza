@@ -11,7 +11,9 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   webServer: {
-    command: "bun run preview --host 127.0.0.1 --port 4173",
+    // The production build targets Nitro/Cloudflare and is emitted under
+    // .output, not TanStack's legacy dist/server/server.js preview path.
+    command: "PORT=4173 HOST=127.0.0.1 bun .output/server/index.mjs",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: false,
     timeout: 120_000,
