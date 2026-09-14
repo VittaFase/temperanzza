@@ -6,7 +6,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
 import { FlavorCarousel } from "@/components/site/FlavorCarousel";
 import { HOUSE_OFFERS, type HouseOffer } from "@/lib/offers";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 import type { ShopifyProduct } from "@/lib/shopify";
 import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
 
@@ -49,7 +49,7 @@ function OfferCard({
 }) {
   const addItem = useCartStore((state) => state.addItem);
   const isAdding = useCartStore((state) => state.isLoading);
-  const eligibleHandles = offer.handles.filter((handle) => !isRebrandExcludedHandle(handle));
+  const eligibleHandles = offer.handles.filter((handle) => isRebrandEligibleHandle(handle));
   const resolved = eligibleHandles.map((handle) => products?.get(handle)).filter((product): product is ShopifyProduct => Boolean(product));
   const isKit = offer.kind === "kit";
   const complete = isKit && resolved.length === eligibleHandles.length && eligibleHandles.length === offer.handles.length;
@@ -92,7 +92,7 @@ function OfferCard({
     toast.success(`${offer.title} foi para a sacola`);
   };
 
-  const sceneHandles = (offer.sceneHandles ?? eligibleHandles).filter((handle) => !isRebrandExcludedHandle(handle));
+  const sceneHandles = (offer.sceneHandles ?? eligibleHandles).filter((handle) => isRebrandEligibleHandle(handle));
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[2.25rem] bg-white shadow-[0_16px_50px_rgba(34,31,27,.06)] ring-1 ring-brand-ink/6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(34,31,27,.09)]">
