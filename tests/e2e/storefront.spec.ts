@@ -83,8 +83,6 @@ test.describe("Casa Temperanzza storefront", () => {
     const rendered = await heading.waitFor({ state: "visible", timeout: 15000 }).then(() => true).catch(() => false);
 
     if (!rendered) {
-      // Shopify is the commercial source for this async section. If it is unavailable
-      // in the isolated runner, the home must remain stable and overflow-free.
       await expect(page.getByRole("heading", { name: "A despensa da Casa Temperanzza" })).toBeVisible();
       await expectNoDocumentOverflow(page);
       return;
@@ -106,6 +104,35 @@ test.describe("Casa Temperanzza storefront", () => {
     }
 
     await expectNoDocumentOverflow(page);
+  });
+
+  test("rebrand catalog excludes standalone Cebola without excluding Salsa, Cebola e Alho", async ({ page }) => {
+    await page.goto("/produtos", { waitUntil: "domcontentloaded" });
+
+    const search = page.getByRole("searchbox", { name: "Buscar tempero pelo nome" });
+    const catalogReady = await search.waitFor({ state: "visible", timeout: 15000 }).then(() => true).catch(() => false);
+    if (!catalogReady) {
+      await expect(page.getByText("Não foi possível carregar o catálogo agora.")).toBeVisible();
+      return;
+    }
+
+    await search.fill("Cebola");
+    await expect(page.getByText("Salsa, Cebola e Alho", { exact: true })).toBeVisible();
+    await expect(page.getByText("Cebola em Pó", { exact: true })).toHaveCount(0);
+    await expectNoDocumentOverflow(page);
+  });
+
+  test("Temperaflix Tradicional and Bacon PDPs use locked rebrand product imagery", async ({ page }) => {
+    for (const handle of ["temperaflix-tradicional", "temperaflix-bacon"]) {
+      await page.goto(`/product/${handle}`, { waitUntil: "domcontentloaded" });
+      const stage = page.locator(".product-stage");
+      await expect(stage).toBeVisible();
+      const image = stage.locator("img");
+      await expect(image).toBeVisible();
+      const src = await image.getAttribute("src");
+      expect(src, `${handle} must resolve to a local locked rebrand asset`).toMatch(/\/assets\//);
+      await expectNoDocumentOverflow(page);
+    }
   });
 
   test("Salsa, Cebola e Alho PDP preserves the premium product stage", async ({ page }) => {
