@@ -5,7 +5,7 @@ import { useShopifyProducts } from "@/hooks/useShopifyPrices";
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
 import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 /**
  * Loop Cozinha → Carrinho.
@@ -16,7 +16,7 @@ export function RecipeAddToCart({ handle, label }: { handle: string; label: stri
   const { products, loading } = useShopifyProducts();
   const addItem = useCartStore((s) => s.addItem);
   const isLoading = useCartStore((s) => s.isLoading);
-  const eligible = !isRebrandExcludedHandle(handle);
+  const eligible = isRebrandEligibleHandle(handle);
 
   const product = eligible ? products?.get(handle) : undefined;
   const variant = product?.node.variants.edges[0]?.node;
