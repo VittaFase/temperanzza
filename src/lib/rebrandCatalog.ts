@@ -1,9 +1,10 @@
 /**
  * Identidade canônica dos produtos usada pela experiência do rebrand.
  *
- * Shopify continua sendo a fonte comercial. Este arquivo resolve apenas aliases
- * técnicos de handles e a curadoria da Home; ele não classifica SKUs como
- * descontinuados, bloqueados ou inelegíveis para venda.
+ * Shopify continua sendo a fonte comercial. Este arquivo resolve aliases
+ * técnicos, curadoria e elegibilidade editorial. A elegibilidade abaixo afirma
+ * apenas que existe uma fonte visual do NOVO REBRAND fornecida/aprovada; ela não
+ * afirma que o asset histórico em src/assets já seja essa fonte.
  */
 export const PRODUCT_HANDLE_ALIASES: Record<string, string> = {
   "canela-premium-black-30g": "canela-moida",
@@ -14,15 +15,38 @@ export const PRODUCT_HANDLE_ALIASES: Record<string, string> = {
   "edu-guedes": "tempero-do-edu",
 };
 
+/**
+ * SKUs com fonte visual do novo rebrand confirmada pelo proprietário.
+ * Ver docs/PRODUCT-ASSET-LOCK.md. Não adicionar aqui por inferência.
+ */
+export const REBRAND_CONFIRMED_SOURCE_HANDLES = [
+  "temperaflix-ervas-finas",
+  "temperaflix-tradicional",
+  "tempero-mineiro",
+  "temperaflix-bacon",
+  "paprica-picante",
+  "salsa-cebola-e-alho",
+  "curcuma",
+  "tempero-do-edu",
+  "ervas-finas",
+  "paprica-defumada",
+  "paprica-doce",
+  "du-chefe-com-paprica",
+  "chimichurri-sem-pimenta",
+  "chimichurri-picante",
+] as const;
+
+const REBRAND_CONFIRMED_SOURCE_SET = new Set<string>(REBRAND_CONFIRMED_SOURCE_HANDLES);
+
 export const HOME_FEATURED_HANDLES = [
   "salsa-cebola-e-alho",
-  "lemon-pepper",
   "paprica-defumada",
   "chimichurri-sem-pimenta",
-  "cebola-em-po",
   "du-chefe-com-paprica",
   "tempero-do-edu",
-  "ana-maria",
+  "tempero-mineiro",
+  "curcuma",
+  "ervas-finas",
 ] as const;
 
 const HOME_FEATURED_RANK = new Map<string, number>(
@@ -33,8 +57,14 @@ export function canonicalProductHandle(handle: string): string {
   return PRODUCT_HANDLE_ALIASES[handle] ?? handle;
 }
 
+export function hasConfirmedRebrandSource(handle: string): boolean {
+  return REBRAND_CONFIRMED_SOURCE_SET.has(canonicalProductHandle(handle));
+}
+
 export function getHomeFeaturedRank(handle: string): number | null {
-  return HOME_FEATURED_RANK.get(canonicalProductHandle(handle)) ?? null;
+  const canonicalHandle = canonicalProductHandle(handle);
+  if (!hasConfirmedRebrandSource(canonicalHandle)) return null;
+  return HOME_FEATURED_RANK.get(canonicalHandle) ?? null;
 }
 
 export function isHomeFeaturedHandle(handle: string): boolean {
