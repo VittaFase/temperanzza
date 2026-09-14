@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { FlavorTile } from "./FlavorTile";
 import type { ShopifyProduct } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 /**
  * Grid de mini-tiles coloridos para "outros sabores da linha".
@@ -19,7 +19,7 @@ export function FlavorTiles({
 }) {
   const items = products
     .filter((p) => p.node.handle !== currentHandle)
-    .filter((p) => !isRebrandExcludedHandle(p.node.handle))
+    .filter((p) => isRebrandEligibleHandle(p.node.handle))
     .slice(0, 8);
   if (items.length === 0) return null;
 
