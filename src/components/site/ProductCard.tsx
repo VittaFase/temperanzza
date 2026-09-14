@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { FlavorTile } from "./FlavorTile";
 import { ProductBadge } from "./ProductBadge";
 import { getBadge } from "@/lib/flavorPalette";
-import { getProductImage } from "@/lib/productImages";
+import { resolveProductImage } from "@/lib/productImages";
 import { DietDotStrip } from "./DietBadge";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DIETS } from "@/lib/diets";
@@ -26,7 +26,8 @@ export function ProductCard({
   const image = product.node.images.edges[0]?.node;
   const price = product.node.priceRange.minVariantPrice;
   const handle = product.node.handle;
-  const imgUrl = getProductImage(handle, image?.url);
+  const imageResolution = resolveProductImage(handle, image?.url);
+  const imgUrl = imageResolution.url;
   const badge = getBadge(handle, product.node.title);
 
   const handleAdd = async (e: React.MouseEvent) => {
@@ -59,6 +60,8 @@ export function ProductCard({
         <img decoding="async"
           src={imgUrl}
           alt={image?.altText || product.node.title}
+          data-product-handle={handle}
+          data-image-source={imageResolution.source}
           className={`absolute inset-0 m-auto object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.04] ${sizeClass}`}
           loading="lazy"
         />
@@ -77,6 +80,8 @@ export function ProductCard({
     <Link
       to="/product/$handle"
       params={{ handle }}
+      data-product-card={handle}
+      data-image-source={imageResolution.source}
       className="group block bg-background border border-foreground/15"
     >
       {variant === "paper" ? (
