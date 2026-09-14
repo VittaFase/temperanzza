@@ -17,13 +17,16 @@ permissions:
 
 env:
   REBRAND_FILES: >-
+    src/components/site/CollaborationCTA.tsx
     src/components/site/FeaturedProducts.tsx
     src/components/site/FeaturedRow.tsx
+    src/components/site/HouseOffers.tsx
     src/components/site/PromoAnnouncement.tsx
     src/components/site/RecipeShowcase.tsx
     src/components/site/SiteFooter.tsx
     src/components/site/SiteHeader.tsx
     src/components/site/SiteHero.tsx
+    src/routes/index.tsx
     src/routes/cozinha.$slug.tsx
     src/routes/cozinha.tsx
     src/routes/product.$handle.tsx
@@ -70,7 +73,7 @@ jobs:
         run: bunx eslint $REBRAND_FILES --fix
 
       - name: Lint normalized rebrand implementation
-        run: bunx eslint $REBRAND_FILES
+        run: bunx eslint $REBRAND_FILES --max-warnings=0
 
   legacy-lint-audit:
     name: Lint audit (legacy baseline)
