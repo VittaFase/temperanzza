@@ -12,6 +12,7 @@ Este registro protege a experiência rebrand contra regressão para mockups hist
 4. Não reconstruir, redesenhar, completar ou reinterpretar pote/rótulo com IA.
 5. Quando um ativo confirmado ainda não estiver incorporado ao repositório, usar `SHOPIFY_FALLBACK` ou não exibir o SKU em superfície editorial; nunca substituir silenciosamente por mockup histórico.
 6. O original fornecido deve ser preservado. Recorte/transparência/otimização, quando necessários, são derivados técnicos e não podem alterar a arte.
+7. **CEBOLA / `cebola-em-po` está FORA DO ESCOPO desta implementação do rebrand.** Não integrar o SKU às superfícies editoriais do novo rebrand nem tratá-lo como fonte visual confirmada. Esta regra de escopo não apaga dados históricos/comerciais do Shopify.
 
 ## Fonte canônica recebida em 14/09/2026
 
@@ -37,6 +38,11 @@ O PDF original **Nova logotipia Temperanzza (1).pdf**, com 15 páginas, é a fon
 
 Aliases técnicos continuam resolvendo para o handle canônico; não criam SKUs adicionais. Em especial, `tempero-chefe` resolve para `du-chefe-com-paprica`, `edu-guedes` resolve para `tempero-do-edu`, e não existe um SKU genérico `bacon` separado de `temperaflix-bacon`.
 
+## Locks de binário incorporado
+
+- `temperaflix-tradicional` → `src/assets/rebrand-products/Untitled design - 1.png`. Identidade confirmada visualmente pelo proprietário em 14/09/2026: **TEMPERAFLIX / CASA TEMPERANZZA / TRADICIONAL / 60 g**. O nome genérico do arquivo não altera sua identidade canônica.
+- `temperaflix-bacon` → `src/assets/rebrand-products/TEMPERAFLIX BACON - 1.png`. Este é o pote definitivo incorporado para o SKU; não criar SKU genérico `bacon`.
+
 ## Gate técnico
 
-Os 15 objetos raster do PDF devem ser extraídos diretamente e nomeados pelos handles acima. O arquivo `src/lib/productImages.ts` só pode trocar o asset histórico de um handle depois que o binário derivado da fonte canônica estiver incorporado e verificado. Até lá, o registro histórico continua sendo apenas fallback comercial e não prova de Asset Lock.
+O arquivo `src/lib/productImages.ts` só pode trocar o asset histórico de um handle depois que o binário da fonte canônica estiver incorporado e verificado. A resolução deve ser por handle canônico exato, nunca por substring ou inferência de nome. Assets históricos permanecem apenas como fallback para SKUs ainda sem binário definitivo incorporado.
