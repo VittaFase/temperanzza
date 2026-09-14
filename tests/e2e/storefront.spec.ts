@@ -55,6 +55,59 @@ test.describe("Casa Temperanzza storefront", () => {
     await expectNoDocumentOverflow(page);
   });
 
+  test("header navigation works across responsive breakpoints", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+
+    const menuButton = page.getByRole("button", { name: "Abrir menu" });
+    if (await menuButton.isVisible()) {
+      await menuButton.click();
+      const mobileNav = page.getByRole("navigation", { name: "Navegação mobile" });
+      await expect(mobileNav).toBeVisible();
+      await mobileNav.getByRole("link", { name: /Receitas/ }).click();
+    } else {
+      const primaryNav = page.getByRole("navigation", { name: "Navegação principal" });
+      await expect(primaryNav).toBeVisible();
+      await primaryNav.getByRole("link", { name: "Receitas" }).click();
+    }
+
+    await expect(page).toHaveURL((url) => url.pathname === "/cozinha");
+    await expect(page.getByRole("heading", { name: "Cozinhe com mais sabor." })).toBeVisible();
+    await expectNoDocumentOverflow(page);
+  });
+
+  test("featured product carousel advances without document overflow", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+
+    const carousel = page.getByRole("region", { name: "Temperos que fazem a diferença" });
+    await expect(carousel).toBeVisible();
+    const currentBefore = await carousel.locator('article[aria-current="true"]').getAttribute("aria-current");
+    expect(currentBefore).toBe("true");
+
+    const nextButton = carousel.getByRole("button", { name: "Próximo produto" });
+    if (await nextButton.isVisible()) {
+      const activeTitleBefore = await carousel.locator('article[aria-current="true"] h3').textContent();
+      await nextButton.click();
+      await expect.poll(async () => carousel.locator('article[aria-current="true"] h3').textContent()).not.toBe(activeTitleBefore);
+    } else {
+      const pagination = carousel.getByRole("button", { name: "Ir para produto 2" });
+      await pagination.click();
+      await expect(pagination).toHaveAttribute("aria-current", "true");
+    }
+
+    await expectNoDocumentOverflow(page);
+  });
+
+  test("Salsa, Cebola e Alho PDP preserves the premium product stage", async ({ page }) => {
+    await page.goto("/product/salsa-cebola-e-alho", { waitUntil: "domcontentloaded" });
+
+    await expect(page.locator("main")).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Voltar aos sabores" })).toBeVisible();
+    await expect(page.locator(".product-stage")).toBeVisible();
+    await expect(page.locator(".product-stage img")).toBeVisible();
+    await expectNoDocumentOverflow(page);
+  });
+
   test("unknown route uses the branded Portuguese 404", async ({ page }) => {
     await page.goto("/pagina-que-nao-existe", { waitUntil: "domcontentloaded" });
 
