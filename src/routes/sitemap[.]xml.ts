@@ -3,7 +3,7 @@ import type {} from "@tanstack/react-start";
 import { RECIPES } from "@/lib/recipes";
 import { BLOG_POSTS } from "@/lib/blog";
 import { storefrontApiRequest } from "@/lib/shopify";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 const BASE_URL = "https://temperanzza.com.br";
 
@@ -42,7 +42,7 @@ async function fetchProductHandles(): Promise<Array<{ handle: string; updatedAt?
         handle: e.node.handle,
         updatedAt: e.node.updatedAt,
       }))
-      .filter((product: { handle: string }) => !isRebrandExcludedHandle(product.handle));
+      .filter((product: { handle: string }) => isRebrandEligibleHandle(product.handle));
   } catch {
     return [];
   }
