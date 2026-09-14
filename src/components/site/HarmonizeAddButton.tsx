@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { useShopifyProducts } from "@/hooks/useShopifyPrices";
 import { useCartStore } from "@/stores/cartStore";
 import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 /**
  * Botão compacto "Adicionar" para os cards de harmonização.
@@ -19,15 +19,15 @@ export function HarmonizeAddButton({
   const { products, loading } = useShopifyProducts();
   const addItem = useCartStore((s) => s.addItem);
   const isLoading = useCartStore((s) => s.isLoading);
-  const isExcluded = isRebrandExcludedHandle(handle);
+  const eligible = isRebrandEligibleHandle(handle);
 
-  const product = isExcluded ? undefined : products?.get(handle);
+  const product = eligible ? products?.get(handle) : undefined;
   const variant = product?.node.variants.edges[0]?.node;
 
   const handleAdd = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (isExcluded || !product || !variant) return;
+    if (!eligible || !product || !variant) return;
     await addItem({
       product,
       variantId: variant.id,
@@ -53,7 +53,7 @@ export function HarmonizeAddButton({
     toast.success(`${product.node.title} foi para a sacola`);
   };
 
-  if (isExcluded) return null;
+  if (!eligible) return null;
 
   return (
     <button
