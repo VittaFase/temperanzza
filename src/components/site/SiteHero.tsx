@@ -1,91 +1,52 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ShoppingBag } from "lucide-react";
-import { getProductImage } from "@/lib/productImages";
+import { ArrowRight, Pause, Play } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useEffect, useState } from "react";
+import { RECIPES } from "@/lib/recipes";
 
-/**
- * SiteHero — light, culinary and product-first.
- * Kinder's is used only as UX/motion reference; visual identity remains Temperanzza.
- */
+const HERO_SLUGS = [
+  "hamburguer-bacon-em-po",
+  "frango-assado-paprica-defumada",
+  "carne-panela-batatas-tempero-mineiro",
+  "omelete-temperaflix-ervas-finas",
+];
+
 export function SiteHero() {
-  const salsaImage = getProductImage("salsa-cebola-e-alho");
+  const slides = HERO_SLUGS.map((slug) => RECIPES.find((recipe) => recipe.slug === slug)).filter((recipe): recipe is (typeof RECIPES)[number] => Boolean(recipe?.dish));
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: slides.length > 1, duration: 28 });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const syncSelection = useCallback(() => { if (emblaApi) setSelectedIndex(emblaApi.selectedScrollSnap()); }, [emblaApi]);
+
+  useEffect(() => { if (!emblaApi) return; syncSelection(); emblaApi.on("select", syncSelection); return () => { emblaApi.off("select", syncSelection); }; }, [emblaApi, syncSelection]);
+  useEffect(() => { if (!emblaApi || !playing || slides.length < 2) return; const id = window.setInterval(() => emblaApi.scrollNext(), 6500); return () => window.clearInterval(id); }, [emblaApi, playing, slides.length]);
+
+  if (!slides.length) return null;
 
   return (
-    <section className="relative overflow-hidden bg-brand-paper">
-      <div className="page-shell grid min-h-[78svh] items-center gap-12 py-16 sm:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16 lg:py-24">
-        <div className="relative z-10 max-w-2xl">
-          <span className="mb-5 block text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground sm:text-sm">
-            Casa Temperanzza · Minas Gerais
-          </span>
-
-          <h1 className="font-display text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.88] text-brand-ink">
-            Sabor que transforma a sua cozinha.
-          </h1>
-
-          <p className="mt-7 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-            Condimentos e blends feitos para trazer mais sabor aos seus momentos à mesa — do cotidiano às receitas que merecem ficar na memória.
-          </p>
-
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link
-              to="/produtos"
-              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-brand-ink px-6 py-3 text-sm font-semibold text-brand-paper transition duration-300 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-ink focus-visible:ring-offset-2"
-            >
-              <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-              Conheça os sabores
-            </Link>
-            <Link
-              to="/cozinha"
-              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-brand-ink/15 bg-white px-6 py-3 text-sm font-semibold text-brand-ink transition duration-300 hover:-translate-y-0.5 hover:border-brand-ink/30"
-            >
-              Explore receitas
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-
-        <div className="relative min-h-[420px] sm:min-h-[520px] lg:min-h-[620px]" aria-label="Salsa, Cebola e Alho Temperanzza">
-          <div className="product-stage absolute inset-0 bg-brand-cream" />
-          <div className="absolute -right-[8%] top-[8%] h-[48%] w-[48%] rounded-full bg-brand-mustard/25 blur-3xl" aria-hidden="true" />
-          <div className="absolute -bottom-[8%] -left-[5%] h-[42%] w-[42%] rounded-full bg-brand-emerald/15 blur-3xl" aria-hidden="true" />
-
-          <div className="relative flex h-full min-h-[420px] items-center justify-center px-8 py-10 sm:min-h-[520px] lg:min-h-[620px]">
-            <div className="animate-product-enter relative flex h-full w-full max-w-xl items-center justify-center">
-              <div className="absolute left-0 top-1/2 hidden -translate-y-1/2 sm:block">
-                <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-ink/45">Da Casa</span>
-                <span className="mt-2 block max-w-[9rem] font-display text-2xl font-semibold leading-none text-brand-ink">Salsa · Cebola · Alho</span>
-              </div>
-
-              {salsaImage ? (
-                <Link
-                  to="/product/$handle"
-                  params={{ handle: "salsa-cebola-e-alho" }}
-                  className="group relative z-10 flex h-[330px] w-[230px] items-center justify-center sm:h-[430px] sm:w-[290px] lg:h-[500px] lg:w-[330px]"
-                  aria-label="Conhecer Salsa, Cebola e Alho Temperanzza"
-                >
-                  <div className="absolute bottom-[7%] h-[8%] w-[58%] rounded-full bg-brand-ink/12 blur-xl transition duration-500 group-hover:scale-110" aria-hidden="true" />
-                  <img
-                    src={salsaImage}
-                    alt="Pote Salsa, Cebola e Alho Temperanzza"
-                    fetchPriority="high"
-                    decoding="async"
-                    className="relative h-full w-full object-contain drop-shadow-[0_24px_24px_rgba(34,31,27,.18)] transition duration-500 group-hover:-translate-y-2 group-hover:scale-[1.015]"
-                  />
-                </Link>
-              ) : (
-                <div className="rounded-full border border-brand-ink/12 bg-white/60 px-5 py-3 text-sm text-muted-foreground">
-                  Conheça os sabores da Casa Temperanzza
+    <section className="relative overflow-hidden bg-brand-ink text-white" aria-label="Receitas em destaque">
+      <div ref={emblaRef} className="overflow-hidden touch-pan-y">
+        <div className="flex">
+          {slides.map((recipe, index) => (
+            <article key={recipe.slug} className="relative min-w-0 flex-[0_0_100%] min-h-[72svh] sm:min-h-[76svh] lg:min-h-[calc(100svh-112px)]">
+              <img src={recipe.dish!.src} alt={recipe.dish!.alt} fetchPriority={index === 0 ? "high" : "auto"} loading={index === 0 ? "eager" : "lazy"} decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-black/15" />
+              <div className="page-shell relative z-10 flex min-h-[72svh] items-end justify-center pb-20 pt-28 text-center sm:min-h-[76svh] sm:pb-24 lg:min-h-[calc(100svh-112px)]">
+                <div className="max-w-5xl">
+                  <span className="text-xs font-semibold uppercase tracking-[0.26em] text-white/75">Cozinha Temperanzza</span>
+                  <h1 className="mt-5 font-display text-[clamp(3rem,7vw,6.8rem)] font-medium leading-[.92] tracking-[-0.025em] text-white">{recipe.title}</h1>
+                  <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/88 sm:text-lg">{recipe.subtitle || recipe.intro}</p>
+                  <Link to="/cozinha/$slug" params={{ slug: recipe.slug }} search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-md bg-white px-7 py-3 text-sm font-semibold text-brand-ink transition hover:-translate-y-0.5 hover:bg-brand-paper">Ver receita <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
                 </div>
-              )}
-
-              <div className="absolute bottom-0 right-0 hidden text-right sm:block">
-                <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-ink/45">Descubra</span>
-                <Link to="/produtos" className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-brand-ink hover:underline">
-                  Toda a linha <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
               </div>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
+      </div>
+      <div className="absolute inset-x-0 bottom-5 z-20 flex items-center justify-center gap-3">
+        <button type="button" onClick={() => setPlaying((value) => !value)} className="grid h-8 w-8 place-items-center rounded-full border border-white/35 bg-black/15 text-white backdrop-blur-sm transition hover:bg-black/30" aria-label={playing ? "Pausar apresentação" : "Reproduzir apresentação"}>{playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}</button>
+        <div className="flex items-center gap-2" aria-label="Paginação das receitas">{slides.map((recipe, index) => <button key={recipe.slug} type="button" onClick={() => emblaApi?.scrollTo(index)} className={`h-1.5 rounded-full transition-all duration-300 ${selectedIndex === index ? "w-9 bg-white" : "w-1.5 bg-white/50 hover:bg-white/80"}`} aria-label={`Ir para ${recipe.title}`} aria-current={selectedIndex === index ? "true" : undefined} />)}</div>
       </div>
     </section>
   );
