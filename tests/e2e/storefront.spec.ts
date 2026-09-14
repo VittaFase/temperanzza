@@ -50,7 +50,7 @@ test.describe("Casa Temperanzza storefront", () => {
 
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.getByRole("link", { name: "Explore receitas" }).click();
-    await expect(page).toHaveURL(/\/cozinha\/?$/);
+    await expect(page).toHaveURL((url) => url.pathname === "/cozinha");
     await expect(page.locator("main")).toBeVisible();
     await expectNoDocumentOverflow(page);
   });
