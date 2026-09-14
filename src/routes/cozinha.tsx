@@ -14,11 +14,11 @@ import {
 import { ChevronDown, ArrowUpRight, X } from "lucide-react";
 import { CountUp } from "@/components/site/CountUp";
 import { getProductImage } from "@/lib/productImages";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 import { getFlavorTone } from "@/lib/flavorPalette";
 
 const COZINHA_URL = "https://temperanzza.com.br/cozinha";
-const REBRAND_RECIPES = RECIPES.filter((recipe) => !isRebrandExcludedHandle(recipe.featuredHandle));
+const REBRAND_RECIPES = RECIPES.filter((recipe) => isRebrandEligibleHandle(recipe.featuredHandle));
 
 export const Route = createFileRoute("/cozinha")({
   head: () => ({
