@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { storefrontApiRequest, STOREFRONT_QUERY, type ShopifyProduct } from "@/lib/shopify";
-import { isRebrandEditorialHandle } from "@/lib/rebrandCatalog";
+import { getHomeFeaturedRank, isHomeFeaturedHandle } from "@/lib/rebrandCatalog";
 import { ProductGrid } from "./ProductGrid";
 import { FeaturedRow } from "./FeaturedRow";
 
 /**
  * FeaturedProducts — discovery-first product experience for the Home.
- * Shopify continua sendo a fonte comercial; o palco editorial respeita o Asset Lock.
+ * Shopify continua sendo a fonte comercial; a primeira faixa segue uma curadoria
+ * explícita e ordenada, sem inferir status comercial a partir do handle.
  */
 export function FeaturedProducts() {
   const { data: products } = useQuery({
@@ -18,7 +19,12 @@ export function FeaturedProducts() {
   });
 
   const editorialProducts = products
-    ?.filter((product) => isRebrandEditorialHandle(product.node.handle))
+    ?.filter((product) => isHomeFeaturedHandle(product.node.handle))
+    .sort(
+      (a, b) =>
+        (getHomeFeaturedRank(a.node.handle) ?? Number.MAX_SAFE_INTEGER) -
+        (getHomeFeaturedRank(b.node.handle) ?? Number.MAX_SAFE_INTEGER),
+    )
     .slice(0, 8);
 
   return (
