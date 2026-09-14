@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getProductImage } from "@/lib/productImages";
 import type { ShopifyProduct } from "@/lib/shopify";
@@ -45,7 +45,6 @@ export function FlavorCarousel({
 
   const total = slides.length;
   const [index, setIndex] = useState(0);
-  const [dir, setDir] = useState<1 | -1>(1);
   const [reduced, setReduced] = useState(false);
   const [tick, setTick] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -60,9 +59,8 @@ export function FlavorCarousel({
   }, []);
 
   const go = useCallback(
-    (next: number, direction: 1 | -1) => {
+    (next: number) => {
       if (total === 0) return;
-      setDir(direction);
       setIndex(((next % total) + total) % total);
       setTick((t) => t + 1);
     },
@@ -71,10 +69,9 @@ export function FlavorCarousel({
 
   useEffect(() => {
     if (total < 2) return;
-    
-    // Inicia o timer mesmo se reducedMotion estiver on (apenas a animação visual é afetada no CSS)
+
     timer.current = setTimeout(() => {
-      go(index + 1, 1);
+      go(index + 1);
     }, AUTOPLAY_MS);
 
     return () => {
@@ -87,19 +84,14 @@ export function FlavorCarousel({
   const current = slides[index];
 
   return (
-    <div className="relative h-56 sm:h-64 border-b border-foreground/10 bg-brand-cream bg-paper-grain overflow-hidden">
+    <div className="relative h-56 overflow-hidden border-b border-foreground/10 bg-brand-cream bg-paper-grain sm:h-64">
       {/* progresso estilo stories */}
       <div className="absolute inset-x-3 top-3 z-20 flex gap-1">
         {slides.map((s, i) => (
-          <span
-            key={s.handle}
-            className="h-[3px] flex-1 overflow-hidden bg-foreground/20"
-          >
+          <span key={s.handle} className="h-[3px] flex-1 overflow-hidden bg-foreground/20">
             <span
               key={`${tick}-${i}`}
-              className={`block h-full bg-foreground origin-left ${
-                i === index ? "animate-[flavor-progress_3000ms_linear_forwards]" : ""
-              }`}
+              className={`block h-full origin-left bg-foreground ${i === index ? "animate-[flavor-progress_3000ms_linear_forwards]" : ""}`}
               style={{
                 width: i < index ? "100%" : i === index ? "0%" : "0%",
                 transform: i < index ? "scaleX(1)" : undefined,
@@ -110,28 +102,30 @@ export function FlavorCarousel({
       </div>
 
       {countLabel && (
-        <span className="absolute right-3 top-7 z-20 font-display uppercase tracking-widest text-[10px] text-muted-foreground">
+        <span className="absolute right-3 top-7 z-20 font-display text-[10px] uppercase tracking-widest text-muted-foreground">
           {countLabel}
         </span>
       )}
 
-      {/* palco */}
-      <div className="absolute inset-0">
+      {/*
+       * Palco: slides inativos permanecem dentro do card. O deslocamento é feito
+       * na imagem, que está contida por este viewport, evitando que transforms
+       * de elementos absolute inset-0 aumentem o scrollWidth do documento.
+       */}
+      <div className="absolute inset-0 overflow-hidden">
         {slides.map((s, i) => {
           const isCurrent = i === index;
-          const offset = i === index ? 0 : (i < index ? -1 : 1) * dir * 38;
+          const relativeOffset = i < index ? -1 : 1;
           return (
             <div
               key={s.handle}
               aria-hidden={!isCurrent}
-              className="absolute inset-0 flex items-end justify-center pb-14 sm:pb-16"
+              className="absolute inset-0 flex items-end justify-center overflow-hidden pb-14 sm:pb-16"
               style={{
                 opacity: isCurrent ? 1 : 0,
-                transform: `translateX(${isCurrent ? 0 : offset}%)`,
-                transition: reduced
-                  ? undefined
-                  : `transform ${SLIDE_MS}ms cubic-bezier(.65,0,.35,1), opacity 400ms ease`,
+                transition: reduced ? undefined : `opacity ${SLIDE_MS}ms ease`,
                 zIndex: isCurrent ? 3 : 1,
+                pointerEvents: isCurrent ? "auto" : "none",
               }}
             >
               <img
@@ -140,6 +134,10 @@ export function FlavorCarousel({
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
                 className="h-[74%] w-auto max-w-[68%] object-contain drop-shadow-[0_10px_10px_rgba(0,0,0,0.22)]"
+                style={{
+                  transform: `translateX(${isCurrent ? 0 : relativeOffset * 38}%)`,
+                  transition: reduced ? undefined : `transform ${SLIDE_MS}ms cubic-bezier(.65,0,.35,1)`,
+                }}
               />
             </div>
           );
@@ -149,12 +147,10 @@ export function FlavorCarousel({
       {/* legenda */}
       <div className="absolute inset-x-3 bottom-2 z-20 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3">
         <div className="min-w-0">
-          <span className="block font-display uppercase tracking-widest text-[10px] text-muted-foreground">
+          <span className="block font-display text-[10px] uppercase tracking-widest text-muted-foreground">
             Sabor {String(index + 1).padStart(2, "0")}
           </span>
-          <strong className="block truncate font-display uppercase text-sm leading-tight">
-            {current.title}
-          </strong>
+          <strong className="block truncate font-display text-sm uppercase leading-tight">{current.title}</strong>
         </div>
         <span className="shrink-0 font-display text-[10px] tabular-nums text-muted-foreground">
           {String(index + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
@@ -164,16 +160,8 @@ export function FlavorCarousel({
       {/* navegação manual */}
       {total > 1 && (
         <>
-          <NavButton
-            side="left"
-            label="Sabor anterior"
-            onClick={() => go(index - 1, -1)}
-          />
-          <NavButton
-            side="right"
-            label="Próximo sabor"
-            onClick={() => go(index + 1, 1)}
-          />
+          <NavButton side="left" label="Sabor anterior" onClick={() => go(index - 1)} />
+          <NavButton side="right" label="Próximo sabor" onClick={() => go(index + 1)} />
         </>
       )}
     </div>
@@ -195,9 +183,7 @@ function NavButton({
       type="button"
       onClick={onClick}
       aria-label={label}
-      className={`absolute top-1/2 z-30 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full border border-foreground/25 bg-brand-cream/75 text-foreground transition hover:bg-brand-cream active:scale-95 ${
-        side === "left" ? "left-2" : "right-2"
-      }`}
+      className={`absolute top-1/2 z-30 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-foreground/25 bg-brand-cream/75 text-foreground transition hover:bg-brand-cream active:scale-95 ${side === "left" ? "left-2" : "right-2"}`}
     >
       <Icon className="h-4 w-4" />
     </button>
