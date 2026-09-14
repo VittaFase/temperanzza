@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-ro
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 import { getFlavorTone } from "@/lib/flavorPalette";
 import { RecipeAddToCart } from "@/components/site/RecipeAddToCart";
 import { RecipeShareBar } from "@/components/site/RecipeShareBar";
@@ -104,7 +104,7 @@ function RecipeDrawer() {
     };
   }, [close, recipe.slug]);
 
-  const featuredHandleEligible = !isRebrandExcludedHandle(recipe.featuredHandle);
+  const featuredHandleEligible = isRebrandEligibleHandle(recipe.featuredHandle);
   const productImg = featuredHandleEligible ? getProductImage(recipe.featuredHandle) : undefined;
   const tone = getFlavorTone(recipe.featuredHandle, recipe.title);
   const subtitle = recipe.subtitle ?? recipe.intro;
@@ -112,13 +112,13 @@ function RecipeDrawer() {
   const harmonization = useMemo(() => {
     const handles = recipe.harmonization ?? deriveHarmonization(recipe);
     return handles
-      .filter((handle) => !isRebrandExcludedHandle(handle))
+      .filter((handle) => isRebrandEligibleHandle(handle))
       .map((handle) => ({ handle, img: getProductImage(handle), name: humanHandle(handle) }))
       .filter((item) => item.img);
   }, [recipe]);
   const related = useMemo(() => {
-    if (recipe.relatedSlugs?.length) return recipe.relatedSlugs.map(getRecipeBySlug).filter((item): item is Recipe => Boolean(item) && !isRebrandExcludedHandle(item.featuredHandle));
-    return RECIPES.filter((item) => item.profile === recipe.profile && item.slug !== recipe.slug && !isRebrandExcludedHandle(item.featuredHandle)).slice(0, 4);
+    if (recipe.relatedSlugs?.length) return recipe.relatedSlugs.map(getRecipeBySlug).filter((item): item is Recipe => Boolean(item) && isRebrandEligibleHandle(item.featuredHandle));
+    return RECIPES.filter((item) => item.profile === recipe.profile && item.slug !== recipe.slug && isRebrandEligibleHandle(item.featuredHandle)).slice(0, 4);
   }, [recipe]);
 
   return (
@@ -247,7 +247,7 @@ function RecipeNotFoundDrawer() {
 function deriveHarmonization(recipe: Recipe): string[] {
   const handles = new Set<string>();
   for (const other of RECIPES) {
-    if (other.slug === recipe.slug || isRebrandExcludedHandle(other.featuredHandle)) continue;
+    if (other.slug === recipe.slug || !isRebrandEligibleHandle(other.featuredHandle)) continue;
     if (other.profile === recipe.profile || other.moment === recipe.moment) handles.add(other.featuredHandle);
     if (handles.size >= 4) break;
   }
