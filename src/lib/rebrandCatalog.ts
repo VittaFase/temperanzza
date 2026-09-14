@@ -1,43 +1,42 @@
 /**
- * Asset Lock editorial do rebrand Temperanzza.
+ * Identidade canônica dos produtos usada pela experiência do rebrand.
  *
- * Este registro NÃO substitui Shopify nem define se um produto pode ser vendido.
- * Ele controla somente quais handles podem ser promovidos automaticamente nas
- * superfícies editoriais da nova experiência (hero, destaques e storytelling).
- *
- * Regra: produto comercial/legado pode continuar existindo no backend sem se
- * tornar, por isso, uma referência visual autorizada do rebrand.
+ * Shopify continua sendo a fonte comercial. Este arquivo resolve apenas aliases
+ * técnicos de handles e a curadoria da Home; ele não classifica SKUs como
+ * descontinuados, bloqueados ou inelegíveis para venda.
  */
-export const REBRAND_EDITORIAL_HANDLES = [
-  "chimi-churri-picante",
-  "chimichurri-picante",
-  "chimi-churri-sem-pimenta",
-  "chimichurri-sem-pimenta",
-  "curcuma",
-  "ervas-finas",
+export const PRODUCT_HANDLE_ALIASES: Record<string, string> = {
+  "canela-premium-black-30g": "canela-moida",
+  "chimi-churri-picante": "chimichurri-picante",
+  "chimi-churri-sem-pimenta": "chimichurri-sem-pimenta",
+  "tempero-chefe": "du-chefe-com-paprica",
+  "pimenta-do-reino-premium-black-30g": "pimenta-do-reino",
+  "edu-guedes": "tempero-do-edu",
+};
+
+export const HOME_FEATURED_HANDLES = [
+  "salsa-cebola-e-alho",
   "lemon-pepper",
   "paprica-defumada",
-  "paprica-doce",
-  "paprica-picante",
-  "salsa-cebola-e-alho",
-  "temperaflix-bacon",
-  "temperaflix-ervas-finas",
-  "temperaflix-tradicional",
-  "tempero-mineiro",
-] as const;
-
-const REBRAND_EDITORIAL_SET = new Set<string>(REBRAND_EDITORIAL_HANDLES);
-
-/** Handles que permanecem fora da seleção editorial automática. */
-export const REBRAND_EDITORIAL_BLOCKED_HANDLES = [
-  "ana-maria",
+  "chimichurri-sem-pimenta",
   "cebola-em-po",
   "du-chefe-com-paprica",
-  "tempero-chefe",
   "tempero-do-edu",
-  "edu-guedes",
+  "ana-maria",
 ] as const;
 
-export function isRebrandEditorialHandle(handle: string): boolean {
-  return REBRAND_EDITORIAL_SET.has(handle);
+const HOME_FEATURED_RANK = new Map<string, number>(
+  HOME_FEATURED_HANDLES.map((handle, index) => [handle, index]),
+);
+
+export function canonicalProductHandle(handle: string): string {
+  return PRODUCT_HANDLE_ALIASES[handle] ?? handle;
+}
+
+export function getHomeFeaturedRank(handle: string): number | null {
+  return HOME_FEATURED_RANK.get(canonicalProductHandle(handle)) ?? null;
+}
+
+export function isHomeFeaturedHandle(handle: string): boolean {
+  return getHomeFeaturedRank(handle) !== null;
 }
