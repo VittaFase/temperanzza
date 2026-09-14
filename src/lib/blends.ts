@@ -16,7 +16,6 @@ export const CHEF_BOX = {
  */
 const BUILDER_CANDIDATE_HANDLES: string[] = [
   "ana-maria",
-  "cebola-em-po",
   "chimichurri-picante",
   "chimichurri-sem-pimenta",
   "curcuma",
