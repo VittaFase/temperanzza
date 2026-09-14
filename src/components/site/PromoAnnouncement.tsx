@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import { Copy, Check, X, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Copy, Check, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { BLEND_DISCOUNT_CODE, BLEND_DISCOUNT_PCT, BLEND_DISCOUNT_MIN_ITEMS } from "@/lib/blendPricing";
 
 const MODAL_SESSION_KEY = "tz_promo_seen";
 
-/**
- * Barra fina no topo (sempre visível) + modal de boas-vindas
- * uma vez por sessão, comunicando o cupom BLENDS10.
- */
 export function PromoAnnouncement() {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -17,11 +13,11 @@ export function PromoAnnouncement() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(MODAL_SESSION_KEY)) return;
-    const t = setTimeout(() => {
+    const timer = setTimeout(() => {
       setOpen(true);
       sessionStorage.setItem(MODAL_SESSION_KEY, "1");
-    }, 800);
-    return () => clearTimeout(t);
+    }, 900);
+    return () => clearTimeout(timer);
   }, []);
 
   function copy() {
@@ -34,87 +30,39 @@ export function PromoAnnouncement() {
 
   return (
     <>
-      {/* Top bar */}
-      <div className="w-full bg-foreground text-background overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] sm:text-xs font-display uppercase tracking-[0.2em]">
-          <Sparkles className="w-3 h-3 text-accent shrink-0 hidden sm:block" />
-          <span className="text-center">
-            <span className="text-accent">{BLEND_DISCOUNT_PCT}% off</span> na caixa com {BLEND_DISCOUNT_MIN_ITEMS} potes — use
-          </span>
-          <button
-            onClick={copy}
-            className="inline-flex min-h-11 items-center gap-1.5 border border-background/40 px-3 py-2 hover:bg-accent hover:border-accent transition-colors"
-            aria-label="Copiar código BLENDS10"
-          >
-            <span className="tracking-[0.25em]">{BLEND_DISCOUNT_CODE}</span>
-            {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+      <div className="w-full border-b border-brand-ink/8 bg-brand-cream text-brand-ink">
+        <div className="page-shell flex min-h-9 flex-wrap items-center justify-center gap-x-2 gap-y-1 py-1.5 text-center text-[10px] font-semibold sm:text-xs">
+          <span>{BLEND_DISCOUNT_PCT}% off na caixa com {BLEND_DISCOUNT_MIN_ITEMS} potes</span>
+          <span className="text-brand-ink/35">·</span>
+          <button onClick={copy} className="inline-flex min-h-8 items-center gap-1.5 rounded-full px-2.5 font-semibold underline decoration-brand-ink/25 underline-offset-4 hover:decoration-brand-ink" aria-label={`Copiar código ${BLEND_DISCOUNT_CODE}`}>
+            {BLEND_DISCOUNT_CODE}
+            {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
           </button>
         </div>
       </div>
 
-      {/* Modal */}
       {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="promo-title"
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-foreground/70 backdrop-blur-sm overflow-y-auto"
-          style={{
-            paddingTop: "max(1rem, env(safe-area-inset-top))",
-            paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
-          }}
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="relative w-full max-w-md bg-brand-cream border border-foreground/20 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Fechar"
-              className="absolute top-2 right-2 grid h-11 w-11 place-items-center text-foreground/60 hover:text-accent"
-            >
-              <X className="w-4 h-4" />
+        <div role="dialog" aria-modal="true" aria-labelledby="promo-title" className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-brand-ink/45 p-4 backdrop-blur-sm" onClick={() => setOpen(false)}>
+          <div className="relative w-full max-w-md overflow-hidden rounded-[2rem] bg-brand-paper shadow-2xl" onClick={(event) => event.stopPropagation()}>
+            <button onClick={() => setOpen(false)} aria-label="Fechar" className="absolute right-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-white text-brand-ink/60 hover:text-brand-ink">
+              <X className="h-4 w-4" />
             </button>
-            <div className="p-8 sm:p-10 text-center">
-              <span className="inline-flex items-center gap-2 text-xs font-display uppercase tracking-[0.35em] text-accent border-l-2 border-accent pl-3">
-                <Sparkles className="w-3 h-3" /> Boas-vindas da casa
-              </span>
-              <h2
-                id="promo-title"
-                className="mt-5 font-display font-black uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight"
-              >
-                {BLEND_DISCOUNT_PCT}% off na sua{" "}
-                <span className="text-accent">caixa</span>
+            <div className="p-8 text-center sm:p-10">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Boas-vindas da Casa</span>
+              <h2 id="promo-title" className="mt-4 font-display text-4xl font-semibold leading-[.95] text-brand-ink sm:text-5xl">
+                Monte sua caixa e descubra novos sabores.
               </h2>
-              <p className="mt-4 text-sm text-foreground/75 leading-relaxed">
-                Monte sua caixa com {BLEND_DISCOUNT_MIN_ITEMS} potes e
-                ganhe {BLEND_DISCOUNT_PCT}% de desconto no fechamento. Use o
-                código abaixo no checkout.
+              <p className="mt-5 text-sm leading-7 text-muted-foreground">
+                Escolha {BLEND_DISCOUNT_MIN_ITEMS} potes e ganhe {BLEND_DISCOUNT_PCT}% de desconto usando o código abaixo no checkout.
               </p>
-
-              <div className="mt-6 flex items-center gap-0 border border-foreground/20 bg-background">
-                <code className="flex-1 px-4 py-3 font-display text-2xl tracking-[0.3em] text-foreground">
-                  {BLEND_DISCOUNT_CODE}
-                </code>
-                <button
-                  onClick={copy}
-                  className="px-4 min-h-11 bg-foreground text-background hover:bg-accent transition-colors inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em]"
-                >
-                  {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                  {copied ? "Copiado" : "Copiar"}
-                </button>
-              </div>
-
-              <Button
-                onClick={() => setOpen(false)}
-                className="mt-6 w-full rounded-none h-11 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider"
-              >
-                Quero montar minha caixa
-              </Button>
-              <p className="mt-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                Válido na caixa fechada com {BLEND_DISCOUNT_MIN_ITEMS} potes
-              </p>
+              <button onClick={copy} className="mt-7 flex min-h-14 w-full items-center justify-between rounded-full border border-brand-ink/12 bg-brand-cream px-6 text-brand-ink">
+                <code className="font-sans text-base font-semibold tracking-[0.18em]">{BLEND_DISCOUNT_CODE}</code>
+                <span className="inline-flex items-center gap-2 text-xs font-semibold">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}{copied ? "Copiado" : "Copiar"}</span>
+              </button>
+              <Link to="/sua-caixa" onClick={() => setOpen(false)} className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-ink px-6 text-sm font-semibold text-brand-paper transition hover:opacity-90">
+                Montar minha caixa
+              </Link>
+              <button onClick={() => setOpen(false)} className="mt-4 text-xs font-semibold text-muted-foreground hover:text-brand-ink">Continuar navegando</button>
             </div>
           </div>
         </div>
