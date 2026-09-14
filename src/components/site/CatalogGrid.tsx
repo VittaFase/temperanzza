@@ -5,56 +5,19 @@ import { ProductCard } from "./ProductCard";
 import { Loader2, Search, X } from "lucide-react";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DIETS, type DietKey } from "@/lib/diets";
-
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 type LinhaKey = "todas" | "temperaflix";
-
-function isTemperaflix(handle: string): boolean { return handle.startsWith("temperaflix-"); }
-
+function isTemperaflix(handle: string) { return handle.startsWith("temperaflix-"); }
 interface CatalogGridProps { query?: string | null; excludeHandles?: string[]; }
-
 export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) {
-  const [term, setTerm] = useState("");
-  const [linha, setLinha] = useState<LinhaKey>("todas");
-  const [diet, setDiet] = useState<DietKey | "todas">("todas");
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["catalog-grid", query, excludeHandles?.join(",") ?? ""],
-    queryFn: async () => {
-      const res = await storefrontApiRequest(STOREFRONT_QUERY, { first: 50, query });
-      let edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
-      if (excludeHandles?.length) { const ex = new Set(excludeHandles); edges = edges.filter((e) => !ex.has(e.node.handle)); }
-      return edges;
-    },
-  });
-
-  const lineCounts = useMemo(() => ({ all: data?.length ?? 0, temperaflix: data?.filter((p) => isTemperaflix(p.node.handle)).length ?? 0 }), [data]);
-  const lines: Array<{ key: LinhaKey; label: string; hint: string }> = [
-    { key: "todas", label: "Toda a Casa", hint: `${lineCounts.all} ${lineCounts.all === 1 ? "tempero" : "temperos"}` },
-    { key: "temperaflix", label: "Temperaflix", hint: `${lineCounts.temperaflix} ${lineCounts.temperaflix === 1 ? "sabor" : "sabores"}` },
-  ];
-
-  const filtered = useMemo(() => {
-    if (!data) return [];
-    const t = term.trim().toLowerCase();
-    return data.filter((p) => {
-      const handle = p.node.handle; const title = p.node.title.toLowerCase();
-      if (t && !title.includes(t) && !handle.includes(t)) return false;
-      if (linha === "temperaflix" && !isTemperaflix(handle)) return false;
-      if (diet !== "todas") { const verdict = getProductDiet(handle)?.verdicts[diet]?.verdict; if (verdict === "no" || !verdict) return false; }
-      return true;
-    });
-  }, [data, term, linha, diet]);
-
-  const activeFilters = (term ? 1 : 0) + (linha !== "todas" ? 1 : 0) + (diet !== "todas" ? 1 : 0);
-  const clearAll = () => { setTerm(""); setLinha("todas"); setDiet("todas"); };
-  if (isLoading) return <div className="flex justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>;
-  if (error) return <div className="text-center py-20 text-muted-foreground">Não foi possível carregar o catálogo agora.</div>;
-
-  return <div><div className="mb-10 space-y-5">
-    <div className="relative"><Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/40" aria-hidden /><input type="search" value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Buscar tempero por nome…" aria-label="Buscar tempero pelo nome" className="w-full h-12 pl-11 pr-11 bg-background border border-foreground/20 rounded-none font-serif italic text-base placeholder:text-foreground/40 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent" />{term && <button onClick={() => setTerm("")} aria-label="Limpar busca" className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-foreground/50 hover:text-accent"><X className="h-4 w-4" /></button>}</div>
-    <div><p className="text-[10px] font-display uppercase tracking-[0.3em] text-foreground/50 mb-2">Linha</p><div className="flex flex-wrap gap-2">{lines.map((l) => { const active = linha === l.key; return <button key={l.key} onClick={() => setLinha(l.key)} aria-pressed={active} className={`inline-flex min-h-11 items-center gap-2 px-4 py-2 border font-display uppercase tracking-wider text-xs transition-colors ${active ? "border-accent bg-accent text-accent-foreground" : "border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background"}`}><span className="font-black">{l.label}</span><span className={`text-[11px] tracking-widest ${active ? "opacity-80" : "text-foreground/50"}`}>{l.hint}</span></button>; })}</div></div>
-    <div><p className="text-[10px] font-display uppercase tracking-[0.3em] text-foreground/50 mb-2">Compatibilidade dietética</p><div className="flex flex-wrap gap-2"><button onClick={() => setDiet("todas")} aria-pressed={diet === "todas"} className={`inline-flex min-h-11 items-center px-4 py-2 border font-display uppercase tracking-wider text-xs font-black transition-colors ${diet === "todas" ? "border-accent bg-accent text-accent-foreground" : "border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background"}`}>Todas</button>{DIETS.map((d) => { const active = diet === d.key; return <button key={d.key} onClick={() => setDiet(d.key)} aria-pressed={active} className={`inline-flex min-h-11 items-center px-4 py-2 border font-display uppercase tracking-wider text-xs font-black transition-colors ${active ? "border-accent bg-accent text-accent-foreground" : "border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background"}`}>{d.short}</button>; })}</div></div>
-    {(activeFilters > 0 || data) && <div className="flex items-center justify-between border-t border-foreground/10 pt-4 text-xs"><span className="font-display uppercase tracking-widest text-foreground/60">{filtered.length} {filtered.length === 1 ? "tempero" : "temperos"}{activeFilters > 0 && " no filtro atual"}</span>{activeFilters > 0 && <button onClick={clearAll} className="inline-flex items-center gap-1 font-display uppercase tracking-widest text-accent hover:underline underline-offset-4">Limpar filtros<X className="h-3 w-3" /></button>}</div>}
-  </div>
-  {filtered.length === 0 ? <div className="border-2 border-dashed border-foreground/15 py-16 px-6 text-center"><p className="font-display text-xl uppercase tracking-wide">Nenhum tempero corresponde ao filtro</p><p className="mt-2 text-sm text-muted-foreground">Ajuste a busca ou remova algum filtro para ver mais opções.</p>{activeFilters > 0 && <button onClick={clearAll} className="mt-4 inline-flex items-center gap-2 border border-foreground/25 px-4 py-2 font-display uppercase text-xs tracking-widest hover:bg-foreground hover:text-background">Limpar filtros</button>}</div> : <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">{filtered.map((p) => <ProductCard key={p.node.id} product={p} />)}</div>}
-  </div>;
+ const [term,setTerm]=useState(""); const [linha,setLinha]=useState<LinhaKey>("todas"); const [diet,setDiet]=useState<DietKey|"todas">("todas");
+ const {data,isLoading,error}=useQuery({queryKey:["catalog-grid",query,excludeHandles?.join(",")??""],queryFn:async()=>{const res=await storefrontApiRequest(STOREFRONT_QUERY,{first:50,query}); let edges=(res?.data?.products?.edges??[]) as ShopifyProduct[]; edges=edges.filter((e)=>isRebrandEligibleHandle(e.node.handle)); if(excludeHandles?.length){const ex=new Set(excludeHandles);edges=edges.filter((e)=>!ex.has(e.node.handle));} return edges;}});
+ const lineCounts=useMemo(()=>({all:data?.length??0,temperaflix:data?.filter((p)=>isTemperaflix(p.node.handle)).length??0}),[data]);
+ const lines=[{key:"todas" as const,label:"Toda a Casa",hint:`${lineCounts.all} sabores`},{key:"temperaflix" as const,label:"Temperaflix",hint:`${lineCounts.temperaflix} sabores`}];
+ const filtered=useMemo(()=>{if(!data)return[];const t=term.trim().toLowerCase();return data.filter((p)=>{const h=p.node.handle,title=p.node.title.toLowerCase();if(t&&!title.includes(t)&&!h.includes(t))return false;if(linha==="temperaflix"&&!isTemperaflix(h))return false;if(diet!=="todas"){const verdict=getProductDiet(h)?.verdicts[diet]?.verdict;if(verdict==="no"||!verdict)return false;}return true;});},[data,term,linha,diet]);
+ const active=(term?1:0)+(linha!=="todas"?1:0)+(diet!=="todas"?1:0); const clear=()=>{setTerm("");setLinha("todas");setDiet("todas");};
+ if(isLoading)return <div className="flex justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>; if(error)return <div className="py-20 text-center text-muted-foreground">Não foi possível carregar o catálogo agora.</div>;
+ return <div><div className="mb-14 border-y border-brand-ink/10 py-6"><div className="grid gap-5 lg:grid-cols-[minmax(260px,.8fr)_1.2fr]"><div className="relative"><Search className="absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-ink/40"/><input type="search" value={term} onChange={(e)=>setTerm(e.target.value)} placeholder="Buscar tempero…" aria-label="Buscar tempero pelo nome" className="h-12 w-full border-0 border-b border-brand-ink/20 bg-transparent pl-7 pr-8 text-base outline-none transition focus:border-brand-ink"/>{term&&<button onClick={()=>setTerm("")} aria-label="Limpar busca" className="absolute right-0 top-1/2 -translate-y-1/2"><X className="h-4 w-4"/></button>}</div><div className="flex flex-wrap items-center gap-2 lg:justify-end">{lines.map((l)=><button key={l.key} onClick={()=>setLinha(l.key)} aria-pressed={linha===l.key} className={`min-h-10 rounded-full border px-4 text-xs font-semibold transition ${linha===l.key?"border-brand-ink bg-brand-ink text-white":"border-brand-ink/15 hover:border-brand-ink/35"}`}>{l.label} <span className="ml-1 opacity-55">{l.hint}</span></button>)}<button onClick={()=>setDiet("todas")} aria-pressed={diet==="todas"} className={`min-h-10 rounded-full border px-4 text-xs font-semibold ${diet==="todas"?"border-brand-ink bg-brand-ink text-white":"border-brand-ink/15"}`}>Todas as dietas</button>{DIETS.map((d)=><button key={d.key} onClick={()=>setDiet(d.key)} aria-pressed={diet===d.key} className={`min-h-10 rounded-full border px-4 text-xs font-semibold ${diet===d.key?"border-brand-ink bg-brand-ink text-white":"border-brand-ink/15"}`}>{d.short}</button>)}</div></div><div className="mt-5 flex items-center justify-between text-xs text-muted-foreground"><span>{filtered.length} {filtered.length===1?"tempero":"temperos"}</span>{active>0&&<button onClick={clear} className="inline-flex items-center gap-1 font-semibold text-brand-ink">Limpar filtros <X className="h-3 w-3"/></button>}</div></div>
+ {filtered.length===0?<div className="py-20 text-center"><p className="font-display text-2xl">Nenhum tempero corresponde ao filtro.</p>{active>0&&<button onClick={clear} className="mt-5 border-b border-brand-ink/30 pb-1 text-sm font-semibold">Limpar filtros</button>}</div>:<div className="grid grid-cols-2 gap-x-5 gap-y-14 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4 lg:gap-x-10 lg:gap-y-20">{filtered.map((p)=><ProductCard key={p.node.id} product={p}/>)}</div>}
+ </div>;
 }
