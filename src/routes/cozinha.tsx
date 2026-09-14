@@ -14,9 +14,11 @@ import {
 import { ChevronDown, ArrowUpRight, X } from "lucide-react";
 import { CountUp } from "@/components/site/CountUp";
 import { getProductImage } from "@/lib/productImages";
+import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
 import { getFlavorTone } from "@/lib/flavorPalette";
 
 const COZINHA_URL = "https://temperanzza.com.br/cozinha";
+const REBRAND_RECIPES = RECIPES.filter((recipe) => !isRebrandExcludedHandle(recipe.featuredHandle));
 
 export const Route = createFileRoute("/cozinha")({
   head: () => ({
@@ -75,7 +77,7 @@ function CozinhaLayout() {
 }
 
 function BibliotecaHero() {
-  const lead = RECIPES.find((recipe) => Boolean(recipe.dish)) ?? RECIPES[0];
+  const lead = REBRAND_RECIPES.find((recipe) => Boolean(recipe.dish)) ?? REBRAND_RECIPES[0];
   const productImage = lead ? getProductImage(lead.featuredHandle) : null;
   const tone = lead ? getFlavorTone(lead.featuredHandle, lead.title) : null;
 
@@ -104,7 +106,7 @@ function BibliotecaHero() {
               <ChevronDown className="h-4 w-4" aria-hidden="true" />
             </a>
             <span className="text-sm text-muted-foreground">
-              <CountUp to={RECIPES.length} from={Math.max(0, RECIPES.length - 3)} duration={1200} /> receitas na cozinha
+              <CountUp to={REBRAND_RECIPES.length} from={Math.max(0, REBRAND_RECIPES.length - 3)} duration={1200} /> receitas na cozinha
             </span>
           </div>
         </div>
@@ -243,7 +245,7 @@ function BibliotecaIndice() {
     };
   }, [refeicao, proteina]);
 
-  const total = useMemo(() => RECIPES.filter(extraFilter).length, [extraFilter]);
+  const total = useMemo(() => REBRAND_RECIPES.filter(extraFilter).length, [extraFilter]);
   const ativo = Boolean(refeicao || proteina || lifestyle || autor);
 
   return (
@@ -310,7 +312,7 @@ function FilterChip({ label, active, onClick }: { label: string; active: boolean
 }
 
 function CategoriaAccordion({ cat, extraFilter, open, onToggle }: { cat: CategoriaDef; extraFilter: (r: Recipe) => boolean; open: boolean; onToggle: () => void }) {
-  const receitas = useMemo(() => RECIPES.filter((r) => cat.filter(r) && extraFilter(r)), [cat, extraFilter]);
+  const receitas = useMemo(() => REBRAND_RECIPES.filter((r) => cat.filter(r) && extraFilter(r)), [cat, extraFilter]);
 
   return (
     <article className="border-t border-brand-ink/12 last:border-b">
