@@ -1,0 +1,129 @@
+name: NO-REGRESSION
+
+on:
+  push:
+    branches:
+      - rebrand-kinders-experience
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: no-regression-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  REBRAND_FILES: >-
+    src/components/site/CollaborationCTA.tsx
+    src/components/site/FeaturedProducts.tsx
+    src/components/site/FeaturedRow.tsx
+    src/components/site/HouseOffers.tsx
+    src/components/site/PromoAnnouncement.tsx
+    src/components/site/RecipeShowcase.tsx
+    src/components/site/SiteFooter.tsx
+    src/components/site/SiteHeader.tsx
+    src/components/site/SiteHero.tsx
+    src/routes/__root.tsx
+    src/routes/index.tsx
+    src/routes/cozinha.$slug.tsx
+    src/routes/cozinha.tsx
+    src/routes/product.$handle.tsx
+    src/lib/productImages.ts
+    src/lib/rebrandCatalog.ts
+
+jobs:
+  build:
+    name: Production build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Production build
+        run: bun run build
+
+  browser-qa:
+    name: Responsive browser QA
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install Playwright test runner
+        run: bun add --no-save --dev @playwright/test
+
+      - name: Install browser engines required by device profiles
+        run: bunx playwright install --with-deps chromium webkit
+
+      - name: Build production application
+        run: bun run build
+
+      - name: Run responsive browser smoke tests
+        run: bunx playwright test
+
+  rebrand-lint:
+    name: Rebrand lint gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Normalize formatting in isolated runner
+        run: bunx eslint $REBRAND_FILES --fix
+
+      - name: Lint normalized rebrand implementation
+        run: bunx eslint $REBRAND_FILES --max-warnings=0
+
+  legacy-lint-audit:
+    name: Lint audit (legacy baseline)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Audit repository lint debt
+        run: bun run lint

@@ -1,80 +1,151 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { RECIPES } from "@/lib/recipes";
+import { getProductImage } from "@/lib/productImages";
+import { getFlavorTone } from "@/lib/flavorPalette";
 
 /**
- * Showcase de Receitas para a Home.
- * Implementa a estética "Biblioteca Gastronômica" com foco em imagens de pratos + produtos.
+ * Home culinary showcase: dish -> seasoning -> recipe -> product.
+ * Uses only recipe imagery and official product assets already registered in the project.
  */
 export function RecipeShowcase() {
-  // Selecionamos 3 receitas estratégicas para o destaque
-  const featuredRecipes = [
-    RECIPES.find(r => r.slug === "pao-carnivoro-tradicional"),
-    RECIPES.find(r => r.slug === "frango-assado-paprica-defumada"),
-    RECIPES.find(r => r.slug === "hamburguer-bacon-em-po")
-  ].filter(Boolean) as any[];
+  const preferred = [
+    "pao-carnivoro-tradicional",
+    "frango-assado-paprica-defumada",
+    "hamburguer-bacon-em-po",
+  ];
+  const featuredRecipes = preferred
+    .map((slug) => RECIPES.find((recipe) => recipe.slug === slug))
+    .filter((recipe): recipe is (typeof RECIPES)[number] => Boolean(recipe));
 
-  if (featuredRecipes.length === 0) return null;
+  if (!featuredRecipes.length) return null;
+
+  const lead = featuredRecipes[0];
+  const secondary = featuredRecipes.slice(1);
+  const leadTone = getFlavorTone(lead.featuredHandle, lead.title);
+  const leadProduct = getProductImage(lead.featuredHandle);
 
   return (
-    <section className="bg-brand-ink py-20 sm:py-28 text-brand-paper overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+    <section className="section-space overflow-hidden bg-brand-cream/55">
+      <div className="page-shell">
+        <header className="mb-10 flex flex-col justify-between gap-6 sm:mb-14 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-3 mb-6">
-              <span aria-hidden className="block h-px w-12 bg-brand-mustard" />
-              <span className="text-[10px] font-display uppercase tracking-[0.4em] text-brand-mustard">
-                Inspirar & Transformar
-              </span>
-            </div>
-            <h2 className="font-display font-black uppercase text-5xl sm:text-6xl lg:text-7xl leading-[0.9] tracking-tight">
-              Biblioteca
-              <br />
-              Gastronômica
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              Da Temperanzza para a mesa
+            </span>
+            <h2 className="mt-3 font-display text-5xl font-semibold leading-[.92] text-brand-ink sm:text-6xl">
+              Veja o sabor acontecer.
             </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+              Descubra o condimento, veja como ele entra no prato e leve a receita completa para a sua cozinha.
+            </p>
           </div>
-          
-          <Link 
+          <Link
             to="/cozinha"
             search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
-            className="group inline-flex items-center gap-2 border-b border-brand-mustard/30 pb-1 text-[10px] font-display uppercase tracking-[0.3em] text-brand-mustard hover:text-brand-paper hover:border-brand-paper transition-all"
+            className="inline-flex min-h-11 items-center gap-2 self-start rounded-full border border-brand-ink/15 bg-white px-5 py-2 text-sm font-semibold text-brand-ink transition hover:-translate-y-0.5 hover:border-brand-ink/30 md:self-auto"
           >
-            Ver todas as {RECIPES.length} receitas
-            <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            Todas as receitas
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {featuredRecipes.map((recipe) => (
-            <Link
-              key={recipe.slug}
-              to="/cozinha/$slug"
-              params={{ slug: recipe.slug }}
-              search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
-              className="group block relative"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden bg-brand-paper/5">
-                {recipe.dish && (
-                  <img 
-                    src={recipe.dish.src} 
-                    alt={recipe.dish.alt}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                )}
-                {/* Overlay de vinheta */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+        <div className="grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
+          <Link
+            to="/cozinha/$slug"
+            params={{ slug: lead.slug }}
+            search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
+            className="group relative min-h-[580px] overflow-hidden rounded-[2.5rem] bg-white sm:min-h-[660px]"
+          >
+            {lead.dish && (
+              <img
+                src={lead.dish.src}
+                alt={lead.dish.alt}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
+            {leadProduct && (
+              <div
+                className="absolute right-5 top-5 grid h-40 w-32 place-items-center rounded-[2rem] p-3 shadow-lg sm:right-8 sm:top-8 sm:h-48 sm:w-40"
+                style={{ backgroundColor: leadTone.bg }}
+              >
+                <img
+                  src={leadProduct}
+                  alt={`Tempero ${lead.featuredHandle.replace(/-/g, " ")}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-contain drop-shadow-[0_15px_15px_rgba(0,0,0,.2)] transition-transform duration-500 group-hover:-translate-y-1"
+                />
               </div>
-              
-              <div className="mt-6">
-                <span className="text-[10px] font-display uppercase tracking-[0.2em] text-brand-mustard mb-2 block">
-                  {recipe.featuredHandle.replace(/-/g, ' ')}
-                </span>
-                <h3 className="font-display font-black uppercase text-xl sm:text-2xl leading-tight tracking-tight group-hover:text-brand-mustard transition-colors">
-                  {recipe.title}
-                </h3>
-              </div>
-            </Link>
-          ))}
+            )}
+
+            <div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-10">
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
+                Com {lead.featuredHandle.replace(/-/g, " ")}
+              </span>
+              <h3 className="mt-3 max-w-2xl font-display text-4xl font-semibold leading-[.95] sm:text-5xl">
+                {lead.title}
+              </h3>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">
+                Fazer esta receita <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </span>
+            </div>
+          </Link>
+
+          <div className="grid gap-5">
+            {secondary.map((recipe) => {
+              const tone = getFlavorTone(recipe.featuredHandle, recipe.title);
+              const productImage = getProductImage(recipe.featuredHandle);
+              return (
+                <Link
+                  key={recipe.slug}
+                  to="/cozinha/$slug"
+                  params={{ slug: recipe.slug }}
+                  search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
+                  className="group grid min-h-[285px] grid-cols-[1fr_112px] overflow-hidden rounded-[2rem] bg-white sm:grid-cols-[1fr_145px]"
+                >
+                  <div className="relative overflow-hidden">
+                    {recipe.dish && (
+                      <img
+                        src={recipe.dish.src}
+                        alt={recipe.dish.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
+                        Receita Temperanzza
+                      </span>
+                      <h3 className="mt-2 font-display text-2xl font-semibold leading-[.95]">
+                        {recipe.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center justify-center p-4 text-center" style={{ backgroundColor: tone.bg }}>
+                    {productImage && (
+                      <img
+                        src={productImage}
+                        alt={`Tempero ${recipe.featuredHandle.replace(/-/g, " ")}`}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-32 w-full object-contain drop-shadow-[0_12px_12px_rgba(0,0,0,.18)] transition-transform duration-500 group-hover:-translate-y-1 sm:h-40"
+                      />
+                    )}
+                    <span className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-ink/70">
+                      {recipe.featuredHandle.replace(/-/g, " ")}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

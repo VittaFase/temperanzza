@@ -1,4 +1,5 @@
 import blendChefe from "@/assets/blend-do-chefe.png.asset.json";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 export const CHEF_BOX = {
   name: "Blend do Chefe",
@@ -7,10 +8,14 @@ export const CHEF_BOX = {
   description: "Aqui você é o chefe da casa. Monte sua própria caixa com 12 potes à sua escolha entre os sabores da casa.",
 };
 
-/** Handles que entram no builder Chefe Temperanzza (Core, exceto Temperaflix, Canela e Pimenta-do-reino — que ficam só no catálogo). */
-export const BUILDER_HANDLES: string[] = [
+/**
+ * Handles candidatos ao builder Chefe Temperanzza.
+ * Core: exceto Temperaflix, Canela e Pimenta-do-reino, que ficam só no catálogo.
+ * A governança central do rebrand é aplicada aqui para impedir que um SKU excluído
+ * reapareça no builder, nas ofertas ou nos carrosséis derivados desta lista.
+ */
+const BUILDER_CANDIDATE_HANDLES: string[] = [
   "ana-maria",
-  "cebola-em-po",
   "chimichurri-picante",
   "chimichurri-sem-pimenta",
   "curcuma",
@@ -24,5 +29,9 @@ export const BUILDER_HANDLES: string[] = [
   "tempero-chefe",
   "tempero-mineiro",
 ];
+
+export const BUILDER_HANDLES: string[] = BUILDER_CANDIDATE_HANDLES.filter(
+  (handle) => isRebrandEligibleHandle(handle),
+);
 
 export const BUILDER_TARGET = 12;

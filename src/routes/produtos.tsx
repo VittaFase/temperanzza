@@ -2,95 +2,58 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { CatalogGrid } from "@/components/site/CatalogGrid";
 import { HouseOffers } from "@/components/site/HouseOffers";
+import { REBRAND_EXCLUDED_HANDLES } from "@/lib/rebrandCatalog";
 
 const PRODUTOS_URL = "https://temperanzza.com.br/produtos";
 
 export const Route = createFileRoute("/produtos")({
   head: () => ({
     meta: [
-      { title: "Catálogo Temperanzza — Temperos Artesanais, Blends e Especiarias de Minas Gerais" },
+      { title: "Catálogo Temperanzza — Temperos, Blends e Especiarias de Minas Gerais" },
       {
         name: "description",
-        content:
-          "Explore o catálogo completo de temperos artesanais Temperanzza. Blends autorais, linha Temperaflix e especiarias puras embaladas em Minas Gerais para transformar sua cozinha."
+        content: "Explore os sabores da Casa Temperanzza: blends, condimentos, especiarias e a linha Temperaflix para diferentes momentos da cozinha.",
       },
-      { property: "og:title", content: "Catálogo — Temperos Artesanais Temperanzza" },
-      {
-        property: "og:description",
-        content: "Todas as misturas e especiarias da casa Temperanzza.",
-      },
+      { property: "og:title", content: "Catálogo — Sabores da Casa Temperanzza" },
+      { property: "og:description", content: "Conheça os condimentos, blends e especiarias da Casa Temperanzza." },
       { property: "og:url", content: PRODUTOS_URL },
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: PRODUTOS_URL }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Catálogo Temperanzza",
-          url: PRODUTOS_URL,
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Temperanzza",
-            url: "https://temperanzza.com.br",
-          },
-          about: "Temperos e especiarias artesanais",
-        }),
-      },
-    ],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Catálogo Temperanzza",
+        url: PRODUTOS_URL,
+        isPartOf: { "@type": "WebSite", name: "Temperanzza", url: "https://temperanzza.com.br" },
+        about: "Temperos, blends e especiarias",
+      }),
+    }],
   }),
   component: ProdutosPage,
 });
 
 function ProdutosPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <section className="border-b border-foreground/15 py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-            O CATÁLOGO&nbsp;
-          </span>
-          <h1 className="font-display font-black uppercase text-5xl sm:text-6xl lg:text-7xl mt-3 tracking-tight">
-            &nbsp;OS TEMPEROS
-          </h1>
-          <p className="mt-6 max-w-2xl text-base sm:text-lg text-foreground/75 leading-relaxed">
-            Os 19 sabores da casa, em três sublinhas: Core para o dia a dia,
-            Premium Black para o toque final e Temperaflix para os momentos de
-            tela. Escolha pelo prato que você quer fazer — cada pote traz a
-            proporção já testada.
-          </p>
-          <p className="mt-5 text-sm text-foreground/70">
-            Primeira compra?{" "}
-            <Link
-              to="/cozinha"
-              search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }}
-              className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
-            >
-              Comece pela receita
-            </Link>{" "}
-            e volte com o tempero certo na mão. Levando vários?{" "}
-            <Link
-              to="/sua-caixa"
-              className="font-display uppercase tracking-wider text-accent border-b border-accent/40 hover:border-accent"
-            >
-              Monte a caixa de 12 potes
-            </Link>
-            .
-          </p>
+    <main className="min-h-screen bg-brand-paper text-brand-ink">
+      <section className="border-b border-brand-ink/10 py-14 sm:py-20 lg:py-24">
+        <div className="page-shell">
+          <span className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Casa Temperanzza · Sabores</span>
+          <h1 className="mt-3 max-w-4xl font-display text-[clamp(3.4rem,8vw,7rem)] font-semibold leading-[0.9] tracking-tight">Encontre o sabor para a sua cozinha.</h1>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-brand-ink/70 sm:text-lg sm:leading-8">Explore os condimentos, blends, especiarias e sabores Temperaflix disponíveis na Casa. Escolha pelo produto ou comece por uma receita.</p>
+          <p className="mt-5 text-sm text-brand-ink/65">Primeira compra? <Link to="/cozinha" search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="font-semibold underline underline-offset-4">Comece pela receita</Link>. Levando vários? <Link to="/sua-caixa" className="font-semibold underline underline-offset-4">Monte sua caixa</Link>.</p>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <CatalogGrid />
+      <section className="section-space">
+        <div className="page-shell min-w-0 overflow-hidden">
+          <CatalogGrid excludeHandles={[...REBRAND_EXCLUDED_HANDLES]} />
         </div>
       </section>
 
-      {/* Ofertas da Casa — combos prontos para quem não quer escolher pote a pote */}
       <HouseOffers />
-    </div>
-
+    </main>
   );
 }

@@ -5,29 +5,25 @@ import { useShopifyProducts } from "@/hooks/useShopifyPrices";
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
 import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 /**
  * Loop Cozinha → Carrinho.
  * Adiciona o condimento protagonista da receita direto na sacola,
  * sem tirar o leitor do modo de fazer.
  */
-export function RecipeAddToCart({
-  handle,
-  label,
-}: {
-  handle: string;
-  label: string;
-}) {
+export function RecipeAddToCart({ handle, label }: { handle: string; label: string }) {
   const { products, loading } = useShopifyProducts();
   const addItem = useCartStore((s) => s.addItem);
   const isLoading = useCartStore((s) => s.isLoading);
+  const eligible = isRebrandEligibleHandle(handle);
 
-  const product = products?.get(handle);
+  const product = eligible ? products?.get(handle) : undefined;
   const variant = product?.node.variants.edges[0]?.node;
   const price = product?.node.priceRange.minVariantPrice;
 
   const handleAdd = async () => {
-    if (!product || !variant) return;
+    if (!eligible || !product || !variant) return;
     await addItem({
       product,
       variantId: variant.id,
@@ -52,6 +48,8 @@ export function RecipeAddToCart({
     });
     toast.success(`${product.node.title} foi para a sacola`);
   };
+
+  if (!eligible) return null;
 
   return (
     <div className="mt-8">
@@ -91,8 +89,7 @@ export function RecipeAddToCart({
         </p>
       )}
       <p className="mt-4 text-xs text-brand-paper/60 leading-relaxed max-w-sm">
-        Embalado lote a lote em Minas Gerais · Envio calculado no fechamento do
-        pedido ·{" "}
+        Embalado lote a lote em Minas Gerais · Envio calculado no fechamento do pedido ·{" "}
         <Link
           to="/sua-caixa"
           className="font-display uppercase tracking-wider text-brand-mustard border-b border-brand-mustard/40 hover:border-brand-mustard"

@@ -2,10 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { FlavorTile } from "./FlavorTile";
 import type { ShopifyProduct } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 /**
  * Grid de mini-tiles coloridos para "outros sabores da linha".
- * Espelha o seletor de flavors da Kinder's na PDP.
+ * Espelha o seletor de flavors da Kinder's na PDP sem expor SKUs fora do rebrand.
  */
 export function FlavorTiles({
   products,
@@ -16,7 +17,10 @@ export function FlavorTiles({
   currentHandle?: string;
   title?: string;
 }) {
-  const items = products.filter((p) => p.node.handle !== currentHandle).slice(0, 8);
+  const items = products
+    .filter((p) => p.node.handle !== currentHandle)
+    .filter((p) => isRebrandEligibleHandle(p.node.handle))
+    .slice(0, 8);
   if (items.length === 0) return null;
 
   return (
@@ -35,14 +39,12 @@ export function FlavorTiles({
               to="/product/$handle"
               params={{ handle: p.node.handle }}
               className="group block"
+              data-flavor-tile={p.node.handle}
             >
-              <FlavorTile
-                handle={p.node.handle}
-                title={p.node.title}
-                className="aspect-square"
-              >
+              <FlavorTile handle={p.node.handle} title={p.node.title} className="aspect-square">
                 {imgSrc ? (
-                  <img decoding="async"
+                  <img
+                    decoding="async"
                     src={imgSrc}
                     alt={image?.altText || p.node.title}
                     className="absolute inset-0 w-[72%] h-[80%] m-auto object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)] group-hover:scale-[1.06] transition-transform duration-300"

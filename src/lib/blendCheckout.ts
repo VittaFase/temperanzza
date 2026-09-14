@@ -1,6 +1,7 @@
 import type { ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { BLEND_DISCOUNT_CODE } from "@/lib/blendPricing";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 /** Aplica `?discount=CODE` à URL de checkout do Shopify. */
 export function appendDiscountToCheckoutUrl(
@@ -27,7 +28,7 @@ export async function addPicksToCart(
   const { addItem, getCheckoutUrl } = useCartStore.getState();
 
   for (const [handle, qty] of Object.entries(picks)) {
-    if (!qty) continue;
+    if (!qty || !isRebrandEligibleHandle(handle)) continue;
     const product = products.get(handle);
     const variant = product?.node.variants.edges[0]?.node;
     if (!product || !variant) continue;
@@ -48,6 +49,9 @@ export async function addPicksToCart(
 /** Conta os handles agregados (handles repetidos viram quantidade). */
 export function handlesToPicks(handles: string[]): Record<string, number> {
   const picks: Record<string, number> = {};
-  for (const h of handles) picks[h] = (picks[h] ?? 0) + 1;
+  for (const h of handles) {
+    if (!isRebrandEligibleHandle(h)) continue;
+    picks[h] = (picks[h] ?? 0) + 1;
+  }
   return picks;
 }

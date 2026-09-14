@@ -1,125 +1,37 @@
 import { Link } from "@tanstack/react-router";
-import { Loader2, Plus } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2, Plus } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useEffect, useState } from "react";
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL, type ShopifyProduct } from "@/lib/shopify";
-import { getProductImage } from "@/lib/productImages";
+import { resolveProductImage } from "@/lib/productImages";
+import { getProductStageGeometry } from "@/lib/productVisualStage";
 import { getFlavorTone } from "@/lib/flavorPalette";
 import { toast } from "sonner";
 
-/**
- * Padrão B — Faixa editorial estilo "Featured Products" do Kinder's:
- * moldura vermelha fina, label centralizado no topo cortando a borda,
- * linhas horizontais com pote miniatura + título stencil + CTA.
- */
-export function FeaturedRow({
-  products,
-  label = "Em destaque",
-}: {
-  products: ShopifyProduct[];
-  label?: string;
-}) {
+export function FeaturedRow({ products, label = "Em destaque" }: { products: ShopifyProduct[]; label?: string }) {
   const addItem = useCartStore((s) => s.addItem);
   const isLoading = useCartStore((s) => s.isLoading);
-
-  const handleAdd = async (p: ShopifyProduct) => {
-    const v = p.node.variants.edges[0]?.node;
-    if (!v) return;
-    await addItem({
-      product: p,
-      variantId: v.id,
-      variantTitle: v.title,
-      price: v.price,
-      quantity: 1,
-      selectedOptions: v.selectedOptions || [],
-    });
-    toast.success(`${p.node.title} adicionado à sacola`);
-  };
-
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "center", loop: products.length > 3, skipSnaps: false, dragFree: false });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [snapCount, setSnapCount] = useState(products.length);
+  const syncSelection = useCallback(() => { if (!emblaApi) return; setSelectedIndex(emblaApi.selectedScrollSnap()); setSnapCount(emblaApi.scrollSnapList().length); }, [emblaApi]);
+  useEffect(() => { if (!emblaApi) return; syncSelection(); emblaApi.on("select", syncSelection); emblaApi.on("reInit", syncSelection); return () => { emblaApi.off("select", syncSelection); emblaApi.off("reInit", syncSelection); }; }, [emblaApi, syncSelection]);
+  const handleAdd = async (p: ShopifyProduct) => { const v = p.node.variants.edges[0]?.node; if (!v) return; await addItem({ product: p, variantId: v.id, variantTitle: v.title, price: v.price, quantity: 1, selectedOptions: v.selectedOptions || [] }); toast.success(`${p.node.title} adicionado à sacola`); };
   if (!products?.length) return null;
 
-  return (
-    <div className="relative border-2 border-accent px-4 sm:px-10 py-12 sm:py-14 bg-background">
-      {/* label cortando a borda */}
-      <div className="absolute -top-[13px] left-1/2 -translate-x-1/2 bg-background px-5 whitespace-nowrap z-10">
-        <span className="font-display font-black uppercase tracking-[0.4em] text-[10px] sm:text-sm text-accent">
-          ─ {label} ─
-        </span>
-      </div>
-
-      <ul className="divide-y divide-foreground/10">
-        {products.map((p) => {
-          const handle = p.node.handle;
-          const image = p.node.images.edges[0]?.node;
-          const img = getProductImage(handle, image?.url);
-          const tone = getFlavorTone(handle, p.node.title);
-          const price = p.node.priceRange.minVariantPrice;
-
-          return (
-            <li
-              key={p.node.id}
-              className="grid grid-cols-[110px_1fr] sm:grid-cols-[160px_1fr_auto] items-center gap-4 sm:gap-8 py-6 sm:py-8 group"
-            >
-              <Link
-                to="/product/$handle"
-                params={{ handle }}
-                className="relative aspect-square overflow-hidden block"
-                style={{ backgroundColor: tone.bg }}
-              >
-                {img && (
-                  <img decoding="async"
-                    src={img}
-                    alt={image?.altText || p.node.title}
-                    className="absolute inset-0 w-[78%] h-[88%] m-auto object-contain drop-shadow-[0_10px_14px_rgba(0,0,0,0.4)] group-hover:scale-[1.06] transition-transform duration-500"
-                    loading="lazy"
-                  />
-                )}
-              </Link>
-
-              <Link
-                to="/product/$handle"
-                params={{ handle }}
-                className="min-w-0"
-              >
-                <h3 className="font-display font-black uppercase text-3xl sm:text-5xl lg:text-6xl leading-[0.9] tracking-tight group-hover:text-accent transition-colors">
-                  {p.node.title}
-                </h3>
-                <p className="mt-2 sm:hidden font-display font-black text-2xl text-accent">
-                  {formatBRL(price.amount, price.currencyCode)}
-                </p>
-              </Link>
-
-              <div className="hidden sm:flex flex-col items-end gap-3">
-                <span className="font-display font-black text-3xl text-accent leading-none">
-                  {formatBRL(price.amount, price.currencyCode)}
-                </span>
-                <button
-                  onClick={() => handleAdd(p)}
-                  disabled={isLoading}
-                  className="inline-flex min-h-11 items-center gap-1.5 px-1 font-display font-bold uppercase tracking-[0.18em] text-xs text-accent hover:text-foreground border-b border-accent/60 hover:border-foreground"
-                >
-                  {isLoading ? (
-                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  ) : (
-                    <>
-                      <Plus className="w-3.5 h-3.5" />
-                      Sacola
-                    </>
-                  )}
-                </button>
-              </div>
-
-              <button
-                onClick={() => handleAdd(p)}
-                disabled={isLoading}
-                className="sm:hidden col-span-2 inline-flex min-h-11 items-center gap-1.5 py-2 font-display font-bold uppercase tracking-[0.18em] text-xs text-accent"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                Sacola
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+  return <section aria-label={label} className="relative min-w-0 overflow-hidden py-4">
+    <div className="mb-8 flex items-end justify-between gap-6 px-1 sm:mb-10"><div><span className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Casa Temperanzza</span><h2 className="mt-2 font-display text-4xl font-semibold leading-none text-brand-ink sm:text-5xl">{label}</h2></div><div className="hidden gap-2 sm:flex"><button type="button" onClick={() => emblaApi?.scrollPrev()} className="grid h-12 w-12 place-items-center rounded-full border border-brand-ink/10 bg-white text-brand-ink transition hover:-translate-y-0.5 hover:border-brand-ink/25" aria-label="Produto anterior"><ArrowLeft className="h-4 w-4" /></button><button type="button" onClick={() => emblaApi?.scrollNext()} className="grid h-12 w-12 place-items-center rounded-full bg-brand-ink text-brand-paper transition hover:-translate-y-0.5 hover:opacity-90" aria-label="Próximo produto"><ArrowRight className="h-4 w-4" /></button></div></div>
+    <div ref={emblaRef} className="w-full min-w-0 overflow-hidden touch-pan-y cursor-grab active:cursor-grabbing"><div className="flex -ml-3 sm:-ml-5">{products.map((p, index) => {
+      const handle = p.node.handle; const image = p.node.images.edges[0]?.node; const imageResolution = resolveProductImage(handle, image?.url); const img = imageResolution.url; const tone = getFlavorTone(handle, p.node.title); const price = p.node.priceRange.minVariantPrice; const active = index === selectedIndex; const geometry = getProductStageGeometry(handle, "featured");
+      return <article key={p.node.id} data-featured-product={handle} data-image-source={imageResolution.source} className="min-w-0 flex-[0_0_84%] pl-3 sm:flex-[0_0_48%] sm:pl-5 lg:flex-[0_0_32%]" aria-current={active ? "true" : undefined}><div className={`group relative flex min-h-[510px] flex-col overflow-hidden rounded-[2.25rem] p-6 transition-[transform,opacity] duration-500 ease-out sm:min-h-[570px] sm:p-8 ${active ? "scale-100 opacity-100" : "scale-[.96] opacity-75"}`} style={{ backgroundColor: tone.bg }}>
+        <Link to="/product/$handle" params={{ handle }} className="relative flex min-h-[310px] flex-1 items-center justify-center sm:min-h-[355px]" aria-label={`Ver ${p.node.title}`}>
+          <div aria-hidden className={`absolute left-1/2 -translate-x-1/2 rounded-full bg-black/12 blur-lg ${geometry.shadowClass}`} />
+          {img ? <img decoding="async" src={img} alt={image?.altText || p.node.title} data-product-handle={handle} data-image-source={imageResolution.source} className={`${geometry.imageClass} relative z-[1] object-contain drop-shadow-[0_18px_20px_rgba(0,0,0,.15)] transition-transform duration-500 ease-out ${active ? "translate-y-0 scale-100" : "translate-y-2 scale-[.98]"} group-hover:-translate-y-1 group-hover:scale-[1.02]`} loading={index < 2 ? "eager" : "lazy"} /> : <div className="flex h-[280px] w-[70%] items-center justify-center rounded-[2rem] border border-brand-ink/10 bg-white/25 px-8 text-center text-sm text-brand-ink/55">Imagem oficial do produto</div>}
+        </Link>
+        <div className="relative z-10 mt-2 text-center"><Link to="/product/$handle" params={{ handle }}><h3 className="font-display text-3xl font-semibold leading-[.95] text-brand-ink sm:text-4xl">{p.node.title}</h3></Link><p className="mt-3 text-sm font-semibold text-brand-ink/75">{formatBRL(price.amount, price.currencyCode)}</p><div className="mt-5 flex items-center justify-center gap-2"><Link to="/product/$handle" params={{ handle }} className="inline-flex min-h-11 items-center rounded-full bg-white/90 px-5 py-2 text-xs font-semibold text-brand-ink transition hover:bg-white">Ver produto</Link><button type="button" onClick={() => handleAdd(p)} disabled={isLoading} className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-brand-ink px-5 py-2 text-xs font-semibold text-brand-paper transition hover:opacity-90 disabled:opacity-50">{isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Plus className="h-3.5 w-3.5" />} Sacola</button></div></div>
+      </div></article>;
+    })}</div></div>
+    <div className="mt-7 flex items-center justify-center gap-2" aria-label="Paginação do carrossel">{Array.from({ length: snapCount }).map((_, index) => <button key={index} type="button" onClick={() => emblaApi?.scrollTo(index)} className={`h-2 rounded-full transition-all duration-300 ${selectedIndex === index ? "w-8 bg-brand-ink" : "w-2 bg-brand-ink/20 hover:bg-brand-ink/35"}`} aria-label={`Ir para produto ${index + 1}`} aria-current={selectedIndex === index ? "true" : undefined} />)}</div>
+  </section>;
 }
