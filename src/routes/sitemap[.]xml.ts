@@ -3,6 +3,7 @@ import type {} from "@tanstack/react-start";
 import { RECIPES } from "@/lib/recipes";
 import { BLOG_POSTS } from "@/lib/blog";
 import { storefrontApiRequest } from "@/lib/shopify";
+import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
 
 const BASE_URL = "https://temperanzza.com.br";
 
@@ -24,7 +25,6 @@ const STATIC_ROUTES: SitemapEntry[] = [
   { path: "/embaixadores", changefreq: "monthly", priority: "0.6" },
 ];
 
-
 const PRODUCTS_QUERY = `
   query SitemapProducts($first: Int!) {
     products(first: $first) {
@@ -37,10 +37,12 @@ async function fetchProductHandles(): Promise<Array<{ handle: string; updatedAt?
   try {
     const res = await storefrontApiRequest(PRODUCTS_QUERY, { first: 100 });
     const edges = res?.data?.products?.edges ?? [];
-    return edges.map((e: { node: { handle: string; updatedAt?: string } }) => ({
-      handle: e.node.handle,
-      updatedAt: e.node.updatedAt,
-    }));
+    return edges
+      .map((e: { node: { handle: string; updatedAt?: string } }) => ({
+        handle: e.node.handle,
+        updatedAt: e.node.updatedAt,
+      }))
+      .filter((product: { handle: string }) => !isRebrandExcludedHandle(product.handle));
   } catch {
     return [];
   }
@@ -73,7 +75,6 @@ export const Route = createFileRoute("/sitemap.xml")({
             lastmod: p.publishedAt,
           })),
         ];
-
 
         const urls = entries.map((e) =>
           [
