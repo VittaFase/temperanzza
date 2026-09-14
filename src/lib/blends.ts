@@ -1,5 +1,5 @@
 import blendChefe from "@/assets/blend-do-chefe.png.asset.json";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 
 export const CHEF_BOX = {
   name: "Blend do Chefe",
@@ -32,7 +32,7 @@ const BUILDER_CANDIDATE_HANDLES: string[] = [
 ];
 
 export const BUILDER_HANDLES: string[] = BUILDER_CANDIDATE_HANDLES.filter(
-  (handle) => !isRebrandExcludedHandle(handle),
+  (handle) => isRebrandEligibleHandle(handle),
 );
 
 export const BUILDER_TARGET = 12;
