@@ -4,16 +4,17 @@ import {
   STOREFRONT_QUERY,
   type ShopifyProduct,
 } from "@/lib/shopify";
+import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
 import { ProductCard } from "./ProductCard";
 import { Loader2 } from "lucide-react";
 
 interface ProductGridProps {
   first?: number;
-  /** Storefront search query (e.g. exclude handles) */
+  /** Storefront search query. */
   query?: string | null;
-  /** Post-fetch: remove these handles from the result */
+  /** Additional post-fetch exclusions beyond the central rebrand scope. */
   excludeHandles?: string[];
-  /** Post-fetch: force these handles to appear first, in this order */
+  /** Post-fetch: force these eligible handles to appear first, in this order. */
   prependHandles?: string[];
 }
 
@@ -23,13 +24,13 @@ export function ProductGrid({
   excludeHandles,
   prependHandles,
 }: ProductGridProps) {
-  // Fetch extra when we're going to filter/reorder client-side
-  const fetchCount =
-    excludeHandles || prependHandles ? Math.max(first + 10, 24) : first;
+  // Always fetch a buffer because the central rebrand gate can remove Shopify results.
+  const fetchCount = Math.max(first + 10, 24);
 
   const { data, isLoading, error } = useQuery({
     queryKey: [
       "shopify-products",
+      "rebrand-scope",
       fetchCount,
       query,
       excludeHandles?.join(",") ?? "",
@@ -43,19 +44,20 @@ export function ProductGrid({
       });
       let edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
 
+      edges = edges.filter((edge) => !isRebrandExcludedHandle(edge.node.handle));
+
       if (excludeHandles?.length) {
-        const ex = new Set(excludeHandles);
-        edges = edges.filter((e) => !ex.has(e.node.handle));
+        const additionalExclusions = new Set(excludeHandles);
+        edges = edges.filter((edge) => !additionalExclusions.has(edge.node.handle));
       }
 
       if (prependHandles?.length) {
-        const order = prependHandles;
-        const priority = edges.filter((e) => order.includes(e.node.handle));
+        const order = prependHandles.filter((handle) => !isRebrandExcludedHandle(handle));
+        const priority = edges.filter((edge) => order.includes(edge.node.handle));
         priority.sort(
-          (a, b) =>
-            order.indexOf(a.node.handle) - order.indexOf(b.node.handle),
+          (a, b) => order.indexOf(a.node.handle) - order.indexOf(b.node.handle),
         );
-        const rest = edges.filter((e) => !order.includes(e.node.handle));
+        const rest = edges.filter((edge) => !order.includes(edge.node.handle));
         edges = [...priority, ...rest];
       }
 
@@ -82,21 +84,19 @@ export function ProductGrid({
   if (!data || data.length === 0) {
     return (
       <div className="border-2 border-dashed border-foreground/15 py-20 px-6 text-center">
-        <p className="font-display text-2xl uppercase tracking-wide">
-          Catálogo em curadoria
-        </p>
+        <p className="font-display text-2xl uppercase tracking-wide">Catálogo em curadoria</p>
         <p className="mt-3 text-muted-foreground max-w-md mx-auto">
-          Os 19 temperos da casa estão sendo finalizados no estoque. Volte em
-          instantes — em breve as latas ficam disponíveis aqui.
+          Os sabores da Casa Temperanzza estão sendo finalizados no estoque. Volte em
+          instantes — em breve os produtos ficam disponíveis aqui.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
-      {data.map((p) => (
-        <ProductCard key={p.node.id} product={p} />
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5" data-rebrand-product-grid>
+      {data.map((product) => (
+        <ProductCard key={product.node.id} product={product} />
       ))}
     </div>
   );
