@@ -72,9 +72,18 @@ export function isRebrandExcludedHandle(handle: string): boolean {
   return REBRAND_EXCLUDED_HANDLE_SET.has(canonicalProductHandle(handle));
 }
 
+/**
+ * Predicado positivo e canônico para qualquer superfície do novo rebrand.
+ * Componentes editoriais e comerciais devem consultar esta função antes de
+ * expor, resolver no Shopify ou encaminhar um handle para checkout.
+ */
+export function isRebrandEligibleHandle(handle: string): boolean {
+  return !isRebrandExcludedHandle(handle);
+}
+
 export function hasConfirmedRebrandSource(handle: string): boolean {
   const canonicalHandle = canonicalProductHandle(handle);
-  return !isRebrandExcludedHandle(canonicalHandle) && REBRAND_CONFIRMED_SOURCE_SET.has(canonicalHandle);
+  return isRebrandEligibleHandle(canonicalHandle) && REBRAND_CONFIRMED_SOURCE_SET.has(canonicalHandle);
 }
 
 export function getHomeFeaturedRank(handle: string): number | null {
