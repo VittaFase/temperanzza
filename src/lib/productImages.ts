@@ -1,10 +1,8 @@
 /**
- * Registro comercial handle → PNG transparente local.
+ * Registro comercial de handle canônico → PNG transparente local.
  *
- * Este mapa preserva compatibilidade com Shopify, PDP, receitas e carrinho,
- * inclusive para aliases e produtos legados. Ele NÃO autoriza um SKU a ser
- * promovido automaticamente na experiência editorial do rebrand.
- * Para hero/destaques/storytelling, use também isRebrandEditorialHandle().
+ * Shopify continua sendo a fonte comercial. Aliases técnicos são normalizados
+ * antes da consulta para impedir correspondências acidentais por substring.
  */
 import anaMaria from "@/assets/ana-maria.png.asset.json";
 import canela from "@/assets/canela-moida.png.asset.json";
@@ -25,42 +23,32 @@ import flixErvas from "@/assets/temperaflix-ervas-finas.png.asset.json";
 import flixTrad from "@/assets/temperaflix-tradicional.png.asset.json";
 import edu from "@/assets/tempero-do-edu.png.asset.json";
 import mineiro from "@/assets/tempero-mineiro.png.asset.json";
+import { canonicalProductHandle } from "@/lib/rebrandCatalog";
 
 const COMMERCIAL_IMAGE_MAP: Record<string, string> = {
   "ana-maria": anaMaria.url,
   "canela-moida": canela.url,
-  "canela-premium-black-30g": canela.url,
   "cebola-em-po": cebola.url,
-  "chimi-churri-picante": chimiPicante.url,
   "chimichurri-picante": chimiPicante.url,
-  "chimi-churri-sem-pimenta": chimiSemPimenta.url,
   "chimichurri-sem-pimenta": chimiSemPimenta.url,
   curcuma: curcuma.url,
   "du-chefe-com-paprica": duChefe.url,
-  "tempero-chefe": duChefe.url,
   "ervas-finas": ervasFinas.url,
   "lemon-pepper": lemonPepper.url,
   "paprica-defumada": papricaDefumada.url,
   "paprica-doce": papricaDoce.url,
   "paprica-picante": papricaPicante.url,
   "pimenta-do-reino": pimenta.url,
-  "pimenta-do-reino-premium-black-30g": pimenta.url,
   "salsa-cebola-e-alho": salsaCebolaAlho.url,
   "temperaflix-bacon": flixBacon.url,
   "temperaflix-ervas-finas": flixErvas.url,
   "temperaflix-tradicional": flixTrad.url,
   "tempero-do-edu": edu.url,
-  "edu-guedes": edu.url,
   "tempero-mineiro": mineiro.url,
 };
 
-/** Devolve o PNG transparente local; senão a URL da Shopify como fallback. */
+/** Devolve o PNG transparente local exato; senão usa a imagem da Shopify. */
 export function getProductImage(handle: string, fallback?: string | null): string | null {
-  if (COMMERCIAL_IMAGE_MAP[handle]) return COMMERCIAL_IMAGE_MAP[handle];
-
-  for (const key of Object.keys(COMMERCIAL_IMAGE_MAP)) {
-    if (handle.includes(key) || key.includes(handle)) return COMMERCIAL_IMAGE_MAP[key];
-  }
-
-  return fallback ?? null;
+  const canonicalHandle = canonicalProductHandle(handle);
+  return COMMERCIAL_IMAGE_MAP[canonicalHandle] ?? fallback ?? null;
 }
