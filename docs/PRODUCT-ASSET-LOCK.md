@@ -1,6 +1,6 @@
 # PRODUCT ASSET LOCK — Casa Temperanzza
 
-Status: **ATIVO**
+Status: **ATIVO — FONTE CANÔNICA CONFIRMADA**
 
 Este registro protege a experiência rebrand contra regressão para mockups históricos.
 
@@ -13,28 +13,30 @@ Este registro protege a experiência rebrand contra regressão para mockups hist
 5. Quando um ativo confirmado ainda não estiver incorporado ao repositório, usar `SHOPIFY_FALLBACK` ou não exibir o SKU em superfície editorial; nunca substituir silenciosamente por mockup histórico.
 6. O original fornecido deve ser preservado. Recorte/transparência/otimização, quando necessários, são derivados técnicos e não podem alterar a arte.
 
-## Lote de referência recebido em 14/09/2026
+## Fonte canônica recebida em 14/09/2026
 
-| # | SKU / referência | Handle canônico | Status | Observação |
-|---|---|---|---|---|
-| 01 | Ervas Finas — imagem com marca TEMPERAFLIX, tampa verde, 75 g | `temperaflix-ervas-finas` | REBRAND_CONFIRMED_SOURCE | Preservar original; existe divergência visual com a referência 07. |
-| 02 | Temperaflix Tradicional, 60 g | `temperaflix-tradicional` | REBRAND_CONFIRMED_SOURCE | Fonte fornecida pelo proprietário. |
-| 03 | Tempero Mineiro, 45 g | `tempero-mineiro` | REBRAND_CONFIRMED_SOURCE | Fonte fornecida pelo proprietário. |
-| 04 | Temperaflix Sabor Bacon, 65 g | `temperaflix-bacon` | REBRAND_CONFIRMED_SOURCE | Único SKU Bacon desta linha; não criar handle genérico `bacon`. |
-| 05 | Páprica Picante | `paprica-picante` | REBRAND_CONFIRMED_SOURCE | Fonte fornecida pelo proprietário. |
-| 06 | Salsa, Cebola e Alho, 30 g | `salsa-cebola-e-alho` | REBRAND_CONFIRMED_SOURCE | Fonte fornecida pelo proprietário. |
-| 07 | Referência enviada como Temperaflix Ervas Finas; imagem frontal mostra TEMPERANZZA | — | HOLD_IDENTITY | Não mapear automaticamente até resolver a divergência com 01/10. |
-| 08 | Cúrcuma — Açafrão-da-Terra, 40 g | `curcuma` | REBRAND_CONFIRMED_SOURCE | Fonte fornecida pelo proprietário. |
-| 09 | Edu Guedes | `tempero-do-edu` | REBRAND_CONFIRMED_SOURCE | Alias `edu-guedes` deve resolver para este handle. |
-| 10 | Ervas Finas, 20 g | `ervas-finas` | REBRAND_CONFIRMED_SOURCE | Linha regular. |
-| 11 | Páprica Defumada, faixa roxa, 60 g | `paprica-defumada` | REBRAND_CONFIRMED_SOURCE | Identificação pelo nome impresso no pote. |
-| 12 | Páprica Doce, faixa vermelho/laranja, 60 g | `paprica-doce` | REBRAND_CONFIRMED_SOURCE | Identificação pelo nome impresso no pote. |
-| 13 | Du Chefe com Páprica, 45 g | `du-chefe-com-paprica` | REBRAND_CONFIRMED_SOURCE | Alias `tempero-chefe` deve resolver para este handle. |
-| 14 | Chimi Churri sem Pimenta, 40 g | `chimichurri-sem-pimenta` | REBRAND_CONFIRMED_SOURCE | Fonte fornecida pelo proprietário. |
-| 15 | Chimi Churri Picante, 39 g | `chimichurri-picante` | REBRAND_CONFIRMED_SOURCE | Fonte fornecida pelo proprietário. |
+O PDF original **Nova logotipia Temperanzza (1).pdf**, com 15 páginas, é a fonte visual canônica deste Asset Lock. Cada página contém um pote rebrand isolado e o PDF contém imagem raster + máscara de transparência por página. A incorporação web deve extrair esses objetos diretamente, recompor o canal alpha e não redesenhar a embalagem.
 
-`REBRAND_CONFIRMED_SOURCE` significa que a referência visual foi fornecida e aprovada como fonte do novo rebrand. Isso **não** significa que o arquivo histórico atualmente importado por `productImages.ts` seja o mesmo arquivo.
+| Página | SKU | Handle canônico | Status |
+|---|---|---|---|
+| 01 | Temperaflix Tradicional, 60 g | `temperaflix-tradicional` | REBRAND_CONFIRMED |
+| 02 | Temperaflix Ervas Finas, 75 g | `temperaflix-ervas-finas` | REBRAND_CONFIRMED |
+| 03 | Temperaflix Sabor Bacon, 65 g | `temperaflix-bacon` | REBRAND_CONFIRMED |
+| 04 | Du Chefe com Páprica, 45 g | `du-chefe-com-paprica` | REBRAND_CONFIRMED |
+| 05 | Edu Guedes, 45 g | `tempero-do-edu` | REBRAND_CONFIRMED |
+| 06 | Ana Maria, 55 g | `ana-maria` | REBRAND_CONFIRMED |
+| 07 | Chimi Churri Picante, 39 g | `chimichurri-picante` | REBRAND_CONFIRMED |
+| 08 | Chimi Churri sem Pimenta, 40 g | `chimichurri-sem-pimenta` | REBRAND_CONFIRMED |
+| 09 | Cúrcuma — Açafrão-da-Terra, 40 g | `curcuma` | REBRAND_CONFIRMED |
+| 10 | Ervas Finas, 20 g | `ervas-finas` | REBRAND_CONFIRMED |
+| 11 | Lemon Pepper, 50 g | `lemon-pepper` | REBRAND_CONFIRMED |
+| 12 | Páprica Defumada, 60 g | `paprica-defumada` | REBRAND_CONFIRMED |
+| 13 | Páprica Doce, 60 g | `paprica-doce` | REBRAND_CONFIRMED |
+| 14 | Páprica Picante, 45 g | `paprica-picante` | REBRAND_CONFIRMED |
+| 15 | Salsa, Cebola e Alho, 30 g | `salsa-cebola-e-alho` | REBRAND_CONFIRMED |
+
+Aliases técnicos continuam resolvendo para o handle canônico; não criam SKUs adicionais. Em especial, `tempero-chefe` resolve para `du-chefe-com-paprica`, `edu-guedes` resolve para `tempero-do-edu`, e não existe um SKU genérico `bacon` separado de `temperaflix-bacon`.
 
 ## Gate técnico
 
-Até que cada fonte confirmada seja incorporada e verificada no repositório, `src/lib/productImages.ts` deve ser tratado como **registro comercial legado**, não como prova de Asset Lock. Qualquer nova seção editorial deve consultar um registro explícito de elegibilidade rebrand e não inferir elegibilidade pela existência de uma imagem histórica.
+Os 15 objetos raster do PDF devem ser extraídos diretamente e nomeados pelos handles acima. O arquivo `src/lib/productImages.ts` só pode trocar o asset histórico de um handle depois que o binário derivado da fonte canônica estiver incorporado e verificado. Até lá, o registro histórico continua sendo apenas fallback comercial e não prova de Asset Lock.
