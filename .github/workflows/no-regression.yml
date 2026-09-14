@@ -15,6 +15,19 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  REBRAND_FILES: >-
+    src/components/site/FeaturedProducts.tsx
+    src/components/site/FeaturedRow.tsx
+    src/components/site/PromoAnnouncement.tsx
+    src/components/site/RecipeShowcase.tsx
+    src/components/site/SiteFooter.tsx
+    src/components/site/SiteHeader.tsx
+    src/components/site/SiteHero.tsx
+    src/routes/cozinha.$slug.tsx
+    src/routes/cozinha.tsx
+    src/routes/product.$handle.tsx
+
 jobs:
   build:
     name: Production build
@@ -36,7 +49,27 @@ jobs:
       - name: Production build
         run: bun run build
 
-  lint-audit:
+  rebrand-lint:
+    name: Rebrand lint gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint rebrand implementation
+        run: bunx eslint $REBRAND_FILES
+
+  legacy-lint-audit:
     name: Lint audit (legacy baseline)
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -54,5 +87,5 @@ jobs:
       - name: Install locked dependencies
         run: bun install --frozen-lockfile
 
-      - name: Audit lint debt
+      - name: Audit repository lint debt
         run: bun run lint
