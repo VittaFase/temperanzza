@@ -3,7 +3,7 @@ import type { ShopifyProduct } from "@/lib/shopify";
 import { formatBRL } from "@/lib/shopify";
 import { getProductImage } from "@/lib/productImages";
 import { getProductDiet } from "@/lib/dietCompatibility";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 import { Sparkles } from "lucide-react";
 
 /**
@@ -23,7 +23,7 @@ export function CombinaCom({
 
   const suggestions = products
     .filter((p) => p.node.handle !== currentHandle)
-    .filter((p) => !isRebrandExcludedHandle(p.node.handle))
+    .filter((p) => isRebrandEligibleHandle(p.node.handle))
     .filter((p) => getProductDiet(p.node.handle)?.profile === currentProfile)
     .slice(0, 3);
 
