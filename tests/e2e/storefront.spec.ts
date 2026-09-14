@@ -61,11 +61,11 @@ test.describe("Casa Temperanzza storefront", () => {
     const menuButton = page.getByRole("button", { name: "Abrir menu" });
     if (await menuButton.isVisible()) {
       await menuButton.click();
-      const mobileNav = page.getByRole("navigation", { name: "Navegação mobile" });
+      const mobileNav = page.locator('nav[aria-label="Navegação mobile"]');
       await expect(mobileNav).toBeVisible();
       await mobileNav.getByRole("link", { name: /Receitas/ }).click();
     } else {
-      const primaryNav = page.getByRole("navigation", { name: "Navegação principal" });
+      const primaryNav = page.locator('nav[aria-label="Navegação principal"]');
       await expect(primaryNav).toBeVisible();
       await primaryNav.getByRole("link", { name: "Receitas" }).click();
     }
@@ -78,7 +78,7 @@ test.describe("Casa Temperanzza storefront", () => {
   test("featured product carousel advances without document overflow", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    const carousel = page.getByRole("region", { name: "Temperos que fazem a diferença" });
+    const carousel = page.locator('section[aria-label="Descubra seu sabor"]');
     await expect(carousel).toBeVisible();
     const currentBefore = await carousel.locator('article[aria-current="true"]').getAttribute("aria-current");
     expect(currentBefore).toBe("true");
