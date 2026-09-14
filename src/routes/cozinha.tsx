@@ -66,11 +66,11 @@ export const Route = createFileRoute("/cozinha")({
 
 function CozinhaLayout() {
   return (
-    <>
+    <main className="min-w-0 bg-brand-paper text-brand-ink">
       <BibliotecaHero />
       <BibliotecaIndice />
       <Outlet />
-    </>
+    </main>
   );
 }
 
