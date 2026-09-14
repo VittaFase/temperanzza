@@ -20,6 +20,7 @@ export const PRODUCT_HANDLE_ALIASES: Record<string, string> = {
  * Ver docs/PRODUCT-ASSET-LOCK.md. Não adicionar aqui por inferência.
  */
 export const REBRAND_CONFIRMED_SOURCE_HANDLES = [
+  "ana-maria",
   "temperaflix-ervas-finas",
   "temperaflix-tradicional",
   "tempero-mineiro",
@@ -29,6 +30,7 @@ export const REBRAND_CONFIRMED_SOURCE_HANDLES = [
   "curcuma",
   "tempero-do-edu",
   "ervas-finas",
+  "lemon-pepper",
   "paprica-defumada",
   "paprica-doce",
   "du-chefe-com-paprica",
