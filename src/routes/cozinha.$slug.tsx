@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-ro
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
+import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
 import { getFlavorTone } from "@/lib/flavorPalette";
 import { RecipeAddToCart } from "@/components/site/RecipeAddToCart";
 import { RecipeShareBar } from "@/components/site/RecipeShareBar";
@@ -103,17 +104,21 @@ function RecipeDrawer() {
     };
   }, [close, recipe.slug]);
 
-  const productImg = getProductImage(recipe.featuredHandle);
+  const featuredHandleEligible = !isRebrandExcludedHandle(recipe.featuredHandle);
+  const productImg = featuredHandleEligible ? getProductImage(recipe.featuredHandle) : undefined;
   const tone = getFlavorTone(recipe.featuredHandle, recipe.title);
   const subtitle = recipe.subtitle ?? recipe.intro;
   const chefWord = recipe.chefWord ?? recipe.whyItWorks;
   const harmonization = useMemo(() => {
     const handles = recipe.harmonization ?? deriveHarmonization(recipe);
-    return handles.map((handle) => ({ handle, img: getProductImage(handle), name: humanHandle(handle) })).filter((item) => item.img);
+    return handles
+      .filter((handle) => !isRebrandExcludedHandle(handle))
+      .map((handle) => ({ handle, img: getProductImage(handle), name: humanHandle(handle) }))
+      .filter((item) => item.img);
   }, [recipe]);
   const related = useMemo(() => {
-    if (recipe.relatedSlugs?.length) return recipe.relatedSlugs.map(getRecipeBySlug).filter((item): item is Recipe => Boolean(item));
-    return RECIPES.filter((item) => item.profile === recipe.profile && item.slug !== recipe.slug).slice(0, 4);
+    if (recipe.relatedSlugs?.length) return recipe.relatedSlugs.map(getRecipeBySlug).filter((item): item is Recipe => Boolean(item) && !isRebrandExcludedHandle(item.featuredHandle));
+    return RECIPES.filter((item) => item.profile === recipe.profile && item.slug !== recipe.slug && !isRebrandExcludedHandle(item.featuredHandle)).slice(0, 4);
   }, [recipe]);
 
   return (
@@ -158,7 +163,7 @@ function RecipeDrawer() {
                 <FichaItem icon={<Flame className="h-4 w-4" />} label="Nível" value={recipe.difficulty ?? "Fácil"} />
               </dl>
 
-              {productImg && (
+              {featuredHandleEligible && productImg && (
                 <Link to="/product/$handle" params={{ handle: recipe.featuredHandle }} className="group mt-8 grid grid-cols-[88px_1fr_auto] items-center gap-4 rounded-[1.75rem] p-3 pr-5 transition hover:-translate-y-0.5" style={{ backgroundColor: tone.bg }}>
                   <img src={productImg} alt={humanHandle(recipe.featuredHandle)} className="h-24 w-full object-contain drop-shadow-[0_10px_10px_rgba(0,0,0,.16)] transition group-hover:-translate-y-1" />
                   <div><span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-ink/55">O tempero desta receita</span><strong className="mt-1 block font-display text-xl leading-none text-brand-ink">{humanHandle(recipe.featuredHandle)}</strong></div>
@@ -204,12 +209,14 @@ function RecipeDrawer() {
             </div>
           </section>
 
-          <section className="section-space bg-brand-paper">
-            <div className="page-shell grid items-center gap-10 rounded-[2.75rem] p-8 sm:p-12 md:grid-cols-[1fr_.8fr]" style={{ backgroundColor: tone.bg }}>
-              <div><span className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-ink/55">Usado nesta receita</span><h2 className="mt-3 font-display text-4xl font-semibold leading-none text-brand-ink sm:text-5xl">{humanHandle(recipe.featuredHandle)}</h2><p className="mt-4 max-w-lg leading-7 text-brand-ink/65">Leve para sua cozinha o condimento que dá assinatura a este preparo.</p><RecipeAddToCart handle={recipe.featuredHandle} label={humanHandle(recipe.featuredHandle)} /></div>
-              {productImg && <Link to="/product/$handle" params={{ handle: recipe.featuredHandle }} className="flex justify-center"><img src={productImg} alt={humanHandle(recipe.featuredHandle)} loading="lazy" decoding="async" className="h-72 w-auto object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,.18)] transition duration-500 hover:-translate-y-2 sm:h-96" /></Link>}
-            </div>
-          </section>
+          {featuredHandleEligible && (
+            <section className="section-space bg-brand-paper">
+              <div className="page-shell grid items-center gap-10 rounded-[2.75rem] p-8 sm:p-12 md:grid-cols-[1fr_.8fr]" style={{ backgroundColor: tone.bg }}>
+                <div><span className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-ink/55">Usado nesta receita</span><h2 className="mt-3 font-display text-4xl font-semibold leading-none text-brand-ink sm:text-5xl">{humanHandle(recipe.featuredHandle)}</h2><p className="mt-4 max-w-lg leading-7 text-brand-ink/65">Leve para sua cozinha o condimento que dá assinatura a este preparo.</p><RecipeAddToCart handle={recipe.featuredHandle} label={humanHandle(recipe.featuredHandle)} /></div>
+                {productImg && <Link to="/product/$handle" params={{ handle: recipe.featuredHandle }} className="flex justify-center"><img src={productImg} alt={humanHandle(recipe.featuredHandle)} loading="lazy" decoding="async" className="h-72 w-auto object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,.18)] transition duration-500 hover:-translate-y-2 sm:h-96" /></Link>}
+              </div>
+            </section>
+          )}
 
           {harmonization.length > 0 && (
             <section className="page-shell pb-16 sm:pb-24"><div className="mb-7"><span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Explore também</span><h2 className="mt-2 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Outros sabores que combinam</h2></div><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">{harmonization.map((item) => <article key={item.handle} className="rounded-[1.5rem] border border-brand-ink/8 bg-white p-4"><Link to="/product/$handle" params={{ handle: item.handle }} className="block"><div className="grid h-40 place-items-center rounded-[1.1rem] bg-brand-cream/55 p-3"><img src={item.img!} alt={item.name} loading="lazy" decoding="async" className="h-full w-full object-contain" /></div><h3 className="mt-3 font-display text-lg leading-tight text-brand-ink">{item.name}</h3></Link><HarmonizeAddButton handle={item.handle} label={item.name} /></article>)}</div></section>
@@ -240,7 +247,7 @@ function RecipeNotFoundDrawer() {
 function deriveHarmonization(recipe: Recipe): string[] {
   const handles = new Set<string>();
   for (const other of RECIPES) {
-    if (other.slug === recipe.slug) continue;
+    if (other.slug === recipe.slug || isRebrandExcludedHandle(other.featuredHandle)) continue;
     if (other.profile === recipe.profile || other.moment === recipe.moment) handles.add(other.featuredHandle);
     if (handles.size >= 4) break;
   }
