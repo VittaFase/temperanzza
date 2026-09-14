@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getProductImage } from "@/lib/productImages";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 import type { ShopifyProduct } from "@/lib/shopify";
 
 const AUTOPLAY_MS = 3000;
@@ -36,7 +36,7 @@ export function FlavorCarousel({
   countLabel?: string;
 }) {
   const slides: Slide[] = handles
-    .filter((handle) => !isRebrandExcludedHandle(handle))
+    .filter((handle) => isRebrandEligibleHandle(handle))
     .map((handle) => {
       const node = products?.get(handle)?.node;
       const src = getProductImage(handle, node?.images.edges[0]?.node.url);
