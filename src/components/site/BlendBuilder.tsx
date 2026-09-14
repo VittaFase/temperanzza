@@ -18,7 +18,6 @@ import { BlendCelebration } from "./BlendCelebration";
 function labelFor(handle: string): string {
   const map: Record<string, string> = {
     "ana-maria": "Ana Maria",
-    "cebola-em-po": "Cebola em Pó",
     "chimichurri-picante": "Chimi Churri Picante",
     "chimichurri-sem-pimenta": "Chimi Churri sem Pimenta",
     curcuma: "Cúrcuma",
