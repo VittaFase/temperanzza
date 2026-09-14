@@ -65,6 +65,15 @@ export const Route = createFileRoute("/product/$handle")({
       sku: p.handle, brand: { "@type": "Brand", name: "Temperanzza" }, category: "Temperos e Especiarias",
       offers: { "@type": "Offer", url, priceCurrency: price.currencyCode, price: price.amount, availability: available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock", itemCondition: "https://schema.org/NewCondition" },
     };
+    const breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Início", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Sabores", item: `${SITE_URL}/produtos` },
+        { "@type": "ListItem", position: 3, name: p.title, item: url },
+      ],
+    };
     return {
       meta: [
         { title: `${p.title} — Temperanzza | Condimentos de Minas Gerais` },
@@ -76,7 +85,10 @@ export const Route = createFileRoute("/product/$handle")({
         ...(image ? [{ property: "og:image", content: image }, { name: "twitter:card", content: "summary_large_image" }] : []),
       ],
       links: [{ rel: "canonical", href: url }, ...(image ? [{ rel: "preload", as: "image" as const, href: image, fetchpriority: "high" }] : [])],
-      scripts: [{ type: "application/ld+json", children: JSON.stringify(productLd) }],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(productLd) },
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
+      ],
     };
   },
   component: ProductPage,
