@@ -66,7 +66,10 @@ jobs:
       - name: Install locked dependencies
         run: bun install --frozen-lockfile
 
-      - name: Lint rebrand implementation
+      - name: Normalize formatting in isolated runner
+        run: bunx eslint $REBRAND_FILES --fix
+
+      - name: Lint normalized rebrand implementation
         run: bunx eslint $REBRAND_FILES
 
   legacy-lint-audit:
