@@ -4,7 +4,7 @@ import {
   STOREFRONT_QUERY,
   type ShopifyProduct,
 } from "@/lib/shopify";
-import { isRebrandExcludedHandle } from "@/lib/rebrandCatalog";
+import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
 import { ProductCard } from "./ProductCard";
 import { Loader2 } from "lucide-react";
 
@@ -44,7 +44,7 @@ export function ProductGrid({
       });
       let edges = (res?.data?.products?.edges ?? []) as ShopifyProduct[];
 
-      edges = edges.filter((edge) => !isRebrandExcludedHandle(edge.node.handle));
+      edges = edges.filter((edge) => isRebrandEligibleHandle(edge.node.handle));
 
       if (excludeHandles?.length) {
         const additionalExclusions = new Set(excludeHandles);
@@ -52,7 +52,7 @@ export function ProductGrid({
       }
 
       if (prependHandles?.length) {
-        const order = prependHandles.filter((handle) => !isRebrandExcludedHandle(handle));
+        const order = prependHandles.filter((handle) => isRebrandEligibleHandle(handle));
         const priority = edges.filter((edge) => order.includes(edge.node.handle));
         priority.sort(
           (a, b) => order.indexOf(a.node.handle) - order.indexOf(b.node.handle),
