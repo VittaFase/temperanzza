@@ -57,11 +57,33 @@ const LEGACY_IMAGE_MAP: Record<string, string> = {
   "tempero-mineiro": mineiro.url,
 };
 
+export type ProductImageSource = "rebrand" | "legacy" | "shopify" | "missing";
+
+export interface ProductImageResolution {
+  url: string | null;
+  source: ProductImageSource;
+}
+
 /**
- * Devolve primeiro o PNG real do rebrand; depois o asset legado; por último,
- * a imagem comercial recebida da Shopify.
+ * Resolve a imagem e expõe sua procedência. A procedência é usada pela camada
+ * visual para distinguir um PNG oficial do novo rebrand de fallbacks históricos
+ * sem alterar preço, estoque, carrinho ou dados recebidos da Shopify.
+ */
+export function resolveProductImage(handle: string, fallback?: string | null): ProductImageResolution {
+  const canonicalHandle = canonicalProductHandle(handle);
+  const rebrand = REBRAND_IMAGE_MAP[canonicalHandle];
+  if (rebrand) return { url: rebrand, source: "rebrand" };
+
+  const legacy = LEGACY_IMAGE_MAP[canonicalHandle];
+  if (legacy) return { url: legacy, source: "legacy" };
+
+  if (fallback) return { url: fallback, source: "shopify" };
+  return { url: null, source: "missing" };
+}
+
+/**
+ * Compatibilidade para consumidores que precisam apenas da URL.
  */
 export function getProductImage(handle: string, fallback?: string | null): string | null {
-  const canonicalHandle = canonicalProductHandle(handle);
-  return REBRAND_IMAGE_MAP[canonicalHandle] ?? LEGACY_IMAGE_MAP[canonicalHandle] ?? fallback ?? null;
+  return resolveProductImage(handle, fallback).url;
 }
