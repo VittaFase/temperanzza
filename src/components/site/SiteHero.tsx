@@ -49,17 +49,17 @@ export function SiteHero() {
 
   return (
     <section
-      className="relative isolate w-[100vw] max-w-[100vw] overflow-hidden bg-brand-ink text-white [margin-inline:calc(50%_-_50vw)]"
+      className="relative isolate w-full max-w-full min-w-0 overflow-hidden bg-brand-ink text-white"
       aria-label="Receitas em destaque"
     >
-      <div className="relative w-[100vw] max-w-[100vw] overflow-hidden min-h-[70svh] sm:min-h-[76svh] lg:min-h-[calc(100svh-112px)]">
+      <div className="relative w-full max-w-full min-w-0 overflow-hidden min-h-[70svh] sm:min-h-[76svh] lg:min-h-[calc(100svh-112px)]">
         {slides.map((recipe, index) => {
           const active = selectedIndex === index;
           return (
             <article
               key={recipe.slug}
               aria-hidden={!active}
-              className={`absolute inset-0 w-[100vw] max-w-[100vw] overflow-hidden transition-opacity duration-700 motion-reduce:transition-none ${active ? "z-10 opacity-100" : "pointer-events-none z-0 opacity-0"}`}
+              className={`absolute inset-0 w-full max-w-full min-w-0 overflow-hidden transition-opacity duration-700 motion-reduce:transition-none ${active ? "z-10 opacity-100" : "pointer-events-none z-0 opacity-0"}`}
             >
               <img
                 src={recipe.dish!.src}
@@ -67,7 +67,7 @@ export function SiteHero() {
                 fetchPriority={index === 0 ? "high" : "auto"}
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
-                className="absolute left-0 top-0 block h-full w-[100vw] max-w-[100vw] object-cover"
+                className="absolute inset-0 block h-full w-full max-w-full object-cover"
               />
               <div className="absolute inset-0 bg-black/30" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/20" />
