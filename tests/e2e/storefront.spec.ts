@@ -4,11 +4,81 @@ async function expectNoDocumentOverflow(page: import("@playwright/test").Page) {
   const diagnostics = await page.evaluate(() => {
     const root = document.documentElement;
     const viewportWidth = root.clientWidth;
-    const overflow = root.scrollWidth - viewportWidth;
-    const offenders = Array.from(document.querySelectorAll<HTMLElement>("body *")).map((element) => { const rect = element.getBoundingClientRect(); return { tag: element.tagName.toLowerCase(), id: element.id || undefined, className: typeof element.className === "string" ? element.className.slice(0, 180) : undefined, left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width), scrollWidth: element.scrollWidth, text: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 100) }; }).filter((item) => item.right > viewportWidth + 1 || item.left < -1).sort((a, b) => Math.max(b.right - viewportWidth, -b.left) - Math.max(a.right - viewportWidth, -a.left)).slice(0, 12);
-    return { viewportWidth, documentWidth: root.scrollWidth, overflow, offenders };
+    const documentWidth = root.scrollWidth;
+    const overflow = documentWidth - viewportWidth;
+    const offenders = Array.from(document.querySelectorAll<HTMLElement>("body *"))
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        const rightOverflow = Math.max(0, rect.right - viewportWidth);
+        const leftOverflow = Math.max(0, -rect.left);
+        const path: string[] = [];
+        let node: HTMLElement | null = element;
+        while (node && path.length < 5) {
+          let label = node.tagName.toLowerCase();
+          if (node.id) label += `#${node.id}`;
+          const classes = typeof node.className === "string" ? node.className.trim().split(/\s+/).filter(Boolean).slice(0, 3) : [];
+          if (classes.length) label += `.${classes.join(".")}`;
+          path.unshift(label);
+          node = node.parentElement;
+        }
+        return {
+          path: path.join(" > "),
+          tag: element.tagName.toLowerCase(),
+          id: element.id || undefined,
+          className: typeof element.className === "string" ? element.className.slice(0, 240) : undefined,
+          left: Number(rect.left.toFixed(2)),
+          right: Number(rect.right.toFixed(2)),
+          width: Number(rect.width.toFixed(2)),
+          clientWidth: element.clientWidth,
+          scrollWidth: element.scrollWidth,
+          rightOverflow: Number(rightOverflow.toFixed(2)),
+          leftOverflow: Number(leftOverflow.toFixed(2)),
+          position: style.position,
+          display: style.display,
+          overflowX: style.overflowX,
+          transform: style.transform,
+          translate: style.translate,
+          marginLeft: style.marginLeft,
+          marginRight: style.marginRight,
+          maxWidth: style.maxWidth,
+          minWidth: style.minWidth,
+          text: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 100),
+        };
+      })
+      .filter((item) => item.rightOverflow > 1 || item.leftOverflow > 1)
+      .sort((a, b) => Math.max(b.rightOverflow, b.leftOverflow) - Math.max(a.rightOverflow, a.leftOverflow))
+      .slice(0, 20);
+    return {
+      viewportWidth,
+      innerWidth: window.innerWidth,
+      bodyClientWidth: document.body.clientWidth,
+      bodyScrollWidth: document.body.scrollWidth,
+      documentWidth,
+      overflow,
+      devicePixelRatio: window.devicePixelRatio,
+      activeElement: document.activeElement instanceof HTMLElement
+        ? { tag: document.activeElement.tagName.toLowerCase(), id: document.activeElement.id || undefined, className: typeof document.activeElement.className === "string" ? document.activeElement.className.slice(0, 180) : undefined }
+        : null,
+      offenders,
+    };
   });
-  expect(diagnostics.overflow, `Horizontal overflow diagnostics:\n${JSON.stringify(diagnostics, null, 2)}`).toBeLessThanOrEqual(1);
+
+  if (diagnostics.overflow > 1) {
+    await test.info().attach("horizontal-overflow-diagnostics.json", {
+      body: Buffer.from(JSON.stringify(diagnostics, null, 2)),
+      contentType: "application/json",
+    });
+    await test.info().attach("horizontal-overflow.png", {
+      body: await page.screenshot({ fullPage: true }),
+      contentType: "image/png",
+    });
+  }
+
+  expect(
+    diagnostics.overflow,
+    `Horizontal overflow diagnostics:\n${JSON.stringify(diagnostics, null, 2)}`,
+  ).toBeLessThanOrEqual(1);
 }
 
 const CONFIRMED_REBRAND_HANDLES = ["ana-maria", "temperaflix-tradicional", "temperaflix-bacon", "paprica-picante", "salsa-cebola-e-alho", "curcuma", "tempero-do-edu", "ervas-finas", "lemon-pepper", "paprica-defumada", "paprica-doce", "du-chefe-com-paprica", "chimichurri-sem-pimenta", "chimichurri-picante"] as const;
@@ -45,6 +115,7 @@ test.describe("Casa Temperanzza storefront", () => {
     const confirmedCards = carousel.locator('[data-featured-product][data-image-source="rebrand"]'); expect(await confirmedCards.count()).toBeGreaterThan(0);
     const nonRebrandConfirmed = await carousel.locator('[data-featured-product]').evaluateAll((nodes, confirmed) => nodes.filter((node) => confirmed.includes(node.getAttribute("data-featured-product") || "") && node.getAttribute("data-image-source") !== "rebrand").map((node) => ({ handle: node.getAttribute("data-featured-product"), source: node.getAttribute("data-image-source") })), [...CONFIRMED_REBRAND_HANDLES]); expect(nonRebrandConfirmed).toEqual([]);
     const nextButton = carousel.getByRole("button", { name: "Próximo produto" }); if (await nextButton.isVisible()) await nextButton.click(); else { const pagination = carousel.getByRole("button", { name: "Ir para produto 2" }); if (await pagination.count()) await pagination.click(); }
+    await page.waitForTimeout(250);
     await expectNoDocumentOverflow(page);
   });
 
