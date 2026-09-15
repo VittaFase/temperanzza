@@ -5,13 +5,15 @@ import { ProductCard } from "./ProductCard";
 import { Loader2, Search, X } from "lucide-react";
 import { getProductDiet } from "@/lib/dietCompatibility";
 import { DIETS, type DietKey } from "@/lib/diets";
-import { isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
+import { hasConfirmedRebrandSource, isRebrandEligibleHandle } from "@/lib/rebrandCatalog";
+import { resolveProductImage } from "@/lib/productImages";
 type LinhaKey = "todas" | "temperaflix";
 function isTemperaflix(handle: string) { return handle.startsWith("temperaflix-"); }
+function hasIntegratedRebrandMaster(handle: string) { return hasConfirmedRebrandSource(handle) && resolveProductImage(handle).source === "rebrand"; }
 interface CatalogGridProps { query?: string | null; excludeHandles?: string[]; }
 export function CatalogGrid({ query = null, excludeHandles }: CatalogGridProps) {
  const [term,setTerm]=useState(""); const [linha,setLinha]=useState<LinhaKey>("todas"); const [diet,setDiet]=useState<DietKey|"todas">("todas");
- const {data,isLoading,error}=useQuery({queryKey:["catalog-grid",query,excludeHandles?.join(",")??""],queryFn:async()=>{const res=await storefrontApiRequest(STOREFRONT_QUERY,{first:50,query}); let edges=(res?.data?.products?.edges??[]) as ShopifyProduct[]; edges=edges.filter((e)=>isRebrandEligibleHandle(e.node.handle)); if(excludeHandles?.length){const ex=new Set(excludeHandles);edges=edges.filter((e)=>!ex.has(e.node.handle));} return edges;}});
+ const {data,isLoading,error}=useQuery({queryKey:["catalog-grid",query,excludeHandles?.join(",")??""],queryFn:async()=>{const res=await storefrontApiRequest(STOREFRONT_QUERY,{first:50,query}); let edges=(res?.data?.products?.edges??[]) as ShopifyProduct[]; edges=edges.filter((e)=>isRebrandEligibleHandle(e.node.handle)&&hasIntegratedRebrandMaster(e.node.handle)); if(excludeHandles?.length){const ex=new Set(excludeHandles);edges=edges.filter((e)=>!ex.has(e.node.handle));} return edges;}});
  const lineCounts=useMemo(()=>({all:data?.length??0,temperaflix:data?.filter((p)=>isTemperaflix(p.node.handle)).length??0}),[data]);
  const lines=[{key:"todas" as const,label:"Toda a Casa",hint:`${lineCounts.all} sabores`},{key:"temperaflix" as const,label:"Temperaflix",hint:`${lineCounts.temperaflix} sabores`}];
  const filtered=useMemo(()=>{if(!data)return[];const t=term.trim().toLowerCase();return data.filter((p)=>{const h=p.node.handle,title=p.node.title.toLowerCase();if(t&&!title.includes(t)&&!h.includes(t))return false;if(linha==="temperaflix"&&!isTemperaflix(h))return false;if(diet!=="todas"){const verdict=getProductDiet(h)?.verdicts[diet]?.verdict;if(verdict==="no"||!verdict)return false;}return true;});},[data,term,linha,diet]);
