@@ -52,7 +52,7 @@ export function SiteHero() {
       className="relative isolate w-full max-w-full min-w-0 overflow-hidden bg-brand-ink text-white [contain:layout_paint]"
       aria-label="Receitas em destaque"
     >
-      <div className="relative w-full max-w-full min-w-0 overflow-hidden [contain:layout_paint] min-h-[70svh] sm:min-h-[76svh] lg:min-h-[calc(100svh-112px)]">
+      <div className="relative min-h-[70svh] w-full max-w-full min-w-0 overflow-hidden [contain:layout_paint] sm:min-h-[76svh] lg:min-h-[calc(100svh-96px)]">
         {slides.map((recipe, index) => {
           const active = selectedIndex === index;
           return (
@@ -71,23 +71,15 @@ export function SiteHero() {
               />
               <div className="absolute inset-0 bg-black/30" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/20" />
-              <div className="page-shell relative z-10 flex min-h-[70svh] items-end justify-center pb-20 pt-24 text-center sm:min-h-[76svh] sm:pb-24 lg:min-h-[calc(100svh-112px)]">
+              <div className="page-shell relative z-10 flex min-h-[70svh] items-end justify-center pb-20 pt-24 text-center sm:min-h-[76svh] sm:pb-24 lg:min-h-[calc(100svh-96px)]">
                 <div className="max-w-5xl">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/75 sm:text-xs">
-                    Cozinha Temperanzza
-                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/75 sm:text-xs">Cozinha Temperanzza</span>
                   {index === 0 ? (
-                    <h1 className="mt-4 font-display text-[clamp(2.65rem,7vw,6.8rem)] font-medium leading-[.92] tracking-[-0.025em]">
-                      {recipe.title}
-                    </h1>
+                    <h1 className="mt-4 font-display text-[clamp(2.65rem,7vw,6.8rem)] font-medium leading-[.92] tracking-[-0.025em]">{recipe.title}</h1>
                   ) : (
-                    <h2 className="mt-4 font-display text-[clamp(2.65rem,7vw,6.8rem)] font-medium leading-[.92] tracking-[-0.025em]">
-                      {recipe.title}
-                    </h2>
+                    <h2 className="mt-4 font-display text-[clamp(2.65rem,7vw,6.8rem)] font-medium leading-[.92] tracking-[-0.025em]">{recipe.title}</h2>
                   )}
-                  <p className="mx-auto mt-4 line-clamp-3 max-w-2xl text-sm leading-6 text-white/88 sm:mt-5 sm:text-lg sm:leading-7">
-                    {recipe.subtitle || recipe.intro}
-                  </p>
+                  <p className="mx-auto mt-4 line-clamp-3 max-w-2xl text-sm leading-6 text-white/88 sm:mt-5 sm:text-lg sm:leading-7">{recipe.subtitle || recipe.intro}</p>
                   <Link
                     to="/cozinha/$slug"
                     params={{ slug: recipe.slug }}
@@ -105,12 +97,7 @@ export function SiteHero() {
       </div>
       <div className="absolute inset-x-0 bottom-5 z-20 flex items-center justify-center gap-3">
         {!reducedMotion && !compactViewport && (
-          <button
-            type="button"
-            onClick={() => setPlaying((value) => !value)}
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/35 bg-black/15 text-white backdrop-blur-sm"
-            aria-label={playing ? "Pausar apresentação" : "Reproduzir apresentação"}
-          >
+          <button type="button" onClick={() => setPlaying((value) => !value)} className="grid h-9 w-9 place-items-center rounded-full border border-white/35 bg-black/15 text-white backdrop-blur-sm" aria-label={playing ? "Pausar apresentação" : "Reproduzir apresentação"}>
             {playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
           </button>
         )}
