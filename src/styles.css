@@ -144,6 +144,16 @@
   }
 }
 
+/* Hard viewport reset stays unlayered so no imported stylesheet can reintroduce
+ * the browser's default document margin or horizontal canvas expansion. */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+
 @utility page-shell {
   width: min(calc(100% - 2rem), var(--content-max));
   margin-inline: auto;
