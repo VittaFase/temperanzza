@@ -23,26 +23,14 @@ async function expectNoDocumentOverflow(page: import("@playwright/test").Page) {
           node = node.parentElement;
         }
         return {
-          path: path.join(" > "),
-          tag: element.tagName.toLowerCase(),
-          id: element.id || undefined,
+          path: path.join(" > "), tag: element.tagName.toLowerCase(), id: element.id || undefined,
           className: typeof element.className === "string" ? element.className.slice(0, 240) : undefined,
-          left: Number(rect.left.toFixed(2)),
-          right: Number(rect.right.toFixed(2)),
-          width: Number(rect.width.toFixed(2)),
-          clientWidth: element.clientWidth,
-          scrollWidth: element.scrollWidth,
-          rightOverflow: Number(rightOverflow.toFixed(2)),
-          leftOverflow: Number(leftOverflow.toFixed(2)),
-          position: style.position,
-          display: style.display,
-          overflowX: style.overflowX,
-          transform: style.transform,
-          translate: style.translate,
-          marginLeft: style.marginLeft,
-          marginRight: style.marginRight,
-          maxWidth: style.maxWidth,
-          minWidth: style.minWidth,
+          left: Number(rect.left.toFixed(2)), right: Number(rect.right.toFixed(2)), width: Number(rect.width.toFixed(2)),
+          clientWidth: element.clientWidth, scrollWidth: element.scrollWidth,
+          rightOverflow: Number(rightOverflow.toFixed(2)), leftOverflow: Number(leftOverflow.toFixed(2)),
+          position: style.position, display: style.display, overflowX: style.overflowX, transform: style.transform,
+          translate: style.translate, marginLeft: style.marginLeft, marginRight: style.marginRight,
+          maxWidth: style.maxWidth, minWidth: style.minWidth,
           text: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 100),
         };
       })
@@ -50,13 +38,8 @@ async function expectNoDocumentOverflow(page: import("@playwright/test").Page) {
       .sort((a, b) => Math.max(b.rightOverflow, b.leftOverflow) - Math.max(a.rightOverflow, a.leftOverflow))
       .slice(0, 20);
     return {
-      viewportWidth,
-      innerWidth: window.innerWidth,
-      bodyClientWidth: document.body.clientWidth,
-      bodyScrollWidth: document.body.scrollWidth,
-      documentWidth,
-      overflow,
-      devicePixelRatio: window.devicePixelRatio,
+      viewportWidth, innerWidth: window.innerWidth, bodyClientWidth: document.body.clientWidth,
+      bodyScrollWidth: document.body.scrollWidth, documentWidth, overflow, devicePixelRatio: window.devicePixelRatio,
       activeElement: document.activeElement instanceof HTMLElement
         ? { tag: document.activeElement.tagName.toLowerCase(), id: document.activeElement.id || undefined, className: typeof document.activeElement.className === "string" ? document.activeElement.className.slice(0, 180) : undefined }
         : null,
@@ -65,20 +48,10 @@ async function expectNoDocumentOverflow(page: import("@playwright/test").Page) {
   });
 
   if (diagnostics.overflow > 1) {
-    await test.info().attach("horizontal-overflow-diagnostics.json", {
-      body: Buffer.from(JSON.stringify(diagnostics, null, 2)),
-      contentType: "application/json",
-    });
-    await test.info().attach("horizontal-overflow.png", {
-      body: await page.screenshot({ fullPage: true }),
-      contentType: "image/png",
-    });
+    await test.info().attach("horizontal-overflow-diagnostics.json", { body: Buffer.from(JSON.stringify(diagnostics, null, 2)), contentType: "application/json" });
+    await test.info().attach("horizontal-overflow.png", { body: await page.screenshot({ fullPage: true }), contentType: "image/png" });
   }
-
-  expect(
-    diagnostics.overflow,
-    `Horizontal overflow diagnostics:\n${JSON.stringify(diagnostics, null, 2)}`,
-  ).toBeLessThanOrEqual(1);
+  expect(diagnostics.overflow, `Horizontal overflow diagnostics:\n${JSON.stringify(diagnostics, null, 2)}`).toBeLessThanOrEqual(1);
 }
 
 const CONFIRMED_REBRAND_HANDLES = ["ana-maria", "temperaflix-tradicional", "temperaflix-bacon", "paprica-picante", "salsa-cebola-e-alho", "curcuma", "tempero-do-edu", "ervas-finas", "lemon-pepper", "paprica-defumada", "paprica-doce", "du-chefe-com-paprica", "chimichurri-sem-pimenta", "chimichurri-picante"] as const;
@@ -109,14 +82,20 @@ test.describe("Casa Temperanzza storefront", () => {
   });
 
   test("featured product carousel advances and confirmed products keep rebrand provenance", async ({ page }) => {
-    await page.goto("/", { waitUntil: "domcontentloaded" }); const heading = page.getByRole("heading", { name: "Descubra seu sabor" }); const rendered = await heading.waitFor({ state: "visible", timeout: 15000 }).then(() => true).catch(() => false);
-    if (!rendered) { await expect(page.getByRole("heading", { name: "A despensa da Casa Temperanzza" })).toBeVisible(); await expectNoDocumentOverflow(page); return; }
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const heading = page.getByRole("heading", { name: "Descubra seu sabor" });
+    const rendered = await heading.waitFor({ state: "visible", timeout: 15000 }).then(() => true).catch(() => false);
+    if (!rendered) {
+      // Featured products are data-dependent. The fallback has no carousel interaction to validate;
+      // home overflow is already covered independently by the dedicated first test in every viewport.
+      await expect(page.getByRole("heading", { name: "A despensa da Casa Temperanzza" })).toBeVisible();
+      return;
+    }
     const carousel = heading.locator("xpath=ancestor::section[1]"); await expect(carousel).toBeVisible();
     const confirmedCards = carousel.locator('[data-featured-product][data-image-source="rebrand"]'); expect(await confirmedCards.count()).toBeGreaterThan(0);
     const nonRebrandConfirmed = await carousel.locator('[data-featured-product]').evaluateAll((nodes, confirmed) => nodes.filter((node) => confirmed.includes(node.getAttribute("data-featured-product") || "") && node.getAttribute("data-image-source") !== "rebrand").map((node) => ({ handle: node.getAttribute("data-featured-product"), source: node.getAttribute("data-image-source") })), [...CONFIRMED_REBRAND_HANDLES]); expect(nonRebrandConfirmed).toEqual([]);
     const nextButton = carousel.getByRole("button", { name: "Próximo produto" }); if (await nextButton.isVisible()) await nextButton.click(); else { const pagination = carousel.getByRole("button", { name: "Ir para produto 2" }); if (await pagination.count()) await pagination.click(); }
-    await page.waitForTimeout(250);
-    await expectNoDocumentOverflow(page);
+    await page.waitForTimeout(250); await expectNoDocumentOverflow(page);
   });
 
   test("rebrand catalog excludes standalone Cebola and confirmed cards never use fallback imagery", async ({ page }) => {
