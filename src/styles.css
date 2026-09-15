@@ -57,8 +57,6 @@
 
 :root {
   --radius: 1rem;
-
-  /* Light-first surfaces: clean, culinary and product-led. */
   --background: oklch(0.99 0.004 88);
   --foreground: oklch(0.19 0.012 55);
   --card: oklch(1 0 0);
@@ -78,8 +76,6 @@
   --border: oklch(0.91 0.008 80);
   --input: oklch(0.93 0.008 80);
   --ring: oklch(0.52 0.16 42);
-
-  /* Temperanzza brand + SKU accents. */
   --brand-ink: oklch(0.18 0.012 55);
   --brand-paper: oklch(0.99 0.004 88);
   --brand-cream: oklch(0.965 0.018 82);
@@ -90,7 +86,6 @@
   --brand-amber: oklch(0.7 0.14 55);
   --brand-gold: oklch(0.77 0.11 85);
   --brand-silver: oklch(0.82 0.008 80);
-
   --section-space: clamp(4.5rem, 9vw, 8.5rem);
   --content-max: 80rem;
   --motion-fast: 180ms;
@@ -123,8 +118,14 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: clip;
+  }
   body {
+    max-width: 100%;
+    overflow-x: clip;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -143,20 +144,13 @@
   margin-inline: auto;
 }
 
-@utility section-space {
-  padding-block: var(--section-space);
-}
-
-@utility surface-soft {
-  background: var(--brand-cream);
-}
-
+@utility section-space { padding-block: var(--section-space); }
+@utility surface-soft { background: var(--brand-cream); }
 @utility product-stage {
   border-radius: clamp(1.75rem, 4vw, 3.5rem);
   overflow: hidden;
   isolation: isolate;
 }
-
 @utility bg-paper-grain {
   background-color: var(--brand-paper);
   background-image:
@@ -164,35 +158,14 @@
     radial-gradient(circle at 80% 70%, oklch(0 0 0 / 0.01) 0, transparent 52%);
 }
 
-@keyframes product-enter {
-  from { opacity: 0; transform: translateY(18px) scale(.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@utility animate-product-enter {
-  animation: product-enter var(--motion-slow) var(--ease-premium) both;
-}
-
-@keyframes pote-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-@utility animate-pote-float {
-  animation: pote-float 6s ease-in-out infinite;
-}
-
-@keyframes flavor-progress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
+@keyframes product-enter { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@utility animate-product-enter { animation: product-enter var(--motion-slow) var(--ease-premium) both; }
+@keyframes pote-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@utility animate-pote-float { animation: pote-float 6s ease-in-out infinite; }
+@keyframes flavor-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 @view-transition { navigation: auto; }
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 260ms;
-  animation-timing-function: var(--ease-premium);
-}
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 260ms; animation-timing-function: var(--ease-premium); }
 ::view-transition-old(root) { animation-name: vt-fade-out; }
 ::view-transition-new(root) { animation-name: vt-fade-in; }
 @keyframes vt-fade-out { to { opacity: 0; } }
@@ -206,6 +179,5 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  ::view-transition-old(root),
-  ::view-transition-new(root) { animation: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
