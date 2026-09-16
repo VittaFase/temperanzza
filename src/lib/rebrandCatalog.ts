@@ -10,7 +10,6 @@ export const PRODUCT_HANDLE_ALIASES: Record<string, string> = {
   "canela-premium-black-30g": "canela-moida",
   "chimi-churri-picante": "chimichurri-picante",
   "chimi-churri-sem-pimenta": "chimichurri-sem-pimenta",
-  "tempero-chefe": "du-chefe-com-paprica",
   "pimenta-do-reino-premium-black-30g": "pimenta-do-reino",
   "edu-guedes": "tempero-do-edu",
 };
@@ -32,7 +31,6 @@ export const REBRAND_CONFIRMED_SOURCE_HANDLES = [
   "lemon-pepper",
   "paprica-defumada",
   "paprica-doce",
-  "du-chefe-com-paprica",
   "chimichurri-sem-pimenta",
   "chimichurri-picante",
 ] as const;

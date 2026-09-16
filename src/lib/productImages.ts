@@ -13,7 +13,6 @@ import rebrandAnaMaria from "@/assets/rebrand-products/ana-maria.png";
 import rebrandChimiPicante from "@/assets/rebrand-products/chimichurri-picante.png";
 import rebrandChimiSemPimenta from "@/assets/rebrand-products/chimichurri-sem-pimenta.png";
 import rebrandCurcuma from "@/assets/rebrand-products/curcuma.png";
-import rebrandDuChefe from "@/assets/rebrand-products/du-chefe-com-paprica.png";
 import rebrandEdu from "@/assets/rebrand-products/tempero-do-edu.png";
 import rebrandErvasFinas from "@/assets/rebrand-products/ervas-finas.png";
 import rebrandLemonPepper from "@/assets/rebrand-products/lemon-pepper.png";
@@ -32,7 +31,6 @@ const REBRAND_IMAGE_MAP: Record<string, string> = {
   "chimichurri-picante": rebrandChimiPicante,
   "chimichurri-sem-pimenta": rebrandChimiSemPimenta,
   curcuma: rebrandCurcuma,
-  "du-chefe-com-paprica": rebrandDuChefe,
   "ervas-finas": rebrandErvasFinas,
   "lemon-pepper": rebrandLemonPepper,
   "paprica-defumada": rebrandPapricaDefumada,

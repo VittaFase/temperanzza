@@ -23,7 +23,7 @@ O PDF original **Nova logotipia Temperanzza (1).pdf**, com 15 páginas, permanec
 | 01 | Temperaflix Tradicional, 60 g | `temperaflix-tradicional` | REBRAND_CONFIRMED |
 | 02 | Temperaflix Ervas Finas, 75 g | `temperaflix-ervas-finas` | REBRAND_CONFIRMED |
 | 03 | Temperaflix Sabor Bacon, 65 g | `temperaflix-bacon` | REBRAND_CONFIRMED |
-| 04 | Du Chefe com Páprica, 45 g | `du-chefe-com-paprica` | REBRAND_CONFIRMED |
+| 04 | Du Chefe com Páprica, 45 g | `du-chefe-com-paprica` | RECEIVED_ARCHIVE_ONLY — NOT PUBLIC |
 | 05 | Edu Guedes, 45 g | `tempero-do-edu` | REBRAND_CONFIRMED |
 | 06 | Ana Maria, 55 g | `ana-maria` | REBRAND_CONFIRMED |
 | 07 | Chimi Churri Picante, 39 g | `chimichurri-picante` | REBRAND_CONFIRMED |
@@ -62,6 +62,7 @@ Os 15 PNGs recebidos em 15/09/2026 foram incorporados integralmente sob nomes ca
 
 ## Pendências explícitas
 
+- `du-chefe-com-paprica` → `EXCLUDED_FROM_REBRAND_CATALOG`. O binário recebido é preservado apenas para rastreabilidade do lote e não pode ser importado, renderizado ou publicado.
 - `tempero-mineiro` → `MISSING_REBRAND_ASSET`. O SKU permanece na fonte comercial, mas não integra a allowlist pública nem pode receber imagem Shopify/legada enquanto o master Rebrand não for incorporado.
 
 ## Gate técnico
