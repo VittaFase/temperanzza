@@ -44,6 +44,10 @@ Aliases técnicos continuam resolvendo para o handle canônico; não criam SKUs 
 - `temperaflix-ervas-finas` → `src/assets/rebrand-products/Untitled design - 2.png`. Associação comprovada pelo conjunto fechado do upload `1bd4eb9`: os 15 PNGs correspondem aos 15 SKUs do PDF canônico; após 13 nomes explícitos e o lock do Tradicional, este é o único binário remanescente para Temperaflix Ervas Finas.
 - `temperaflix-bacon` → `src/assets/rebrand-products/TEMPERAFLIX BACON - 1.png`. Este é o pote definitivo incorporado para o SKU; não criar SKU genérico `bacon`.
 
+## Pendências explícitas
+
+- `tempero-mineiro` → `MISSING_REBRAND_ASSET`. O SKU permanece na fonte comercial, mas não integra a allowlist pública nem pode receber imagem Shopify/legada enquanto o master Rebrand não for incorporado.
+
 ## Gate técnico
 
 O arquivo `src/lib/productImages.ts` só pode trocar o asset histórico de um handle depois que o binário da fonte canônica estiver incorporado e verificado. A resolução deve ser por handle canônico exato, nunca por substring ou inferência de nome. Assets históricos podem permanecer no repositório durante a auditoria, mas nunca podem ser importados, renderizados ou usados como fallback público.
