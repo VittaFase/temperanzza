@@ -62,9 +62,16 @@ const CONFIRMED_REBRAND_HANDLES = ["ana-maria", "temperaflix-tradicional", "temp
 test.describe("Casa Temperanzza storefront", () => {
   test("home renders the final recipe hero without horizontal overflow", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
-    await expect(page.getByText("Cozinha Temperanzza", { exact: true }).first()).toBeVisible();
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Ver receita" }).first()).toBeVisible();
+    const recipeHero = page.locator('[aria-label="Receitas em destaque"]');
+    if (await recipeHero.count()) {
+      await expect(page.getByRole("link", { name: "Ver receita" }).first()).toBeVisible();
+    } else {
+      const pendingHero = page.locator('[data-qa-status="MISSING_REBRAND_ASSET"]').first();
+      await expect(pendingHero).toBeVisible();
+      await expect(pendingHero.locator("img")).toHaveCount(0);
+      await expect(page.getByRole("link", { name: "Conhecer os sabores" }).first()).toBeVisible();
+    }
     await expectNoDocumentOverflow(page);
   });
 
@@ -81,7 +88,7 @@ test.describe("Casa Temperanzza storefront", () => {
   test("header navigation works across responsive breakpoints", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" }); const menuButton = page.getByRole("button", { name: "Abrir menu" }); const desktopNav = page.locator('nav[aria-label="Navegação principal"]');
     if (await desktopNav.isVisible()) await desktopNav.getByRole("link", { name: "Receitas" }).click(); else { await expect(menuButton).toBeVisible(); await menuButton.click(); const dialog = page.getByRole("dialog"); await expect(dialog).toBeVisible(); await dialog.getByRole("link", { name: /Receitas/ }).click(); }
-    await expect(page).toHaveURL((url) => url.pathname === "/cozinha"); await expect(page.getByRole("heading", { name: "Cozinhe com mais sabor." })).toBeVisible(); await expectNoDocumentOverflow(page);
+    await expect(page).toHaveURL((url) => url.pathname === "/cozinha"); await expect(page.getByRole("heading", { name: "Cozinhe com mais sabor." })).toBeVisible(); const pending = page.locator('[data-qa-status="MISSING_REBRAND_ASSET"]'); if (await pending.count()) await expect(pending.locator("img")).toHaveCount(0); await expectNoDocumentOverflow(page);
   });
 
   test("featured product carousel advances and confirmed products keep rebrand provenance", async ({ page }) => {

@@ -33,6 +33,7 @@ env:
     src/routes/product.$handle.tsx
     src/lib/productImages.ts
     src/lib/rebrandCatalog.ts
+    src/lib/recipes.ts
 
 jobs:
   build:

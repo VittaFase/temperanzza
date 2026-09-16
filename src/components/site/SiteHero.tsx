@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import { useEffect, useState } from "react";
-import { RECIPES } from "@/lib/recipes";
+import { RECIPES, RECIPE_ASSET_QA } from "@/lib/recipes";
 
 const HERO_SLUGS = [
   "hamburguer-bacon-em-po",
@@ -45,7 +45,40 @@ export function SiteHero() {
     return () => window.clearInterval(id);
   }, [playing, reducedMotion, compactViewport, slides.length]);
 
-  if (!slides.length) return null;
+  if (!slides.length) {
+    return (
+      <section
+        className="relative isolate grid min-h-[70svh] overflow-hidden bg-brand-ink text-white sm:min-h-[76svh] lg:min-h-[calc(100svh-96px)]"
+        aria-labelledby="rebrand-home-title"
+        data-qa-status={RECIPE_ASSET_QA.code}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,.1),transparent_42%)]" />
+        <div className="page-shell relative z-10 flex items-end justify-center pb-20 pt-28 text-center sm:pb-24">
+          <div className="max-w-4xl">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-white/65">
+              Casa Temperanzza
+            </span>
+            <h1
+              id="rebrand-home-title"
+              className="mt-4 font-display text-[clamp(3rem,8vw,7rem)] font-medium leading-[.9] tracking-[-0.025em]"
+            >
+              Mais sabor para a sua cozinha.
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/78 sm:text-lg">
+              Conheça os condimentos da nova Casa Temperanzza enquanto nossa cozinha recebe
+              os novos masters de receitas.
+            </p>
+            <Link
+              to="/produtos"
+              className="mt-7 inline-flex min-h-12 items-center gap-2 bg-white px-7 py-3 text-sm font-semibold text-brand-ink transition motion-safe:hover:-translate-y-0.5"
+            >
+              Conhecer os sabores <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

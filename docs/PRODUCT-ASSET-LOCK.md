@@ -45,4 +45,4 @@ Aliases técnicos continuam resolvendo para o handle canônico; não criam SKUs 
 
 ## Gate técnico
 
-O arquivo `src/lib/productImages.ts` só pode trocar o asset histórico de um handle depois que o binário da fonte canônica estiver incorporado e verificado. A resolução deve ser por handle canônico exato, nunca por substring ou inferência de nome. Assets históricos permanecem apenas como fallback para SKUs ainda sem binário definitivo incorporado.
+O arquivo `src/lib/productImages.ts` só pode trocar o asset histórico de um handle depois que o binário da fonte canônica estiver incorporado e verificado. A resolução deve ser por handle canônico exato, nunca por substring ou inferência de nome. Assets históricos podem permanecer no repositório durante a auditoria, mas nunca podem ser importados, renderizados ou usados como fallback público.

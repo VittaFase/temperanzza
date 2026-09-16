@@ -5,52 +5,6 @@
 
 import type { DietKey } from "./diets";
 import type { ProductDiet } from "./dietCompatibility";
-import omeleteAsset from "@/assets/receitas/omelete-bacon-em-po.jpg.asset.json";
-import frangoPapricaAsset from "@/assets/receitas/frango-assado-paprica-defumada.jpg.asset.json";
-import hamburguerBaconAsset from "@/assets/receitas/hamburguer-bacon-em-po.jpg.asset.json";
-import ovosErvasAsset from "@/assets/receitas/ovos-mexidos-ervas-finas.jpg.asset.json";
-import peixeGrelhadoAsset from "@/assets/receitas/peixe-grelhado-salsa-cebola-alho.jpg.asset.json";
-import bifeChimiAsset from "@/assets/receitas/bife-manteiga-chimi-churri.jpg.asset.json";
-import ovosCozidosEduAsset from "@/assets/receitas/ovos-cozidos-tempero-edu.jpg.asset.json";
-import carneMoidaMineiroAsset from "@/assets/receitas/carne-moida-tempero-mineiro.jpg.asset.json";
-import ovosCurcumaAsset from "@/assets/receitas/ovos-dourados-curcuma.jpg.asset.json";
-import frangoAnaMariaAsset from "@/assets/receitas/frango-grelhado-ana-maria.jpg.asset.json";
-import sopaLegumesAsset from "@/assets/receitas/sopa-legumes-salsa-cebola-alho.png.asset.json";
-import ovoFritoLemonAsset from "@/assets/receitas/ovo-frito-lemon-pepper.jpg.asset.json";
-import porcoPapricaAsset from "@/assets/receitas/porco-assado-paprica-picante.jpg.asset.json";
-import camaraoChimiAsset from "@/assets/receitas/camarao-chimi-churri-picante.jpg.asset.json";
-import frangoPapricaDoceAsset from "@/assets/receitas/frango-dourado-paprica-doce.jpg.asset.json";
-import cafeCanelaAsset from "@/assets/receitas/cafe-ritual-canela.jpg.asset.json";
-import mixCastanhasAsset from "@/assets/receitas/mix-castanhas-temperaflix-ervas.jpg.asset.json";
-import salmaoCrostaAsset from "@/assets/receitas/salmao-crosta-ervas-finas.jpg.asset.json";
-import abacateFrangoAsset from "@/assets/receitas/abacate-recheado-frango-chimi-churri.jpg.asset.json";
-import couveFlorAsset from "@/assets/receitas/couve-flor-gratinada-curcuma.jpg.asset.json";
-import sardinhaLemonAsset from "@/assets/receitas/sardinha-grelhada-lemon-pepper.jpg.asset.json";
-import panquecaEduAsset from "@/assets/receitas/panqueca-proteica-tempero-edu.jpg.asset.json";
-import costelaBovinaAsset from "@/assets/receitas/costela-bovina-pimenta-reino.jpg.asset.json";
-import figadoAceboladoAsset from "@/assets/receitas/figado-acebolado-salsa-cebola-alho.jpg.asset.json";
-import camaraoManteigaAsset from "@/assets/receitas/camarao-manteiga-salsa-cebola-alho.jpg.asset.json";
-import frangoPanelaAnaMariaAsset from "@/assets/receitas/frango-panela-ana-maria.jpg.asset.json";
-import berinjelaMineiroAsset from "@/assets/receitas/berinjela-assada-tempero-mineiro-v2.jpg.asset.json";
-import paoQueijoMineiroAsset from "@/assets/receitas/pao-de-queijo-tempero-mineiro.jpg.asset.json";
-import frangoQuiaboAsset from "@/assets/receitas/frango-quiabo-ana-maria.jpg.asset.json";
-import ovosFritosBaconAsset from "@/assets/receitas/ovos-fritos-bacon-temperaflix.jpg.asset.json";
-import bifeAceboladoLemonAsset from "@/assets/receitas/bife-acebolado-lemon-pepper.jpg.asset.json";
-import costelinhaPapricaAsset from "@/assets/receitas/costelinha-paprica-defumada-tradicional.jpg.asset.json";
-import omeleteErvasAsset from "@/assets/receitas/omelete-temperaflix-ervas-finas.jpg.asset.json";
-import frangoChimiPicanteAsset from "@/assets/receitas/frango-chimi-churri-picante.jpg.asset.json";
-import legumesCurcumaAsset from "@/assets/receitas/legumes-assados-curcuma.jpg.asset.json";
-import costelaDuChefeAsset from "@/assets/receitas/costela-porco-du-chefe.jpg.asset.json";
-import bifeCavaloAsset from "@/assets/receitas/bife-cavalo-pimenta-reino.jpg.asset.json";
-import macaCanelaAsset from "@/assets/receitas/maca-assada-canela-moida.jpg.asset.json";
-import pipocaTradicionalAsset from "@/assets/receitas/pipoca-caseira-temperaflix-tradicional.jpg.asset.json";
-import carnePanelaMineiroAsset from "@/assets/receitas/carne-panela-batatas-tempero-mineiro.jpg.asset.json";
-import peixeAssadoSalsaAsset from "@/assets/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg.asset.json";
-import feijaoTropeiroAsset from "@/assets/receitas/feijao-tropeiro-tempero-mineiro.jpg.asset.json";
-import sopaLegumesErvasAsset from "@/assets/receitas/sopa-legumes-ervas-finas.jpg.asset.json";
-import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional-clean.png.asset.json";
-import paoHamburguerAsset from "@/assets/receitas/46-pao-carnivoro-hamburguer-v5.webp.asset.json";
-import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada-v5.webp.asset.json";
 
 
 
@@ -124,7 +78,7 @@ export const CATEGORIES: Record<RecipeCategory, { label: string; short: string }
   tradicional: { label: "Mesa de Todos — Tradicional", short: "Tradicional" },
 };
 
-export const RECIPES: Recipe[] = [
+const RECIPE_DRAFTS: Recipe[] = [
   // Nº01
   {
     slug: "omelete-bacon-em-po",
@@ -156,7 +110,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem bacon em casa? O shaker sozinho já entrega o defumado — só aumente a manteiga.",
     harmonization: ["temperaflix-ervas-finas", "paprica-defumada"],
     relatedSlugs: ["ovos-fritos-bacon-tradicional", "hamburguer-bacon-em-po", "omelete-temperaflix-ervas-finas", "ovos-mexidos-ervas-finas"],
-    dish: { src: omeleteAsset.url, alt: "Omelete simples com Temperaflix Bacon" },
     hero: { color: "oklch(0.35 0.08 40)" },
   },
   // Nº02
@@ -190,7 +143,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Prefere peito? Corte em cubos grandes e reduza o forno para 25 minutos.",
     harmonization: ["temperaflix-bacon", "paprica-doce"],
     relatedSlugs: ["costelinha-paprica-defumada-tradicional", "frango-dourado-paprica-doce", "porco-assado-paprica-picante", "frango-grelhado-ana-maria"],
-    dish: { src: frangoPapricaAsset.url, alt: "Frango assado com Páprica Defumada" },
     hero: { color: "oklch(0.5 0.18 40)" },
   },
   // Nº03
@@ -224,7 +176,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem pão, monte sobre folhas de alface — a versão keto não perde nada.",
     harmonization: ["paprica-defumada"],
     relatedSlugs: ["omelete-bacon-em-po", "ovos-fritos-bacon-tradicional", "bife-manteiga-chimi-churri", "carne-moida-tempero-mineiro"],
-    dish: { src: hamburguerBaconAsset.url, alt: "Hambúrguer caseiro com Temperaflix Bacon" },
     hero: { color: "oklch(0.32 0.08 30)" },
   },
   // Nº04
@@ -258,7 +209,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem creme de leite, uma colher de requeijão faz o mesmo trabalho.",
     harmonization: ["salsa-cebola-e-alho", "curcuma"],
     relatedSlugs: ["ovos-dourados-curcuma", "omelete-temperaflix-ervas-finas", "salmao-crosta-ervas-finas", "ovos-cozidos-tempero-edu"],
-    dish: { src: ovosErvasAsset.url, alt: "Ovos mexidos com Ervas Finas" },
     hero: { color: "oklch(0.5 0.13 145)" },
   },
   // Nº05
@@ -291,7 +241,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Em filés finos, reduza para 2 minutos por lado.",
     harmonization: ["lemon-pepper", "ervas-finas"],
     relatedSlugs: ["peixe-assado-legumes-salsa-cebola-alho", "sardinha-grelhada-lemon-pepper", "salmao-crosta-ervas-finas", "camarao-manteiga-salsa-cebola-alho"],
-    dish: { src: peixeGrelhadoAsset.url, alt: "Peixe grelhado com Salsa, Cebola e Alho" },
     hero: { color: "oklch(0.55 0.12 145)" },
   },
   // Nº06
@@ -324,7 +273,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem picância? O Chimi Churri sem Pimenta faz a mesma manteiga.",
     harmonization: ["paprica-picante", "tempero-do-edu"],
     relatedSlugs: ["frango-chimi-churri-picante", "camarao-chimi-churri-picante", "costela-bovina-pimenta-reino", "bife-acebolado-lemon-pepper"],
-    dish: { src: bifeChimiAsset.url, alt: "Bife grelhado com manteiga de Chimi Churri Picante" },
     hero: { color: "oklch(0.42 0.14 30)" },
   },
   // Nº07
@@ -357,7 +305,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Para gema mole, reduza para 6 minutos e sirva com pão.",
     harmonization: ["lemon-pepper", "pimenta-do-reino"],
     relatedSlugs: ["ovo-frito-lemon-pepper", "panqueca-proteica-tempero-edu", "ovos-mexidos-ervas-finas", "ovos-dourados-curcuma"],
-    dish: { src: ovosCozidosEduAsset.url, alt: "Ovos cozidos com Tempero do Edu" },
     hero: { color: "oklch(0.6 0.1 60)" },
   },
   // Nº08
@@ -390,7 +337,6 @@ export const RECIPES: Recipe[] = [
     substitution: "A mesma base vira ragu com uma lata de tomate e 20 minutos a mais.",
     harmonization: ["ana-maria", "du-chefe-com-paprica"],
     relatedSlugs: ["carne-panela-batatas-tempero-mineiro", "berinjela-assada-tempero-mineiro", "feijao-tropeiro-tempero-mineiro", "hamburguer-bacon-em-po"],
-    dish: { src: carneMoidaMineiroAsset.url, alt: "Carne moída refogada com Tempero Mineiro" },
     hero: { color: "oklch(0.42 0.1 30)" },
   },
   // Nº09
@@ -423,7 +369,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Uma pitada de pimenta-do-reino multiplica a absorção da cúrcuma — não pule.",
     harmonization: ["pimenta-do-reino", "ervas-finas"],
     relatedSlugs: ["couve-flor-gratinada-curcuma", "legumes-assados-curcuma-tradicional", "ovos-mexidos-ervas-finas", "ovos-cozidos-tempero-edu"],
-    dish: { src: ovosCurcumaAsset.url, alt: "Ovos mexidos dourados com Cúrcuma" },
     hero: { color: "oklch(0.75 0.16 80)" },
   },
   // Nº10
@@ -456,7 +401,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona igual em sobrecoxa desossada; aumente para 6 minutos por lado.",
     harmonization: ["ervas-finas", "salsa-cebola-e-alho"],
     relatedSlugs: ["frango-panela-ana-maria", "frango-quiabo-ana-maria", "frango-dourado-paprica-doce", "frango-chimi-churri-picante"],
-    dish: { src: frangoAnaMariaAsset.url, alt: "Frango grelhado com Ana Maria" },
     hero: { color: "oklch(0.55 0.12 50)" },
   },
 
@@ -491,7 +435,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Para a versão tradicional, adicione batata e cenoura e aumente a água.",
     harmonization: ["tempero-mineiro", "curcuma"],
     relatedSlugs: ["sopa-legumes-ervas-finas", "berinjela-assada-tempero-mineiro", "legumes-assados-curcuma-tradicional", "couve-flor-gratinada-curcuma"],
-    dish: { src: sopaLegumesAsset.url, alt: "Sopa de legumes com Salsa, Cebola e Alho" },
     hero: { color: "oklch(0.62 0.1 145)" },
   },
   // Nº12
@@ -524,7 +467,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona lindamente em ovos 'poché' feitos em água.",
     harmonization: ["curcuma", "pimenta-do-reino"],
     relatedSlugs: ["ovos-cozidos-tempero-edu", "ovos-dourados-curcuma", "ovos-mexidos-ervas-finas", "ovos-fritos-bacon-tradicional"],
-    dish: { src: ovoFritoLemonAsset.url, alt: "Ovo frito com Lemon Pepper" },
     hero: { color: "oklch(0.65 0.12 90)" },
   },
   // Nº13
@@ -558,7 +500,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Substitua por sobrepaleta suína para um resultado ainda mais suculento.",
     harmonization: ["chimi-churri-picante", "paprica-defumada"],
     relatedSlugs: ["costelinha-paprica-defumada-tradicional", "costela-porco-du-chefe", "frango-assado-paprica-defumada", "bife-manteiga-chimi-churri"],
-    dish: { src: porcoPapricaAsset.url, alt: "Lombo suíno com Páprica Picante" },
     hero: { color: "oklch(0.48 0.16 35)" },
 
   },
@@ -593,7 +534,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com anéis de lula ou tiras de peixe branco firme.",
     harmonization: ["lemon-pepper", "salsa-cebola-e-alho"],
     relatedSlugs: ["camarao-manteiga-salsa-cebola-alho", "peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "bife-manteiga-chimi-churri"],
-    dish: { src: camaraoChimiAsset.url, alt: "Camarão salteado com Chimi Churri Picante" },
     hero: { color: "oklch(0.6 0.14 40)" },
 
   },
@@ -627,7 +567,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Fica ótimo em espetinhos mistos com pimentão e cebola.",
     harmonization: ["ana-maria", "paprica-picante"],
     relatedSlugs: ["frango-assado-paprica-defumada", "frango-grelhado-ana-maria", "frango-panela-ana-maria", "frango-chimi-churri-picante"],
-    dish: { src: frangoPapricaDoceAsset.url, alt: "Frango dourado com Páprica Doce" },
     hero: { color: "oklch(0.58 0.16 50)" },
 
   },
@@ -660,7 +599,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Sem mixer? Misture com força na xícara, mas a textura será menos cremosa.",
     harmonization: ["pimenta-reino-premium-black-30g"],
     relatedSlugs: ["maca-assada-canela", "ovos-dourados-curcuma", "ovos-mexidos-ervas-finas", "ovos-cozidos-tempero-edu"],
-    dish: { src: cafeCanelaAsset.url, alt: "Café Ritual com Canela" },
     hero: { color: "oklch(0.35 0.08 45)" },
 
   },
@@ -694,7 +632,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito no forno por 10 minutos a 160 °C para lotes maiores.",
     harmonization: ["lemon-pepper", "paprica-defumada"],
     relatedSlugs: ["pipoca-caseira-temperaflix-tradicional", "pao-de-queijo-tempero-mineiro", "ovos-cozidos-tempero-edu", "maca-assada-canela"],
-    dish: { src: mixCastanhasAsset.url, alt: "Mix de castanhas com Temperaflix Ervas Finas" },
     hero: { color: "oklch(0.45 0.1 140)" },
   },
   // Nº18
@@ -727,7 +664,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Troque o salmão por truta ou postas de peixe branco grosso.",
     harmonization: ["lemon-pepper", "salsa-cebola-e-alho"],
     relatedSlugs: ["peixe-grelhado-salsa-cebola-alho", "camarao-chimi-churri-picante", "peixe-assado-legumes-salsa-cebola-alho", "abacate-recheado-frango-chimi-churri"],
-    dish: { src: salmaoCrostaAsset.url, alt: "Salmão em crosta de Ervas Finas" },
     hero: { color: "oklch(0.52 0.14 145)" },
   },
   // Nº19
@@ -761,7 +697,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Substitua o frango por atum em lata ou camarões pequenos.",
     harmonization: ["lemon-pepper", "ana-maria"],
     relatedSlugs: ["frango-grelhado-ana-maria", "salmao-crosta-ervas-finas", "sardinha-grelhada-lemon-pepper", "sopa-legumes-salsa-cebola-alho"],
-    dish: { src: abacateFrangoAsset.url, alt: "Abacate recheado com frango e Chimi Churri" },
     hero: { color: "oklch(0.6 0.12 120)" },
   },
   // Nº20
@@ -795,7 +730,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona também com brócolis ou uma mistura dos dois.",
     harmonization: ["salsa-cebola-e-alho", "pimenta-do-reino"],
     relatedSlugs: ["legumes-assados-curcuma-tradicional", "berinjela-assada-tempero-mineiro", "sopa-legumes-salsa-cebola-alho", "ovos-dourados-curcuma"],
-    dish: { src: couveFlorAsset.url, alt: "Couve-flor gratinada com Cúrcuma" },
     hero: { color: "oklch(0.7 0.16 85)" },
   },
   // Nº21
@@ -828,7 +762,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com cavalinha ou manjuba.",
     harmonization: ["salsa-cebola-e-alho", "erva-doce"],
     relatedSlugs: ["peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "camarao-chimi-churri-picante", "ovo-frito-lemon-pepper"],
-    dish: { src: sardinhaLemonAsset.url, alt: "Sardinha grelhada com Lemon Pepper" },
     hero: { color: "oklch(0.55 0.1 110)" },
   },
   // Nº22
@@ -862,7 +795,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Use frango desfiado com Tempero Mineiro como recheio.",
     harmonization: ["ana-maria", "salsa-cebola-e-alho"],
     relatedSlugs: ["ovos-cozidos-tempero-edu", "omelete-bacon-em-po", "ovos-mexidos-ervas-finas", "pao-de-queijo-tempero-mineiro"],
-    dish: { src: panquecaEduAsset.url, alt: "Panqueca proteica com Tempero do Edu" },
     hero: { color: "oklch(0.62 0.1 65)" },
   },
   // Nº23
@@ -895,7 +827,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feita na pressão por 50 minutos para quem tem pressa.",
     harmonization: ["paprica-defumada", "chimi-churri-picante"],
     relatedSlugs: ["costela-porco-du-chefe", "bife-manteiga-chimi-churri", "carne-moida-tempero-mineiro", "bife-cavalo-pimenta-reino"],
-    dish: { src: costelaBovinaAsset.url, alt: "Costela bovina com Pimenta-do-Reino Premium Black" },
     hero: { color: "oklch(0.25 0.05 40)" },
   },
   // Nº24
@@ -929,7 +860,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com fígado de galinha, que é mais suave.",
     harmonization: ["ana-maria", "pimenta-do-reino"],
     relatedSlugs: ["carne-moida-tempero-mineiro", "bife-acebolado-lemon-pepper", "bife-manteiga-chimi-churri", "carne-panela-batatas-tempero-mineiro"],
-    dish: { src: figadoAceboladoAsset.url, alt: "Fígado acebolado com Salsa, Cebola e Alho Temperanzza" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº25
@@ -963,7 +893,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Use azeite no lugar da manteiga para uma versão sem lactose.",
     harmonization: ["lemon-pepper", "chimichurri-sem-pimenta"],
     relatedSlugs: ["camarao-chimi-churri-picante", "peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "sardinha-grelhada-lemon-pepper"],
-    dish: { src: camaraoManteigaAsset.url, alt: "Camarão na manteiga com Salsa, Cebola e Alho Temperanzza" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº26
@@ -997,7 +926,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione quiabo picado nos últimos 10 minutos.",
     harmonization: ["tempero-mineiro", "salsa-cebola-e-alho"],
     relatedSlugs: ["frango-quiabo-ana-maria", "frango-grelhado-ana-maria", "carne-moida-tempero-mineiro", "carne-panela-batatas-tempero-mineiro"],
-    dish: { src: frangoPanelaAnaMariaAsset.url, alt: "Frango de panela com Ana Maria Temperanzza" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº27
@@ -1030,7 +958,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Faça o mesmo com abobrinha ou fatias de pimentão.",
     harmonization: ["ana-maria", "curcuma"],
     relatedSlugs: ["couve-flor-gratinada-curcuma", "legumes-assados-curcuma-tradicional", "sopa-legumes-salsa-cebola-alho", "carne-moida-tempero-mineiro"],
-    dish: { src: berinjelaMineiroAsset.url, alt: "Berinjela assada com Tempero Mineiro Temperanzza" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº28
@@ -1065,7 +992,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Use queijo meia cura se não encontrar o canastra.",
     harmonization: ["ana-maria", "canela-premium-black-30g"],
     relatedSlugs: ["cafe-ritual-canela", "feijao-tropeiro-tempero-mineiro", "panqueca-proteica-tempero-edu", "pipoca-caseira-temperaflix-tradicional"],
-    dish: { src: paoQueijoMineiroAsset.url, alt: "Pão de queijo com Tempero Mineiro Temperanzza" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº30
@@ -1099,7 +1025,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione polenta cremosa como acompanhamento.",
     harmonization: ["tempero-mineiro", "paprica-doce"],
     relatedSlugs: ["frango-panela-ana-maria", "feijao-tropeiro-tempero-mineiro", "frango-grelhado-ana-maria"],
-    dish: { src: frangoQuiaboAsset.url, alt: "Frango com quiabo e Ana Maria" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº31
@@ -1133,7 +1058,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Sirva com torrada de pão de fermentação natural.",
     harmonization: ["pimenta-do-reino", "ervas-finas"],
     relatedSlugs: ["omelete-bacon-em-po", "hamburguer-bacon-em-po", "ovo-frito-lemon-pepper", "ovos-cozidos-tempero-edu"],
-    dish: { src: ovosFritosBaconAsset.url, alt: "Ovos fritos com bacon e Temperaflix Bacon" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº32
@@ -1167,7 +1091,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona muito bem com bifes de fígado ou de porco.",
     harmonization: ["pimenta-do-reino", "chimichurri-sem-pimenta"],
     relatedSlugs: ["bife-manteiga-chimi-churri", "figado-acebolado-salsa-cebola-alho", "bife-cavalo-pimenta-reino", "carne-moida-tempero-mineiro"],
-    dish: { src: bifeAceboladoLemonAsset.url, alt: "Bife acebolado com Lemon Pepper" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº33
@@ -1201,7 +1124,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Sirva com molho barbecue caseiro ou apenas gomos de limão.",
     harmonization: ["paprica-picante", "chimi-churri-picante"],
     relatedSlugs: ["frango-assado-paprica-defumada", "porco-assado-paprica-picante", "costela-porco-du-chefe", "frango-dourado-paprica-doce"],
-    dish: { src: costelinhaPapricaAsset.url, alt: "Costelinha suína com Páprica Defumada" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº34
@@ -1235,7 +1157,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione tomate picado ou espinafre ao recheio.",
     harmonization: ["salsa-cebola-e-alho", "curcuma"],
     relatedSlugs: ["omelete-bacon-em-po", "ovos-mexidos-ervas-finas", "panqueca-proteica-tempero-edu", "ovos-cozidos-tempero-edu"],
-    dish: { src: omeleteErvasAsset.url, alt: "Omelete de Ervas com Temperaflix Ervas Finas" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº35
@@ -1269,7 +1190,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Use a versão sem pimenta para crianças.",
     harmonization: ["paprica-picante", "lemon-pepper"],
     relatedSlugs: ["bife-manteiga-chimi-churri", "camarao-chimi-churri-picante", "frango-grelhado-ana-maria", "frango-dourado-paprica-doce"],
-    dish: { src: frangoChimiPicanteAsset.url, alt: "Frango grelhado com Chimi Churri Picante" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº36
@@ -1304,7 +1224,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione dentes de alho inteiros com casca para assar junto.",
     harmonization: ["pimenta-do-reino", "salsa-cebola-e-alho"],
     relatedSlugs: ["couve-flor-gratinada-curcuma", "berinjela-assada-tempero-mineiro", "sopa-legumes-salsa-cebola-alho", "ovos-dourados-curcuma"],
-    dish: { src: legumesCurcumaAsset.url, alt: "Legumes assados com Cúrcuma" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº37
@@ -1338,7 +1257,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode ser feito com lombo suíno fatiado.",
     harmonization: ["paprica-defumada", "pimenta-do-reino"],
     relatedSlugs: ["costelinha-paprica-defumada-tradicional", "porco-assado-paprica-picante", "costela-bovina-pimenta-reino", "bife-manteiga-chimi-churri"],
-    dish: { src: costelaDuChefeAsset.url, alt: "Costelinha de porco com Du Chefe" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº38
@@ -1372,7 +1290,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Use azeite no lugar da manteiga se preferir.",
     harmonization: ["lemon-pepper", "tempero-mineiro"],
     relatedSlugs: ["bife-acebolado-lemon-pepper", "bife-manteiga-chimi-churri", "ovos-fritos-bacon-tradicional", "costela-bovina-pimenta-reino"],
-    dish: { src: bifeCavaloAsset.url, alt: "Bife a cavalo com Pimenta-do-Reino Premium Black" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº39
@@ -1405,7 +1322,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Funciona também com bananas maduras.",
     harmonization: ["cafe-ritual-canela"],
     relatedSlugs: ["cafe-ritual-canela", "mix-castanhas-temperaflix-ervas", "pipoca-caseira-temperaflix-tradicional", "pao-de-queijo-tempero-mineiro"],
-    dish: { src: macaCanelaAsset.url, alt: "Maçã assada com Canela Premium Black" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº40
@@ -1439,7 +1355,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Use a versão de Ervas Finas para um toque mais aromático.",
     harmonization: ["lemon-pepper", "paprica-defumada"],
     relatedSlugs: ["mix-castanhas-temperaflix-ervas", "pao-de-queijo-tempero-mineiro", "maca-assada-canela", "cafe-ritual-canela"],
-    dish: { src: pipocaTradicionalAsset.url, alt: "Pipoca caseira com Temperaflix Tradicional" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº41
@@ -1474,7 +1389,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Panela de pressão reduz o tempo total para cerca de 35 minutos.",
     harmonization: ["ana-maria", "pimenta-do-reino-premium-black-30g"],
     relatedSlugs: ["carne-moida-tempero-mineiro", "feijao-tropeiro-tempero-mineiro", "frango-panela-ana-maria", "bife-acebolado-lemon-pepper"],
-    dish: { src: carnePanelaMineiroAsset.url, alt: "Carne de panela com batatas e Tempero Mineiro" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº42
@@ -1509,7 +1423,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Troque os legumes conforme a estação — brócolis e couve-flor também funcionam bem.",
     harmonization: ["lemon-pepper", "ervas-finas"],
     relatedSlugs: ["peixe-grelhado-salsa-cebola-alho", "salmao-crosta-ervas-finas", "sardinha-grelhada-lemon-pepper", "camarao-manteiga-salsa-cebola-alho"],
-    dish: { src: peixeAssadoSalsaAsset.url, alt: "Peixe assado com legumes e Salsa, Cebola e Alho" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº43
@@ -1544,7 +1457,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Sirva com couve refogada e arroz branco para o combo mineiro completo.",
     harmonization: ["ana-maria"],
     relatedSlugs: ["carne-panela-batatas-tempero-mineiro", "pao-de-queijo-tempero-mineiro", "frango-quiabo-ana-maria"],
-    dish: { src: feijaoTropeiroAsset.url, alt: "Feijão tropeiro com Tempero Mineiro" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº44
@@ -1580,7 +1492,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Adicione macarrão tipo ave-maria para as crianças.",
     harmonization: ["salsa-cebola-e-alho", "curcuma"],
     relatedSlugs: ["sopa-legumes-salsa-cebola-alho", "legumes-assados-curcuma-tradicional", "berinjela-assada-tempero-mineiro", "couve-flor-gratinada-curcuma"],
-    dish: { src: sopaLegumesErvasAsset.url, alt: "Sopa de legumes com Ervas Finas" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
   // Nº45
@@ -1616,7 +1527,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Pode usar Temperaflix Bacon para uma versão mais rústica.",
     harmonization: ["salsa-cebola-e-alho", "tempero-mineiro"],
     relatedSlugs: ["pao-carnivoro-hamburguer", "pao-carnivoro-torrada"],
-    dish: { src: paoTradicionalAsset.url, alt: "Pão Carnívoro Tradicional" },
     hero: { color: "oklch(0.52 0.21 28)" },
   },
   // Nº46
@@ -1650,7 +1560,6 @@ export const RECIPES: Recipe[] = [
     substitution: "Use Chimi Churri para um perfil mais argentino.",
     harmonization: ["temperaflix-bacon", "paprica-defumada"],
     relatedSlugs: ["hamburguer-bacon-em-po", "pao-carnivoro-tradicional"],
-    dish: { src: paoHamburguerAsset.url, alt: "Pão de Hambúrguer Carnívoro" },
     hero: { color: "oklch(0.52 0.21 28)" },
   },
   // Nº47
@@ -1682,13 +1591,31 @@ export const RECIPES: Recipe[] = [
     substitution: "Experimente com Ervas Finas para um toque mais suave.",
     harmonization: ["salsa-cebola-e-alho", "curcuma"],
     relatedSlugs: ["pao-carnivoro-tradicional", "sopa-legumes-ervas-finas"],
-    dish: { src: paoTorradaAsset.url, alt: "Torradas Carnívoras Temperanzza" },
     hero: { color: "oklch(0.52 0.21 28)" },
   },
 ];
 
+type RebrandRecipeAsset = NonNullable<Recipe["dish"]>;
 
+/**
+ * Receitas só entram na experiência pública depois que o master visual atual
+ * for integrado e aprovado. O mapa permanece vazio enquanto os binários do
+ * Rebrand não estiverem no repositório.
+ */
+const REBRAND_RECIPE_ASSETS: Partial<Record<string, RebrandRecipeAsset>> = {};
 
+export const RECIPES: Recipe[] = RECIPE_DRAFTS.flatMap((recipe) => {
+  const dish = REBRAND_RECIPE_ASSETS[recipe.slug];
+  return dish ? [{ ...recipe, dish }] : [];
+});
+
+export const RECIPE_ASSET_QA = {
+  code: "MISSING_REBRAND_ASSET",
+  missingSlugs: RECIPE_DRAFTS.filter((recipe) => !REBRAND_RECIPE_ASSETS[recipe.slug]).map(
+    (recipe) => recipe.slug,
+  ),
+  publishedCount: RECIPES.length,
+} as const;
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
   return RECIPES.find((r) => r.slug === slug);
