@@ -16,15 +16,6 @@ export const PRODUCT_HANDLE_ALIASES: Record<string, string> = {
 };
 
 /**
- * SKUs comerciais que permanecem no Shopify, mas estão explicitamente fora da
- * experiência editorial do novo rebrand. A exclusão é sempre pelo handle
- * canônico exato para não atingir `salsa-cebola-e-alho`.
- */
-export const REBRAND_EXCLUDED_HANDLES = ["cebola-em-po"] as const;
-
-const REBRAND_EXCLUDED_HANDLE_SET = new Set<string>(REBRAND_EXCLUDED_HANDLES);
-
-/**
  * SKUs com fonte visual do novo rebrand confirmada pelo proprietário.
  * Ver docs/PRODUCT-ASSET-LOCK.md. Não adicionar aqui por inferência.
  */
@@ -68,17 +59,13 @@ export function canonicalProductHandle(handle: string): string {
   return PRODUCT_HANDLE_ALIASES[handle] ?? handle;
 }
 
-export function isRebrandExcludedHandle(handle: string): boolean {
-  return REBRAND_EXCLUDED_HANDLE_SET.has(canonicalProductHandle(handle));
-}
-
 /**
  * Predicado positivo e canônico para qualquer superfície do novo rebrand.
  * Componentes editoriais e comerciais devem consultar esta função antes de
  * expor, resolver no Shopify ou encaminhar um handle para checkout.
  */
 export function isRebrandEligibleHandle(handle: string): boolean {
-  return !isRebrandExcludedHandle(handle);
+  return REBRAND_CONFIRMED_SOURCE_SET.has(canonicalProductHandle(handle));
 }
 
 export function hasConfirmedRebrandSource(handle: string): boolean {

@@ -33,7 +33,6 @@ import camaraoManteigaAsset from "@/assets/receitas/camarao-manteiga-salsa-cebol
 import frangoPanelaAnaMariaAsset from "@/assets/receitas/frango-panela-ana-maria.jpg.asset.json";
 import berinjelaMineiroAsset from "@/assets/receitas/berinjela-assada-tempero-mineiro-v2.jpg.asset.json";
 import paoQueijoMineiroAsset from "@/assets/receitas/pao-de-queijo-tempero-mineiro.jpg.asset.json";
-import arrozBrancoAsset from "@/assets/receitas/arroz-branco-salsa-cebola-alho.jpg.asset.json";
 import frangoQuiaboAsset from "@/assets/receitas/frango-quiabo-ana-maria.jpg.asset.json";
 import ovosFritosBaconAsset from "@/assets/receitas/ovos-fritos-bacon-temperaflix.jpg.asset.json";
 import bifeAceboladoLemonAsset from "@/assets/receitas/bife-acebolado-lemon-pepper.jpg.asset.json";
@@ -223,7 +222,7 @@ export const RECIPES: Recipe[] = [
     chefWord: "Carne moída com 20% de gordura é o que segura o hambúrguer suculento. O tempero entra na superfície, nunca misturado à carne — massa temperada por dentro vira almôndega.",
     whyItWorks: "Carne e queijo são pilares do low carb e da cetogênica. O Temperaflix Bacon realça a carne sem carga extra.",
     substitution: "Sem pão, monte sobre folhas de alface — a versão keto não perde nada.",
-    harmonization: ["paprica-defumada", "cebola-em-po"],
+    harmonization: ["paprica-defumada"],
     relatedSlugs: ["omelete-bacon-em-po", "ovos-fritos-bacon-tradicional", "bife-manteiga-chimi-churri", "carne-moida-tempero-mineiro"],
     dish: { src: hamburguerBaconAsset.url, alt: "Hambúrguer caseiro com Temperaflix Bacon" },
     hero: { color: "oklch(0.32 0.08 30)" },
@@ -1069,40 +1068,6 @@ export const RECIPES: Recipe[] = [
     dish: { src: paoQueijoMineiroAsset.url, alt: "Pão de queijo com Tempero Mineiro Temperanzza" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
-  // Nº29
-  {
-    slug: "arroz-soltinho-cebola-em-po",
-    title: "Arroz soltinho com Cebola em Pó",
-    subtitle: "O básico perfeito, sem precisar picar nada.",
-    intro: "O básico perfeito, sem precisar picar nada.",
-    featuredHandle: "cebola-em-po",
-    compatibleDiets: [],
-    moment: "almoco",
-    profile: "puras",
-    category: "tradicional",
-    time: "20 min",
-    serves: "4 pessoas",
-    difficulty: "Fácil",
-    ingredients: [
-      "2 xícaras de arroz branco",
-      "4 xícaras de água fervente",
-      "1 colher (sopa) de Cebola em Pó Temperanzza",
-      "Sal e óleo a gosto",
-    ],
-    steps: [
-      "Refogue the arroz no óleo com o sal por 1 minuto.",
-      "Adicione a água fervente e a Cebola em Pó.",
-      "Cozinhe em fogo baixo com a panela semi-tampada até a água secar.",
-      "Desligue e deixe descansar 5 minutos antes de soltar com um garfo.",
-    ],
-    chefWord: "A cebola em pó dissolve no caldo e impregna cada grão, sem deixar pedaços. É o segredo do arroz de restaurante que parece simples, mas é especial.",
-    whyItWorks: "Básico indispensável da mesa brasileira.",
-    substitution: "Use no arroz integral aumentando a água e o tempo de cozimento.",
-    harmonization: ["salsa-cebola-e-alho", "ana-maria"],
-    relatedSlugs: ["feijao-tropeiro-tempero-mineiro", "carne-moida-tempero-mineiro", "frango-panela-ana-maria", "carne-panela-batatas-tempero-mineiro"],
-    dish: { src: arrozBrancoAsset.url, alt: "Arroz soltinho com Cebola em Pó" },
-    hero: { color: "rgba(26, 26, 26, 0.95)" },
-  },
   // Nº30
   {
     slug: "frango-quiabo-ana-maria",
@@ -1133,7 +1098,7 @@ export const RECIPES: Recipe[] = [
     whyItWorks: "Tradição mineira literal. Blend vegetal puro.",
     substitution: "Adicione polenta cremosa como acompanhamento.",
     harmonization: ["tempero-mineiro", "paprica-doce"],
-    relatedSlugs: ["frango-panela-ana-maria", "feijao-tropeiro-tempero-mineiro", "arroz-soltinho-cebola-em-po", "frango-grelhado-ana-maria"],
+    relatedSlugs: ["frango-panela-ana-maria", "feijao-tropeiro-tempero-mineiro", "frango-grelhado-ana-maria"],
     dish: { src: frangoQuiaboAsset.url, alt: "Frango com quiabo e Ana Maria" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
@@ -1577,8 +1542,8 @@ export const RECIPES: Recipe[] = [
     chefWord: "Feijão tropeiro é memória afetiva de Minas — o Tempero Mineiro é a nossa homenagem a esse tempero de fundo de quintal.",
     whyItWorks: "A força da culinária mineira em um blend.",
     substitution: "Sirva com couve refogada e arroz branco para o combo mineiro completo.",
-    harmonization: ["ana-maria", "cebola-em-po"],
-    relatedSlugs: ["carne-panela-batatas-tempero-mineiro", "pao-de-queijo-tempero-mineiro", "arroz-soltinho-cebola-em-po", "frango-quiabo-ana-maria"],
+    harmonization: ["ana-maria"],
+    relatedSlugs: ["carne-panela-batatas-tempero-mineiro", "pao-de-queijo-tempero-mineiro", "frango-quiabo-ana-maria"],
     dish: { src: feijaoTropeiroAsset.url, alt: "Feijão tropeiro com Tempero Mineiro" },
     hero: { color: "rgba(26, 26, 26, 0.95)" },
   },
@@ -1794,7 +1759,6 @@ export const RECIPE_PROTEIN: Record<string, Protein> = {
   "frango-panela-ana-maria": "frango",
   "berinjela-assada-tempero-mineiro": "vegetariano",
   "pao-de-queijo-tempero-mineiro": "vegetariano",
-  "arroz-soltinho-cebola-em-po": "vegetariano",
   "frango-quiabo-ana-maria": "frango",
   "ovos-fritos-bacon-tradicional": "ovo",
   "bife-acebolado-lemon-pepper": "bovina",

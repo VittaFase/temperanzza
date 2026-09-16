@@ -10,9 +10,9 @@ Este registro protege a experiência rebrand contra regressão para mockups hist
 2. A camada editorial do rebrand só pode usar um pote classificado como `REBRAND_CONFIRMED`.
 3. Arquivos históricos em `src/assets` não se tornam rebrand apenas por terem o mesmo handle.
 4. Não reconstruir, redesenhar, completar ou reinterpretar pote/rótulo com IA.
-5. Quando um ativo confirmado ainda não estiver incorporado ao repositório, usar `SHOPIFY_FALLBACK` ou não exibir o SKU em superfície editorial; nunca substituir silenciosamente por mockup histórico.
+5. Quando um ativo confirmado ainda não estiver incorporado ao repositório, não exibir o SKU em superfície editorial e registrar `MISSING_REBRAND_ASSET`; nunca usar imagem Shopify ou mockup histórico como fallback visual.
 6. O original fornecido deve ser preservado. Recorte/transparência/otimização, quando necessários, são derivados técnicos e não podem alterar a arte.
-7. **CEBOLA / `cebola-em-po` está FORA DO ESCOPO desta implementação do rebrand.** Não integrar o SKU às superfícies editoriais do novo rebrand nem tratá-lo como fonte visual confirmada. Esta regra de escopo não apaga dados históricos/comerciais do Shopify.
+7. A participação nas superfícies editoriais do rebrand é governada exclusivamente pela allowlist positiva de fontes confirmadas. SKUs ausentes dessa lista não podem ser publicados, mesmo que permaneçam no histórico comercial do Shopify.
 
 ## Fonte canônica recebida em 14/09/2026
 

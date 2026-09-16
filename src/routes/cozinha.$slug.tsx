@@ -66,9 +66,6 @@ export const Route = createFileRoute("/cozinha/$slug")({
   },
   loader: ({ params }) => {
     const redirects: Record<string, string> = {
-      "frango-grelhado-cebola-em-po": "frango-grelhado-ana-maria",
-      "sopa-legumes-cebola-em-po": "sopa-legumes-salsa-cebola-alho",
-      "figado-acebolado-cebola-po": "figado-acebolado-salsa-cebola-alho",
       "omelete-ervas-finas-tradicional": "omelete-temperaflix-ervas-finas",
       "frango-chimi-churri-tradicional": "frango-chimi-churri-picante",
       "feijao-tropeiro-ana-maria": "feijao-tropeiro-tempero-mineiro",

@@ -166,17 +166,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
     },
   },
   {
-    key: "cebola-em-po",
-    profile: PROFILES.puras,
-    verdicts: {
-      keto: vModerate("Cebola concentra carboidratos. Use pitadas."),
-      lowcarb: vOk("Uso normal cabe no low carb."),
-      "carnivora-flex": vOk("Vegetal desidratado — aceito no flexível."),
-      selva: vOk("Apenas cebola. O que a terra deu, o sol secou."),
-      vegetariana: vVegOk,
-    },
-  },
-  {
     key: "tempero-do-edu",
     profile: PROFILES.casa,
     verdicts: {
@@ -251,7 +240,6 @@ const HANDLE_ALIASES: Record<string, string> = {
   "salsa-cebola-e-alho": "salsa-cebola-e-alho",
   "ervas-finas": "ervas-finas",
   "tempero-mineiro": "tempero-mineiro",
-  "cebola-em-po": "cebola-em-po",
   "tempero-do-edu": "tempero-do-edu",
   "edu-guedes": "tempero-do-edu",
   curcuma: "curcuma",
