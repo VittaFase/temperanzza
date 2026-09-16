@@ -22,6 +22,7 @@ export const REBRAND_CONFIRMED_SOURCE_HANDLES = [
   "ana-maria",
   "temperaflix-ervas-finas",
   "temperaflix-tradicional",
+  "tempero-mineiro",
   "temperaflix-bacon",
   "paprica-picante",
   "salsa-cebola-e-alho",

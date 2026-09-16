@@ -16,6 +16,7 @@ import rebrandCurcuma from "@/assets/rebrand-products/curcuma.png";
 import rebrandEdu from "@/assets/rebrand-products/tempero-do-edu.png";
 import rebrandErvasFinas from "@/assets/rebrand-products/ervas-finas.png";
 import rebrandLemonPepper from "@/assets/rebrand-products/lemon-pepper.png";
+import rebrandTemperoMineiro from "@/assets/rebrand-products/tempero-mineiro.png";
 import rebrandPapricaDefumada from "@/assets/rebrand-products/paprica-defumada.png";
 import rebrandPapricaDoce from "@/assets/rebrand-products/paprica-doce.png";
 import rebrandPapricaPicante from "@/assets/rebrand-products/paprica-picante.png";
@@ -33,6 +34,7 @@ const REBRAND_IMAGE_MAP: Record<string, string> = {
   curcuma: rebrandCurcuma,
   "ervas-finas": rebrandErvasFinas,
   "lemon-pepper": rebrandLemonPepper,
+  "tempero-mineiro": rebrandTemperoMineiro,
   "paprica-defumada": rebrandPapricaDefumada,
   "paprica-doce": rebrandPapricaDoce,
   "paprica-picante": rebrandPapricaPicante,
