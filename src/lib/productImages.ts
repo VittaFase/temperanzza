@@ -23,6 +23,7 @@ import rebrandPapricaPicante from "@/assets/rebrand-products/PÁPRICA PICANTE -
 import rebrandSalsaCebolaAlho from "@/assets/rebrand-products/SALSA, CEBOLA E ALHO - 1.png";
 import rebrandFlixBacon from "@/assets/rebrand-products/TEMPERAFLIX BACON - 1.png";
 import rebrandFlixTradicional from "@/assets/rebrand-products/Untitled design - 1.png";
+import rebrandFlixErvasFinas from "@/assets/rebrand-products/Untitled design - 2.png";
 import { canonicalProductHandle } from "@/lib/rebrandCatalog";
 
 /** Correspondência exata handle canônico → PNG oficial já integrado. */
@@ -39,6 +40,7 @@ const REBRAND_IMAGE_MAP: Record<string, string> = {
   "paprica-picante": rebrandPapricaPicante,
   "salsa-cebola-e-alho": rebrandSalsaCebolaAlho,
   "temperaflix-bacon": rebrandFlixBacon,
+  "temperaflix-ervas-finas": rebrandFlixErvasFinas,
   "temperaflix-tradicional": rebrandFlixTradicional,
   "tempero-do-edu": rebrandEdu,
 };

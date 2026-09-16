@@ -41,6 +41,7 @@ Aliases técnicos continuam resolvendo para o handle canônico; não criam SKUs 
 ## Locks de binário incorporado
 
 - `temperaflix-tradicional` → `src/assets/rebrand-products/Untitled design - 1.png`. Identidade confirmada visualmente pelo proprietário em 14/09/2026: **TEMPERAFLIX / CASA TEMPERANZZA / TRADICIONAL / 60 g**. O nome genérico do arquivo não altera sua identidade canônica.
+- `temperaflix-ervas-finas` → `src/assets/rebrand-products/Untitled design - 2.png`. Associação comprovada pelo conjunto fechado do upload `1bd4eb9`: os 15 PNGs correspondem aos 15 SKUs do PDF canônico; após 13 nomes explícitos e o lock do Tradicional, este é o único binário remanescente para Temperaflix Ervas Finas.
 - `temperaflix-bacon` → `src/assets/rebrand-products/TEMPERAFLIX BACON - 1.png`. Este é o pote definitivo incorporado para o SKU; não criar SKU genérico `bacon`.
 
 ## Gate técnico

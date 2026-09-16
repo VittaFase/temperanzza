@@ -57,7 +57,7 @@ async function expectNoDocumentOverflow(page: import("@playwright/test").Page) {
 const EXCLUDED_STANDALONE_HANDLE = ["cebola", "em", "po"].join("-");
 const EXCLUDED_STANDALONE_NAME = ["Cebola", "em", "Pó"].join(" ");
 
-const CONFIRMED_REBRAND_HANDLES = ["ana-maria", "temperaflix-tradicional", "temperaflix-bacon", "paprica-picante", "salsa-cebola-e-alho", "curcuma", "tempero-do-edu", "ervas-finas", "lemon-pepper", "paprica-defumada", "paprica-doce", "du-chefe-com-paprica", "chimichurri-sem-pimenta", "chimichurri-picante"] as const;
+const CONFIRMED_REBRAND_HANDLES = ["ana-maria", "temperaflix-tradicional", "temperaflix-ervas-finas", "temperaflix-bacon", "paprica-picante", "salsa-cebola-e-alho", "curcuma", "tempero-do-edu", "ervas-finas", "lemon-pepper", "paprica-defumada", "paprica-doce", "du-chefe-com-paprica", "chimichurri-sem-pimenta", "chimichurri-picante"] as const;
 
 test.describe("Casa Temperanzza storefront", () => {
   test("home renders the final recipe hero without horizontal overflow", async ({ page }) => {
@@ -121,7 +121,7 @@ test.describe("Casa Temperanzza storefront", () => {
   });
 
   test("confirmed PDP stages use locked rebrand provenance", async ({ page }) => {
-    for (const handle of ["salsa-cebola-e-alho", "temperaflix-tradicional", "temperaflix-bacon", "paprica-defumada"]) { await page.goto(`/product/${handle}`, { waitUntil: "domcontentloaded" }); const stage = page.locator(`[data-product-stage="${handle}"]`); await expect(stage).toBeVisible(); await expect(stage).toHaveAttribute("data-image-source", "rebrand"); const image = stage.locator("img").first(); await expect(image).toBeVisible(); await expect(image).toHaveAttribute("data-image-source", "rebrand"); const src = await image.getAttribute("src"); expect(src).toMatch(/\/assets\//); await expectNoDocumentOverflow(page); }
+    for (const handle of ["salsa-cebola-e-alho", "temperaflix-tradicional", "temperaflix-ervas-finas", "temperaflix-bacon", "paprica-defumada"]) { await page.goto(`/product/${handle}`, { waitUntil: "domcontentloaded" }); const stage = page.locator(`[data-product-stage="${handle}"]`); await expect(stage).toBeVisible(); await expect(stage).toHaveAttribute("data-image-source", "rebrand"); const image = stage.locator("img").first(); await expect(image).toBeVisible(); await expect(image).toHaveAttribute("data-image-source", "rebrand"); const src = await image.getAttribute("src"); expect(src).toMatch(/\/assets\//); await expectNoDocumentOverflow(page); }
   });
 
   test("Salsa, Cebola e Alho PDP preserves the premium product stage", async ({ page }) => { await page.goto("/product/salsa-cebola-e-alho", { waitUntil: "domcontentloaded" }); await expect(page.locator("main")).toBeVisible(); await expect(page.getByRole("heading", { level: 1 })).toBeVisible(); await expect(page.getByRole("link", { name: "Voltar aos sabores" })).toBeVisible(); const stage=page.locator('[data-product-stage="salsa-cebola-e-alho"]'); await expect(stage).toBeVisible(); await expect(stage.locator("img").first()).toBeVisible(); await expectNoDocumentOverflow(page); });
