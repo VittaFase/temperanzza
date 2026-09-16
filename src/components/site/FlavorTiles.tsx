@@ -20,6 +20,7 @@ export function FlavorTiles({
   const items = products
     .filter((p) => p.node.handle !== currentHandle)
     .filter((p) => isRebrandEligibleHandle(p.node.handle))
+    .filter((p) => Boolean(getProductImage(p.node.handle)))
     .slice(0, 8);
   if (items.length === 0) return null;
 
@@ -32,7 +33,7 @@ export function FlavorTiles({
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3">
         {items.map((p) => {
           const image = p.node.images.edges[0]?.node;
-          const imgSrc = getProductImage(p.node.handle, image?.url) ?? image?.url ?? null;
+          const imgSrc = getProductImage(p.node.handle);
           return (
             <Link
               key={p.node.id}
@@ -40,6 +41,7 @@ export function FlavorTiles({
               params={{ handle: p.node.handle }}
               className="group block"
               data-flavor-tile={p.node.handle}
+              data-image-source="rebrand"
             >
               <FlavorTile handle={p.node.handle} title={p.node.title} className="aspect-square">
                 {imgSrc ? (

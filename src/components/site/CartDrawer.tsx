@@ -20,6 +20,7 @@ import {
 import { useCartStore } from "@/stores/cartStore";
 import { formatBRL } from "@/lib/shopify";
 import { trackEvent, toAnalyticsItem } from "@/lib/analytics";
+import { getProductImage } from "@/lib/productImages";
 
 export function CartDrawer() {
   const [open, setOpen] = useState(false);
@@ -113,13 +114,14 @@ export function CartDrawer() {
                       className="flex gap-3 p-3 border border-foreground/10 bg-card"
                     >
                       <div className="w-16 h-20 bg-brand-cream overflow-hidden flex-shrink-0">
-                        {item.product.node.images?.edges?.[0]?.node && (
+                        {getProductImage(item.product.node.handle) ? (
                           <img decoding="async" loading="lazy"
-                            src={item.product.node.images.edges[0].node.url}
+                            src={getProductImage(item.product.node.handle)!}
                             alt={item.product.node.title}
-                            className="w-full h-full object-cover"
+                            data-image-source="rebrand"
+                            className="w-full h-full object-contain"
                           />
-                        )}
+                        ) : null}
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="font-semibold truncate text-sm uppercase tracking-wide">

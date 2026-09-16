@@ -17,9 +17,12 @@ permissions:
 
 env:
   REBRAND_FILES: >-
+    src/components/site/CartDrawer.tsx
     src/components/site/CollaborationCTA.tsx
+    src/components/site/CombinaCom.tsx
     src/components/site/FeaturedProducts.tsx
     src/components/site/FeaturedRow.tsx
+    src/components/site/FlavorTiles.tsx
     src/components/site/HouseOffers.tsx
     src/components/site/PromoAnnouncement.tsx
     src/components/site/RecipeShowcase.tsx
@@ -31,6 +34,7 @@ env:
     src/routes/cozinha.$slug.tsx
     src/routes/cozinha.tsx
     src/routes/product.$handle.tsx
+    src/lib/blog.ts
     src/lib/productImages.ts
     src/lib/rebrandCatalog.ts
     src/lib/recipes.ts
