@@ -94,7 +94,7 @@ Legenda de prioridade: **P0** bloqueante · **P1** alto impacto · **P2** polime
 ## 5. Consistência de marca / conteúdo
 
 **P1**
-- Padronizar nomes: sempre "Temperaflix Bacon", "Cebola em Pó", "Pimenta-do-Reino" (com hífens) em textos e ARIA labels.
+- Padronizar nomes: sempre "Temperaflix Bacon", "Salsa, Cebola e Alho", "Pimenta-do-Reino" (com hífens) em textos e ARIA labels.
 - Emojis: já removidos de receitas — varrer `sobre.tsx`, `lojas.tsx`, `blends/*` para garantir 0 ocorrências fora da linha Temperaflix (onde 🍿🎬🎮 é permitido).
 - Textos de fallback (loading/error/notFound) em pt-BR e no tom da casa.
 

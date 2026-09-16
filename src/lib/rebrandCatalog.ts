@@ -10,19 +10,9 @@ export const PRODUCT_HANDLE_ALIASES: Record<string, string> = {
   "canela-premium-black-30g": "canela-moida",
   "chimi-churri-picante": "chimichurri-picante",
   "chimi-churri-sem-pimenta": "chimichurri-sem-pimenta",
-  "tempero-chefe": "du-chefe-com-paprica",
   "pimenta-do-reino-premium-black-30g": "pimenta-do-reino",
   "edu-guedes": "tempero-do-edu",
 };
-
-/**
- * SKUs comerciais que permanecem no Shopify, mas estão explicitamente fora da
- * experiência editorial do novo rebrand. A exclusão é sempre pelo handle
- * canônico exato para não atingir `salsa-cebola-e-alho`.
- */
-export const REBRAND_EXCLUDED_HANDLES = ["cebola-em-po"] as const;
-
-const REBRAND_EXCLUDED_HANDLE_SET = new Set<string>(REBRAND_EXCLUDED_HANDLES);
 
 /**
  * SKUs com fonte visual do novo rebrand confirmada pelo proprietário.
@@ -42,7 +32,6 @@ export const REBRAND_CONFIRMED_SOURCE_HANDLES = [
   "lemon-pepper",
   "paprica-defumada",
   "paprica-doce",
-  "du-chefe-com-paprica",
   "chimichurri-sem-pimenta",
   "chimichurri-picante",
 ] as const;
@@ -53,7 +42,6 @@ export const HOME_FEATURED_HANDLES = [
   "salsa-cebola-e-alho",
   "paprica-defumada",
   "chimichurri-sem-pimenta",
-  "du-chefe-com-paprica",
   "tempero-do-edu",
   "tempero-mineiro",
   "curcuma",
@@ -68,17 +56,13 @@ export function canonicalProductHandle(handle: string): string {
   return PRODUCT_HANDLE_ALIASES[handle] ?? handle;
 }
 
-export function isRebrandExcludedHandle(handle: string): boolean {
-  return REBRAND_EXCLUDED_HANDLE_SET.has(canonicalProductHandle(handle));
-}
-
 /**
  * Predicado positivo e canônico para qualquer superfície do novo rebrand.
  * Componentes editoriais e comerciais devem consultar esta função antes de
  * expor, resolver no Shopify ou encaminhar um handle para checkout.
  */
 export function isRebrandEligibleHandle(handle: string): boolean {
-  return !isRebrandExcludedHandle(handle);
+  return REBRAND_CONFIRMED_SOURCE_SET.has(canonicalProductHandle(handle));
 }
 
 export function hasConfirmedRebrandSource(handle: string): boolean {

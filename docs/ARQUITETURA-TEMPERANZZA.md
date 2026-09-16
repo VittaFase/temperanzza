@@ -341,7 +341,7 @@ src/lib/
 **Chave universal de junção:** o `handle` do produto. Receita, blend, artigo e compatibilidade referenciam produto **sempre por handle** — nunca por nome legível, nunca por índice de array.
 
 ## 4.3 Regras de integridade
-1. Toda receita cita ≥ 1 produto **existente no catálogo**. Ingrediente sem SKU correspondente não pode ser apresentado como produto da casa (caso histórico: "alho em pó" → substituído por "cebola em pó").
+1. Toda receita cita ≥ 1 produto **existente no catálogo**. Ingrediente sem SKU correspondente não pode ser apresentado como produto da casa e deve ser substituído por um SKU aprovado.
 2. Toda menção a "bacon em pó" resolve para **Temperaflix Bacon**.
 3. Todo blend soma exatamente **12 potes**.
 4. Todo conteúdo publicado tem `slug` único e imutável (mudança exige 301).

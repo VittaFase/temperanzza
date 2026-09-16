@@ -25,6 +25,7 @@ export function CombinaCom({
     .filter((p) => p.node.handle !== currentHandle)
     .filter((p) => isRebrandEligibleHandle(p.node.handle))
     .filter((p) => getProductDiet(p.node.handle)?.profile === currentProfile)
+    .filter((p) => Boolean(getProductImage(p.node.handle)))
     .slice(0, 3);
 
   if (suggestions.length === 0) return null;
@@ -41,7 +42,7 @@ export function CombinaCom({
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
         {suggestions.map((p) => {
-          const img = getProductImage(p.node.handle) ?? p.node.images.edges[0]?.node.url;
+          const img = getProductImage(p.node.handle);
           const price = p.node.priceRange.minVariantPrice;
           return (
             <Link
@@ -50,6 +51,7 @@ export function CombinaCom({
               params={{ handle: p.node.handle }}
               className="group block bg-brand-cream bg-paper-grain border border-foreground/10 hover:border-accent transition-colors"
               data-combina-com={p.node.handle}
+              data-image-source="rebrand"
             >
               <div className="relative aspect-square overflow-hidden">
                 {img && <img decoding="async" src={img} alt={p.node.title} loading="lazy" className="absolute inset-0 w-[72%] h-[86%] m-auto object-contain drop-shadow-[0_18px_20px_rgba(0,0,0,0.18)] transition-transform duration-500 group-hover:scale-[1.04]" />}

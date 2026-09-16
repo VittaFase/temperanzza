@@ -35,7 +35,7 @@ description: Use ao escrever ou revisar textos de interface, receitas, blog, des
 ## Regras de conteúdo
 - **Nunca inventar ingredientes ou produtos** que não existam no catálogo. Verifique `src/lib/recipes.ts`, `src/lib/blends.ts`, `src/lib/productImages.ts` e a Shopify antes de citar.
 - **Bacon em pó** foi consolidado para **Temperaflix Bacon**. Não use "Bacon em Pó".
-- **Alho em Pó** foi removido do projeto. Se aparecer em receita, substitua por **Cebola em Pó** ou outro condimento real.
+- **Alho em Pó** foi removido do projeto. Se aparecer em receita, substitua por **Salsa, Cebola e Alho** ou outro condimento aprovado.
 - Receitas devem ter: título, `featuredHandle` real, ingredientes realistas, modo de preparo, `whyItWorks`, `substitution`.
 - Artigos de blog seguem AEO: pergunta real → resposta direta → corpo aprofundado → FAQ.
 

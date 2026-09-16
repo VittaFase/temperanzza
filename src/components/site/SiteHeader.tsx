@@ -9,7 +9,7 @@ import { useState } from "react";
 const LEFT_NAV = [
   { to: "/produtos", label: "Produtos" },
   { to: "/cozinha", label: "Receitas" },
-  { to: "/sobre", label: "Sobre" },
+  { to: "/sobre", label: "Nossa história" },
 ] as const;
 
 const RIGHT_NAV = [
@@ -19,42 +19,45 @@ const RIGHT_NAV = [
 
 const MOBILE_NAV = [...LEFT_NAV, ...RIGHT_NAV] as const;
 
+const navClass =
+  "relative inline-flex min-h-11 items-center text-[12px] font-semibold uppercase tracking-[0.15em] text-brand-ink/72 transition-colors hover:text-brand-ink after:absolute after:bottom-1 after:left-0 after:h-px after:w-0 after:bg-brand-ink after:transition-all hover:after:w-full";
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
     <header
-      className="sticky top-0 z-40 w-full border-b border-brand-ink/10 bg-white/96 backdrop-blur-xl"
+      className="sticky top-0 z-40 w-full border-b border-brand-ink/10 bg-white/95 backdrop-blur-xl"
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
       <div
-        className="page-shell grid h-[92px] grid-cols-[1fr_auto_1fr] items-center gap-5 lg:h-[112px]"
+        className="page-shell grid h-[82px] grid-cols-[1fr_auto_1fr] items-center gap-4 sm:h-[88px] lg:h-[96px] lg:gap-7"
         style={{
           paddingLeft: "max(1rem, env(safe-area-inset-left))",
           paddingRight: "max(1rem, env(safe-area-inset-right))",
         }}
       >
-        <nav className="hidden items-center gap-8 justify-self-start lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-7 justify-self-start lg:flex" aria-label="Navegação principal">
           {LEFT_NAV.map((item) => (
-            <Link key={item.to} to={item.to} className="relative inline-flex min-h-11 items-center text-[13px] font-semibold uppercase tracking-[0.16em] text-brand-ink/75 transition hover:text-brand-ink after:absolute after:bottom-1 after:left-0 after:h-px after:w-0 after:bg-brand-ink after:transition-all hover:after:w-full" activeProps={{ className: "text-brand-ink after:w-full", "aria-current": "page" }}>
+            <Link key={item.to} to={item.to} className={navClass} activeProps={{ className: "text-brand-ink after:w-full", "aria-current": "page" }}>
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <Link to="/" className="flex min-h-16 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-ink/30" aria-label="Temperanzza — início">
-          <BrandSeal size="full" eager className="h-[72px] w-[170px] object-contain lg:h-[88px] lg:w-[210px]" />
+        <Link to="/" className="flex min-h-14 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-ink/30" aria-label="Temperanzza — início">
+          <BrandSeal size="full" eager className="h-[62px] w-[154px] object-contain sm:h-[68px] sm:w-[166px] lg:h-[76px] lg:w-[188px]" />
         </Link>
 
-        <div className="flex items-center justify-self-end gap-2 lg:gap-6">
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação comercial">
+        <div className="flex items-center justify-self-end gap-2 lg:gap-5">
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Navegação comercial">
             {RIGHT_NAV.map((item) => (
-              <Link key={item.to} to={item.to} className="relative inline-flex min-h-11 items-center text-[13px] font-semibold uppercase tracking-[0.16em] text-brand-ink/75 transition hover:text-brand-ink after:absolute after:bottom-1 after:left-0 after:h-px after:w-0 after:bg-brand-ink after:transition-all hover:after:w-full" activeProps={{ className: "text-brand-ink after:w-full", "aria-current": "page" }}>
+              <Link key={item.to} to={item.to} className={navClass} activeProps={{ className: "text-brand-ink after:w-full", "aria-current": "page" }}>
                 {item.label}
               </Link>
             ))}
           </nav>
-          <span className="hidden h-8 w-px bg-brand-ink/15 lg:block" aria-hidden="true" />
+          <span className="hidden h-7 w-px bg-brand-ink/15 lg:block" aria-hidden="true" />
           <CartDrawer />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
