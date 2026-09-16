@@ -14,9 +14,9 @@ Este registro protege a experiência rebrand contra regressão para mockups hist
 6. O original fornecido deve ser preservado. Recorte/transparência/otimização, quando necessários, são derivados técnicos e não podem alterar a arte.
 7. A participação nas superfícies editoriais do rebrand é governada exclusivamente pela allowlist positiva de fontes confirmadas. SKUs ausentes dessa lista não podem ser publicados, mesmo que permaneçam no histórico comercial do Shopify.
 
-## Fonte canônica recebida em 14/09/2026
+## Fonte canônica e lote operacional
 
-O PDF original **Nova logotipia Temperanzza (1).pdf**, com 15 páginas, é a fonte visual canônica deste Asset Lock. Cada página contém um pote rebrand isolado e o PDF contém imagem raster + máscara de transparência por página. A incorporação web deve extrair esses objetos diretamente, recompor o canal alpha e não redesenhar a embalagem.
+O PDF original **Nova logotipia Temperanzza (1).pdf**, com 15 páginas, permanece como fonte visual canônica deste Asset Lock. Em 15/09/2026, o proprietário forneceu o lote operacional `01`–`15` em PNG, acompanhado de `MANIFESTO_POTES_REBRAND.csv`, declarando a página-fonte de cada arquivo. Os PNGs recebidos têm 1800 × 1013 px, RGB, fundo branco e devem ser incorporados sem recompressão, recorte, reconstrução ou redesenho da embalagem.
 
 | Página | SKU | Handle canônico | Status |
 |---|---|---|---|
@@ -40,9 +40,25 @@ Aliases técnicos continuam resolvendo para o handle canônico; não criam SKUs 
 
 ## Locks de binário incorporado
 
-- `temperaflix-tradicional` → `src/assets/rebrand-products/Untitled design - 1.png`. Identidade confirmada visualmente pelo proprietário em 14/09/2026: **TEMPERAFLIX / CASA TEMPERANZZA / TRADICIONAL / 60 g**. O nome genérico do arquivo não altera sua identidade canônica.
-- `temperaflix-ervas-finas` → `src/assets/rebrand-products/Untitled design - 2.png`. Associação comprovada pelo conjunto fechado do upload `1bd4eb9`: os 15 PNGs correspondem aos 15 SKUs do PDF canônico; após 13 nomes explícitos e o lock do Tradicional, este é o único binário remanescente para Temperaflix Ervas Finas.
-- `temperaflix-bacon` → `src/assets/rebrand-products/TEMPERAFLIX BACON - 1.png`. Este é o pote definitivo incorporado para o SKU; não criar SKU genérico `bacon`.
+Os 15 PNGs recebidos em 15/09/2026 foram incorporados integralmente sob nomes canônicos estáveis:
+
+| Handle | Arquivo incorporado |
+|---|---|
+| `temperaflix-tradicional` | `src/assets/rebrand-products/temperaflix-tradicional.png` |
+| `temperaflix-ervas-finas` | `src/assets/rebrand-products/temperaflix-ervas-finas.png` |
+| `temperaflix-bacon` | `src/assets/rebrand-products/temperaflix-bacon.png` |
+| `du-chefe-com-paprica` | `src/assets/rebrand-products/du-chefe-com-paprica.png` |
+| `tempero-do-edu` | `src/assets/rebrand-products/tempero-do-edu.png` |
+| `ana-maria` | `src/assets/rebrand-products/ana-maria.png` |
+| `chimichurri-picante` | `src/assets/rebrand-products/chimichurri-picante.png` |
+| `chimichurri-sem-pimenta` | `src/assets/rebrand-products/chimichurri-sem-pimenta.png` |
+| `curcuma` | `src/assets/rebrand-products/curcuma.png` |
+| `ervas-finas` | `src/assets/rebrand-products/ervas-finas.png` |
+| `lemon-pepper` | `src/assets/rebrand-products/lemon-pepper.png` |
+| `paprica-defumada` | `src/assets/rebrand-products/paprica-defumada.png` |
+| `paprica-doce` | `src/assets/rebrand-products/paprica-doce.png` |
+| `paprica-picante` | `src/assets/rebrand-products/paprica-picante.png` |
+| `salsa-cebola-e-alho` | `src/assets/rebrand-products/salsa-cebola-e-alho.png` |
 
 ## Pendências explícitas
 

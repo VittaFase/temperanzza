@@ -9,21 +9,21 @@
  * retorna `missing`. Isso é intencional: ausência de master rebrand deve ser
  * detectada pelo QA, nunca mascarada por arte anterior.
  */
-import rebrandAnaMaria from "@/assets/rebrand-products/ANA MARIA - 1.png";
-import rebrandChimiPicante from "@/assets/rebrand-products/CHIMI CHURRI PICANTE - 1.png";
-import rebrandChimiSemPimenta from "@/assets/rebrand-products/CHIMI CHURRI SEM PIMENTA - 1.png";
-import rebrandCurcuma from "@/assets/rebrand-products/CÚRCUMA - 1.png";
-import rebrandDuChefe from "@/assets/rebrand-products/DU CHEFE COM PÁPRICA - 1.png";
-import rebrandEdu from "@/assets/rebrand-products/EDU GUEDES - TEMPERO DO EDU - 1.png";
-import rebrandErvasFinas from "@/assets/rebrand-products/ERVAS FINAS - 1.png";
-import rebrandLemonPepper from "@/assets/rebrand-products/LEMON PEPPER - 1.png";
-import rebrandPapricaDefumada from "@/assets/rebrand-products/PÁPRICA DEFUMADA - 1.png";
-import rebrandPapricaDoce from "@/assets/rebrand-products/PÁPRICA DOCE - 1.png";
-import rebrandPapricaPicante from "@/assets/rebrand-products/PÁPRICA PICANTE - 1.png";
-import rebrandSalsaCebolaAlho from "@/assets/rebrand-products/SALSA, CEBOLA E ALHO - 1.png";
-import rebrandFlixBacon from "@/assets/rebrand-products/TEMPERAFLIX BACON - 1.png";
-import rebrandFlixTradicional from "@/assets/rebrand-products/Untitled design - 1.png";
-import rebrandFlixErvasFinas from "@/assets/rebrand-products/Untitled design - 2.png";
+import rebrandAnaMaria from "@/assets/rebrand-products/ana-maria.png";
+import rebrandChimiPicante from "@/assets/rebrand-products/chimichurri-picante.png";
+import rebrandChimiSemPimenta from "@/assets/rebrand-products/chimichurri-sem-pimenta.png";
+import rebrandCurcuma from "@/assets/rebrand-products/curcuma.png";
+import rebrandDuChefe from "@/assets/rebrand-products/du-chefe-com-paprica.png";
+import rebrandEdu from "@/assets/rebrand-products/tempero-do-edu.png";
+import rebrandErvasFinas from "@/assets/rebrand-products/ervas-finas.png";
+import rebrandLemonPepper from "@/assets/rebrand-products/lemon-pepper.png";
+import rebrandPapricaDefumada from "@/assets/rebrand-products/paprica-defumada.png";
+import rebrandPapricaDoce from "@/assets/rebrand-products/paprica-doce.png";
+import rebrandPapricaPicante from "@/assets/rebrand-products/paprica-picante.png";
+import rebrandSalsaCebolaAlho from "@/assets/rebrand-products/salsa-cebola-e-alho.png";
+import rebrandFlixBacon from "@/assets/rebrand-products/temperaflix-bacon.png";
+import rebrandFlixTradicional from "@/assets/rebrand-products/temperaflix-tradicional.png";
+import rebrandFlixErvasFinas from "@/assets/rebrand-products/temperaflix-ervas-finas.png";
 import { canonicalProductHandle } from "@/lib/rebrandCatalog";
 
 /** Correspondência exata handle canônico → PNG oficial já integrado. */
