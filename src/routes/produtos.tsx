@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { CatalogGrid } from "@/components/site/CatalogGrid";
 import { HouseOffers } from "@/components/site/HouseOffers";
-import { REBRAND_EXCLUDED_HANDLES } from "@/lib/rebrandCatalog";
 
 const PRODUTOS_URL = "https://temperanzza.com.br/produtos";
 
@@ -49,7 +48,7 @@ function ProdutosPage() {
 
       <section className="section-space">
         <div className="page-shell min-w-0 overflow-hidden">
-          <CatalogGrid excludeHandles={[...REBRAND_EXCLUDED_HANDLES]} />
+          <CatalogGrid />
         </div>
       </section>
 
