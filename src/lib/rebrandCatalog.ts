@@ -41,7 +41,6 @@ export const HOME_FEATURED_HANDLES = [
   "salsa-cebola-e-alho",
   "paprica-defumada",
   "chimichurri-sem-pimenta",
-  "du-chefe-com-paprica",
   "tempero-do-edu",
   "tempero-mineiro",
   "curcuma",
