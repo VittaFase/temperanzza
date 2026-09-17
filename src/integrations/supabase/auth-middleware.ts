@@ -4,8 +4,6 @@ import { getRequest } from '@tanstack/react-start/server'
 import { createClient } from '@supabase/supabase-js'
 import type { Database } from './types'
 
-
-
 function isNewSupabaseApiKey(value: string): boolean {
   return value.startsWith('sb_publishable_') || value.startsWith('sb_secret_');
 }
@@ -30,9 +28,89 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
   };
 }
 
+/**
+ * WHITELIST DE ROTAS PÚBLICAS
+ * Estas rotas NÃO exigem autenticação Supabase
+ */
+const PUBLIC_ROUTES = [
+  '/',                           // Home
+  '/api/products',               // Catálogo público (GET)
+  '/api/products/',              // Detalhe de produto
+  '/api/cart',                   // Carrinho (GET)
+  '/checkout',                   // Página checkout
+  '/api/checkout',               // Processamento checkout
+  '/confirmar',                  // Confirmação pedido
+  '/api/order-confirmation',     // API confirmação
+  '/receitas',                   // Receitas públicas
+  '/api/recipes',                // API receitas
+  '/sobre',                      // Sobre
+  '/contato',                    // Contato
+  '/api/contact',                // Envio de contato
+];
+
+/**
+ * ROTAS QUE EXIGEM AUTENTICAÇÃO
+ * Proteção ativa para admin e APIs privadas
+ */
+const PROTECTED_ROUTES = [
+  '/admin',                      // Dashboard admin
+  '/api/admin',                  // APIs administrativas
+  '/api/bling',                  // Integração Bling (requer token Bling via server function)
+  '/api/auth',                   // APIs de auth (excepto login/signup)
+  '/perfil',                     // Perfil do usuário
+  '/api/user',                   // APIs de usuário
+];
+
+/**
+ * Verifica se a rota atual é pública
+ */
+function isPublicRoute(pathname: string): boolean {
+  // Rotas exatas
+  if (PUBLIC_ROUTES.includes(pathname)) {
+    return true;
+  }
+
+  // Rotas com padrão dinâmico (ex: /api/products/123)
+  if (pathname.startsWith('/api/products/') || pathname.startsWith('/receitas/')) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Verifica se a rota exige autenticação
+ */
+function isProtectedRoute(pathname: string): boolean {
+  return PROTECTED_ROUTES.some(route => pathname.startsWith(route));
+}
+
+/**
+ * Extrai e valida o token do header Authorization
+ */
+function extractAndValidateToken(authHeader: string | null): { token: string; error: string | null } {
+  if (!authHeader) {
+    return { token: '', error: 'No authorization header provided' };
+  }
+
+  if (!authHeader.startsWith('Bearer ')) {
+    return { token: '', error: 'Only Bearer tokens are supported' };
+  }
+
+  const token = authHeader.replace('Bearer ', '');
+  if (!token) {
+    return { token: '', error: 'No token provided' };
+  }
+
+  if (token.split('.').length !== 3) {
+    return { token: '', error: 'Invalid token format' };
+  }
+
+  return { token, error: null };
+}
+
 export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server(
   async ({ next }) => {
-    
     const SUPABASE_URL = process.env.SUPABASE_URL;
     const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY;
 
@@ -45,64 +123,130 @@ export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server
       console.error(`[Supabase] ${message}`);
       throw new Error(message);
     }
-    
+
     const request = getRequest();
 
     if (!request?.headers) {
       throw new Error('Unauthorized: No request headers available');
     }
 
-    const authHeader = request.headers.get('authorization');
+    // Extrair pathname da requisição
+    const url = new URL(request.url);
+    const pathname = url.pathname;
 
-    if (!authHeader) {
-      throw new Error('Unauthorized: No authorization header provided');
-    }
+    console.log(`[Auth Check] ${request.method} ${pathname}`);
 
-    if (!authHeader.startsWith('Bearer ')) {
-      throw new Error('Unauthorized: Only Bearer tokens are supported');
-    }
-
-    const token = authHeader.replace('Bearer ', '');
-    if (!token) {
-      throw new Error('Unauthorized: No token provided');
-    }
-
-    if (token.split('.').length !== 3) {
-      throw new Error('Unauthorized: Invalid token');
-    }
-
-    const supabase = createClient<Database>(
-      SUPABASE_URL!,
-      SUPABASE_PUBLISHABLE_KEY!,
-      {
-        global: {
-          fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY!),
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+    // ✅ SE FOR ROTA PÚBLICA → passar sem validar token
+    if (isPublicRoute(pathname)) {
+      console.log(`[Auth] ✅ Rota pública — acesso permitido`);
+      return next({
+        context: {
+          supabase: null,
+          userId: null,
+          claims: null,
+          isPublic: true,
         },
-        auth: {
-          storage: undefined,
-          persistSession: false,
-          autoRefreshToken: false,
-        },
+      });
+    }
+
+    // 🔴 SE FOR ROTA PROTEGIDA → exigir token válido
+    if (isProtectedRoute(pathname)) {
+      console.log(`[Auth] 🔴 Rota protegida — validando token`);
+      
+      const authHeader = request.headers.get('authorization');
+      const { token, error: tokenError } = extractAndValidateToken(authHeader);
+
+      if (tokenError) {
+        throw new Error(`Unauthorized: ${tokenError}`);
       }
-    );
 
-    const { data, error } = await supabase.auth.getClaims(token);
-    if (error || !data?.claims) {
-      throw new Error('Unauthorized: Invalid token');
+      const supabase = createClient<Database>(
+        SUPABASE_URL!,
+        SUPABASE_PUBLISHABLE_KEY!,
+        {
+          global: {
+            fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY!),
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+          auth: {
+            storage: undefined,
+            persistSession: false,
+            autoRefreshToken: false,
+          },
+        }
+      );
+
+      const { data, error } = await supabase.auth.getClaims(token);
+      if (error || !data?.claims) {
+        throw new Error('Unauthorized: Invalid or expired token');
+      }
+
+      if (!data.claims.sub) {
+        throw new Error('Unauthorized: No user ID found in token');
+      }
+
+      return next({
+        context: {
+          supabase,
+          userId: data.claims.sub,
+          claims: data.claims,
+          isPublic: false,
+        },
+      });
     }
 
-    if (!data.claims.sub) {
-      throw new Error('Unauthorized: No user ID found in token');
+    // ⚪ ROTAS NÃO CLASSIFICADAS → permitir (logging)
+    console.log(`[Auth] ⚪ Rota não classificada (público por padrão)`);
+    
+    const authHeader = request.headers.get('authorization');
+    
+    // Se houver token e for válido, validar; senão, permitir
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const { token, error: tokenError } = extractAndValidateToken(authHeader);
+      
+      if (!tokenError) {
+        const supabase = createClient<Database>(
+          SUPABASE_URL!,
+          SUPABASE_PUBLISHABLE_KEY!,
+          {
+            global: {
+              fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY!),
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            },
+            auth: {
+              storage: undefined,
+              persistSession: false,
+              autoRefreshToken: false,
+            },
+          }
+        );
+
+        const { data, error } = await supabase.auth.getClaims(token);
+        if (!error && data?.claims?.sub) {
+          // Token válido → passar com contexto autenticado
+          return next({
+            context: {
+              supabase,
+              userId: data.claims.sub,
+              claims: data.claims,
+              isPublic: false,
+            },
+          });
+        }
+      }
     }
 
+    // Nenhum token válido → passar como público
     return next({
       context: {
-        supabase,
-        userId: data.claims.sub,
-        claims: data.claims,
+        supabase: null,
+        userId: null,
+        claims: null,
+        isPublic: true,
       },
     });
   },
