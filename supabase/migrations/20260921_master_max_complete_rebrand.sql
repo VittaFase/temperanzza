@@ -1,0 +1,3 @@
+-- Master-Max Complete Rebrand Migration
+-- Created: 2026-09-21
+-- Description: Migration reference for Supabase
