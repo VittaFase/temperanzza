@@ -111,13 +111,13 @@ function extractAndValidateToken(authHeader: string | null): { token: string; er
 
 export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server(
   async ({ next }) => {
-    const SUPABASE_URL = process.env.SUPABASE_URL;
-    const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY;
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabasePublishableKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 
-    if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    if (!supabaseUrl || !supabasePublishableKey) {
       const missing = [
-        ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
-        ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
+        ...(!supabaseUrl ? ['SUPABASE_URL'] : []),
+        ...(!supabasePublishableKey ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
       ];
       const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
       console.error(`[Supabase] ${message}`);
@@ -125,128 +125,39 @@ export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server
     }
 
     const request = getRequest();
-
     if (!request?.headers) {
       throw new Error('Unauthorized: No request headers available');
     }
 
-    // Extrair pathname da requisição
-    const url = new URL(request.url);
-    const pathname = url.pathname;
-
-    console.log(`[Auth Check] ${request.method} ${pathname}`);
-
-    // ✅ SE FOR ROTA PÚBLICA → passar sem validar token
-    if (isPublicRoute(pathname)) {
-      console.log(`[Auth] ✅ Rota pública — acesso permitido`);
-      return next({
-        context: {
-          supabase: null,
-          userId: null,
-          claims: null,
-          isPublic: true,
-        },
-      });
+    const { token, error: tokenError } = extractAndValidateToken(
+      request.headers.get('authorization'),
+    );
+    if (tokenError) {
+      throw new Error(`Unauthorized: ${tokenError}`);
     }
 
-    // 🔴 SE FOR ROTA PROTEGIDA → exigir token válido
-    if (isProtectedRoute(pathname)) {
-      console.log(`[Auth] 🔴 Rota protegida — validando token`);
-      
-      const authHeader = request.headers.get('authorization');
-      const { token, error: tokenError } = extractAndValidateToken(authHeader);
+    const supabase = createClient<Database>(supabaseUrl, supabasePublishableKey, {
+      global: {
+        fetch: createSupabaseFetch(supabasePublishableKey),
+        headers: { Authorization: `Bearer ${token}` },
+      },
+      auth: {
+        storage: undefined,
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    });
 
-      if (tokenError) {
-        throw new Error(`Unauthorized: ${tokenError}`);
-      }
-
-      const supabase = createClient<Database>(
-        SUPABASE_URL!,
-        SUPABASE_PUBLISHABLE_KEY!,
-        {
-          global: {
-            fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY!),
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-          auth: {
-            storage: undefined,
-            persistSession: false,
-            autoRefreshToken: false,
-          },
-        }
-      );
-
-      const { data, error } = await supabase.auth.getClaims(token);
-      if (error || !data?.claims) {
-        throw new Error('Unauthorized: Invalid or expired token');
-      }
-
-      if (!data.claims.sub) {
-        throw new Error('Unauthorized: No user ID found in token');
-      }
-
-      return next({
-        context: {
-          supabase,
-          userId: data.claims.sub,
-          claims: data.claims,
-          isPublic: false,
-        },
-      });
+    const { data, error } = await supabase.auth.getClaims(token);
+    if (error || !data?.claims?.sub) {
+      throw new Error('Unauthorized: Invalid or expired token');
     }
 
-    // ⚪ ROTAS NÃO CLASSIFICADAS → permitir (logging)
-    console.log(`[Auth] ⚪ Rota não classificada (público por padrão)`);
-    
-    const authHeader = request.headers.get('authorization');
-    
-    // Se houver token e for válido, validar; senão, permitir
-    if (authHeader && authHeader.startsWith('Bearer ')) {
-      const { token, error: tokenError } = extractAndValidateToken(authHeader);
-      
-      if (!tokenError) {
-        const supabase = createClient<Database>(
-          SUPABASE_URL!,
-          SUPABASE_PUBLISHABLE_KEY!,
-          {
-            global: {
-              fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY!),
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            },
-            auth: {
-              storage: undefined,
-              persistSession: false,
-              autoRefreshToken: false,
-            },
-          }
-        );
-
-        const { data, error } = await supabase.auth.getClaims(token);
-        if (!error && data?.claims?.sub) {
-          // Token válido → passar com contexto autenticado
-          return next({
-            context: {
-              supabase,
-              userId: data.claims.sub,
-              claims: data.claims,
-              isPublic: false,
-            },
-          });
-        }
-      }
-    }
-
-    // Nenhum token válido → passar como público
     return next({
       context: {
-        supabase: null,
-        userId: null,
-        claims: null,
-        isPublic: true,
+        supabase,
+        userId: data.claims.sub,
+        claims: data.claims,
       },
     });
   },
