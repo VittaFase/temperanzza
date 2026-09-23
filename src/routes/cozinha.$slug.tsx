@@ -117,7 +117,12 @@ function RecipeDrawer() {
       .filter((item) => item.img);
   }, [recipe]);
   const related = useMemo(() => {
-    if (recipe.relatedSlugs?.length) return recipe.relatedSlugs.map(getRecipeBySlug).filter((item): item is Recipe => Boolean(item) && isRebrandEligibleHandle(item.featuredHandle));
+    if (recipe.relatedSlugs?.length) {
+      return recipe.relatedSlugs
+        .map(getRecipeBySlug)
+        .filter((item): item is Recipe => item !== undefined)
+        .filter((item) => isRebrandEligibleHandle(item.featuredHandle));
+    }
     return RECIPES.filter((item) => item.profile === recipe.profile && item.slug !== recipe.slug && isRebrandEligibleHandle(item.featuredHandle)).slice(0, 4);
   }, [recipe]);
 
@@ -219,7 +224,7 @@ function RecipeDrawer() {
           )}
 
           {harmonization.length > 0 && (
-            <section className="page-shell pb-16 sm:pb-24"><div className="mb-7"><span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Explore também</span><h2 className="mt-2 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Outros sabores que combinam</h2></div><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">{harmonization.map((item) => <article key={item.handle} className="rounded-[1.5rem] border border-brand-ink/8 bg-white p-4"><Link to="/product/$handle" params={{ handle: item.handle }} className="block"><div className="grid h-40 place-items-center rounded-[1.1rem] bg-brand-cream/55 p-3"><img src={item.img!} alt={item.name} loading="lazy" decoding="async" className="h-full w-full object-contain" /></div><h3 className="mt-3 font-display text-lg leading-tight text-brand-ink">{item.name}</h3></Link><HarmonizeAddButton handle={item.handle} label={item.name} /></article>)}</div></section>
+            <section className="page-shell pb-16 sm:pb-24"><div className="mb-7"><span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Explore também</span><h2 className="mt-2 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Outros sabores que combinam</h2></div><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">{harmonization.map((item) => <article key={item.handle} className="rounded-[1.5rem] border border-brand-ink/8 bg-white p-4"><Link to="/product/$handle" params={{ handle: item.handle }} className="block"><div className="grid h-40 place-items-center rounded-[1.1rem] bg-brand-cream/55 p-3"><img src={item.img} alt={item.name} loading="lazy" decoding="async" className="h-full w-full object-contain" /></div><h3 className="mt-3 font-display text-lg leading-tight text-brand-ink">{item.name}</h3></Link><HarmonizeAddButton handle={item.handle} name={item.name} /></article>)}</div></section>
           )}
 
           {related.length > 0 && (
