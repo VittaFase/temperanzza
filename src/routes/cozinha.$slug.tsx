@@ -241,7 +241,7 @@ function FichaItem({ icon, label, value }: { icon: React.ReactNode; label: strin
 }
 
 function RelatedCard({ recipe }: { recipe: Recipe }) {
-  const img = recipe.dish?.src ?? getProductImage(recipe.featuredHandle);
+  const img = recipe.dish?.src ?? getProductImage(recipe.featuredHandle) ?? undefined;
   return <Link to="/cozinha/$slug" params={{ slug: recipe.slug }} search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="group block"><div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-white">{img ? <img src={img} alt={recipe.dish?.alt ?? recipe.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" /> : null}</div><h3 className="mt-3 font-display text-xl leading-tight text-brand-ink">{recipe.title}</h3><p className="mt-1 text-xs text-muted-foreground">{MOMENTS[recipe.moment]}</p></Link>;
 }
 
