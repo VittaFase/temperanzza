@@ -48,7 +48,7 @@ const CATEGORIAS: CategoriaDef[] = [
   { key: "vegetariana", name: "Vegetariana", romano: "V", descricao: "Sabor e ética no mesmo prato. O protagonismo dos vegetais elevado pela autoria mineira.", filter: (r) => (r.category ?? "dieta") === "dieta" && r.compatibleDiets.includes("vegetariana") },
   { key: "tradicional", name: "Cozinha Tradicional", romano: "VI", descricao: "A mesa de todos os dias, elevada por temperos com autoria mineira.", filter: (r) => r.category === "tradicional" },
 ];
-const MOMENT_ORDER: Moment[] = ["cafe", "almoco", "jantar", "lanche", "sobremesa"];
+const MOMENT_ORDER: Moment[] = ["cafe", "almoco", "jantar", "lanche"];
 
 function BibliotecaIndice() {
   const [aberta, setAberta] = useState<CategoriaKey | null>("tradicional"); const { refeicao, proteina, lifestyle, autor } = Route.useSearch(); const navigate = useNavigate({ from: "/cozinha" });
