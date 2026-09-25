@@ -1,7 +1,4 @@
 import { type DietKey } from "./diets";
-import paoTradicionalAsset from "@/assets/receitas/45-pao-carnivoro-tradicional-clean.png.asset.json";
-import paoHamburguerAsset from "@/assets/receitas/46-pao-carnivoro-hamburguer-v5.webp.asset.json";
-import paoTorradaAsset from "@/assets/receitas/47-pao-carnivoro-torrada-v5.webp.asset.json";
 
 /**
  * Blog Temperanzza — base editorial estática.
@@ -85,8 +82,6 @@ export const BLOG_POSTS: BlogPost[] = [
           "Para muitos, o pão é a maior barreira para a adesão a longo prazo em dietas de baixo carboidrato. A falta da textura 'mastigável' e da praticidade do sanduíche gera um vazio que receitas à base de farinhas de oleaginosas (como amêndoas) nem sempre preenchem.",
           "O Pão Carnívoro Temperanzza surge como uma solução de performance: base proteica, sem glúten e sem antinutrientes de sementes.",
         ],
-        image: paoTradicionalAsset.url,
-        imageCaption: "Pão Carnívoro Tradicional: fofinho, proteico e perfeito para fatiar.",
       },
       {
         heading: "Versão Tradicional — O café da manhã mineiro",
@@ -99,16 +94,12 @@ export const BLOG_POSTS: BlogPost[] = [
         paragraphs: [
           "Moldado em formato circular e finalizado com Lemon Pepper ou Páprica Defumada, esta variação sustenta o peso de um blend de carne sem desmanchar, entregando a experiência completa de uma hamburgueria gourmet.",
         ],
-        image: paoHamburguerAsset.url,
-        imageCaption: "Versão Hambúrguer: estrutura firme e sabor realçado com Lemon Pepper.",
       },
       {
         heading: "Torradas Crocantes: O Toque do Chef",
         paragraphs: [
           "Fatiado e levado à frigideira com manteiga e Tempero Mineiro ou Chimi Churri, o pão carnívoro se transforma em torradas de elite, perfeitas para acompanhar caldos ou servir de base para antepastos.",
         ],
-        image: paoTorradaAsset.url,
-        imageCaption: "Torradas Carnívoras: crocância absoluta com Chimi Churri e Tempero Mineiro.",
       },
     ],
     faq: [
@@ -126,9 +117,8 @@ export const BLOG_POSTS: BlogPost[] = [
     productHandle: "ervas-finas",
     productName: "Ervas Finas",
     relatedRecipes: [
-      "pao-carnivoro-tradicional",
-      "pao-carnivoro-hamburguer",
-      "pao-carnivoro-torrada",
+      "pao-frances-temperado-com-tempero-mineiro",
+      "pao-de-queijo-com-salsa-cebola-e-alho",
     ],
     relatedPosts: ["por-que-tempero-artesanal-e-diferente", "o-que-e-temperaflix"],
   },
@@ -182,7 +172,7 @@ export const BLOG_POSTS: BlogPost[] = [
         heading: "Como a Temperanzza trabalha",
         paragraphs: [
           "A casa opera em Minas Gerais com lotes pequenos, especiarias selecionadas por fornecedor e embalagem próxima da data de envase. Sem açúcar, sem maltodextrina, sem aroma sintético.",
-          "É a razão pela qual o catálogo tem 19 potes e não 60: cada blend precisa justificar sua existência por um uso que os outros não cobrem.",
+           "É a razão pela qual o catálogo MASTER-MAX tem 15 potes: cada condimento precisa justificar sua existência por um uso que os outros não cobrem.",
         ],
       },
     ],
@@ -206,8 +196,8 @@ export const BLOG_POSTS: BlogPost[] = [
     productHandle: "tempero-mineiro",
     productName: "Tempero Mineiro",
     relatedRecipes: [
-      "carne-moida-tempero-mineiro",
-      "pao-de-queijo-tempero-mineiro",
+      "costelinha-de-porco-com-tempero-mineiro",
+      "pao-de-queijo-com-salsa-cebola-e-alho",
     ],
     relatedPosts: ["como-conservar-temperos-secos", "o-que-e-temperaflix"],
   },
@@ -234,13 +224,13 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "Ajuste por tipo de tempero",
         paragraphs: [
-          "Nem todo pote tem a mesma intensidade. Ervas secas ocupam muito volume e pesam pouco, então aceitam dose maior. Pós densos como cúrcuma e pimenta-do-reino concentram muito em pouco espaço e pedem dose menor.",
+           "Nem todo pote tem a mesma intensidade. Ervas secas ocupam muito volume e pesam pouco, enquanto especiarias concentradas como a cúrcuma pedem dose menor.",
           "Blends de finalização, aplicados fora do fogo, entregam mais aroma perceptível por grama — vale começar com metade da medida padrão.",
         ],
         bullets: [
           "Ervas secas: dose padrão ou até o dobro",
-          "Pós densos (cúrcuma, pimenta, canela): metade da dose padrão",
-          "Finalizadores (lemon pepper, shakers): metade, ajustando no prato",
+           "Especiarias concentradas: metade da dose padrão",
+           "Finalizadores (Lemon Pepper e snakers): metade, ajustando no prato",
         ],
       },
       {
@@ -281,9 +271,9 @@ export const BLOG_POSTS: BlogPost[] = [
           "A quantidade se mantém, mas o sabor fica mais intenso porque houve tempo de penetração. Se for temperar com antecedência, fique no limite inferior da faixa.",
       },
     ],
-    productHandle: "du-chefe-com-paprica",
-    productName: "Du Chefe com Páprica",
-    relatedRecipes: ["costela-porco-du-chefe", "carne-moida-tempero-mineiro"],
+    productHandle: "paprica-defumada",
+    productName: "Páprica Defumada",
+    relatedRecipes: ["frango-assado-com-paprica-defumada", "costelinha-de-porco-com-tempero-mineiro"],
     relatedPosts: [
       "quando-colocar-o-tempero-no-prato",
       "qual-a-diferenca-entre-paprica-doce-defumada-e-picante",
