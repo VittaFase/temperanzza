@@ -5,6 +5,6 @@
 - [ ] Conferir cupom BLENDS10 na loja (bloqueado: acesso da Shopify expirado).
 
 # Sincronização MASTER-MAX
-- [ ] Validar a integridade do seed com 15 potes e 44 receitas.
-- [ ] Confirmar que catálogo, Cozinha e Sua caixa usam exclusivamente os dados MASTER-MAX.
-- [ ] Validar Preview e publicar somente após eliminar referências legadas.
+- [x] Validar a integridade do seed com 15 potes e 44 receitas.
+- [x] Confirmar que catálogo, Cozinha e Sua caixa usam exclusivamente os dados MASTER-MAX.
+- [x] Validar Preview e publicar somente após eliminar referências legadas.

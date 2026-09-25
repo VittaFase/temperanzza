@@ -21,7 +21,7 @@ function labelFor(handle: string): string {
     "chimichurri-picante": "Chimi Churri Picante",
     "chimichurri-sem-pimenta": "Chimi Churri sem Pimenta",
     curcuma: "Cúrcuma",
-    "tempero-do-edu": "Edu Guedes",
+    "edu-guedes": "Edu Guedes",
     "ervas-finas": "Ervas Finas",
     "lemon-pepper": "Lemon Pepper",
     "paprica-defumada": "Páprica Defumada",
