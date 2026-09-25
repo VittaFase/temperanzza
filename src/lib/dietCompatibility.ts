@@ -190,7 +190,13 @@ export const PRODUCT_DIETS: ProductDiet[] = [
   {
     key: "temperaflix-ervas-finas",
     profile: PROFILES.ervas,
-    verdicts: PRODUCT_DIETS.find((product) => product.key === "temperaflix-tradicional")?.verdicts ?? {},
+    verdicts: {
+      keto: vModerate("Linha para snacks: possui amidos. Use pouco."),
+      lowcarb: vOk("Cabe no low carb — feito para snacks."),
+      "carnivora-flex": vNo("Base para aderência inclui vegetais processados."),
+      selva: vNo("Contém aditivos de aderência."),
+      vegetariana: vVegOk,
+    },
   },
 ];
 
