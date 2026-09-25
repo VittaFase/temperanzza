@@ -1,7 +1,7 @@
 export interface Pote {
   id: string;
   nome: string;
-  categoria: 'Clássicos' | 'Premium' | 'Artesanais';
+  categoria: string;
   descricao: string;
   preco: number;
   peso: string;
@@ -15,8 +15,21 @@ export interface Pote {
 }
 
 export const POTES_MASTER_MAX: Pote[] = [
-  { id: 'ana-maria', nome: 'Ana Maria', categoria: 'Clássicos', descricao: 'Tempero clássico mineiro', preco: 24.90, peso: '100g', sku: 'TZ-ANA-100', rating: 4.8, reviews_count: 45, imagem_url: '/potes/ana-maria-master-max.jpg', origem: 'Belo Horizonte, MG', estoque: 150, ativo: true },
-  { id: 'temperaflix-tradicional', nome: 'Temperaflix Tradicional', categoria: 'Clássicos', descricao: 'Tempero versátil clássico', preco: 28.90, peso: '110g', sku: 'TZ-TEX-TRAD-110', rating: 4.8, reviews_count: 71, imagem_url: '/potes/temperaflix-tradicional-master-max.jpg', origem: 'Belo Horizonte, MG', estoque: 145, ativo: true }
+  { id: "ana-maria", nome: "Ana Maria", categoria: "Clássicos", descricao: "Tempero clássico mineiro com alho e cebola", preco: 24.9, peso: "100g", sku: "TZ-ANA-100", rating: 4.8, reviews_count: 45, imagem_url: "/potes/ana-maria-master-max.jpg", origem: "Belo Horizonte, MG", estoque: 150, ativo: true },
+  { id: "chimichurri-picante", nome: "Chimi Churri Picante", categoria: "Argentinos", descricao: "Clássico argentino com pimenta malagueta", preco: 28.9, peso: "100g", sku: "TZ-CHIP-100", rating: 4.7, reviews_count: 38, imagem_url: "/potes/chimi-churri-picante-master-max.jpg", origem: "Buenos Aires, AR", estoque: 120, ativo: true },
+  { id: "chimichurri-sem-pimenta", nome: "Chimi Churri Sem Pimenta", categoria: "Argentinos", descricao: "Versão suave do clássico argentino", preco: 28.9, peso: "100g", sku: "TZ-CHIS-100", rating: 4.6, reviews_count: 32, imagem_url: "/potes/chimichurri-sem-pimenta-master-max.jpg", origem: "Buenos Aires, AR", estoque: 110, ativo: true },
+  { id: "curcuma", nome: "Cúrcuma", categoria: "Especiarias", descricao: "Cúrcuma pura", preco: 32.9, peso: "80g", sku: "TZ-CUR-80", rating: 4.9, reviews_count: 52, imagem_url: "/potes/curcuma-master-max.jpg", origem: "Kerala, Índia", estoque: 95, ativo: true },
+  { id: "tempero-do-edu", nome: "Edu Guedes", categoria: "Clássicos", descricao: "Tempero versátil inspirado no chef Edu Guedes", preco: 26.9, peso: "100g", sku: "TZ-EDU-100", rating: 4.7, reviews_count: 41, imagem_url: "/potes/edu-guedes-master-max.jpg", origem: "São Paulo, SP", estoque: 130, ativo: true },
+  { id: "ervas-finas", nome: "Ervas Finas", categoria: "Herbáceos", descricao: "Mix de ervas desidratadas premium", preco: 29.9, peso: "90g", sku: "TZ-ERB-90", rating: 4.8, reviews_count: 47, imagem_url: "/potes/ervas-finas-master-max.jpg", origem: "Minas Gerais, MG", estoque: 125, ativo: true },
+  { id: "lemon-pepper", nome: "Lemon Pepper", categoria: "Internacionais", descricao: "Pimenta preta com limão siciliano", preco: 27.9, peso: "100g", sku: "TZ-LEM-100", rating: 4.9, reviews_count: 55, imagem_url: "/potes/lemon-pepper-master-max.jpg", origem: "Itália", estoque: 140, ativo: true },
+  { id: "paprica-defumada", nome: "Páprica Defumada", categoria: "Especiarias", descricao: "Páprica com sabor defumado", preco: 25.9, peso: "100g", sku: "TZ-PAD-100", rating: 4.8, reviews_count: 43, imagem_url: "/potes/paprica-defumada-master-max.jpg", origem: "Hungria", estoque: 115, ativo: true },
+  { id: "paprica-doce", nome: "Páprica Doce", categoria: "Especiarias", descricao: "Páprica suave e adocicada", preco: 24.9, peso: "100g", sku: "TZ-PAO-100", rating: 4.7, reviews_count: 39, imagem_url: "/potes/paprica-doce-master-max.jpg", origem: "Hungria", estoque: 125, ativo: true },
+  { id: "paprica-picante", nome: "Páprica Picante", categoria: "Especiarias", descricao: "Páprica vermelha com toque de ardência", preco: 26.9, peso: "100g", sku: "TZ-PAP-100", rating: 4.8, reviews_count: 46, imagem_url: "/potes/paprica-picante-master-max.jpg", origem: "Hungria", estoque: 120, ativo: true },
+  { id: "salsa-cebola-e-alho", nome: "Salsa, Cebola e Alho", categoria: "Clássicos", descricao: "Combinação clássica de salsa, cebola e alho", preco: 27.9, peso: "100g", sku: "TZ-SAL-100", rating: 4.9, reviews_count: 51, imagem_url: "/potes/salsa-cebola-alho-master-max.jpg", origem: "Minas Gerais, MG", estoque: 135, ativo: true },
+  { id: "temperaflix-bacon", nome: "Temperaflix Bacon", categoria: "Premium", descricao: "Edição especial com aroma de bacon crocante", preco: 31.9, peso: "100g", sku: "TZ-BAC-100", rating: 4.9, reviews_count: 48, imagem_url: "/potes/temperaflix-bacon-master-max.jpg", origem: "Belo Horizonte, MG", estoque: 100, ativo: true },
+  { id: "temperaflix-ervas-finas", nome: "Temperaflix Ervas Finas", categoria: "Premium", descricao: "Blend premium de ervas selecionadas", preco: 30.9, peso: "100g", sku: "TZ-TEF-100", rating: 4.8, reviews_count: 44, imagem_url: "/potes/temperaflix-ervas-finas-master-max.jpg", origem: "Belo Horizonte, MG", estoque: 105, ativo: true },
+  { id: "temperaflix-tradicional", nome: "Temperaflix Tradicional", categoria: "Premium", descricao: "Tempero tradicional mineiro com toque gourmet", preco: 29.9, peso: "100g", sku: "TZ-TET-100", rating: 4.9, reviews_count: 53, imagem_url: "/potes/temperaflix-tradicional-master-max.jpg", origem: "Belo Horizonte, MG", estoque: 145, ativo: true },
+  { id: "tempero-mineiro", nome: "Tempero Mineiro", categoria: "Clássicos", descricao: "Clássico mineiro autêntico", preco: 23.9, peso: "100g", sku: "TZ-TEM-100", rating: 4.8, reviews_count: 49, imagem_url: "/potes/tempero-mineiro-master-max.jpg", origem: "Minas Gerais, MG", estoque: 160, ativo: true },
 ];
 
 export const getTotalPotes = (): number => {
@@ -29,16 +42,14 @@ export const getTotalPotes = (): number => {
  * nomes técnicos que representam o mesmo SKU.
  */
 export const PRODUCT_HANDLE_ALIASES: Record<string, string> = {
-  "canela-premium-black-30g": "canela-moida",
   "chimi-churri-picante": "chimichurri-picante",
   "chimi-churri-sem-pimenta": "chimichurri-sem-pimenta",
-  "tempero-chefe": "du-chefe-com-paprica",
-  "pimenta-do-reino-premium-black-30g": "pimenta-do-reino",
   "edu-guedes": "tempero-do-edu",
+  "salsa-cebola-alho": "salsa-cebola-e-alho",
 };
 
 /** SKUs comerciais deliberadamente fora das superfícies do novo rebrand. */
-export const REBRAND_EXCLUDED_HANDLES = ["cebola-em-po"] as const;
+export const REBRAND_EXCLUDED_HANDLES = ["cebola-em-po", "canela-moida", "canela-premium-black-30g", "pimenta-do-reino", "pimenta-do-reino-premium-black-30g", "du-chefe-com-paprica", "tempero-chefe"] as const;
 
 const REBRAND_EXCLUDED_HANDLE_SET = new Set<string>(REBRAND_EXCLUDED_HANDLES);
 
@@ -56,7 +67,6 @@ export const REBRAND_CONFIRMED_SOURCE_HANDLES = [
   "lemon-pepper",
   "paprica-defumada",
   "paprica-doce",
-  "du-chefe-com-paprica",
   "chimichurri-sem-pimenta",
   "chimichurri-picante",
 ] as const;
@@ -67,7 +77,7 @@ export const HOME_FEATURED_HANDLES = [
   "salsa-cebola-e-alho",
   "paprica-defumada",
   "chimichurri-sem-pimenta",
-  "du-chefe-com-paprica",
+  "temperaflix-bacon",
   "tempero-do-edu",
   "tempero-mineiro",
   "curcuma",
@@ -87,7 +97,8 @@ export function isRebrandExcludedHandle(handle: string): boolean {
 }
 
 export function isRebrandEligibleHandle(handle: string): boolean {
-  return !isRebrandExcludedHandle(handle);
+  const canonicalHandle = canonicalProductHandle(handle);
+  return !REBRAND_EXCLUDED_HANDLE_SET.has(canonicalHandle) && REBRAND_CONFIRMED_SOURCE_SET.has(canonicalHandle);
 }
 
 export function hasConfirmedRebrandSource(handle: string): boolean {
