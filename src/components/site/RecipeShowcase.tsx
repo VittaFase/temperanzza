@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { RECIPES } from "@/lib/recipes";
+import { getProductImage } from "@/lib/productImages";
 
 /**
  * Home culinary showcase.
@@ -9,9 +10,9 @@ import { RECIPES } from "@/lib/recipes";
  */
 export function RecipeShowcase() {
   const preferred = [
-    "pao-carnivoro-tradicional",
-    "frango-assado-paprica-defumada",
-    "hamburguer-bacon-em-po",
+    "frango-assado-com-paprica-defumada",
+    "carne-com-chimi-churri-picante",
+    "peixe-ao-limao-com-lemon-pepper",
   ];
   const featuredRecipes = preferred
     .map((slug) => RECIPES.find((recipe) => recipe.slug === slug))
@@ -36,7 +37,7 @@ export function RecipeShowcase() {
 
         <div className="grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
           <Link to="/cozinha/$slug" params={{ slug: lead.slug }} search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="group relative min-h-[580px] overflow-hidden bg-brand-ink sm:min-h-[660px]">
-            {lead.dish && <img src={lead.dish.src} alt={lead.dish.alt} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" />}
+            <img src={lead.dish?.src ?? getProductImage(lead.featuredHandle) ?? ""} alt={lead.dish?.alt ?? lead.title} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain p-12 transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/5" />
             <div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-10">
               <span className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">Receita Temperanzza</span>
@@ -48,7 +49,7 @@ export function RecipeShowcase() {
           <div className="grid gap-5">
             {secondary.map((recipe) => (
               <Link key={recipe.slug} to="/cozinha/$slug" params={{ slug: recipe.slug }} search={{ refeicao: "", proteina: "", lifestyle: "", autor: "" }} className="group relative min-h-[285px] overflow-hidden bg-brand-ink">
-                {recipe.dish && <img src={recipe.dish.src} alt={recipe.dish.alt} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]" />}
+                <img src={recipe.dish?.src ?? getProductImage(recipe.featuredHandle) ?? ""} alt={recipe.dish?.alt ?? recipe.title} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain p-8 transition-transform duration-700 ease-out group-hover:scale-[1.035]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">Receita Temperanzza</span>

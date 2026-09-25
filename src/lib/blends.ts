@@ -10,7 +10,7 @@ export const CHEF_BOX = {
 
 /**
  * Handles candidatos ao builder Chefe Temperanzza.
- * Core: exceto Temperaflix, Canela e Pimenta-do-reino, que ficam só no catálogo.
+ * Todos os sabores MASTER-MAX disponíveis podem compor a caixa.
  * A governança central do rebrand é aplicada aqui para impedir que um SKU excluído
  * reapareça no builder, nas ofertas ou nos carrosséis derivados desta lista.
  */
@@ -26,8 +26,10 @@ const BUILDER_CANDIDATE_HANDLES: string[] = [
   "paprica-doce",
   "paprica-picante",
   "salsa-cebola-e-alho",
-  "tempero-chefe",
   "tempero-mineiro",
+  "temperaflix-bacon",
+  "temperaflix-ervas-finas",
+  "temperaflix-tradicional",
 ];
 
 export const BUILDER_HANDLES: string[] = BUILDER_CANDIDATE_HANDLES.filter(

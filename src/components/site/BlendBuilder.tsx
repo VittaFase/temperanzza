@@ -21,15 +21,17 @@ function labelFor(handle: string): string {
     "chimichurri-picante": "Chimi Churri Picante",
     "chimichurri-sem-pimenta": "Chimi Churri sem Pimenta",
     curcuma: "Cúrcuma",
-    "edu-guedes": "Tempero do Edu",
+    "edu-guedes": "Edu Guedes",
     "ervas-finas": "Ervas Finas",
     "lemon-pepper": "Lemon Pepper",
     "paprica-defumada": "Páprica Defumada",
     "paprica-doce": "Páprica Doce",
     "paprica-picante": "Páprica Picante",
     "salsa-cebola-e-alho": "Salsa, Cebola e Alho",
-    "tempero-chefe": "Du Chefe com Páprica",
     "tempero-mineiro": "Tempero Mineiro",
+    "temperaflix-bacon": "Temperaflix Bacon",
+    "temperaflix-ervas-finas": "Temperaflix Ervas Finas",
+    "temperaflix-tradicional": "Temperaflix Tradicional",
   };
   return map[handle] ?? handle;
 }

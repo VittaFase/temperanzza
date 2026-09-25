@@ -100,17 +100,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
     },
   },
   {
-    key: "du-chefe-com-paprica",
-    profile: PROFILES.casa,
-    verdicts: {
-      keto: vOk("Mix de ervas e especiarias sem aditivos restritivos."),
-      lowcarb: vOk("Uso livre em carnes, aves e legumes."),
-      "carnivora-flex": vOk("Sem amidos ou açúcares."),
-      selva: vOk("Curadoria do chef com ingredientes limpos."),
-      vegetariana: vVegOk,
-    },
-  },
-  {
     key: "chimi-churri-sem-pimenta",
     profile: PROFILES.ervas,
     verdicts: {
@@ -166,17 +155,6 @@ export const PRODUCT_DIETS: ProductDiet[] = [
     },
   },
   {
-    key: "cebola-em-po",
-    profile: PROFILES.puras,
-    verdicts: {
-      keto: vModerate("Cebola concentra carboidratos. Use pitadas."),
-      lowcarb: vOk("Uso normal cabe no low carb."),
-      "carnivora-flex": vOk("Vegetal desidratado — aceito no flexível."),
-      selva: vOk("Apenas cebola. O que a terra deu, o sol secou."),
-      vegetariana: vVegOk,
-    },
-  },
-  {
     key: "tempero-do-edu",
     profile: PROFILES.casa,
     verdicts: {
@@ -199,30 +177,19 @@ export const PRODUCT_DIETS: ProductDiet[] = [
     },
   },
   {
-    key: "pimenta-do-reino",
-    profile: PROFILES.puras,
-    verdicts: {
-      keto: vOk("Especiaria pura — uso livre."),
-      lowcarb: vOk("Coringa em qualquer prato low carb."),
-      "carnivora-flex": vOk("Permitida no protocolo flexível."),
-      selva: vOk("O tempero mais antigo do mundo."),
-      vegetariana: vVegOk,
-    },
-  },
-  {
-    key: "canela-moida",
-    profile: PROFILES.puras,
-    verdicts: {
-      keto: vOk("Especiaria pura, zero carboidratos por porção."),
-      lowcarb: vOk("Ideal para sobremesas e cafés low carb."),
-      "carnivora-flex": vModerate("Especiaria vegetal — cabe na flexível."),
-      selva: vModerate("Especiaria vegetal aromática."),
-      vegetariana: vVegOk,
-    },
-  },
-  {
-    key: "temperaflix",
+    key: "temperaflix-tradicional",
     profile: PROFILES.casa,
+    verdicts: {
+      keto: vModerate("Linha para snacks: possui amidos. Use pouco."),
+      lowcarb: vOk("Cabe no low carb — feito para snacks."),
+      "carnivora-flex": vNo("Base para aderência inclui vegetais processados."),
+      selva: vNo("Contém aditivos de aderência."),
+      vegetariana: vVegOk,
+    },
+  },
+  {
+    key: "temperaflix-ervas-finas",
+    profile: PROFILES.ervas,
     verdicts: {
       keto: vModerate("Linha para snacks: possui amidos. Use pouco."),
       lowcarb: vOk("Cabe no low carb — feito para snacks."),
@@ -242,8 +209,6 @@ const HANDLE_ALIASES: Record<string, string> = {
   "paprica-doce": "paprica-doce",
   "paprica-picante": "paprica-picante",
   "paprica-defumada": "paprica-defumada",
-  "du-chefe-com-paprica": "du-chefe-com-paprica",
-  "tempero-chefe": "du-chefe-com-paprica",
   "chimi-churri-sem-pimenta": "chimi-churri-sem-pimenta",
   "chimichurri-sem-pimenta": "chimi-churri-sem-pimenta",
   "chimi-churri-picante": "chimi-churri-picante",
@@ -251,25 +216,20 @@ const HANDLE_ALIASES: Record<string, string> = {
   "salsa-cebola-e-alho": "salsa-cebola-e-alho",
   "ervas-finas": "ervas-finas",
   "tempero-mineiro": "tempero-mineiro",
-  "cebola-em-po": "cebola-em-po",
   "tempero-do-edu": "tempero-do-edu",
   "edu-guedes": "tempero-do-edu",
   curcuma: "curcuma",
-  "pimenta-do-reino": "pimenta-do-reino",
-  "pimenta-do-reino-premium-black-30g": "pimenta-do-reino",
-  "canela-moida": "canela-moida",
-  "canela-premium-black-30g": "canela-moida",
-  "temperaflix-ervas-finas": "temperaflix",
-  "temperaflix-tradicional": "temperaflix",
+  "temperaflix-ervas-finas": "temperaflix-ervas-finas",
+  "temperaflix-tradicional": "temperaflix-tradicional",
 };
 
 const BY_KEY = new Map(PRODUCT_DIETS.map((p) => [p.key, p]));
 
 export function getProductDiet(handle: string): ProductDiet | null {
   const direct = HANDLE_ALIASES[handle];
-  if (direct && BY_KEY.has(direct)) return BY_KEY.get(direct)!;
+  if (direct) return BY_KEY.get(direct) ?? null;
   for (const [alias, key] of Object.entries(HANDLE_ALIASES)) {
-    if (handle.includes(alias) || alias.includes(handle)) return BY_KEY.get(key)!;
+    if (handle.includes(alias) || alias.includes(handle)) return BY_KEY.get(key) ?? null;
   }
   return null;
 }

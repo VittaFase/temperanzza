@@ -53,22 +53,6 @@ export const HOUSE_OFFERS: HouseOffer[] = [
     note: "Frete único para os três · embalado lote a lote",
   },
   {
-    slug: "duo-premium-black",
-    tag: "Linha Premium Black",
-    title: "Duo Premium Black",
-    promise: "Nossa linha gourmet de Pimenta do Reino e Canela em pó moida, lado a lado.",
-    contains: "Potes da linha Premium Black",
-    kind: "kit",
-    handles: [
-      "pimenta-do-reino-premium-black-30g",
-      "canela-premium-black-30g",
-    ],
-    cta: "Levar o duo",
-    sceneLabel: "2 potes Premium Black",
-    accentClass: "text-brand-silver",
-    note: "Potes da linha Premium Black",
-  },
-  {
     slug: "caixa-do-chefe",
     tag: `Cupom ${BLEND_DISCOUNT_CODE}`,
     title: "Blend do Chefe · Sua caixa",

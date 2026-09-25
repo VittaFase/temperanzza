@@ -13,6 +13,7 @@ import { Route as TemperaflixRouteImport } from './routes/temperaflix'
 import { Route as SuaCaixaRouteImport } from './routes/sua-caixa'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ReceitasRouteImport } from './routes/receitas'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as LojasRouteImport } from './routes/lojas'
 import { Route as LegalRouteImport } from './routes/legal'
@@ -61,6 +62,11 @@ const SobreRoute = SobreRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReceitasRoute = ReceitasRouteImport.update({
+  id: '/receitas',
+  path: '/receitas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProdutosRoute = ProdutosRouteImport.update({
@@ -220,6 +226,7 @@ export interface FileRoutesByFullPath {
   '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
+  '/receitas': typeof ReceitasRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/sua-caixa': typeof SuaCaixaRouteWithChildren
@@ -253,6 +260,7 @@ export interface FileRoutesByTo {
   '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
+  '/receitas': typeof ReceitasRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/temperaflix': typeof TemperaflixRoute
@@ -288,6 +296,7 @@ export interface FileRoutesById {
   '/legal': typeof LegalRouteWithChildren
   '/lojas': typeof LojasRoute
   '/produtos': typeof ProdutosRoute
+  '/receitas': typeof ReceitasRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/sua-caixa': typeof SuaCaixaRouteWithChildren
@@ -325,6 +334,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/lojas'
     | '/produtos'
+    | '/receitas'
     | '/sitemap.xml'
     | '/sobre'
     | '/sua-caixa'
@@ -358,6 +368,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/lojas'
     | '/produtos'
+    | '/receitas'
     | '/sitemap.xml'
     | '/sobre'
     | '/temperaflix'
@@ -392,6 +403,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/lojas'
     | '/produtos'
+    | '/receitas'
     | '/sitemap.xml'
     | '/sobre'
     | '/sua-caixa'
@@ -428,6 +440,7 @@ export interface RootRouteChildren {
   LegalRoute: typeof LegalRouteWithChildren
   LojasRoute: typeof LojasRoute
   ProdutosRoute: typeof ProdutosRoute
+  ReceitasRoute: typeof ReceitasRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   SuaCaixaRoute: typeof SuaCaixaRouteWithChildren
@@ -474,6 +487,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/receitas': {
+      id: '/receitas'
+      path: '/receitas'
+      fullPath: '/receitas'
+      preLoaderRoute: typeof ReceitasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/produtos': {
@@ -745,6 +765,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegalRoute: LegalRouteWithChildren,
   LojasRoute: LojasRoute,
   ProdutosRoute: ProdutosRoute,
+  ReceitasRoute: ReceitasRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   SuaCaixaRoute: SuaCaixaRouteWithChildren,

@@ -18,6 +18,7 @@ export const Route = createFileRoute("/produtos")({
       { property: "og:description", content: "Conheça os condimentos, blends e especiarias da Casa Temperanzza." },
       { property: "og:url", content: PRODUTOS_URL },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: PRODUTOS_URL }],
     scripts: [{

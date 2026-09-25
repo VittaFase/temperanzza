@@ -1,68 +1,997 @@
 {
   "potes": [
-    {"id": "ana-maria", "nome": "Ana Maria", "categoria": "Clássicos", "descricao": "Tempero clássico mineiro com alho e cebola", "preco": 24.90, "peso": "100g", "sku": "TZ-ANA-100", "rating": 4.8, "reviews_count": 45, "imagem_url": "/potes/ana-maria-master-max.jpg", "origem": "Belo Horizonte, MG", "estoque": 150, "ativo": true},
-    {"id": "chimi-churri-picante", "nome": "Chimi Churri Picante", "categoria": "Argentinos", "descricao": "Clássico argentino com pimenta malagueta", "preco": 28.90, "peso": "100g", "sku": "TZ-CHIP-100", "rating": 4.7, "reviews_count": 38, "imagem_url": "/potes/chimi-churri-picante-master-max.jpg", "origem": "Buenos Aires, AR", "estoque": 120, "ativo": true},
-    {"id": "chimi-churri-sem-pimenta", "nome": "Chimi Churri Sem Pimenta", "categoria": "Argentinos", "descricao": "Versão suave do clássico argentino", "preco": 28.90, "peso": "100g", "sku": "TZ-CHIS-100", "rating": 4.6, "reviews_count": 32, "imagem_url": "/potes/chimi-churri-sem-pimenta-master-max.jpg", "origem": "Buenos Aires, AR", "estoque": 110, "ativo": true},
-    {"id": "curcuma", "nome": "Cúrcuma Premium", "categoria": "Especiarias", "descricao": "Cúrcuma pura com propriedades anti-inflamatórias", "preco": 32.90, "peso": "80g", "sku": "TZ-CUR-80", "rating": 4.9, "reviews_count": 52, "imagem_url": "/potes/curcuma-master-max.jpg", "origem": "Kerala, Índia", "estoque": 95, "ativo": true},
-    {"id": "edu-guedes", "nome": "Edu Guedes", "categoria": "Clássicos", "descricao": "Tempero versátil inspirado no chef Edu Guedes", "preco": 26.90, "peso": "100g", "sku": "TZ-EDU-100", "rating": 4.7, "reviews_count": 41, "imagem_url": "/potes/edu-guedes-master-max.jpg", "origem": "São Paulo, SP", "estoque": 130, "ativo": true},
-    {"id": "ervas-finas", "nome": "Ervas Finas", "categoria": "Herbáceos", "descricao": "Mix de ervas desidratadas premium", "preco": 29.90, "peso": "90g", "sku": "TZ-ERB-90", "rating": 4.8, "reviews_count": 47, "imagem_url": "/potes/ervas-finas-master-max.jpg", "origem": "Minas Gerais, MG", "estoque": 125, "ativo": true},
-    {"id": "lemon-pepper", "nome": "Lemon Pepper", "categoria": "Internacionais", "descricao": "Pimenta preta com limão siciliano", "preco": 27.90, "peso": "100g", "sku": "TZ-LEM-100", "rating": 4.9, "reviews_count": 55, "imagem_url": "/potes/lemon-pepper-master-max.jpg", "origem": "Itália", "estoque": 140, "ativo": true},
-    {"id": "paprica-defumada", "nome": "Páprica Defumada", "categoria": "Especiarias", "descricao": "Páprica da Hungria com sabor defumado", "preco": 25.90, "peso": "100g", "sku": "TZ-PAD-100", "rating": 4.8, "reviews_count": 43, "imagem_url": "/potes/paprica-defumada-master-max.jpg", "origem": "Hungria", "estoque": 115, "ativo": true},
-    {"id": "paprica-doce", "nome": "Páprica Doce", "categoria": "Especiarias", "descricao": "Páprica suave e adocicada", "preco": 24.90, "peso": "100g", "sku": "TZ-PAO-100", "rating": 4.7, "reviews_count": 39, "imagem_url": "/potes/paprica-doce-master-max.jpg", "origem": "Hungria", "estoque": 125, "ativo": true},
-    {"id": "paprica-picante", "nome": "Páprica Picante", "categoria": "Especiarias", "descricao": "Páprica vermelha com toque de ardência", "preco": 26.90, "peso": "100g", "sku": "TZ-PAP-100", "rating": 4.8, "reviews_count": 46, "imagem_url": "/potes/paprica-picante-master-max.jpg", "origem": "Hungria", "estoque": 120, "ativo": true},
-    {"id": "salsa-cebola-alho", "nome": "Salsa Cebola e Alho", "categoria": "Clássicos", "descricao": "Combinação clássica de salsa fresca, cebola e alho", "preco": 27.90, "peso": "100g", "sku": "TZ-SAL-100", "rating": 4.9, "reviews_count": 51, "imagem_url": "/potes/salsa-cebola-alho-master-max.jpg", "origem": "Minas Gerais, MG", "estoque": 135, "ativo": true},
-    {"id": "temperaflix-bacon", "nome": "Temperaflix Bacon", "categoria": "Premium", "descricao": "Edição especial com aroma de bacon crocante", "preco": 31.90, "peso": "100g", "sku": "TZ-BAC-100", "rating": 4.9, "reviews_count": 48, "imagem_url": "/potes/temperaflix-bacon-master-max.jpg", "origem": "Belo Horizonte, MG", "estoque": 100, "ativo": true},
-    {"id": "temperaflix-ervas-finas", "nome": "Temperaflix Ervas Finas", "categoria": "Premium", "descricao": "Blend premium de ervas desidratadas selecionadas", "preco": 30.90, "peso": "100g", "sku": "TZ-TEF-100", "rating": 4.8, "reviews_count": 44, "imagem_url": "/potes/temperaflix-ervas-finas-master-max.jpg", "origem": "Belo Horizonte, MG", "estoque": 105, "ativo": true},
-    {"id": "temperaflix-tradicional", "nome": "Temperaflix Tradicional", "categoria": "Premium", "descricao": "Tempero tradicional mineiro com toque gourmet", "preco": 29.90, "peso": "100g", "sku": "TZ-TET-100", "rating": 4.9, "reviews_count": 53, "imagem_url": "/potes/temperaflix-tradicional-master-max.jpg", "origem": "Belo Horizonte, MG", "estoque": 145, "ativo": true},
-    {"id": "tempero-mineiro", "nome": "Tempero Mineiro", "categoria": "Clássicos", "descricao": "Clássico mineiro autêntico com toque de tradição", "preco": 23.90, "peso": "100g", "sku": "TZ-TEM-100", "rating": 4.8, "reviews_count": 49, "imagem_url": "/potes/tempero-mineiro-master-max.jpg", "origem": "Minas Gerais, MG", "estoque": 160, "ativo": true}
+    {
+      "id": "ana-maria",
+      "nome": "Ana Maria",
+      "categoria": "Clássicos",
+      "descricao": "Tempero clássico mineiro com alho e cebola",
+      "preco": 24.9,
+      "peso": "100g",
+      "sku": "TZ-ANA-100",
+      "rating": 4.8,
+      "reviews_count": 45,
+      "imagem_url": "/potes/ana-maria-master-max.jpg",
+      "origem": "Belo Horizonte, MG",
+      "estoque": 150,
+      "ativo": true
+    },
+    {
+      "id": "chimichurri-picante",
+      "nome": "Chimi Churri Picante",
+      "categoria": "Argentinos",
+      "descricao": "Clássico argentino com pimenta malagueta",
+      "preco": 28.9,
+      "peso": "100g",
+      "sku": "TZ-CHIP-100",
+      "rating": 4.7,
+      "reviews_count": 38,
+      "imagem_url": "/potes/chimi-churri-picante-master-max.jpg",
+      "origem": "Buenos Aires, AR",
+      "estoque": 120,
+      "ativo": true
+    },
+    {
+      "id": "chimichurri-sem-pimenta",
+      "nome": "Chimi Churri Sem Pimenta",
+      "categoria": "Argentinos",
+      "descricao": "Versão suave do clássico argentino",
+      "preco": 28.9,
+      "peso": "100g",
+      "sku": "TZ-CHIS-100",
+      "rating": 4.6,
+      "reviews_count": 32,
+      "imagem_url": "/potes/chimi-churri-sem-pimenta-master-max.jpg",
+      "origem": "Buenos Aires, AR",
+      "estoque": 110,
+      "ativo": true
+    },
+    {
+      "id": "curcuma",
+      "nome": "Cúrcuma",
+      "categoria": "Especiarias",
+      "descricao": "Cúrcuma pura com propriedades anti-inflamatórias",
+      "preco": 32.9,
+      "peso": "80g",
+      "sku": "TZ-CUR-80",
+      "rating": 4.9,
+      "reviews_count": 52,
+      "imagem_url": "/potes/curcuma-master-max.jpg",
+      "origem": "Kerala, Índia",
+      "estoque": 95,
+      "ativo": true
+    },
+    {
+      "id": "tempero-do-edu",
+      "nome": "Edu Guedes",
+      "categoria": "Clássicos",
+      "descricao": "Tempero versátil inspirado no chef Edu Guedes",
+      "preco": 26.9,
+      "peso": "100g",
+      "sku": "TZ-EDU-100",
+      "rating": 4.7,
+      "reviews_count": 41,
+      "imagem_url": "/potes/edu-guedes-master-max.jpg",
+      "origem": "São Paulo, SP",
+      "estoque": 130,
+      "ativo": true
+    },
+    {
+      "id": "ervas-finas",
+      "nome": "Ervas Finas",
+      "categoria": "Herbáceos",
+      "descricao": "Mix de ervas desidratadas premium",
+      "preco": 29.9,
+      "peso": "90g",
+      "sku": "TZ-ERB-90",
+      "rating": 4.8,
+      "reviews_count": 47,
+      "imagem_url": "/potes/ervas-finas-master-max.jpg",
+      "origem": "Minas Gerais, MG",
+      "estoque": 125,
+      "ativo": true
+    },
+    {
+      "id": "lemon-pepper",
+      "nome": "Lemon Pepper",
+      "categoria": "Internacionais",
+      "descricao": "Pimenta preta com limão siciliano",
+      "preco": 27.9,
+      "peso": "100g",
+      "sku": "TZ-LEM-100",
+      "rating": 4.9,
+      "reviews_count": 55,
+      "imagem_url": "/potes/lemon-pepper-master-max.jpg",
+      "origem": "Itália",
+      "estoque": 140,
+      "ativo": true
+    },
+    {
+      "id": "paprica-defumada",
+      "nome": "Páprica Defumada",
+      "categoria": "Especiarias",
+      "descricao": "Páprica da Hungria com sabor defumado",
+      "preco": 25.9,
+      "peso": "100g",
+      "sku": "TZ-PAD-100",
+      "rating": 4.8,
+      "reviews_count": 43,
+      "imagem_url": "/potes/paprica-defumada-master-max.jpg",
+      "origem": "Hungria",
+      "estoque": 115,
+      "ativo": true
+    },
+    {
+      "id": "paprica-doce",
+      "nome": "Páprica Doce",
+      "categoria": "Especiarias",
+      "descricao": "Páprica suave e adocicada",
+      "preco": 24.9,
+      "peso": "100g",
+      "sku": "TZ-PAO-100",
+      "rating": 4.7,
+      "reviews_count": 39,
+      "imagem_url": "/potes/paprica-doce-master-max.jpg",
+      "origem": "Hungria",
+      "estoque": 125,
+      "ativo": true
+    },
+    {
+      "id": "paprica-picante",
+      "nome": "Páprica Picante",
+      "categoria": "Especiarias",
+      "descricao": "Páprica vermelha com toque de ardência",
+      "preco": 26.9,
+      "peso": "100g",
+      "sku": "TZ-PAP-100",
+      "rating": 4.8,
+      "reviews_count": 46,
+      "imagem_url": "/potes/paprica-picante-master-max.jpg",
+      "origem": "Hungria",
+      "estoque": 120,
+      "ativo": true
+    },
+    {
+      "id": "salsa-cebola-e-alho",
+      "nome": "Salsa Cebola e Alho",
+      "categoria": "Clássicos",
+      "descricao": "Combinação clássica de salsa fresca, cebola e alho",
+      "preco": 27.9,
+      "peso": "100g",
+      "sku": "TZ-SAL-100",
+      "rating": 4.9,
+      "reviews_count": 51,
+      "imagem_url": "/potes/salsa-cebola-alho-master-max.jpg",
+      "origem": "Minas Gerais, MG",
+      "estoque": 135,
+      "ativo": true
+    },
+    {
+      "id": "temperaflix-bacon",
+      "nome": "Temperaflix Bacon",
+      "categoria": "Premium",
+      "descricao": "Edição especial com aroma de bacon crocante",
+      "preco": 31.9,
+      "peso": "100g",
+      "sku": "TZ-BAC-100",
+      "rating": 4.9,
+      "reviews_count": 48,
+      "imagem_url": "/potes/temperaflix-bacon-master-max.jpg",
+      "origem": "Belo Horizonte, MG",
+      "estoque": 100,
+      "ativo": true
+    },
+    {
+      "id": "temperaflix-ervas-finas",
+      "nome": "Temperaflix Ervas Finas",
+      "categoria": "Premium",
+      "descricao": "Blend premium de ervas desidratadas selecionadas",
+      "preco": 30.9,
+      "peso": "100g",
+      "sku": "TZ-TEF-100",
+      "rating": 4.8,
+      "reviews_count": 44,
+      "imagem_url": "/potes/temperaflix-ervas-finas-master-max.jpg",
+      "origem": "Belo Horizonte, MG",
+      "estoque": 105,
+      "ativo": true
+    },
+    {
+      "id": "temperaflix-tradicional",
+      "nome": "Temperaflix Tradicional",
+      "categoria": "Premium",
+      "descricao": "Tempero tradicional mineiro com toque gourmet",
+      "preco": 29.9,
+      "peso": "100g",
+      "sku": "TZ-TET-100",
+      "rating": 4.9,
+      "reviews_count": 53,
+      "imagem_url": "/potes/temperaflix-tradicional-master-max.jpg",
+      "origem": "Belo Horizonte, MG",
+      "estoque": 145,
+      "ativo": true
+    },
+    {
+      "id": "tempero-mineiro",
+      "nome": "Tempero Mineiro",
+      "categoria": "Clássicos",
+      "descricao": "Clássico mineiro autêntico com toque de tradição",
+      "preco": 23.9,
+      "peso": "100g",
+      "sku": "TZ-TEM-100",
+      "rating": 4.8,
+      "reviews_count": 49,
+      "imagem_url": "/potes/tempero-mineiro-master-max.jpg",
+      "origem": "Minas Gerais, MG",
+      "estoque": 160,
+      "ativo": true
+    }
   ],
   "receitas": [
-    {"id": "cafe1", "titulo": "Bolo de Milho com Temperafflix Bacon", "descricao": "Bolo cremoso de milho verde com toque de bacon defumado", "categoria": "Café da Manhã", "tempo_preparo": 45, "servindo": 8, "pote_id": "temperaflix-bacon", "imagem_url": "/receitas/bolo-milho-bacon.jpg", "ingredientes": ["2 xícaras de milho verde", "1 xícara de farinha", "3 ovos", "1 xícara de leite", "100g Temperaflix Bacon"], "modo_preparo": "Bata o milho com os ovos e leite. Adicione a farinha e Temperaflix Bacon. Asse por 40 min a 180°C."},
-    {"id": "cafe2", "titulo": "Pão Francês Temperado com Tempero Mineiro", "descricao": "Pão francês crocante com tempero mineiro na massa", "categoria": "Café da Manhã", "tempo_preparo": 120, "servindo": 6, "pote_id": "tempero-mineiro", "imagem_url": "/receitas/pao-frances-mineiro.jpg", "ingredientes": ["500g farinha de trigo", "250ml água", "10g sal", "7g fermento", "50g Tempero Mineiro"], "modo_preparo": "Misture ingredientes, sove por 10 min, deixe fermentar 1h. Modele e asse a 220°C por 20 min."},
-    {"id": "cafe3", "titulo": "Bolo de Cenoura com Ervas Finas", "descricao": "Bolo úmido de cenoura com cobertura de ervas", "categoria": "Café da Manhã", "tempo_preparo": 50, "servindo": 10, "pote_id": "ervas-finas", "imagem_url": "/receitas/bolo-cenoura-ervas.jpg", "ingredientes": ["3 cenouras grandes", "3 ovos", "1 xícara óleo", "2 xícaras farinha", "100g Ervas Finas"], "modo_preparo": "Bata cenoura com ovos e óleo. Misture farinha e fermento. Adicione Ervas Finas. Asse a 180°C por 45 min."},
-    {"id": "cafe4", "titulo": "Quiche de Queijo com Cúrcuma", "descricao": "Quiche cremosa com cúrcuma anti-inflamatória", "categoria": "Café da Manhã", "tempo_preparo": 55, "servindo": 6, "pote_id": "curcuma", "imagem_url": "/receitas/quiche-curcuma.jpg", "ingredientes": ["1 massa de pastel", "200g queijo meia cura", "4 ovos", "200ml creme", "30g Cúrcuma"], "modo_preparo": "Coloque massa na forma. Misture ovos, creme, queijo e Cúrcuma. Despeje e asse a 200°C por 40 min."},
-    {"id": "cafe5", "titulo": "Bolo de Maçã com Lemon Pepper", "descricao": "Bolo fofinho de maçã com toque cítrico", "categoria": "Café da Manhã", "tempo_preparo": 50, "servindo": 8, "pote_id": "lemon-pepper", "imagem_url": "/receitas/bolo-maca-lemon.jpg", "ingredientes": ["4 maçãs médias", "2 ovos", "200ml óleo", "2 xícaras farinha", "50g Lemon Pepper"], "modo_preparo": "Ralhe maçãs, misture com ovos e óleo. Adicione farinha e Lemon Pepper. Asse a 180°C por 45 min."},
-    {"id": "cafe6", "titulo": "Pão de Queijo com Salsa Cebola e Alho", "descricao": "Pão de queijo tradicional mineiro temperado", "categoria": "Café da Manhã", "tempo_preparo": 30, "servindo": 12, "pote_id": "salsa-cebola-alho", "imagem_url": "/receitas/pao-queijo-salsa.jpg", "ingredientes": ["500g polvilho", "200g queijo meia cura", "100ml leite", "50g Salsa Cebola e Alho"], "modo_preparo": "Aqueça leite e óleo. Misture polvilho e queijo. Adicione Salsa Cebola e Alho. Asse a 200°C por 25 min."},
-    {"id": "almoco1", "titulo": "Arroz com Brócolis e Ana Maria", "descricao": "Arroz integral com brócolis e tempero mineiro clássico", "categoria": "Almoço", "tempo_preparo": 35, "servindo": 4, "pote_id": "ana-maria", "imagem_url": "/receitas/arroz-brocolis-ana.jpg", "ingredientes": ["2 xícaras arroz integral", "4 xícaras água", "2 buquês brócolis", "50ml azeite", "40g Ana Maria"], "modo_preparo": "Cozinhe arroz na água com azeite. Cozinhe brócolis separado. Misture tudo com Ana Maria e refogue."},
-    {"id": "almoco2", "titulo": "Frango Assado com Páprica Defumada", "descricao": "Frango crocante com páprica defumada da Hungria", "categoria": "Almoço", "tempo_preparo": 60, "servindo": 4, "pote_id": "paprica-defumada", "imagem_url": "/receitas/frango-paprica-defumada.jpg", "ingredientes": ["1 frango inteiro", "50g Páprica Defumada", "4 colheres azeite", "Sal e limão"], "modo_preparo": "Tempere frango com Páprica Defumada, azeite, sal e limão. Asse a 200°C por 55 min."},
-    {"id": "almoco3", "titulo": "Carne com Chimichurri Picante", "descricao": "Carne grelhada com chimichurri argentino defumado", "categoria": "Almoço", "tempo_preparo": 40, "servindo": 4, "pote_id": "chimi-churri-picante", "imagem_url": "/receitas/carne-chimi-picante.jpg", "ingredientes": ["800g contrafilé", "60g Chimi Churri Picante", "100ml azeite"], "modo_preparo": "Grelhe carne em fogo alto. Faça molho: Chimi Churri Picante + azeite. Sirva sobre a carne."},
-    {"id": "almoco4", "titulo": "Peixe ao Limão com Lemon Pepper", "descricao": "Peixe delicado com toque de pimenta preta e limão", "categoria": "Almoço", "tempo_preparo": 30, "servindo": 4, "pote_id": "lemon-pepper", "imagem_url": "/receitas/peixe-lemon-pepper.jpg", "ingredientes": ["800g filé de peixe branco", "2 limões", "50g Lemon Pepper", "30ml azeite"], "modo_preparo": "Coloque peixe em assadeira. Cubra com Lemon Pepper, suco de limão e azeite. Asse a 190°C por 25 min."},
-    {"id": "almoco5", "titulo": "Legumes Assados com Ervas Finas", "descricao": "Mix de legumes coloridos temperado com ervas premium", "categoria": "Almoço", "tempo_preparo": 45, "servindo": 4, "pote_id": "ervas-finas", "imagem_url": "/receitas/legumes-ervas.jpg", "ingredientes": ["200g abóbora", "200g cenoura", "200g abobrinha", "100g cebola", "60g Ervas Finas", "80ml azeite"], "modo_preparo": "Corte legumes em cubos. Misture com azeite e Ervas Finas. Asse a 200°C por 40 min."},
-    {"id": "almoco6", "titulo": "Risoto Cremoso com Cúrcuma", "descricao": "Risoto tradicional italiano com propriedades da cúrcuma", "categoria": "Almoço", "tempo_preparo": 35, "servindo": 4, "pote_id": "curcuma", "imagem_url": "/receitas/risoto-curcuma.jpg", "ingredientes": ["2 xícaras arroz arbório", "800ml caldo quente", "100ml vinho branco", "1 cebola", "100g queijo", "40g Cúrcuma"], "modo_preparo": "Refogue cebola. Adicione arroz. Vá adicionando caldo quente aos poucos. Finalize com queijo e Cúrcuma."},
-    {"id": "almoco7", "titulo": "Linguine ao Molho Branco com Edu Guedes", "descricao": "Massa fresca com molho cremoso e tempero versátil", "categoria": "Almoço", "tempo_preparo": 25, "servindo": 4, "pote_id": "edu-guedes", "imagem_url": "/receitas/linguine-edu.jpg", "ingredientes": ["400g linguine", "200ml creme de leite", "100g mantega", "50g queijo parmesão", "50g Edu Guedes"], "modo_preparo": "Cozinhe linguine. Faça molho: derreta manteiga, adicione creme e Edu Guedes. Misture com massa."},
-    {"id": "almoco8", "titulo": "Costela Assada com Temperaflix Tradicional", "descricao": "Costela morna com tempero gourmet mineiro", "categoria": "Almoço", "tempo_preparo": 120, "servindo": 6, "pote_id": "temperaflix-tradicional", "imagem_url": "/receitas/costela-temperaflix.jpg", "ingredientes": ["2kg costela", "80g Temperaflix Tradicional", "200ml cerveja", "100ml caldo beef"], "modo_preparo": "Tempere costela com Temperaflix Tradicional. Asse a 160°C com cerveja e caldo por 2 horas."},
-    {"id": "almoco9", "titulo": "Picadinho à Mineira com Tempero Mineiro", "descricao": "Clássico mineiro com carnes e vegetais", "categoria": "Almoço", "tempo_preparo": 40, "servindo": 4, "pote_id": "tempero-mineiro", "imagem_url": "/receitas/picadinho-mineiro.jpg", "ingredientes": ["600g carne moída", "1 cebola", "3 tomates", "1 xícara ervilha", "50g Tempero Mineiro"], "modo_preparo": "Refogue cebola e carne. Adicione tomates e ervilha. Tempere com Tempero Mineiro. Cozinhe 30 min."},
-    {"id": "almoco10", "titulo": "Frango em Brasa com Chimichurri Suave", "descricao": "Frango grelhado com chimichurri sem pimenta", "categoria": "Almoço", "tempo_preparo": 45, "servindo": 4, "pote_id": "chimi-churri-sem-pimenta", "imagem_url": "/receitas/frango-chimi-suave.jpg", "ingredientes": ["1kg frango em cubos", "70g Chimi Churri Sem Pimenta", "100ml azeite"], "modo_preparo": "Tempere frango. Grelhe em brasa. Faça molho: Chimi Churri Sem Pimenta + azeite. Sirva."},
-    {"id": "almoco11", "titulo": "Bife à Pizzaiola com Páprica Picante", "descricao": "Bife clássico italiano com tomate e páprica vermelha", "categoria": "Almoço", "tempo_preparo": 35, "servindo": 2, "pote_id": "paprica-picante", "imagem_url": "/receitas/bife-pizzaiola.jpg", "ingredientes": ["400g contrafilé", "400g tomate", "2 dentes alho", "40g Páprica Picante", "50ml azeite"], "modo_preparo": "Grelhe bife. Faça molho com tomate, alho e Páprica Picante. Despeje sobre o bife."},
-    {"id": "almoco12", "titulo": "Moqueca de Peixe com Salsa Cebola e Alho", "descricao": "Prato baiano com peixe e tempero aromático", "categoria": "Almoço", "tempo_preparo": 50, "servindo": 4, "pote_id": "salsa-cebola-alho", "imagem_url": "/receitas/moqueca-peixe.jpg", "ingredientes": ["800g peixe branco", "2 cebolas", "1 pimentão", "200ml leite de coco", "50g Salsa Cebola e Alho"], "modo_preparo": "Refogue cebola, pimentão e alho. Adicione peixe e leite de coco. Finalize com Salsa Cebola e Alho."},
-    {"id": "almoco13", "titulo": "Bifão com Páprica Doce e Cebola", "descricao": "Bifão morno com cebola caramelizada e páprica suave", "categoria": "Almoço", "tempo_preparo": 35, "servindo": 2, "pote_id": "paprica-doce", "imagem_url": "/receitas/bifao-paprica-doce.jpg", "ingredientes": ["400g paleta", "3 cebolas", "50g Páprica Doce", "50ml azeite"], "modo_preparo": "Grelhe bifão. Caramelize cebolas separadas. Misture com Páprica Doce e azeite. Sirva sobre o bifão."},
-    {"id": "almoco14", "titulo": "Ragu de Carne com Temperaflix Bacon", "descricao": "Molho tradicional italiano com toque de bacon defumado", "categoria": "Almoço", "tempo_preparo": 90, "servindo": 4, "pote_id": "temperaflix-bacon", "imagem_url": "/receitas/ragu-bacon.jpg", "ingredientes": ["500g carne moída", "400g tomate pelado", "1 cebola", "3 dentes alho", "60g Temperaflix Bacon"], "modo_preparo": "Refogue carne, cebola e alho. Adicione tomate. Cozinhe 1 hora. Finalize com Temperaflix Bacon."},
-    {"id": "almoco15", "titulo": "Galinhada Mineira com Edu Guedes", "descricao": "Prato mineiro tradicional com galinha e tempero versátil", "categoria": "Almoço", "tempo_preparo": 75, "servindo": 6, "pote_id": "edu-guedes", "imagem_url": "/receitas/galinhada-mineira.jpg", "ingredientes": ["1 galinha picada", "2 xícaras arroz", "1 cebola", "200ml caldo chicken", "50g Edu Guedes"], "modo_preparo": "Cozinhe galinha com cebola. Adicione arroz e caldo. Cozinhe 45 min. Finalize com Edu Guedes."},
-    {"id": "almoco16", "titulo": "Feijoada à Mineira com Temperaflix Ervas Finas", "descricao": "Clássico mineiro com ervas aromáticas premium", "categoria": "Almoço", "tempo_preparo": 120, "servindo": 6, "pote_id": "temperaflix-ervas-finas", "imagem_url": "/receitas/feijoada-ervas.jpg", "ingredientes": ["500g feijão preto", "400g carne de porco", "1 cebola", "200g toucinho", "60g Temperaflix Ervas Finas"], "modo_preparo": "Cozinhe feijão com carnes. Refogue cebola e toucinho. Misture tudo. Finalize com Temperaflix Ervas Finas."},
-    {"id": "almoco17", "titulo": "Strogonoff de Carne com Ana Maria", "descricao": "Prato clássico brasileiro com tempero mineiro", "categoria": "Almoço", "tempo_preparo": 40, "servindo": 4, "pote_id": "ana-maria", "imagem_url": "/receitas/strogonoff-ana.jpg", "ingredientes": ["600g carne contra filé", "1 cebola", "1 xícara creme", "100g cogumelo", "50g Ana Maria"], "modo_preparo": "Refogue carne, cebola e cogumelo. Adicione creme. Tempere com Ana Maria. Cozinhe 20 min."},
-    {"id": "jantar1", "titulo": "Peixe Grelhado com Ervas Finas", "descricao": "Peixe delicado temperado com ervas desidratadas premium", "categoria": "Jantar", "tempo_preparo": 25, "servindo": 4, "pote_id": "ervas-finas", "imagem_url": "/receitas/peixe-ervas-jantar.jpg", "ingredientes": ["800g filé de peixe branco", "50g Ervas Finas", "50ml azeite", "2 limões"], "modo_preparo": "Grelhe peixe temperado com Ervas Finas, azeite e suco de limão por 15 min."},
-    {"id": "jantar2", "titulo": "Frango Leve com Cúrcuma e Gengibre", "descricao": "Frango assado leve com toque anti-inflamatório", "categoria": "Jantar", "tempo_preparo": 50, "servindo": 4, "pote_id": "curcuma", "imagem_url": "/receitas/frango-curcuma-leve.jpg", "ingredientes": ["800g filé de frango", "40g Cúrcuma", "2 colheres gengibre", "100ml caldo light"], "modo_preparo": "Asse frango com Cúrcuma e gengibre a 190°C por 40 min com caldo leve."},
-    {"id": "jantar3", "titulo": "Salmão ao Forno com Lemon Pepper", "descricao": "Salmão fresco com toque de pimenta preta e limão", "categoria": "Jantar", "tempo_preparo": 30, "servindo": 2, "pote_id": "lemon-pepper", "imagem_url": "/receitas/salmao-lemon-pepper.jpg", "ingredientes": ["400g filé salmão", "40g Lemon Pepper", "50ml azeite", "2 limões"], "modo_preparo": "Coloque salmão em papel alumínio. Cubra com Lemon Pepper, azeite e limão. Asse a 200°C por 25 min."},
-    {"id": "jantar4", "titulo": "Carne Magra Grelhada com Salsa Cebola e Alho", "descricao": "Carne magra leve com tempero aromático", "categoria": "Jantar", "tempo_preparo": 20, "servindo": 2, "pote_id": "salsa-cebola-alho", "imagem_url": "/receitas/carne-magra-salsa.jpg", "ingredientes": ["300g paleta magra", "40g Salsa Cebola e Alho", "30ml azeite"], "modo_preparo": "Grelhe carne magra. Tempere com Salsa Cebola e Alho e azeite. Sirva leve."},
-    {"id": "jantar5", "titulo": "Peito de Frango com Temperaflix Bacon Leve", "descricao": "Frango light com toque de bacon defumado", "categoria": "Jantar", "tempo_preparo": 35, "servindo": 2, "pote_id": "temperaflix-bacon", "imagem_url": "/receitas/peito-bacon-leve.jpg", "ingredientes": ["400g peito de frango", "40g Temperaflix Bacon", "50ml água", "20ml azeite"], "modo_preparo": "Refogue frango em pouca gordura. Adicione água e Temperaflix Bacon. Cozinhe 25 min."},
-    {"id": "jantar6", "titulo": "Vegetais Leves com Edu Guedes", "descricao": "Mix de vegetais cozidos no vapor com tempero versátil", "categoria": "Jantar", "tempo_preparo": 25, "servindo": 2, "pote_id": "edu-guedes", "imagem_url": "/receitas/vegetais-leves-edu.jpg", "ingredientes": ["200g cenoura", "200g brócolis", "150g abobrinha", "40g Edu Guedes", "20ml azeite"], "modo_preparo": "Cozinhe vegetais no vapor. Tempere com Edu Guedes e azeite. Sirva morno."},
-    {"id": "jantar7", "titulo": "Caldo de Carne Temperado com Tempero Mineiro", "descricao": "Caldo quentinho com tempero mineiro tradicional", "categoria": "Jantar", "tempo_preparo": 60, "servindo": 4, "pote_id": "tempero-mineiro", "imagem_url": "/receitas/caldo-mineiro.jpg", "ingredientes": ["800ml caldo beef", "300g carne picada", "1 batata", "1 cenoura", "50g Tempero Mineiro"], "modo_preparo": "Cozinhe caldo com carne. Adicione batata e cenoura. Tempere com Tempero Mineiro."},
-    {"id": "jantar8", "titulo": "Moqueca Leve de Peixe com Páprica Defumada", "descricao": "Peixe em caldo leve com páprica defumada", "categoria": "Jantar", "tempo_preparo": 40, "servindo": 2, "pote_id": "paprica-defumada", "imagem_url": "/receitas/moqueca-leve-paprica.jpg", "ingredientes": ["400g peixe branco", "200ml caldo leve", "1 cebola", "40g Páprica Defumada"], "modo_preparo": "Cozinhe peixe em caldo com cebola. Finalize com Páprica Defumada."},
-    {"id": "jantar9", "titulo": "Sopa Cremosa com Temperaflix Ervas Finas", "descricao": "Sopa cremosa e reconfortante com ervas premium", "categoria": "Jantar", "tempo_preparo": 45, "servindo": 4, "pote_id": "temperaflix-ervas-finas", "imagem_url": "/receitas/sopa-cremosa-ervas.jpg", "ingredientes": ["1L caldo vegetal", "300g abóbora", "200g cenoura", "200ml creme", "50g Temperaflix Ervas Finas"], "modo_preparo": "Cozinhe abóbora e cenoura. Bata com caldo. Adicione creme e Temperaflix Ervas Finas."},
-    {"id": "jantar10", "titulo": "Ovo Poché com Ervas Finas e Pão Integral", "descricao": "Ovo poché leve com ervas aromáticas", "categoria": "Jantar", "tempo_preparo": 15, "servindo": 1, "pote_id": "ervas-finas", "imagem_url": "/receitas/ovo-pocho-ervas.jpg", "ingredientes": ["2 ovos", "30g Ervas Finas", "1 fatia pão integral", "20ml azeite"], "modo_preparo": "Cozinhe ovos em água morna. Coloque em pão. Finalize com Ervas Finas e azeite."},
-    {"id": "lanche1", "titulo": "Hummus com Temperaflix Tradicional", "descricao": "Pasta de grão-de-bico com toque gourmet mineiro", "categoria": "Lanche", "tempo_preparo": 20, "servindo": 4, "pote_id": "temperaflix-tradicional", "imagem_url": "/receitas/hummus-temperaflix.jpg", "ingredientes": ["400g grão-de-bico cozido", "50ml azeite", "2 colheres tahine", "50g Temperaflix Tradicional"], "modo_preparo": "Bata todos os ingredientes até cremoso. Sirva com pão árabe ou vegetais."},
-    {"id": "lanche2", "titulo": "Guacamole com Chimi Churri Picante", "descricao": "Guacamole fresco com chimichurri argentino", "categoria": "Lanche", "tempo_preparo": 10, "servindo": 3, "pote_id": "chimi-churri-picante", "imagem_url": "/receitas/guacamole-chimi.jpg", "ingredientes": ["3 abacates", "1 limão", "1 tomate", "30g Chimi Churri Picante"], "modo_preparo": "Amasse abacates com suco de limão. Adicione tomate picado e Chimi Churri Picante. Sirva."},
-    {"id": "lanche3", "titulo": "Iogurte com Granola e Lemon Pepper", "descricao": "Iogurte grego com granola crocante e toque cítrico", "categoria": "Lanche", "tempo_preparo": 5, "servindo": 1, "pote_id": "lemon-pepper", "imagem_url": "/receitas/iogurte-granola-lemon.jpg", "ingredientes": ["150g iogurte grego", "50g granola", "30g Lemon Pepper"], "modo_preparo": "Coloque iogurte em tigela. Adicione granola e finalize com Lemon Pepper."},
-    {"id": "lanche4", "titulo": "Queijo com Ervas Finas e Cracker", "descricao": "Tábua de queijo temperado com ervas aromaáticas", "categoria": "Lanche", "tempo_preparo": 10, "servindo": 4, "pote_id": "ervas-finas", "imagem_url": "/receitas/queijo-ervas-cracker.jpg", "ingredientes": ["200g queijo meia cura", "40g Ervas Finas", "100g cracker integral"], "modo_preparo": "Corte queijo em cubos. Polvilhe com Ervas Finas. Sirva com cracker."},
-    {"id": "lanche5", "titulo": "Mix de Oleaginosas com Páprica Picante", "descricao": "Mix de castanhas e sementes com páprica vermelha", "categoria": "Lanche", "tempo_preparo": 5, "servindo": 4, "pote_id": "paprica-picante", "imagem_url": "/receitas/mix-oleaginosas.jpg", "ingredientes": ["100g castanha de caju", "100g amêndoas", "50g sementes de girassol", "30g Páprica Picante"], "modo_preparo": "Misture oleaginosas. Polvilhe Páprica Picante. Sirva em porções pequenas."},
-    {"id": "lanche6", "titulo": "Batatinha Chips Caseira com Ana Maria", "descricao": "Batata chips crocante com tempero mineiro", "categoria": "Lanche", "tempo_preparo": 35, "servindo": 4, "pote_id": "ana-maria", "imagem_url": "/receitas/batatinha-chips-ana.jpg", "ingredientes": ["4 batatas médias", "40g Ana Maria", "500ml óleo para fritar"], "modo_preparo": "Corte batatas em fatias finas. Frite até dourar. Tempere com Ana Maria ainda quentes."},
-    {"id": "lanche7", "titulo": "Bruschetone com Tomate e Salsa Cebola e Alho", "descricao": "Bruschetone tradicional italiano com tempero aromático", "categoria": "Lanche", "tempo_preparo": 15, "servindo": 4, "pote_id": "salsa-cebola-alho", "imagem_url": "/receitas/bruschetone-tomate.jpg", "ingredientes": ["1 baguete", "400g tomate fresco", "40g Salsa Cebola e Alho", "50ml azeite"], "modo_preparo": "Toste baguete. Misture tomate com Salsa Cebola e Alho e azeite. Coloque sobre o pão."},
-    {"id": "lanche8", "titulo": "Amendoim Crocante com Temperaflix Bacon", "descricao": "Amendoim crocante com toque de bacon defumado", "categoria": "Lanche", "tempo_preparo": 25, "servindo": 4, "pote_id": "temperaflix-bacon", "imagem_url": "/receitas/amendoim-bacon.jpg", "ingredientes": ["300g amendoim descascado", "40g Temperaflix Bacon", "30ml azeite", "Sal"], "modo_preparo": "Torça amendoim em forno a 180°C por 20 min. Misture com azeite e Temperaflix Bacon. Sirva."},
-    {"id": "lanche9", "titulo": "Bolo de Chocolate com Páprica Doce", "descricao": "Bolo de chocolate com toque doce e sutil de páprica", "categoria": "Lanche", "tempo_preparo": 40, "servindo": 8, "pote_id": "paprica-doce", "imagem_url": "/receitas/bolo-chocolate-paprica.jpg", "ingredientes": ["200g chocolate amargo", "150g açúcar", "3 ovos", "200ml leite", "30g Páprica Doce"], "modo_preparo": "Derreta chocolate com manteiga. Misture ovos, açúcar e leite. Adicione Páprica Doce. Asse a 180°C por 35 min."},
-    {"id": "lanche10", "titulo": "Bolo de Chocolate com Temperaflix Ervas Finas", "descricao": "Bolo de chocolate com toque herbal premium", "categoria": "Lanche", "tempo_preparo": 40, "servindo": 8, "pote_id": "temperaflix-ervas-finas", "imagem_url": "/receitas/bolo-chocolate-herbs.jpg", "ingredientes": ["200g chocolate amargo", "150g açúcar", "3 ovos", "200ml leite", "30g Temperaflix Ervas Finas"], "modo_preparo": "Derreta chocolate com manteiga. Misture ovos, açúcar e leite. Adicione Temperaflix Ervas Finas. Asse a 180°C por 35 min."},
-    {"id": "lanche11", "titulo": "Biscoito de Cúrcuma e Gengibre", "descricao": "Biscoito aromático anti-inflamatório", "categoria": "Lanche", "tempo_preparo": 30, "servindo": 12, "pote_id": "curcuma", "imagem_url": "/receitas/biscoito-curcuma.jpg", "ingredientes": ["200g farinha", "100g manteiga", "100g açúcar", "1 ovo", "40g Cúrcuma"], "modo_preparo": "Bata manteiga com açúcar. Adicione ovo, farinha e Cúrcuma. Asse a 180°C por 20 min."}
+    {
+      "id": "cafe1",
+      "titulo": "Bolo de Milho com Temperaflix Bacon",
+      "descricao": "Bolo cremoso de milho verde com toque de bacon defumado",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 45,
+      "servindo": 8,
+      "pote_id": "temperaflix-bacon",
+      "imagem_url": "/receitas/bolo-milho-bacon.jpg",
+      "ingredientes": [
+        "2 xícaras de milho verde",
+        "1 xícara de farinha",
+        "3 ovos",
+        "1 xícara de leite",
+        "100g Temperaflix Bacon"
+      ],
+      "modo_preparo": "Bata o milho com os ovos e leite. Adicione a farinha e Temperaflix Bacon. Asse por 40 min a 180°C."
+    },
+    {
+      "id": "cafe2",
+      "titulo": "Pão Francês Temperado com Tempero Mineiro",
+      "descricao": "Pão francês crocante com tempero mineiro na massa",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 120,
+      "servindo": 6,
+      "pote_id": "tempero-mineiro",
+      "imagem_url": "/receitas/pao-frances-mineiro.jpg",
+      "ingredientes": [
+        "500g farinha de trigo",
+        "250ml água",
+        "10g sal",
+        "7g fermento",
+        "50g Tempero Mineiro"
+      ],
+      "modo_preparo": "Misture ingredientes, sove por 10 min, deixe fermentar 1h. Modele e asse a 220°C por 20 min."
+    },
+    {
+      "id": "cafe3",
+      "titulo": "Bolo de Cenoura com Ervas Finas",
+      "descricao": "Bolo úmido de cenoura com cobertura de ervas",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 50,
+      "servindo": 10,
+      "pote_id": "ervas-finas",
+      "imagem_url": "/receitas/bolo-cenoura-ervas.jpg",
+      "ingredientes": [
+        "3 cenouras grandes",
+        "3 ovos",
+        "1 xícara óleo",
+        "2 xícaras farinha",
+        "100g Ervas Finas"
+      ],
+      "modo_preparo": "Bata cenoura com ovos e óleo. Misture farinha e fermento. Adicione Ervas Finas. Asse a 180°C por 45 min."
+    },
+    {
+      "id": "cafe4",
+      "titulo": "Quiche de Queijo com Cúrcuma",
+      "descricao": "Quiche cremosa com cúrcuma anti-inflamatória",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 55,
+      "servindo": 6,
+      "pote_id": "curcuma",
+      "imagem_url": "/receitas/quiche-curcuma.jpg",
+      "ingredientes": [
+        "1 massa de pastel",
+        "200g queijo meia cura",
+        "4 ovos",
+        "200ml creme",
+        "30g Cúrcuma"
+      ],
+      "modo_preparo": "Coloque massa na forma. Misture ovos, creme, queijo e Cúrcuma. Despeje e asse a 200°C por 40 min."
+    },
+    {
+      "id": "cafe5",
+      "titulo": "Bolo de Maçã com Lemon Pepper",
+      "descricao": "Bolo fofinho de maçã com toque cítrico",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 50,
+      "servindo": 8,
+      "pote_id": "lemon-pepper",
+      "imagem_url": "/receitas/bolo-maca-lemon.jpg",
+      "ingredientes": [
+        "4 maçãs médias",
+        "2 ovos",
+        "200ml óleo",
+        "2 xícaras farinha",
+        "50g Lemon Pepper"
+      ],
+      "modo_preparo": "Ralhe maçãs, misture com ovos e óleo. Adicione farinha e Lemon Pepper. Asse a 180°C por 45 min."
+    },
+    {
+      "id": "cafe6",
+      "titulo": "Pão de Queijo com Salsa Cebola e Alho",
+      "descricao": "Pão de queijo tradicional mineiro temperado",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 30,
+      "servindo": 12,
+      "pote_id": "salsa-cebola-e-alho",
+      "imagem_url": "/receitas/pao-queijo-salsa.jpg",
+      "ingredientes": [
+        "500g polvilho",
+        "200g queijo meia cura",
+        "100ml leite",
+        "50g Salsa Cebola e Alho"
+      ],
+      "modo_preparo": "Aqueça leite e óleo. Misture polvilho e queijo. Adicione Salsa Cebola e Alho. Asse a 200°C por 25 min."
+    },
+    {
+      "id": "almoco1",
+      "titulo": "Arroz com Brócolis e Ana Maria",
+      "descricao": "Arroz integral com brócolis e tempero mineiro clássico",
+      "categoria": "Almoço",
+      "tempo_preparo": 35,
+      "servindo": 4,
+      "pote_id": "ana-maria",
+      "imagem_url": "/receitas/arroz-brocolis-ana.jpg",
+      "ingredientes": [
+        "2 xícaras arroz integral",
+        "4 xícaras água",
+        "2 buquês brócolis",
+        "50ml azeite",
+        "40g Ana Maria"
+      ],
+      "modo_preparo": "Cozinhe arroz na água com azeite. Cozinhe brócolis separado. Misture tudo com Ana Maria e refogue."
+    },
+    {
+      "id": "almoco2",
+      "titulo": "Frango Assado com Páprica Defumada",
+      "descricao": "Frango crocante com páprica defumada da Hungria",
+      "categoria": "Almoço",
+      "tempo_preparo": 60,
+      "servindo": 4,
+      "pote_id": "paprica-defumada",
+      "imagem_url": "/receitas/frango-paprica-defumada.jpg",
+      "ingredientes": [
+        "1 frango inteiro",
+        "50g Páprica Defumada",
+        "4 colheres azeite",
+        "Sal e limão"
+      ],
+      "modo_preparo": "Tempere frango com Páprica Defumada, azeite, sal e limão. Asse a 200°C por 55 min."
+    },
+    {
+      "id": "almoco3",
+      "titulo": "Carne com Chimi Churri Picante",
+      "descricao": "Carne grelhada com chimichurri argentino defumado",
+      "categoria": "Almoço",
+      "tempo_preparo": 40,
+      "servindo": 4,
+      "pote_id": "chimichurri-picante",
+      "imagem_url": "/receitas/carne-chimi-picante.jpg",
+      "ingredientes": [
+        "800g contrafilé",
+        "60g Chimi Churri Picante",
+        "100ml azeite"
+      ],
+      "modo_preparo": "Grelhe carne em fogo alto. Faça molho: Chimi Churri Picante + azeite. Sirva sobre a carne."
+    },
+    {
+      "id": "almoco4",
+      "titulo": "Peixe ao Limão com Lemon Pepper",
+      "descricao": "Peixe delicado com toque de pimenta preta e limão",
+      "categoria": "Almoço",
+      "tempo_preparo": 30,
+      "servindo": 4,
+      "pote_id": "lemon-pepper",
+      "imagem_url": "/receitas/peixe-lemon-pepper.jpg",
+      "ingredientes": [
+        "800g filé de peixe branco",
+        "2 limões",
+        "50g Lemon Pepper",
+        "30ml azeite"
+      ],
+      "modo_preparo": "Coloque peixe em assadeira. Cubra com Lemon Pepper, suco de limão e azeite. Asse a 190°C por 25 min."
+    },
+    {
+      "id": "almoco5",
+      "titulo": "Legumes Assados com Ervas Finas",
+      "descricao": "Mix de legumes coloridos temperado com ervas premium",
+      "categoria": "Almoço",
+      "tempo_preparo": 45,
+      "servindo": 4,
+      "pote_id": "ervas-finas",
+      "imagem_url": "/receitas/legumes-ervas.jpg",
+      "ingredientes": [
+        "200g abóbora",
+        "200g cenoura",
+        "200g abobrinha",
+        "100g cebola",
+        "60g Ervas Finas",
+        "80ml azeite"
+      ],
+      "modo_preparo": "Corte legumes em cubos. Misture com azeite e Ervas Finas. Asse a 200°C por 40 min."
+    },
+    {
+      "id": "almoco6",
+      "titulo": "Risoto Cremoso com Cúrcuma",
+      "descricao": "Risoto tradicional italiano com propriedades da cúrcuma",
+      "categoria": "Almoço",
+      "tempo_preparo": 35,
+      "servindo": 4,
+      "pote_id": "curcuma",
+      "imagem_url": "/receitas/risoto-curcuma.jpg",
+      "ingredientes": [
+        "2 xícaras arroz arbório",
+        "800ml caldo quente",
+        "100ml vinho branco",
+        "1 cebola",
+        "100g queijo",
+        "40g Cúrcuma"
+      ],
+      "modo_preparo": "Refogue cebola. Adicione arroz. Vá adicionando caldo quente aos poucos. Finalize com queijo e Cúrcuma."
+    },
+    {
+      "id": "almoco7",
+      "titulo": "Linguine ao Molho Branco com Edu Guedes",
+      "descricao": "Massa fresca com molho cremoso e tempero versátil",
+      "categoria": "Almoço",
+      "tempo_preparo": 25,
+      "servindo": 4,
+      "pote_id": "tempero-do-edu",
+      "imagem_url": "/receitas/linguine-edu.jpg",
+      "ingredientes": [
+        "400g linguine",
+        "200ml creme de leite",
+        "100g mantega",
+        "50g queijo parmesão",
+        "50g Edu Guedes"
+      ],
+      "modo_preparo": "Cozinhe linguine. Faça molho: derreta manteiga, adicione creme e Edu Guedes. Misture com massa."
+    },
+    {
+      "id": "almoco8",
+      "titulo": "Costela Assada com Temperaflix Tradicional",
+      "descricao": "Costela morna com tempero gourmet mineiro",
+      "categoria": "Almoço",
+      "tempo_preparo": 120,
+      "servindo": 6,
+      "pote_id": "temperaflix-tradicional",
+      "imagem_url": "/receitas/costela-temperaflix.jpg",
+      "ingredientes": [
+        "2kg costela",
+        "80g Temperaflix Tradicional",
+        "200ml cerveja",
+        "100ml caldo beef"
+      ],
+      "modo_preparo": "Tempere costela com Temperaflix Tradicional. Asse a 160°C com cerveja e caldo por 2 horas."
+    },
+    {
+      "id": "almoco9",
+      "titulo": "Picadinho à Mineira com Tempero Mineiro",
+      "descricao": "Clássico mineiro com carnes e vegetais",
+      "categoria": "Almoço",
+      "tempo_preparo": 40,
+      "servindo": 4,
+      "pote_id": "tempero-mineiro",
+      "imagem_url": "/receitas/picadinho-mineiro.jpg",
+      "ingredientes": [
+        "600g carne moída",
+        "1 cebola",
+        "3 tomates",
+        "1 xícara ervilha",
+        "50g Tempero Mineiro"
+      ],
+      "modo_preparo": "Refogue cebola e carne. Adicione tomates e ervilha. Tempere com Tempero Mineiro. Cozinhe 30 min."
+    },
+    {
+      "id": "almoco10",
+      "titulo": "Frango em Brasa com Chimi Churri Suave",
+      "descricao": "Frango grelhado com chimichurri sem pimenta",
+      "categoria": "Almoço",
+      "tempo_preparo": 45,
+      "servindo": 4,
+      "pote_id": "chimichurri-sem-pimenta",
+      "imagem_url": "/receitas/frango-chimi-suave.jpg",
+      "ingredientes": [
+        "1kg frango em cubos",
+        "70g Chimi Churri Sem Pimenta",
+        "100ml azeite"
+      ],
+      "modo_preparo": "Tempere frango. Grelhe em brasa. Faça molho: Chimi Churri Sem Pimenta + azeite. Sirva."
+    },
+    {
+      "id": "almoco11",
+      "titulo": "Bife à Pizzaiola com Páprica Picante",
+      "descricao": "Bife clássico italiano com tomate e páprica vermelha",
+      "categoria": "Almoço",
+      "tempo_preparo": 35,
+      "servindo": 2,
+      "pote_id": "paprica-picante",
+      "imagem_url": "/receitas/bife-pizzaiola.jpg",
+      "ingredientes": [
+        "400g contrafilé",
+        "400g tomate",
+        "2 dentes alho",
+        "40g Páprica Picante",
+        "50ml azeite"
+      ],
+      "modo_preparo": "Grelhe bife. Faça molho com tomate, alho e Páprica Picante. Despeje sobre o bife."
+    },
+    {
+      "id": "almoco12",
+      "titulo": "Moqueca de Peixe com Salsa Cebola e Alho",
+      "descricao": "Prato baiano com peixe e tempero aromático",
+      "categoria": "Almoço",
+      "tempo_preparo": 50,
+      "servindo": 4,
+      "pote_id": "salsa-cebola-e-alho",
+      "imagem_url": "/receitas/moqueca-peixe.jpg",
+      "ingredientes": [
+        "800g peixe branco",
+        "2 cebolas",
+        "1 pimentão",
+        "200ml leite de coco",
+        "50g Salsa Cebola e Alho"
+      ],
+      "modo_preparo": "Refogue cebola, pimentão e alho. Adicione peixe e leite de coco. Finalize com Salsa Cebola e Alho."
+    },
+    {
+      "id": "almoco13",
+      "titulo": "Bifão com Páprica Doce e Cebola",
+      "descricao": "Bifão morno com cebola caramelizada e páprica suave",
+      "categoria": "Almoço",
+      "tempo_preparo": 35,
+      "servindo": 2,
+      "pote_id": "paprica-doce",
+      "imagem_url": "/receitas/bifao-paprica-doce.jpg",
+      "ingredientes": [
+        "400g paleta",
+        "3 cebolas",
+        "50g Páprica Doce",
+        "50ml azeite"
+      ],
+      "modo_preparo": "Grelhe bifão. Caramelize cebolas separadas. Misture com Páprica Doce e azeite. Sirva sobre o bifão."
+    },
+    {
+      "id": "almoco14",
+      "titulo": "Ragu de Carne com Temperaflix Bacon",
+      "descricao": "Molho tradicional italiano com toque de bacon defumado",
+      "categoria": "Almoço",
+      "tempo_preparo": 90,
+      "servindo": 4,
+      "pote_id": "temperaflix-bacon",
+      "imagem_url": "/receitas/ragu-bacon.jpg",
+      "ingredientes": [
+        "500g carne moída",
+        "400g tomate pelado",
+        "1 cebola",
+        "3 dentes alho",
+        "60g Temperaflix Bacon"
+      ],
+      "modo_preparo": "Refogue carne, cebola e alho. Adicione tomate. Cozinhe 1 hora. Finalize com Temperaflix Bacon."
+    },
+    {
+      "id": "almoco15",
+      "titulo": "Galinhada Mineira com Edu Guedes",
+      "descricao": "Prato mineiro tradicional com galinha e tempero versátil",
+      "categoria": "Almoço",
+      "tempo_preparo": 75,
+      "servindo": 6,
+      "pote_id": "tempero-do-edu",
+      "imagem_url": "/receitas/galinhada-mineira.jpg",
+      "ingredientes": [
+        "1 galinha picada",
+        "2 xícaras arroz",
+        "1 cebola",
+        "200ml caldo chicken",
+        "50g Edu Guedes"
+      ],
+      "modo_preparo": "Cozinhe galinha com cebola. Adicione arroz e caldo. Cozinhe 45 min. Finalize com Edu Guedes."
+    },
+    {
+      "id": "almoco16",
+      "titulo": "Feijoada à Mineira com Temperaflix Ervas Finas",
+      "descricao": "Clássico mineiro com ervas aromáticas premium",
+      "categoria": "Almoço",
+      "tempo_preparo": 120,
+      "servindo": 6,
+      "pote_id": "temperaflix-ervas-finas",
+      "imagem_url": "/receitas/feijoada-ervas.jpg",
+      "ingredientes": [
+        "500g feijão preto",
+        "400g carne de porco",
+        "1 cebola",
+        "200g toucinho",
+        "60g Temperaflix Ervas Finas"
+      ],
+      "modo_preparo": "Cozinhe feijão com carnes. Refogue cebola e toucinho. Misture tudo. Finalize com Temperaflix Ervas Finas."
+    },
+    {
+      "id": "almoco17",
+      "titulo": "Strogonoff de Carne com Ana Maria",
+      "descricao": "Prato clássico brasileiro com tempero mineiro",
+      "categoria": "Almoço",
+      "tempo_preparo": 40,
+      "servindo": 4,
+      "pote_id": "ana-maria",
+      "imagem_url": "/receitas/strogonoff-ana.jpg",
+      "ingredientes": [
+        "600g carne contra filé",
+        "1 cebola",
+        "1 xícara creme",
+        "100g cogumelo",
+        "50g Ana Maria"
+      ],
+      "modo_preparo": "Refogue carne, cebola e cogumelo. Adicione creme. Tempere com Ana Maria. Cozinhe 20 min."
+    },
+    {
+      "id": "jantar1",
+      "titulo": "Peixe Grelhado com Ervas Finas",
+      "descricao": "Peixe delicado temperado com ervas desidratadas premium",
+      "categoria": "Jantar",
+      "tempo_preparo": 25,
+      "servindo": 4,
+      "pote_id": "ervas-finas",
+      "imagem_url": "/receitas/peixe-ervas-jantar.jpg",
+      "ingredientes": [
+        "800g filé de peixe branco",
+        "50g Ervas Finas",
+        "50ml azeite",
+        "2 limões"
+      ],
+      "modo_preparo": "Grelhe peixe temperado com Ervas Finas, azeite e suco de limão por 15 min."
+    },
+    {
+      "id": "jantar2",
+      "titulo": "Frango Leve com Cúrcuma e Gengibre",
+      "descricao": "Frango assado leve com toque anti-inflamatório",
+      "categoria": "Jantar",
+      "tempo_preparo": 50,
+      "servindo": 4,
+      "pote_id": "curcuma",
+      "imagem_url": "/receitas/frango-curcuma-leve.jpg",
+      "ingredientes": [
+        "800g filé de frango",
+        "40g Cúrcuma",
+        "2 colheres gengibre",
+        "100ml caldo light"
+      ],
+      "modo_preparo": "Asse frango com Cúrcuma e gengibre a 190°C por 40 min com caldo leve."
+    },
+    {
+      "id": "jantar3",
+      "titulo": "Salmão ao Forno com Lemon Pepper",
+      "descricao": "Salmão fresco com toque de pimenta preta e limão",
+      "categoria": "Jantar",
+      "tempo_preparo": 30,
+      "servindo": 2,
+      "pote_id": "lemon-pepper",
+      "imagem_url": "/receitas/salmao-lemon-pepper.jpg",
+      "ingredientes": [
+        "400g filé salmão",
+        "40g Lemon Pepper",
+        "50ml azeite",
+        "2 limões"
+      ],
+      "modo_preparo": "Coloque salmão em papel alumínio. Cubra com Lemon Pepper, azeite e limão. Asse a 200°C por 25 min."
+    },
+    {
+      "id": "jantar4",
+      "titulo": "Carne Magra Grelhada com Salsa Cebola e Alho",
+      "descricao": "Carne magra leve com tempero aromático",
+      "categoria": "Jantar",
+      "tempo_preparo": 20,
+      "servindo": 2,
+      "pote_id": "salsa-cebola-e-alho",
+      "imagem_url": "/receitas/carne-magra-salsa.jpg",
+      "ingredientes": [
+        "300g paleta magra",
+        "40g Salsa Cebola e Alho",
+        "30ml azeite"
+      ],
+      "modo_preparo": "Grelhe carne magra. Tempere com Salsa Cebola e Alho e azeite. Sirva leve."
+    },
+    {
+      "id": "jantar5",
+      "titulo": "Peito de Frango com Temperaflix Bacon Leve",
+      "descricao": "Frango light com toque de bacon defumado",
+      "categoria": "Jantar",
+      "tempo_preparo": 35,
+      "servindo": 2,
+      "pote_id": "temperaflix-bacon",
+      "imagem_url": "/receitas/peito-bacon-leve.jpg",
+      "ingredientes": [
+        "400g peito de frango",
+        "40g Temperaflix Bacon",
+        "50ml água",
+        "20ml azeite"
+      ],
+      "modo_preparo": "Refogue frango em pouca gordura. Adicione água e Temperaflix Bacon. Cozinhe 25 min."
+    },
+    {
+      "id": "jantar6",
+      "titulo": "Vegetais Leves com Edu Guedes",
+      "descricao": "Mix de vegetais cozidos no vapor com tempero versátil",
+      "categoria": "Jantar",
+      "tempo_preparo": 25,
+      "servindo": 2,
+      "pote_id": "tempero-do-edu",
+      "imagem_url": "/receitas/vegetais-leves-edu.jpg",
+      "ingredientes": [
+        "200g cenoura",
+        "200g brócolis",
+        "150g abobrinha",
+        "40g Edu Guedes",
+        "20ml azeite"
+      ],
+      "modo_preparo": "Cozinhe vegetais no vapor. Tempere com Edu Guedes e azeite. Sirva morno."
+    },
+    {
+      "id": "jantar7",
+      "titulo": "Caldo de Carne Temperado com Tempero Mineiro",
+      "descricao": "Caldo quentinho com tempero mineiro tradicional",
+      "categoria": "Jantar",
+      "tempo_preparo": 60,
+      "servindo": 4,
+      "pote_id": "tempero-mineiro",
+      "imagem_url": "/receitas/caldo-mineiro.jpg",
+      "ingredientes": [
+        "800ml caldo beef",
+        "300g carne picada",
+        "1 batata",
+        "1 cenoura",
+        "50g Tempero Mineiro"
+      ],
+      "modo_preparo": "Cozinhe caldo com carne. Adicione batata e cenoura. Tempere com Tempero Mineiro."
+    },
+    {
+      "id": "jantar8",
+      "titulo": "Moqueca Leve de Peixe com Páprica Defumada",
+      "descricao": "Peixe em caldo leve com páprica defumada",
+      "categoria": "Jantar",
+      "tempo_preparo": 40,
+      "servindo": 2,
+      "pote_id": "paprica-defumada",
+      "imagem_url": "/receitas/moqueca-leve-paprica.jpg",
+      "ingredientes": [
+        "400g peixe branco",
+        "200ml caldo leve",
+        "1 cebola",
+        "40g Páprica Defumada"
+      ],
+      "modo_preparo": "Cozinhe peixe em caldo com cebola. Finalize com Páprica Defumada."
+    },
+    {
+      "id": "jantar9",
+      "titulo": "Sopa Cremosa com Temperaflix Ervas Finas",
+      "descricao": "Sopa cremosa e reconfortante com ervas premium",
+      "categoria": "Jantar",
+      "tempo_preparo": 45,
+      "servindo": 4,
+      "pote_id": "temperaflix-ervas-finas",
+      "imagem_url": "/receitas/sopa-cremosa-ervas.jpg",
+      "ingredientes": [
+        "1L caldo vegetal",
+        "300g abóbora",
+        "200g cenoura",
+        "200ml creme",
+        "50g Temperaflix Ervas Finas"
+      ],
+      "modo_preparo": "Cozinhe abóbora e cenoura. Bata com caldo. Adicione creme e Temperaflix Ervas Finas."
+    },
+    {
+      "id": "jantar10",
+      "titulo": "Ovo Poché com Ervas Finas e Pão Integral",
+      "descricao": "Ovo poché leve com ervas aromáticas",
+      "categoria": "Jantar",
+      "tempo_preparo": 15,
+      "servindo": 1,
+      "pote_id": "ervas-finas",
+      "imagem_url": "/receitas/ovo-pocho-ervas.jpg",
+      "ingredientes": [
+        "2 ovos",
+        "30g Ervas Finas",
+        "1 fatia pão integral",
+        "20ml azeite"
+      ],
+      "modo_preparo": "Cozinhe ovos em água morna. Coloque em pão. Finalize com Ervas Finas e azeite."
+    },
+    {
+      "id": "lanche1",
+      "titulo": "Hummus com Temperaflix Tradicional",
+      "descricao": "Pasta de grão-de-bico com toque gourmet mineiro",
+      "categoria": "Lanche",
+      "tempo_preparo": 20,
+      "servindo": 4,
+      "pote_id": "temperaflix-tradicional",
+      "imagem_url": "/receitas/hummus-temperaflix.jpg",
+      "ingredientes": [
+        "400g grão-de-bico cozido",
+        "50ml azeite",
+        "2 colheres tahine",
+        "50g Temperaflix Tradicional"
+      ],
+      "modo_preparo": "Bata todos os ingredientes até cremoso. Sirva com pão árabe ou vegetais."
+    },
+    {
+      "id": "lanche2",
+      "titulo": "Guacamole com Chimi Churri Picante",
+      "descricao": "Guacamole fresco com chimichurri argentino",
+      "categoria": "Lanche",
+      "tempo_preparo": 10,
+      "servindo": 3,
+      "pote_id": "chimichurri-picante",
+      "imagem_url": "/receitas/guacamole-chimi.jpg",
+      "ingredientes": [
+        "3 abacates",
+        "1 limão",
+        "1 tomate",
+        "30g Chimi Churri Picante"
+      ],
+      "modo_preparo": "Amasse abacates com suco de limão. Adicione tomate picado e Chimi Churri Picante. Sirva."
+    },
+    {
+      "id": "lanche3",
+      "titulo": "Iogurte com Granola e Lemon Pepper",
+      "descricao": "Iogurte grego com granola crocante e toque cítrico",
+      "categoria": "Lanche",
+      "tempo_preparo": 5,
+      "servindo": 1,
+      "pote_id": "lemon-pepper",
+      "imagem_url": "/receitas/iogurte-granola-lemon.jpg",
+      "ingredientes": [
+        "150g iogurte grego",
+        "50g granola",
+        "30g Lemon Pepper"
+      ],
+      "modo_preparo": "Coloque iogurte em tigela. Adicione granola e finalize com Lemon Pepper."
+    },
+    {
+      "id": "lanche4",
+      "titulo": "Queijo com Ervas Finas e Cracker",
+      "descricao": "Tábua de queijo temperado com ervas aromaáticas",
+      "categoria": "Lanche",
+      "tempo_preparo": 10,
+      "servindo": 4,
+      "pote_id": "ervas-finas",
+      "imagem_url": "/receitas/queijo-ervas-cracker.jpg",
+      "ingredientes": [
+        "200g queijo meia cura",
+        "40g Ervas Finas",
+        "100g cracker integral"
+      ],
+      "modo_preparo": "Corte queijo em cubos. Polvilhe com Ervas Finas. Sirva com cracker."
+    },
+    {
+      "id": "lanche5",
+      "titulo": "Mix de Oleaginosas com Páprica Picante",
+      "descricao": "Mix de castanhas e sementes com páprica vermelha",
+      "categoria": "Lanche",
+      "tempo_preparo": 5,
+      "servindo": 4,
+      "pote_id": "paprica-picante",
+      "imagem_url": "/receitas/mix-oleaginosas.jpg",
+      "ingredientes": [
+        "100g castanha de caju",
+        "100g amêndoas",
+        "50g sementes de girassol",
+        "30g Páprica Picante"
+      ],
+      "modo_preparo": "Misture oleaginosas. Polvilhe Páprica Picante. Sirva em porções pequenas."
+    },
+    {
+      "id": "lanche6",
+      "titulo": "Batatinha Chips Caseira com Ana Maria",
+      "descricao": "Batata chips crocante com tempero mineiro",
+      "categoria": "Lanche",
+      "tempo_preparo": 35,
+      "servindo": 4,
+      "pote_id": "ana-maria",
+      "imagem_url": "/receitas/batatinha-chips-ana.jpg",
+      "ingredientes": [
+        "4 batatas médias",
+        "40g Ana Maria",
+        "500ml óleo para fritar"
+      ],
+      "modo_preparo": "Corte batatas em fatias finas. Frite até dourar. Tempere com Ana Maria ainda quentes."
+    },
+    {
+      "id": "lanche7",
+      "titulo": "Bruschetone com Tomate e Salsa Cebola e Alho",
+      "descricao": "Bruschetone tradicional italiano com tempero aromático",
+      "categoria": "Lanche",
+      "tempo_preparo": 15,
+      "servindo": 4,
+      "pote_id": "salsa-cebola-e-alho",
+      "imagem_url": "/receitas/bruschetone-tomate.jpg",
+      "ingredientes": [
+        "1 baguete",
+        "400g tomate fresco",
+        "40g Salsa Cebola e Alho",
+        "50ml azeite"
+      ],
+      "modo_preparo": "Toste baguete. Misture tomate com Salsa Cebola e Alho e azeite. Coloque sobre o pão."
+    },
+    {
+      "id": "lanche8",
+      "titulo": "Amendoim Crocante com Temperaflix Bacon",
+      "descricao": "Amendoim crocante com toque de bacon defumado",
+      "categoria": "Lanche",
+      "tempo_preparo": 25,
+      "servindo": 4,
+      "pote_id": "temperaflix-bacon",
+      "imagem_url": "/receitas/amendoim-bacon.jpg",
+      "ingredientes": [
+        "300g amendoim descascado",
+        "40g Temperaflix Bacon",
+        "30ml azeite",
+        "Sal"
+      ],
+      "modo_preparo": "Torça amendoim em forno a 180°C por 20 min. Misture com azeite e Temperaflix Bacon. Sirva."
+    },
+    {
+      "id": "lanche9",
+      "titulo": "Bolo de Chocolate com Páprica Doce",
+      "descricao": "Bolo de chocolate com toque doce e sutil de páprica",
+      "categoria": "Lanche",
+      "tempo_preparo": 40,
+      "servindo": 8,
+      "pote_id": "paprica-doce",
+      "imagem_url": "/receitas/bolo-chocolate-paprica.jpg",
+      "ingredientes": [
+        "200g chocolate amargo",
+        "150g açúcar",
+        "3 ovos",
+        "200ml leite",
+        "30g Páprica Doce"
+      ],
+      "modo_preparo": "Derreta chocolate com manteiga. Misture ovos, açúcar e leite. Adicione Páprica Doce. Asse a 180°C por 35 min."
+    },
+    {
+      "id": "lanche10",
+      "titulo": "Bolo de Chocolate com Temperaflix Ervas Finas",
+      "descricao": "Bolo de chocolate com toque herbal premium",
+      "categoria": "Lanche",
+      "tempo_preparo": 40,
+      "servindo": 8,
+      "pote_id": "temperaflix-ervas-finas",
+      "imagem_url": "/receitas/bolo-chocolate-herbs.jpg",
+      "ingredientes": [
+        "200g chocolate amargo",
+        "150g açúcar",
+        "3 ovos",
+        "200ml leite",
+        "30g Temperaflix Ervas Finas"
+      ],
+      "modo_preparo": "Derreta chocolate com manteiga. Misture ovos, açúcar e leite. Adicione Temperaflix Ervas Finas. Asse a 180°C por 35 min."
+    },
+    {
+      "id": "lanche11",
+      "titulo": "Biscoito de Cúrcuma e Gengibre",
+      "descricao": "Biscoito aromático anti-inflamatório",
+      "categoria": "Lanche",
+      "tempo_preparo": 30,
+      "servindo": 12,
+      "pote_id": "curcuma",
+      "imagem_url": "/receitas/biscoito-curcuma.jpg",
+      "ingredientes": [
+        "200g farinha",
+        "100g manteiga",
+        "100g açúcar",
+        "1 ovo",
+        "40g Cúrcuma"
+      ],
+      "modo_preparo": "Bata manteiga com açúcar. Adicione ovo, farinha e Cúrcuma. Asse a 180°C por 20 min."
+    }
   ]
 }
-EOFDATAgit add database/seed-data.json
-git commit -m "fix: complete seed-data with 15 potes master-max + 49 receitas"
-git push origin main

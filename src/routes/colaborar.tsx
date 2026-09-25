@@ -12,11 +12,10 @@ import { submitRecipe, type RecipeSubmissionInput } from "@/lib/recipe-submissio
 import { DIETS } from "@/lib/diets";
 
 const CONDIMENTOS = [
-  "Tempero Mineiro", "Tempero do Edu", "Ervas Finas", "Lemon Pepper", 
+  "Ana Maria", "Tempero Mineiro", "Edu Guedes", "Ervas Finas", "Lemon Pepper", 
   "Páprica Defumada", "Páprica Doce", "Páprica Picante", "Chimi Churri Picante", 
-  "Chimi Churri sem Pimenta", "Salsa, Cebola e Alho", "Cebola em Pó", "Cúrcuma", 
-  "Pimenta do Reino", "Canela em Pó", "Temperaflix Bacon", "Temperaflix Ervas Finas", 
-  "Temperaflix Tradicional", "Blend do Chefe", "Pote Premium Black"
+  "Chimi Churri sem Pimenta", "Salsa, Cebola e Alho", "Cúrcuma", 
+  "Temperaflix Bacon", "Temperaflix Ervas Finas", "Temperaflix Tradicional"
 ];
 
 const CATEGORIES = [

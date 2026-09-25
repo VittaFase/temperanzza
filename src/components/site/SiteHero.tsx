@@ -2,17 +2,18 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import { useEffect, useState } from "react";
 import { RECIPES } from "@/lib/recipes";
+import { getProductImage } from "@/lib/productImages";
 
 const HERO_SLUGS = [
-  "hamburguer-bacon-em-po",
-  "frango-assado-paprica-defumada",
-  "carne-panela-batatas-tempero-mineiro",
-  "omelete-temperaflix-ervas-finas",
+  "frango-assado-com-paprica-defumada",
+  "carne-com-chimi-churri-picante",
+  "peixe-ao-limao-com-lemon-pepper",
+  "costela-assada-com-temperaflix-tradicional",
 ];
 
 export function SiteHero() {
   const slides = HERO_SLUGS.map((slug) => RECIPES.find((r) => r.slug === slug)).filter(
-    (r): r is (typeof RECIPES)[number] => Boolean(r?.dish),
+    (r): r is (typeof RECIPES)[number] => Boolean(r),
   );
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
@@ -62,12 +63,12 @@ export function SiteHero() {
               className={`absolute inset-0 max-h-full max-w-full overflow-hidden transition-opacity duration-700 motion-reduce:transition-none ${active ? "z-10 opacity-100" : "pointer-events-none z-0 opacity-0"}`}
             >
               <img
-                src={recipe.dish!.src}
-                alt={recipe.dish!.alt}
+                src={recipe.dish?.src ?? getProductImage(recipe.featuredHandle) ?? ""}
+                alt={recipe.dish?.alt ?? recipe.title}
                 fetchPriority={index === 0 ? "high" : "auto"}
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
-                className="absolute left-0 top-0 block h-full max-h-full w-full max-w-full object-cover"
+                className="absolute left-0 top-0 block h-full max-h-full w-full max-w-full object-contain p-12 sm:p-20"
               />
               <div className="absolute inset-0 bg-black/30" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/20" />
