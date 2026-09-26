@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { getRecipeBySlug, MOMENTS, RECIPES, type Recipe } from "@/lib/recipes";
 import { getProductImage } from "@/lib/productImages";
@@ -66,16 +66,32 @@ export const Route = createFileRoute("/cozinha/$slug")({
   },
   loader: ({ params }) => {
     const redirects: Record<string, string> = {
-      "frango-grelhado-cebola-em-po": "frango-grelhado-ana-maria",
-      "sopa-legumes-cebola-em-po": "sopa-legumes-salsa-cebola-alho",
-      "figado-acebolado-cebola-po": "figado-acebolado-salsa-cebola-alho",
-      "omelete-ervas-finas-tradicional": "omelete-temperaflix-ervas-finas",
-      "frango-chimi-churri-tradicional": "frango-chimi-churri-picante",
-      "feijao-tropeiro-ana-maria": "feijao-tropeiro-tempero-mineiro",
+      "omelete-temperaflix-ervas-finas": "omelete-cremoso-temperaflix-ervas-finas",
+      "omelete-bacon-em-po": "omelete-de-bacon-temperaflix-sabor-bacon",
+      "hamburguer-bacon-em-po": "hamburguer-bacon-queijo-temperaflix-sabor-bacon",
+      "frango-panela-ana-maria": "frango-ensopado-ana-maria",
+      "pipoca-caseira-temperaflix-tradicional": "petiscos-temperaflix-tradicional",
+      "carne-panela-batatas-tempero-mineiro": "ensopado-rustico-tempero-mineiro",
+      "berinjela-assada-tempero-mineiro": "berinjela-recheada-tempero-mineiro",
+      "costelinha-paprica-defumada-tradicional": "costela-paprica-defumada",
+      "pao-carnivoro-hamburguer": "hamburguer-pao-carnivoro-paprica-defumada",
+      "porco-assado-paprica-picante": "costela-suina-paprica-picante",
+      "sardinha-grelhada-lemon-pepper": "sardinhas-grelhadas-paprica-picante-salada",
+      "camarao-manteiga-salsa-cebola-alho": "camaroes-ao-alho-salsa-cebola-alho",
+      "peixe-grelhado-salsa-cebola-alho": "peixe-grelhado-salada-salsa-cebola-alho",
+      "salmao-crosta-ervas-finas": "salmao-defumado-ervas-finas",
+      "pao-carnivoro-torrada": "torrada-carnivora-ervas-finas",
+      "pao-carnivoro-tradicional": "bolo-carnivoro-salgado-chimi-churri-sem-pimenta",
+      "abacate-recheado-frango-chimi-churri": "abacate-recheado-frango-chimi-churri-sem-pimenta",
+      "figado-acebolado-salsa-cebola-alho": "figado-acebolado-edu-guedes",
+      "bife-manteiga-chimi-churri": "bife-na-manteiga-na-frigideira-chimi-churri-picante",
+      "frango-quiabo-ana-maria": "ensopado-de-frango-quiabo-paprica-doce",
+      "frango-dourado-paprica-doce": "frango-a-passarinho-paprica-doce",
+      "legumes-assados-curcuma-tradicional": "panela-de-legumes-assados-curcuma",
     };
     if (redirects[params.slug]) throw new Response(null, { status: 301, headers: { Location: `/cozinha/${redirects[params.slug]}` } });
     const recipe = getRecipeBySlug(params.slug);
-    if (!recipe) throw notFound();
+    if (!recipe) throw new Response(null, { status: 301, headers: { Location: "/cozinha" } });
     return recipe;
   },
   component: RecipeDrawer,

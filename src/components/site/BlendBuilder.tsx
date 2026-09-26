@@ -5,40 +5,21 @@ import { toast } from "sonner";
 import { BUILDER_HANDLES, BUILDER_TARGET } from "@/lib/blends";
 import { getProductImage } from "@/lib/productImages";
 import { useShopifyPrices, useShopifyProducts } from "@/hooks/useShopifyPrices";
-import {
-  computePicksTotal,
-  BLEND_DISCOUNT_CODE,
-  BLEND_DISCOUNT_PCT,
-} from "@/lib/blendPricing";
+import { computePicksTotal, BLEND_DISCOUNT_CODE, BLEND_DISCOUNT_PCT } from "@/lib/blendPricing";
 import { formatBRL } from "@/lib/shopify";
 import { addPicksToCart } from "@/lib/blendCheckout";
 import { BlendCelebration } from "./BlendCelebration";
+import { potLabel } from "@/lib/potLabels";
+import { useBoxStore } from "@/stores/boxStore";
 
-/** Etiqueta legível a partir do handle Shopify. */
-function labelFor(handle: string): string {
-  const map: Record<string, string> = {
-    "ana-maria": "Ana Maria",
-    "chimichurri-picante": "Chimi Churri Picante",
-    "chimichurri-sem-pimenta": "Chimi Churri sem Pimenta",
-    curcuma: "Cúrcuma",
-    "edu-guedes": "Edu Guedes",
-    "ervas-finas": "Ervas Finas",
-    "lemon-pepper": "Lemon Pepper",
-    "paprica-defumada": "Páprica Defumada",
-    "paprica-doce": "Páprica Doce",
-    "paprica-picante": "Páprica Picante",
-    "salsa-cebola-e-alho": "Salsa, Cebola e Alho",
-    "tempero-mineiro": "Tempero Mineiro",
-    "temperaflix-bacon": "Temperaflix Bacon",
-    "temperaflix-ervas-finas": "Temperaflix Ervas Finas",
-    "temperaflix-tradicional": "Temperaflix Tradicional",
-  };
-  return map[handle] ?? handle;
-}
+const labelFor = potLabel;
 
 export function BlendBuilder() {
-  // mapa handle → quantidade
-  const [picks, setPicks] = useState<Record<string, number>>({});
+  // mapa handle → quantidade (compartilhado com o carrossel "Compre agora")
+  const picks = useBoxStore((st) => st.picks);
+  const addPick = useBoxStore((st) => st.add);
+  const removePick = useBoxStore((st) => st.remove);
+  const clearPicks = useBoxStore((st) => st.clear);
   const [celebrationOpen, setCelebrationOpen] = useState(false);
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -47,29 +28,19 @@ export function BlendBuilder() {
   const { products } = useShopifyProducts();
   const priceInfo = useMemo(() => computePicksTotal(picks, prices), [picks, prices]);
 
-  const total = useMemo(
-    () => Object.values(picks).reduce((s, n) => s + n, 0),
-    [picks],
-  );
+  const total = useMemo(() => Object.values(picks).reduce((s, n) => s + n, 0), [picks]);
   const remaining = BUILDER_TARGET - total;
   const isFull = total === BUILDER_TARGET;
 
   function inc(handle: string) {
     if (isFull) return;
-    setPicks((p) => Object.values(p).reduce((sum, qty) => sum + qty, 0) >= BUILDER_TARGET ? p : ({ ...p, [handle]: (p[handle] ?? 0) + 1 }));
+    addPick(handle);
   }
   function dec(handle: string) {
-    setPicks((p) => {
-      const cur = p[handle] ?? 0;
-      if (cur <= 1) {
-        const { [handle]: _omit, ...rest } = p;
-        return rest;
-      }
-      return { ...p, [handle]: cur - 1 };
-    });
+    removePick(handle);
   }
   function clear() {
-    setPicks({});
+    clearPicks();
   }
 
   async function handleCheckout() {
@@ -98,7 +69,7 @@ export function BlendBuilder() {
   }
 
   return (
-    <section className="py-20 sm:py-24">
+    <section id="montar" className="py-20 sm:py-24 scroll-mt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10">
         {/* Catálogo de escolha */}
         <div>
@@ -115,8 +86,9 @@ export function BlendBuilder() {
             </button>
           </div>
           <p className="text-muted-foreground mb-8">
-            Combine livremente entre os {BUILDER_HANDLES.length} sabores da
-            casa. Pode repetir o mesmo pote quantas vezes quiser.
+            Toque nos potes para marcar os escolhidos. São {BUILDER_HANDLES.length} opções e você
+            pode repetir o mesmo pote. Ao completar {BUILDER_TARGET} potes, a caixa fecha e o cupom
+            de {BLEND_DISCOUNT_PCT}% é aplicado automaticamente.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -128,9 +100,7 @@ export function BlendBuilder() {
                 <div
                   key={handle}
                   className={`relative flex flex-col border bg-brand-cream transition-all ${
-                    qty > 0
-                      ? "border-accent ring-1 ring-accent"
-                      : "border-foreground/10"
+                    qty > 0 ? "border-accent ring-1 ring-accent" : "border-foreground/10"
                   } ${disabled ? "opacity-50" : ""}`}
                 >
                   {qty > 0 && (
@@ -146,7 +116,8 @@ export function BlendBuilder() {
                     aria-label={`Adicionar ${labelFor(handle)}`}
                   >
                     {img ? (
-                      <img decoding="async"
+                      <img
+                        decoding="async"
                         src={img}
                         alt={labelFor(handle)}
                         className="max-h-full max-w-full object-contain drop-shadow-[0_10px_14px_rgba(0,0,0,0.25)]"
@@ -223,10 +194,7 @@ export function BlendBuilder() {
               </p>
             ) : (
               Object.entries(picks).map(([h, q]) => (
-                <div
-                  key={h}
-                  className="flex items-center justify-between text-sm gap-2"
-                >
+                <div key={h} className="flex items-center justify-between text-sm gap-2">
                   <span className="truncate">{labelFor(h)}</span>
                   <span className="flex items-center gap-2 shrink-0">
                     <span className="text-foreground/60">×{q}</span>
@@ -264,7 +232,8 @@ export function BlendBuilder() {
                   <div className="mt-2 inline-flex items-center gap-1.5 border border-accent/60 bg-accent/10 px-2 py-1">
                     <Tag className="w-3 h-3 text-accent" />
                     <span className="text-[10px] font-display uppercase tracking-[0.2em] text-accent">
-                      {BLEND_DISCOUNT_PCT}% off · {BLEND_DISCOUNT_CODE}
+                      Cupom {BLEND_DISCOUNT_CODE} aplicado automaticamente · {BLEND_DISCOUNT_PCT}%
+                      off
                     </span>
                   </div>
                 </>
@@ -274,7 +243,7 @@ export function BlendBuilder() {
                     {formatBRL(priceInfo.full, priceInfo.currencyCode)}
                   </p>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-1">
-                    Feche 12 potes para desbloquear {BLEND_DISCOUNT_PCT}% off
+                    Complete {BUILDER_TARGET} potes e o cupom de {BLEND_DISCOUNT_PCT}% entra sozinho
                   </p>
                 </>
               )}
@@ -293,7 +262,7 @@ export function BlendBuilder() {
               ) : isFull ? (
                 <>
                   <ShoppingBag className="w-4 h-4 mr-2" />
-                  Finalizar minha caixa
+                  Colocar na sacola com 10% off
                 </>
               ) : (
                 <>

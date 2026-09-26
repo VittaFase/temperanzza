@@ -1,28 +1,30 @@
 /**
  * Registro comercial de handle canônico → imagem local do produto.
  *
- * Os PNGs confirmados do rebrand em `assets/rebrand-products` têm prioridade.
- * Shopify continua sendo a fonte comercial e os assets legados permanecem como
- * fallback para SKUs que ainda não possuem um PNG do rebrand identificado.
+ * Somente as 17 imagens oficiais em `assets/rebrand-products` são usadas:
+ * 15 potes do rebrand MASTER-MAX + Canela Moída e Pimenta do Reino (Premium Black).
+ * Fotos legadas de potes foram removidas do projeto e não há fallback de imagem.
  * Aliases técnicos são normalizados antes da consulta para impedir
  * correspondências acidentais por substring.
  */
-import rebrandAnaMaria from "@/assets/rebrand-products/ANA MARIA - 1.png";
-import rebrandChimiPicante from "@/assets/rebrand-products/CHIMI CHURRI PICANTE - 1.png";
-import rebrandChimiSemPimenta from "@/assets/rebrand-products/CHIMI CHURRI SEM PIMENTA - 1.png";
-import rebrandCurcuma from "@/assets/rebrand-products/CÚRCUMA - 1.png";
-import rebrandEdu from "@/assets/rebrand-products/EDU GUEDES - TEMPERO DO EDU - 1.png";
-import rebrandErvasFinas from "@/assets/rebrand-products/ERVAS FINAS - 1.png";
-import rebrandLemonPepper from "@/assets/rebrand-products/LEMON PEPPER - 1.png";
-import rebrandPapricaDefumada from "@/assets/rebrand-products/PÁPRICA DEFUMADA - 1.png";
-import rebrandPapricaDoce from "@/assets/rebrand-products/PÁPRICA DOCE - 1.png";
-import rebrandPapricaPicante from "@/assets/rebrand-products/PÁPRICA PICANTE - 1.png";
-import rebrandSalsaCebolaAlho from "@/assets/rebrand-products/SALSA, CEBOLA E ALHO - 1.png";
-import rebrandFlixBacon from "@/assets/rebrand-products/TEMPERAFLIX BACON - 1.png";
-import rebrandFlixTradicional from "@/assets/rebrand-products/Untitled design - 1.png";
+import imgAnaMaria from "@/assets/rebrand-products/ana-maria.png";
+import imgChimiPicante from "@/assets/rebrand-products/chimi-churri-picante.png";
+import imgChimiSemPimenta from "@/assets/rebrand-products/chimi-churri-sem-pimenta.png";
+import imgCurcuma from "@/assets/rebrand-products/curcuma.png";
+import imgEduGuedes from "@/assets/rebrand-products/edu-guedes.png";
+import imgErvasFinas from "@/assets/rebrand-products/ervas-finas.png";
+import imgLemonPepper from "@/assets/rebrand-products/lemon-pepper.png";
+import imgPapricaDefumada from "@/assets/rebrand-products/paprica-defumada.png";
+import imgPapricaDoce from "@/assets/rebrand-products/paprica-doce.png";
+import imgPapricaPicante from "@/assets/rebrand-products/paprica-picante.png";
+import imgSalsaCebolaAlho from "@/assets/rebrand-products/salsa-cebola-e-alho.png";
+import imgFlixBacon from "@/assets/rebrand-products/temperaflix-bacon.png";
+import imgFlixErvas from "@/assets/rebrand-products/temperaflix-ervas-finas.png";
+import imgFlixTradicional from "@/assets/rebrand-products/temperaflix-tradicional.png";
+import imgTemperoMineiro from "@/assets/rebrand-products/tempero-mineiro.png";
+import imgCanelaPremiumBlack from "@/assets/rebrand-products/canela-moida-premium-black.png";
+import imgPimentaPremiumBlack from "@/assets/rebrand-products/pimenta-do-reino-premium-black.png";
 
-import flixErvas from "@/assets/temperaflix-ervas-finas.png.asset.json";
-import mineiro from "@/assets/tempero-mineiro.png.asset.json";
 import { canonicalProductHandle } from "@/lib/rebrandCatalog";
 
 /**
@@ -30,25 +32,23 @@ import { canonicalProductHandle } from "@/lib/rebrandCatalog";
  * Não usar inferência por nome, substring ou posição de arquivo.
  */
 const REBRAND_IMAGE_MAP: Record<string, string> = {
-  "ana-maria": rebrandAnaMaria,
-  "chimichurri-picante": rebrandChimiPicante,
-  "chimichurri-sem-pimenta": rebrandChimiSemPimenta,
-  curcuma: rebrandCurcuma,
-  "ervas-finas": rebrandErvasFinas,
-  "lemon-pepper": rebrandLemonPepper,
-  "paprica-defumada": rebrandPapricaDefumada,
-  "paprica-doce": rebrandPapricaDoce,
-  "paprica-picante": rebrandPapricaPicante,
-  "salsa-cebola-e-alho": rebrandSalsaCebolaAlho,
-  "temperaflix-bacon": rebrandFlixBacon,
-  "temperaflix-tradicional": rebrandFlixTradicional,
-  "tempero-do-edu": rebrandEdu,
-};
-
-/** Assets legados mantidos somente para SKUs ainda sem rebrand identificado. */
-const LEGACY_IMAGE_MAP: Record<string, string> = {
-  "temperaflix-ervas-finas": flixErvas.url,
-  "tempero-mineiro": mineiro.url,
+  "ana-maria": imgAnaMaria,
+  "chimichurri-picante": imgChimiPicante,
+  "chimichurri-sem-pimenta": imgChimiSemPimenta,
+  curcuma: imgCurcuma,
+  "tempero-do-edu": imgEduGuedes,
+  "ervas-finas": imgErvasFinas,
+  "lemon-pepper": imgLemonPepper,
+  "paprica-defumada": imgPapricaDefumada,
+  "paprica-doce": imgPapricaDoce,
+  "paprica-picante": imgPapricaPicante,
+  "salsa-cebola-e-alho": imgSalsaCebolaAlho,
+  "temperaflix-bacon": imgFlixBacon,
+  "temperaflix-ervas-finas": imgFlixErvas,
+  "temperaflix-tradicional": imgFlixTradicional,
+  "tempero-mineiro": imgTemperoMineiro,
+  "canela-moida": imgCanelaPremiumBlack,
+  "pimenta-do-reino": imgPimentaPremiumBlack,
 };
 
 export type ProductImageSource = "rebrand" | "legacy" | "shopify" | "missing";
@@ -68,10 +68,9 @@ export function resolveProductImage(handle: string, fallback?: string | null): P
   const rebrand = REBRAND_IMAGE_MAP[canonicalHandle];
   if (rebrand) return { url: rebrand, source: "rebrand" };
 
-  const legacy = LEGACY_IMAGE_MAP[canonicalHandle];
-  if (legacy) return { url: legacy, source: "legacy" };
-
-  if (fallback) return { url: fallback, source: "shopify" };
+  // Somente imagens oficiais do rebrand são exibidas. Sem PNG do rebrand = sem imagem
+  // (nenhuma foto legada ou da Shopify é usada como substituta).
+  void fallback;
   return { url: null, source: "missing" };
 }
 

@@ -41,7 +41,7 @@ export function CombinaCom({
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
         {suggestions.map((p) => {
-          const img = getProductImage(p.node.handle) ?? p.node.images.edges[0]?.node.url;
+          const img = getProductImage(p.node.handle);
           const price = p.node.priceRange.minVariantPrice;
           return (
             <Link

@@ -10,7 +10,7 @@
       "sku": "TZ-ANA-100",
       "rating": 4.8,
       "reviews_count": 45,
-      "imagem_url": "/potes/ana-maria-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/ana-maria.png",
       "origem": "Belo Horizonte, MG",
       "estoque": 150,
       "ativo": true
@@ -25,7 +25,7 @@
       "sku": "TZ-CHIP-100",
       "rating": 4.7,
       "reviews_count": 38,
-      "imagem_url": "/potes/chimi-churri-picante-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/chimi-churri-picante.png",
       "origem": "Buenos Aires, AR",
       "estoque": 120,
       "ativo": true
@@ -40,7 +40,7 @@
       "sku": "TZ-CHIS-100",
       "rating": 4.6,
       "reviews_count": 32,
-      "imagem_url": "/potes/chimi-churri-sem-pimenta-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/chimi-churri-sem-pimenta.png",
       "origem": "Buenos Aires, AR",
       "estoque": 110,
       "ativo": true
@@ -55,7 +55,7 @@
       "sku": "TZ-CUR-80",
       "rating": 4.9,
       "reviews_count": 52,
-      "imagem_url": "/potes/curcuma-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/curcuma.png",
       "origem": "Kerala, Índia",
       "estoque": 95,
       "ativo": true
@@ -70,7 +70,7 @@
       "sku": "TZ-EDU-100",
       "rating": 4.7,
       "reviews_count": 41,
-      "imagem_url": "/potes/edu-guedes-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/edu-guedes.png",
       "origem": "São Paulo, SP",
       "estoque": 130,
       "ativo": true
@@ -85,7 +85,7 @@
       "sku": "TZ-ERB-90",
       "rating": 4.8,
       "reviews_count": 47,
-      "imagem_url": "/potes/ervas-finas-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/ervas-finas.png",
       "origem": "Minas Gerais, MG",
       "estoque": 125,
       "ativo": true
@@ -100,7 +100,7 @@
       "sku": "TZ-LEM-100",
       "rating": 4.9,
       "reviews_count": 55,
-      "imagem_url": "/potes/lemon-pepper-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/lemon-pepper.png",
       "origem": "Itália",
       "estoque": 140,
       "ativo": true
@@ -115,7 +115,7 @@
       "sku": "TZ-PAD-100",
       "rating": 4.8,
       "reviews_count": 43,
-      "imagem_url": "/potes/paprica-defumada-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/paprica-defumada.png",
       "origem": "Hungria",
       "estoque": 115,
       "ativo": true
@@ -130,7 +130,7 @@
       "sku": "TZ-PAO-100",
       "rating": 4.7,
       "reviews_count": 39,
-      "imagem_url": "/potes/paprica-doce-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/paprica-doce.png",
       "origem": "Hungria",
       "estoque": 125,
       "ativo": true
@@ -145,7 +145,7 @@
       "sku": "TZ-PAP-100",
       "rating": 4.8,
       "reviews_count": 46,
-      "imagem_url": "/potes/paprica-picante-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/paprica-picante.png",
       "origem": "Hungria",
       "estoque": 120,
       "ativo": true
@@ -160,7 +160,7 @@
       "sku": "TZ-SAL-100",
       "rating": 4.9,
       "reviews_count": 51,
-      "imagem_url": "/potes/salsa-cebola-alho-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/salsa-cebola-e-alho.png",
       "origem": "Minas Gerais, MG",
       "estoque": 135,
       "ativo": true
@@ -175,7 +175,7 @@
       "sku": "TZ-BAC-100",
       "rating": 4.9,
       "reviews_count": 48,
-      "imagem_url": "/potes/temperaflix-bacon-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/temperaflix-bacon.png",
       "origem": "Belo Horizonte, MG",
       "estoque": 100,
       "ativo": true
@@ -190,7 +190,7 @@
       "sku": "TZ-TEF-100",
       "rating": 4.8,
       "reviews_count": 44,
-      "imagem_url": "/potes/temperaflix-ervas-finas-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/temperaflix-ervas-finas.png",
       "origem": "Belo Horizonte, MG",
       "estoque": 105,
       "ativo": true
@@ -205,7 +205,7 @@
       "sku": "TZ-TET-100",
       "rating": 4.9,
       "reviews_count": 53,
-      "imagem_url": "/potes/temperaflix-tradicional-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/temperaflix-tradicional.png",
       "origem": "Belo Horizonte, MG",
       "estoque": 145,
       "ativo": true
@@ -220,7 +220,7 @@
       "sku": "TZ-TEM-100",
       "rating": 4.8,
       "reviews_count": 49,
-      "imagem_url": "/potes/tempero-mineiro-master-max.jpg",
+      "imagem_url": "src/assets/rebrand-products/tempero-mineiro.png",
       "origem": "Minas Gerais, MG",
       "estoque": 160,
       "ativo": true
@@ -228,770 +228,883 @@
   ],
   "receitas": [
     {
-      "id": "cafe1",
-      "titulo": "Bolo de Milho com Temperaflix Bacon",
-      "descricao": "Bolo cremoso de milho verde com toque de bacon defumado",
+      "id": "omelete-cremoso-temperaflix-ervas-finas",
+      "titulo": "Omelete Cremoso com Temperaflix Ervas Finas",
+      "descricao": "Um omelete dourado por fora e cremoso por dentro, recheado com cogumelos salteados, pimentão vermelho e queijo derretido. O Temperaflix Ervas Finas entra na massa e na finalização, perfumando cada garfada. Café da manhã de hotel, feito em casa em 20 minutos.",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 20,
+      "rendimento": "2 porções",
+      "pote_id": "temperaflix-ervas-finas",
+      "imagem_url": "/receitas/omelete-cremoso-temperaflix-ervas-finas.jpg",
+      "ingredientes": [
+        "4 ovos",
+        "2 colheres (sopa) de creme de leite fresco",
+        "1 colher (sopa) de manteiga",
+        "100 g de cogumelos-de-paris fatiados",
+        "1/2 pimentão vermelho em tiras finas",
+        "60 g de queijo muçarela ralado",
+        "1 colher (chá) de Temperaflix Ervas Finas Temperanzza, e mais a gosto para finalizar",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Em uma frigideira média, derreta metade da manteiga em fogo médio e salteie os cogumelos e o pimentão por 4 minutos, até dourarem. Tempere com uma pitada de sal e reserve. Em uma tigela, bata os ovos com o creme de leite, uma pitada de sal e metade do Temperaflix Ervas Finas até ficar homogêneo. Na mesma frigideira, derreta o restante da manteiga em fogo baixo e despeje os ovos. Cozinhe por 3 a 4 minutos, puxando as bordas para o centro, até a base firmar e o topo continuar cremoso. Distribua os cogumelos, o pimentão e o queijo sobre metade do omelete. Dobre o omelete ao meio, tampe a frigideira e deixe por 1 minuto para o queijo derreter. Transfira para o prato e finalize com o restante do Temperaflix Ervas Finas por cima."
+    },
+    {
+      "id": "petiscos-temperaflix-ervas-finas",
+      "titulo": "Petiscos com Temperaflix Ervas Finas",
+      "descricao": "Uma mesa de petiscos para dividir: batata frita crocante, iscas de frango empanadas, cogumelos salteados com castanhas e pipoca, tudo com o mesmo tempero. O Temperaflix Ervas Finas une os quatro sabores em uma só assinatura. Ideal para receber os amigos ou para a sessão de cinema em casa.",
+      "categoria": "Lanches/Petiscos",
+      "tempo_preparo": 50,
+      "rendimento": "4 porções",
+      "pote_id": "temperaflix-ervas-finas",
+      "imagem_url": "/receitas/petiscos-temperaflix-ervas-finas.jpg",
+      "ingredientes": [
+        "4 batatas grandes cortadas em palitos",
+        "500 g de filé de frango em iscas",
+        "2 ovos batidos",
+        "1 xícara de farinha panko",
+        "200 g de cogumelos-de-paris cortados ao meio",
+        "1/2 xícara de castanhas mistas (caju e amêndoas)",
+        "1/2 xícara de milho de pipoca",
+        "2 colheres (sopa) de manteiga",
+        "2 colheres (sopa) de Temperaflix Ervas Finas Temperanzza",
+        "Óleo para fritar",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Tempere as iscas de frango com sal e 1 colher (chá) de Temperaflix Ervas Finas. Passe no ovo batido e depois na farinha panko, pressionando bem. Aqueça o óleo a 170 °C e frite as batatas em porções por cerca de 6 minutos, até dourarem. Escorra em papel-toalha e polvilhe Temperaflix Ervas Finas ainda quentes. No mesmo óleo, frite as iscas de frango por 4 a 5 minutos, até dourarem por igual. Escorra em papel-toalha. Em uma frigideira, derreta 1 colher (sopa) de manteiga e salteie os cogumelos e as castanhas por 5 minutos. Tempere com Temperaflix Ervas Finas. Estoure a pipoca em uma panela tampada com um fio de óleo, em fogo médio. Regue com o restante da manteiga derretida, polvilhe Temperaflix Ervas Finas, tampe e sacuda a panela. Monte tudo em uma tábua ou travessa e sirva na hora."
+    },
+    {
+      "id": "petiscos-gourmet-temperaflix-sabor-bacon",
+      "titulo": "Petiscos Gourmet com Temperaflix Sabor Bacon",
+      "descricao": "A tábua de petiscos da casa em versão defumada: batata frita, frango empanado, cogumelos com castanhas e pipoca, todos com o mesmo tempero. O Temperaflix Sabor Bacon leva o sabor de bacon a cada porção, sem precisar fritar uma fatia sequer. Para quem gosta de petisco com personalidade.",
+      "categoria": "Lanches/Petiscos",
+      "tempo_preparo": 50,
+      "rendimento": "4 porções",
+      "pote_id": "temperaflix-bacon",
+      "imagem_url": "/receitas/petiscos-gourmet-temperaflix-sabor-bacon.jpg",
+      "ingredientes": [
+        "4 batatas grandes cortadas em palitos",
+        "500 g de filé de frango em pedaços",
+        "2 ovos batidos",
+        "1 xícara de farinha panko",
+        "200 g de cogumelos-de-paris cortados ao meio",
+        "1/2 xícara de castanhas mistas (caju e amêndoas)",
+        "1/2 xícara de milho de pipoca",
+        "2 colheres (sopa) de manteiga",
+        "2 colheres (sopa) de Temperaflix Sabor Bacon Temperanzza",
+        "Óleo para fritar",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Tempere o frango com sal e 1 colher (chá) de Temperaflix Sabor Bacon. Passe no ovo batido e depois na farinha panko, pressionando bem. Aqueça o óleo a 170 °C e frite as batatas em porções por cerca de 6 minutos, até dourarem. Escorra e polvilhe Temperaflix Sabor Bacon ainda quentes. No mesmo óleo, frite o frango por 4 a 5 minutos, até dourar por igual. Escorra em papel-toalha. Em uma frigideira, derreta 1 colher (sopa) de manteiga e salteie os cogumelos e as castanhas por 5 minutos. Tempere com Temperaflix Sabor Bacon. Estoure a pipoca em uma panela tampada com um fio de óleo. Regue com o restante da manteiga derretida, polvilhe Temperaflix Sabor Bacon, tampe e sacuda a panela. Monte tudo em uma tábua ou travessa e sirva na hora."
+    },
+    {
+      "id": "ovos-benedict-temperaflix-sabor-bacon",
+      "titulo": "Ovos Benedict com Temperaflix Sabor Bacon",
+      "descricao": "O clássico do brunch montado em camadas: pão tostado, bacon crocante, ovo pochê e molho holandês cremoso. O Temperaflix Sabor Bacon tempera o molho e reforça o sabor defumado. Acompanhado de folhas verdes para equilibrar.",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 35,
+      "rendimento": "2 porções",
+      "pote_id": "temperaflix-bacon",
+      "imagem_url": "/receitas/ovos-benedict-temperaflix-sabor-bacon.jpg",
+      "ingredientes": [
+        "2 muffins ingleses (ou 4 fatias grossas de pão de fôrma)",
+        "4 fatias de bacon",
+        "4 ovos bem frescos",
+        "1 colher (sopa) de vinagre branco",
+        "1 xícara de folhas verdes (rúcula e alface)",
+        "Cebolinha picada para finalizar",
+        "2 gemas",
+        "80 g de manteiga derretida",
+        "1 colher (sopa) de suco de limão",
+        "1 colher (chá) de Temperaflix Sabor Bacon Temperanzza",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Doure o bacon em uma frigideira até ficar crocante. Reserve e guarde a gordura na frigideira. Prepare o molho: em banho-maria, bata as gemas com o suco de limão até engrossarem levemente. Sem parar de bater, junte a manteiga derretida em fio até formar um creme liso. Tempere com sal e metade do Temperaflix Sabor Bacon. Abra os muffins ao meio e toste na gordura do bacon. Ferva água com o vinagre em uma panela. Abaixe o fogo, faça um redemoinho com uma colher e coloque um ovo por vez. Cozinhe por 3 minutos e retire com escumadeira. Monte: pão, bacon, ovo pochê e molho holandês por cima. Finalize com o restante do Temperaflix Sabor Bacon e a cebolinha. Sirva com as folhas verdes."
+    },
+    {
+      "id": "omelete-de-bacon-temperaflix-sabor-bacon",
+      "titulo": "Omelete de Bacon com Temperaflix Sabor Bacon",
+      "descricao": "Omelete dourado, recheado com bacon crocante e queijo derretido que escorre ao cortar. O Temperaflix Sabor Bacon vai na massa e por cima, dobrando o sabor defumado. Pronto em 20 minutos, sem pão e sem complicação.",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 20,
+      "rendimento": "2 porções",
+      "pote_id": "temperaflix-bacon",
+      "imagem_url": "/receitas/omelete-de-bacon-temperaflix-sabor-bacon.jpg",
+      "ingredientes": [
+        "4 ovos",
+        "100 g de bacon em cubos",
+        "80 g de queijo muçarela ralado",
+        "1 colher (sopa) de manteiga",
+        "1 colher (chá) de Temperaflix Sabor Bacon Temperanzza",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Doure o bacon em uma frigideira antiaderente até ficar crocante. Retire e descarte o excesso de gordura. Bata os ovos com uma pitada de sal e metade do Temperaflix Sabor Bacon. Derreta a manteiga na frigideira em fogo baixo e despeje os ovos. Cozinhe por 3 minutos, até a base firmar. Espalhe o bacon e o queijo sobre metade do omelete. Dobre ao meio, tampe e deixe por 1 minuto para o queijo derreter. Sirva polvilhado com o restante do Temperaflix Sabor Bacon."
+    },
+    {
+      "id": "hamburguer-bacon-queijo-temperaflix-sabor-bacon",
+      "titulo": "Hambúrguer Bacon com Queijo e Temperaflix Sabor Bacon",
+      "descricao": "Hambúrguer artesanal alto e suculento, com cheddar derretido, bacon crocante e tomate no pão brioche. O Temperaflix Sabor Bacon tempera a carne antes de ir para a chapa. O queijo escorre, o shaker assina.",
+      "categoria": "Lanches/Petiscos",
+      "tempo_preparo": 27,
+      "rendimento": "4 porções",
+      "pote_id": "temperaflix-bacon",
+      "imagem_url": "/receitas/hamburguer-bacon-queijo-temperaflix-sabor-bacon.jpg",
+      "ingredientes": [
+        "600 g de carne moída (acém ou fraldinha, com 20% de gordura)",
+        "8 fatias de bacon",
+        "4 fatias de queijo cheddar",
+        "4 pães brioche",
+        "1 tomate em rodelas",
+        "1 colher (sopa) de manteiga",
+        "1 colher (sopa) de Temperaflix Sabor Bacon Temperanzza",
+        "Sal e pimenta-do-reino a gosto"
+      ],
+      "modo_preparo": "Divida a carne em 4 porções de 150 g e modele discos 1 cm mais largos que o pão, sem apertar demais. Tempere os dois lados de cada hambúrguer com Temperaflix Sabor Bacon, sal e pimenta-do-reino. Doure o bacon em uma chapa ou frigideira grande até ficar crocante. Reserve. Na mesma chapa bem quente, grelhe os hambúrgueres por 3 a 4 minutos de cada lado. No último minuto, coloque o cheddar e tampe para derreter. Toste os pães abertos na manteiga. Monte: pão, hambúrguer com cheddar, bacon, tomate e a tampa do pão."
+    },
+    {
+      "id": "frango-ensopado-ana-maria",
+      "titulo": "Frango Ensopado com Ana Maria",
+      "descricao": "Coxas e sobrecoxas cozidas devagar em um caldo encorpado com cenoura e batata. O Ana Maria tempera o frango desde o início e dá cor ao molho. Comida de panela, conforto em forma de refogado.",
+      "categoria": "Almoço",
+      "tempo_preparo": 60,
+      "rendimento": "4 porções",
+      "pote_id": "ana-maria",
+      "imagem_url": "/receitas/frango-ensopado-ana-maria.jpg",
+      "ingredientes": [
+        "1 kg de coxas e sobrecoxas de frango",
+        "1 cebola picada",
+        "2 dentes de alho picados",
+        "2 tomates picados",
+        "1 cenoura em rodelas",
+        "2 batatas em cubos",
+        "2 colheres (sopa) de azeite",
+        "1 colher (sopa) de Ana Maria Temperanzza",
+        "500 ml de água quente",
+        "Sal a gosto",
+        "Cheiro-verde picado para finalizar"
+      ],
+      "modo_preparo": "Tempere o frango com o Ana Maria e sal. Deixe descansar por 15 minutos. Em uma panela, aqueça o azeite e doure os pedaços de frango de todos os lados. Retire e reserve. Na mesma panela, refogue a cebola e o alho até ficarem transparentes. Junte o tomate e cozinhe até desmanchar. Volte o frango à panela, adicione a água quente, tampe e cozinhe em fogo baixo por 25 minutos. Acrescente a cenoura e a batata e cozinhe por mais 15 minutos, até os legumes ficarem macios e o caldo encorpar. Acerte o sal e finalize com cheiro-verde."
+    },
+    {
+      "id": "frango-grelhado-ana-maria",
+      "titulo": "Frango Grelhado com Ana Maria",
+      "descricao": "Filé de peito de frango suculento, com marcas de grelha e tempero na medida. O Ana Maria faz o frango simples parecer almoço de domingo. Uma base versátil para o almoço, a marmita ou a salada.",
+      "categoria": "Almoço",
+      "tempo_preparo": 40,
+      "rendimento": "2 porções",
+      "pote_id": "ana-maria",
+      "imagem_url": "/receitas/frango-grelhado-ana-maria.jpg",
+      "ingredientes": [
+        "2 filés de peito de frango (cerca de 400 g)",
+        "1 colher (sopa) de azeite",
+        "Suco de 1/2 limão",
+        "2 colheres (chá) de Ana Maria Temperanzza",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Abra os filés ao meio no sentido da espessura, para que fiquem com altura uniforme. Tempere com o Ana Maria, o suco de limão, o azeite e sal. Deixe marinar por pelo menos 20 minutos. Aqueça bem uma grelha ou frigideira de ferro em fogo alto. Grelhe os filés por 4 a 5 minutos de cada lado, sem mexer, até formar as marcas e o centro ficar cozido. Deixe descansar por 3 minutos antes de servir ou fatiar."
+    },
+    {
+      "id": "ovos-cremosos-queijo-gratinado-temperaflix-tradicional",
+      "titulo": "Ovos Cremosos com Queijo Gratinado e Temperaflix Tradicional",
+      "descricao": "Ovos mexidos em fogo baixo até ficarem cremosos, cobertos com queijo e levados ao forno para gratinar. O Temperaflix Tradicional entra no final, sobre o queijo dourado. Um café da manhã rápido com cara de restaurante.",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 15,
+      "rendimento": "2 porções",
+      "pote_id": "temperaflix-tradicional",
+      "imagem_url": "/receitas/ovos-cremosos-queijo-gratinado-temperaflix-tradicional.jpg",
+      "ingredientes": [
+        "5 ovos",
+        "2 colheres (sopa) de requeijão cremoso",
+        "1 colher (sopa) de manteiga",
+        "60 g de queijo muçarela ralado",
+        "2 colheres (sopa) de queijo parmesão ralado",
+        "1 colher (chá) de Temperaflix Tradicional Temperanzza",
+        "Sal a gosto",
+        "Salsinha picada para finalizar"
+      ],
+      "modo_preparo": "Preaqueça o forno a 220 °C, com a função grill se houver. Bata levemente os ovos com o requeijão e uma pitada de sal. Derreta a manteiga em fogo baixo, em uma frigideira que possa ir ao forno. Despeje os ovos e mexa devagar com uma espátula por 3 a 4 minutos, até formarem dobras cremosas. Desligue o fogo e cubra com a muçarela e o parmesão. Leve ao forno por 4 a 5 minutos, até o queijo borbulhar e dourar. Finalize com Temperaflix Tradicional e salsinha. Sirva na hora."
+    },
+    {
+      "id": "petiscos-temperaflix-tradicional",
+      "titulo": "Petiscos com Temperaflix Tradicional",
+      "descricao": "Batata frita, frango empanado e uma tigela generosa de pipoca, tudo com o mesmo tempero. O Temperaflix Tradicional acompanha cada porção, do primeiro ao último petisco. O cinema em casa nunca foi tão bem temperado.",
+      "categoria": "Lanches/Petiscos",
+      "tempo_preparo": 45,
+      "rendimento": "4 porções",
+      "pote_id": "temperaflix-tradicional",
+      "imagem_url": "/receitas/petiscos-temperaflix-tradicional.jpg",
+      "ingredientes": [
+        "4 batatas grandes cortadas em palitos",
+        "500 g de filé de frango em pedaços",
+        "1 xícara de farinha de trigo",
+        "2 ovos batidos",
+        "1 xícara de farinha panko",
+        "1/2 xícara de milho de pipoca",
+        "2 colheres (sopa) de manteiga derretida",
+        "2 colheres (sopa) de Temperaflix Tradicional Temperanzza",
+        "Óleo para fritar",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Tempere o frango com sal e 1 colher (chá) de Temperaflix Tradicional. Passe na farinha de trigo, no ovo batido e na farinha panko, nessa ordem. Aqueça o óleo a 170 °C e frite as batatas em porções por cerca de 6 minutos, até dourarem. Escorra e polvilhe Temperaflix Tradicional ainda quentes. No mesmo óleo, frite o frango por 4 a 5 minutos, até dourar por igual. Escorra em papel-toalha. Estoure a pipoca em uma panela tampada com um fio de óleo. Regue com a manteiga derretida, polvilhe Temperaflix Tradicional, tampe e sacuda a panela. Sirva tudo junto em uma tábua ou travessa."
+    },
+    {
+      "id": "ensopado-rustico-tempero-mineiro",
+      "titulo": "Ensopado Rústico com Tempero Mineiro",
+      "descricao": "Pedaços de carne cozidos lentamente até desmanchar, com batatas inteiras em um molho escuro e brilhante. O Tempero Mineiro dá a base de fundo de quintal que esse prato pede. O prato de domingo, todo dia.",
+      "categoria": "Almoço",
+      "tempo_preparo": 110,
+      "rendimento": "6 porções",
+      "pote_id": "tempero-mineiro",
+      "imagem_url": "/receitas/ensopado-rustico-tempero-mineiro.jpg",
+      "ingredientes": [
+        "1,2 kg de acém ou músculo em cubos grandes",
+        "500 g de batatas pequenas descascadas",
+        "1 cebola picada",
+        "3 dentes de alho picados",
+        "2 colheres (sopa) de extrato de tomate",
+        "2 colheres (sopa) de óleo",
+        "1 colher (sopa) de Tempero Mineiro Temperanzza",
+        "2 folhas de louro",
+        "1 litro de água quente",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Tempere a carne com o Tempero Mineiro e sal. Na panela de pressão aberta, aqueça o óleo e sele a carne em porções até dourar bem. Retire e reserve. Refogue a cebola e o alho na mesma panela. Junte o extrato de tomate e mexa por 2 minutos. Volte a carne à panela, junte o louro e a água quente. Tampe e cozinhe por 40 minutos após pegar pressão (ou 1h45 em panela comum tampada). Retire a pressão, junte as batatas e cozinhe com a panela aberta por 20 minutos, até as batatas ficarem macias e o molho encorpar. Retire o louro e acerte o sal."
+    },
+    {
+      "id": "feijao-tropeiro-tempero-mineiro",
+      "titulo": "Feijão Tropeiro com Tempero Mineiro",
+      "descricao": "Feijão firme, bacon, linguiça, ovos e farinha de mandioca, tudo misturado na panela quente. O Tempero Mineiro é a nossa homenagem a esse clássico de fundo de quintal. Tradição mineira, do jeito que deve ser.",
+      "categoria": "Almoço",
+      "tempo_preparo": 45,
+      "rendimento": "4 porções",
+      "pote_id": "tempero-mineiro",
+      "imagem_url": "/receitas/feijao-tropeiro-tempero-mineiro.jpg",
+      "ingredientes": [
+        "3 xícaras de feijão carioca cozido al dente e bem escorrido",
+        "150 g de bacon em cubos",
+        "1 linguiça calabresa em cubos",
+        "2 ovos",
+        "1 cebola picada",
+        "2 dentes de alho picados",
+        "1 xícara de farinha de mandioca",
+        "1 colher (sopa) de Tempero Mineiro Temperanzza",
+        "Cebolinha picada a gosto",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Em uma panela grande, frite o bacon e a linguiça até dourarem e soltarem gordura. Retire e reserve, deixando a gordura na panela. Mexa os ovos na gordura até firmarem. Retire e reserve. Refogue a cebola e o alho até ficarem dourados. Junte o feijão e o Tempero Mineiro e refogue por 3 minutos. Adicione a farinha de mandioca aos poucos, sempre mexendo. Volte o bacon, a linguiça e os ovos à panela, acerte o sal e finalize com cebolinha."
+    },
+    {
+      "id": "pao-de-queijo-tempero-mineiro",
+      "titulo": "Pão de Queijo com Tempero Mineiro",
+      "descricao": "Pão de queijo com casquinha dourada e miolo macio, com o perfume do Tempero Mineiro na massa. A receita de polvilho escaldado de sempre, com um toque que só a Temperanzza tem. A tradição mineira, com a alma da casa.",
       "categoria": "Café da Manhã",
       "tempo_preparo": 45,
-      "servindo": 8,
-      "pote_id": "temperaflix-bacon",
-      "imagem_url": "/receitas/bolo-milho-bacon.jpg",
-      "ingredientes": [
-        "2 xícaras de milho verde",
-        "1 xícara de farinha",
-        "3 ovos",
-        "1 xícara de leite",
-        "100g Temperaflix Bacon"
-      ],
-      "modo_preparo": "Bata o milho com os ovos e leite. Adicione a farinha e Temperaflix Bacon. Asse por 40 min a 180°C."
-    },
-    {
-      "id": "cafe2",
-      "titulo": "Pão Francês Temperado com Tempero Mineiro",
-      "descricao": "Pão francês crocante com tempero mineiro na massa",
-      "categoria": "Café da Manhã",
-      "tempo_preparo": 120,
-      "servindo": 6,
+      "rendimento": "30 unidades",
       "pote_id": "tempero-mineiro",
-      "imagem_url": "/receitas/pao-frances-mineiro.jpg",
+      "imagem_url": "/receitas/pao-de-queijo-tempero-mineiro.jpg",
       "ingredientes": [
-        "500g farinha de trigo",
-        "250ml água",
-        "10g sal",
-        "7g fermento",
-        "50g Tempero Mineiro"
+        "500 g de polvilho azedo",
+        "1 xícara de leite",
+        "1/2 xícara de óleo",
+        "1 colher (chá) de sal",
+        "2 ovos",
+        "200 g de queijo meia cura ralado",
+        "50 g de queijo parmesão ralado",
+        "2 colheres (chá) de Tempero Mineiro Temperanzza"
       ],
-      "modo_preparo": "Misture ingredientes, sove por 10 min, deixe fermentar 1h. Modele e asse a 220°C por 20 min."
+      "modo_preparo": "Preaqueça o forno a 180 °C. Ferva o leite, o óleo e o sal. Despeje sobre o polvilho e mexa até esfarelar. Deixe amornar. Acrescente os ovos, um de cada vez, sovando bem a cada adição. Junte os queijos e o Tempero Mineiro e sove até a massa ficar lisa e desgrudar das mãos. Com as mãos untadas, faça bolinhas de 3 cm e distribua em uma assadeira, com espaço entre elas. Asse por 25 a 30 minutos, até dourarem."
     },
     {
-      "id": "cafe3",
-      "titulo": "Bolo de Cenoura com Ervas Finas",
-      "descricao": "Bolo úmido de cenoura com cobertura de ervas",
+      "id": "berinjela-recheada-tempero-mineiro",
+      "titulo": "Berinjela Recheada com Tempero Mineiro",
+      "descricao": "Berinjelas assadas e recheadas com carne moída, pimentões e tomate, gratinadas até dourar. O Tempero Mineiro dá corpo ao recheio e transforma o legume em prato principal. Uma assadeira só, do forno para a mesa.",
+      "categoria": "Jantar",
+      "tempo_preparo": 55,
+      "rendimento": "4 porções",
+      "pote_id": "tempero-mineiro",
+      "imagem_url": "/receitas/berinjela-recheada-tempero-mineiro.jpg",
+      "ingredientes": [
+        "4 berinjelas médias",
+        "300 g de carne moída",
+        "1 cebola picada",
+        "2 dentes de alho picados",
+        "1 pimentão vermelho em cubos",
+        "1 pimentão amarelo em cubos",
+        "2 tomates picados",
+        "80 g de queijo muçarela ralado",
+        "2 colheres (sopa) de azeite",
+        "1 colher (sopa) de Tempero Mineiro Temperanzza",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Preaqueça o forno a 200 °C. Corte as berinjelas ao meio no comprimento, faça cortes em xadrez na polpa, regue com azeite, tempere com sal e asse por 15 minutos com a polpa para cima. Com uma colher, retire parte da polpa, deixando uma borda de 1 cm. Pique a polpa retirada. Em uma frigideira, refogue a cebola e o alho no azeite. Junte a carne moída e cozinhe até soltar e dourar. Tempere com o Tempero Mineiro. Acrescente os pimentões, o tomate e a polpa picada e cozinhe por 8 minutos. Acerte o sal. Recheie as berinjelas, cubra com a muçarela e asse por 15 a 20 minutos, até gratinar."
+    },
+    {
+      "id": "carne-moida-tempero-mineiro",
+      "titulo": "Carne Moída com Tempero Mineiro",
+      "descricao": "Carne moída bem dourada, soltinha e temperada de uma vez, na frigideira de ferro. O Tempero Mineiro resolve o sabor sem precisar de mais nada. A base de metade dos almoços da semana.",
+      "categoria": "Almoço",
+      "tempo_preparo": 30,
+      "rendimento": "4 porções",
+      "pote_id": "tempero-mineiro",
+      "imagem_url": "/receitas/carne-moida-tempero-mineiro.jpg",
+      "ingredientes": [
+        "600 g de carne moída (patinho ou acém)",
+        "1 cebola picada",
+        "2 dentes de alho picados",
+        "1 colher (sopa) de óleo",
+        "1 colher (sopa) de Tempero Mineiro Temperanzza",
+        "Sal a gosto",
+        "Cheiro-verde picado a gosto"
+      ],
+      "modo_preparo": "Aqueça muito bem uma frigideira de ferro com o óleo, em fogo alto. Espalhe a carne na frigideira e deixe por 3 minutos sem mexer, para dourar. Mexa, soltando a carne com uma espátula, por cerca de 8 minutos, até secar a água e dourar por igual. Junte a cebola e o alho e refogue por 3 minutos. Adicione o Tempero Mineiro e o sal e cozinhe por mais 2 minutos. Finalize com cheiro-verde."
+    },
+    {
+      "id": "costela-paprica-defumada",
+      "titulo": "Costela com Páprica Defumada",
+      "descricao": "Costela assada lentamente até soltar do osso, com casquinha escura e brilhante. A Páprica Defumada dá o sabor de defumação sem precisar de defumador. Fogo baixo, paciência e resultado de churrascaria.",
+      "categoria": "Almoço",
+      "tempo_preparo": 195,
+      "rendimento": "6 porções",
+      "pote_id": "paprica-defumada",
+      "imagem_url": "/receitas/costela-paprica-defumada.jpg",
+      "ingredientes": [
+        "1,5 kg de costela bovina em ripas",
+        "2 colheres (sopa) de Páprica Defumada Temperanzza",
+        "1 colher (sopa) de sal grosso moído",
+        "1 colher (sopa) de açúcar mascavo",
+        "3 dentes de alho amassados",
+        "2 colheres (sopa) de azeite",
+        "3 colheres (sopa) de molho barbecue (opcional, para pincelar)"
+      ],
+      "modo_preparo": "Misture a Páprica Defumada, o sal, o açúcar mascavo, o alho e o azeite até formar uma pasta. Esfregue em toda a costela e, se possível, deixe descansar por 2 horas na geladeira. Preaqueça o forno a 160 °C. Embrulhe a costela em papel-alumínio, com o lado brilhante para dentro, e asse por 2h30, até a carne ficar macia. Abra o papel-alumínio, pincele o molho barbecue, aumente o forno para 220 °C e asse por mais 20 a 30 minutos, até formar a casquinha. Deixe descansar por 10 minutos e corte entre os ossos."
+    },
+    {
+      "id": "ensopado-de-carne-cozida-paprica-defumada",
+      "titulo": "Ensopado de Carne Cozida com Páprica Defumada",
+      "descricao": "Carne em pedaços cozida no caldo com cenoura, batata e vagem, até ficar macia a ponto de desfiar. A Páprica Defumada dá cor ao caldo e um fundo defumado que aquece. Um prato só, completo e reconfortante.",
+      "categoria": "Jantar",
+      "tempo_preparo": 110,
+      "rendimento": "6 porções",
+      "pote_id": "paprica-defumada",
+      "imagem_url": "/receitas/ensopado-de-carne-cozida-paprica-defumada.jpg",
+      "ingredientes": [
+        "1 kg de músculo em cubos",
+        "2 batatas em cubos",
+        "2 cenouras em rodelas",
+        "100 g de vagem em pedaços",
+        "1 cebola picada",
+        "3 dentes de alho picados",
+        "2 tomates picados",
+        "2 colheres (sopa) de azeite",
+        "1 colher (sopa) de Páprica Defumada Temperanzza",
+        "1,2 litro de água quente",
+        "Sal a gosto",
+        "Salsinha picada para finalizar"
+      ],
+      "modo_preparo": "Tempere a carne com metade da Páprica Defumada e sal. Na panela de pressão aberta, aqueça o azeite e sele a carne em porções até dourar. Retire e reserve. Refogue a cebola, o alho e o tomate. Junte o restante da Páprica Defumada e mexa por 30 segundos. Volte a carne, junte a água quente, tampe e cozinhe por 35 minutos após pegar pressão (ou 1h30 em panela comum tampada). Retire a pressão, junte a batata, a cenoura e a vagem e cozinhe com a panela aberta por 15 a 20 minutos, até os legumes ficarem macios. Acerte o sal e finalize com salsinha."
+    },
+    {
+      "id": "frango-assado-paprica-defumada",
+      "titulo": "Frango Assado com Páprica Defumada",
+      "descricao": "Frango inteiro com pele dourada e crocante e carne suculenta por dentro. A Páprica Defumada dá cor e aroma de fogo lento, sem sair da cozinha. Um clássico de domingo que perfuma a casa toda.",
+      "categoria": "Almoço",
+      "tempo_preparo": 95,
+      "rendimento": "4 porções",
+      "pote_id": "paprica-defumada",
+      "imagem_url": "/receitas/frango-assado-paprica-defumada.jpg",
+      "ingredientes": [
+        "1 frango inteiro (cerca de 1,6 kg)",
+        "3 colheres (sopa) de manteiga em temperatura ambiente",
+        "2 colheres (sopa) de Páprica Defumada Temperanzza",
+        "4 dentes de alho amassados",
+        "Suco de 1 limão",
+        "1 cebola cortada em quatro",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Seque bem o frango com papel-toalha, por dentro e por fora. Misture a manteiga, a Páprica Defumada, o alho, o suco de limão e o sal. Solte a pele do peito com os dedos e espalhe parte da pasta por baixo dela. Passe o restante por fora e por dentro do frango e coloque a cebola na cavidade. Deixe descansar por 30 minutos (ou de um dia para o outro na geladeira). Asse a 200 °C por 1h10 a 1h20, regando com o próprio caldo a cada 20 minutos, até dourar e o líquido sair claro ao espetar a coxa. Deixe descansar por 10 minutos antes de trinchar."
+    },
+    {
+      "id": "hamburguer-pao-carnivoro-paprica-defumada",
+      "titulo": "Hambúrguer com Pão Carnívoro e Páprica Defumada",
+      "descricao": "O sanduíche completo sem o peso do carboidrato: pão carnívoro dourado, hambúrguer suculento e queijo derretido. A Páprica Defumada tempera a carne e o pão. Feito para quem segue a dieta low carb ou carnívora.",
+      "categoria": "Lanches/Petiscos",
+      "tempo_preparo": 60,
+      "rendimento": "4 porções",
+      "pote_id": "paprica-defumada",
+      "imagem_url": "/receitas/hamburguer-pao-carnivoro-paprica-defumada.jpg",
+      "ingredientes": [
+        "300 g de peito de frango cozido e desfiado",
+        "3 ovos",
+        "100 g de queijo muçarela ralado",
+        "1 colher (chá) de fermento químico em pó",
+        "Sal a gosto",
+        "600 g de carne moída (com 20% de gordura)",
+        "4 fatias de queijo cheddar",
+        "Sal a gosto",
+        "2 colheres (sopa) de Páprica Defumada Temperanzza (1 colher de chá para o pão e o restante para a carne)"
+      ],
+      "modo_preparo": "Preaqueça o forno a 180 °C e forre uma assadeira com papel-manteiga. Processe o frango, os ovos, a muçarela, o fermento, 1 colher (chá) de Páprica Defumada e o sal até formar uma massa homogênea. Com as mãos molhadas, modele 4 discos altos de 10 cm e asse por 25 minutos, até dourarem. Deixe esfriar por 5 minutos e abra ao meio. Modele 4 hambúrgueres de 150 g e tempere com o restante da Páprica Defumada e sal. Grelhe por 3 a 4 minutos de cada lado. No último minuto, coloque o cheddar e tampe para derreter. Monte o hambúrguer no pão carnívoro e sirva."
+    },
+    {
+      "id": "camarao-paprica-picante",
+      "titulo": "Camarão com Páprica Picante",
+      "descricao": "Camarões grandes salteados na frigideira de ferro até ganharem cor e brilho. A Páprica Picante traz calor equilibrado e uma cor vermelha intensa. Sofisticação em menos de 20 minutos, como petisco ou entrada.",
+      "categoria": "Lanches/Petiscos",
+      "tempo_preparo": 18,
+      "rendimento": "3 porções",
+      "pote_id": "paprica-picante",
+      "imagem_url": "/receitas/camarao-paprica-picante.jpg",
+      "ingredientes": [
+        "500 g de camarão grande limpo, com cauda",
+        "3 colheres (sopa) de azeite",
+        "1 colher (sopa) de manteiga",
+        "3 dentes de alho fatiados",
+        "2 colheres (chá) de Páprica Picante Temperanzza",
+        "Suco de 1/2 limão",
+        "Sal a gosto",
+        "Salsinha picada para finalizar"
+      ],
+      "modo_preparo": "Seque bem os camarões e tempere com a Páprica Picante e sal. Aqueça o azeite em uma frigideira de ferro em fogo alto. Coloque os camarões em uma única camada e deixe por 2 minutos sem mexer. Vire e cozinhe por mais 1 a 2 minutos, até ficarem rosados. Abaixe o fogo, junte a manteiga e o alho e cozinhe por 1 minuto. Regue com o suco de limão, finalize com salsinha e sirva na própria frigideira."
+    },
+    {
+      "id": "costela-suina-paprica-picante",
+      "titulo": "Costela Suína com Páprica Picante",
+      "descricao": "Costela suína em ripas assada devagar e finalizada em forno alto para caramelizar. A Páprica Picante pinta a carne de vermelho e traz um calor que acompanha cada mordida. Carne que solta do osso, com casquinha picante.",
+      "categoria": "Almoço",
+      "tempo_preparo": 160,
+      "rendimento": "4 porções",
+      "pote_id": "paprica-picante",
+      "imagem_url": "/receitas/costela-suina-paprica-picante.jpg",
+      "ingredientes": [
+        "1,5 kg de costela suína em ripas",
+        "2 colheres (sopa) de Páprica Picante Temperanzza",
+        "1 colher (sopa) de açúcar mascavo",
+        "1 colher (sopa) de sal",
+        "3 dentes de alho amassados",
+        "Suco de 1 limão",
+        "2 colheres (sopa) de mel"
+      ],
+      "modo_preparo": "Retire a membrana branca do lado do osso da costela. Misture a Páprica Picante, o açúcar mascavo, o sal, o alho e o suco de limão. Esfregue em toda a costela e deixe descansar por 1 hora na geladeira. Preaqueça o forno a 170 °C. Embrulhe a costela em papel-alumínio e asse por 2 horas. Abra o papel, pincele o mel misturado com uma pitada de Páprica Picante, aumente o forno para 220 °C e asse por 20 a 25 minutos, até caramelizar. Deixe descansar por 10 minutos e corte entre os ossos."
+    },
+    {
+      "id": "sardinhas-grelhadas-paprica-picante-salada",
+      "titulo": "Sardinhas Grelhadas com Páprica Picante e Salada",
+      "descricao": "Sardinhas frescas grelhadas inteiras, com pele tostada e carne macia, servidas com limão e salada verde. A Páprica Picante dá cor e um calor leve que combina com o sabor marcante do peixe. Ômega-3 e frescor em uma refeição rápida.",
+      "categoria": "Jantar",
+      "tempo_preparo": 25,
+      "rendimento": "3 porções",
+      "pote_id": "paprica-picante",
+      "imagem_url": "/receitas/sardinhas-grelhadas-paprica-picante-salada.jpg",
+      "ingredientes": [
+        "12 sardinhas frescas limpas (sem escamas e vísceras)",
+        "3 colheres (sopa) de azeite",
+        "2 colheres (chá) de Páprica Picante Temperanzza",
+        "Sal grosso moído a gosto",
+        "2 limões-sicilianos em gomos",
+        "2 xícaras de folhas de alface e rúcula",
+        "10 tomates-cereja cortados ao meio",
+        "1/2 cebola roxa em fatias finas",
+        "Azeite e sal a gosto"
+      ],
+      "modo_preparo": "Seque as sardinhas, pincele com azeite e tempere por dentro e por fora com a Páprica Picante e sal. Aqueça uma grelha ou chapa untada em fogo alto. Grelhe as sardinhas por 3 a 4 minutos de cada lado, virando uma única vez com uma espátula larga. Monte a salada e tempere com azeite e sal. Sirva as sardinhas com os gomos de limão e a salada, com uma pitada de Páprica Picante por cima."
+    },
+    {
+      "id": "sopa-de-legumes-paprica-picante",
+      "titulo": "Sopa de Legumes com Páprica Picante",
+      "descricao": "Sopa de legumes com caldo avermelhado, tomate, cenoura, batata e abobrinha. A Páprica Picante aquece o caldo e dá cor, sem precisar de caldo pronto. Leve, nutritiva e perfeita para as noites frias.",
+      "categoria": "Jantar",
+      "tempo_preparo": 45,
+      "rendimento": "4 porções",
+      "pote_id": "paprica-picante",
+      "imagem_url": "/receitas/sopa-de-legumes-paprica-picante.jpg",
+      "ingredientes": [
+        "2 colheres (sopa) de azeite",
+        "1 cebola picada",
+        "2 dentes de alho picados",
+        "2 tomates picados",
+        "1 cenoura em cubos",
+        "1 batata em cubos",
+        "1 abobrinha em cubos",
+        "1 talo de salsão picado",
+        "2 colheres (chá) de Páprica Picante Temperanzza",
+        "1,2 litro de água quente",
+        "Sal a gosto",
+        "Salsinha e manjericão picados para finalizar"
+      ],
+      "modo_preparo": "Em uma panela, refogue a cebola e o alho no azeite até ficarem macios. Junte a Páprica Picante e mexa por 30 segundos. Acrescente o tomate e cozinhe por 5 minutos, até desmanchar. Adicione a cenoura, a batata, o salsão e a água quente. Cozinhe por 15 minutos. Junte a abobrinha e cozinhe por mais 8 minutos. Acerte o sal e finalize com salsinha e manjericão."
+    },
+    {
+      "id": "camaroes-ao-alho-salsa-cebola-alho",
+      "titulo": "Camarões ao Alho com Salsa, Cebola e Alho",
+      "descricao": "Camarões salteados na manteiga com alho dourado, servidos direto da frigideira. O Salsa, Cebola e Alho reforça o aroma e dá o verde da finalização. Cinco minutos entre a panela e a mesa.",
+      "categoria": "Jantar",
+      "tempo_preparo": 18,
+      "rendimento": "3 porções",
+      "pote_id": "salsa-cebola-e-alho",
+      "imagem_url": "/receitas/camaroes-ao-alho-salsa-cebola-alho.jpg",
+      "ingredientes": [
+        "500 g de camarão médio limpo, com cauda",
+        "3 colheres (sopa) de manteiga",
+        "1 colher (sopa) de azeite",
+        "4 dentes de alho picados",
+        "1 colher (sopa) de Salsa, Cebola e Alho Temperanzza",
+        "Suco de 1/2 limão",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Tempere os camarões com sal e metade do Salsa, Cebola e Alho. Em uma frigideira de ferro, aqueça o azeite e 1 colher (sopa) de manteiga em fogo alto. Coloque os camarões e cozinhe por 2 minutos de cada lado, até ficarem rosados. Junte o restante da manteiga e o alho e cozinhe por 1 minuto. Finalize com o restante do Salsa, Cebola e Alho e o suco de limão. Sirva na frigideira."
+    },
+    {
+      "id": "peixe-assado-legumes-salsa-cebola-alho",
+      "titulo": "Peixe Assado com Legumes e Salsa, Cebola e Alho",
+      "descricao": "Peixe com crosta de ervas assado sobre batatinhas, tomates-cereja, alho e alecrim. O Salsa, Cebola e Alho tempera o peixe e os legumes de uma só vez. Uma assadeira só, sem complicação.",
+      "categoria": "Jantar",
+      "tempo_preparo": 55,
+      "rendimento": "4 porções",
+      "pote_id": "salsa-cebola-e-alho",
+      "imagem_url": "/receitas/peixe-assado-legumes-salsa-cebola-alho.jpg",
+      "ingredientes": [
+        "800 g de filé de peixe firme (robalo, pescada ou salmão) em uma peça",
+        "500 g de batatas bolinha cortadas ao meio",
+        "15 tomates-cereja",
+        "6 dentes de alho com casca",
+        "3 ramos de alecrim",
+        "4 colheres (sopa) de azeite",
+        "2 colheres (sopa) de Salsa, Cebola e Alho Temperanzza",
+        "Suco de 1 limão",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Preaqueça o forno a 200 °C. Misture as batatas e os dentes de alho com 2 colheres (sopa) de azeite, metade do Salsa, Cebola e Alho e sal. Espalhe em uma assadeira e asse por 20 minutos. Tempere o peixe com o suco de limão, sal e o restante do Salsa, Cebola e Alho, pressionando para formar uma crosta. Regue com o azeite restante. Retire a assadeira do forno, junte os tomates e o alecrim e coloque o peixe no centro. Asse por 15 a 18 minutos, até o peixe se soltar em lascas. Sirva na própria assadeira."
+    },
+    {
+      "id": "peixe-grelhado-salada-salsa-cebola-alho",
+      "titulo": "Peixe Grelhado com Salada e Salsa, Cebola e Alho",
+      "descricao": "Filé de peixe branco com marcas de grelha, servido com salada de folhas, tomate e cebola roxa. O Salsa, Cebola e Alho tempera o peixe e o molho da salada. Marca de grelha, azeite e tempero: o resto é o peixe.",
+      "categoria": "Almoço",
+      "tempo_preparo": 25,
+      "rendimento": "2 porções",
+      "pote_id": "salsa-cebola-e-alho",
+      "imagem_url": "/receitas/peixe-grelhado-salada-salsa-cebola-alho.jpg",
+      "ingredientes": [
+        "2 filés de peixe branco (tilápia, pescada ou robalo), cerca de 400 g",
+        "2 colheres (sopa) de azeite",
+        "Suco de 1/2 limão",
+        "2 colheres (chá) de Salsa, Cebola e Alho Temperanzza",
+        "Sal a gosto",
+        "2 xícaras de folhas (alface, rúcula e radicchio)",
+        "8 tomates-cereja cortados ao meio",
+        "1/4 de cebola roxa em fatias finas",
+        "2 colheres (sopa) de azeite",
+        "1 colher (sopa) de suco de limão"
+      ],
+      "modo_preparo": "Seque bem os filés e tempere com o suco de limão, o azeite, sal e o Salsa, Cebola e Alho, reservando uma pitada para a salada. Aqueça bem uma grelha ou frigideira de ferro untada, em fogo alto. Grelhe os filés por 3 a 4 minutos de cada lado, sem mexer, até formar as marcas. Misture o azeite, o suco de limão, a pitada de tempero reservada e sal, e tempere as folhas, os tomates e a cebola. Sirva o peixe ao lado da salada."
+    },
+    {
+      "id": "arroz-ao-alho-salsa-cebola-alho",
+      "titulo": "Arroz ao Alho com Salsa, Cebola e Alho",
+      "descricao": "Arroz branco soltinho, com alho dourado e o perfume verde das ervas. O Salsa, Cebola e Alho entra no refogado e na finalização. O básico perfeito, sem precisar picar nada além do alho.",
+      "categoria": "Almoço",
+      "tempo_preparo": 25,
+      "rendimento": "4 porções",
+      "pote_id": "salsa-cebola-e-alho",
+      "imagem_url": "/receitas/arroz-ao-alho-salsa-cebola-alho.jpg",
+      "ingredientes": [
+        "2 xícaras de arroz branco tipo 1",
+        "4 xícaras de água fervente",
+        "2 colheres (sopa) de óleo ou azeite",
+        "3 dentes de alho picados",
+        "1 colher (sopa) de Salsa, Cebola e Alho Temperanzza",
+        "1 colher (chá) de sal"
+      ],
+      "modo_preparo": "Lave o arroz até a água sair clara e escorra bem. Em uma panela, aqueça o óleo e doure o alho por 1 minuto, sem deixar queimar. Junte o arroz e metade do Salsa, Cebola e Alho e refogue por 2 minutos, até os grãos ficarem brilhantes. Adicione a água fervente e o sal, tampe e cozinhe em fogo baixo por 15 minutos, até secar. Desligue o fogo, deixe descansar tampado por 5 minutos, solte com um garfo e polvilhe o restante do tempero."
+    },
+    {
+      "id": "salmao-defumado-ervas-finas",
+      "titulo": "Salmão Defumado com Ervas Finas",
+      "descricao": "Posta de salmão com pele crocante e uma crosta generosa de ervas por cima. O Ervas Finas perfuma o peixe, e o fogo alto da frigideira traz o toque tostado e defumado. O mar encontra o jardim em um só prato.",
+      "categoria": "Jantar",
+      "tempo_preparo": 22,
+      "rendimento": "2 porções",
+      "pote_id": "ervas-finas",
+      "imagem_url": "/receitas/salmao-defumado-ervas-finas.jpg",
+      "ingredientes": [
+        "2 postas de salmão com pele (cerca de 180 g cada)",
+        "2 colheres (sopa) de azeite",
+        "1 colher (sopa) de manteiga",
+        "1 colher (sopa) de Ervas Finas Temperanzza",
+        "Raspas de 1 limão",
+        "Sal a gosto"
+      ],
+      "modo_preparo": "Seque bem o salmão e tempere a pele com sal. Misture o Ervas Finas, as raspas de limão e 1 colher (sopa) de azeite até formar uma pasta. Espalhe sobre a parte de cima das postas. Aqueça o azeite restante em uma frigideira de ferro, em fogo alto. Coloque o salmão com a pele para baixo e pressione nos primeiros 30 segundos. Cozinhe por 5 a 6 minutos. Abaixe para fogo médio, junte a manteiga e, com uma colher, regue o salmão com a manteiga derretida por 3 a 4 minutos, até o centro ficar levemente rosado. Sirva com a crosta de ervas para cima."
+    },
+    {
+      "id": "torrada-carnivora-ervas-finas",
+      "titulo": "Torrada Carnívora com Ervas Finas",
+      "descricao": "Fatias de pão carnívoro douradas na frigideira, com manteiga de ervas escorrendo. O Ervas Finas perfuma a manteiga e dá o acabamento verde. Crocância absoluta para o café da manhã, caldos e antepastos.",
       "categoria": "Café da Manhã",
       "tempo_preparo": 50,
-      "servindo": 10,
+      "rendimento": "4 porções",
       "pote_id": "ervas-finas",
-      "imagem_url": "/receitas/bolo-cenoura-ervas.jpg",
+      "imagem_url": "/receitas/torrada-carnivora-ervas-finas.jpg",
       "ingredientes": [
-        "3 cenouras grandes",
-        "3 ovos",
-        "1 xícara óleo",
-        "2 xícaras farinha",
-        "100g Ervas Finas"
+        "300 g de peito de frango cozido e desfiado",
+        "4 ovos",
+        "150 g de queijo muçarela ralado",
+        "1 colher (chá) de fermento químico em pó",
+        "Sal a gosto",
+        "3 colheres (sopa) de manteiga em temperatura ambiente",
+        "1 colher (sopa) de Ervas Finas Temperanzza",
+        "1 dente de alho ralado"
       ],
-      "modo_preparo": "Bata cenoura com ovos e óleo. Misture farinha e fermento. Adicione Ervas Finas. Asse a 180°C por 45 min."
+      "modo_preparo": "Preaqueça o forno a 180 °C e unte uma fôrma de bolo inglês. Processe o frango, os ovos, a muçarela, o fermento e o sal até formar uma massa homogênea. Coloque na fôrma e asse por 30 minutos. Deixe esfriar completamente. Corte o pão em fatias de 1,5 cm. Misture a manteiga, o Ervas Finas e o alho. Passe a manteiga de ervas nas fatias e doure em uma frigideira, em fogo médio, por 2 minutos de cada lado. Sirva quente."
     },
     {
-      "id": "cafe4",
-      "titulo": "Quiche de Queijo com Cúrcuma",
-      "descricao": "Quiche cremosa com cúrcuma anti-inflamatória",
+      "id": "bolo-carnivoro-salgado-chimi-churri-sem-pimenta",
+      "titulo": "Bolo Carnívoro Salgado com Chimi Churri Sem Pimenta",
+      "descricao": "Bolo salgado de textura macia e casca dourada, feito sem farinha e sem carboidratos. O Chimi Churri Sem Pimenta dá o aroma de ervas e alho à massa, sem ardência. Ótimo para o café da manhã ou para levar na marmita.",
       "categoria": "Café da Manhã",
       "tempo_preparo": 55,
-      "servindo": 6,
-      "pote_id": "curcuma",
-      "imagem_url": "/receitas/quiche-curcuma.jpg",
-      "ingredientes": [
-        "1 massa de pastel",
-        "200g queijo meia cura",
-        "4 ovos",
-        "200ml creme",
-        "30g Cúrcuma"
-      ],
-      "modo_preparo": "Coloque massa na forma. Misture ovos, creme, queijo e Cúrcuma. Despeje e asse a 200°C por 40 min."
-    },
-    {
-      "id": "cafe5",
-      "titulo": "Bolo de Maçã com Lemon Pepper",
-      "descricao": "Bolo fofinho de maçã com toque cítrico",
-      "categoria": "Café da Manhã",
-      "tempo_preparo": 50,
-      "servindo": 8,
-      "pote_id": "lemon-pepper",
-      "imagem_url": "/receitas/bolo-maca-lemon.jpg",
-      "ingredientes": [
-        "4 maçãs médias",
-        "2 ovos",
-        "200ml óleo",
-        "2 xícaras farinha",
-        "50g Lemon Pepper"
-      ],
-      "modo_preparo": "Ralhe maçãs, misture com ovos e óleo. Adicione farinha e Lemon Pepper. Asse a 180°C por 45 min."
-    },
-    {
-      "id": "cafe6",
-      "titulo": "Pão de Queijo com Salsa Cebola e Alho",
-      "descricao": "Pão de queijo tradicional mineiro temperado",
-      "categoria": "Café da Manhã",
-      "tempo_preparo": 30,
-      "servindo": 12,
-      "pote_id": "salsa-cebola-e-alho",
-      "imagem_url": "/receitas/pao-queijo-salsa.jpg",
-      "ingredientes": [
-        "500g polvilho",
-        "200g queijo meia cura",
-        "100ml leite",
-        "50g Salsa Cebola e Alho"
-      ],
-      "modo_preparo": "Aqueça leite e óleo. Misture polvilho e queijo. Adicione Salsa Cebola e Alho. Asse a 200°C por 25 min."
-    },
-    {
-      "id": "almoco1",
-      "titulo": "Arroz com Brócolis e Ana Maria",
-      "descricao": "Arroz integral com brócolis e tempero mineiro clássico",
-      "categoria": "Almoço",
-      "tempo_preparo": 35,
-      "servindo": 4,
-      "pote_id": "ana-maria",
-      "imagem_url": "/receitas/arroz-brocolis-ana.jpg",
-      "ingredientes": [
-        "2 xícaras arroz integral",
-        "4 xícaras água",
-        "2 buquês brócolis",
-        "50ml azeite",
-        "40g Ana Maria"
-      ],
-      "modo_preparo": "Cozinhe arroz na água com azeite. Cozinhe brócolis separado. Misture tudo com Ana Maria e refogue."
-    },
-    {
-      "id": "almoco2",
-      "titulo": "Frango Assado com Páprica Defumada",
-      "descricao": "Frango crocante com páprica defumada da Hungria",
-      "categoria": "Almoço",
-      "tempo_preparo": 60,
-      "servindo": 4,
-      "pote_id": "paprica-defumada",
-      "imagem_url": "/receitas/frango-paprica-defumada.jpg",
-      "ingredientes": [
-        "1 frango inteiro",
-        "50g Páprica Defumada",
-        "4 colheres azeite",
-        "Sal e limão"
-      ],
-      "modo_preparo": "Tempere frango com Páprica Defumada, azeite, sal e limão. Asse a 200°C por 55 min."
-    },
-    {
-      "id": "almoco3",
-      "titulo": "Carne com Chimi Churri Picante",
-      "descricao": "Carne grelhada com chimichurri argentino defumado",
-      "categoria": "Almoço",
-      "tempo_preparo": 40,
-      "servindo": 4,
-      "pote_id": "chimichurri-picante",
-      "imagem_url": "/receitas/carne-chimi-picante.jpg",
-      "ingredientes": [
-        "800g contrafilé",
-        "60g Chimi Churri Picante",
-        "100ml azeite"
-      ],
-      "modo_preparo": "Grelhe carne em fogo alto. Faça molho: Chimi Churri Picante + azeite. Sirva sobre a carne."
-    },
-    {
-      "id": "almoco4",
-      "titulo": "Peixe ao Limão com Lemon Pepper",
-      "descricao": "Peixe delicado com toque de pimenta preta e limão",
-      "categoria": "Almoço",
-      "tempo_preparo": 30,
-      "servindo": 4,
-      "pote_id": "lemon-pepper",
-      "imagem_url": "/receitas/peixe-lemon-pepper.jpg",
-      "ingredientes": [
-        "800g filé de peixe branco",
-        "2 limões",
-        "50g Lemon Pepper",
-        "30ml azeite"
-      ],
-      "modo_preparo": "Coloque peixe em assadeira. Cubra com Lemon Pepper, suco de limão e azeite. Asse a 190°C por 25 min."
-    },
-    {
-      "id": "almoco5",
-      "titulo": "Legumes Assados com Ervas Finas",
-      "descricao": "Mix de legumes coloridos temperado com ervas premium",
-      "categoria": "Almoço",
-      "tempo_preparo": 45,
-      "servindo": 4,
-      "pote_id": "ervas-finas",
-      "imagem_url": "/receitas/legumes-ervas.jpg",
-      "ingredientes": [
-        "200g abóbora",
-        "200g cenoura",
-        "200g abobrinha",
-        "100g cebola",
-        "60g Ervas Finas",
-        "80ml azeite"
-      ],
-      "modo_preparo": "Corte legumes em cubos. Misture com azeite e Ervas Finas. Asse a 200°C por 40 min."
-    },
-    {
-      "id": "almoco6",
-      "titulo": "Risoto Cremoso com Cúrcuma",
-      "descricao": "Risoto tradicional italiano com propriedades da cúrcuma",
-      "categoria": "Almoço",
-      "tempo_preparo": 35,
-      "servindo": 4,
-      "pote_id": "curcuma",
-      "imagem_url": "/receitas/risoto-curcuma.jpg",
-      "ingredientes": [
-        "2 xícaras arroz arbório",
-        "800ml caldo quente",
-        "100ml vinho branco",
-        "1 cebola",
-        "100g queijo",
-        "40g Cúrcuma"
-      ],
-      "modo_preparo": "Refogue cebola. Adicione arroz. Vá adicionando caldo quente aos poucos. Finalize com queijo e Cúrcuma."
-    },
-    {
-      "id": "almoco7",
-      "titulo": "Linguine ao Molho Branco com Edu Guedes",
-      "descricao": "Massa fresca com molho cremoso e tempero versátil",
-      "categoria": "Almoço",
-      "tempo_preparo": 25,
-      "servindo": 4,
-      "pote_id": "tempero-do-edu",
-      "imagem_url": "/receitas/linguine-edu.jpg",
-      "ingredientes": [
-        "400g linguine",
-        "200ml creme de leite",
-        "100g mantega",
-        "50g queijo parmesão",
-        "50g Edu Guedes"
-      ],
-      "modo_preparo": "Cozinhe linguine. Faça molho: derreta manteiga, adicione creme e Edu Guedes. Misture com massa."
-    },
-    {
-      "id": "almoco8",
-      "titulo": "Costela Assada com Temperaflix Tradicional",
-      "descricao": "Costela morna com tempero gourmet mineiro",
-      "categoria": "Almoço",
-      "tempo_preparo": 120,
-      "servindo": 6,
-      "pote_id": "temperaflix-tradicional",
-      "imagem_url": "/receitas/costela-temperaflix.jpg",
-      "ingredientes": [
-        "2kg costela",
-        "80g Temperaflix Tradicional",
-        "200ml cerveja",
-        "100ml caldo beef"
-      ],
-      "modo_preparo": "Tempere costela com Temperaflix Tradicional. Asse a 160°C com cerveja e caldo por 2 horas."
-    },
-    {
-      "id": "almoco9",
-      "titulo": "Picadinho à Mineira com Tempero Mineiro",
-      "descricao": "Clássico mineiro com carnes e vegetais",
-      "categoria": "Almoço",
-      "tempo_preparo": 40,
-      "servindo": 4,
-      "pote_id": "tempero-mineiro",
-      "imagem_url": "/receitas/picadinho-mineiro.jpg",
-      "ingredientes": [
-        "600g carne moída",
-        "1 cebola",
-        "3 tomates",
-        "1 xícara ervilha",
-        "50g Tempero Mineiro"
-      ],
-      "modo_preparo": "Refogue cebola e carne. Adicione tomates e ervilha. Tempere com Tempero Mineiro. Cozinhe 30 min."
-    },
-    {
-      "id": "almoco10",
-      "titulo": "Frango em Brasa com Chimi Churri Suave",
-      "descricao": "Frango grelhado com chimichurri sem pimenta",
-      "categoria": "Almoço",
-      "tempo_preparo": 45,
-      "servindo": 4,
+      "rendimento": "8 fatias",
       "pote_id": "chimichurri-sem-pimenta",
-      "imagem_url": "/receitas/frango-chimi-suave.jpg",
+      "imagem_url": "/receitas/bolo-carnivoro-salgado-chimi-churri-sem-pimenta.jpg",
       "ingredientes": [
-        "1kg frango em cubos",
-        "70g Chimi Churri Sem Pimenta",
-        "100ml azeite"
+        "400 g de peito de frango cozido e desfiado",
+        "5 ovos",
+        "150 g de queijo muçarela ralado",
+        "50 g de queijo parmesão ralado",
+        "3 colheres (sopa) de manteiga derretida",
+        "1 colher (sopa) de fermento químico em pó",
+        "1 colher (sopa) de Chimi Churri Sem Pimenta Temperanzza",
+        "Sal a gosto"
       ],
-      "modo_preparo": "Tempere frango. Grelhe em brasa. Faça molho: Chimi Churri Sem Pimenta + azeite. Sirva."
+      "modo_preparo": "Preaqueça o forno a 180 °C. Unte e forre com papel-manteiga uma fôrma de bolo inglês. Processe o frango, os ovos e a manteiga derretida até formar uma massa lisa. Junte os queijos, o Chimi Churri Sem Pimenta e o sal e pulse até incorporar. Acrescente o fermento e misture delicadamente com uma espátula. Coloque na fôrma e asse por 40 minutos, até dourar e um palito sair seco. Desenforme ainda morno e fatie."
     },
     {
-      "id": "almoco11",
-      "titulo": "Bife à Pizzaiola com Páprica Picante",
-      "descricao": "Bife clássico italiano com tomate e páprica vermelha",
-      "categoria": "Almoço",
+      "id": "abacate-recheado-frango-chimi-churri-sem-pimenta",
+      "titulo": "Abacate Recheado com Frango e Chimi Churri Sem Pimenta",
+      "descricao": "Metades de abacate recheadas com frango desfiado cremoso e bem temperado. O Chimi Churri Sem Pimenta traz o sabor das ervas sem ardência. O lanche frio que sustenta o dia todo.",
+      "categoria": "Lanches/Petiscos",
       "tempo_preparo": 35,
-      "servindo": 2,
-      "pote_id": "paprica-picante",
-      "imagem_url": "/receitas/bife-pizzaiola.jpg",
+      "rendimento": "2 porções",
+      "pote_id": "chimichurri-sem-pimenta",
+      "imagem_url": "/receitas/abacate-recheado-frango-chimi-churri-sem-pimenta.jpg",
       "ingredientes": [
-        "400g contrafilé",
-        "400g tomate",
-        "2 dentes alho",
-        "40g Páprica Picante",
-        "50ml azeite"
+        "1 abacate maduro (ou 2 avocados)",
+        "250 g de peito de frango",
+        "2 colheres (sopa) de maionese ou iogurte natural",
+        "1 colher (sopa) de azeite",
+        "Suco de 1/2 limão",
+        "2 colheres (chá) de Chimi Churri Sem Pimenta Temperanzza",
+        "Sal a gosto"
       ],
-      "modo_preparo": "Grelhe bife. Faça molho com tomate, alho e Páprica Picante. Despeje sobre o bife."
+      "modo_preparo": "Cozinhe o frango em água com sal por 20 minutos. Deixe esfriar e desfie. Misture o frango com a maionese, o azeite, o Chimi Churri Sem Pimenta e sal. Corte o abacate ao meio, retire o caroço e regue com o suco de limão. Recheie as metades com o frango e polvilhe mais uma pitada de Chimi Churri Sem Pimenta. Sirva frio."
     },
     {
-      "id": "almoco12",
-      "titulo": "Moqueca de Peixe com Salsa Cebola e Alho",
-      "descricao": "Prato baiano com peixe e tempero aromático",
+      "id": "figado-acebolado-edu-guedes",
+      "titulo": "Fígado Acebolado com Edu Guedes",
+      "descricao": "Bifes de fígado macios, selados na frigideira de ferro e cobertos com cebolas douradas. O Edu Guedes tempera a carne e acompanha a cebola. A densidade nutritiva com o aroma que a torna irresistível.",
       "categoria": "Almoço",
-      "tempo_preparo": 50,
-      "servindo": 4,
-      "pote_id": "salsa-cebola-e-alho",
-      "imagem_url": "/receitas/moqueca-peixe.jpg",
-      "ingredientes": [
-        "800g peixe branco",
-        "2 cebolas",
-        "1 pimentão",
-        "200ml leite de coco",
-        "50g Salsa Cebola e Alho"
-      ],
-      "modo_preparo": "Refogue cebola, pimentão e alho. Adicione peixe e leite de coco. Finalize com Salsa Cebola e Alho."
-    },
-    {
-      "id": "almoco13",
-      "titulo": "Bifão com Páprica Doce e Cebola",
-      "descricao": "Bifão morno com cebola caramelizada e páprica suave",
-      "categoria": "Almoço",
-      "tempo_preparo": 35,
-      "servindo": 2,
-      "pote_id": "paprica-doce",
-      "imagem_url": "/receitas/bifao-paprica-doce.jpg",
-      "ingredientes": [
-        "400g paleta",
-        "3 cebolas",
-        "50g Páprica Doce",
-        "50ml azeite"
-      ],
-      "modo_preparo": "Grelhe bifão. Caramelize cebolas separadas. Misture com Páprica Doce e azeite. Sirva sobre o bifão."
-    },
-    {
-      "id": "almoco14",
-      "titulo": "Ragu de Carne com Temperaflix Bacon",
-      "descricao": "Molho tradicional italiano com toque de bacon defumado",
-      "categoria": "Almoço",
-      "tempo_preparo": 90,
-      "servindo": 4,
-      "pote_id": "temperaflix-bacon",
-      "imagem_url": "/receitas/ragu-bacon.jpg",
-      "ingredientes": [
-        "500g carne moída",
-        "400g tomate pelado",
-        "1 cebola",
-        "3 dentes alho",
-        "60g Temperaflix Bacon"
-      ],
-      "modo_preparo": "Refogue carne, cebola e alho. Adicione tomate. Cozinhe 1 hora. Finalize com Temperaflix Bacon."
-    },
-    {
-      "id": "almoco15",
-      "titulo": "Galinhada Mineira com Edu Guedes",
-      "descricao": "Prato mineiro tradicional com galinha e tempero versátil",
-      "categoria": "Almoço",
-      "tempo_preparo": 75,
-      "servindo": 6,
-      "pote_id": "tempero-do-edu",
-      "imagem_url": "/receitas/galinhada-mineira.jpg",
-      "ingredientes": [
-        "1 galinha picada",
-        "2 xícaras arroz",
-        "1 cebola",
-        "200ml caldo chicken",
-        "50g Edu Guedes"
-      ],
-      "modo_preparo": "Cozinhe galinha com cebola. Adicione arroz e caldo. Cozinhe 45 min. Finalize com Edu Guedes."
-    },
-    {
-      "id": "almoco16",
-      "titulo": "Feijoada à Mineira com Temperaflix Ervas Finas",
-      "descricao": "Clássico mineiro com ervas aromáticas premium",
-      "categoria": "Almoço",
-      "tempo_preparo": 120,
-      "servindo": 6,
-      "pote_id": "temperaflix-ervas-finas",
-      "imagem_url": "/receitas/feijoada-ervas.jpg",
-      "ingredientes": [
-        "500g feijão preto",
-        "400g carne de porco",
-        "1 cebola",
-        "200g toucinho",
-        "60g Temperaflix Ervas Finas"
-      ],
-      "modo_preparo": "Cozinhe feijão com carnes. Refogue cebola e toucinho. Misture tudo. Finalize com Temperaflix Ervas Finas."
-    },
-    {
-      "id": "almoco17",
-      "titulo": "Strogonoff de Carne com Ana Maria",
-      "descricao": "Prato clássico brasileiro com tempero mineiro",
-      "categoria": "Almoço",
-      "tempo_preparo": 40,
-      "servindo": 4,
-      "pote_id": "ana-maria",
-      "imagem_url": "/receitas/strogonoff-ana.jpg",
-      "ingredientes": [
-        "600g carne contra filé",
-        "1 cebola",
-        "1 xícara creme",
-        "100g cogumelo",
-        "50g Ana Maria"
-      ],
-      "modo_preparo": "Refogue carne, cebola e cogumelo. Adicione creme. Tempere com Ana Maria. Cozinhe 20 min."
-    },
-    {
-      "id": "jantar1",
-      "titulo": "Peixe Grelhado com Ervas Finas",
-      "descricao": "Peixe delicado temperado com ervas desidratadas premium",
-      "categoria": "Jantar",
-      "tempo_preparo": 25,
-      "servindo": 4,
-      "pote_id": "ervas-finas",
-      "imagem_url": "/receitas/peixe-ervas-jantar.jpg",
-      "ingredientes": [
-        "800g filé de peixe branco",
-        "50g Ervas Finas",
-        "50ml azeite",
-        "2 limões"
-      ],
-      "modo_preparo": "Grelhe peixe temperado com Ervas Finas, azeite e suco de limão por 15 min."
-    },
-    {
-      "id": "jantar2",
-      "titulo": "Frango Leve com Cúrcuma e Gengibre",
-      "descricao": "Frango assado leve com toque anti-inflamatório",
-      "categoria": "Jantar",
-      "tempo_preparo": 50,
-      "servindo": 4,
-      "pote_id": "curcuma",
-      "imagem_url": "/receitas/frango-curcuma-leve.jpg",
-      "ingredientes": [
-        "800g filé de frango",
-        "40g Cúrcuma",
-        "2 colheres gengibre",
-        "100ml caldo light"
-      ],
-      "modo_preparo": "Asse frango com Cúrcuma e gengibre a 190°C por 40 min com caldo leve."
-    },
-    {
-      "id": "jantar3",
-      "titulo": "Salmão ao Forno com Lemon Pepper",
-      "descricao": "Salmão fresco com toque de pimenta preta e limão",
-      "categoria": "Jantar",
       "tempo_preparo": 30,
-      "servindo": 2,
-      "pote_id": "lemon-pepper",
-      "imagem_url": "/receitas/salmao-lemon-pepper.jpg",
+      "rendimento": "4 porções",
+      "pote_id": "tempero-do-edu",
+      "imagem_url": "/receitas/figado-acebolado-edu-guedes.jpg",
       "ingredientes": [
-        "400g filé salmão",
-        "40g Lemon Pepper",
-        "50ml azeite",
-        "2 limões"
+        "600 g de fígado bovino em bifes",
+        "Suco de 1 limão",
+        "2 cebolas grandes em rodelas",
+        "2 colheres (sopa) de manteiga",
+        "1 colher (sopa) de azeite",
+        "1 colher (sopa) de Edu Guedes Temperanzza",
+        "Sal a gosto"
       ],
-      "modo_preparo": "Coloque salmão em papel alumínio. Cubra com Lemon Pepper, azeite e limão. Asse a 200°C por 25 min."
+      "modo_preparo": "Retire a película do fígado e deixe os bifes de molho em água com o suco de limão por 10 minutos. Escorra e seque bem. Tempere os bifes com o Edu Guedes e sal. Aqueça o azeite em uma frigideira de ferro em fogo alto e sele os bifes por 2 minutos de cada lado. Reserve. Na mesma frigideira, derreta a manteiga e doure as cebolas em fogo médio por 8 a 10 minutos, com uma pitada de Edu Guedes. Volte o fígado à frigideira por 1 minuto e sirva com as cebolas por cima."
     },
     {
-      "id": "jantar4",
-      "titulo": "Carne Magra Grelhada com Salsa Cebola e Alho",
-      "descricao": "Carne magra leve com tempero aromático",
+      "id": "ovos-ao-molho-queijo-gratinado-edu-guedes",
+      "titulo": "Ovos ao Molho com Queijo Gratinado e Edu Guedes",
+      "descricao": "Ovos cozidos cortados ao meio, cobertos com molho de tomate caseiro e queijo gratinado. O Edu Guedes tempera o molho e finaliza o prato. Simples, proteico e cheio de sabor.",
+      "categoria": "Café da Manhã",
+      "tempo_preparo": 35,
+      "rendimento": "4 porções",
+      "pote_id": "tempero-do-edu",
+      "imagem_url": "/receitas/ovos-ao-molho-queijo-gratinado-edu-guedes.jpg",
+      "ingredientes": [
+        "8 ovos",
+        "2 xícaras de molho de tomate caseiro (ou passata)",
+        "1 cebola pequena picada",
+        "2 dentes de alho picados",
+        "1 colher (sopa) de azeite",
+        "100 g de queijo muçarela ralado",
+        "2 colheres (sopa) de queijo parmesão ralado",
+        "2 colheres (chá) de Edu Guedes Temperanzza",
+        "Sal a gosto",
+        "Cheiro-verde picado para finalizar"
+      ],
+      "modo_preparo": "Cozinhe os ovos em água fervente por 10 minutos. Passe para uma tigela com água e gelo, descasque e corte ao meio. Refogue a cebola e o alho no azeite. Junte o molho de tomate e metade do Edu Guedes e cozinhe por 10 minutos. Acerte o sal. Preaqueça o forno a 220 °C. Em um refratário, espalhe parte do molho, distribua os ovos com a gema para cima e cubra com o restante do molho. Cubra com os queijos e o restante do Edu Guedes e leve ao forno por 10 minutos, até gratinar. Finalize com cheiro-verde."
+    },
+    {
+      "id": "bife-na-manteiga-na-frigideira-chimi-churri-picante",
+      "titulo": "Bife na Manteiga na Frigideira com Chimi Churri Picante",
+      "descricao": "Bife alto selado na frigideira de ferro, com marcas de grelha e manteiga derretendo por cima. O Chimi Churri Picante entra na manteiga e desperta o sabor da carne. A manteiga derrete, o chimichurri acorda e o bife fica pronto.",
       "categoria": "Jantar",
       "tempo_preparo": 20,
-      "servindo": 2,
-      "pote_id": "salsa-cebola-e-alho",
-      "imagem_url": "/receitas/carne-magra-salsa.jpg",
+      "rendimento": "2 porções",
+      "pote_id": "chimichurri-picante",
+      "imagem_url": "/receitas/bife-na-manteiga-na-frigideira-chimi-churri-picante.jpg",
       "ingredientes": [
-        "300g paleta magra",
-        "40g Salsa Cebola e Alho",
-        "30ml azeite"
+        "2 bifes de contrafilé ou ancho com 3 cm de altura (cerca de 350 g cada)",
+        "1 colher (sopa) de azeite",
+        "3 colheres (sopa) de manteiga em temperatura ambiente",
+        "2 colheres (chá) de Chimi Churri Picante Temperanzza",
+        "Sal grosso moído a gosto"
       ],
-      "modo_preparo": "Grelhe carne magra. Tempere com Salsa Cebola e Alho e azeite. Sirva leve."
+      "modo_preparo": "Retire os bifes da geladeira 30 minutos antes. Seque bem e tempere com sal. Misture a manteiga com o Chimi Churri Picante e leve à geladeira enquanto prepara a carne. Aqueça muito bem uma frigideira de ferro com o azeite e sele os bifes por 3 a 4 minutos de cada lado, para ponto entre malpassado e ao ponto. Deixe os bifes descansarem por 5 minutos e coloque uma colherada da manteiga de Chimi Churri sobre cada um. Sirva enquanto a manteiga derrete."
     },
     {
-      "id": "jantar5",
-      "titulo": "Peito de Frango com Temperaflix Bacon Leve",
-      "descricao": "Frango light com toque de bacon defumado",
-      "categoria": "Jantar",
+      "id": "brunch-na-frigideira-chimi-churri-picante",
+      "titulo": "Brunch na Frigideira com Chimi Churri Picante",
+      "descricao": "Legumes salteados, queijo gratinado e ovos assados direto na frigideira de ferro, com a gema mole no ponto. O Chimi Churri Picante dá frescor e um calor leve ao conjunto. Um brunch completo, servido na própria panela.",
+      "categoria": "Café da Manhã",
       "tempo_preparo": 35,
-      "servindo": 2,
-      "pote_id": "temperaflix-bacon",
-      "imagem_url": "/receitas/peito-bacon-leve.jpg",
+      "rendimento": "2 porções",
+      "pote_id": "chimichurri-picante",
+      "imagem_url": "/receitas/brunch-na-frigideira-chimi-churri-picante.jpg",
       "ingredientes": [
-        "400g peito de frango",
-        "40g Temperaflix Bacon",
-        "50ml água",
-        "20ml azeite"
+        "2 colheres (sopa) de azeite",
+        "1 cebola roxa em pétalas",
+        "1 pimentão vermelho em cubos",
+        "1 xícara de floretes de brócolis",
+        "10 tomates-cereja",
+        "4 ovos",
+        "80 g de queijo muçarela ralado",
+        "2 colheres (chá) de Chimi Churri Picante Temperanzza",
+        "Sal a gosto"
       ],
-      "modo_preparo": "Refogue frango em pouca gordura. Adicione água e Temperaflix Bacon. Cozinhe 25 min."
+      "modo_preparo": "Preaqueça o forno a 200 °C. Em uma frigideira de ferro, aqueça o azeite e salteie a cebola, o pimentão e o brócolis por 6 minutos. Junte os tomates, metade do Chimi Churri Picante e sal. Cozinhe por mais 2 minutos. Abra 4 espaços entre os legumes, quebre um ovo em cada um e espalhe o queijo ao redor. Leve ao forno por 8 a 10 minutos, até as claras firmarem e as gemas continuarem moles. Finalize com o restante do Chimi Churri Picante e sirva na frigideira."
     },
     {
-      "id": "jantar6",
-      "titulo": "Vegetais Leves com Edu Guedes",
-      "descricao": "Mix de vegetais cozidos no vapor com tempero versátil",
-      "categoria": "Jantar",
-      "tempo_preparo": 25,
-      "servindo": 2,
-      "pote_id": "tempero-do-edu",
-      "imagem_url": "/receitas/vegetais-leves-edu.jpg",
-      "ingredientes": [
-        "200g cenoura",
-        "200g brócolis",
-        "150g abobrinha",
-        "40g Edu Guedes",
-        "20ml azeite"
-      ],
-      "modo_preparo": "Cozinhe vegetais no vapor. Tempere com Edu Guedes e azeite. Sirva morno."
-    },
-    {
-      "id": "jantar7",
-      "titulo": "Caldo de Carne Temperado com Tempero Mineiro",
-      "descricao": "Caldo quentinho com tempero mineiro tradicional",
-      "categoria": "Jantar",
-      "tempo_preparo": 60,
-      "servindo": 4,
-      "pote_id": "tempero-mineiro",
-      "imagem_url": "/receitas/caldo-mineiro.jpg",
-      "ingredientes": [
-        "800ml caldo beef",
-        "300g carne picada",
-        "1 batata",
-        "1 cenoura",
-        "50g Tempero Mineiro"
-      ],
-      "modo_preparo": "Cozinhe caldo com carne. Adicione batata e cenoura. Tempere com Tempero Mineiro."
-    },
-    {
-      "id": "jantar8",
-      "titulo": "Moqueca Leve de Peixe com Páprica Defumada",
-      "descricao": "Peixe em caldo leve com páprica defumada",
-      "categoria": "Jantar",
-      "tempo_preparo": 40,
-      "servindo": 2,
-      "pote_id": "paprica-defumada",
-      "imagem_url": "/receitas/moqueca-leve-paprica.jpg",
-      "ingredientes": [
-        "400g peixe branco",
-        "200ml caldo leve",
-        "1 cebola",
-        "40g Páprica Defumada"
-      ],
-      "modo_preparo": "Cozinhe peixe em caldo com cebola. Finalize com Páprica Defumada."
-    },
-    {
-      "id": "jantar9",
-      "titulo": "Sopa Cremosa com Temperaflix Ervas Finas",
-      "descricao": "Sopa cremosa e reconfortante com ervas premium",
+      "id": "lombo-grelhado-chimi-churri-picante",
+      "titulo": "Lombo Grelhado com Chimi Churri Picante",
+      "descricao": "Lombo suíno marinado, dourado na frigideira e servido em fatias suculentas. O Chimi Churri Picante tempera a carne com ervas, alho e um calor na medida. Um corte magro que ganha alma argentina.",
       "categoria": "Jantar",
       "tempo_preparo": 45,
-      "servindo": 4,
-      "pote_id": "temperaflix-ervas-finas",
-      "imagem_url": "/receitas/sopa-cremosa-ervas.jpg",
-      "ingredientes": [
-        "1L caldo vegetal",
-        "300g abóbora",
-        "200g cenoura",
-        "200ml creme",
-        "50g Temperaflix Ervas Finas"
-      ],
-      "modo_preparo": "Cozinhe abóbora e cenoura. Bata com caldo. Adicione creme e Temperaflix Ervas Finas."
-    },
-    {
-      "id": "jantar10",
-      "titulo": "Ovo Poché com Ervas Finas e Pão Integral",
-      "descricao": "Ovo poché leve com ervas aromáticas",
-      "categoria": "Jantar",
-      "tempo_preparo": 15,
-      "servindo": 1,
-      "pote_id": "ervas-finas",
-      "imagem_url": "/receitas/ovo-pocho-ervas.jpg",
-      "ingredientes": [
-        "2 ovos",
-        "30g Ervas Finas",
-        "1 fatia pão integral",
-        "20ml azeite"
-      ],
-      "modo_preparo": "Cozinhe ovos em água morna. Coloque em pão. Finalize com Ervas Finas e azeite."
-    },
-    {
-      "id": "lanche1",
-      "titulo": "Hummus com Temperaflix Tradicional",
-      "descricao": "Pasta de grão-de-bico com toque gourmet mineiro",
-      "categoria": "Lanche",
-      "tempo_preparo": 20,
-      "servindo": 4,
-      "pote_id": "temperaflix-tradicional",
-      "imagem_url": "/receitas/hummus-temperaflix.jpg",
-      "ingredientes": [
-        "400g grão-de-bico cozido",
-        "50ml azeite",
-        "2 colheres tahine",
-        "50g Temperaflix Tradicional"
-      ],
-      "modo_preparo": "Bata todos os ingredientes até cremoso. Sirva com pão árabe ou vegetais."
-    },
-    {
-      "id": "lanche2",
-      "titulo": "Guacamole com Chimi Churri Picante",
-      "descricao": "Guacamole fresco com chimichurri argentino",
-      "categoria": "Lanche",
-      "tempo_preparo": 10,
-      "servindo": 3,
+      "rendimento": "4 porções",
       "pote_id": "chimichurri-picante",
-      "imagem_url": "/receitas/guacamole-chimi.jpg",
+      "imagem_url": "/receitas/lombo-grelhado-chimi-churri-picante.jpg",
       "ingredientes": [
-        "3 abacates",
-        "1 limão",
-        "1 tomate",
-        "30g Chimi Churri Picante"
+        "800 g de lombo suíno em peça",
+        "3 colheres (sopa) de azeite",
+        "Suco de 1 limão",
+        "2 dentes de alho amassados",
+        "2 colheres (sopa) de Chimi Churri Picante Temperanzza",
+        "Sal a gosto"
       ],
-      "modo_preparo": "Amasse abacates com suco de limão. Adicione tomate picado e Chimi Churri Picante. Sirva."
+      "modo_preparo": "Misture o azeite, o suco de limão, o alho, o Chimi Churri Picante e sal. Passe em todo o lombo e deixe marinar por 1 hora na geladeira. Retire da geladeira 20 minutos antes e preaqueça o forno a 180 °C. Em uma frigideira de ferro, em fogo médio-alto, doure o lombo de todos os lados por cerca de 8 minutos. Leve a frigideira ao forno por 20 minutos, até o centro atingir 63 °C. Deixe descansar por 8 minutos e corte em fatias."
     },
     {
-      "id": "lanche3",
-      "titulo": "Iogurte com Granola e Lemon Pepper",
-      "descricao": "Iogurte grego com granola crocante e toque cítrico",
-      "categoria": "Lanche",
-      "tempo_preparo": 5,
-      "servindo": 1,
-      "pote_id": "lemon-pepper",
-      "imagem_url": "/receitas/iogurte-granola-lemon.jpg",
-      "ingredientes": [
-        "150g iogurte grego",
-        "50g granola",
-        "30g Lemon Pepper"
-      ],
-      "modo_preparo": "Coloque iogurte em tigela. Adicione granola e finalize com Lemon Pepper."
-    },
-    {
-      "id": "lanche4",
-      "titulo": "Queijo com Ervas Finas e Cracker",
-      "descricao": "Tábua de queijo temperado com ervas aromaáticas",
-      "categoria": "Lanche",
-      "tempo_preparo": 10,
-      "servindo": 4,
-      "pote_id": "ervas-finas",
-      "imagem_url": "/receitas/queijo-ervas-cracker.jpg",
-      "ingredientes": [
-        "200g queijo meia cura",
-        "40g Ervas Finas",
-        "100g cracker integral"
-      ],
-      "modo_preparo": "Corte queijo em cubos. Polvilhe com Ervas Finas. Sirva com cracker."
-    },
-    {
-      "id": "lanche5",
-      "titulo": "Mix de Oleaginosas com Páprica Picante",
-      "descricao": "Mix de castanhas e sementes com páprica vermelha",
-      "categoria": "Lanche",
-      "tempo_preparo": 5,
-      "servindo": 4,
-      "pote_id": "paprica-picante",
-      "imagem_url": "/receitas/mix-oleaginosas.jpg",
-      "ingredientes": [
-        "100g castanha de caju",
-        "100g amêndoas",
-        "50g sementes de girassol",
-        "30g Páprica Picante"
-      ],
-      "modo_preparo": "Misture oleaginosas. Polvilhe Páprica Picante. Sirva em porções pequenas."
-    },
-    {
-      "id": "lanche6",
-      "titulo": "Batatinha Chips Caseira com Ana Maria",
-      "descricao": "Batata chips crocante com tempero mineiro",
-      "categoria": "Lanche",
-      "tempo_preparo": 35,
-      "servindo": 4,
-      "pote_id": "ana-maria",
-      "imagem_url": "/receitas/batatinha-chips-ana.jpg",
-      "ingredientes": [
-        "4 batatas médias",
-        "40g Ana Maria",
-        "500ml óleo para fritar"
-      ],
-      "modo_preparo": "Corte batatas em fatias finas. Frite até dourar. Tempere com Ana Maria ainda quentes."
-    },
-    {
-      "id": "lanche7",
-      "titulo": "Bruschetone com Tomate e Salsa Cebola e Alho",
-      "descricao": "Bruschetone tradicional italiano com tempero aromático",
-      "categoria": "Lanche",
-      "tempo_preparo": 15,
-      "servindo": 4,
-      "pote_id": "salsa-cebola-e-alho",
-      "imagem_url": "/receitas/bruschetone-tomate.jpg",
-      "ingredientes": [
-        "1 baguete",
-        "400g tomate fresco",
-        "40g Salsa Cebola e Alho",
-        "50ml azeite"
-      ],
-      "modo_preparo": "Toste baguete. Misture tomate com Salsa Cebola e Alho e azeite. Coloque sobre o pão."
-    },
-    {
-      "id": "lanche8",
-      "titulo": "Amendoim Crocante com Temperaflix Bacon",
-      "descricao": "Amendoim crocante com toque de bacon defumado",
-      "categoria": "Lanche",
+      "id": "bife-acebolado-lemon-pepper",
+      "titulo": "Bife Acebolado com Lemon Pepper",
+      "descricao": "Bife suculento, rosado por dentro, coberto com anéis de cebola dourada. O Lemon Pepper traz o toque cítrico e picante que equilibra a doçura da cebola. Um clássico brasileiro com sabor novo.",
+      "categoria": "Almoço",
       "tempo_preparo": 25,
-      "servindo": 4,
-      "pote_id": "temperaflix-bacon",
-      "imagem_url": "/receitas/amendoim-bacon.jpg",
+      "rendimento": "2 porções",
+      "pote_id": "lemon-pepper",
+      "imagem_url": "/receitas/bife-acebolado-lemon-pepper.jpg",
       "ingredientes": [
-        "300g amendoim descascado",
-        "40g Temperaflix Bacon",
-        "30ml azeite",
-        "Sal"
+        "2 bifes de contrafilé com 2 cm de altura (cerca de 300 g cada)",
+        "2 cebolas em anéis",
+        "2 colheres (sopa) de manteiga",
+        "1 colher (sopa) de azeite",
+        "2 colheres (chá) de Lemon Pepper Temperanzza",
+        "Sal a gosto"
       ],
-      "modo_preparo": "Torça amendoim em forno a 180°C por 20 min. Misture com azeite e Temperaflix Bacon. Sirva."
+      "modo_preparo": "Tempere os bifes com o Lemon Pepper e sal. Aqueça muito bem uma frigideira com o azeite e sele os bifes por 3 minutos de cada lado. Reserve para descansar. Na mesma frigideira, derreta a manteiga e doure as cebolas em fogo médio por 8 minutos, até ficarem macias e douradas. Tempere com uma pitada de Lemon Pepper. Coloque o bife no prato e cubra com as cebolas."
     },
     {
-      "id": "lanche9",
-      "titulo": "Bolo de Chocolate com Páprica Doce",
-      "descricao": "Bolo de chocolate com toque doce e sutil de páprica",
-      "categoria": "Lanche",
-      "tempo_preparo": 40,
-      "servindo": 8,
+      "id": "ensopado-de-frango-quiabo-paprica-doce",
+      "titulo": "Ensopado de Frango com Quiabo e Páprica Doce",
+      "descricao": "Sobrecoxas douradas cozidas com quiabo em panela de ferro, em um molho encorpado. A Páprica Doce dá cor e sabor sem ardência. O clássico mineiro, do jeito da casa.",
+      "categoria": "Almoço",
+      "tempo_preparo": 55,
+      "rendimento": "4 porções",
       "pote_id": "paprica-doce",
-      "imagem_url": "/receitas/bolo-chocolate-paprica.jpg",
+      "imagem_url": "/receitas/ensopado-de-frango-quiabo-paprica-doce.jpg",
       "ingredientes": [
-        "200g chocolate amargo",
-        "150g açúcar",
-        "3 ovos",
-        "200ml leite",
-        "30g Páprica Doce"
+        "1 kg de sobrecoxas de frango",
+        "400 g de quiabo em pedaços de 3 cm",
+        "1 cebola picada",
+        "3 dentes de alho picados",
+        "2 tomates picados",
+        "2 colheres (sopa) de óleo",
+        "1 colher (sopa) de Páprica Doce Temperanzza",
+        "Suco de 1/2 limão",
+        "400 ml de água quente",
+        "Sal a gosto",
+        "Cheiro-verde picado para finalizar"
       ],
-      "modo_preparo": "Derreta chocolate com manteiga. Misture ovos, açúcar e leite. Adicione Páprica Doce. Asse a 180°C por 35 min."
+      "modo_preparo": "Tempere o frango com a Páprica Doce e sal. Em uma frigideira, aqueça 1 colher (sopa) de óleo e refogue o quiabo com o suco de limão em fogo alto por 5 minutos, até perder a baba. Reserve. Em uma panela, aqueça o restante do óleo e doure o frango. Junte a cebola, o alho e o tomate e refogue até o tomate desmanchar. Adicione a água quente, tampe e cozinhe em fogo baixo por 25 minutos. Junte o quiabo, cozinhe por mais 5 a 8 minutos, acerte o sal e finalize com cheiro-verde."
     },
     {
-      "id": "lanche10",
-      "titulo": "Bolo de Chocolate com Temperaflix Ervas Finas",
-      "descricao": "Bolo de chocolate com toque herbal premium",
-      "categoria": "Lanche",
-      "tempo_preparo": 40,
-      "servindo": 8,
-      "pote_id": "temperaflix-ervas-finas",
-      "imagem_url": "/receitas/bolo-chocolate-herbs.jpg",
+      "id": "frango-a-passarinho-paprica-doce",
+      "titulo": "Frango à Passarinho com Páprica Doce",
+      "descricao": "Pedaços de frango bem dourados na frigideira de ferro, com pele crocante e carne suculenta. A Páprica Doce dá a cor do apetite sem o ardor da pimenta. Finalizado com sal grosso, como pede um bom petisco de boteco.",
+      "categoria": "Almoço",
+      "tempo_preparo": 45,
+      "rendimento": "4 porções",
+      "pote_id": "paprica-doce",
+      "imagem_url": "/receitas/frango-a-passarinho-paprica-doce.jpg",
       "ingredientes": [
-        "200g chocolate amargo",
-        "150g açúcar",
-        "3 ovos",
-        "200ml leite",
-        "30g Temperaflix Ervas Finas"
+        "1 kg de frango cortado à passarinho (ou sobrecoxas)",
+        "Suco de 1 limão",
+        "4 dentes de alho amassados",
+        "1 colher (sopa) de Páprica Doce Temperanzza",
+        "3 colheres (sopa) de óleo",
+        "Sal a gosto",
+        "Sal grosso para finalizar"
       ],
-      "modo_preparo": "Derreta chocolate com manteiga. Misture ovos, açúcar e leite. Adicione Temperaflix Ervas Finas. Asse a 180°C por 35 min."
+      "modo_preparo": "Tempere o frango com o suco de limão, o alho, a Páprica Doce e sal. Deixe marinar por 30 minutos. Seque levemente os pedaços com papel-toalha. Aqueça o óleo em uma frigideira de ferro em fogo médio-alto e coloque o frango com a pele para baixo, sem amontoar. Cozinhe por 10 a 12 minutos, até a pele ficar crocante. Vire os pedaços, abaixe o fogo e cozinhe com a frigideira semitampada por 12 a 15 minutos, até cozinhar por dentro. Destampe, aumente o fogo por 2 minutos e finalize com sal grosso."
     },
     {
-      "id": "lanche11",
-      "titulo": "Biscoito de Cúrcuma e Gengibre",
-      "descricao": "Biscoito aromático anti-inflamatório",
-      "categoria": "Lanche",
-      "tempo_preparo": 30,
-      "servindo": 12,
+      "id": "couve-flor-gratinada-curcuma",
+      "titulo": "Couve-Flor Gratinada com Cúrcuma",
+      "descricao": "Floretes de couve-flor cobertos com molho cremoso dourado e queijo gratinado. A Cúrcuma dá a cor de ouro e um sabor suave e terroso. Visual de ouro, sabor de terra.",
+      "categoria": "Jantar",
+      "tempo_preparo": 50,
+      "rendimento": "4 porções",
       "pote_id": "curcuma",
-      "imagem_url": "/receitas/biscoito-curcuma.jpg",
+      "imagem_url": "/receitas/couve-flor-gratinada-curcuma.jpg",
       "ingredientes": [
-        "200g farinha",
-        "100g manteiga",
-        "100g açúcar",
-        "1 ovo",
-        "40g Cúrcuma"
+        "1 couve-flor média em floretes",
+        "2 colheres (sopa) de manteiga",
+        "1 colher (sopa) de amido de milho",
+        "400 ml de leite",
+        "100 g de queijo muçarela ralado",
+        "50 g de queijo parmesão ralado",
+        "1 colher (chá) de Cúrcuma Temperanzza",
+        "1 pitada de noz-moscada",
+        "Sal a gosto"
       ],
-      "modo_preparo": "Bata manteiga com açúcar. Adicione ovo, farinha e Cúrcuma. Asse a 180°C por 20 min."
+      "modo_preparo": "Cozinhe os floretes em água fervente com sal por 5 minutos. Escorra muito bem. Em uma panela, derreta a manteiga, junte o amido de milho e mexa. Acrescente o leite e a Cúrcuma e mexa até engrossar. Tempere o molho com sal e noz-moscada e junte metade da muçarela. Coloque a couve-flor em um refratário, cubra com o molho e depois com o restante da muçarela e o parmesão. Asse a 200 °C por 20 a 25 minutos, até dourar."
+    },
+    {
+      "id": "panela-de-legumes-assados-curcuma",
+      "titulo": "Panela de Legumes Assados com Cúrcuma",
+      "descricao": "Abóbora, abobrinha, pimentão e cebola roxa assados até caramelizar nas bordas. A Cúrcuma pinta os legumes de dourado e realça o sabor natural de cada um. Uma explosão de cores, servida na própria panela.",
+      "categoria": "Jantar",
+      "tempo_preparo": 50,
+      "rendimento": "4 porções",
+      "pote_id": "curcuma",
+      "imagem_url": "/receitas/panela-de-legumes-assados-curcuma.jpg",
+      "ingredientes": [
+        "400 g de abóbora cabotiá em gomos, com casca",
+        "1 abobrinha em rodelas grossas",
+        "1 pimentão vermelho em tiras largas",
+        "1 cebola roxa em gomos",
+        "4 colheres (sopa) de azeite",
+        "2 colheres (chá) de Cúrcuma Temperanzza",
+        "1/2 colher (chá) de pimenta-do-reino",
+        "Sal a gosto",
+        "Ramos de tomilho"
+      ],
+      "modo_preparo": "Preaqueça o forno a 220 °C. Misture o azeite, a Cúrcuma, a pimenta-do-reino e o sal. Envolva a abóbora na mistura, espalhe em uma panela de ferro ou assadeira e asse por 15 minutos. Envolva os demais legumes no restante da mistura, junte à abóbora e asse por mais 20 minutos, virando na metade do tempo. Finalize com o tomilho e sirva."
     }
   ]
 }

@@ -32,7 +32,7 @@ export function FlavorTiles({
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3">
         {items.map((p) => {
           const image = p.node.images.edges[0]?.node;
-          const imgSrc = getProductImage(p.node.handle, image?.url) ?? image?.url ?? null;
+          const imgSrc = getProductImage(p.node.handle);
           return (
             <Link
               key={p.node.id}

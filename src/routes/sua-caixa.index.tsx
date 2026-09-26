@@ -1,8 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Box, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { CHEF_BOX, BUILDER_HANDLES } from "@/lib/blends";
+import { PotesCarousel } from "@/components/site/PotesCarousel";
+import { BlendBuilder } from "@/components/site/BlendBuilder";
 import { BLEND_DISCOUNT_CODE, BLEND_DISCOUNT_PCT } from "@/lib/blendPricing";
 
 const BOX_URL = "https://temperanzza.com.br/sua-caixa";
@@ -62,62 +64,75 @@ function SuaCaixaIndex() {
             {CHEF_BOX.description}
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link to="/sua-caixa/$slug" params={{ slug: "chefe" }}>
+            <a href="#montar">
               <Button className="rounded-none h-12 px-6 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider">
                 <Sparkles className="w-4 h-4 mr-2" />
                 Montar sua caixa
               </Button>
-            </Link>
+            </a>
           </div>
 
           <p className="mt-6 text-xs font-display uppercase tracking-[0.25em] text-background/60">
-            Complete sua caixa com 12 potes e ganhe {BLEND_DISCOUNT_PCT}% de desconto no fechamento da compra com o cupom {BLEND_DISCOUNT_CODE}
+            Complete sua caixa com 12 potes e ganhe {BLEND_DISCOUNT_PCT}% de desconto no fechamento
+            da compra com o cupom {BLEND_DISCOUNT_CODE}
           </p>
         </div>
       </section>
 
       {/* CAIXA AUTORAL */}
       <section className="py-20 sm:py-24 bg-secondary/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative aspect-square bg-foreground overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-14">
+          <div
+            className="relative bg-foreground overflow-hidden"
+            style={{ aspectRatio: "2400 / 1360" }}
+          >
             <img
               decoding="async"
               src={CHEF_BOX.image}
-              alt="Blend do Chefe — monte sua própria caixa Temperanzza"
-              className="absolute inset-0 w-full h-full object-cover"
+              alt="Linha completa de potes Temperanzza e Temperaflix"
+              className="absolute inset-0 w-full h-full object-contain"
               loading="lazy"
             />
           </div>
+        </div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div>
             <span className="inline-flex items-center gap-2 text-[11px] font-display uppercase tracking-[0.35em] text-accent border-l-2 border-accent pl-3">
               <Sparkles className="w-3.5 h-3.5" /> Sua caixa autoral
             </span>
             <h2 className="mt-4 font-display font-black uppercase text-5xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.9]">
-              BLEND&nbsp;<br />
+              BLEND&nbsp;
+              <br />
               <span className="text-accent">DO CHEFE</span>
             </h2>
             <p className="mt-6 font-serif italic text-2xl text-foreground/80 leading-snug">
               {CHEF_BOX.tagline}.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed max-w-xl">
-              {CHEF_BOX.description} São {BUILDER_HANDLES.length} sabores
-              disponíveis e você pode repetir os favoritos quantas vezes quiser.
+              {CHEF_BOX.description} São {BUILDER_HANDLES.length} sabores disponíveis e você pode
+              repetir os favoritos quantas vezes quiser.
             </p>
             <p className="mt-4 text-sm text-foreground/70 leading-relaxed max-w-xl">
-              Complete sua caixa com 12 potes e ganhe {BLEND_DISCOUNT_PCT}% de
-              desconto no fechamento da compra com o cupom {BLEND_DISCOUNT_CODE}.
+              Complete sua caixa com 12 potes e ganhe {BLEND_DISCOUNT_PCT}% de desconto no
+              fechamento da compra com o cupom {BLEND_DISCOUNT_CODE}.
             </p>
             <div className="mt-8">
-              <Link to="/sua-caixa/$slug" params={{ slug: "chefe" }}>
+              <a href="#montar">
                 <Button className="rounded-none h-12 px-6 bg-accent hover:bg-accent/90 text-background font-display uppercase tracking-wider">
                   <Sparkles className="w-4 h-4 mr-2" />
                   Montar sua caixa
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
       </section>
+
+      {/* CARROSSEL DA LINHA */}
+      <PotesCarousel />
+
+      {/* MONTAGEM DA CAIXA: 12 potes, cupom automático */}
+      <BlendBuilder />
     </div>
   );
 }
